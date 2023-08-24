@@ -1,0 +1,7 @@
+<group name="SFW,firewall,">
+  <rule id="222000" level="3">
+    <decoded_as>custom-sfw</decoded_as>
+    <description>SFW: There is a log from the SFW</description>
+  </rule>
+</group>
+

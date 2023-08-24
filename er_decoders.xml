@@ -1,0 +1,122 @@
+<!-- "_version": 2, "_host_identifier": "283A5C4C-2ED1-11B2-A85C-BA2171689BB0", "_timestamp": "2023-08-04T08:59:00", "_event_type": "log", "_log_type": "result", "_action": "added", "_query_name": "powershell_events", "_created": "2023-08-04T09:00:40.317704", "cosine_similarity": "0.70370299999999997", "datetime": "2023-08-04T08:57:59.6297599Z", "script_block_count": "1", "script_block_id": "1361e4be-0d4c-4970-8652-8ade7030e87d", "script_length": "603", "script_name": "", "script_path": "", "script_text": "$ErrorActionPreference='silentlycontinue'; $tmp = (Get-Item -Path $env:PROGRAMFILES\\Mozilla Firefox\\firefox.exe).VersionInfo.FileVersion; if ($tmp) {echo $tmp; Exit;}; $tmp = (Get-Item -Path $env:PROGRAMFILES (x86)\\Mozilla Firefox\\firefox.exe).VersionInfo.FileVersion; if ($tmp) {echo $tmp; Exit;}; $tmp = (Get-Item (Get-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\firefox.exe').'(Default)').VersionInfo.ProductVersion; if ($tmp) {echo $tmp; Exit;}; $tmp = (Get-ItemProperty -Path Registry::HKLM\\SOFTWARE\\Mozilla\\Mozilla Firefox).CurrentVersion; if ($tmp) {echo $tmp; Exit;};", "time": "1691139484", "_platform": "windows", "_ip_address": "172.16.0.84"}  -->
+
+<decoder name="custom-er">
+  <prematch>^"_version": \d+, "_host_identifier": "\.+", "_timestamp": "\d+-\d+-\d+</prematch>
+</decoder>
+
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_version": (\.+), "</regex>
+  <order>version</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_host_identifier": "(\.+)",</regex>
+  <order>host_identifier</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_timestamp": "(\.+)",</regex>
+  <order>timestamp</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_event_type": "(\.+)",</regex>
+  <order>event_type</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_log_type": "(\.+)",</regex>
+  <order>log_type</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_action": "(\.+)",</regex>
+  <order>action</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_query_name": "(\.+)",</regex>
+  <order>query_name</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_created": "(\.+)",</regex>
+  <order>created</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"cosine_similarity": "(\.+)",</regex>
+  <order>cosine_similarity</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"datetime": "(\.+)",</regex>
+  <order>datetime</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"script_block_count": "(\.+)",</regex>
+  <order>script_block_count</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"script_block_id": "(\.+)",</regex>
+  <order>script_block_id</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"script_length": "(\.+)",</regex>
+  <order>script_length</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"script_name": "(\.+)"</regex>
+  <order>script_name</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"script_path": "(\.+)"</regex>
+  <order>script_path</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"script_text": "(\.+);",</regex>
+  <order>script_text</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"time": "(\.+)",</regex>
+  <order>time</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_platform": "(\.+)",</regex>
+  <order>platform</order>
+</decoder>
+<decoder name="custom-er_child">
+  <parent>custom-er</parent>
+  <regex>"_ip_address": "(\.+)"</regex>
+  <order>ip_address</order>
+</decoder>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

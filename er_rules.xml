@@ -1,0 +1,7 @@
+<group name="EIQ ER,syscheck,">
+  <rule id="333000" level="3">
+    <decoded_as>custom-er</decoded_as>
+    <description>EIQ ER: There is a log from the EIQ ER.</description>
+  </rule>
+</group>
+

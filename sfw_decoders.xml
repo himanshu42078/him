@@ -1,0 +1,304 @@
+<!-- Aug 22 11:34:55 172.16.0.1 device_name="SFW" timestamp="2023-08-22T11:20:39+0530" device_model="XG210" device_serial_id="C230766B7FDKFAC" log_id="010101600001" log_type="Firewall" log_component="Firewall Rule" log_subtype="Allowed" log_version=1 severity="Information" duration=62 fw_rule_id="6" fw_rule_name="LAN_WAN_172 Network" fw_rule_section="Local rule" nat_rule_id="2" nat_rule_name="fw#6_migrated_NAT_Rule" fw_rule_type="USER" gw_id_request=3 gw_name_request="NURON_50MBPS" web_policy_id=1 ips_policy_id=1 app_filter_policy_id=1 app_name="QUIC" app_risk=1 app_technology="Network Protocol" app_category="Infrastructure" ether_type="Unknown (0x0000)" in_interface="Port5" out_interface="Port3" src_mac="8C:85:90:64:F6:62" dst_mac="C8:4F:86:01:9E:84" src_ip="172.16.0.53" src_country="R1" dst_ip="142.250.195.138" dst_country="USA" protocol="UDP" src_port=51475 dst_port=443 packets_sent=9  packets_received=12 bytes_sent=3872 bytes_received=5862 src_trans_ip="103.170.220.50" src_zone_type="LAN" src_zone="LAN" dst_zone_type="WAN" dst_zone="WAN" con_event="Stop" con_id="1578482988" hb_status="No Heartbeat" app_resolved_by="Signature" app_is_cloud="FALSE" qualifier="New" in_display_interface="Port5" out_display_interface="Port3" log_occurrence="1" -->
+
+
+<decoder name="custom-sfw">
+  <prematch>^device_name="\w*"\s+timestamp="\d+-\d+-\d+</prematch>
+</decoder>
+
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>device_name="(\.+)"</regex>
+  <order>device_name=</order>
+</decoder>
+
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>timestamp="(\.+)"</regex>
+  <order>time</order>
+</decoder>
+
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>device_model="(\.+)"</regex>
+  <order>device_model</order>
+</decoder>
+
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>device_serial_id="(\.+)"</regex>
+  <order>device_serial_id</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>log_id="(\.+)"</regex>
+  <order>log_id</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>log_type="(\.+)"</regex>
+  <order>log_type</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>log_component="(\.+)"</regex>
+  <order>log_component</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>log_subtype="(\.+)"</regex>
+  <order>log_subtype</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>log_version=(\d+)</regex>
+  <order>log_version</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>severity="(\.+)"</regex>
+  <order>severity</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>duration=(\d+)</regex>
+  <order>duration</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>fw_rule_id="(\.+)"</regex>
+  <order>fw_rule_id</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>fw_rule_name="(\.+)"</regex>
+  <order>fw_rule_name</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>fw_rule_section="(\.+)"</regex>
+  <order>fw_rule_section</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>nat_rule_id="(\.+)"</regex>
+  <order>nat_rule_id</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>nat_rule_name="(\.+)"</regex>
+  <order>nat_rule_name</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>fw_rule_type="(\.+)"</regex>
+  <order>fw_rule_type</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>gw_id_request=(\d+)</regex>
+  <order>gw_id_request</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>web_policy_id=(\d+)</regex>
+  <order>web_policy_id</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>ips_policy_id=(\d+)</regex>
+  <order>ips_policy_id</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>app_filter_policy_id=(\d+)</regex>
+  <order>app_filter_policy_id</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>app_name="(\.+)"</regex>
+  <order>app_name</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>app_risk=(\d+)</regex>
+  <order>app_risk</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>app_technology="(\.+)"</regex>
+  <order>app_technology</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>app_category="(\.+)"</regex>
+  <order>app_category</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>ether_type="(\.+)"</regex>
+  <order>ether_type</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>in_interface="(\.+)"</regex>
+  <order>in_interface</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>out_interface="(\.+)"</regex>
+  <order>out_interface</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>src_mac="(\.+)"</regex>
+  <order>src_mac</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>dst_mac="(\.+)"</regex>
+  <order>dst_mac</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>src_ip="(\.+)"</regex>
+  <order>src_ip</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>src_country="(\.+)"</regex>
+  <order>src_country</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>dst_ip="(\.+)"</regex>
+  <order>dst_ip</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>dst_country="(\.+)"</regex>
+  <order>dst_country</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>protocol="(\.+)"</regex>
+  <order>protocol</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>src_port=(\d+)</regex>
+  <order>src_port</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>dst_port=(\d+)</regex>
+  <order>dst_port</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>packets_sent=(\d+)</regex>
+  <order>packets_sent</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>packets_received=(\d+)</regex>
+  <order>packets_received</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>bytes_sent=(\d+)</regex>
+  <order>bytes_sent</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>bytes_received=(\d+)</regex>
+  <order>bytes_received</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>src_trans_ip="(\.+)"</regex>
+  <order>src_trans_ip</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>src_zone_type="(\.+)"</regex>
+  <order>src_zone_type</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>src_zone="(\.+)"</regex>
+  <order>src_zone</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>dst_zone_type="(\.+)"</regex>
+  <order>dst_zone_type</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>dst_zone_type="(\.+)"</regex>
+  <order>dst_zone_type</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>dst_zone="(\.+)"</regex>
+  <order>dst_zone</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>con_event="(\.+)"</regex>
+  <order>con_event</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>con_id="(\.+)"</regex>
+  <order>con_id</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>hb_status="(\.+)"</regex>
+  <order>hb_status</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>app_resolved_by="(\.+)"</regex>
+  <order>app_resolved_by</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>app_is_cloud="(\.+)"</regex>
+  <order>app_is_cloud</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>qualifier="(\.+)"</regex>
+  <order>qualifier</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>in_display_interface="(\.+)"</regex>
+  <order>in_display_interface</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>out_display_interface="(\.+)"</regex>
+  <order>out_display_interface</order>
+</decoder>
+<decoder name="custom-sfw_child">
+  <parent>custom-sfw</parent>
+  <regex>log_occurrence="(\.+)"</regex>
+  <order>log_occurrence</order>
+</decoder>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
