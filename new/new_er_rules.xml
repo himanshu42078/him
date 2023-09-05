@@ -1,0 +1,7 @@
+<group name="EIQ ER,syscheck,">
+  <rule id="555000" level="3">
+    <decoded_as>er-custom</decoded_as>
+    <description>ER log testing.</description>
+  </rule>
+</group>
+

@@ -1,0 +1,85 @@
+
+<decoder name="er-custom">
+    <program_name>alert</program_name>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>rule={'id': (\.+), 'name': '(\.+)', 'platform': '(\.+)', 'conditions': {'rules': [{'id': '(\.+)', 'type': '(\.+)', 'field': '(\.+)', 'input': '(\.+)', 'value': '(\.+)', 'operator': '(\.+)'}], 'valid': (\.+), 'condition': '(\.+)'}, 'severity': '(\.+)', 'status': '(\.+)', 'description': (\.+), 'alerters': [(\.+)], 'alert_description': (\.+)},</regex>
+  <order>rule.id,rule.name,rule.platform,conditions.rules.id,conditions.rules.type,conditions.rules.field,conditions.rules.input,conditions.rules.value,conditions.rules.operator,valid,condition,severity,status,description,alerters,alert_description</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>result={'columns': {'action': '(\.+)', 'cmdline': '(\.+)', 'eid': '(\.+)', 'eventid': '(\.+)', 'owner_uid': '(\.+)', 'parent_path': '(\.+)', 'parent_pid': '(\.+)', 'parent_process_guid': '(\.+)', 'path': '(\.+)', 'pid': '(\.+)', 'process_guid': '(\.+)', 'time': '(\.+)', 'utc_time': '(\.+)'}, 'name': '(\.+)', 'action': '(\.+)'},</regex>
+  <order>result.action,result.cmdline,result.eid,result.eventid,result.owner_uid,result.parent_path,result.parent_pid,result.parent_process_guid,result.path,result.pid,result.process_guid,result.time,result.utc_time,result.name,result.action </order>
+</decoder>
+
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>node={'id': (\.+), 'host_identifier': '(\.+)', 'hostname': '(\.+)', 'node_key': '(\.+)', 'state': (\.+), 'platform': '(\.+)', 'last_ip': '(\.+)', 'host_details': {'osquery_info': {'pid': '(\.+)', 'uuid': '(\.+)', 'version': '(\.+)', 'watcher': '(\.+)', 'extensions': '(\.+)', 'start_time': '(\.+)', 'config_hash': '(\.+)', 'instance_id': '(\.+)', 'build_distro': '(\.+)', 'config_valid': '(\.+)', 'platform_mask': '(\.+)', 'build_platform': '(\.+)'}, 'osquery_version': '(\.+)', 'extension_version': '(\.+)', 'windows_security_products_status': {'Windows Firewall_Firewall': {'name': '(\.+)', 'type': '(\.+)', 'state': '(\.+)', 'state_timestamp': '(\.+)', 'remediation_path': '(\.+)', 'signatures_up_to_date': '(\.+)'},</regex>
+  <order>node.id,node.host_identifier,node.hostname,node.node_key,node.state,node.platform,node.last_ip,host_details.pid,host_details.uuid,host_details.version,host_details.watcher,host_details.extensions,host_details.start_time,host_details.config_hash,host_details.instance_id,host_details.build_distro,host_details.config_valid,host_details.platform_mask,host_details.build_platform,host_details.osquery_version,host_details.extension_version,windows_security.name,windows_security.type,windows_security.state,windows_security.state_timestamp,windows_security.remediation_path,windows_security.signatures_up_to_date</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'Sophos Intercept X_Antivirus': {'name': '(\.+)', 'type': '(\.+)', 'state': '(\.+)', 'state_timestamp': '(\.+)', 'remediation_path': '(\.+)', 'signatures_up_to_date': '(\.+)'},</regex>
+  <order>Sophos.name,Sophos.type,Sophos.state,Sophos.state_timestamp,Sophos.remediation_path,Sophos.signatures_up_to_date</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+ <regex>'Microsoft Defender Antivirus_Antivirus': {'name': '(\.+)', 'type': '(\.+)', 'state': '(\.+)', 'state_timestamp': '(\.+)', 'remediation_path': '(\.+)', 'signatures_up_to_date': '(\.+)'}}},</regex>
+  <order>Microsoft_Defender.name,Microsoft_Defender.type,Microsoft_Defender.state,Microsoft_Defender.state_timestamp,Microsoft_Defender.remediation_path,Microsoft_Defender.signatures_up_to_date</order>
+</decoder>
+
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'enrolled_on': '(\.+)',</regex>
+  <order>enrolled_on</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'last_checkin': '(\.+)',</regex>
+  <order>last_checkin</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'last_status': '(\.+)',</regex>
+  <order>last_status</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'last_result': '(\.+)',</regex>
+  <order>last_result</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'last_config': '(\.+)',</regex>
+  <order>last_config</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'last_query_read': '(\.+)',</regex>
+  <order>last_query_read</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'last_query_write': '(\.+)',</regex>
+  <order>last_query_write</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>alert_id=(\.+)\)</regex>
+  <order>alert_id</order>
+</decoder>
+
