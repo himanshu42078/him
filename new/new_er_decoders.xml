@@ -5,8 +5,26 @@
 
 <decoder name="er-custom_child">
   <parent>er-custom</parent>
-  <regex>rule={'id': (\.+), 'name': '(\.+)', 'platform': '(\.+)', 'conditions': {'rules': [{'id': '(\.+)', 'type': '(\.+)', 'field': '(\.+)', 'input': '(\.+)', 'value': '(\.+)', 'operator': '(\.+)'}], 'valid': (\.+), 'condition': '(\.+)'}, 'severity': '(\.+)', 'status': '(\.+)', 'description': (\.+), 'alerters': [(\.+)], 'alert_description': (\.+)},</regex>
-  <order>rule.id,rule.name,rule.platform,conditions.rules.id,conditions.rules.type,conditions.rules.field,conditions.rules.input,conditions.rules.value,conditions.rules.operator,valid,condition,severity,status,description,alerters,alert_description</order>
+  <regex>rule={'id': (\.+), 'name': '(\.+)', 'platform': '(\.+)', 'conditions': {'rules': [{'id': '(\.+)', 'type': '(\.+)', 'field': '(\.+)', 'input': '(\.+)', 'value': '(\.+)', 'operator': '(\.+)'}</regex>
+  <order>rule.id,rule.name,rule.platform,conditions.rules.id,conditions.rules.type,conditions.rules.field,conditions.rules.input,conditions.rules.value,conditions.rules.operator</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'valid': (\.+), 'condition': '(\.+)'}, 'severity': '(\.+)', 'status': '(\.+)',</regex>
+  <order>valid,condition,severity,status</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'description': (\.+),|'description': '(\.+)',</regex>
+  <order>description</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'alerters': [(\.+)], 'alert_description': (\.+)},</regex>
+  <order>alerters,alert_description</order>
 </decoder>
 
 <decoder name="er-custom_child">
@@ -15,11 +33,34 @@
   <order>result.action,result.cmdline,result.eid,result.eventid,result.owner_uid,result.parent_path,result.parent_pid,result.parent_process_guid,result.path,result.pid,result.process_guid,result.time,result.utc_time,result.name,result.action </order>
 </decoder>
 
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>result={'columns': {'action': '(\.+)', 'cmdline': '(\.+)', 'eid': '(\.+)', 'eventid': '(\.+)', 'md5': '(\.+)', 'orig_file_name': '(\.+)', 'owner_uid': '(\.+)', 'parent_path': '(\.+)', 'parent_pid': '(\.+)', 'parent_process_guid': '(\.+)', 'path': '(\.+)', 'pid': '(\.+)', 'process_guid': '(\.+)', 'sha256': '(\.+)', 'time': '(\.+)', 'utc_time': '(\.+)'}, 'name': '(\.+)', 'action': '(\.+)'},</regex>
+  <order>result.action,result.cmdline,result.eid,result.eventid,result.md5,result.orig_file_name,result.owner_uid,result.parent_path,result.parent_pid,result.parent_process_guid,result.path,result.pid,result.process_guid,result.sha256,result.time,result.utc_time,result.name,result.action</order>
+</decoder>
 
 <decoder name="er-custom_child">
   <parent>er-custom</parent>
-  <regex>node={'id': (\.+), 'host_identifier': '(\.+)', 'hostname': '(\.+)', 'node_key': '(\.+)', 'state': (\.+), 'platform': '(\.+)', 'last_ip': '(\.+)', 'host_details': {'osquery_info': {'pid': '(\.+)', 'uuid': '(\.+)', 'version': '(\.+)', 'watcher': '(\.+)', 'extensions': '(\.+)', 'start_time': '(\.+)', 'config_hash': '(\.+)', 'instance_id': '(\.+)', 'build_distro': '(\.+)', 'config_valid': '(\.+)', 'platform_mask': '(\.+)', 'build_platform': '(\.+)'}, 'osquery_version': '(\.+)', 'extension_version': '(\.+)', 'windows_security_products_status': {'Windows Firewall_Firewall': {'name': '(\.+)', 'type': '(\.+)', 'state': '(\.+)', 'state_timestamp': '(\.+)', 'remediation_path': '(\.+)', 'signatures_up_to_date': '(\.+)'},</regex>
-  <order>node.id,node.host_identifier,node.hostname,node.node_key,node.state,node.platform,node.last_ip,host_details.pid,host_details.uuid,host_details.version,host_details.watcher,host_details.extensions,host_details.start_time,host_details.config_hash,host_details.instance_id,host_details.build_distro,host_details.config_valid,host_details.platform_mask,host_details.build_platform,host_details.osquery_version,host_details.extension_version,windows_security.name,windows_security.type,windows_security.state,windows_security.state_timestamp,windows_security.remediation_path,windows_security.signatures_up_to_date</order>
+  <regex>result={'columns': {'cmdline': '(\.+)', 'cwd': '(\.+)', 'eid': '(\.+)', 'gid': '(\.+)', 'parent': '(\.+)', 'path': '(\.+)', 'pid': '(\.+)', 'time': '(\.+)', 'uid': '(\.+)'}, 'name': '(\.+)', 'action': (\.+)},</regex>
+  <order>result.cmdline,result.cwd,result.eid,result.gid,result.parent,result.path,result.path,result.pid,result.time,result.uid,result.name,result.action</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>result={'columns': {'auid': '(\.+)', 'cmdline': '(\.+)', 'ctime': (\.+), 'cwd': (\.+), 'egid': '(\.+)', 'eid': '(\.+)', 'euid': '(\.+)', 'gid': '(\.+)', 'parent': '(\.+)', 'path': '(\.+)', 'pid': '(\.+)', 'time': '(\.+)', 'uid': '(\.+)'}, 'name': '(\.+)', 'action': (\.+)},</regex>
+  <order>result.auid,result.cmdline,result.ctime,result.cwd,result.egid,result.eid,result.euid,result.gid,result.parent,result.path,result.pid,result.time,result.uid,result.name,result.action </order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>node={'id': (\.+), 'host_identifier': '(\.+)', 'hostname': '(\.+)', 'node_key': '(\.+)', 'state': (\.+), 'platform': '(\.+)', 'last_ip': '(\.+)', 'host_details': {'osquery_info': {'pid': '(\.+)', 'uuid': '(\.+)', 'version': '(\.+)', 'watcher': '(\.+)', 'extensions': '(\.+)', 'start_time': '(\.+)', 'config_hash': '(\.+)', 'instance_id': '(\.+)', 'build_distro': '(\.+)', 'config_valid': '(\.+)', 'platform_mask': '(\.+)', 'build_platform': '(\.+)'}, 'osquery_version': '(\.+)', 'extension_version': '(\.+)'</regex>
+  <order>node.id,node.host_identifier,node.hostname,node.node_key,node.state,node.platform,node.last_ip,host_details.pid,host_details.uuid,host_details.version,host_details.watcher,host_details.extensions,host_details.start_time,host_details.config_hash,host_details.instance_id,host_details.build_distro,host_details.config_valid,host_details.platform_mask,host_details.build_platform,host_details.osquery_version,host_details.extension_version</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'windows_security_products_status': {'Windows Firewall_Firewall': {'name': '(\.+)', 'type': '(\.+)', 'state': '(\.+)', 'state_timestamp': '(\.+)', 'remediation_path': '(\.+)', 'signatures_up_to_date': '(\.+)'},</regex>
+<order>windows_security.name,windows_security.type,windows_security.state,windows_security.state_timestamp,windows_security.remediation_path,windows_security.signatures_up_to_date</order>
 </decoder>
 
 <decoder name="er-custom_child">
@@ -34,6 +75,42 @@
   <order>Microsoft_Defender.name,Microsoft_Defender.type,Microsoft_Defender.state,Microsoft_Defender.state_timestamp,Microsoft_Defender.remediation_path,Microsoft_Defender.signatures_up_to_date</order>
 </decoder>
 
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+ <regex>'os_info': {'arch': '(\.+)', 'name': '(\.+)', 'build': '(\.+)', 'major': '(\.+)', 'minor': '(\.+)', 'patch': (\.+), 'version': '(\.+)', 'codename': '(\.+)', 'platform': '(\.+)', 'install_date': '(\.+)', 'platform_like': '(\.+)'},</regex>
+ <order>os_info.arch,os_info.name,os_info.build,os_info.major,os_info.minor,os_info.patch,os_info.version,os_info.codename,os_info.platform,os_info.install_date,os_info.platform_like</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+ <regex>'os_info': {'arch': '(\.+)', 'name': '(\.+)', 'build': (\.+), 'major': '(\.+)', 'minor': '(\.+)', 'patch': '(\.+)', 'version': '(\.+)', 'codename': '(\.+)', 'platform': '(\.+)', 'platform_like': '(\.+)'},</regex>
+<order>os_info.arch,os_info.name,os_info.build,os_info.major,os_info.minor,os_info.patch,os_info.version,os_info.codename,os_info.platform,os_info.platform_like</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+ <regex>'os_info': {'name': '(\.+)', 'version': '(\.+)', 'major': '(\.+)', 'minor': '(\.+)', 'patch': '(\.+)', 'build': '(\.+)', 'platform': '(\.+)', 'platform_like': '(\.+)', 'codename': (\.+), 'arch': '(\.+)'}, | 'os_info': {'name': '(\.+)', 'version': '(\.+)', 'major': '(\.+)', 'minor': '(\.+)', 'patch': '(\.+)', 'build': (\.+), 'platform': '(\.+)', 'platform_like': '(\.+)', 'codename': (\.+), 'arch': '(\.+)'},</regex>
+ <order>os_info.name,os_info.version,os_info.major,os_info.minor,os_info.patch,os_info.build,os_info.platform,os_info.platform_like,os_info.codename,os_info.arch</order>
+</decoder>
+
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+ <regex>'node_info': {'cpu_type': '(\.+)', 'computer_name': '(\.+)', 'hardware_model': '(\.+)', 'hardware_serial': '(\.+)', 'hardware_vendor': '(\.+)', 'physical_memory': '(\.+)', 'cpu_physical_cores': '(\.+)'}, | 'node_info': {'cpu_type': '(\.+)', 'computer_name': '(\.+)', 'hardware_model': (\.+), 'hardware_serial': '(\.+)', 'hardware_vendor': '(\.+)', 'physical_memory': '(\.+)', 'cpu_physical_cores': '(\.+)'},</regex>
+<order>node_info.cpu_type,node_info.computer_name,node_info.hardware_model,node_info.hardware_serial,node_info.hardware_vendor,node_info.physical_memory,node_info.cpu_physical_cores</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'tags': (\.+),</regex>
+  <order>tags</order>
+</decoder>
+
+<decoder name="er-custom_child">
+  <parent>er-custom</parent>
+  <regex>'mac': '(\.+)',</regex>
+  <order>mac</order>
+</decoder>
 
 <decoder name="er-custom_child">
   <parent>er-custom</parent>
