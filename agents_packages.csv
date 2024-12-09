@@ -1,0 +1,525 @@
+Package Name,Version,Architecture,Vendor,Install Time,Agent ID,Agent Name
+virt-what,1.18-4.el7,x86_64,CentOS,2020-04-30 22:06:49,000,wazuhserver6
+mariadb-libs,1:5.5.65-1.el7,x86_64,CentOS,2020-04-30 22:06:14,000,wazuhserver6
+libverto-libevent,0.2.5-4.el7,x86_64,CentOS,2020-04-30 22:06:00,000,wazuhserver6
+pyliblzma,0.5.3, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+elfutils-libelf,0.176-4.el7,x86_64,CentOS,2020-04-30 22:05:20,000,wazuhserver6
+sed,4.2.2-6.el7,x86_64,CentOS,2020-04-30 22:05:17,000,wazuhserver6
+dhclient,12:4.2.5-79.el7.centos,x86_64,CentOS,2020-04-30 22:06:56,000,wazuhserver6
+libuuid,2.23.2-63.el7,x86_64,CentOS,2020-04-30 22:05:17,000,wazuhserver6
+libnl3-cli,3.2.28-4.el7,x86_64,CentOS,2020-04-30 22:05:24,000,wazuhserver6
+fipscheck-lib,1.4.1-6.el7,x86_64,CentOS,2020-04-30 22:06:13,000,wazuhserver6
+hyperv-daemons,0-0.34.20180415git.el7,x86_64,CentOS,2020-04-30 22:06:56,000,wazuhserver6
+NetworkManager,1:1.18.4-3.el7,x86_64,CentOS,2020-04-30 22:06:44,000,wazuhserver6
+yum-metadata-parser,1.1.4, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+libmspack,0.5-0.7.alpha.el7,x86_64,CentOS,2020-04-30 22:06:18,000,wazuhserver6
+decorator,3.4.0, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+less,458-9.el7,x86_64,CentOS,2020-04-30 22:05:31,000,wazuhserver6
+krb5-libs,1.15.1-46.el7,x86_64,CentOS,2020-04-30 22:05:52,000,wazuhserver6
+procps-ng,3.3.10-27.el7,x86_64,CentOS,2020-04-30 22:06:23,000,wazuhserver6
+quota,1:4.01-19.el7,x86_64,CentOS,2020-04-30 22:06:42,000,wazuhserver6
+ethtool,2:4.8-10.el7,x86_64,CentOS,2020-04-30 22:06:22,000,wazuhserver6
+hostname,3.13-3.el7_7.1,x86_64,CentOS,2020-04-30 22:05:28,000,wazuhserver6
+libcurl,7.29.0-57.el7,x86_64,CentOS,2020-04-30 22:06:11,000,wazuhserver6
+libxslt,1.1.28-5.el7,x86_64,CentOS,2020-04-30 22:05:22,000,wazuhserver6
+python-gobject-base,3.22.0-1.el7_4.1,x86_64,CentOS,2020-04-30 22:06:01,000,wazuhserver6
+xz,5.2.2-1.el7,x86_64,CentOS,2020-04-30 22:05:26,000,wazuhserver6
+pyxattr,0.5.1, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+rsyslog,8.24.0-52.el7,x86_64,CentOS,2020-04-30 22:07:02,000,wazuhserver6
+gobject-introspection,1.56.1-1.el7,x86_64,CentOS,2020-04-30 22:06:01,000,wazuhserver6
+iptables,1.4.21-34.el7,x86_64,CentOS,2020-04-30 22:05:30,000,wazuhserver6
+python-pyudev,0.15-9.el7,noarch,CentOS,2020-04-30 22:06:49,000,wazuhserver6
+policycoreutils,2.5-34.el7,x86_64,CentOS,2020-04-30 22:06:31,000,wazuhserver6
+pyliblzma,0.5.3-11.el7,x86_64,CentOS,2020-04-30 22:06:06,000,wazuhserver6
+python-tdb,1.3.18-1.el7,x86_64,CentOS,2020-04-30 22:06:04,000,wazuhserver6
+binutils,2.27-43.base.el7,x86_64,CentOS,2020-04-30 22:06:10,000,wazuhserver6
+kmod,20-28.el7,x86_64,CentOS,2020-04-30 22:06:25,000,wazuhserver6
+make,1:3.82-24.el7,x86_64,CentOS,2020-04-30 22:05:33,000,wazuhserver6
+lshw,B.02.18-14.el7,x86_64,CentOS,2020-04-30 22:06:58,000,wazuhserver6
+libutempter,1.1.6-4.el7,x86_64,CentOS,2020-04-30 22:06:18,000,wazuhserver6
+freetype,2.8-14.el7,x86_64,CentOS,2020-04-30 22:05:33,000,wazuhserver6
+numactl-libs,2.0.12-5.el7,x86_64,CentOS,2020-04-30 22:06:22,000,wazuhserver6
+dhcp-libs,12:4.2.5-79.el7.centos,x86_64,CentOS,2020-04-30 22:06:40,000,wazuhserver6
+gawk,4.0.2-4.el7_3.1,x86_64,CentOS,2020-04-30 22:05:18,000,wazuhserver6
+parted,3.1-32.el7,x86_64,CentOS,2020-04-30 22:07:02,000,wazuhserver6
+systemd-sysv,219-73.el7_8.5,x86_64,CentOS,2020-04-30 22:06:29,000,wazuhserver6
+device-mapper-libs,7:1.02.164-7.el7_8.1,x86_64,CentOS,2020-04-30 22:06:24,000,wazuhserver6
+libpath_utils,0.2.1-32.el7,x86_64,CentOS,2020-04-30 22:06:16,000,wazuhserver6
+qemu-guest-agent,10:2.12.0-3.el7,x86_64,CentOS,2020-04-30 22:07:01,000,wazuhserver6
+libdb,5.3.21-25.el7,x86_64,CentOS,2020-04-30 22:05:18,000,wazuhserver6
+p11-kit-trust,0.23.5-3.el7,x86_64,CentOS,2020-04-30 22:05:28,000,wazuhserver6
+yum-metadata-parser,1.1.4-10.el7,x86_64,CentOS,2020-04-30 22:06:01,000,wazuhserver6
+util-linux,2.23.2-63.el7,x86_64,CentOS,2020-04-30 22:06:24,000,wazuhserver6
+rpm-libs,4.11.3-43.el7,x86_64,CentOS,2020-04-30 22:06:11,000,wazuhserver6
+bind-export-libs,32:9.11.4-16.P2.el7_8.2,x86_64,CentOS,2020-04-30 22:06:07,000,wazuhserver6
+pciutils-libs,3.5.1-3.el7,x86_64,CentOS,2020-04-30 22:05:24,000,wazuhserver6
+python-linux-procfs,0.4.11-4.el7,noarch,CentOS,2020-04-30 22:06:05,000,wazuhserver6
+fipscheck,1.4.1-6.el7,x86_64,CentOS,2020-04-30 22:06:13,000,wazuhserver6
+libassuan,2.1.0-3.el7,x86_64,CentOS,2020-04-30 22:05:25,000,wazuhserver6
+man-pages,3.53-5.el7,noarch,CentOS,2020-04-30 22:07:10,000,wazuhserver6
+pciutils,3.5.1-3.el7,x86_64,CentOS,2020-04-30 22:06:42,000,wazuhserver6
+groff-base,1.22.2-8.el7,x86_64,CentOS,2020-04-30 22:05:26,000,wazuhserver6
+nspr,4.21.0-1.el7,x86_64,CentOS,2020-04-30 22:05:13,000,wazuhserver6
+openssl,1:1.0.2k-19.el7,x86_64,CentOS,2020-04-30 22:06:06,000,wazuhserver6
+kbd,1.15.5-15.el7,x86_64,CentOS,2020-04-30 22:06:50,000,wazuhserver6
+openssh-server,7.4p1-21.el7,x86_64,CentOS,2020-04-30 22:06:57,000,wazuhserver6
+findutils,1:4.5.11-6.el7,x86_64,CentOS,2020-04-30 22:05:23,000,wazuhserver6
+cracklib,2.9.0-11.el7,x86_64,CentOS,2020-04-30 22:05:57,000,wazuhserver6
+PyGObject,3.22.0, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+cifs-utils,6.2-10.el7,x86_64,CentOS,2020-04-30 22:06:53,000,wazuhserver6
+libldb,1.5.4-1.el7,x86_64,CentOS,2020-04-30 22:05:21,000,wazuhserver6
+irqbalance,3:1.0.7-12.el7,x86_64,CentOS,2020-04-30 22:07:02,000,wazuhserver6
+kitchen,1.1.1, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+slip.dbus,0.4.0, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+libidn,1.28-4.el7,x86_64,CentOS,2020-04-30 22:05:27,000,wazuhserver6
+dbus-glib,0.100-7.el7,x86_64,CentOS,2020-04-30 22:06:48,000,wazuhserver6
+grubby,8.28-26.el7,x86_64,CentOS,2020-04-30 22:06:01,000,wazuhserver6
+kbd-misc,1.15.5-15.el7,noarch,CentOS,2020-04-30 22:06:50,000,wazuhserver6
+yum-plugin-fastestmirror,1.1.31-53.el7,noarch,CentOS,2020-04-30 22:06:20,000,wazuhserver6
+NetworkManager-libnm,1:1.18.4-3.el7,x86_64,CentOS,2020-04-30 22:06:40,000,wazuhserver6
+grub2-pc,1:2.02-0.81.el7.centos,x86_64,CentOS,2020-04-30 22:06:42,000,wazuhserver6
+python-decorator,3.4.0-3.el7,noarch,CentOS,2020-04-30 22:05:57,000,wazuhserver6
+cronie-anacron,1.4.11-23.el7,x86_64,CentOS,2020-04-30 22:06:39,000,wazuhserver6
+libselinux-python,2.5-15.el7,x86_64,CentOS,2020-04-30 22:06:06,000,wazuhserver6
+libffi,3.0.13-19.el7,x86_64,CentOS,2020-04-30 22:05:20,000,wazuhserver6
+deltarpm,3.6-3.el7,x86_64,CentOS,2020-04-30 22:07:05,000,wazuhserver6
+libcom_err,1.42.9-17.el7,x86_64,CentOS,2020-04-30 22:05:16,000,wazuhserver6
+libattr,2.4.46-13.el7,x86_64,CentOS,2020-04-30 22:05:19,000,wazuhserver6
+sudo,1.8.23-9.el7,x86_64,CentOS,2020-04-30 22:07:05,000,wazuhserver6
+shadow-utils,2:4.6-5.el7,x86_64,CentOS,2020-04-30 22:06:17,000,wazuhserver6
+ustr,1.0.4-16.el7,x86_64,CentOS,2020-04-30 22:06:17,000,wazuhserver6
+grep,2.20-3.el7,x86_64,CentOS,2020-04-30 22:05:18,000,wazuhserver6
+python-linux-procfs,0.4.9, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+nss-sysinit,3.44.0-7.el7_7,x86_64,CentOS,2020-04-30 22:06:09,000,wazuhserver6
+cronie,1.4.11-23.el7,x86_64,CentOS,2020-04-30 22:06:39,000,wazuhserver6
+json-c,0.11-4.el7_0,x86_64,CentOS,2020-04-30 22:06:22,000,wazuhserver6
+glib2,2.56.1-5.el7,x86_64,CentOS,2020-04-30 22:05:56,000,wazuhserver6
+cryptsetup-libs,2.0.3-6.el7,x86_64,CentOS,2020-04-30 22:06:24,000,wazuhserver6
+audit-libs,2.8.5-4.el7,x86_64,CentOS,2020-04-30 22:05:19,000,wazuhserver6
+libestr,0.1.9-2.el7,x86_64,CentOS,2020-04-30 22:06:21,000,wazuhserver6
+expat,2.1.0-11.el7,x86_64,CentOS,2020-04-30 22:05:22,000,wazuhserver6
+biosdevname,0.7.3-2.el7,x86_64,CentOS,2020-04-30 22:07:02,000,wazuhserver6
+libnfsidmap,0.25-19.el7,x86_64,CentOS,2020-04-30 22:06:12,000,wazuhserver6
+pkgconfig,1:0.27.1-4.el7,x86_64,CentOS,2020-04-30 22:05:59,000,wazuhserver6
+lua,5.1.4-15.el7,x86_64,CentOS,2020-04-30 22:05:21,000,wazuhserver6
+xmlsec1-openssl,1.2.20-7.el7_4,x86_64,CentOS,2020-04-30 22:06:13,000,wazuhserver6
+gdbm,1.10-8.el7,x86_64,CentOS,2020-04-30 22:05:28,000,wazuhserver6
+logrotate,3.8.6-19.el7,x86_64,CentOS,2020-04-30 22:06:07,000,wazuhserver6
+crontabs,1.11-6.20121102git.el7,noarch,CentOS,2020-04-30 22:06:39,000,wazuhserver6
+cpio,2.11-27.el7,x86_64,CentOS,2020-04-30 22:05:21,000,wazuhserver6
+libndp,1.2-9.el7,x86_64,CentOS,2020-04-30 22:06:18,000,wazuhserver6
+slip,0.4.0, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+tzdata,2020a-1.el7,noarch,CentOS,2020-04-30 22:05:08,000,wazuhserver6
+libsmartcols,2.23.2-63.el7,x86_64,CentOS,2020-04-30 22:06:16,000,wazuhserver6
+keyutils,1.5.8-3.el7,x86_64,CentOS,2020-04-30 22:05:25,000,wazuhserver6
+polkit-pkla-compat,0.1-4.el7,x86_64,CentOS,2020-04-30 22:06:29,000,wazuhserver6
+libnfnetlink,1.0.1-4.el7,x86_64,CentOS,2020-04-30 22:05:27,000,wazuhserver6
+trousers,0.3.14-2.el7,x86_64,CentOS,2020-04-30 22:06:45,000,wazuhserver6
+libdb-utils,5.3.21-25.el7,x86_64,CentOS,2020-04-30 22:05:32,000,wazuhserver6
+filesystem,3.2-25.el7,x86_64,CentOS,2020-04-30 22:05:05,000,wazuhserver6
+python-iniparse,0.4-9.el7,noarch,CentOS,2020-04-30 22:06:04,000,wazuhserver6
+iniparse,0.4, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+e2fsprogs-libs,1.42.9-17.el7,x86_64,CentOS,2020-04-30 22:05:23,000,wazuhserver6
+libuser,0.60-9.el7,x86_64,CentOS,2020-04-30 22:06:12,000,wazuhserver6
+basesystem,10.0-7.el7.centos,noarch,CentOS,2020-04-30 22:05:05,000,wazuhserver6
+python-kitchen,1.1.1-5.el7,noarch,CentOS,2020-04-30 22:06:05,000,wazuhserver6
+wazuh-indexer,4.9.2-1,x86_64,"Wazuh, Inc <info@wazuh.com>",2024-12-09 05:58:01,000,wazuhserver6
+python-perf,3.10.0-1127.el7,x86_64,CentOS,2020-04-30 22:06:02,000,wazuhserver6
+tcp_wrappers-libs,7.6-77.el7,x86_64,CentOS,2020-04-30 22:05:20,000,wazuhserver6
+libcollection,0.7.0-32.el7,x86_64,CentOS,2020-04-30 22:05:29,000,wazuhserver6
+pyxattr,0.5.1-5.el7,x86_64,CentOS,2020-04-30 22:06:06,000,wazuhserver6
+dhcp-common,12:4.2.5-79.el7.centos,x86_64,CentOS,2020-04-30 22:06:41,000,wazuhserver6
+nettle,2.7.1-8.el7,x86_64,CentOS,2020-04-30 22:05:31,000,wazuhserver6
+lzo,2.06-8.el7,x86_64,CentOS,2020-04-30 22:06:18,000,wazuhserver6
+wazuh-manager,4.9.2-1,x86_64,"Wazuh, Inc <info@wazuh.com>",2024-12-09 06:00:16,000,wazuhserver6
+libdrm,2.4.97-2.el7,x86_64,CentOS,2020-04-30 22:06:43,000,wazuhserver6
+hwdata,0.252-9.5.el7,x86_64,CentOS,2020-04-30 22:06:30,000,wazuhserver6
+iproute,4.11.0-25.el7_7.2,x86_64,CentOS,2020-04-30 22:05:30,000,wazuhserver6
+hypervvssd,0-0.34.20180415git.el7,x86_64,CentOS,2020-04-30 22:06:41,000,wazuhserver6
+grub2-common,1:2.02-0.81.el7.centos,noarch,CentOS,2020-04-30 22:05:05,000,wazuhserver6
+python-urlgrabber,3.10-10.el7,noarch,CentOS,2020-04-30 22:06:13,000,wazuhserver6
+python-slip,0.4.0-4.el7,noarch,CentOS,2020-04-30 22:06:06,000,wazuhserver6
+vim-minimal,2:7.4.629-6.el7,x86_64,CentOS,2020-04-30 22:05:32,000,wazuhserver6
+systemd,219-73.el7_8.5,x86_64,CentOS,2020-04-30 22:06:28,000,wazuhserver6
+sysvinit-tools,2.88-14.dsf.el7,x86_64,CentOS,2020-04-30 22:05:27,000,wazuhserver6
+gzip,1.5-10.el7,x86_64,CentOS,2020-04-30 22:05:57,000,wazuhserver6
+libnetfilter_conntrack,1.0.6-1.el7_3,x86_64,CentOS,2020-04-30 22:05:30,000,wazuhserver6
+rpm,4.11.3-43.el7,x86_64,CentOS,2020-04-30 22:06:11,000,wazuhserver6
+pytalloc,2.1.16-1.el7,x86_64,CentOS,2020-04-30 22:06:02,000,wazuhserver6
+nss-util,3.44.0-4.el7_7,x86_64,CentOS,2020-04-30 22:05:13,000,wazuhserver6
+postfix,2:2.10.1-9.el7,x86_64,CentOS,2020-04-30 22:06:59,000,wazuhserver6
+pth,2.0.7-23.el7,x86_64,CentOS,2020-04-30 22:06:18,000,wazuhserver6
+libxml2,2.9.1-6.el7.4,x86_64,CentOS,2020-04-30 22:05:17,000,wazuhserver6
+nfs-utils,1:1.3.0-0.66.el7,x86_64,CentOS,2020-04-30 22:06:52,000,wazuhserver6
+gnupg2,2.0.22-5.el7_5,x86_64,CentOS,2020-04-30 22:06:19,000,wazuhserver6
+libtool-ltdl,2.4.2-22.el7_3,x86_64,CentOS,2020-04-30 22:05:24,000,wazuhserver6
+rpcbind,0.2.0-49.el7,x86_64,CentOS,2020-04-30 22:06:32,000,wazuhserver6
+openssh,7.4p1-21.el7,x86_64,CentOS,2020-04-30 22:06:41,000,wazuhserver6
+tuned,2.11.0-8.el7,noarch,CentOS,2020-04-30 22:06:51,000,wazuhserver6
+hyperv-daemons-license,0-0.34.20180415git.el7,noarch,CentOS,2020-04-30 22:05:05,000,wazuhserver6
+rsync,3.1.2-10.el7,x86_64,CentOS,2020-04-30 22:07:01,000,wazuhserver6
+grub2-pc-modules,1:2.02-0.81.el7.centos,noarch,CentOS,2020-04-30 22:05:06,000,wazuhserver6
+selinux-policy-targeted,3.13.1-266.el7,noarch,CentOS,2020-04-30 22:06:55,000,wazuhserver6
+wpa_supplicant,1:2.6-12.el7,x86_64,CentOS,2020-04-30 22:06:43,000,wazuhserver6
+python,2.7.5-88.el7,x86_64,CentOS,2020-04-30 22:05:55,000,wazuhserver6
+dbus-python,1.1.1-9.el7,x86_64,CentOS,2020-04-30 22:06:48,000,wazuhserver6
+shared-mime-info,1.8-5.el7,x86_64,CentOS,2020-04-30 22:05:57,000,wazuhserver6
+rpm-build-libs,4.11.3-43.el7,x86_64,CentOS,2020-04-30 22:06:19,000,wazuhserver6
+libtirpc,0.2.4-0.16.el7,x86_64,CentOS,2020-04-30 22:05:59,000,wazuhserver6
+rpm-python,4.11.3-43.el7,x86_64,CentOS,2020-04-30 22:06:19,000,wazuhserver6
+quota-nls,1:4.01-19.el7,noarch,CentOS,2020-04-30 22:05:06,000,wazuhserver6
+newt,0.52.15-4.el7,x86_64,CentOS,2020-04-30 22:05:28,000,wazuhserver6
+xz-libs,5.2.2-1.el7,x86_64,CentOS,2020-04-30 22:05:16,000,wazuhserver6
+libstdc++,4.8.5-39.el7,x86_64,CentOS,2020-04-30 22:05:13,000,wazuhserver6
+kpartx,0.4.9-131.el7,x86_64,CentOS,2020-04-30 22:06:23,000,wazuhserver6
+grub2-tools-extra,1:2.02-0.81.el7.centos,x86_64,CentOS,2020-04-30 22:06:42,000,wazuhserver6
+libref_array,0.1.5-32.el7,x86_64,CentOS,2020-04-30 22:05:28,000,wazuhserver6
+xfsprogs,4.5.0-20.el7,x86_64,CentOS,2020-04-30 22:07:06,000,wazuhserver6
+kernel-tools-libs,3.10.0-1127.el7,x86_64,CentOS,2020-04-30 22:06:16,000,wazuhserver6
+pycurl,7.19.0, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+lsscsi,0.27-6.el7,x86_64,CentOS,2020-04-30 22:06:16,000,wazuhserver6
+ipset,7.1-1.el7,x86_64,CentOS,2020-04-30 22:05:31,000,wazuhserver6
+nss-softokn-freebl,3.44.0-8.el7_7,x86_64,CentOS,2020-04-30 22:05:12,000,wazuhserver6
+e2fsprogs,1.42.9-17.el7,x86_64,CentOS,2020-04-30 22:07:06,000,wazuhserver6
+zlib,1.2.7-18.el7,x86_64,CentOS,2020-04-30 22:05:16,000,wazuhserver6
+dbus,1:1.10.24-13.el7_6,x86_64,CentOS,2020-04-30 22:06:28,000,wazuhserver6
+samba-common-libs,0:4.10.4-10.el7,x86_64,CentOS,2020-04-30 22:06:45,000,wazuhserver6
+kbd-legacy,1.15.5-15.el7,noarch,CentOS,2020-04-30 22:05:07,000,wazuhserver6
+ncurses,5.9-14.20130511.el7_4,x86_64,CentOS,2020-04-30 22:05:51,000,wazuhserver6
+newt-python,0.52.15-4.el7,x86_64,CentOS,2020-04-30 22:06:05,000,wazuhserver6
+yum-utils,1.1.31-53.el7,noarch,CentOS,2020-04-30 22:07:03,000,wazuhserver6
+diffutils,3.3-5.el7,x86_64,CentOS,2020-04-30 22:05:22,000,wazuhserver6
+python-pycurl,7.19.0-19.el7,x86_64,CentOS,2020-04-30 22:06:13,000,wazuhserver6
+setup,2.8.71-11.el7,noarch,CentOS,2020-04-30 22:05:05,000,wazuhserver6
+man-db,2.6.3-11.el7,x86_64,CentOS,2020-04-30 22:07:03,000,wazuhserver6
+lz4,1.7.5-3.el7,x86_64,CentOS,2020-04-30 22:05:27,000,wazuhserver6
+tcp_wrappers,7.6-77.el7,x86_64,CentOS,2020-04-30 22:05:32,000,wazuhserver6
+libteam,1.29-1.el7,x86_64,CentOS,2020-04-30 22:05:31,000,wazuhserver6
+libblkid,2.23.2-63.el7,x86_64,CentOS,2020-04-30 22:05:55,000,wazuhserver6
+libnl3,3.2.28-4.el7,x86_64,CentOS,2020-04-30 22:05:22,000,wazuhserver6
+NetworkManager-tui,1:1.18.4-3.el7,x86_64,CentOS,2020-04-30 22:06:53,000,wazuhserver6
+gpgme,1.3.2-5.el7,x86_64,CentOS,2020-04-30 22:06:19,000,wazuhserver6
+libacl,2.2.51-15.el7,x86_64,CentOS,2020-04-30 22:05:19,000,wazuhserver6
+libsemanage,2.5-14.el7,x86_64,CentOS,2020-04-30 22:06:17,000,wazuhserver6
+cups-libs,1:1.6.3-43.el7,x86_64,CentOS,2020-04-30 22:06:31,000,wazuhserver6
+kernel,3.10.0-1127.el7,x86_64,CentOS,2020-04-30 22:06:38,000,wazuhserver6
+open-vm-tools,10.3.10-2.el7,x86_64,CentOS,2020-04-30 22:06:53,000,wazuhserver6
+ebtables,2.0.10-16.el7,x86_64,CentOS,2020-04-30 22:06:44,000,wazuhserver6
+audit,2.8.5-4.el7,x86_64,CentOS,2020-04-30 22:07:00,000,wazuhserver6
+initscripts,9.49.49-1.el7,x86_64,CentOS,2020-04-30 22:06:33,000,wazuhserver6
+pygpgme,0.3-9.el7,x86_64,CentOS,2020-04-30 22:06:20,000,wazuhserver6
+libini_config,1.3.1-32.el7,x86_64,CentOS,2020-04-30 22:06:16,000,wazuhserver6
+pyldb,1.5.4-1.el7,x86_64,CentOS,2020-04-30 22:06:04,000,wazuhserver6
+sqlite,3.7.17-8.el7_7.1,x86_64,CentOS,2020-04-30 22:05:21,000,wazuhserver6
+python-slip-dbus,0.4.0-4.el7,noarch,CentOS,2020-04-30 22:06:48,000,wazuhserver6
+libtasn1,4.10-1.el7,x86_64,CentOS,2020-04-30 22:05:28,000,wazuhserver6
+cyrus-sasl-lib,2.1.26-23.el7,x86_64,CentOS,2020-04-30 22:05:59,000,wazuhserver6
+libcap,2.22-11.el7,x86_64,CentOS,2020-04-30 22:05:19,000,wazuhserver6
+bzip2,1.0.6-13.el7,x86_64,CentOS,2020-04-30 22:07:07,000,wazuhserver6
+ca-certificates,2019.2.32-76.el7_7,noarch,CentOS,2020-04-30 22:05:29,000,wazuhserver6
+chrony,3.4-1.el7,x86_64,CentOS,2020-04-30 22:07:01,000,wazuhserver6
+p11-kit,0.23.5-3.el7,x86_64,CentOS,2020-04-30 22:05:22,000,wazuhserver6
+dbus-libs,1:1.10.24-13.el7_6,x86_64,CentOS,2020-04-30 22:06:26,000,wazuhserver6
+elfutils-libs,0.176-4.el7,x86_64,CentOS,2020-04-30 22:06:25,000,wazuhserver6
+tar,2:1.26-35.el7,x86_64,CentOS,2020-04-30 22:05:25,000,wazuhserver6
+teamd,1.29-1.el7,x86_64,CentOS,2020-04-30 22:06:47,000,wazuhserver6
+libmnl,1.0.3-7.el7,x86_64,CentOS,2020-04-30 22:05:24,000,wazuhserver6
+bzip2-libs,1.0.6-13.el7,x86_64,CentOS,2020-04-30 22:05:17,000,wazuhserver6
+fuse,2.9.2-11.el7,x86_64,CentOS,2020-04-30 22:05:32,000,wazuhserver6
+centos-release,7-8.2003.0.el7.centos,x86_64,CentOS,2020-04-30 22:05:05,000,wazuhserver6
+samba-client-libs,0:4.10.4-10.el7,x86_64,CentOS,2020-04-30 22:06:47,000,wazuhserver6
+kernel-tools,3.10.0-1127.el7,x86_64,CentOS,2020-04-30 22:07:04,000,wazuhserver6
+passwd,0.79-6.el7,x86_64,CentOS,2020-04-30 22:07:05,000,wazuhserver6
+iputils,20160308-10.el7,x86_64,CentOS,2020-04-30 22:06:33,000,wazuhserver6
+libpwquality,1.2.3-5.el7,x86_64,CentOS,2020-04-30 22:05:58,000,wazuhserver6
+fuse-libs,2.9.2-11.el7,x86_64,CentOS,2020-04-30 22:06:20,000,wazuhserver6
+firewalld,0.6.3-8.el7_8.1,noarch,CentOS,2020-04-30 22:06:52,000,wazuhserver6
+systemd-libs,219-73.el7_8.5,x86_64,CentOS,2020-04-30 22:06:26,000,wazuhserver6
+dmidecode,1:3.2-3.el7,x86_64,CentOS,2020-04-30 22:06:21,000,wazuhserver6
+libverto,0.2.5-4.el7,x86_64,CentOS,2020-04-30 22:05:24,000,wazuhserver6
+file,5.11-36.el7,x86_64,CentOS,2020-04-30 22:05:23,000,wazuhserver6
+nss-pem,1.0.3-7.el7,x86_64,CentOS,2020-04-30 22:06:07,000,wazuhserver6
+keyutils-libs,1.5.8-3.el7,x86_64,CentOS,2020-04-30 22:05:20,000,wazuhserver6
+libselinux,2.5-15.el7,x86_64,CentOS,2020-04-30 22:05:16,000,wazuhserver6
+gssproxy,0.7.0-28.el7,x86_64,CentOS,2020-04-30 22:06:47,000,wazuhserver6
+grub2-tools,1:2.02-0.81.el7.centos,x86_64,CentOS,2020-04-30 22:06:32,000,wazuhserver6
+gnutls,3.3.29-9.el7_6,x86_64,CentOS,2020-04-30 22:06:45,000,wazuhserver6
+sg3_utils,1:1.37-19.el7,x86_64,CentOS,2020-04-30 22:06:51,000,wazuhserver6
+which,2.20-7.el7,x86_64,CentOS,2020-04-30 22:05:20,000,wazuhserver6
+pinentry,0.8.1-17.el7,x86_64,CentOS,2020-04-30 22:05:32,000,wazuhserver6
+libpipeline,1.2.3-3.el7,x86_64,CentOS,2020-04-30 22:06:21,000,wazuhserver6
+curl,7.29.0-57.el7,x86_64,CentOS,2020-04-30 22:06:11,000,wazuhserver6
+openssl-libs,1:1.0.2k-19.el7,x86_64,CentOS,2020-04-30 22:05:51,000,wazuhserver6
+rootfiles,8.1-11.el7,noarch,CentOS,2020-04-30 22:07:07,000,wazuhserver6
+coreutils,8.22-24.el7,x86_64,CentOS,2020-04-30 22:05:52,000,wazuhserver6
+schedutils,0.4, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+libgpg-error,1.12-3.el7,x86_64,CentOS,2020-04-30 22:05:19,000,wazuhserver6
+libicu,50.2-4.el7_7,x86_64,CentOS,2020-04-30 22:06:15,000,wazuhserver6
+python-schedutils,0.4-6.el7,x86_64,CentOS,2020-04-30 22:06:06,000,wazuhserver6
+pygpgme,0.3, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+glibc-common,2.17-307.el7.1,x86_64,CentOS,2020-04-30 22:05:12,000,wazuhserver6
+avahi-libs,0.6.31-20.el7,x86_64,CentOS,2020-04-30 22:06:30,000,wazuhserver6
+info,5.1-5.el7,x86_64,CentOS,2020-04-30 22:05:16,000,wazuhserver6
+sg3_utils-libs,1:1.37-19.el7,x86_64,CentOS,2020-04-30 22:06:49,000,wazuhserver6
+yum,3.4.3-167.el7.centos,noarch,CentOS,2020-04-30 22:06:20,000,wazuhserver6
+libsepol,2.5-10.el7,x86_64,CentOS,2020-04-30 22:05:14,000,wazuhserver6
+libpng,2:1.5.13-7.el7_2,x86_64,CentOS,2020-04-30 22:05:33,000,wazuhserver6
+bash,4.2.46-34.el7,x86_64,CentOS,2020-04-30 22:05:14,000,wazuhserver6
+gmp,1:6.0.0-15.el7,x86_64,CentOS,2020-04-30 22:05:23,000,wazuhserver6
+ipset-libs,7.1-1.el7,x86_64,CentOS,2020-04-30 22:05:31,000,wazuhserver6
+libdaemon,0.14-7.el7,x86_64,CentOS,2020-04-30 22:06:21,000,wazuhserver6
+libcroco,0.6.12-4.el7,x86_64,CentOS,2020-04-30 22:05:59,000,wazuhserver6
+dracut,033-568.el7,x86_64,CentOS,2020-04-30 22:06:25,000,wazuhserver6
+os-prober,1.58-9.el7,x86_64,CentOS,2020-04-30 22:06:32,000,wazuhserver6
+firewalld-filesystem,0.6.3-8.el7_8.1,noarch,CentOS,2020-04-30 22:05:07,000,wazuhserver6
+glibc,2.17-307.el7.1,x86_64,CentOS,2020-04-30 22:05:13,000,wazuhserver6
+ncurses-libs,5.9-14.20130511.el7_4,x86_64,CentOS,2020-04-30 22:05:14,000,wazuhserver6
+linux-firmware,20191203-76.gite8a0f4c.el7,noarch,CentOS,2020-04-30 22:05:50,000,wazuhserver6
+ncurses-base,5.9-14.20130511.el7_4,noarch,CentOS,2020-04-30 22:05:06,000,wazuhserver6
+btrfs-progs,4.9.1-1.el7,x86_64,CentOS,2020-04-30 22:07:04,000,wazuhserver6
+iprutils,2.4.17.1-3.el7_7,x86_64,CentOS,2020-04-30 22:07:05,000,wazuhserver6
+libtalloc,2.1.16-1.el7,x86_64,CentOS,2020-04-30 22:05:18,000,wazuhserver6
+polkit,0.112-26.el7,x86_64,CentOS,2020-04-30 22:06:29,000,wazuhserver6
+nss-softokn,3.44.0-8.el7_7,x86_64,CentOS,2020-04-30 22:05:25,000,wazuhserver6
+gettext,0.19.8.1-3.el7,x86_64,CentOS,2020-04-30 22:06:00,000,wazuhserver6
+libbasicobjects,0.1.1-32.el7,x86_64,CentOS,2020-04-30 22:05:28,000,wazuhserver6
+popt,1.13-16.el7,x86_64,CentOS,2020-04-30 22:05:17,000,wazuhserver6
+gettext-libs,0.19.8.1-3.el7,x86_64,CentOS,2020-04-30 22:06:00,000,wazuhserver6
+pyudev,0.15, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+libfastjson,0.99.4-3.el7,x86_64,CentOS,2020-04-30 22:06:21,000,wazuhserver6
+readline,6.2-11.el7,x86_64,CentOS,2020-04-30 22:05:18,000,wazuhserver6
+hypervkvpd,0-0.34.20180415git.el7,x86_64,CentOS,2020-04-30 22:06:41,000,wazuhserver6
+authconfig,6.2.8-30.el7,x86_64,CentOS,2020-04-30 22:06:57,000,wazuhserver6
+cracklib-dicts,2.9.0-11.el7,x86_64,CentOS,2020-04-30 22:05:58,000,wazuhserver6
+configobj,4.7.2, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+libgomp,4.8.5-39.el7,x86_64,CentOS,2020-04-30 22:05:26,000,wazuhserver6
+libgcc,4.8.5-39.el7,x86_64,CentOS,2020-04-30 22:05:04,000,wazuhserver6
+perf,0.1, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+mozjs17,17.0.0-20.el7,x86_64,CentOS,2020-04-30 22:06:15,000,wazuhserver6
+libunistring,0.9.3-9.el7,x86_64,CentOS,2020-04-30 22:05:26,000,wazuhserver6
+chkconfig,1.7.4-1.el7,x86_64,CentOS,2020-04-30 22:05:17,000,wazuhserver6
+kmod-libs,20-28.el7,x86_64,CentOS,2020-04-30 22:05:26,000,wazuhserver6
+python-configobj,4.7.2-7.el7,noarch,CentOS,2020-04-30 22:06:04,000,wazuhserver6
+bash-completion,1:2.1-8.el7,noarch,CentOS,2020-04-30 22:07:06,000,wazuhserver6
+openssh-clients,7.4p1-21.el7,x86_64,CentOS,2020-04-30 22:06:57,000,wazuhserver6
+slang,2.2.4-11.el7,x86_64,CentOS,2020-04-30 22:05:27,000,wazuhserver6
+samba-libs,0:4.10.4-10.el7,x86_64,CentOS,2020-04-30 22:06:46,000,wazuhserver6
+libdnet,1.12-13.1.el7,x86_64,CentOS,2020-04-30 22:06:22,000,wazuhserver6
+libss,1.42.9-17.el7,x86_64,CentOS,2020-04-30 22:05:33,000,wazuhserver6
+libpciaccess,0.14-1.el7,x86_64,CentOS,2020-04-30 22:06:43,000,wazuhserver6
+libssh2,1.8.0-3.el7,x86_64,CentOS,2020-04-30 22:06:10,000,wazuhserver6
+libcap-ng,0.7.5-4.el7,x86_64,CentOS,2020-04-30 22:05:19,000,wazuhserver6
+chardet,2.2.1, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+libwbclient,0:4.10.4-10.el7,x86_64,CentOS,2020-04-30 22:06:46,000,wazuhserver6
+libedit,3.0-12.20121213cvs.el7,x86_64,CentOS,2020-04-30 22:05:27,000,wazuhserver6
+elfutils-default-yama-scope,0.176-4.el7,noarch,CentOS,2020-04-30 22:06:29,000,wazuhserver6
+libtdb,1.3.18-1.el7,x86_64,CentOS,2020-04-30 22:05:20,000,wazuhserver6
+nss-tools,3.44.0-7.el7_7,x86_64,CentOS,2020-04-30 22:06:09,000,wazuhserver6
+openldap,2.4.44-21.el7_6,x86_64,CentOS,2020-04-30 22:06:12,000,wazuhserver6
+libmount,2.23.2-63.el7,x86_64,CentOS,2020-04-30 22:05:56,000,wazuhserver6
+xmlsec1,1.2.20-7.el7_4,x86_64,CentOS,2020-04-30 22:05:24,000,wazuhserver6
+pam,1.1.8-23.el7,x86_64,CentOS,2020-04-30 22:05:58,000,wazuhserver6
+python-libs,2.7.5-88.el7,x86_64,CentOS,2020-04-30 22:05:55,000,wazuhserver6
+pcre,8.32-17.el7,x86_64,CentOS,2020-04-30 22:05:16,000,wazuhserver6
+acl,2.2.51-15.el7,x86_64,CentOS,2020-04-30 22:05:32,000,wazuhserver6
+jansson,2.10-1.el7,x86_64,CentOS,2020-04-30 22:05:21,000,wazuhserver6
+libselinux-utils,2.5-15.el7,x86_64,CentOS,2020-04-30 22:05:33,000,wazuhserver6
+selinux-policy,3.13.1-266.el7,noarch,CentOS,2020-04-30 22:06:42,000,wazuhserver6
+python-firewall,0.6.3-8.el7_8.1,noarch,CentOS,2020-04-30 22:06:49,000,wazuhserver6
+urlgrabber,3.10, , ,Error parsing install time: invalid literal for int() with base 10: ' ',000,wazuhserver6
+libsysfs,2.1.0-16.el7,x86_64,CentOS,2020-04-30 22:07:07,000,wazuhserver6
+libseccomp,2.3.1-4.el7,x86_64,CentOS,2020-04-30 22:06:22,000,wazuhserver6
+python-chardet,2.2.1-3.el7,noarch,CentOS,2020-04-30 22:06:05,000,wazuhserver6
+hypervfcopyd,0-0.34.20180415git.el7,x86_64,CentOS,2020-04-30 22:06:41,000,wazuhserver6
+file-libs,5.11-36.el7,x86_64,CentOS,2020-04-30 22:05:23,000,wazuhserver6
+nss,3.44.0-7.el7_7,x86_64,CentOS,2020-04-30 22:06:07,000,wazuhserver6
+grub2,1:2.02-0.81.el7.centos,x86_64,CentOS,2020-04-30 22:06:56,000,wazuhserver6
+libevent,2.0.21-4.el7,x86_64,CentOS,2020-04-30 22:06:00,000,wazuhserver6
+NetworkManager-team,1:1.18.4-3.el7,x86_64,CentOS,2020-04-30 22:06:52,000,wazuhserver6
+device-mapper,7:1.02.164-7.el7_8.1,x86_64,CentOS,2020-04-30 22:06:23,000,wazuhserver6
+libxml2-python,2.9.1-6.el7.4,x86_64,CentOS,2020-04-30 22:06:02,000,wazuhserver6
+samba-common,0:4.10.4-10.el7,noarch,CentOS,2020-04-30 22:06:40,000,wazuhserver6
+libtevent,0.9.39-1.el7,x86_64,CentOS,2020-04-30 22:05:21,000,wazuhserver6
+grub2-tools-minimal,1:2.02-0.81.el7.centos,x86_64,CentOS,2020-04-30 22:06:31,000,wazuhserver6
+hardlink,1:1.0-19.el7,x86_64,CentOS,2020-04-30 22:06:22,000,wazuhserver6
+libgcrypt,1.5.3-14.el7,x86_64,CentOS,2020-04-30 22:05:20,000,wazuhserver6
+qrencode-libs,3.4.1-3.el7,x86_64,CentOS,2020-04-30 22:06:21,000,wazuhserver6
+filebeat,7.10.2-1,x86_64,Elastic,2024-12-09 06:01:40,000,wazuhserver6
+wazuh-dashboard,4.9.2-1,x86_64,"Wazuh, Inc <info@wazuh.com>",2024-12-09 06:06:31,000,wazuhserver6
+Python 3.11.4 Executables (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:19:25+00:00',001,DESKTOP-JFLOOJO
+pip,23.2.1, , ,Error parsing install time: invalid literal for int() with base 10: ' ',001,DESKTOP-JFLOOJO
+Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.36.32532,14.36.32532,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2023-06-26T04:17:14+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Publisher 2016 (KB4011097) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Visio 2016 (KB4484244) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Oracle VM VirtualBox 7.0.2,7.0.2,x86_64,Oracle and/or its affiliates,Error parsing install time: invalid literal for int() with base 10: '2023-03-06T06:48:10+00:00',001,DESKTOP-JFLOOJO
+Operator messages,4.1901.60404.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-02-19T02:33:40+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 Documentation (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:19:56+00:00',001,DESKTOP-JFLOOJO
+Definition Update for Microsoft Office 2016 (KB3115407) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office Shared MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Lightshot-5.5.0.7,5.5.0.7,i686,Skillbrains,Error parsing install time: invalid literal for int() with base 10: '2022-10-14T09:54:06+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3114852) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB2920678) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+App Installer,1.24.25200.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-22T08:21:34+00:00',001,DESKTOP-JFLOOJO
+Solitaire & Casual Games,4.21.11061.0,x86_64,Microsoft Studios,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:35:23+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4484335) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Access Setup Metadata MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3141456) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Realtek High Definition Audio Driver,6.0.8940.1,i686,Realtek Semiconductor Corp.,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:24+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4032236) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 Add to Path (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:20:35+00:00',001,DESKTOP-JFLOOJO
+Microsoft Bing Service,2.0.0.11,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-20T02:07:30+00:00',001,DESKTOP-JFLOOJO
+AnyDesk,ad 8.0.10,i686,AnyDesk Software GmbH,Error parsing install time: invalid literal for int() with base 10: '2024-05-27T01:44:50+00:00',001,DESKTOP-JFLOOJO
+Picasa 3,3.6,i686,"Google, Inc.",Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:24+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft OneDrive for Business (KB4022219) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 Utility Scripts (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:19:58+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office Proofing (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3178666) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Opera Stable 114.0.5282.235,114.0.5282.235, ,Opera Software,Error parsing install time: invalid literal for int() with base 10: '2024-12-02T15:31:56+00:00',001,DESKTOP-JFLOOJO
+Notepad++ (64-bit x64),8.4.9,x86_64,Notepad++ Team,Error parsing install time: invalid literal for int() with base 10: '2023-02-13T04:18:04+00:00',001,DESKTOP-JFLOOJO
+Prime Video for Windows,1.0.168.0,x86_64,Amazon Development Centre (London) Ltd,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:36:14+00:00',001,DESKTOP-JFLOOJO
+ManageEngine ServiceDesk Plus,14600,i686,Zoho Corporation Pvt. Ltd.,Error parsing install time: invalid literal for int() with base 10: '2024-01-11T03:21:12+00:00',001,DESKTOP-JFLOOJO
+Web Companion,8.9.0.1091,i686,Lavasoft,Error parsing install time: invalid literal for int() with base 10: '2022-06-04T00:00:00+00:00',001,DESKTOP-JFLOOJO
+pyinstaller,5.12.0, , ,Error parsing install time: invalid literal for int() with base 10: ' ',001,DESKTOP-JFLOOJO
+Skype,15.132.3201.0,x86_64,Skype,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:36:38+00:00',001,DESKTOP-JFLOOJO
+Outils de vérification linguistique 2016 de Microsoft Office - Français,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Google Update Helper,1.3.36.51,i686,Google LLC,Error parsing install time: invalid literal for int() with base 10: '2022-02-23T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 Tcl/Tk Support (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:20:10+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft PowerPoint 2016 (KB4484337) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+VLC media player,3.0.17.4,i686,VideoLAN,Error parsing install time: invalid literal for int() with base 10: '2024-06-20T09:05:36+00:00',001,DESKTOP-JFLOOJO
+Dev Home,0.1900.687.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-21T02:53:27+00:00',001,DESKTOP-JFLOOJO
+Herramientas de corrección de Microsoft Office 2016: español,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft Visual C++ 2015-2022 Redistributable (x86) - 14.31.31103,14.31.31103.0,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-06-04T08:24:23+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Access 2016 (KB4484167) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Excel 2016 (KB4484403) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office OSM MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+OneNote for Windows 10,16001.14326.22094.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:38:56+00:00',001,DESKTOP-JFLOOJO
+Microsoft Publisher MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 Development Libraries (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:19:29+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 Standard Library (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:19:39+00:00',001,DESKTOP-JFLOOJO
+Microsoft Edge,131.0.2903.70,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-12-05T17:11:58+00:00',001,DESKTOP-JFLOOJO
+Xbox Live,1.24.10001.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-24T03:26:28+00:00',001,DESKTOP-JFLOOJO
+Microsoft Visual C++ 2022 X86 Additional Runtime - 14.31.31103,14.31.31103,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-06-04T08:24:23+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB2920712) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Office 2016 (KB4022176) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Dell SupportAssist,3.3.0.341,x86_64,Dell Inc.,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft Groove MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft Word MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft Edge WebView2 Runtime,131.0.2903.70,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-12-05T17:12:39+00:00',001,DESKTOP-JFLOOJO
+Grammarly for Windows,1.2.120.1558, ,Grammarly,Error parsing install time: invalid literal for int() with base 10: '2024-12-09T03:21:23+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4011629) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+SupportAssist,3.3.8.0,x86_64,Dell Inc,Error parsing install time: invalid literal for int() with base 10: '2022-02-28T09:54:43+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Outlook 2016 (KB4484398) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Adobe Reader XI (11.0.23)  MUI,11.0.23,i686,Adobe Systems Incorporated,Error parsing install time: invalid literal for int() with base 10: '2022-09-11T13:57:27+00:00',001,DESKTOP-JFLOOJO
+Microsoft PowerPoint MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Clock,11.2408.9.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:31:09+00:00',001,DESKTOP-JFLOOJO
+Update for x64-based Windows Systems (KB5001716),8.94.0.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-10-25T02:23:51+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB2920724) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 Test Suite (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:19:51+00:00',001,DESKTOP-JFLOOJO
+Microsoft Visual C++ 2022 X64 Additional Runtime - 14.36.32532,14.36.32532,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2023-06-26T04:17:16+00:00',001,DESKTOP-JFLOOJO
+pyinstaller-hooks-contrib,2023.3, , ,Error parsing install time: invalid literal for int() with base 10: ' ',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3118263) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Tips,10.2312.1.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-01-12T03:37:03+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4475580) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Windows PC Health Check,3.6.2204.08001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T12:07:07+00:00',001,DESKTOP-JFLOOJO
+Xbox Identity Provider,12.115.1001.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-07-18T04:48:14+00:00',001,DESKTOP-JFLOOJO
+Feedback Hub,1.2410.25104.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:34:26+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 Core Interpreter (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:19:24+00:00',001,DESKTOP-JFLOOJO
+Dolby Access,3.25.920.0,x86_64,Dolby Laboratories,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:40:40+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Project 2016 (KB4484399) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Game Bar,7.224.11211.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-12-03T07:27:48+00:00',001,DESKTOP-JFLOOJO
+Adobe Photoshop Express,3.14.1.0,x86_64,ADOBE INC.,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:40:37+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4011259) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+People,10.2202.100.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-04-03T05:09:03+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4464535) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Vagrant,2.3.2,i686,HashiCorp,Error parsing install time: invalid literal for int() with base 10: '2023-03-06T06:52:11+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office Professional Plus 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4011634) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office OSM UX MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3213650) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4484328) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+K-Lite Mega Codec Pack 15.3.5,15.3.5,i686,KLCP,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Update for Skype for Business 2016 (KB4484286) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 (64-bit),3.11.4150.0, ,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:20:36+00:00',001,DESKTOP-JFLOOJO
+Paint 3D,6.2410.13017.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:38:51+00:00',001,DESKTOP-JFLOOJO
+Windows Resource Kit Tools - SrvMgr.exe,5.2.3790.1127,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-10-03T04:19:08+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Office 2016 (KB4022162) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Teams classic,1.7.00.156, ,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-01-24T03:59:06+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Office 2016 (KB4011574) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Office 2016 (KB4484258) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office Proofing Tools 2016 - English,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office Shared Setup Metadata MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft InfoPath MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft Teams,24257.205.3165.2029,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2024-11-13T08:39:04+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4022161) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+setuptools,65.5.0, , ,Error parsing install time: invalid literal for int() with base 10: ' ',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Office 2016 (KB4484342) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3115081) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Voice Recorder,10.2103.28.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-24T03:29:46+00:00',001,DESKTOP-JFLOOJO
+Microsoft Update Health Tools,3.74.0.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2023-11-10T03:18:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft OneDrive,24.221.1103.0003, ,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-12-02T15:28:36+00:00',001,DESKTOP-JFLOOJO
+Cortana,4.2308.1005.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2023-08-11T06:31:58+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4461435) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3115276) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Outlook MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft Visual C++ 2015-2022 Redistributable (x64) - 14.36.32532,14.36.32532.0,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2023-06-26T04:17:17+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3114903) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3191929) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3118264) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4484394) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+pywin32-ctypes,0.2.0, , ,Error parsing install time: invalid literal for int() with base 10: ' ',001,DESKTOP-JFLOOJO
+Print 3D,3.3.791.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-24T03:28:57+00:00',001,DESKTOP-JFLOOJO
+Npcap,1.75,i686,Nmap Project,Error parsing install time: invalid literal for int() with base 10: '2023-07-28T06:54:39+00:00',001,DESKTOP-JFLOOJO
+Zoom Workplace,6.1.12 (46889), ,"Zoom Video Communications, Inc.",Error parsing install time: invalid literal for int() with base 10: '2024-10-03T07:00:08+00:00',001,DESKTOP-JFLOOJO
+osquery,5.7.0,x86_64,osquery,Error parsing install time: invalid literal for int() with base 10: '2024-08-13T07:17:32+00:00',001,DESKTOP-JFLOOJO
+Weather,4.53.62621.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:31:47+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4022193) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+WinRAR 6.21 (64-bit),6.21.0,x86_64,win.rar GmbH,Error parsing install time: invalid literal for int() with base 10: '2024-01-31T04:36:31+00:00',001,DESKTOP-JFLOOJO
+Xbox Game bar,1.54.4001.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-24T03:27:08+00:00',001,DESKTOP-JFLOOJO
+Microsoft OneNote MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Microsoft Excel MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+MobaXterm,22.1.0.4888,i686,Mobatek,Error parsing install time: invalid literal for int() with base 10: '2022-11-10T13:23:48+00:00',001,DESKTOP-JFLOOJO
+Adobe Refresh Manager,1.8.0,i686,Adobe Systems Incorporated,Error parsing install time: invalid literal for int() with base 10: '2024-10-28T02:32:17+00:00',001,DESKTOP-JFLOOJO
+3D Viewer,7.2407.16012.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-09-06T07:27:34+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3118262) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+python-nmap,0.7.1, , ,Error parsing install time: invalid literal for int() with base 10: ' ',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4464538) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4484327) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4484171) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft OneNote 2016 (KB4484329) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Word 2016 (KB4484396) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Xbox Game Speech Window,1.21.13002.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-24T03:31:00+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB3114528) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+LinkedIn,3.0.40.0,x86_64,LinkedIn,Error parsing install time: invalid literal for int() with base 10: '2024-11-28T07:36:16+00:00',001,DESKTOP-JFLOOJO
+Mixed Reality Portal,2000.21051.1282.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-28T09:52:25+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4032254) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4484392) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft DCF MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4462119) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB2920720) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office Shared 32-bit MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4011225) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Skype for Business MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4011669) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Office 32-bit Components 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Nmap 7.94,7.94,i686,Nmap Project,Error parsing install time: invalid literal for int() with base 10: '2023-07-28T06:53:25+00:00',001,DESKTOP-JFLOOJO
+Slack,4.41.104, ,Slack Technologies Inc.,Error parsing install time: invalid literal for int() with base 10: '2024-12-03T02:38:20+00:00',001,DESKTOP-JFLOOJO
+Python 3.11.4 pip Bootstrap (64-bit),3.11.4150.0,x86_64,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:20:13+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB2920717) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Access MUI (English) 2016,16.0.4266.1001,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Google Chrome,131.0.6778.85,i686,Google LLC,Error parsing install time: invalid literal for int() with base 10: '2024-11-20T07:00:36+00:00',001,DESKTOP-JFLOOJO
+pefile,2023.2.7, , ,Error parsing install time: invalid literal for int() with base 10: ' ',001,DESKTOP-JFLOOJO
+Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.31.31103,14.31.31103,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-06-04T08:24:22+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4464586) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Python Launcher,3.11.4150.0,i686,Python Software Foundation,Error parsing install time: invalid literal for int() with base 10: '2023-06-09T03:20:12+00:00',001,DESKTOP-JFLOOJO
+Microsoft Save as PDF Add-in for 2007 Microsoft Office programs,12.0.4518.1014,i686,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2022-02-22T00:00:00+00:00',001,DESKTOP-JFLOOJO
+Mobile Plans,5.2308.2294.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2023-09-12T07:14:34+00:00',001,DESKTOP-JFLOOJO
+News,4.55.62231.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-21T02:45:44+00:00',001,DESKTOP-JFLOOJO
+Get Help,10.2409.22951.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-22T08:18:26+00:00',001,DESKTOP-JFLOOJO
+altgraph,0.17.3, , ,Error parsing install time: invalid literal for int() with base 10: ' ',001,DESKTOP-JFLOOJO
+Wazuh Agent,4.7.3,i686,"Wazuh, Inc.",Error parsing install time: invalid literal for int() with base 10: '2024-11-25T10:31:54+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4475588) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Microsoft Store,22410.1401.4.0,x86_64,Microsoft Corporation,Error parsing install time: invalid literal for int() with base 10: '2024-11-27T07:08:50+00:00',001,DESKTOP-JFLOOJO
+Cross Device Experience Host,0.24102.48.0,x86_64,Microsoft Windows,Error parsing install time: invalid literal for int() with base 10: '2024-11-25T07:15:13+00:00',001,DESKTOP-JFLOOJO
+Update for Microsoft Office 2016 (KB4484145) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Office 2016 (KB3213551) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
+Security Update for Microsoft Office 2016 (KB3085538) 64-Bit Edition, ,x86_64,Microsoft,Error parsing install time: invalid literal for int() with base 10: '2022-04-23T06:29:20+00:00',001,DESKTOP-JFLOOJO
