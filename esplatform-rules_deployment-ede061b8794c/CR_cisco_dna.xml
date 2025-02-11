@@ -1,0 +1,185 @@
+<!-- 
+    Rule ID Range: 115850 to 115949
+    Last ID used: 
+-->
+<group name="cisco-dna,">
+    <!-- Level 0 Rules -->
+    <rule id="115850" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<!-- <field name="facility" type="pcre2">.*</field>
+        <field name="mnemonic" type="pcre2">.*</field>
+        <field name="severity" type="pcre2">.*</field> -->
+        <field name="productName" type="pcre2">CiscoDNA</field>
+        <description>Cisco-DNA Rules</description>
+        <group>info,one-on-one,</group>
+	</rule>
+    <!-- Level 1 Rules -->
+    <rule id="115851" level="1">
+        <if_sid>115850</if_sid>
+        <field name="facility">SESSION_MGR</field>
+        <match type="pcre2">Authorization failed or unapplied for client</match>
+        <description>Cisco-DNA: Authorization failed or unapplied for client $(src_mac) with reason: $(auth_failure_reason)</description>
+        <info type="text">
+        Description: This rule triggers when a client fails authorization or has unapplied authorization in a Cisco DNA system, potentially indicating misconfigurations, unauthorized access attempts, or security issues in network access control.
+        </info>
+        <group>low,one-on-one,T1071,T1071.001,T1071.004,command-control,T1098,persistence,privilege-escalation,</group>
+        <mitre>
+            <id>T1071</id>
+            <id>T1071.001</id>
+            <id>T1071.004</id>
+            <id>T1098</id>
+        </mitre>
+    </rule>
+    <rule id="115853" level="1">
+        <if_sid>115850</if_sid>
+        <field name="facility">DOT1X</field>
+        <match type="pcre2">Authentication failed for client</match>
+        <description>Cisco-DNA: Authentication failed for user: $(username) and MAC_ADDRESS: $(src_mac)</description>
+        <info type="text">
+        This rule triggers when a client fails authentication in a Cisco DNA system, potentially indicating misconfigurations, unauthorized access attempts, or security issues in network access control.
+        </info>
+        <group>low,one-on-one,T1071,T1071.001,command-control,</group>
+        <mitre>
+            <id>T1071</id>
+            <id>T1071.001</id>
+        </mitre>
+    </rule>
+    <rule id="115855" level="1">
+        <if_sid>115850</if_sid>
+        <field name="mnemonic" type="pcre2">FIPS_AUDIT_FCS_DTLSS_EXT_2_DTLS_REPLAY_ATTACK_DETECTED</field>
+        <match type="pcre2">wncd:\s*User\s*ID:.*Replay\s*Attack\s*detected</match>
+        <description>Cisco-DNA: Replay Attack detected for Source IP: $(src_ip) and Destination IP: $(dst_ip)</description>
+        <info type="text">
+        Description: The rule is triggered when the system detects that valid communication has been replayed maliciously, which could allow unauthorized access or disrupt network services. The attack was identified based on the specified log pattern.
+        </info>
+        <group>medium,one-on-one,T1074,collection,T1040,credential-access,discovery,</group>
+        <mitre>
+            <id>T1040</id>
+            <id>T1074</id>
+        </mitre>
+    </rule>
+    <rule id="115856" level="1">
+        <if_sid>115850</if_sid>
+        <!-- <field name="mnemonic" type="pcre2">LOGIN_PASSED</field> -->
+        <match type="pcre2">LOGIN_PASSED</match>
+        <description>Cisco-DNA: Successful Admin Login detected via WebGUI from host: $(src_ip)</description>
+        <info type="text">
+        Description: The rule was triggered because a successful login attempt was recorded through the WebGUI on the Cisco WLAN device. This event indicates that an administrator, identified by the username, accessed the system from a specified IP address using a secure crypto cipher.
+        </info>
+        <group>low,one-on-one,T1078,T1078.001,defense-evasion,persistence,privilege-escalation,initial-access,</group>
+        <mitre>
+            <id>T1078</id>
+            <id>T1078.001</id>
+        </mitre>
+    </rule>
+    <rule id="115857" level="1">
+        <if_sid>115850</if_sid>
+        <!-- <field name="mnemonic" type="pcre2">LOGIN_SUCCESS</field> -->
+        <match type="pcre2">LOGIN_SUCCESS</match>
+        <description>Cisco-DNA: Successful Admin Login detected via SSH from host: $(src_ip) with username: $(username)</description>
+        <info type="text">
+        Description: The rule was triggered because a successful login attempt was recorded through the SSH on the Cisco WLAN device. This event indicates that an administrator, identified by the username, accessed the system from a specified IP address.
+        </info>
+        <group>low,one-on-one,T1078,T1078.001,defense-evasion,persistence,privilege-escalation,initial-access,</group>
+        <mitre>
+            <id>T1078</id>
+            <id>T1078.001</id>
+        </mitre>
+    </rule>
+    <rule id="115858" level="1">
+        <if_sid>115850</if_sid>
+        <!-- <field name="mnemonic" type="pcre2">KEY_ADDITION</field> -->
+        <match type="pcre2">KEY_ADDITION</match>
+        <description>Cisco-DNA: Key Generation or Import by Crypto-Engine Detected. key-name: $(key_name)</description>
+        <info type="text">
+        Description: The rule was triggered when the crypto-engine generates or imports a key $(key_name), indicating changes to the cryptographic environment.
+        </info>
+        <group>low,one-on-one,T1552,T1552.001,credential-access,T1600,defense-evasion,</group>
+        <mitre>
+            <id>T1552</id>
+            <id>T1552.001</id>
+            <id>T1600</id>
+        </mitre>
+    </rule>
+    <rule id="115859" level="1">
+        <if_sid>115850</if_sid>
+        <!-- <field name="mnemonic" type="pcre2">KEY_DELETED</field> -->
+        <match type="pcre2">KEY_DELETED</match>
+        <description>Cisco-DNA: Key Deletion by Crypto-Engine Detected. key-name: $(key_name)</description>
+        <info type="text">
+        Description: The rule was triggered when the crypto-engine deletes a key $(key_name), indicating a change in the cryptographic environment.
+        </info>
+        <group>medium,one-on-one,T1552,T1552.001,credential-access,T1600,defense-evasion,</group>
+        <mitre>
+            <id>T1552</id>
+            <id>T1552.001</id>
+            <id>T1600</id>
+        </mitre>
+    </rule>
+    <rule id="115860" level="1">
+        <if_sid>115850</if_sid>
+        <!-- <field name="mnemonic" type="pcre2">LOCAL_USER_BLOCKED</field> -->
+        <match type="pcre2">LOCAL_USER_BLOCKED</match>
+        <description>Cisco-DNA: User Account Blocked for Login detected for Username: $(username)</description>
+        <info type="text">
+        Description: The rule was triggered when a local user account $(username) is blocked from logging in until a specified time.
+        </info>
+        <group>medium,one-on-one,T1078,defence-evasion,persistence,privilege-escalation,initial-access,T1110,T1110.001,credential-access,T1556,</group>
+        <mitre>
+            <id>T1078</id>
+            <id>T1110</id>
+            <id>T1110.001</id>
+            <id>T1556</id>
+        </mitre>
+    </rule>
+    <rule id="115861" level="1">
+        <if_sid>115850</if_sid>
+        <!-- <field name="mnemonic" type="pcre2">USER_RESET</field> -->
+        <match type="pcre2">USER_RESET</match>
+        <description>Cisco-DNA: Failed Login Attempts Reset by Admin for User: $(username)</description>
+        <info type="text">
+        Description: The rule was triggered when an administrator resets failed login attempt counters for a user, indicating manual intervention to restore login access or address a lockout scenario.
+        </info>
+        <group>medium,one-on-one,T1078,defence-evasion,persistence,privilege-escalation,initial-access,T1110,T1110.001,credential-access,T1556,</group>
+        <mitre>
+            <id>T1078</id>
+            <id>T1110</id>
+            <id>T1110.001</id>
+            <id>T1556</id>
+        </mitre>
+    </rule>
+    <!-- Level 2 Rules -->
+    <!-- Aggregation -->
+    <rule id="115852" level="2" frequency="50" timeframe="600">
+        <if_matched_sid>115851</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>src_mac</same_field>
+        <description>Cisco-DNA: Multiple Authorization Failed or Unapplied for client $(src_mac) with reason: $(auth_failure_reason)</description>
+        <info type="text">
+        Description: This aggregation rule triggers when there are 50 or more authorization failures or unapplied authorizations for client within a 600-second (10-minute) period on a Cisco DNA system. Repeated failures in this timeframe could indicate misconfigurations, unauthorized access attempts, or security issues in network access control.
+        </info>
+        <group>medium,aggregation,T1071,T1071.001,T1071.004,command-control,T1098,persistence,privilege-escalation,</group>
+        <mitre>
+            <id>T1071</id>
+            <id>T1071.001</id>
+            <id>T1071.004</id>
+            <id>T1098</id>
+        </mitre>
+    </rule>
+    <!-- Aggregation -->
+    <rule id="115854" level="2" frequency="50" timeframe="600">
+        <if_matched_sid>115853</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>src_mac</same_field>
+        <same_field>username</same_field>
+        <description>Cisco-DNA: Multiple Authentication Failed for user: $(username) and MAC_ADDRESS: $(src_mac)</description>
+        <info type="text">
+        Description: This aggregation rule triggers when there are 50 or more authentication failures within a 600-second (10-minute) timeframe in a Cisco DNA system. Multiple authentication failures in a short period could indicate misconfigurations, unauthorized access attempts, or other security issues that require investigation.
+        </info>
+        <group>medium,aggregation,T1071,T1071.001,command-control,</group>
+        <mitre>
+            <id>T1071</id>
+            <id>T1071.001</id>
+        </mitre>
+    </rule>
+</group>

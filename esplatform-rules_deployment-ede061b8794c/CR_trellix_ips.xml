@@ -1,0 +1,198 @@
+<!-- 
+Rule Id range: 101550-101599
+Last Rule used: 101563
+-->
+ 
+<group name="trellix-ips,">
+
+<!-- <rule id="101550" level="0" noalert="1">
+	<decoded_as>trellix-ips</decoded_as>
+	<description>Trellix-IPS event.</description>
+    <group>info,one-on-one,</group>
+</rule> -->
+
+<rule id="101551" level="0" noalert="1">
+    <decoded_as>json</decoded_as> 
+    <field name="productName" type="pcre2">(?i)Trellix-IPS</field>
+    <description>Trellix-IPS rules.</description>
+    <group>info,one-on-one,</group>
+</rule>
+
+<rule id="101552" level="1" noalert="1">
+    <!-- <if_sid>101550,101551</if_sid> -->
+    <if_sid>101551</if_sid>
+    <description>Trellix-IPS rules.</description>
+    <group>info,one-on-one,</group>
+</rule>
+
+<rule id="101562" level="1">
+    <if_sid>101552</if_sid>
+    <field name="severity_value" type="pcre2">^5$</field>
+    <description>Trellix-IPS: Detects medium severity $(signature_name).</description>
+    <group>medium,one-on-one,s-a,T1082,discovery,</group>
+    <mitre>
+        <id>T1082</id>
+    </mitre>
+</rule>
+
+<rule id="101553" level="1">
+    <if_sid>101552</if_sid>
+    <field name="severity_value" type="pcre2">^6$</field>
+    <description>Trellix-IPS: Detects high severity $(signature_name).</description>
+    <group>high,one-on-one,s-a,T1082,discovery,</group>
+    <mitre>
+        <id>T1082</id>
+    </mitre>
+</rule>
+
+<rule id="101554" level="1">
+    <if_sid>101552</if_sid>
+    <field name="severity_value" type="pcre2">^7$</field>
+    <description>Trellix-IPS: Detects critical severity $(signature_name).</description>
+    <group>critical,one-on-one,soar-alert,T1082,discovery,</group>
+    <mitre>
+        <id>T1082</id>
+    </mitre>
+</rule>
+
+<!-- 
+{"full_log":" tid 7987: [notifyd.INFO]: [ips_notify_thread]ips event notification is sent out[100832]: desc={\"alert-url\": \"https:\/\/FireEye-NX01-DC-F01-C5.qumc.edu.sa\/notification_url\/ips_events?ev_id=1509786\", \"action-taken\": \"may be blocked in future by the default policy\", \"acknowledged\": false, \"id\": 1509786, \"verified\": false, \"vlan\": \"105\", \"occurred\": \"2024-10-16T13:00:39Z\", \"non-hidden\": false, \"attack-mode\": \"client\", \"blocked\": false, \"uuid\": \"7b728464-7897-4681-bf0c-5e558932d90a\", \"dst\": {\"ip\": \"10.0.102.80\", \"host\": \"\", \"port\": 61727, \"mac\": \"00:00:0c:07:ac:69\"}, \"src\": {\"ip\": \"13.43.120.10\", \"host\": \"\", \"port\": 22, \"mac\": \"b4:0c:25:e2:80:10\"}, \"signature\": {\"sid\": \"85322011\", \"revision\": \"1\", \"cve-id\": \"CVE-2024-6387\", \"sname\": \"FE_OpenSSH CVE-2024-6387 Vulnerable Version Found\"}, \"severity\": {\"value\": 7, \"category\": \"crit\"}}","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"}
+ -->
+
+<rule id="101555" level="1">
+    <if_sid>101554</if_sid>
+    <field name="signature_name" type="pcre2">(?i)(?:FE_|).*\sVulnerable\sVersion\sFound</field>
+    <description>Trellix-IPS: Detects $(signature_name).</description>
+    <group>critical,one-on-one,soar-alert,vulnerable,T1595.002,T1595,reconnaissance,T1588.006,T1588,resource-development,T1068,privilege-escalation,</group>
+    <info type="text">
+    Description: The system has detected the use of a vulnerable version of software, indicating that the current version in use contains known security flaws that could be exploited by attackers. This poses a risk to the network, as vulnerabilities can be leveraged for unauthorized access, data breaches, or system compromise.
+    </info>
+    <mitre>
+        <id>T1595</id>
+        <id>T1595.002</id>
+        <id>T1588</id>
+        <id>T1588.006</id>
+        <id>T1068</id>
+    </mitre>
+</rule>
+
+<!-- 
+{"full_log":" tid 7987: [notifyd.INFO]: [ips_notify_thread]ips event notification is sent out[108002]: desc={\"alert-url\": \"https:\/\/FireEye-NX01-DC-F01-C5.qumc.edu.sa\/notification_url\/ips_events?ev_id=1516955\", \"action-taken\": \"may be blocked in future by the default policy\", \"acknowledged\": false, \"id\": 1516955, \"verified\": false, \"vlan\": \"105\", \"occurred\": \"2024-10-17T07:58:23Z\", \"non-hidden\": false, \"attack-mode\": \"client\", \"blocked\": false, \"uuid\": \"13f53a6f-775c-4f2e-be2b-a4252c42f752\", \"dst\": {\"ip\": \"10.0.102.110\", \"host\": \"\", \"port\": 63218, \"mac\": \"00:3a:9c:58:a5:c2\"}, \"src\": {\"ip\": \"8.8.8.8\", \"host\": \"\", \"port\": 53, \"mac\": \"b4:0c:25:e2:80:10\"}, \"signature\": {\"sid\": \"85322036\", \"revision\": \"1\", \"cve-id\": \"\", \"sname\": \"FE_Application - Telegram Traffic (T1071 \/ Application Layer Protocol)\"}, \"severity\": {\"value\": 1, \"category\": \"minr\"}}","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"} 
+-->
+
+<rule id="101556" level="1">
+    <if_sid>101552</if_sid>
+    <field name="signature_name" type="pcre2">(?i)(?:FE_|)Application.*Telegram\sTraffic</field>
+    <description>Trellix-IPS: Telegram traffic detected.</description>
+    <group>low,one-on-one,T1071,command-and-control,</group>
+    <info type="text">
+    Description: Telegram traffic has been detected on the network. While Telegram is widely used for secure messaging, its presence could indicate potential risks, such as unauthorized communication, data exfiltration, or usage of the platform for malicious activities like distributing malware or coordinating attacks.
+    </info>
+    <mitre>
+        <id>T1071</id>
+    </mitre>
+</rule>
+
+<rule id="101557" level="1">    
+    <if_sid>101552</if_sid>
+    <field name="signature_name" type="pcre2">(?i)(?:FE_|)FE_Geolocation.*IP\sLookup</field>
+    <description>Trellix-IPS: Geolocation/IP lookup detected.</description>
+    <group>low,one-on-one,T1614,T1614.001,discovery,</group>
+    <info type="text">
+    Description: A geolocation or IP lookup has been detected, indicating that an external or internal entity is attempting to determine the physical location or ownership of an IP address. This activity could be part of routine network operations or reconnaissance efforts by attackers aiming to gather information about the network.
+    </info>
+    <mitre>
+        <id>T1614</id>
+        <id>T1614.001</id>
+    </mitre>
+</rule>
+
+<rule id="101558" level="1">
+    <if_sid>101552</if_sid>
+    <field name="signature_name" type="pcre2">(?i)(?:FE_|)Application.*Discord\sTraffic</field>
+    <description>Trellix-IPS: Discord traffic detected.</description>
+    <group>low,one-on-one,T1614,T1614.001,discovery,</group>
+    <info type="text">
+    Description: Discord traffic has been detected on the network. While Discord is a popular platform for communication, it can pose security risks such as unauthorized data sharing, malware distribution, or even command-and-control (C2) communications by attackers. The platform�s file-sharing and communication capabilities can be exploited for malicious activities if not properly monitored.
+    </info>
+    <mitre>
+        <id>T1614</id>
+        <id>T1614.001</id>
+    </mitre>
+</rule>
+
+<!--
+ {"full_log":" tid 7987: [notifyd.INFO]: [ips_notify_thread]ips event notification is sent out[150609]: desc={\"alert-url\": \"https:\/\/FireEye-NX01-DC-F01-C5.qumc.edu.sa\/notification_url\/ips_events?ev_id=1559561\", \"action-taken\": \"may be blocked in future by the default policy\", \"acknowledged\": false, \"id\": 1559561, \"verified\": false, \"vlan\": \"105\", \"occurred\": \"2024-10-22T04:59:34Z\", \"non-hidden\": true, \"attack-mode\": \"client\", \"blocked\": false, \"uuid\": \"8f21e585-e034-454e-810b-dcc9f689e558\", \"dst\": {\"ip\": \"10.50.0.14\", \"host\": \"\", \"port\": 56590, \"mac\": \"00:3a:9c:58:a5:c2\"}, \"src\": {\"ip\": \"52.98.32.2\", \"host\": \"\", \"port\": 443, \"mac\": \"b4:0c:25:e2:80:10\"}, \"signature\": {\"sid\": \"85301276\", \"revision\": \"14\", \"cve-id\": \"\", \"sname\": \"Multiple Vendor Malformed ZIP Archive Antivirus Detection Bypass\"}, \"severity\": {\"value\": 7, \"category\": \"crit\"}}","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"} 
+ -->
+
+<rule id="101559" level="1">
+    <if_sid>101554</if_sid>
+    <field name="signature_name" type="pcre2">(?i)(?:FE_|)Multiple\sVendor\sMalformed\sZIP\sArchive\sAntivirus\sDetection\sBypass</field>
+    <description>Trellix-IPS: Detects attempts to bypass antivirus detection using malformed ZIP archives across multiple vendors.</description>
+    <group>critical,one-on-one,soar-alert,T1204.002,T1204,execution,T1562.001,T1562,defense-evasion,malicious,</group>
+    <info type="text">
+    Description: Attempts to bypass antivirus detection using malformed ZIP archives have been detected. This technique involves crafting ZIP files in a way that may evade traditional scanning mechanisms by confusing or overwhelming the antivirus engine. Malformed ZIP archives can hide malicious payloads, such as malware or ransomware, across various vendors' platforms, making it harder to detect and analyze these threats.
+    </info>
+    <mitre>
+        <id>T1204</id>
+        <id>T1204.002</id>
+        <id>T1562</id>
+        <id>T1562.001</id>
+    </mitre>
+</rule>
+
+<!-- 
+{"full_log":" tid 7987: [notifyd.INFO]: [ips_notify_thread]ips event notification is sent out[235227]: desc={\"alert-url\": \"https:\/\/FireEye-NX01-DC-F01-C5.qumc.edu.sa\/notification_url\/ips_events?ev_id=1644180\", \"action-taken\": \"blocked by a custom policy\", \"acknowledged\": false, \"id\": 1644180, \"verified\": false, \"vlan\": \"105\", \"occurred\": \"2024-10-30T07:09:57Z\", \"non-hidden\": true, \"attack-mode\": \"client\", \"blocked\": true, \"uuid\": \"13b4d0d8-423d-4ed8-b3f2-a6d1d1045d84\", \"dst\": {\"ip\": \"10.3.33.83\", \"host\": \"\", \"port\": 48068, \"mac\": \"00:3a:9c:58:a5:c2\"}, \"src\": {\"ip\": \"217.148.140.55\", \"host\": \"\", \"port\": 500, \"mac\": \"b4:0c:25:e2:80:10\"}, \"signature\": {\"sid\": \"85307839\", \"revision\": \"4\", \"cve-id\": \"\", \"sname\": \"DeepThroat Backdoor Traffic Detected\"}, \"severity\": {\"value\": 5, \"category\": \"majr\"}}","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"} 
+-->
+
+<rule id="101560" level="1">
+    <if_sid>101552</if_sid>
+    <field name="signature_name" type="pcre2">(?i)(?:FE_|)DeepThroat\sBackdoor\sTraffic\sDetected</field>
+    <description>Trellix-IPS: Detects network traffic associated with DeepThroat backdoor.</description>
+    <group>high,one-on-one,s-a,backdoor,malware,T1040,credential-access,discovery,T1102,command-and-control,T1018,T1189,initial-access,</group>
+    <info type="text">
+    Description: Network traffic associated with the DeepThroat backdoor has been detected, indicating potential unauthorized remote access and control. DeepThroat is a known remote access Trojan (RAT) that allows attackers to execute commands, steal data, and manipulate infected systems. This type of activity poses severe security risks, potentially compromising sensitive data and network integrity.
+    </info>
+    <mitre>
+        <id>T1040</id>
+        <id>T1102</id>
+        <id>T1018</id>
+        <id>T1189</id>
+    </mitre>
+</rule>
+
+<!-- 
+{"full_log":" tid 7987: [notifyd.INFO]: [ips_notify_thread]ips event notification is sent out[287371]: desc={\"alert-url\": \"https:\/\/FireEye-NX01-DC-F01-C5.qumc.edu.sa\/notification_url\/ips_events?ev_id=1696325\", \"action-taken\": \"may be blocked in future by the default policy\", \"acknowledged\": false, \"id\": 1696325, \"verified\": false, \"vlan\": \"105\", \"occurred\": \"2024-11-04T09:31:24Z\", \"non-hidden\": true, \"attack-mode\": \"server\", \"blocked\": false, \"uuid\": \"c994d2ee-d2a6-4ccb-9a82-6dd485ada779\", \"dst\": {\"ip\": \"23.212.255.169\", \"host\": \"\", \"port\": 443, \"mac\": \"b4:0c:25:e2:80:10\"}, \"src\": {\"ip\": \"10.50.0.60\", \"host\": \"\", \"port\": 54032, \"mac\": \"00:3a:9c:58:a5:c2\"}, \"signature\": {\"sid\": \"85303996\", \"revision\": \"13\", \"cve-id\": \"\", \"sname\": \"Sun Directory Server LDAP Denial of Service\"}, \"severity\": {\"value\": 5, \"category\": \"majr\"}}","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"} 
+-->
+
+<rule id="101561" level="1">
+    <if_sid>101552</if_sid>
+    <field name="signature_name" type="pcre2">(?i)(?:FE_|)Sun\sDirectory\sServer\sLDAP\sDenial\sof\sService</field>
+    <description>Trellix-IPS: Detects Sun Directory Server LDAP Denial of Service.</description>
+    <group>high,one-on-one,s-a,dos,T1499,impact,T1498,</group>
+    <info type="text">
+    Description: A potential Denial of Service (DoS) attack targeting the Sun Directory Server’s LDAP service has been detected. This attack could exploit vulnerabilities in LDAP to overload the server, leading to unresponsive or degraded service performance and preventing legitimate user access. Such attacks could disrupt critical directory services, impacting authentication and access control across the organization.
+    </info>
+    <mitre>
+        <id>T1499</id>
+        <id>T1498</id>
+    </mitre>
+</rule>
+
+<!-- 
+{"full_log":" tid 7987: [notifyd.INFO]: [ips_notify_thread]ips event notification is sent out[465056]: desc={\"alert-url\": \"https:\/\/FireEye-NX01-DC-F01-C5.qumc.edu.sa\/notification_url\/ips_events?ev_id=1874010\", \"action-taken\": \"may be blocked in future by the default policy\", \"acknowledged\": false, \"id\": 1874010, \"verified\": false, \"vlan\": \"105\", \"occurred\": \"2024-11-20T07:33:03Z\", \"non-hidden\": true, \"attack-mode\": \"client\", \"blocked\": false, \"uuid\": \"b61f67ac-5a4c-4bf3-9a36-ee1d05da434d\", \"dst\": {\"ip\": \"10.10.0.7\", \"host\": \"\", \"port\": 62457, \"mac\": \"00:3a:9c:58:33:c2\"}, \"src\": {\"ip\": \"108.139.229.82\", \"host\": \"\", \"port\": 443, \"mac\": \"b4:0c:25:e2:80:10\"}, \"signature\": {\"sid\": \"85302478\", \"revision\": \"16\", \"cve-id\": \"CVE-2005-2128\", \"sname\": \"Microsoft DirectShow AVI Decoder Buffer Overflow\"}, \"severity\": {\"value\": 6, \"category\": \"majr\"}}","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"} 
+-->
+
+<rule id="101563" level="1">
+    <if_sid>101553</if_sid>
+    <field name="signature_name" type="pcre2">(?i)(?:FE_|)Microsoft\sDirectShow\sAVI Decoder\sBuffer\sOverflow</field>
+    <description>Trellix-IPS: Detects Microsoft DirectShow AVI Decoder Buffer Overflow.</description>
+    <group>medium,one-on-one,s-a,initial-access,T1190,</group>
+    <info type="text">
+    Description: Microsoft DirectShow AVI Decoder Buffer Overflow is a vulnerability that arises when the DirectShow component processes maliciously crafted AVI files. Exploiting this flaw can lead to arbitrary code execution, allowing attackers to compromise systems and potentially gain full control. This vulnerability is often exploited by embedding malicious AVI files in web pages, email attachments, or downloads.
+    </info>
+    <mitre>
+        <id>T1190</id>
+    </mitre>
+</rule>
+</group>

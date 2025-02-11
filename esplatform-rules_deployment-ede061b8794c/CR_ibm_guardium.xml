@@ -1,0 +1,164 @@
+<!--Level=0-->
+<group name="ibm-guardium,">
+    <rule id="116392" level="0" noalert="1">
+        <decoded_as>json</decoded_as>
+        <field name="vendor" type="pcre2">(?i)^IBM$</field>
+        <description>IBM-Guardium: Database Activity Monitoring Rules</description>
+        <group>info,one-on-one</group>
+    </rule>
+
+<!--Based Rule-->
+<!--event_cat-->
+
+<rule id="116393" level="1" noalert="1">
+		<if_sid>116392</if_sid>
+		<field name="event_cat" type="pcre2">Sensitive Data</field> 
+		<description>IBM-Guardium: Sensitive data access violation</description>
+		<group>low,one-on-one,detect,T1552,credential-access,</group>
+		<mitre>
+			<id>T1552</id>
+		</mitre>
+	</rule>
+
+<rule id="116394" level="1" noalert="1">
+		<if_sid>116392</if_sid>
+		<field name="event_cat" type="pcre2">Exception</field> 
+		<description>IBM-Guardium: Exception event detected</description>
+		<group>low,one-on-one,detect,T1552,credential-access,</group>
+		<mitre>
+			<id>T1552</id>
+		</mitre>
+	</rule>
+
+<!--Rule-->
+<!--Level=1-->
+
+<rule id="116395" level="1">
+    <if_sid>116393</if_sid>
+	<field name="rule_description" type="pcre2">DML, Sensitive Objects - Alert</field> 
+	<field name="classification" type="pcre2">Alert</field> 
+	<description>IBM-Guardium: DML operation on sensitive objects detected.</description>
+	<group>high,one-on-one,s-a,T1565,impact,T1071,command-control,</group>
+<mitre>
+	<id>T1565</id>
+	<id>T1071</id>
+</mitre>
+<info type="text">
+Description:
+    DML operation on sensitive objects. This could indicate unauthorized data changes, misuse of elevated privileges, or attempts to alter critical database records.
+</info>
+</rule>
+
+<rule id="116396" level="1">
+    <if_sid>116394</if_sid>
+	<field name="rule_description" type="pcre2">Failed Login - Log Violation</field> 
+	<action type="pcre2">LOGIN_FAILED</action> 
+	<description>IBM-Guardium: Failed login attempt detected</description>
+	<group>high,one-on-one,s-a,T1078,defense-evasion,T1211,</group>
+<mitre>
+	<id>T1078</id>
+	<id>T1211</id>
+</mitre>
+<info type="text">
+Description:
+    failed login attempt, which may suggest unauthorized access attempts or misconfigured credentials. This could indicate potential brute force activity or incorrect login credentials being used.
+</info>
+</rule>
+
+<rule id="116398" level="1">
+    <if_sid>116394</if_sid>
+	<field name="rule_description" type="pcre2">SQL Error - Log</field> 
+	<field name="classification" type="pcre2">SQL Error</field> 
+	<description>IBM-Guardium: SQL error detected, indicating potential issues</description>
+	<group>high,one-on-one,s-a,T1190,initial-access,T1041,exfiltration,</group>
+<mitre>
+	<id>T1190</id>
+	<id>T1041</id>
+</mitre>
+<info type="text">
+Description:
+    SQL error, which may indicate issues with query execution or potential exploitation attempts targeting the database. This could signal abnormal activity or misconfigured queries.
+</info>
+</rule>
+
+
+<rule id="116399" level="1">
+    <if_sid>116392</if_sid>
+    <field name="message" type="pcre2">.*' OR '1'='1' --|.*admin'--|.* OR '' = '|.*' OR '1'='1'#.*|.*=select%20|.*insert%20|.*%20from%20|.*%20where%20|.*union%20</field>
+    <description>IBM-Guardium: Potential SQL Injection Patterns Used in Authentication Bypass Attempts.</description>
+    <group>high,one-on-one,s-a,T1190,initial-access,T1078,valid-accounts,</group>
+    <mitre>
+        <id>T1190</id>
+        <id>T1078</id>
+    </mitre>
+    <info type="text">
+    Description:
+        SQL injection attempts typically involve inserting malicious code into user inputs to manipulate database queries. Common patterns include exploiting functions and concatenation techniques to alter SQL logic or retrieve unauthorized data. 
+    </info>
+</rule>
+
+<rule id="116401" level="1">
+    <if_sid>116392</if_sid>
+    <field name="message" type="pcre2">.*GRANT ALL PRIVILEGES ON.*TO.*;.*</field>
+    <description>IBM-Guardium: grant all privileges suggesting possible privilege escalation.</description>
+    <group>high,one-on-one,s-a,T1190,initial-access,T1078,valid-accounts,</group>
+    <mitre>
+        <id>T1190</id>
+        <id>T1078</id>
+    </mitre>
+    <info type="text">
+    Description:
+        that attempt to grant all privileges to users Such actions may indicate an attempt at privilege escalation or unauthorized access, posing significant security risks to the database. Prompt response is essential to mitigate potential threats.
+    </info>
+</rule>
+
+<rule id="116402" level="1">
+    <if_sid>116392</if_sid>
+    <field name="message" type="pcre2">ALTER SYSTEM KILL SESSION '.*' IMMEDIATE</field>
+    <description>IBM-Guardium: Detected 'ALTER SYSTEM KILL SESSION' command.</description>
+    <group>high,one-on-one,s-a,T1190,initial-access,T1078,defense-evasion,valid-accounts,</group>
+    <mitre>
+        <id>T1190</id>
+        <id>T1078</id>
+    </mitre>
+    <info type="text">
+    Description:
+        Detected an 'ALTER SYSTEM KILL SESSION' command executed with immediate effect, indicating possible termination of a database session due to administrative action or anomalous activity.
+    </info>
+</rule>
+
+<rule id="116403" level="1">
+	<if_sid>116392</if_sid>
+    <field name="src_program" type="pcre2">.*\.(lock|enc|cry|crypt|crypted|locked|enciphered|encrypted|pay|locky|wallet|zzzz|btc|paycrypt|id-\[.*\]|ransom|payday|readme|crypteddata|ncrypt|micro|crypto|darkness|securer|conti|revil|clop|covid19|eggz|help|helpme|serpent|nempty|nobackup|bip|fuq)$</field>
+    <description>IBM-Guardium: Abnormal file encryption activity detected</description>
+    <group>medium,one-on-one,detect,T1204,execution,T1204.001,</group>
+    <mitre>
+      <id>T1204</id>
+      <id>T1204.001</id>
+    </mitre>
+	<info type="text">
+	Description:
+		This rule detects abnormal file encryption activity by identifying file extensions commonly associated with ransomware, such as .lock, .cry, and .encrypted. These extensions indicate potential unauthorized encryption of files, which is a key indicator of ransomware attacks targeting data for impact.
+    </info>
+</rule>
+
+<!--Level=2-->
+
+<rule id="116397" level="2" frequency="5" timeframe="60">
+	<if_matched_sid>116396</if_matched_sid>
+	<same_field>src_ip</same_field>
+	<same_field>tenant</same_field>
+	<description>IBM-Guardium: Multiple failed login attempts from same source IP $(src_ip)</description>
+    <group>high,aggregation,s-a,T1078,defense-evasion,T1211,T1110,brute-force,</group>
+<mitre>
+	<id>T1078</id>
+	<id>T1211</id>
+	<id>T1110</id>
+</mitre>
+    <info type="text">
+     Description:
+         Multiple failed login attempts detected from the same source IP within a short timeframe. This could indicate a brute force attack attempt.
+    </info>
+</rule>
+
+</group>

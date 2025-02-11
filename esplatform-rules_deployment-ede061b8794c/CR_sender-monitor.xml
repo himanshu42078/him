@@ -1,0 +1,33 @@
+<group name="sender-monitor,">
+	<rule id="116000" level="1" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="logType">monitoring</field>
+		<description>Monitoring Logs.</description>
+	</rule>
+	<rule id="116001" level="1">
+		<if_sid>116000</if_sid>
+		<field name="type">alert-monitor</field>
+		<status>alerts-stopped</status>
+		<description>Alerts from $(tenant) has stopped coming.</description>
+	</rule>
+	<rule id="116002" level="1">
+		<if_sid>116000</if_sid>
+		<field name="type">sender-monitor</field>
+		<status>inactive</status>
+		<description>$(productName) has stopped coming.</description>
+		<group>high,soar-alert</group>
+	</rule>
+	<rule id="116003" level="1">
+		<if_sid>116002</if_sid>
+		<field name="device_id">\.</field>
+		<description>Logs from $(device_id) has stopped coming.</description>
+		<group>high,soar-alert</group>
+	</rule>
+	<rule id="116004" level="1">
+		<if_sid>116000</if_sid>
+		<field name="type">agent-monitor</field>
+		<status>inactive</status>
+		<description>$(agent_name) agent is disconnected.</description>
+		<group>high,soar-alert,</group>
+	</rule>
+</group>

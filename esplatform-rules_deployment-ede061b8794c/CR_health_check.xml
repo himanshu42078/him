@@ -1,0 +1,50 @@
+<group name="health-check,">
+	<!-- CPU, Memory and Disk usage -->
+	<rule id="116050" level="1" noalert="1">
+		<decoded_as>general_health_check</decoded_as>
+		<description>CPU | MEMORY | DISK usage metrics</description>
+	</rule>
+	<!-- High memory usage -->
+	<rule id="116051" level="1">
+		<if_sid>116050</if_sid>
+		<field name="memory_usage">^[8-9]\d|100</field>
+		<description>Memory usage is high: $(memory_usage)%</description>
+		<options>no_full_log</options>
+	</rule>
+	<!-- High CPU usage -->
+	<rule id="116052" level="1">
+		<if_sid>116050</if_sid>
+		<field name="main_cpu_usage">^[8-9]\d|100</field>
+		<description>CPU usage is high: $(main_cpu_usage)%</description>
+		<options>no_full_log</options>
+	</rule>
+	<!-- High disk usage -->
+	<rule id="116053" level="1">
+		<if_sid>116050</if_sid>
+		<field name="disk_usage">^[8-9]\d|100</field>
+		<description>Disk space is running low: $(disk_usage)%</description>
+		<options>no_full_log</options>
+	</rule>
+	<rule id="116057" level="1">
+		<decoded_as>json</decoded_as>
+		<status type="pcre2">critical</status>
+		<field name="logType" type="pcre2">agent_health_check</field>
+		<description>$(message)</description>
+		<group>s-a,critical</group>
+	</rule>
+	<!-- Load average check -->
+	<rule id="116054" level="1">
+		<decoded_as>load_average_check</decoded_as>
+		<description>load average metrics</description>
+	</rule>
+	<!-- memory check -->
+	<rule id="116055" level="1">
+		<decoded_as>memory_check</decoded_as>
+		<description>Memory metrics</description>
+	</rule>
+	<!-- Disk check -->
+	<rule id="116056" level="1">
+		<decoded_as>disk_check</decoded_as>
+		<description>Disk metrics</description>
+	</rule>
+</group>

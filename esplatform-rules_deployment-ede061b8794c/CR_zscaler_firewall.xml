@@ -1,0 +1,1377 @@
+<!-- 
+	Rule Range : 101450 to 101549
+	Last used:  101544
+-->
+
+<group name="zscaler-fw,">
+	<rule id="101450" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="product_name" type="pcre2">zscalernss-fw(.*)</field>
+		<description>Zscaler-Firewall event.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="101451" level="1" noalert="1">
+		<if_sid>101450</if_sid>
+		<field name="threat_severity" type="pcre2">^([1-9]|[1-3][0-9]|4[0-5])$</field>
+		<description>Zscaler-Firewall: Low Severity event.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="101452" level="1" noalert="1">
+		<if_sid>101450</if_sid>
+		<field name="threat_severity" type="pcre2">^(4[6-9]|[5-6][0-9]|7[0-4])$</field>
+		<description>Zscaler-Firewall: Medium Severity event.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="101453" level="1" noalert="1">
+		<if_sid>101450</if_sid>
+		<field name="threat_severity" type="pcre2">^(7[5-9]|8[0-9])$</field>
+		<description>Zscaler-Firewall: High Severity event.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="101454" level="1" noalert="1">
+		<if_sid>101450</if_sid>
+		<field name="threat_severity" type="pcre2">^(9[0-9]|100)$</field>
+		<description>Zscaler-Firewall: Critical Severity event.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="101455" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Adware.*Spyware.*Sites</field>
+		<description>Zscaler-Firewall: Detected adware or spyware sites with low severity.</description>
+		<group>low,one-on-one,T1204,execution,malicious,detect,</group>
+		<mitre>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected access to adware or spyware sites with a low severity level indicates that users attempted to visit websites known for hosting potentially unwanted software with a risk score between 1 to 45 by Zscaler-Firewall. While these sites may not pose an immediate high-risk threat, they can lead to intrusive ads, tracking, or the installation of unwanted programs.
+	</info>
+	</rule>
+	<rule id="101456" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Adware.*Spyware.*Sites</field>
+		<description>Zscaler-Firewall: Detected adware or spyware sites with medium severity.</description>
+		<group>medium,one-on-one,T1204,execution,malicious,detect,</group>
+		<mitre>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected access to adware or spyware sites with a medium severity level suggests that users visited websites that may host more harmful software or potentially unwanted programs with a risk score between 46 to 74 by Zscaler-Firewall. These sites pose a moderate threat, potentially leading to system performance degradation, intrusive ads, or the installation of software that could compromise user privacy or security.
+	</info>
+	</rule>
+	<rule id="101457" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Adware.*Spyware.*Sites</field>
+		<description>Zscaler-Firewall: Detected adware or spyware sites with high severity.</description>
+		<group>high,one-on-one,T1204,execution,malicious,detect,</group>
+		<mitre>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected access to adware or spyware sites with a high severity level indicates that users have visited websites known for distributing malicious software that can significantly compromise system security with a risk score between 75 to 89 by Zscaler-Firewall. These sites pose a serious risk of installing spyware, adware, or other malware that can lead to data theft, system instability, or unauthorized access to sensitive information.
+	</info>
+	</rule>
+	<rule id="101458" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Adware.*Spyware.*Sites</field>
+		<description>Zscaler-Firewall: Detected adware or spyware sites with critical severity.</description>
+		<group>critical,one-on-one,s-a,T1204,execution,malicious,detect,</group>
+		<mitre>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected access to adware or spyware sites with a high severity level indicates that users have visited websites known for distributing malicious software that can significantly compromise system security with a risk score between 90 to 100 by Zscaler-Firewall. These sites pose a serious risk of installing spyware, adware, or other malware that can lead to data theft, system instability, or unauthorized access to sensitive information.
+	  </info>
+	</rule>
+	<rule id="101459" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Anonymizer</field>
+		<description>Zscaler-Firewall: Detects traffic routed through anonymizer proxies with low severity.</description>
+		<group>low,one-on-one,T1090,T1090.002,T1090.003,command-and-control,</group>
+		<mitre>
+			<id>T1090</id>
+			<id>T1090.002</id>
+			<id>T1090.003</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting traffic routed through anonymizer proxies with a low severity level indicates that some network traffic is being channeled through proxies designed to hide the source or destination of the traffic with a risk score between 1 to 45 by Zscaler-Firewall. While this may not pose an immediate high-risk threat, it can still be a sign of users attempting to bypass network controls or masking their activities.
+	  </info>
+	</rule>
+	<rule id="101460" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Anonymizer</field>
+		<description>Zscaler-Firewall: Detects traffic routed through anonymizer proxies with medium severity.</description>
+		<group>medium,one-on-one,T1090,T1090.002,T1090.003,command-and-control,</group>
+		<mitre>
+			<id>T1090</id>
+			<id>T1090.002</id>
+			<id>T1090.003</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting traffic routed through anonymizer proxies with a medium severity level suggests that users are using these proxies to obscure their activity, which could indicate attempts to bypass security controls or access restricted content with a risk score between 46 to 74 by Zscaler-Firewall. While not immediately dangerous, this behavior can potentially lead to increased risks, such as masking malicious actions or facilitating unauthorized access.
+	  </info>
+	</rule>
+	<rule id="101461" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Anonymizer</field>
+		<description>Zscaler-Firewall: Detects traffic routed through anonymizer proxies with high severity.</description>
+		<group>high,one-on-one,T1090,T1090.002,T1090.003,command-and-control,</group>
+		<mitre>
+			<id>T1090</id>
+			<id>T1090.002</id>
+			<id>T1090.003</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting traffic routed through anonymizer proxies with a high severity level signals a significant risk to the network, as users may be using these proxies to hide malicious activities or evade security measures with a risk score between 75 to 89 by Zscaler-Firewall. This could indicate potential insider threats, data exfiltration, or attempts to access prohibited content undetected.
+	  </info>
+	</rule>
+	<rule id="101462" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Anonymizer</field>
+		<description>Zscaler-Firewall: Detects traffic routed through anonymizer proxies with critical severity.</description>
+		<group>critical,one-on-one,s-a,T1090,T1090.002,T1090.003,command-and-control,</group>
+		<mitre>
+			<id>T1090</id>
+			<id>T1090.002</id>
+			<id>T1090.003</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting traffic routed through anonymizer proxies with a critical severity level indicates an urgent and severe threat to network security with a risk score between 90 to 100 by Zscaler-Firewall. This traffic is likely being used to hide highly suspicious or malicious activities, such as data exfiltration, unauthorized access, or advanced persistent threats.
+	  </info>
+	</rule>
+	<rule id="101463" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Reconnaissance.*Attempts</field>
+		<description>Zscaler-Firewall: Reconnaissance Attempts with low severity.</description>
+		<group>low,one-on-one,T1110,credential-access,T1046,discovery,reconnaissance,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1046</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Reconnaissance attempts with a low severity level indicate that an attacker or unauthorized entity is probing the network or system to gather information, such as open ports or services, but without immediate risk of compromise with a risk score between 1 to 45 by Zscaler-Firewall. While these attempts may not lead to direct harm, they can signal early-stage activity that could precede more serious attacks.
+	  </info>
+	</rule>
+	<rule id="101464" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Reconnaissance.*Attempts</field>
+		<description>Zscaler-Firewall: Reconnaissance Attempts with medium severity.</description>
+		<group>medium,one-on-one,T1110,credential-access,T1046,discovery,reconnaissance,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1046</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Reconnaissance attempts with a medium severity level suggest that an attacker is actively probing the network or systems to gather valuable information, such as open ports, vulnerabilities, or configuration details with a risk score between 46 to 74 by Zscaler-Firewall. These attempts may indicate a more focused effort to prepare for potential attacks, such as exploiting weaknesses or gaining unauthorized access.
+	  </info>
+	</rule>
+	<rule id="101465" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Reconnaissance.*Attempts</field>
+		<description>Zscaler-Firewall: Reconnaissance Attempts with high severity.</description>
+		<group>high,one-on-one,T1110,credential-access,T1046,discovery,reconnaissance,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1046</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Reconnaissance attempts with a high severity level indicate that an attacker is conducting aggressive and targeted probing of the network or systems, likely with the intent to exploit identified vulnerabilities with a risk score between 75 to 89 by Zscaler-Firewall. These attempts suggest that the attacker may already have knowledge of the environment and is actively searching for weaknesses to initiate an attack.
+	  </info>
+	</rule>
+	<rule id="101466" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Reconnaissance.*Attempts</field>
+		<description>Zscaler-Firewall: Reconnaissance Attempts with critical severity.</description>
+		<group>critical,one-on-one,s-a,T1110,credential-access,T1046,discovery,reconnaissance,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1046</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Reconnaissance attempts with a critical severity level represent an immediate and serious threat to the network, indicating that an attacker is aggressively probing for vulnerabilities with a high likelihood of launching an imminent attack with a risk score between 90 to 100 by Zscaler-Firewall. These attempts suggest advanced techniques and potential insider knowledge, posing a significant risk of system compromise or data breaches. 
+	  </info>
+	</rule>
+	<rule id="101467" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Botnet.*Callback</field>
+		<description>Zscaler-Firewall: Detects compromised systems reaching a command and control server, indicating botnet activity with low severity.</description>
+		<group>low,one-on-one,botnet,T1584.005,T1584,resource-development,T1041,exfiltration,T1189,initial-access,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.005</id>
+			<id>T1041</id>
+			<id>T1189</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting compromised systems reaching out to a command and control (C2) server, indicating botnet activity with a low severity level, suggests that while there is evidence of malicious communication, the impact is currently minimal with a risk score between 0 to 45 by Zscaler-Firewall. These systems may be part of a botnet but are not yet causing significant harm or conducting major attacks.
+	  </info>
+	</rule>
+	<rule id="101468" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Botnet.*Callback</field>
+		<description>Zscaler-Firewall: Detects compromised systems reaching a command and control server, indicating botnet activity with medium severity.</description>
+		<group>medium,one-on-one,botnet,T1584.005,T1584,resource-development,T1041,exfiltration,T1189,initial-access,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.005</id>
+			<id>T1041</id>
+			<id>T1189</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting compromised systems reaching a command and control (C2) server, indicating botnet activity with a medium severity level, suggests that the infected systems are communicating with external malicious actors and could be leveraged for disruptive activities, such as launching attacks or data exfiltration with a risk score between 46 to 74 by Zscaler-Firewall.
+	  </info>
+	</rule>
+	<rule id="101469" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Botnet.*Callback</field>
+		<description>Zscaler-Firewall: Detects compromised systems reaching a command and control server, indicating botnet activity with high severity.</description>
+		<group>high,one-on-one,botnet,T1584.005,T1584,resource-development,T1041,exfiltration,T1189,initial-access,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.005</id>
+			<id>T1041</id>
+			<id>T1189</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting compromised systems reaching a command and control (C2) server, indicating botnet activity with a high severity level, reveals a serious threat where infected systems are likely being used for malicious operations, such as launching distributed denial-of-service (DDoS) attacks or facilitating data theft with a risk score between 46 to 74 by Zscaler-Firewall.
+	  </info>
+	</rule>
+	<rule id="101470" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Botnet.*Callback</field>
+		<description>Zscaler-Firewall: Detects compromised systems reaching a command and control server, indicating botnet activity with critical severity.</description>
+		<group>critical,one-on-one,s-a,botnet,T1584.005,T1584,resource-development,T1041,exfiltration,T1189,initial-access,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.005</id>
+			<id>T1041</id>
+			<id>T1189</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting compromised systems reaching a command and control (C2) server, indicating botnet activity with a critical severity level, signals an urgent and severe threat to the network. The compromised systems are likely being controlled remotely, potentially facilitating large-scale attacks such as DDoS, data exfiltration, or even ransomware deployment with a risk score between 75 to 100 by Zscaler-Firewall.
+	  </info>
+	</rule>
+	<rule id="101471" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Browser.*Exploit</field>
+		<description>Zscaler-Firewall: Detects exploitation of browser vulnerabilities to execute malicious code or gain unauthorized access with low severity.</description>
+		<group>low,one-on-one,vulnerabilities,exploit,T1210,lateral-movement,execution,T1189,initial-access,T1190,T1203</group>
+		<mitre>
+			<id>T1210</id>
+			<id>T1189</id>
+			<id>T1190</id>
+			<id>T1203</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting exploitation of browser vulnerabilities to execute malicious code or gain unauthorized access with a low severity level suggests that an attacker is attempting to leverage minor browser flaws, though the immediate risk or impact is limited. While this may not pose an urgent threat, it could still expose users to potential harm such as data leaks or unwanted software installations with a risk score between 0 to 45 by Zscaler-Firewall.
+	  </info>
+	</rule>
+	<rule id="101472" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Browser.*Exploit</field>
+		<description>Zscaler-Firewall: Detects exploitation of browser vulnerabilities to execute malicious code or gain unauthorized access with medium severity.</description>
+		<group>medium,one-on-one,vulnerabilities,exploit,T1210,lateral-movement,execution,T1189,initial-access,T1190,T1203</group>
+		<mitre>
+			<id>T1210</id>
+			<id>T1189</id>
+			<id>T1190</id>
+			<id>T1203</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting exploitation of browser vulnerabilities to execute malicious code or gain unauthorized access with a medium severity level indicates that attackers are leveraging known browser flaws to inject malicious code or gain access to sensitive data. While the threat is not immediately critical, it poses a significant risk to user privacy and system security with a risk score between 46 to 74 by Zscaler-Firewall.
+	  </info>
+	</rule>
+	<rule id="101473" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Browser.*Exploit</field>
+		<description>Zscaler-Firewall: Detects exploitation of browser vulnerabilities to execute malicious code or gain unauthorized access with high severity.</description>
+		<group>high,one-on-one,vulnerabilities,exploit,T1210,lateral-movement,execution,T1189,initial-access,T1190,T1203</group>
+		<mitre>
+			<id>T1210</id>
+			<id>T1189</id>
+			<id>T1190</id>
+			<id>T1203</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting exploitation of browser vulnerabilities to execute malicious code or gain unauthorized access with a high severity level indicates that attackers are actively exploiting significant browser flaws, potentially allowing unauthorized access to sensitive data or full system compromise. This poses a serious risk to both users and the network, with a high likelihood of data breaches, malware infection, or unauthorized control with a risk score between 75 to 89 by Zscaler-Firewall.
+	  </info>
+	</rule>
+	<rule id="101474" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Browser.*Exploit</field>
+		<description>Zscaler-Firewall: Detects exploitation of browser vulnerabilities to execute malicious code or gain unauthorized access with critical severity.</description>
+		<group>critical,one-on-one,s-a,vulnerabilities,exploit,T1210,lateral-movement,execution,T1189,initial-access,T1190,T1203</group>
+		<mitre>
+			<id>T1210</id>
+			<id>T1189</id>
+			<id>T1190</id>
+			<id>T1203</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detecting exploitation of browser vulnerabilities to execute malicious code or gain unauthorized access with a critical severity level signifies an immediate and severe threat. Attackers are likely exploiting major browser flaws to gain unauthorized control over systems, execute harmful code, or exfiltrate sensitive data. The potential for widespread compromise, including data breaches and malware deployment, is extremely high with a risk score between 90 to 100 by Zscaler-Firewall.
+	  </info>
+	</rule>
+	<!-- Brute Force Attack -->
+	<rule id="101475" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Brute.*Force.*Attack</field>
+		<description>Zscaler-Firewall: Detected potential Brute Force Attack with Low severity.</description>
+		<group>low,one-on-one,brute-force,attack,T1110,credential-access,</group>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Brute Force Attack with Low Severity A potential brute force attack with low severity and risk score between 1 to 45 suggests repeated login attempts or failed access attempts, but without significant threat or immediate success. This could be an early stage or unsophisticated attack with minimal risk to the system.
+	  </info>
+	</rule>
+	<rule id="101476" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Brute.*Force.*Attack</field>
+		<description>Zscaler-Firewall: Detected Brute Force Attack with Medium severity.</description>
+		<group>medium,one-on-one,brute-force,attack,T1110,credential-access,</group>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Brute Force Attack with Medium Severity A potential brute force attack with medium severity with a risk score between 46 to 74 indicates a sustained and somewhat aggressive attempt to gain unauthorized access to accounts or systems through repeated login attempts.
+	  </info>
+	</rule>
+	<rule id="101477" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Brute.*Force.*Attack</field>
+		<description>Zscaler-Firewall: Detected Brute Force Attack with High severity.</description>
+		<group>high,one-on-one,brute-force,attack,T1110,credential-access,</group>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Brute Force Attack with High Severity with a risk score between 75 to 89 A brute force attack with high severity signifies a focused and intense effort to breach accounts or systems through repeated, large-scale login attempts. The attack may be targeting multiple accounts simultaneously and could lead to a system compromise if not addressed.
+	  </info>
+	</rule>
+	<rule id="101478" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Brute.*Force.*Attack</field>
+		<description>Zscaler-Firewall: Detected Brute Force Attack with Critical severity.</description>
+		<group>critical,one-on-one,s-a,brute-force,attack,T1110,credential-access,</group>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Brute Force Attack with Critical Severity with a risk core between 90 to 100 A brute force attack with critical severity indicates an urgent and highly aggressive attempt to compromise accounts or systems. This may involve large-scale, automated login attempts with a high likelihood of success, posing a severe threat to network security.
+	  </info>
+	</rule>
+	<!-- Cross-site Scripting -->
+	<rule id="101479" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Cross.*site.*Scripting</field>
+		<description>Zscaler-Firewall: Detected potential Cross-site Scripting with Low severity.</description>
+		<group>low,one-on-one,xss,web-attack,T1059.007,T1189,T1059,execution,initial-access,</group>
+		<mitre>
+			<id>T1059.007</id>
+			<id>T1189</id>
+			<id>T1059</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Cross-site Scripting (XSS) with Low Severity A potential Cross-site Scripting (XSS) attack with low severity suggests that an attacker may be attempting to inject malicious scripts into a web page, but the impact is minimal and unlikely to cause significant harm. This could involve minor defacement or inconvenience to users, without compromising sensitive data with a risk score between 1 to 45.
+	  </info>
+	</rule>
+	<rule id="101480" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Cross.*site.*Scripting</field>
+		<description>Zscaler-Firewall: Detected Cross-site Scripting with Medium severity.</description>
+		<group>medium,one-on-one,xss,web-attack,T1059.007,T1189,T1059,execution,initial-access,</group>
+		<mitre>
+			<id>T1059.007</id>
+			<id>T1189</id>
+			<id>T1059</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Cross-site Scripting (XSS) with Medium Severity A medium severity XSS attack indicates a more pronounced threat, where an attacker is actively trying to inject malicious code to affect multiple users or expose non-critical data. The potential for user session hijacking or other moderate security risks is present with a risk score between 46 to 74.
+	  </info>
+	</rule>
+	<rule id="101481" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Cross.*site.*Scripting</field>
+		<description>Zscaler-Firewall: Detected Cross-site Scripting with High severity.</description>
+		<group>high,one-on-one,xss,web-attack,T1059.007,T1189,T1059,execution,initial-access,</group>
+		<mitre>
+			<id>T1059.007</id>
+			<id>T1189</id>
+			<id>T1059</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Cross-site Scripting (XSS) with High Severity with a risk score between 75 to 89 A high severity XSS attack suggests a significant threat, where an attacker may exploit vulnerabilities to inject scripts that could compromise user accounts, steal session tokens, or exfiltrate sensitive information.
+	  </info>
+	</rule>
+	<rule id="101482" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Cross.*site.*Scripting</field>
+		<description>Zscaler-Firewall: Detected Cross-site Scripting with Critical severity.</description>
+		<group>critical,one-on-one,s-a,xss,web-attack,T1059.007,T1189,T1059,execution,initial-access,</group>
+		<mitre>
+			<id>T1059.007</id>
+			<id>T1189</id>
+			<id>T1059</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Cross-site Scripting (XSS) with Critical Severity with a risk score between 90 to 100. A critical severity XSS attack indicates a severe threat to the web application and its users. The attacker is likely able to execute malicious scripts that can fully compromise user sessions, steal sensitive data, or redirect users to malicious sites.
+	  </info>
+	</rule>
+	<!-- Crypto Mining -->
+	<rule id="101483" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Crypto.*Mining</field>
+		<description>Zscaler-Firewall: Detected potential Crypto Mining activity with a Low severity.</description>
+		<group>low,one-on-one,T1496,impact,</group>
+		<mitre>
+			<id>T1496</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Crypto Mining activity with Low Severity with a risk score between 1 to 45. A potential crypto mining activity with low severity indicates minimal or early-stage unauthorized usage of system resources for cryptocurrency mining.
+	  </info>
+	</rule>
+	<rule id="101484" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Crypto.*Mining</field>
+		<description>Zscaler-Firewall: Detected Crypto Mining activity with Medium severity.</description>
+		<group>medium,one-on-one,T1496,impact,</group>
+		<mitre>
+			<id>T1496</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Crypto Mining activity with Medium Severity with a risk score between 46 to 74. A medium severity crypto mining activity suggests that unauthorized mining is actively occurring, leading to noticeable performance degradation on affected systems.
+	  </info>
+	</rule>
+	<rule id="101485" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Crypto.*Mining</field>
+		<description>Zscaler-Firewall: Detected Crypto Mining activity with High severity.</description>
+		<group>high,one-on-one,T1496,impact,</group>
+		<mitre>
+			<id>T1496</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Crypto Mining activity with High Severity with a risk score between 75 to 89. A high severity crypto mining activity signifies significant unauthorized usage of system resources, likely causing major performance issues and potential hardware damage. The mining operation could be spread across multiple systems, leading to larger financial and operational impacts.
+	  </info>
+	</rule>
+	<rule id="101486" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Crypto.*Mining</field>
+		<description>Zscaler-Firewall: Detected Crypto Mining activity with Critical severity.</description>
+		<group>critical,one-on-one,s-a,T1496,impact,</group>
+		<mitre>
+			<id>T1496</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Crypto Mining activity with Critical Severity with a risk score between 90 to 100. A critical severity crypto mining activity indicates widespread and aggressive use of system resources for unauthorized cryptocurrency mining, severely impacting system performance and business operations. This could be part of a larger attack, compromising multiple systems or networks.
+	  </info>
+	</rule>
+	<!-- Denial of Service Attack -->
+	<rule id="101487" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Denial.*of.*Service.*Attack</field>
+		<description>Zscaler-Firewall: Detected potential Denial of Service Attack with Low severity.</description>
+		<group>low,one-on-one,T1498,impact,T1499,dos,attack,</group>
+		<mitre>
+			<id>T1498</id>
+            <id>T1499</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Denial of Service (DoS) Attack with Low Severity with a risk score between 1 to 45. A potential Denial of Service (DoS) attack with low severity indicates a minor disruption or an isolated attempt to overwhelm a service, with little to no impact on performance or availability. The attack may be probing for vulnerabilities without causing significant damage.
+	  </info>
+	</rule>
+	<rule id="101488" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Denial.*of.*Service.*Attack</field>
+		<description>Zscaler-Firewall: Detected Denial of Service Attack with Medium severity.</description>
+		<group>medium,one-on-one,T1498,impact,T1499,dos,attack,</group>
+		<mitre>
+			<id>T1498</id>
+            <id>T1499</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Denial of Service (DoS) Attack with Medium Severity with a risk score between 46 to 74. A medium severity DoS attack suggests more sustained and organized attempts to disrupt service availability, leading to noticeable slowdowns or intermittent access issues. Although the service remains functional, the attack poses a moderate risk.
+	  </info>
+	</rule>
+	<rule id="101489" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Denial.*of.*Service.*Attack</field>
+		<description>Zscaler-Firewall: Detected Denial of Service Attack with High severity.</description>
+		<group>high,one-on-one,T1498,impact,T1499,dos,attack,</group>
+		<mitre>
+			<id>T1498</id>
+            <id>T1499</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Denial of Service (DoS) Attack with High Severity with a risk score between 75 to 89. A high severity DoS attack indicates a focused and aggressive attempt to take services offline or severely degrade performance. This attack can lead to significant downtime or loss of functionality, impacting business operations or user access.
+	  </info>
+	</rule>
+	<rule id="101490" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Denial.*of.*Service.*Attack</field>
+		<description>Zscaler-Firewall: Detected Denial of Service Attack with Critical severity.</description>
+		<group>critical,one-on-one,s-a,T1498,impact,T1499,dos,attack,</group>
+		<mitre>
+			<id>T1498</id>
+            <id>T1499</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Denial of Service (DoS) Attack with Critical Severity with a risk score between 90 to 100. A critical severity DoS attack represents a massive and highly coordinated effort to completely overwhelm services, resulting in full service unavailability and significant business disruption. The attack could target multiple services or networks simultaneously.
+	  </info>
+	</rule>
+	<!-- Domain Generation Algorithm (DGA) Domains -->
+	<rule id="101491" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Domain.*Generation.*Algorithm.*(DGA).*Domains</field>
+		<description>Zscaler-Firewall: Detected potential DGA Domain activity with Low severity.</description>
+		<group>low,one-on-one,T1568.002,T1568,command-and-control,T1637.001,T1637,</group>
+		<mitre>
+			<id>T1568</id>
+			<id>T1568.002</id>
+			<id>T1637</id>
+			<id>T1637.001</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential DGA Domain activity with Low Severity with a risk score between 1 to 45. A potential Domain Generation Algorithm (DGA) activity with low severity suggests that there is minimal or isolated suspicious activity involving dynamically generated domain names.
+	  </info>
+	</rule>
+	<rule id="101492" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Domain.*Generation.*Algorithm.*(DGA).*Domains</field>
+		<description>Zscaler-Firewall: Detected DGA Domain activity with Medium severity.</description>
+		<group>medium,one-on-one,T1568.002,T1568,command-and-control,T1637.001,T1637,</group>
+		<mitre>
+			<id>T1568</id>
+			<id>T1568.002</id>
+			<id>T1637</id>
+			<id>T1637.001</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential DGA Domain activity with Medium Severity with a risk score between 46 to 74. A medium severity DGA domain activity indicates more frequent use of generated domains, potentially linked to malware communication or botnet control.
+	  </info>
+	</rule>
+	<rule id="101493" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Domain.*Generation.*Algorithm.*(DGA).*Domains</field>
+		<description>Zscaler-Firewall: Detected DGA Domain activity with High severity.</description>
+		<group>high,one-on-one,T1568.002,T1568,command-and-control,T1637.001,T1637,</group>
+		<mitre>
+			<id>T1568</id>
+			<id>T1568.002</id>
+			<id>T1637</id>
+			<id>T1637.001</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential DGA Domain activity with High Severity with a risk score between 75 to 89. A high severity DGA domain activity signifies a more coordinated use of DGA techniques, likely part of an ongoing malware infection or botnet communication. The risk of sensitive data exfiltration or network compromise is high.
+	  </info>
+	</rule>
+	<rule id="101494" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Domain.*Generation.*Algorithm.*(DGA).*Domains</field>
+		<description>Zscaler-Firewall: Detected DGA Domain activity with Critical severity.</description>
+		<group>critical,one-on-one,s-a,T1568.002,T1568,command-and-control,T1637.001,T1637,</group>
+		<mitre>
+			<id>T1568</id>
+			<id>T1568.002</id>
+			<id>T1637</id>
+			<id>T1637.001</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential DGA Domain activity with Critical Severity with a risk score between 90 to 100. A critical severity DGA domain activity suggests widespread use of dynamically generated domains, likely as part of a major malware campaign or botnet operation. This poses an immediate and severe risk to network security, with potential for large-scale compromise or data theft.
+	  </info>
+	</rule>
+	<!-- Exploit -->
+	<rule id="101495" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Exploit</field>
+		<description>Zscaler-Firewall: Detects exploitation of known non-web vulnerabilities via non-HTTP protocols with Low severity.</description>
+		<group>low,one-on-one,T1203,T1190,T1068,initial-access,execution,privilege-escalation,</group>
+		<mitre>
+			<id>T1203</id>
+			<id>T1190</id>
+			<id>T1068</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected exploitation of known non-web vulnerabilities via non-HTTP protocols with Low Severity with a risk score between 1 to 45. A low severity detection of non-web vulnerability exploitation indicates that an attacker may be probing or exploiting a known vulnerability through non-HTTP protocols, such as FTP or SMB.
+	  </info>
+	</rule>
+	<rule id="101496" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Exploit</field>
+		<description>Zscaler-Firewall: Detects exploitation of known non-web vulnerabilities via non-HTTP protocols with Medium severity.</description>
+		<group>medium,one-on-one,T1203,T1190,T1068,initial-access,execution,privilege-escalation,</group>
+		<mitre>
+			<id>T1203</id>
+			<id>T1190</id>
+			<id>T1068</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected exploitation of known non-web vulnerabilities via non-HTTP protocols with Medium Severity with a risk score between 46 to 74. A medium severity exploitation suggests more frequent or organized attempts to exploit known non-web vulnerabilities through protocols like FTP, SMTP, or DNS.
+	  </info>
+	</rule>
+	<rule id="101497" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Exploit</field>
+		<description>Zscaler-Firewall: Detects exploitation of known non-web vulnerabilities via non-HTTP protocols with High severity.</description>
+		<group>high,one-on-one,T1203,T1190,T1068,initial-access,execution,privilege-escalation,</group>
+		<mitre>
+			<id>T1203</id>
+			<id>T1190</id>
+			<id>T1068</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected exploitation of known non-web vulnerabilities via non-HTTP protocols with High Severity with risk score between 75 to 89. A high severity detection indicates an active and sustained exploitation of non-web vulnerabilities, potentially leading to unauthorized access or data compromise through non-HTTP protocols.
+	  </info>
+	</rule>
+	<rule id="101498" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Exploit</field>
+		<description>Zscaler-Firewall: Detects exploitation of known non-web vulnerabilities via non-HTTP protocols with Critical severity.</description>
+		<group>critical,one-on-one,s-a,T1203,T1190,T1068,initial-access,execution,privilege-escalation,</group>
+		<mitre>
+			<id>T1203</id>
+			<id>T1190</id>
+			<id>T1068</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected exploitation of known non-web vulnerabilities via non-HTTP protocols with Critical Severity with a risk score between 90 to 100. A critical severity detection signifies a large-scale, highly coordinated exploitation of known non-web vulnerabilities through non-HTTP protocols, such as SMB or RDP. This could lead to significant data exfiltration, privilege escalation, or full system compromise.
+	  </info>
+	</rule>
+	<!-- Malicious Content -->
+	<rule id="101499" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Malicious.*Content</field>
+		<description>Zscaler-Firewall: Detects websites silently downloading malicious content with Low severity.</description>
+		<group>low,one-on-one,malicious,attack,T1204,execution,T1105,command-and-control,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1105</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected websites silently downloading malicious content with Low Severity with a risk score between 1 to 45. A low severity detection of websites silently downloading malicious content suggests limited or isolated attempts to introduce malware onto a user's device without consent.
+	  </info>
+	</rule>
+	<rule id="101500" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Malicious.*Content</field>
+		<description>Zscaler-Firewall: Detects websites silently downloading malicious content with Medium severity.</description>
+		<group>medium,one-on-one,malicious,attack,T1204,execution,T1105,command-and-control,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1105</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected websites silently downloading malicious content with Medium Severity with a risk score between 46 to 74. A medium severity detection indicates that malicious content is being downloaded silently from a website more frequently, potentially putting users and systems at moderate risk. The activity might exploit browser vulnerabilities or weak endpoint defenses.
+	  </info>
+	</rule>
+	<rule id="101501" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Malicious.*Content</field>
+		<description>Zscaler-Firewall: Detects websites silently downloading malicious content with High severity.</description>
+		<group>high,one-on-one,malicious,attack,T1204,execution,T1105,command-and-control,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1105</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected websites silently downloading malicious content with High Severity with a risk score between 75 to 89. A high severity detection signifies an ongoing and more aggressive attempt to silently download malicious files from a compromised website. This poses a serious risk to system integrity and user data, with potential for infections like ransomware or spyware.
+	  </info>
+	</rule>
+	<rule id="101502" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Malicious.*Content</field>
+		<description>Zscaler-Firewall: Detects websites silently downloading malicious content with Critical severity.</description>
+		<group>critical,one-on-one,s-a,malicious,attack,T1204,execution,T1105,command-and-control,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1105</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected websites silently downloading malicious content with Critical Severity with a risk score between 90 to 100. A critical severity detection means that a website is systematically and extensively distributing malicious content silently, which could lead to widespread system infections, data theft, or significant operational disruption.
+	  </info>
+	</rule>
+	<!-- Malware Peer-to-Peer -->
+	<rule id="101503" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Malware</field>
+		<description>Zscaler-Firewall: Detects malware through network traffic monitoring and signature-based identification with low severity.</description>
+		<group>low,one-on-one,malware,T1569,T1587.001,T1587,resource-development,T1588.001,T1588,T1204,execution,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1587.001</id>
+			<id>T1587</id>
+			<id>T1588.001</id>
+			<id>T1588</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected malware through network traffic monitoring and signature-based identification with Low Severity with a risk score between 1 to 45 A low severity detection indicates that malware was identified through network traffic monitoring using signature-based methods.
+	  </info>
+	</rule>
+	<rule id="101504" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Malware</field>
+		<description>Zscaler-Firewall: Detects malware through network traffic monitoring and signature-based identification with medium severity.</description>
+		<group>medium,one-on-one,malware,T1569,T1587.001,T1587,resource-development,T1588.001,T1588,T1204,execution,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1587.001</id>
+			<id>T1587</id>
+			<id>T1588.001</id>
+			<id>T1588</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected malware through network traffic monitoring and signature-based identification with Medium Severity with a risk score between 46 to 74. A medium severity detection suggests a more concerning instance of malware, identified via network traffic monitoring and signature-based techniques. While the malware poses a moderate risk, it could compromise user data or system performance if left unchecked.
+	  </info>
+	</rule>
+	<rule id="101505" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Malware</field>
+		<description>Zscaler-Firewall: Detects malware through network traffic monitoring and signature-based identification with high severity.</description>
+		<group>high,one-on-one,malware,T1569,T1587.001,T1587,resource-development,T1588.001,T1588,T1204,execution,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1587.001</id>
+			<id>T1587</id>
+			<id>T1588.001</id>
+			<id>T1588</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected malware through network traffic monitoring and signature-based identification with High Severity with a risk score between 75 to 89. A high severity detection indicates that malware has been identified, posing a serious risk to network integrity or system security. The malware could disrupt services, exfiltrate sensitive data, or enable lateral movement within the network.
+	  </info>
+	</rule>
+	<rule id="101506" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Malware</field>
+		<description>Zscaler-Firewall: Detects malware through network traffic monitoring and signature-based identification with critical severity.</description>
+		<group>critical,one-on-one,s-a,malware,T1569,T1587.001,T1587,resource-development,T1588.001,T1588,T1204,execution,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1587.001</id>
+			<id>T1587</id>
+			<id>T1588.001</id>
+			<id>T1588</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected malware through network traffic monitoring and signature-based identification with Critical Severity with a risk score between 90 to 100. A critical severity detection signifies the presence of highly dangerous malware identified through network monitoring and signature-based methods. This poses an immediate threat of system-wide compromise, data theft, or severe operational disruption.
+	  </info>
+	</rule>
+	<!-- Phishing -->
+	<rule id="101507" level="1">
+		<field name="threat_category" type="pcre2">(?i)Phishing</field>
+		<if_sid>101451</if_sid>
+		<description>Zscaler-Firewall: Detected potential Phishing activity with Low severity.</description>
+		<group>low,one-on-one,phishing,T1566,initial-access,T1598,reconnaissance,</group>
+		<mitre>
+			<id>T1566</id>
+			<id>T1598</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Phishing activity with Low Severity with a risk score between 1 to 45. A low severity detection of potential phishing activity suggests isolated or minimal attempts to trick users into revealing sensitive information through deceptive emails or websites.
+	  </info>
+	</rule>
+	<rule id="101508" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Phishing</field>
+		<description>Zscaler-Firewall: Detected Phishing activity with Medium severity.</description>
+		<group>medium,one-on-one,phishing,T1566,initial-access,T1598,reconnaissance,</group>
+		<mitre>
+			<id>T1566</id>
+			<id>T1598</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Phishing activity with Medium Severity with a risk score between 46 to 74.  A medium severity detection indicates more frequent phishing attempts targeting users, potentially leading to data theft or unauthorized access if not addressed.
+	  </info>
+	</rule>
+	<rule id="101509" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Phishing</field>
+		<description>Zscaler-Firewall: Detected Phishing activity with High severity.</description>
+		<group>high,one-on-one,phishing,T1566,initial-access,T1598,reconnaissance,</group>
+		<mitre>
+			<id>T1566</id>
+			<id>T1598</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Phishing activity with High Severity with a risk score between 75 to 89. A high severity detection signifies coordinated phishing attacks aimed at multiple users, with a significant risk of compromising credentials or sensitive data.
+	  </info>
+	</rule>
+	<rule id="101510" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Phishing</field>
+		<description>Zscaler-Firewall: Detected Phishing activity with Critical severity.</description>
+		<group>critical,one-on-one,s-a,phishing,T1566,initial-access,T1598,reconnaissance,</group>
+		<mitre>
+			<id>T1566</id>
+			<id>T1598</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Phishing activity with Critical Severity with a risk score between 90 to 100. A critical severity detection suggests a large-scale, highly targeted phishing campaign that poses an immediate and severe risk to user credentials, financial information, or sensitive corporate data.
+	  </info>
+	</rule>
+	<!-- Policy Violation -->
+	<rule id="101511" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Policy.*Violation</field>
+		<description>Zscaler-Firewall: Detected potential Policy Violation with Low severity.</description>
+		<group>low,one-on-one,T1484,defense-evasion,policy,violation,T1199,T1484.001,T1484,initial-access,</group>
+		<mitre>
+			<id>T1484</id>
+			<id>T1199</id>
+			<id>T1484.001</id>
+			<id>T1484</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Policy Violation with Low Severity with a risk score between 1 to 45. A low severity detection of a potential policy violation indicates minor or unintentional non-compliance with established security or organizational policies. This might involve the use of restricted software, minor deviations from access protocols, or mild breaches of acceptable use policies.
+	  </info>
+	</rule>
+	<rule id="101512" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Policy.*Violation</field>
+		<description>Zscaler-Firewall: Detected Policy Violation with Medium severity.</description>
+		<group>medium,one-on-one,T1484,defense-evasion,policy,violation,T1199,T1484.001,T1484,initial-access,</group>
+		<mitre>
+			<id>T1484</id>
+			<id>T1199</id>
+			<id>T1484.001</id>
+			<id>T1484</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Policy Violation with Medium Severity with a risk score between 46 to 74. A medium severity detection suggests a more concerning violation of policy that could result in moderate risk to the organization's security or compliance posture. This could include unauthorized data transfers, improper use of internal resources, or non-compliance with data handling protocols.
+	  </info>
+	</rule>
+	<rule id="101513" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Policy.*Violation</field>
+		<description>Zscaler-Firewall: Detected Policy Violation with High severity.</description>
+		<group>high,one-on-one,T1484,defense-evasion,policy,violation,T1199,T1484.001,T1484,initial-access,</group>
+		<mitre>
+			<id>T1484</id>
+			<id>T1199</id>
+			<id>T1484.001</id>
+			<id>T1484</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Policy Violation with High Severity with a risk score between 75 to 89. A high severity detection indicates a significant breach of security policies that could lead to considerable risks, such as unauthorized access to sensitive information, deliberate non-compliance, or major deviations from established security practices. This could expose the organization to data loss, regulatory fines, or substantial operational impact.
+	  </info>
+	</rule>
+	<rule id="101514" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Policy.*Violation</field>
+		<description>Zscaler-Firewall: Detected Policy Violation with Critical severity.</description>
+		<group>critical,one-on-one,s-a,T1484,defense-evasion,policy,violation,T1199,T1484.001,T1484,initial-access,</group>
+		<mitre>
+			<id>T1484</id>
+			<id>T1199</id>
+			<id>T1484.001</id>
+			<id>T1484</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Policy Violation with Critical Severity with risk score between 90 to 100. A critical severity detection signifies a severe violation of security or organizational policies, posing an immediate and serious risk to the organization. This could involve intentional abuse of privileged access, large-scale data exfiltration, or breaches of compliance with stringent regulations like GDPR or HIPAA.
+	  </info>
+	</rule>
+	<!-- Ransomware -->
+	<rule id="101515" level="1">
+		<if_sid>101451</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Ransomware</field>
+		<description>Zscaler-Firewall: Detected potential Ransomware activity with Low severity.</description>
+		<group>low,one-on-one,ransomware,malware,T1486,impact,</group>
+		<mitre>
+			<id>T1486</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Ransomware activity with Low Severity with a risk score between 1 to 45. A low severity detection of potential ransomware activity suggests that there are early indications or minor signs of ransomware-related behavior, such as suspicious file changes or minor encryption attempts.
+	  </info>
+	</rule>
+	<rule id="101516" level="1">
+		<if_sid>101452</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Ransomware</field>
+		<description>Zscaler-Firewall: Detected Ransomware activity with Medium severity.</description>
+		<group>medium,one-on-one,ransomware,malware,T1486,impact,</group>
+		<mitre>
+			<id>T1486</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Ransomware activity with Medium Severity with a risk score between 46 to 74. A medium severity detection indicates more evident ransomware-related behavior, such as encryption of files or propagation within a limited scope. The threat poses a moderate risk of impacting data availability or system performance.
+	  </info>
+	</rule>
+	<rule id="101517" level="1">
+		<if_sid>101453</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Ransomware</field>
+		<description>Zscaler-Firewall: Detected Ransomware activity with High severity.</description>
+		<group>high,one-on-one,ransomware,malware,T1486,impact,</group>
+		<mitre>
+			<id>T1486</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Ransomware activity with High Severity with a risk score between 75 to 89. A high severity detection signifies active ransomware activity with significant evidence of encryption or data compromise. The ransomware may be affecting multiple systems or files, posing a serious threat to business operations and data integrity.
+	  </info>
+	</rule>
+	<rule id="101518" level="1">
+		<if_sid>101454</if_sid>
+		<field name="threat_category" type="pcre2">(?i)Ransomware</field>
+		<description>Zscaler-Firewall: Detected Ransomware activity with Critical severity.</description>
+		<group>critical,one-on-one,s-a,ransomware,malware,T1486,impact,</group>
+		<mitre>
+			<id>T1486</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		Detected potential Ransomware activity with Critical Severity with a risk score between 90 to 100. A critical severity detection indicates widespread and aggressive ransomware activity, with major impacts on data integrity, system availability, or business operations. The ransomware may have encrypted a large portion of the network or exfiltrated sensitive data.
+	  </info>
+	</rule>
+<!-- _____________________________________________New Rules___________________________________________________________-->
+
+	<rule id="101519" level="1" noalert="1">
+		<if_sid>101450</if_sid>
+		<action type="pcre2">(?i)Allow</action>
+		<description>Zscaler-Firewall: Action Allow.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+
+	<rule id="101520" level="1">
+		<if_sid>101519</if_sid>
+		<field name="ip_category" type="pcre2">(?i)Phishing</field>
+		<description>Zscaler-Firewall: Detects phishing activity where the action was allowed.</description>
+		<group>medium,one-on-one,s-a,T1566,initial-access,</group>
+		<mitre>
+			<id>T1566</id>
+		</mitre>
+		<info type="text">	
+	Description:
+	Detecting phishing activity where the action was allowed highlights a significant security risk, as malicious URLs or content have bypassed preventive controls and could compromise users or systems. Phishing attempts aim to steal sensitive information, such as login credentials or financial data, by masquerading as legitimate entities.
+	  </info>
+	</rule>
+
+<!-- Miscellaneous or Unknown -->
+<rule id="101521" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Miscellaneous.*Unknown</field>
+    <description>Zscaler-Firewall: Detects access to miscellaneous or unknown category sites.</description>
+    <group>low,one-on-one,T1071,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Traffic to miscellaneous or uncategorized sites could indicate communication with newly created domains or uncommon services that haven't been properly categorized yet. This requires monitoring as it could potentially be used for malicious purposes.
+    </info>
+</rule>
+
+<!-- Remote Access Tools -->
+<rule id="101522" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Remote.*Access.*Tools</field>
+    <description>Zscaler-Firewall: Detects usage of remote access tools.</description>
+    <group>low,one-on-one,soar-alert,T1219,lateral-movement,</group>
+    <mitre>
+        <id>T1219</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Remote access tool usage could indicate legitimate system administration or potential unauthorized access attempts. These tools can be used for both legitimate purposes and malicious activities.
+    </info>
+</rule>
+
+<!-- Web Conferencing -->
+<rule id="101523" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Web.*Conferencing</field>
+    <description>Zscaler-Firewall: Detects web conferencing activity.</description>
+    <group>low,one-on-one,T1071.001,command-and-control,command-and-control,T1071,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Web conferencing tools are commonly used for business communication but can potentially be exploited for data exfiltration or command and control channels if compromised.
+    </info>
+</rule>
+
+<!-- SSL Inspection-Exception -->
+<rule id="101524" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)SSL.*Inspection.*Exception</field>
+    <description>Zscaler-Firewall: Detects SSL inspection exceptions.</description>
+    <group>low,one-on-one,T1573,command-and-control,ssl,</group>
+    <mitre>
+        <id>T1573</id>
+    </mitre>
+    <info type="text">
+    Description:
+    SSL inspection exceptions could indicate legitimate privacy-required traffic or potential attempts to bypass security controls using encrypted channels.
+    </info>
+</rule>
+
+<!-- Job/Employment Search -->
+<rule id="101525" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Job.*Employment.*Search</field>
+    <description>Zscaler-Firewall: Detects access to job search websites.</description>
+    <group>low,one-on-one,T1071.001,command-and-control,T1071,</group>
+    <mitre>
+        <id>T1071.001</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Job search website access is typically legitimate but could be used for social engineering or phishing attempts targeting job seekers.
+    </info>
+</rule>
+
+<!-- Hobbies/Leisure -->
+<rule id="101526" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Hobbies.*Leisure</field>
+    <description>Zscaler-Firewall: Detects access to hobby and leisure websites.</description>
+    <group>low,one-on-one,s-a,T1071.001,command-and-control,T1071,</group>
+    <mitre>
+        <id>T1071.001</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    While usually benign, hobby and leisure sites could be compromised to deliver malware or used for watering hole attacks targeting specific interest groups.
+    </info>
+</rule>
+
+<!-- Shareware Download -->
+<rule id="101527" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Shareware.*Download</field>
+    <description>Zscaler-Firewall: Detects shareware download activity.</description>
+    <group>medium,one-on-one,s-a,T1105,command-and-control,</group>
+    <mitre>
+        <id>T1105</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Shareware downloads could potentially include malicious software or trojaned applications. Monitor for unusual download patterns or unauthorized software installation attempts.
+    </info>
+</rule>
+
+<!-- Online and Other Games -->
+<rule id="101528" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Online.*Games|Other.*Games</field>
+    <description>Zscaler-Firewall: Detects online gaming activity.</description>
+    <group>low,one-on-one,T1071.001,command-and-control,T1071,</group>
+    <mitre>
+        <id>T1071.001</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Gaming sites can be used to deliver malware or establish command and control channels. They may also impact network performance and productivity.
+    </info>
+</rule>
+
+<!-- Newly Registered and Observed Domains -->
+<rule id="101529" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Newly.*Registered.*Observed.*Domains</field>
+    <description>Zscaler-Firewall: Detects access to newly registered domains.</description>
+    <group>low,one-on-one,s-a,T1071.004,command-and-control,T1071</group>
+    <mitre>
+        <id>T1071.004</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Newly registered domains often indicate potential malicious activity as they are commonly used in phishing campaigns and malware distribution before being detected and blocked.
+    </info>
+</rule>
+
+<!-- Malicious Content -->
+<rule id="101530" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Malicious.*Content</field>
+    <description>Zscaler-Firewall: Detects access to known malicious content.</description>
+    <group>medium,one-on-one,s-a,T1204,execution,</group>
+    <mitre>
+        <id>T1204</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Access to known malicious content indicates a serious security risk and potential system compromise.
+    </info>
+</rule>
+
+<!-- Spyware/Adware -->
+<rule id="101531" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Spyware.*Adware</field>
+    <description>Zscaler-Firewall: Detects spyware/adware activity.</description>
+    <group>medium,one-on-one,s-a,T1559,execution,</group>
+    <mitre>
+        <id>T1559</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Spyware and adware traffic indicates potentially unwanted programs that may compromise system security and user privacy.
+    </info>
+</rule>
+
+<!-- Questionable -->
+<rule id="101532" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Questionable</field>
+    <description>Zscaler-Firewall: Detects access to questionable content.</description>
+    <group>low,one-on-one,T1071.001,command-and-control,</group>
+    <mitre>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Access to questionable content may indicate policy violations or potential security risks from untrustworthy websites.
+    </info>
+</rule>
+
+<!-- Anonymizer -->
+<rule id="101533" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Anonymizer</field>
+    <description>Zscaler-Firewall: Detects use of anonymizing services.</description>
+    <group>low,one-on-one,s-a,T1090,command-and-control,</group>
+    <mitre>
+        <id>T1090</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Use of anonymizers could indicate attempts to bypass security controls or hide malicious activity. Monitor for potential data exfiltration or policy violations.
+    </info>
+</rule>
+
+<!-- Pornography -->
+<rule id="101534" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Pornography</field>
+    <description>Zscaler-Firewall: Detects access to adult content.</description>
+    <group>low,one-on-one,T1071.001,policy-violation,T1071,command-and-control,</group>
+    <mitre>
+        <id>T1071.001</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Access to adult content indicates policy violations and potential security risks from malware-infected adult websites.
+    </info>
+</rule>
+
+<!-- Botnet Callback -->
+<rule id="101535" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Botnet.*Callback</field>
+    <description>Zscaler-Firewall: Detects botnet callback attempts.</description>
+    <group>high,one-on-one,s-a,T1571,command-and-control,</group>
+    <mitre>
+        <id>T1571</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Botnet callback attempts indicate compromised systems attempting to communicate with command and control servers. Immediate investigation required.
+    </info>
+</rule>
+
+<!-- Adult Themes -->
+<rule id="101536" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Adult.*Themes</field>
+    <description>Zscaler-Firewall: Detects access to adult-themed content.</description>
+    <group>low,one-on-one,T1071.001,policy-violation,T1071,command-and-control,</group>
+    <mitre>
+        <id>T1071.001</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Access to adult-themed content may indicate policy violations and potential security risks from compromised websites.
+    </info>
+</rule>
+
+<!-- Social Networking Adult -->
+<rule id="101537" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Social.*Networking.*Adult</field>
+    <description>Zscaler-Firewall: Detects access to adult social networking.</description>
+    <group>low,one-on-one,T1071.001,policy-violation,T1071,command-and-control,</group>
+    <mitre>
+        <id>T1071.001</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Adult social networking access indicates policy violations and increased risk of social engineering or malware exposure.
+    </info>
+</rule>
+
+<!-- Adware/Spyware Sites -->
+<rule id="101538" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Adware.*Spyware.*Sites</field>
+    <description>Zscaler-Firewall: Detects access to known adware/spyware distribution sites.</description>
+    <group>medium,one-on-one,s-a,T1559,execution,</group>
+    <mitre>
+        <id>T1559</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Access to known adware/spyware distribution sites indicates potential system compromise or unwanted software installation attempts.
+    </info>
+</rule>
+
+<!-- Anydesk -->
+<rule id="101539" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Anydesk</field>
+    <description>Zscaler-Firewall: Detects Anydesk remote access tool usage.</description>
+    <group>low,one-on-one,s-a,T1219,lateral-movement,</group>
+    <mitre>
+        <id>T1219</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Anydesk usage could indicate legitimate remote support or potential unauthorized access attempts. Monitor for unusual patterns or unauthorized installations.
+    </info>
+</rule>
+
+<!-- Lingerie/Bikini -->
+<rule id="101540" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Lingerie.*Bikini</field>
+    <description>Zscaler-Firewall: Detects access to lingerie/bikini content.</description>
+    <group>low,one-on-one,T1071.001,policy-violation,command-and-control,T1071,</group>
+    <mitre>
+        <id>T1071.001</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Access to lingerie/bikini content may indicate policy violations and potential security risks from compromised websites.
+    </info>
+</rule>
+
+<!-- Marijuana -->
+<rule id="101541" level="1">
+    <if_sid>101519</if_sid>
+    <field name="ip_category" type="pcre2">(?i)Marijuana</field>
+    <description>Zscaler-Firewall: Detects access to marijuana-related content.</description>
+    <group>low,one-on-one,T1071.001,policy-violation,command-and-control,T1071,</group>
+    <mitre>
+        <id>T1071.001</id>
+        <id>T1071</id>
+    </mitre>
+    <info type="text">
+    Description:
+    Access to marijuana-related content may indicate policy violations depending on jurisdiction and company policy.
+    </info>
+</rule>
+
+<rule id="101542" level="1">
+        <if_sid>101519</if_sid>
+        <field name="ip_category" type="pcre2">(?i)Nudity</field>
+        <description>Zscaler-Firewall: Detects access to explicit nudity content where the action was allowed.</description>
+        <group>low,one-on-one,policy-violation,inappropriate-content,T1566,initial-access,</group>
+        <mitre>
+            <id>T1566</id>
+        </mitre>
+        <info type="text">  
+    Description:
+    Detection of access to explicit nudity content indicates a significant policy violation. This activity could expose the organization to legal liability, create hostile work environments, and may indicate compromised systems or insider policy violations requiring immediate attention and HR involvement.
+        </info>
+</rule>
+
+<rule id="101543" level="1">
+        <if_sid>101519</if_sid>
+        <field name="ip_category" type="pcre2">(?i)Peer.*to.*Peer.*Site</field>
+        <description>Zscaler-Firewall: Detects peer-to-peer file sharing activity where the action was allowed.</description>
+        <group>low,one-on-one,p2p,data-leak,T1567,exfiltration,</group>
+        <mitre>
+            <id>T1567</id>
+        </mitre>
+        <info type="text">  
+    Description:
+    Peer-to-peer file sharing activity poses significant risks including potential data leakage, malware distribution, and copyright violations. This traffic could be used to exfiltrate sensitive data or distribute malicious content across the network while evading standard security controls.
+        </info>
+</rule>
+
+<rule id="101544" level="1">
+        <if_sid>101519</if_sid>
+        <field name="ip_category" type="pcre2">(?i)Weapons.*Bombs</field>
+        <description>Zscaler-Firewall: Detects access to weapons/explosives related content where the action was allowed.</description>
+        <group>low,one-on-one,policy-violation,suspicious-activity,T1204,execution,</group>
+        <mitre>
+            <id>T1204</id>
+        </mitre>
+        <info type="text">  
+    Description:
+    Access to weapons or explosives related content represents a critical security concern that requires immediate investigation. Such activity could indicate potential insider threats, workplace violence risks, or compromised systems being used for malicious research purposes. This may require involvement of security teams and law enforcement.
+        </info>
+</rule>
+</group>

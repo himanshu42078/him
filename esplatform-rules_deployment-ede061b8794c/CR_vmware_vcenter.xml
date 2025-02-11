@@ -1,0 +1,794 @@
+<!-- 
+Rule Id Range: 103522 to 103551
+
+{"full_log":" Event [1202715445] [1-1] [2024-10-08T10:27:44.105023Z] [vim.event.VmCreatedEvent] [info] [VSPHERE.LOCAL\\opkhalid] [VxRail-Datacenter] [1202715439] [Created virtual machine Entra-Sync01 on esxi-19.qassimu.local,  in VxRail-Datacenter]","tenant":"AlQassim","logType":"other","cust1":"QU-Logger2","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+-->
+<group name="vmware-vcenter,">
+	<rule id="103523" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="tenant" type="pcre2">(?i)QUMC</field>
+		<field name="event_name" type="pcre2">(?i)^vim\.event</field>
+		<description>Vmware-Vcenter: Virtual Machine Events</description>
+        <group>info,one-on-one,</group>
+	</rule>
+	<rule id="103524" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="productName" type="pcre2">(?i)Vmware-Vcenter</field>
+		<description>Vmware-Vcenter: Virtual Machine Events</description>
+        <group>info,one-on-one,</group>
+	</rule>
+		<rule id="103525" level="1" noalert="1">
+        <if_sid>103523,103524</if_sid>
+		<description>Vmware-Vcenter: Virtual Machine Events</description>
+        <group>info,one-on-one,</group>
+	</rule>
+	<rule id="103526" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmGuestRebootEvent$</field>
+		<description>VMware-vCenter: A reboot event has been detected for the guest VM.</description>
+		<group>medium,one-on-one,T1562,T1562.001,defense-evasion,reboot,</group>
+		<mitre>
+			<id>T1562.001</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+            Description:
+                A reboot event has been detected for a guest VM in VMware vCenter, indicating either a manual, automated, or unexpected restart. This event may require further investigation to identify its cause, including potential security or maintenance reasons.
+    </info>
+	</rule>
+	<rule id="103527" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmPoweredOnEvent$</field>
+		<description>VMware-vCenter: Virtual machine power-on event detected.</description>
+		<group>medium,one-on-one,T1564.006,T1564,defense-evasion,</group>
+		<mitre>
+			<id>T1564</id>
+			<id>T1564.006</id>
+		</mitre>
+		<info type="text">
+        Description:
+            A power-on event has been detected for a virtual machine in VMware vCenter. This event indicates that a VM has been started, which could be part of normal operations or potentially unauthorized access.
+    </info>
+	</rule>
+	<rule id="103528" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmPoweredOffEvent$</field>
+		<description>VMware-vCenter: Virtual machine power-off event detected.</description>
+		<group>medium,one-on-one,soar-alert,T1529,impact,shutdown,</group>
+		<mitre>
+			<id>T1529</id>
+		</mitre>
+		<info type="text">
+        Description:
+            A power-off event has been detected for a virtual machine in VMware vCenter. This event indicates that a VM has been shut down, which could be part of normal operations or potentially indicate service disruption.
+    </info>
+	</rule>
+	<rule id="103529" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmMigratedEvent$</field>
+		<description>VMware-vCenter: A virtual machine migration has occurred.</description>
+		<group>medium,one-on-one,T1497,T1497.001,defense-evasion,</group>
+		<mitre>
+			<id>T1497</id>
+			<id>T1497.001</id>
+		</mitre>
+		<info type="text">
+        Description:
+            A migration event has been detected for a virtual machine in VMware vCenter. This event indicates that a VM has been moved between hosts or datastores, which could be part of normal operations or infrastructure changes.
+    </info>
+	</rule>
+	<rule id="103530" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmFailedMigrateEvent$</field>
+		<description>VMware-vCenter: Failed to migrate a virtual machine.</description>
+		<group>medium,one-on-one,soar-alert,T1497,defense-evasion,failed,</group>
+		<mitre>
+			<id>T1497</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A failed migration event has been detected for a virtual machine in VMware vCenter. This event indicates that an attempt to migrate a VM between hosts or datastores was unsuccessful, which may impact system availability and operations.
+   </info>
+	</rule>
+	<rule id="103531" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmFailedToPowerOnEvent$</field>
+		<description>VMware-vCenter: Virtual machine power-on failure detected.</description>
+		<group>high,one-on-one,s-a,T1078,T1078.004,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.004</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A power-on failure event has been detected for a virtual machine in VMware vCenter. This event indicates that an attempt to start a VM was unsuccessful, which may indicate configuration issues or resource constraints.
+   </info>
+	</rule>
+	<rule id="103532" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmFailedToPowerOffEvent$</field>
+		<description>VMware-vCenter: Failed to power off the virtual machine.</description>
+		<group>medium,one-on-one,s-a,impact,T1489,</group>
+		<mitre>
+			<id>T1489</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A power-off failure event has been detected for a virtual machine in VMware vCenter. This event indicates that an attempt to shut down a VM was unsuccessful, which may indicate system issues or process conflicts.
+   </info>
+	</rule>
+	<rule id="103533" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmDasBeingResetEvent$</field>
+		<description>VMware-vCenter: Virtual machine reset initiated by High Availability.</description>
+		<group>high,one-on-one,soar-alert,T1497.001,T1497,defense-evasion,</group>
+		<mitre>
+			<id>T1497</id>
+			<id>T1497.001</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A High Availability (HA) reset event has been detected for a virtual machine in VMware vCenter. This event indicates that the VM is being automatically reset by the HA system, which typically occurs in response to system failures or availability issues.
+   </info>
+	</rule>
+	<rule id="103534" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmDasResetFailedEvent$</field>
+		<description>VMware-vCenter: High Availability virtual machine reset has failed.</description>
+		<group>medium,one-on-one,T1489,T1562,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A High Availability (HA) reset failure event has been detected for a virtual machine in VMware vCenter. This event indicates that an automatic reset attempt by the HA system was unsuccessful, which may indicate serious system or resource issues.
+   </info>
+	</rule>
+	<rule id="103535" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmOrphanedEvent$</field>
+		<description>VMware-vCenter: The virtual machine has become orphaned.</description>
+		<group>medium,one-on-one,soar-alert,T1082,T1562,discovery,</group>
+		<mitre>
+			<id>T1082</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           An orphaned VM event has been detected in VMware vCenter. This event indicates that a virtual machine has lost its connection to the host or datastore, which could result in VM inaccessibility and potential data consistency issues.
+   </info>
+	</rule>
+	<rule id="103536" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmDisconnectedEvent$</field>
+		<description>VMware-vCenter: The virtual machine has been disconnected.</description>
+		<group>high,one-on-one,soar-alert,T1489,T1562,vm-disconnected,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM disconnection event has been detected in VMware vCenter. This event indicates that a virtual machine has lost its connection to the vCenter server, which may impact management capabilities and monitoring.
+   </info>
+	</rule>
+	<rule id="103537" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmCreatedEvent$</field>
+		<description>VMware-vCenter: A virtual machine has been successfully created.</description>
+		<group>medium,one-on-one,T1078,T1078.004,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.004</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM creation event has been detected in VMware vCenter. This event indicates that a new virtual machine has been created in the environment, which could be part of normal operations or potentially unauthorized VM deployment.
+   </info>
+	</rule>
+	<rule id="103538" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmRemovedEvent$</field>
+		<description>VMware-vCenter: The virtual machine has been removed.</description>
+		<group>high,one-on-one,soar-alert,T1485,T1489,impact,</group>
+		<mitre>
+			<id>T1485</id>
+			<id>T1489</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM removal event has been detected in VMware vCenter. This event indicates that a virtual machine has been deleted from the environment, which could result in data loss if not properly planned.
+   </info>
+	</rule>
+	<rule id="103539" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmReconfiguredEvent$</field>
+		<description>VMware-vCenter: Virtual machine configuration has been changed.</description>
+		<group>medium,one-on-one,T1082,T1562,discovery,</group>
+		<mitre>
+			<id>T1082</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM reconfiguration event has been detected in VMware vCenter. This event indicates that changes have been made to the virtual machine's configuration settings, which could affect its performance and security posture.
+   </info>
+	</rule>
+	<rule id="103540" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmFaultToleranceStateChangedEvent$</field>
+		<description>VMware-vCenter: The fault tolerance state of the virtual machine has changed.</description>
+		<group>medium,one-on-one,T1082,T1562,defense-evasion,</group>
+		<mitre>
+			<id>T1082</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A fault tolerance state change event has been detected in VMware vCenter. This event indicates a modification in the VM's fault tolerance configuration, which could impact its high availability capabilities.
+   </info>
+	</rule>
+	<rule id="103541" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmFailedRelayoutEvent$</field>
+		<description>VMware-vCenter: The operation to modify the virtual machine disk layout has failed.</description>
+		<group>medium,one-on-one,s-a,T1485,T1562,impact,</group>
+		<mitre>
+			<id>T1485</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A disk layout operation failure event has been detected in VMware vCenter. This event indicates that an attempt to modify the VM's disk configuration was unsuccessful, which could impact storage performance and availability.
+   </info>
+	</rule>
+	<rule id="103542" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmRelayoutSuccessfulEvent$</field>
+		<description>VMware-vCenter: Virtual machine disk layout operation succeeded.</description>
+		<group>medium,one-on-one,T1082,T1562,impact,</group>
+		<mitre>
+			<id>T1082</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A successful disk layout operation event has been detected in VMware vCenter. This event indicates that modifications to the VM's disk configuration have been completed successfully.
+   </info>
+	</rule>
+	<rule id="103543" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmSuspendedEvent$</field>
+		<description>VMware-vCenter: The virtual machine has been suspended.</description>
+		<group>medium,one-on-one,T1489,T1562,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM suspension event has been detected in VMware vCenter. This event indicates that a virtual machine has been placed in a suspended state, which preserves its current state while releasing system resources.
+   </info>
+	</rule>
+	<rule id="103544" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmSuspendingEvent$</field>
+		<description>VMware-vCenter: The virtual machine is currently being suspended.</description>
+		<group>medium,one-on-one,T1489,T1562,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM suspension process event has been detected in VMware vCenter. This event indicates that a virtual machine is currently being placed into a suspended state, temporarily halting its operations.
+   </info>
+	</rule>
+	<rule id="103545" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmUpgradeCompleteEvent$</field>
+		<description>VMware-vCenter: The virtual machine upgrade has been completed successfully</description>
+		<group>medium,one-on-one,T1082,T1562,discovery,</group>
+		<mitre>
+			<id>T1082</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM upgrade completion event has been detected in VMware vCenter. This event indicates that a virtual machine upgrade process has been successfully completed, potentially including hardware version or compatibility updates.
+   </info>
+	</rule>
+	<rule id="103546" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmUpgradeFailedEvent$</field>
+		<description>VMware-vCenter: Virtual machine upgrade failed.</description>
+		<group>medium,one-on-one,T1082,T1562,discovery,</group>
+		<mitre>
+			<id>T1082</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM upgrade failure event has been detected in VMware vCenter. This event indicates that an attempt to upgrade the virtual machine was unsuccessful, which may impact system compatibility and performance.
+   </info>
+	</rule>
+	<rule id="103547" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmStartingEvent$</field>
+		<description>VMware-vCenter: The virtual machine is currently starting.</description>
+		<group>medium,one-on-one,T1078,T1078.004,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.004</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM starting event has been detected in VMware vCenter. This event indicates that a virtual machine is in the process of powering on and initializing its systems.
+   </info>
+	</rule>
+	<rule id="103548" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmFailedToRebootGuestEvent$</field>
+		<description>VMware-vCenter: Virtual machine reboot failed.</description>
+		<group>medium,one-on-one,soar-alert,impact,T1529,impact,</group>
+		<mitre>
+			<id>T1529</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM reboot failure event has been detected in VMware vCenter. This event indicates that an attempt to restart the virtual machine was unsuccessful, which may indicate system issues or configuration problems.
+   </info>
+	</rule>
+	<rule id="103549" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmGuestShutdownEvent$</field>
+		<description>VMware-vCenter: The guest OS of the virtual machine has been shut down.</description>
+		<group>medium,one-on-one,T1489,T1529,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1529</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A guest OS shutdown event has been detected in VMware vCenter. This event indicates that the operating system within the virtual machine has initiated a shutdown process.
+   </info>
+	</rule>
+	<rule id="103550" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmGuestRebootEvent$</field>
+		<description>VMware-vCenter: The guest OS of the virtual machine has been rebooted.</description>
+		<group>medium,one-on-one,T1529,T1562.001,impact,</group>
+		<mitre>
+			<id>T1529</id>
+			<id>T1562.001</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A guest OS reboot event has been detected in VMware vCenter. This event indicates that the operating system within the virtual machine has initiated a restart process.
+   </info>
+	</rule>
+	<rule id="103551" level="1">
+		<if_sid>103525</if_sid>
+		<field name="event_name" type="pcre2">(?i)^vim\.event\.VmInstanceUuidChangedEvent$</field>
+		<description>VMware-vCenter: Virtual machine instance UUID has changed.</description>
+		<group>medium,one-on-one,T1082,T1562,discovery,</group>
+		<mitre>
+			<id>T1082</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+       Description:
+           A VM instance UUID change event has been detected in VMware vCenter. This event indicates that the unique identifier of the virtual machine has been modified, which could affect system identification and management.
+   </info>
+</rule>
+
+<!--Authentication and User Management:-->
+<rule id="103553" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.BadUsernameSessionEvent$</field>
+	<description>VMware vCenter: User login attempt failed.</description>
+	<group>low,one-on-one,authentication,failed,T1078,defense-evasion,</group>
+	<mitre>
+		<id>T1078</id>
+		<!-- Valid Accounts -->
+	</mitre>
+	<info type="text">
+       Description:
+            A failed login attempt has been detected on VMware vCenter. This could indicate a potential brute-force attack or unauthorized access attempt.
+        </info>
+</rule>
+<rule id="103554" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.UserAssignedToGroup$</field>
+	<description>VMware vCenter: User added to a group.</description>
+	<group>low,one-on-one,defense-evasion,T1078,</group>
+	<mitre>
+		<id>T1078</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A user has been added to a group in VMware vCenter. This could be a sign of privilege escalation or unauthorized access.
+        </info>
+</rule>
+<rule id="103555" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.UserUnassignedFromGroup$</field>
+	<description>VMware vCenter: User removed from a group.</description>
+	<group>low,one-on-one,persistence,T1098,</group>
+	<mitre>
+		<id>T1098</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A user has been removed from a group within VMware vCenter, which could indicate an attempt to downgrade privileges.
+        </info>
+</rule>
+<rule id="103556" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.AlarmStatusChangedEvent$</field>
+	<description>VMware vCenter: Configuration Alarm Status changed.</description>
+	<group>low,one-on-one,persistence,T1098,</group>
+	<mitre>
+		<id>T1098</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A setting change event has been detected in VMware vCenter. This could indicate configuration drift or unauthorized system adjustments.
+        </info>
+</rule>
+<rule id="103557" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VmConfigChangedEvent$</field>
+	<description>VMware vCenter: Virtual machine configuration changed.</description>
+	<group>low,one-on-one,defense-evasion,T1578.005,T1578,</group>
+	<mitre>
+		<id>T1578</id>
+		<id>T1578.005</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A virtual machine's configuration has changed, potentially indicating tampering or administrative adjustments to the VM.
+        </info>
+</rule>
+<rule id="103558" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.ScheduledTaskReconfiguredEvent$</field>
+	<description>VMware vCenter: Scheduled Task configuration changed.</description>
+	<group>low,one-on-one,execution,T1053,</group>
+	<mitre>
+		<id>T1053</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A change has been detected in the reconfiguration of a scheduled task within VMware vCenter, which may indicate a modification system resources.
+        </info>
+</rule>
+<rule id="103559" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VmSuspendedEvent$</field>
+	<description>VMware vCenter: Virtual machine suspended.</description>
+	<group>medium,one-on-one,defense-evasion,T1497,suspicious,</group>
+	<mitre>
+		<id>T1497</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A virtual machine has been suspended, which could indicate an unexpected shutdown or a potential security event requiring investigation.
+        </info>
+</rule>
+<rule id="103560" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VmClonedEvent$</field>
+	<description>VMware vCenter: Virtual machine cloned.</description>
+	<group>low,one-on-one,defense-evasion,T1497,</group>
+	<mitre>
+		<id>T1497</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A cloning event has been detected for a virtual machine, which could indicate unauthorized duplication of critical VMs.
+        </info>
+</rule>
+<rule id="103561" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VmRemovedEventt$</field>
+	<description>VMware vCenter: Virtual machine deleted.</description>
+	<group>medium,one-on-one,s-a,defense-evasion,T1578.003,deletion,</group>
+	<mitre>
+		<id>T1578.003 </id>
+	</mitre>
+	<info type="text">
+       Description:
+            A VM deletion event has been detected. This could indicate an unauthorized removal of a virtual machine from the environment.
+        </info>
+</rule>
+<rule id="103562" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VmMigratedEvent$</field>
+	<description>VMware vCenter: Virtual machine migration detected.</description>
+	<group>low,one-on-one,command-and-control,T1071,migration,T1071.001,</group>
+	<mitre>
+		<id>T1071</id>
+		<id>T1071.001</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A virtual machine has been migrated in VMware vCenter. This event could indicate a change in infrastructure or unauthorized VM movement.
+        </info>
+</rule>
+<rule id="103563" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VmReconfiguredEvent$</field>
+	<description>VMware vCenter: Virtual machine reconfiguration detected.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A reconfiguration event for a virtual machine has been detected, which could suggest changes to VM settings or hardware configurations.
+        </info>
+</rule>
+<rule id="103564" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.ScheduledTaskStartedEvent$</field>
+	<description>VMware vCenter:Schedule Task started event.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A task has started in VMware vCenter, indicating an operational or administrative action. Monitoring for abnormal or suspicious tasks is recommended.
+        </info>
+</rule>
+<rule id="103565" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.ScheduledTaskCompletedEvent$</field>
+	<description>VMware vCenter:Schedule Task completed event.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A task has been completed within VMware vCenter, which could indicate a significant configuration or system operation change.
+        </info>
+</rule>
+<rule id="103566" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.ScheduledTaskFailedEvent$</field>
+	<description>VMware vCenter: Scheduled Task failed event.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,failed,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A task failure in VMware vCenter, which could indicate issues with configuration or potential security concerns that require investigation.
+        </info>
+</rule>
+<rule id="103567" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.ResourcePoolCreatedEvent$</field>
+	<description>VMware vCenter: Resource pool created.</description>
+	<group>low,one-on-one,command-and-control,T1071,created,</group>
+	<mitre>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A resource pool has been created within VMware vCenter, indicating a change in resource allocation or configuration.
+        </info>
+</rule>
+<rule id="103568" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.ResourcePoolDestroyedEvent$</field>
+	<description>VMware vCenter: Resource pool destroyed.</description>
+	<group>low,one-on-one,command-and-control,T1071,</group>
+	<mitre>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A resource pool has been destroyed in VMware vCenter, potentially affecting resource management or indicating an operational issue.
+    </info>
+</rule>
+<rule id="103569" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.host\.FirewallSystem$</field>
+	<description>VMware vCenter: Firewall configuration change detected.</description>
+	<group>medium,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            The FirewallSystem managed object represents the firewall configuration of a host. This object is used to define and manage the firewall's behavior. Configuration typically begins by establishing a default policy, which determines the baseline level of traffic allowed or denied.
+        </info>
+</rule>
+<rule id="103570" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.HostConnectedEvent$</field>
+	<description>VMware vCenter: Host Connected detected.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            This event indicates that a host has been successfully connected to the VMware environment. Frequent or unexpected host connection events could suggest unauthorized activity or configuration issues.
+        </info>
+</rule>
+<rule id="103571" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.NetworkRollbackEvent$</field>
+	<description>VMware vCenter: Network Rollback or disconnected.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A network disconnection has been detected in VMware vCenter, which could indicate a network failure or disruption that affects availability.
+        </info>
+</rule>
+<rule id="103572" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.HostAddedEvent$</field>
+	<description>VMware vCenter: Host added to the cluster.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,host-added,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A host has been added to the VMware vCenter cluster, indicating a change in infrastructure or potential addition of new resources.
+        </info>
+</rule>
+<rule id="103573" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.HostRemovedEvent$</field>
+	<description>VMware vCenter: Host removed from the cluster.</description>
+	<group>low,one-on-one,command-and-control,T1071,host-removed,</group>
+	<mitre>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A host has been removed from the VMware vCenter cluster, which could indicate a security risk, maintenance operation, or operational issue.
+    </info>
+</rule>
+<rule id="103574" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.HostDisconnectedEvent$</field>
+	<description>VMware vCenter: Host disconnected.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,host-disconnected,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A host has been disconnected from VMware vCenter, which could indicate network issues, host failure, or potential malicious activity.
+        </info>
+</rule>
+<rule id="103575" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.AlarmCreatedEvent$</field>
+	<description>VMware vCenter: Alarm created.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            An alarm has been created within VMware vCenter. This event should be investigated to ensure it is a legitimate security or performance monitoring action.
+        </info>
+</rule>
+<rule id="103576" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.AlarmActionTriggeredEvent$</field>
+	<description>VMware vCenter: Alarm Action triggered.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            An alarm action has been triggered in VMware vCenter, which could indicate abnormal behavior or potential security concerns.
+        </info>
+</rule>
+<rule id="103577" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.AlarmAcknowledgedEvent$</field>
+	<description>VMware vCenter: Alarm acknowledged.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            An alarm has been acknowledged in VMware vCenter. This may indicate that an issue has been identified and is being addressed.
+        </info>
+</rule>
+<rule id="103578" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VMFSDatastoreCreatedEvent$</field>
+	<description>VMware vCenter: Datastore created.</description>
+	<group>low,one-on-one,command-and-control,T1071,</group>
+	<mitre>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A datastore has been created in VMware vCenter, which could indicate new storage resources or changes in the virtualized infrastructure.
+        </info>
+</rule>
+<rule id="103579" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.DatastoreDestroyedEvent$</field>
+	<description>VMware vCenter: Datastore removed.</description>
+	<group>low,one-on-one,command-and-control,T1071,</group>
+	<mitre>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A datastore has been removed in VMware vCenter, which could indicate a potential loss of storage or a configuration change affecting resource availability.
+        </info>
+</rule>
+<rule id="103580" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VmRenamedEvent$</field>
+	<description>VMware vCenter: Virtual machine rename event detected.</description>
+	<group>low,one-on-one,command-and-control,T1071,</group>
+	<mitre>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A has Virtual machine rename event within VMware vCenter, indicating a modification to the rename system.
+        </info>
+</rule>
+<rule id="103581" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.DiskAddedEvent$</field>
+	<description>VMware vCenter: Disk added.</description>
+	<group>low,one-on-one,command-and-control,T1071,</group>
+	<mitre>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A disk has been added to the VMware vCenter environment, indicating an expansion of storage resources or a potential configuration change.
+        </info>
+</rule>
+<rule id="103582" level="1">
+	<if_sid>103525</if_sid>
+	<field name="event_name" type="pcre2">(?i)^vim\.event\.VmDisconnectedEvent$</field>
+	<description>VMware vCenter: Virtual machine Disconnected Event detected.</description>
+	<group>low,one-on-one,command-and-control,T1071,T1071.001,</group>
+	<mitre>
+		<id>T1071.001</id>
+        <id>T1071</id>
+	</mitre>
+	<info type="text">
+       Description:
+            A Virtual machine Disconnected Event detected from VMware vCenter, which could indicate, unauthorized actions, or system changes.
+        </info>
+</rule>
+
+</group>
