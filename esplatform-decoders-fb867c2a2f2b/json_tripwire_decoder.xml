@@ -1,0 +1,118 @@
+<!--
+
+{"full_log":" Information HostName=Tripwire-APP01.qumc.edu.sa LogId=-1y2p0ij32e8da:-2iteulqxt8z LogCategory=\"Task Run\" LogUser=system AssociatedObjects=-1y2p0ij32e7sw:-2iteum9fc7s Msg=\"Task 'F5 BIG-IP - Daily Change Report' was started.\" ","tenant":"QUMC","productName":"TripWire","productType":"FIM","logType":"network","cust1":"QUMC-Logger2","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"}
+
+{"full_log":" Information HostName=tcpr-web1.qumc.edu.sa LogId=-1y2p0ij32e8cw:-2iteulqux5y LogCategory=\"Audit Event\" LogUser=root AccessType=Unknown EventType=Write AppType=vmtoolsd ElementId=-1y2p0ij32e8ca:-1y2p0ij2v6oo7 NodeId=-1y2p0ij32e8c4:-1y2p0ij2zps57 NodeName=tcpr-web1.qumc.edu.sa NodeIp=10.0.102.5 VerId=-1y2p0ij32e8cf:-2iteum5b8f8 AssociatedObjects=-1y2p0ij32e8c4:-1y2p0ij2zps57,-1y2p0ij32e8ca:-1y2p0ij2v6oo7,-1y2p0ij32e8cf:-2iteum5b8f8 Msg=\"'\/etc\/vmware-tools\/quiesce_manifest.xml' accessed by 'root'. Type 'Write'.[LF][LF]Application: 'vmtoolsd'[LF]\" ","tenant":"QUMC","productName":"TripWire","productType":"FIM","logType":"network","cust1":"QUMC-Logger2","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"}
+
+-->
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<prematch type="pcre2">HostName.*LogId.*LogCategory.*LogUser.*Msg</prematch>
+	<regex type="pcre2">\"full_log\":\s*\"\s*(\w+)\s*</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bHostName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>host_domain_name</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bHostName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>endpoint_name</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bNodeIp\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>node_ip</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bNodeId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>node_id</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bNodeName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>node_name</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bVerId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>version_id</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bAppType\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_type</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\b\bElementId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>element_id</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bAccessType\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>access_type</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bLogId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bLogCategory\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_category</order>
+</decoder>
+<!-- <decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bLogCategory\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_category</order>
+</decoder> -->
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bEventType\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_type</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bEventType\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>event_type</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bLogUser\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_user</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bAssociatedObjects\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>associated_objects</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bMsg=\\"([^"]+)\\"</regex>
+	<order>message_text</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">Msg=.*CN=\s*(.*?)(?=\s*(\s*,\w+)=|$)</regex>
+	<order>username</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">Msg=.*Type\s*\'(.*?)\'\.</regex>
+	<order>msg_logtype</order>
+</decoder>
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<regex type="pcre2">\"cust1\"\s*:\s*"((?:\\"|[^"])+)\"</regex>
+	<order>logger_id</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="tripwire-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

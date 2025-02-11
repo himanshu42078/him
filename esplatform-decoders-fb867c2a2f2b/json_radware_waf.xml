@@ -1,0 +1,119 @@
+ <!-- {"row_targetModule": "Access-Rules", "row_severity": "Warning", "row_request": "POST /FIPWrapperService2.0.0/Accounts/discover HTTP/1.1\naa_api_key: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI4WDhrSFRkV0RvN0RBN2RacVVqeHk2YkZYUkNab05pdlRlaVVGa1YxTzlFIn0.eyJleHAiOjE3Mzc2MjI2MTMsImlhdCI6MTczNzUzNjIxMywianRpIjoiMDNiODRlODUtMTYzNC00ZGYzLTlmOTktOWI5M2QxNmNjNjdiIiwiaXNzIjoiaHR0cHM6Ly90b2tlbnMuc2FoYW1hdGkub3JnLmluL2F1dGgvcmVhbG1zL3NhaGFtYXRpIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMyNjcwZTRhLTNhYWMtNDliNy1iZTdmLWNkYmM5NjI0ZjI1ZCIsInR5cCI6IkJlYXJlciIsImF6cCI6IkFudW1hdGkiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwiY2xpZW50SG9zdCI6IjEzLjIzMi43Ni4xMTE6NTE0MDQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImNsaWVudElkIjoiQW51bWF0aSIsInJvbGVzIjoiQUEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYW51bWF0aSIsImNsaWVudEFkZHJlc3MiOiIxMy4yMzIuNzYuMTExOjUxNDA0In0.ofAEkYIyQAmPARADX-jSTPaamGD1CsSrAKK9iJ6F33n6NLcix9cLnqTsvmonyOT9yFs2QjtZLe1kbPTzINWH13E7W9211lAGCAqIFtEMhyq3rdpBzbji_Rc3shNsh4jSr657DtiVb43F8NK5u5FhOc6ZhMv-p45NAQHjjfM5fkn4qq8vQjbC9hSUCv0SfO-gPzTmtV9RTPYWVsQTpQqNiaHN_7D0I88GlM4M25Gi1qSva-B3FQaxLIBW8Md_pDpOVnBb96a3oy9RkATSHFNunCLg82EoTRobw1RxeusWdk5X1jgcPOwzhu2vzsMxu6XI42sV4WNrt04HJBR6vQL8AQ\nx-jws-signature: eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxNGI4ZmQ1LTMzNTUtNGQ1MC1hZGY5LTVkNjZkNTVjODVlNCIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..oeX6hj2N9ivHiiTQS66xLs6GNrEacoEmq1KQ8ak5IhTwuBdm_bq1cRIInuIyDk2JpKuIjOkgE0sUePu9meO4aulo9KJyIBeDvIWYn7QrYBKoTwYDQPGg7bCeFMU7B7fK-gM2mDr1MyrHryzwo_DTu0b6rmEem5ZESUKtYfniy_B0732IE5VGcWG2REJqEWwwDuaafFvqJzAk2QvaW4ltWXBYtOBL0GGblFJZ_wZTCHlFMjrWAVMYBCTV1ZPdW8aVS1Dgmnri6waB4PvG20HN5H5-uxWk5eYu-dCb7aDMTyjBkYkdZghpxqk_KhbWW7ix5GwU4lkNeKeeimy6b5MKVg\naccept: application/json\nhost: fip.sidbi.in\ncontent-type: application/json\ncontent-length: 292\nuser-agent: ReactorNetty/0.9.20.RELEASE\n", "row_sourcePort": "443", "row_method": "POST", "row_transId": "5ad64c224386a25c0fb3e6dcc03ff77519477726b1b59ce31975fe19bd2287a1", "row_description": "Access-rules violation", "row_enrichmentContainer": "{\"geoLocation\":{\"countryCode\":\"IN\"},\"contractId\":\"d38b318b-938b-4389-85e8-e9cf30a95c0d\",\"applicationId\":\"4091700d-ca08-457d-8779-ea871c6e1d4a\",\"tenant\":\"6faca194-7af0-4324-869b-3dc4f5db3abd\"}", "row_eventType": "ACCESS_RULE", "row_uri": "/FIPWrapperService2.0.0/Accounts/discover", "row_violationType": "Access-Rules", "row_host": "fip.sidbi.in", "row_action": "Blocked", "row_details": "Access-rules violation", "row_receivedTimeStamp": "1737539100149", "row__id": "oxhmjZQBeZATiccp7Pdm", "row_applicationId": "4091700d-ca08-457d-8779-ea871c6e1d4a", "row_externalIp": "13.232.76.111", "tenant": "SIDBI", "productName": "Radware-WAF", "productType": "Cloud", "productModule": "WAF", "logType": "Radware WAF"}
+ 
+  {"row_targetModule": "Access-Rules", "row_severity": "Warning", "row_request": "POST /FIPWrapperService2.0.0/Accounts/discover HTTP/1.1\naa_api_key: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI4WDhrSFRkV0RvN0RBN2RacVVqeHk2YkZYUkNab05pdlRlaVVGa1YxTzlFIn0.eyJleHAiOjE3Mzc2MjI2MTMsImlhdCI6MTczNzUzNjIxMywianRpIjoiMDNiODRlODUtMTYzNC00ZGYzLTlmOTktOWI5M2QxNmNjNjdiIiwiaXNzIjoiaHR0cHM6Ly90b2tlbnMuc2FoYW1hdGkub3JnLmluL2F1dGgvcmVhbG1zL3NhaGFtYXRpIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImMyNjcwZTRhLTNhYWMtNDliNy1iZTdmLWNkYmM5NjI0ZjI1ZCIsInR5cCI6IkJlYXJlciIsImF6cCI6IkFudW1hdGkiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwiY2xpZW50SG9zdCI6IjEzLjIzMi43Ni4xMTE6NTE0MDQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImNsaWVudElkIjoiQW51bWF0aSIsInJvbGVzIjoiQUEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJzZXJ2aWNlLWFjY291bnQtYW51bWF0aSIsImNsaWVudEFkZHJlc3MiOiIxMy4yMzIuNzYuMTExOjUxNDA0In0.ofAEkYIyQAmPARADX-jSTPaamGD1CsSrAKK9iJ6F33n6NLcix9cLnqTsvmonyOT9yFs2QjtZLe1kbPTzINWH13E7W9211lAGCAqIFtEMhyq3rdpBzbji_Rc3shNsh4jSr657DtiVb43F8NK5u5FhOc6ZhMv-p45NAQHjjfM5fkn4qq8vQjbC9hSUCv0SfO-gPzTmtV9RTPYWVsQTpQqNiaHN_7D0I88GlM4M25Gi1qSva-B3FQaxLIBW8Md_pDpOVnBb96a3oy9RkATSHFNunCLg82EoTRobw1RxeusWdk5X1jgcPOwzhu2vzsMxu6XI42sV4WNrt04HJBR6vQL8AQ\naccept: application/json\nhost: fip.sidbi.in\ncontent-type: application/json\nuser-agent: ReactorNetty/0.9.20.RELEASE\ncontent-length: 292\nx-jws-signature: eyJhbGciOiJSUzI1NiIsImtpZCI6IjkxNGI4ZmQ1LTMzNTUtNGQ1MC1hZGY5LTVkNjZkNTVjODVlNCIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..jzLJ6EdDjiHHfwAeNC0rTqK-j9ctVmq8_a8v1XefN7_TLNQRhVcqksDHFXIWxbLcRZVZnFbaPU75lB0cUbwmRyAfOprKaKcMP5kWvuIuVMa3OwII78YjdV5SubWirnqbYYit73nImOnbKRpPvY1wcxGIaSM1ubyFI40ZyfHlDgIgXyjaRCL-81kE4tte-BmfWLEpZnpust8dlHw7FwfGOae4GdxCoVHWAX7KwYW8cvXr3eUHIxTHTt-xYYzfYJ3k1_peCCCnGIPnryjKP7qz83a8BPDqPV3b8uCxc4VFDLpenvJVutXHgjUW92bXAEaP-d_sg7DpikP32usDXNVSng\n", "row_sourcePort": "443", "row_method": "POST", "row_transId": "00e2f3cdb559b4ff81f7d7443f036deb046be5ce283a227230b1169939becf9a", "row_description": "Access-rules violation", "row_enrichmentContainer": "{\"geoLocation\":{\"countryCode\":\"IN\"},\"contractId\":\"d38b318b-938b-4389-85e8-e9cf30a95c0d\",\"applicationId\":\"4091700d-ca08-457d-8779-ea871c6e1d4a\",\"tenant\":\"6faca194-7af0-4324-869b-3dc4f5db3abd\"}", "row_eventType": "ACCESS_RULE", "row_uri": "/FIPWrapperService2.0.0/Accounts/discover", "row_violationType": "Access-Rules", "row_host": "fip.sidbi.in", "row_action": "Blocked", "row_details": "Access-rules violation", "row_receivedTimeStamp": "1737539102200", "row__id": "ypNmjZQBeWr6R4kosVUA", "row_applicationId": "4091700d-ca08-457d-8779-ea871c6e1d4a", "row_externalIp": "13.232.76.111", "tenant": "SIDBI", "productName": "Radware-WAF", "productType": "Cloud", "productModule": "WAF", "logType": "Radware WAF"} -->
+	
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<prematch type="pcre2">(?i)"productName"\s*:\s*"Radware-WAF"|productName=Radware-WAF</prematch>
+    <regex type="pcre2">"row_targetModule"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>target_module</order>
+</decoder>
+ 
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_severity"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>secerity</order>
+</decoder>
+ 
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_request"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>request</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_sourcePort"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>srcport</order>
+</decoder>
+ 
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_method"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>request_method</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_transId"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>entradpoint_id</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_description"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>rule_description</order>
+</decoder>
+ 
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_enrichmentContainer"\s*:\s*"(.*?)}"(?=\s*(\s\w+)|,|$)</regex>
+	<order>container_address</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_eventType"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>event_type</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_uri"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>uri_path</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_violationType"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>access_permition</order>
+</decoder>
+ 
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_host"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>host_domain_name</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_action"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_details"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>detail</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_receivedTimeStamp"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>time_format</order>
+</decoder>
+ 
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row__id"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>unique_id</order>
+</decoder>
+
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_applicationId"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>app_id</order>
+</decoder>
+ 
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<regex type="pcre2">"row_externalIp"\s*:\s*"(.*?)"(?=\s*(\s\w+)|,|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+
+
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="radware-waf">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

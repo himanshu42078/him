@@ -1,0 +1,305 @@
+<!--
+{"full_log": "May 29 16:59:57 10-1-19-221.prometheus-kube-prometheus-kubelet.kube-system.svc.cluster.local 0|Forcepoint|Security|8.5.4|9|Tr permitted|1| act=permitted app=https dvc=10.120.3.88 dst=35.76.214.141 dhost=cc-api-data.adobe.io dpt=443 src=10.120.3.35 spt=63260 suser=LDAP://10.1.134.131 OU\\=KK,OU\\=STAR,OU\\=CLIENTS,OU\\=EMP,DC\\=PFIN,DC\\=COM/Manoranjan Barik loginID=manoranjan.barik destinationTranslatedPort=0 rt=1716982195000 in=390 out=1653 requestMethod=CONNECT requestClientApplication=- reason=- cs1Label=Policy cs1=Super Administrator**Standard User,Super Administrator**Standard User cs2Label=DynCat cs2=0 cs3Label=ContentType cs3=- cn1Label=DispositionCode cn1=1026 cn2Label=ScanDuration cn2=0 request=https://cc-api-data.adobe.io:443 logRecordSource=OnPrem","L0": "ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1": "rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2": "a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+-->
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<prematch type="pcre2">(0\|Forcepoint\|Security\|)</prematch>
+	<regex type="pcre2">\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|(.*?)\|</regex>
+	<order>vendor,product_name,version,category_number,event_name,severity</order>
+</decoder>
+<!-- Common Fields Start -->
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs1Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs1Label</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs2Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs2Label</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs3Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs3Label</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cn1Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cn1Label</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cn2Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cn2Label</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cn3Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cn3Label</order>
+</decoder>
+<!-- Common Fields End -->
+
+<!-- Common Fields, Different Values Start -->
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cn1Label=DispositionCode.*cn1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>disposition_code</order>
+</decoder>
+<!-- Common Fields, Different Values End -->
+
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">act\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">act\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">app\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>application_used</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">app\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>application_used</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">dvc\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>endpoint_ip</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">dvc\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>endpoint_ip</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">dst\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">dst\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">dhost\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_host</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">dhost\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_host</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">dpt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">dpt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">src\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">src\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">spt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">spt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">suser\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_usr</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">suser\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_usr</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">loginID\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>login_id</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">loginID\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>login_id</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">destinationTranslatedPort\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_translation_port</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">destinationTranslatedPort\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_translation_port</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">rt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_time</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">rt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>event_time</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">in\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">in\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">out\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sent_byte</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">out\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sent_byte</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">requestMethod\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>request_method</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">requestMethod\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>request_method</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">requestClientApplication\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>client_agent</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">requestClientApplication\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>client_agent</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">reason\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>scan_reason</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">reason\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>scan_reason</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs1\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs2\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dynamic_category</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs2\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dynamic_category</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs3\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cs3\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cn1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cn1</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cn2\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>scan_duration</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cn2\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>scan_duration</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">request\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>request_url</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">request\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>request_url</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">logRecordSource\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_record_source</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">logRecordSource\s*=([^",]*)</regex>
+	<order>log_record_source</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">cust1\s*=\s*\\?"?([^"]*?)(?=\\?"?\s*($|"))</regex>
+	<order>logger_id</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">fromHost\s*=\s*\\?"?([^"]*?)(?=\\?"?\s*($|"))</regex>
+	<order>from_host</order>
+</decoder>
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<regex type="pcre2">hostName\s*=\s*\\?"?([^"]*?)(?=\\?"?\s*($|"))</regex>
+	<order>host_name</order>
+</decoder>
+
+<decoder name="forcepoint-proxy-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

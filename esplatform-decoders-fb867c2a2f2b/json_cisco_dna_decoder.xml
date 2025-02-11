@@ -1,0 +1,98 @@
+<!--
+
+{"full_log":" Nov 12 12:59:40.192: %SESSION_MGR-5-FAIL: Chassis 1 R0\/0: wncd: Authorization failed or unapplied for client (48e1.5c5d.84a7) on Interface capwap_90000048 AuditSessionID 4271A8C0000B07442073D775. Failure reason: Authc fail. Authc failure reason: Timeout. tenant=DPA productName=CiscoDNA productType=firewall logType=network","tenant":"DPA","productName":"CiscoDNA","productType":"firewall","logType":"network","L0":"c2dff664-dc11-438f-a0e0-5e8afba36ac4","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"15f5a1f2-f61c-44e9-983d-37b442138f06"}
+
+{"full_log":" Nov 12 11:59:00.277: %DOT1X-5-FAIL: Chassis 1 R0\/0: wncd: Authentication failed for client (dc41.a93c.e88a) with reason (Timeout) on Interface capwap_9000004f AuditSessionID 4271A8C0000AFFE518FD149E Username: DPA\\Pamcn02 tenant=DPA productName=CiscoDNA productType=firewall logType=network","tenant":"DPA","productName":"CiscoDNA","productType":"firewall","logType":"network","L0":"c2dff664-dc11-438f-a0e0-5e8afba36ac4","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"15f5a1f2-f61c-44e9-983d-37b442138f06"}
+
+{"full_log":" Nov 12 07:18:03.802: %DMI-5-AUTH_PASSED: Chassis 1 R0\/0: dmiauthd: User 'ait' authenticated successfully from 172.28.1.51:65489  for netconf over ssh. External groups: PRIV15 tenant=DPA productName=CiscoDNA productType=firewall logType=network","tenant":"DPA","productName":"CiscoDNA","productType":"firewall","logType":"network","L0":"c2dff664-dc11-438f-a0e0-5e8afba36ac4","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"15f5a1f2-f61c-44e9-983d-37b442138f06"}
+
+{"full_log":" Nov 12 08:45:26.273: %SEC_LOGIN-5-LOGIN_SUCCESS: Login Success [user: ait] [Source: 172.28.1.51] [localport: 22] at 08:45:26 UTC Tue Nov 12 2024 tenant=DPA logType=other","tenant":"DICTDBM","logType":"other","L0":"c2dff664-dc11-438f-a0e0-5e8afba36ac4","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"15f5a1f2-f61c-44e9-983d-37b442138f06"}
+
+-->
+
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <prematch type="pcre2">\s*%.*?-\d+-.*?:\s*.*productName.*CiscoDNA</prematch>
+    <regex type="pcre2">\s*%(.*?)-(\d+)-(.*?):\s*</regex>
+    <order>facility,severity,mnemonic</order>
+</decoder>
+ <decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">wncd\s*:\s*(.*?)(?=\s*(\s\w+)=|\s*AuditSessionID)</regex>
+    <order>wncd</order>
+</decoder>
+<!--<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">(nginx:\s*.*?)(?=\s*(\s\w+)=|\s*\",)</regex>
+    <order>message_text</order>
+</decoder>
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">AuditSessionID\s*(\w*)</regex>
+    <order>audit_session_id</order>
+</decoder>
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">Failure\s*reason\s*:\s*(.*?)(?=\s*(\s\w+)\s|$)</regex>
+    <order>failure_reason</order>
+</decoder>
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\s*Authc\s*failure\s*reason:\s*(.*?)\.</regex>
+    <order>auth_failure_reason</order>
+</decoder> -->
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\[user:\s*(.*?)\]</regex>
+    <order>username</order>
+</decoder>
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">Username:\s*(.*?)\s*tenant</regex>
+    <order>username</order>
+</decoder>
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\s*User\s*(.*?)\s*blocked</regex>
+    <order>username</order>
+</decoder>
+<!-- <decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">key\s*named\s*(.*?)\s*has\s*been</regex>
+    <order>key_name</order>
+</decoder> -->
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\[Source:\s*(.*?)\]</regex>
+    <order>src_ip</order>
+</decoder>
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\s*(\d+\.\d+\.\d+\.\d+)\s*</regex>
+    <order>src_ip</order>
+</decoder>
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\s*Source IP\s*"?([\d+\.]+)"?</regex>
+    <order>src_ip</order>
+</decoder>
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\s*Dest IP\s*"?([\d+\.]+)"?</regex>
+    <order>dst_ip</order>
+</decoder> 
+<decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\(([0-9a-fA-F]{4}\.[0-9a-fA-F]{4}\.[0-9a-fA-F]{4})\)</regex>
+    <order>src_mac</order>
+</decoder>
+<!-- <decoder name="cisco-dna-json">
+    <parent>json</parent>
+    <regex type="pcre2">\[localport:\s*(.*?)\]</regex>
+    <order>localport</order>
+</decoder>  -->
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="cisco-dna-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

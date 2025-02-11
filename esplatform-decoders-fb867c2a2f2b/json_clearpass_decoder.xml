@@ -1,0 +1,1519 @@
+<!-- 
+
+    Log Sample
+    Feb  5 09:16:59 5.195.107.202 0|Aruba Networks|ClearPass|6.9.10.134806|4099|Export|1|cat=System Events dvc=10.60.53.102 rt=Feb 05 2024 13:14:38 deviceProcessName=Admin UI outcome=Success msg=User: t_rjafri\nRole: Super Administrator\nEntity: SharedFile_LogFile\nClient IP Address: 10.100.229.71\nUser admin tried to export SharedFile_LogFile Details tenant=IFFCOSH logType=other
+-->
+<!--
+
+{"full_log":"Aug 13 08:48:02 5.195.107.202 0|Aruba Networks|ClearPass|6.9.10.134806|1000|RADIUS Authentications|5|ArubaClearpassAuthAPName=2436da857b80 ArubaClearpassAuthAuthMethod=MAC-AUTH ArubaClearpassAuthAuthStatus=MAB ArubaClearpassAuthAuthUsername=708a0955af0c ArubaClearpassAuthAuthorizationSources=[Endpoints Repository] ArubaClearpassAuthCalledStationId=24-36-da-85-7b-80:IBUSER ArubaClearpassAuthErrorCode=206 ArubaClearpassAuthNASIdentifier=AE-SHJ-HODR-WLC-01 ArubaClearpassAuthNASPortType=19 ArubaClearpassAuthRequestId=R00206929-04-66bae33d deviceCustomDate1=Aug 13 2024 08:38:21 deviceCustomDate1Label=Request Timestamp ArubaClearpassAuthSSID=IBUSER ArubaClearpassAuthSystemPostureToken=UNKNOWN ArubaClearpassGuestCreatedAt=2024-08-04 01:37:44+04 ArubaClearpassGuestEnabled=t ArubaClearpassGuestExpiresAt=2024-09-03 01:38:01+04 ArubaClearpassGuestRoleName=[Guest] ArubaClearpassGuestSimultaneousUse=1 ArubaClearpassGuestSponsorName=syzaidi ArubaClearpassGuestSponsorProfileName=Receptionist tenant=IFFCOSH productName=Clearpass productType=NAC logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"} 
+
+{"full_log":"Aug 13 08:48:02 5.195.107.202 0|Aruba Networks|ClearPass|6.9.10.134806|1000|RADIUS Authentications|5|cat=Insight Logs dvc=10.60.53.103 duser=ashabbir dmac=ca48c89f083d cs2=RADIUS cs2Label=Authentication Protocol src=10.100.160.30 cs4=206 cs4Label=Login Status destinationServiceName=IFFCO_HODC_WIRELESS cs3=4.AESHWRDC2.ae.iffconet.com cs3Label=Authentication Source dpriv=[User Authenticated] cs5=[Deny Access Profile] cs5Label=Enforcement Profiles ArubaClearpassNadName=HODC_WLC ArubaClearpassNadNetworkDevice=10.100.160.30 ArubaClearpassCppmNodeCPPM=aeshjcppm02.iffconet.com ArubaClearpassCppmNodeIsPublisher=f ArubaClearpassCppmNodeUpdatedAt=2024-08-13 06:59:07+04 ArubaClearpassCppmNodeZone=default ArubaClearpassUserAddedAt=2023-07-24 13:20:59+04 ArubaClearpassUserAuthenticationSource=4.AESHWRDC2.ae.iffconet.com ArubaClearpassUserUpdatedAt=2024-08-12 20:17:17+04 ArubaClearpassUserUsername=ashabbir ArubaClearpassEndpointAP=3890a53bce20 ArubaClearpassEndpointAuthAt=2024-08-13 08:39:30+04 ArubaClearpa... tenant=IFFCOSH productName=Clearpass productType=NAC logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"Aug 13 08:48:02 5.195.107.202 0|Aruba Networks|ClearPass|6.9.10.134806|1000|RADIUS Authentications|5|ArubaClearpassEndpointUserAuthAt=2024-08-04 04:16:23+04 ArubaClearpassEndpointUsername=hamzakhankhail04@gmail.com ArubaClearpassAuthAPName=e4aa5d3e6410 ArubaClearpassAuthAuthMethod=MAC-AUTH ArubaClearpassAuthAuthStatus=MAB ArubaClearpassAuthAuthUsername=7cd6616680f7 ArubaClearpassAuthAuthorizationSources=[Endpoints Repository] ArubaClearpassAuthCalledStationId=e4-aa-5d-3e-64-10:IBUSER ArubaClearpassAuthErrorCode=206 ArubaClearpassAuthNASIdentifier=ERCO-KHPT-SHJ-WLC-01 ArubaClearpassAuthNASPortType=19 ArubaClearpassAuthRequestId=R00206810-04-66bae2fc deviceCustomDate1=Aug 13 2024 08:37:16 deviceCustomDate1Label=Request Timestamp ArubaClearpassAuthSSID=IBUSER ArubaClearpassAuthSystemPostureToken=UNKNOWN ArubaClearpassCppmErrorCodeErrorCode=206 ArubaClearpassCppmErrorCodeErrorCodeDetails=Access denied by policy ArubaClearpassCppmErrorCodeErrorGroupDetails=Authentication failure tenant=IFFCOSH productName=Clearpass productType=NAC logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+-->
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<prematch>\|Aruba Networks\|ClearPass</prematch>
+	<regex type="pcre2">\|(Aruba Networks)\|</regex>
+	<order>vendor</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\|Aruba Networks\|([^|]+)\|</regex>
+	<order>product_name</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">ClearPass\|(\d+\.\d+\.\d+\.\d+)\|</regex>
+	<order>device_version</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">(?:[^|]*\|){4}([^|]+)</regex>
+	<order>unique_id</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">(?:[^|]*\|){5}([^|]+)</regex>
+	<order>event_name</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">(?:[^|]*\|){6}([^|]+)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">cat=(\w+\s+\w+)</regex>
+	<order>url_category</order>
+</decoder> -->
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">dvc=((\d+)\.(\d+)\.(\d+)\.(\d+))</regex>
+	<order>endpoint_ip</order>
+</decoder>
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">rt=(\w{3} \d{2} \d{4} \d{2}:\d{2}:\d{2})</regex>
+	<order>auth_timestamp</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\s*deviceProcessName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>process_name</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\s*deviceProcessName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>process_name</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">outcome=(\w+)</regex>
+	<order>outcome</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">msg=(([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$)([^t].*?)(?=\s|$))</regex>
+	<order>remark</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">msg=(.*?)(?= tenant=| productName=| productType=| logType=|$)</regex>
+	<order>msg</order>
+</decoder> -->
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">tenant=([^ ]+)</regex>
+	<order>tenant</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">logType=(\w+)</regex>
+	<order>logtype</order>
+</decoder>
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Username=([^\s]+)</regex>
+	<order>src_usr</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Authorization-Sources=(\S+)</regex>
+	<order>auth_src</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Login-Status=(\d+)</regex>
+	<order>auth_status</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Request-Timestamp=(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2})</regex>
+	<order>auth_timestamp</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Protocol=(\S+)</regex>
+	<order>protocol_name</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Source=(\S+)</regex>
+	<order>auth_srcip</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Enforcement-Profiles=\[(.*?)\]</regex>
+	<order>profile</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.NAS-Port=(\S+)</regex>
+	<order>auth_nas_port</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.SSID=(\S+)</regex>
+	<order>auth_ssid</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">TimestampFormat=((.*?)\s+(.*?)\s+(.*?)\s+(.*?)\s+(.*?)\s+)</regex>
+	<order>time_format</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.NAS-Port-Type=(\d+)</regex>
+	<order>auth_nas_port_type</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Error-Code=(\d+)</regex>
+	<order>auth_error_code</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Roles=(\S+)</regex>
+	<order>auth_roles</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Service=(([^\s]+)\s+([^\s]+))</regex>
+	<order>auth_service</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Host-MAC-Address\s*=\s*([a-fA-F0-9]+)</regex>
+	<order>master_src_mac</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.Unhealthy=([^ ]+)</regex>
+	<order>auth_unhealthy</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.NAS-IP-Address=([\d.]+)</regex>
+	<order>auth_nas_ip</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.CalledStationId=\s*([a-fA-F0-9]+)</regex>
+	<order>auth_station_id</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">Auth.NAS-Identifier=\s*(.*)</regex>
+	<order>auth_nas_identifier</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">cat=(\w+)</regex>
+	<order>url_category</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">timeFormat=((.*?)\s+(.*?)\s+(.*?)\s+(.*?)\s+(.*?)\s+)</regex>
+	<order>time_format</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">rt=(\s*([^ ]*)\s*([^ ]*)\s*([^ ]*)\s*([^ ]*)\s*([^ ]*))</regex>
+	<order>auth_timestamp</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">act=\s*(\w+)</regex>
+	<order>action</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">usrName=\s*(\S+)</regex>
+	<order>src_usr</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-Calling-Station-Id=\s*([a-fA-F0-9:]+)</regex>
+	<order>auth_station_id</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-Framed-IP-Address=\s*([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)</regex>
+	<order>acct_frame_ipaddress</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Auth-Source=\s*([^:]+:[^ ]+)</regex>
+	<order>auth_srcip</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-Timestamp=\s*(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}[+-]\d{2}:\d{2})</regex>
+	<order>auth_timestamp</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Auth-Method=\s*(\S+)</regex>
+	<order>auth_method</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-Service-Name=\s*([^ ]+)</regex>
+	<order>acct_service_name</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">TimestampFormat=(\s*([^ ]*)\s*([^ ]*)\s*([^ ]*)\s*([^ ]*)\s*([^ ]*))</regex>
+	<order>auth_timestamp</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-NAS-Port=\s*(\d+)</regex>
+	<order>auth_nas_port</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-Session-Id=\s*([^ ]+)</regex>
+	<order>session_id</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-NAS-Port-Type=\s*([^ ]+)</regex>
+	<order>auth_nas_port_type</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-Output-Octets\s*=\s*(\d+)</regex>
+	<order>acct_output_octet</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-Username\s*=\s*([^ ]+)</regex>
+	<order>src_usr</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-NAS-Port-Type=\s*([^ ]+)</regex>
+	<order>auth_nas_port_type</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-NAS-IP-Address\s*=\s*([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)</regex>
+	<order>auth_nas_ip</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">RADIUS\.Acct-Input-Octets=\s*(\d+)</regex>
+	<order>acct_input_octet</order>
+</decoder> -->
+<!--=======================================================================================================-->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAPName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAPName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAPName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAPName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAuthMethod\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAuthMethod</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAuthMethod=(.*?)(?=\s*(\S\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAuthMethod</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAuthStatus\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAuthStatus</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAuthStatus\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAuthStatus</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAuthUsername\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAuthUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAuthUsername\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAuthUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAuthorizationSources\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAuthorizationSources</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthAuthorizationSources\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthAuthorizationSources</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthCalledStationId\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthCalledStationId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthCalledStationId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthCalledStationId</order>
+</decoder> ** -->
+
+
+
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthErrorCode\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthErrorCode</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthErrorCode\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthErrorCode</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthNASIdentifier\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthNASIdentifier</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthNASIdentifier\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthNASIdentifier</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthNASPort\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthNASPort</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthNASPort\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthNASPort</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthNASPortType\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthNASPortType</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthNASPortType\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthNASPortType</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthNetbiosName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthNetbiosName</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthNetbiosName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthNetbiosName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthRequestId\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthRequestId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthRequestId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthRequestId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthSSID\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthSSID</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthSSID\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthSSID</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthSystemPostureToken\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthSystemPostureToken</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthSystemPostureToken\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthSystemPostureToken</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthVLAN\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthVLAN</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassAuthVLAN\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassAuthVLAN</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmAlertAlerts\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmAlertAlerts</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmAlertAlerts\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmAlertAlerts</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmAlertCPPMService\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmAlertCPPMService</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmAlertCPPMService\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmAlertCPPMService</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmAlertTimestamp\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmAlertTimestamp</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmAlertTimestamp\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmAlertTimestamp</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmErrorCodeErrorCode\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmErrorCodeErrorCode</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmErrorCodeErrorCode\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmErrorCodeErrorCode</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmErrorCodeErrorCodeDetails\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmErrorCodeErrorCodeDetails</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmErrorCodeErrorCodeDetails\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmErrorCodeErrorCodeDetails</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmErrorCodeErrorGroupDetails\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmErrorCodeErrorGroupDetails</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmErrorCodeErrorGroupDetails\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmErrorCodeErrorGroupDetails</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmNodeCPPM\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmNodeCPPM</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmNodeCPPM\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmNodeCPPM</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmNodeIsPublisher\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmNodeIsPublisher</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmNodeIsPublisher\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmNodeIsPublisher</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmNodeUpdatedAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmNodeUpdatedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmNodeUpdatedAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmNodeUpdatedAt</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmNodeZone\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmNodeZone</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassCppmNodeZone\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassCppmNodeZone</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointAP\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointAP</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointAP\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointAP</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointAddedAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointAddedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointAddedAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointAddedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointAuthAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointAuthAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointAuthAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointAuthAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointAuthStatus\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointAuthStatus</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointAuthStatus\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointAuthStatus</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointConflict\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointConflict</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointConflict\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointConflict</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointDeviceCategory\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointDeviceCategory</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointDeviceCategory\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointDeviceCategory</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointDeviceFamily\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointDeviceFamily</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointDeviceFamily\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointDeviceFamily</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointDeviceName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointDeviceName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointDeviceName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointDeviceName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointEnforcementProfiles\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointEnforcementProfiles</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointEnforcementProfiles\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointEnforcementProfiles</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointErrorCode\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointErrorCode</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointErrorCode\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointErrorCode</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointFingerprint\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointFingerprint</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointFingerprint\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointFingerprint</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointHasStaticIP\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointHasStaticIP</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointHasStaticIP\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointHasStaticIP</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointHostname\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointHostname</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointHostname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointHostname</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointIPAddress\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointIPAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointIPAddress\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointIPAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointMACAddress\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointMACAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointMACAddress\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointMACAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointMACVendor\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointMACVendor</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointMACVendor\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointMACVendor</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointNadIP\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointNadIP</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointNadIP\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointNadIP</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointNadPort\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointNadPort</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointNadPort\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointNadPort</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointNasPortType\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointNasPortType</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointNasPortType\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointNasPortType</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointNetbiosName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointNetbiosName</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointNetbiosName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointNetbiosName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointProtocol\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointProtocol</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointProtocol\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointProtocol</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointRoles\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointRoles</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointRoles\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointRoles</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSSID\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSSID</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSSID\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSSID</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointService\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointService</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointService\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointService</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSessionEndAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSessionEndAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSessionEndAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSessionEndAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSessionStartAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSessionStartAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSessionStartAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSessionStartAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSource\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSource</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSource\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSource</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointStatus\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointStatus</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointStatus\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointStatus</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSystemPostureToken\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSystemPostureToken</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointSystemPostureToken\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointSystemPostureToken</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointUpdatedAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointUpdatedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointUpdatedAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointUpdatedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointUserAuthAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointUserAuthAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointUserAuthAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointUserAuthAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointUsername\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassEndpointUsername\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassEndpointUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestCreatedAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestCreatedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestCreatedAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestCreatedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestEnabled\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestEnabled</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestEnabled\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestEnabled</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestExpiresAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestExpiresAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestExpiresAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestExpiresAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestMACAddress\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestMACAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestMACAddress\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestMACAddress</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestNotes\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestNotes</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestNotes\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestNotes</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestRoleName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestRoleName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestRoleName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestRoleName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestSimultaneousUse\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestSimultaneousUse</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestSimultaneousUse\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestSimultaneousUse</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestSponsorEmail\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestSponsorEmail</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestSponsorEmail\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestSponsorEmail</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestSponsorName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestSponsorName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestSponsorName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestSponsorName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestSponsorProfileName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestSponsorProfileName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestSponsorProfileName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestSponsorProfileName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestStartsAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestStartsAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestStartsAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestStartsAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestUsername\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestUsername\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestVisitorCompany\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestVisitorCompany</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestVisitorCompany\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestVisitorCompany</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestVisitorName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestVisitorName</order>
+</decoder> -->
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestVisitorName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestVisitorName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestVisitorPhone\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestVisitorPhone</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassGuestVisitorPhone\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassGuestVisitorPhone</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassNadName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassNadName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassNadName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassNadName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassNadNetworkDevice\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassNadNetworkDevice</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassNadNetworkDevice\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassNadNetworkDevice</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusAcctId\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusAcctId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusAcctId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusAcctId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusAcctTimestamp\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusAcctTimestamp</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusAcctTimestamp\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusAcctTimestamp</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusCalledStationId\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusCalledStationId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusCalledStationId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusCalledStationId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusCallingStationId\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusCallingStationId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusCallingStationId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusCallingStationId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusEndTime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusEndTime</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusEndTime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusEndTime</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusFramedIPAddress\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusFramedIPAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusFramedIPAddress\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusFramedIPAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusInputbytes\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusInputbytes</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusInputbytes\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusInputbytes</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusNASIPAddress\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusNASIPAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusNASIPAddress\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusNASIPAddress</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusNASIdentifier\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusNASIdentifier</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusNASIdentifier\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusNASIdentifier</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusNASPort\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusNASPort</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusNASPort\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusNASPort</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusNASPortType\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusNASPortType</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusNASPortType\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusNASPortType</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusOutputbytes\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusOutputbytes</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusOutputbytes\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusOutputbytes</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusSessionId\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusSessionId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusSessionId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusSessionId</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusStartTime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusStartTime</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusStartTime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusStartTime</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusTerminationCause\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusTerminationCause</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusTerminationCause\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusTerminationCause</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusTimestamp\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusTimestamp</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusTimestamp\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusTimestamp</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusUsername\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassRadiusUsername\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassRadiusUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassUserAddedAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassUserAddedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassUserAddedAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassUserAddedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassUserAuthenticationSource\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassUserAuthenticationSource</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassUserAuthenticationSource\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassUserAuthenticationSource</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassUserUpdatedAt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassUserUpdatedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassUserUpdatedAt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassUserUpdatedAt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassUserUsername\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassUserUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bArubaClearpassUserUsername\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ArubaClearpassUserUsername</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcat\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cat</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcat\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cat</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcn2\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cn2</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcn2\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cn2</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcn2Label\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cn2Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcn2Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cn2Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs1\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs1</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs1</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs1Label\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs1Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs1Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs1Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs2\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs2</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs2\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs2</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs2Label\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs2Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs2Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs2Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs3\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs3</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs3\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs3</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs3Label\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs3Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs3Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs3Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs4\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs4</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs4\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs4</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs4Label\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs4Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs4Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs4Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs5\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs5</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs5\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs5</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs5Label\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cs5Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcs5Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cs5Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdestinationServiceName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>destinationServiceName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdestinationServiceName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>destinationServiceName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdeviceCustomDate1\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>deviceCustomDate1</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdeviceCustomDate1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>deviceCustomDate1</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdeviceCustomDate1Label\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>deviceCustomDate1Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdeviceCustomDate1Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>deviceCustomDate1Label</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdeviceProcessName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>deviceProcessName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdeviceProcessName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>deviceProcessName</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdmac\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dmac</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdmac\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dmac</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdpriv\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dpriv</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdpriv\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dpriv</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst</order>
+</decoder> -->
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bduser\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>duser</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bduser\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>duser</order>
+</decoder>
+<!-- <decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdvc\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dvc</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdvc\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dvc</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmsg\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmsg\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boutcome\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>outcome</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boutcome\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>outcome</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rt</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rt</order>
+</decoder> -->
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">cat\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_category</order>
+</decoder>
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<regex type="pcre2">cat\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>event_category</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the file -->
+<decoder name="clearpass-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

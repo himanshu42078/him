@@ -1,0 +1,610 @@
+<!--
+Jan 24 11:01:28 5.195.107.202 0|Fortinet|FortiGate-300E|7.2.4,build1396 (GA)|0000000013|forward traffic close|5|start=Jan 18 2024 21:33:33 logver=702041396 deviceExternalId=FG3H0E5818904823 dvchost=ae-dxb-ttow-f44-fw02 ad.vd=root ad.eventtime=1705599213118296145 ad.tz=+0400 ad.logid=0000000013 cat=traffic ad.subtype=forward deviceSeverity=notice src=10.100.176.65 shost=10.100.176.65 spt=50802 deviceInboundInterface=OL1_SHJ ad.srcintfrole=undefined dst=10.100.231.200 dhost=aeshcmsub.ae.iffconet.com dpt=6970 deviceOutboundInterface=port6 ad.dstintfrole=lan ad.srccountry=Reserved ad.dstcountry=Reserved externalID=2423956164 proto=6 act=close ad.policyid=114 ad.policytype=policy ad.poluuid=36cec694-a4ba-51ee-6c79-2e6f0e491631 ad.policyname=FROM-SHJHO app=Jab-2 ad.trandisp=noop ad.duration=1 out=386 in=280 ad.sentpkt=6 ad.rcvdpkt=4 ad.vpntype=ipsecvpn ad.appcat=unscanned tz="+0400" tenant=IFFCO logType=other
+
+Feb 12 15:17:43 151.253.124.100 0|Fortinet|Fortigate|v7.2.5|0001 forward accept|3|deviceExternalId=FG200ETK19915128 FTNTFGTeventtime=1707751063450319891 FTNTFGTtz=+0400 FTNTFGTlogid=0000000013 cat=traffic:forward FTNTFGTsubtype=forward FTNTFGTlevel=notice FTNTFGTvd=root src=10.63.108.150 shost=WAE81104         spt=65440 deviceInboundInterface=Cisco_FTD_IN FTNTFGTsrcintfrole=lan dst=10.1.1.7 dpt=53 deviceOutboundInterface=OL1_SHJ FTNTFGTdstintfrole=undefined FTNTFGTsrccountry=Reserved FTNTFGTdstcountry=Reserved externalId=877941901 proto=17 act=accept FTNTFGTpolicyid=317 FTNTFGTpolicytype=policy FTNTFGTpoluuid=d94c4614-b557-51ee-4918-f30b9f6cb697 FTNTFGTpolicyname=TO-SHJHO app=DNS FTNTFGTtrandisp=noop FTNTFGTduration=180 out=62 in=289 FTNTFGTsentpkt=1 FTNTFGTrcvdpkt=1 FTNTFGTvpntype=ipsecvpn FTNTFGTvwlid=0 FTNTFGTappcat=unscanned FTNTFGTsrchwvendor=VMware FTNTFGTdevtype=Server FTNTFGTsrcfamily=Virtual Machine FTNTFGTosname=Windows FTNTFGTsrchwversion=Workstation Pro FTNTFGTsrcswversion=10 FTNTFGTunauthuser=akannapianda FTNTFGTunauthusersource=kerberos FTNTFGTmastersrcmac=00:50:56:a7:52:32 FTNTFGTsrcmac=00:50:56:a7:52:32 FTNTFGTsrcserver=0 tenant=IFFCO logType=other
+
+Jun 13 18:19:48 10-4-29-125.prometheus-prometheus-node-exporter.monitoring.svc.cluster.local 0|Fortinet|FortiGate-101F|7.2.7, (GA)|0100032132|system event enable|5|start=Jun 13 2024 18:17:00 logver=702071577 deviceExternalId=FG101FTK21023438 dvchost=ae-dxb-ifbs-gfsrvrm-pfw01 ad.vd=root ad.eventtime=1718288219907489969 ad.tz=+0400 ad.logid=0100032132 cat=event ad.subtype=system deviceSeverity=notice ad.logdesc=Local user added duser=t_kdeenathayalan@FortiManager sproc=fgfm_tunnel ad.name=guest ad.status=enable msg=User t_kdeenathayalan@FortiManager added local user guest from fgfm_tunnel tz="+0400" tenant=IFFCOSH productName=FortiAnalyzer productType=firewall logType=network
+-->
+<decoder name="forti-analyzer">
+  <prematch>\|Fortinet\|FortiGate</prematch>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">^(?:[^|]*\|){1}([^|]*)\|</regex>
+  <order>vendor</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">^(?:[^|]*\|){2}([^|]*)\|</regex>
+  <order>device_product</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">^(?:[^|]*\|){3}([^|]*)\|</regex>
+  <order>version</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">^(?:[^|]+\|){4}(\d+\s+[^|]*)\|</regex>
+  <order>name</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">^(?:[^|]+\|){4}(\d+)\|</regex>
+  <order>signature_id</order>
+</decoder>
+
+<!--<decoder name="forti-analyzer-fields">-->
+<!--  <parent>forti-analyzer</parent>-->
+<!--  <regex type="pcre2">([^|]+)\|[^|]+$</regex>-->
+<!--  <order>severity</order>-->
+<!--</decoder>-->
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">(?:[^|]+\|){5}(\D+?)\|</regex>
+  <order>name</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\|start=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>start</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">deviceExternalId=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>device_id</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\slogver=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>log_version</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.eventtime=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>event_time</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTeventtime=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>event_time</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.vd=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>virtual_domain</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTvd=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>virtual_domain</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sdvchost=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>dvchost</order>
+</decoder>
+
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad\.tz=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>tz</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">FTNTFGTtz=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>tz</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.logid=(\d+)</regex>
+  <order>log_id</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTlogid=(\d+)</regex>
+  <order>log_id</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.severity\=(\w+)</regex>
+  <order>severity</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTseverity\=(\w+)</regex>
+  <order>severity</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTapprisk\=(\w+)</regex>
+  <order>app_risk</order>
+</decoder>
+
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\scat=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>log_type</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.subtype=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>log_subtype</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsubtype=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>log_subtype</order>
+</decoder>
+
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sdeviceSeverity=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>severity</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sdeviceDirection=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>direction</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTlevel=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>level</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\ssrc=(\b(?:\d{1,3}\.){3}\d{1,3}\b)</regex>
+  <order>srcip</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sshost=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>shost</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sspt=(\d+)</regex>
+  <order>srcport</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sdeviceInboundInterface=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>deviceInboundInterface</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.srcintfrole=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>src_interface_role</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsrcintfrole=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>src_interface_role</order>
+</decoder>
+ 
+<!--<decoder name="forti-analyzer-fields">-->
+<!--  <parent>forti-analyzer</parent>-->
+<!--  <regex type="pcre2">\sdst=(\b(?:\d{1,3}\.){3}\d{1,3}\b)</regex>-->
+<!--  <order>dstip</order>-->
+<!--</decoder>-->
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sdhost=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>dhost</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sdpt=(\d+)</regex>
+  <order>dstport</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sdeviceOutboundInterface=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>deviceOutboundInterface</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.dstintfrole=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>dst_interface_role</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTdstintfrole=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>dst_interface_role</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.srccountry=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>src_country</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsrccountry=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>src_country</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.dstcountry=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>dst_country</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTdstcountry=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>dst_country</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">(?i)\sexternalID=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>externalID</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sproto=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>protocol_number</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <!-- <regex type="pcre2">act=(\w+)</regex> -->
+  <regex type="pcre2">\sact=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>action</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.policyid=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>policy_id</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTpolicyid=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>policy_id</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.policytype=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>policy_type</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTpolicytype=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>policy_type</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.poluuid=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>policy_uuid</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTpoluuid=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>policy_uuid</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.policyname=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>policyname</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTpolicyname=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>policyname</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sapp=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>application_name</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.trandisp=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>translation_type</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTtrandisp=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>translation_type</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.duration=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>duration</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTduration=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>duration</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sout=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>out</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sin=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>in</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.sentpkt=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>sent_packt</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsentpkt=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>sent_packt</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.rcvdpkt=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>rcvd_packt</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTrcvdpkt=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>rcvd_packt</order>
+</decoder>
+
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.vpntype=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>vpntype</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTvpntype=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>vpntype</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTvwlid=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>vwl_id</order>
+</decoder>
+
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.appcat=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>application_category</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTappcat=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>application_category</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsrchwvendor=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>srchw_vendor</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.attack=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>attack</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.attackid=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>attackid</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.attackcontextid=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>attackcontextid</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sad.attackcontext=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>attackcontext</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\stz=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>tz_value</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\stenant=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>tenant</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\slogType=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>logType</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sproductType=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>productType</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sproductName=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>productName</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTdevtype=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>device_type</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsrcfamily=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>src_family</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTosname=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>os_name</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsrchwversion=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>srchw_version</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsrcswversion=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>srcsw_version</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTunauthuser=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>unauth_user</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTunauthusersource=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>unauth_usersrc</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTmastersrcmac=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>src_mac</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsrcmac=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>src_mac</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\sFTNTFGTsrcserver=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>src_server</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\bmsg=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>description</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\bad.logdesc=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>logdesc</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\bFTNTFGTlogdesc=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>logdesc</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\brequest=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>request_url</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\bad.direction=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>direction</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">\bFTNTFGTdirection=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>direction</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">duser=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>dstuser</order>
+</decoder>
+
+<decoder name="forti-analyzer-fields">
+  <parent>forti-analyzer</parent>
+  <regex type="pcre2">FTNTFGTduser=(.*?)(?=\s*(\S+)=|$)</regex>
+  <order>dstuser</order>
+</decoder>
