@@ -1,0 +1,331 @@
+<group name="cisco-router,">
+
+<rule id="113701" level="0" noalert="1">
+    <decoded_as>json</decoded_as>
+    <field name="productName" type="pcre2">(?i)^Cisco-Router$</field>
+    <description>Cisco-Router: Base rule for Cisco Router event detection.</description>
+    <info type="text">This is a base rule that serves as a parent for all Cisco Router related rules. It matches events from Cisco Router devices for further analysis and categorization. This rule enables monitoring of network infrastructure security events and provides a foundation for detecting potential threats, attacks, and system anomalies. Regular monitoring and correlation of these events is essential for maintaining network security posture.</info>
+</rule>
+
+<rule id="113702" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%PERF_MEASURE-2-CRIT_ERR$</field>
+    <description>Cisco-Router: Critical performance measurement error detected.</description>
+    <info type="text">This rule triggers when the Perf Measure protocol encounters a critical error in the router's performance measurement system. If triggered, it indicates a severe degradation in router performance monitoring capabilities that could be a precursor to or result of a denial of service condition. The impact could include reduced visibility into network performance metrics and potential service disruptions. Immediate investigation is required to determine the root cause and verify system stability. Monitor for unusual traffic patterns, resource utilization spikes, and check device logs for related performance anomalies.</info>
+    <group>high,one-on-one,T1499,T1498.001,impact,</group>
+    <mitre>
+      <id>T1499</id>
+      <id>T1498.001</id>
+    </mitre>
+</rule>
+
+<rule id="113703" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%PERF_MEASURE-2-GET_BUFFER$</field>
+    <description>Cisco-Router: Performance measurement buffer allocation failure.</description>
+    <info type="text">This rule triggers when the PERF MEASURE ISSU client fails to obtain buffer memory for message processing. If triggered, it indicates potential memory resource exhaustion or allocation issues that could impact system stability and monitoring capabilities. The failure to allocate buffers may result in dropped performance measurements and degraded monitoring accuracy. Immediate investigation of memory usage patterns and system resources is required. Check for potential memory exhaustion attacks or system misconfiguration.</info>
+    <group>medium,one-on-one,T1499.004,impact,</group>
+    <mitre>
+      <id>T1499.004</id>
+    </mitre>
+</rule>
+
+<rule id="113704" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^PERF_MEASURE-2-INIT%$</field>
+    <description>Cisco-Router: Performance measurement initialization failure.</description>
+    <info type="text">This rule triggers when the PERF MEASURE ISSU client initialization process fails during system startup or recovery. If triggered, it indicates a critical failure in establishing performance monitoring capabilities, potentially due to system tampering or resource exhaustion. This could lead to gaps in performance monitoring and reduced visibility into system health. Immediate investigation of initialization processes and system integrity is required. Check for signs of tampering or unauthorized system modifications.</info>
+    <group>medium,one-on-one,T1499,impact,</group>
+    <mitre>
+      <id>T1499</id>
+    </mitre>
+</rule>
+
+<rule id="113705" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%PERF_MEASURE-2-SEND_NEGO_FAILED$</field>
+    <description>Cisco-Router: Performance measurement negotiation failure.</description>
+    <info type="text">This rule triggers when the PERF MEASURE ISSU client fails to send negotiation messages. This indicates potential communication disruption or tampering with system components. If triggered, it could result in degraded monitoring capabilities and service disruptions. Immediate investigation of communication channels and system integrity is required. Check for signs of network manipulation or component failure that could affect system stability.</info>
+    <group>medium,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113706" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%PERF_MEASURE-2-SESSION_REGISTRY$</field>
+    <description>Cisco-Router: Session registration failure in performance monitoring.</description>
+    <info type="text">This rule triggers when the PERF MEASURE ISSU client fails to register session information. This indicates unauthorized system manipulation or critical resource issues affecting session management. The impact includes potential disruption of monitoring capabilities and system visibility. Immediate investigation of session management processes and system integrity is required. Check for signs of tampering and verify integrity of registration mechanisms.</info>
+    <group>medium,one-on-one,T1562.001,impact,defense-evasion,</group>
+    <mitre>
+      <id>T1562.001</id>
+    </mitre>
+</rule>
+
+<rule id="113707" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%PERF_MEASURE-2-SESSION_NEGO$</field>
+    <description>Cisco-Router: Unexpected session negotiation state detected.</description>
+    <info type="text">This rule triggers when the PERF MEASURE ISSU client encounters unexpected client negotiation behavior. This indicates potential session manipulation or protocol exploitation attempts. The impact includes possible disruption of monitoring services and unauthorized system access. Immediate investigation of session states and negotiation processes is required. Verify integrity of session protocols and check for signs of manipulation.</info>
+    <group>medium,one-on-one,T1499,impact,</group>
+    <mitre>
+      <id>T1499</id>
+    </mitre>
+</rule>
+
+<rule id="113708" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%IPX-2-RADIXINIT$</field>
+    <description>Cisco-Router: IPX path structure initialization failure.</description>
+    <info type="text">This rule triggers when there's an error initializing the Novell path structure. This indicates potential tampering with routing infrastructure or critical system resources. The impact includes potential disruption of IPX-based network services and routing capabilities. Immediate investigation of routing infrastructure and system integrity is required. Check for unauthorized modifications to routing configurations and verify system resource availability.</info>
+    <group>medium,one-on-one,T1489,impact,</group>
+    <mitre>
+      <id>T1489</id>
+    </mitre>
+</rule>
+
+<rule id="113709" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%ETHER_CFM_HA-2-INIT$</field>
+    <description>Cisco-Router: Ethernet CFM High Availability initialization failure.</description>
+    <info type="text">This rule triggers when the Ethernet CFM ISSU client fails to initialize properly. This indicates potential compromise of high availability features or system integrity. The impact includes reduced network reliability and service continuity risks. Immediate investigation of HA systems and initialization processes is required. Verify system integrity and check for signs of unauthorized modification to HA configurations.</info>
+    <group>high,one-on-one,T1489,impact,</group>
+    <mitre>
+      <id>T1489</id>
+    </mitre>
+</rule>
+
+<rule id="113710" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%ETHER_CFM_HA-2-SESSION_REGISTRY$</field>
+    <description>Cisco-Router: Ethernet CFM session registration failure.</description>
+    <info type="text">This rule triggers when the Ethernet CFM ISSU client fails to register session information for high availability services. This indicates potential tampering with HA mechanisms or critical system resources. The impact includes potential disruption of service continuity and monitoring capabilities. Immediate investigation of session registration processes and system integrity is required. Check for unauthorized modifications to HA configurations.</info>
+    <group>medium,one-on-one,T1489,impact,</group>
+    <mitre>
+      <id>T1489</id>
+    </mitre>
+</rule>
+
+<rule id="113711" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%ETHER_CFM_HA-2-SESSION_NEGO$</field>
+    <description>Cisco-Router: Ethernet CFM unexpected negotiation state.</description>
+    <info type="text">This rule triggers when Ethernet CFM encounters unexpected negotiation states in HA operations. This indicates potential session manipulation attempts or system integrity issues. The impact includes potential disruption of HA services and monitoring capabilities. Immediate investigation of negotiation processes and system integrity is required. Check for signs of unauthorized access or system manipulation attempts.</info>
+    <group>medium,one-on-one,T1489,impact,</group>
+    <mitre>
+      <id>T1489</id>
+    </mitre>
+</rule>
+
+<rule id="113712" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%ETHER_CFM_HA-2-SEND_NEGO_FAILED$</field>
+    <description>Cisco-Router: Ethernet CFM negotiation message failure.</description>
+    <info type="text">This rule triggers when the Ethernet CFM ISSU client fails to send negotiation messages for high availability synchronization. This indicates communication failures affecting service availability. The impact includes possible disruption of HA operations and degraded fault management capabilities. Immediate investigation of communication paths and message handling is required. Verify system connectivity and check for signs of network disruption or manipulation.</info>
+    <group>medium,one-on-one,T1489,impact,</group>
+    <mitre>
+      <id>T1489</id>
+    </mitre>
+</rule>
+
+<rule id="113713" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%ETHER_CFM_HA-2-GET_BUFFER$</field>
+    <description>Cisco-Router: Ethernet CFM buffer allocation failure.</description>
+    <info type="text">This rule triggers when the Ethernet CFM ISSU client fails to allocate buffer memory. This indicates resource constraints that could affect service reliability. The impact includes potential disruption of HA operations and monitoring capabilities. Immediate investigation of system resources and memory allocation is required. Check for resource exhaustion and potential memory-related attacks.</info>
+    <group>medium,one-on-one,T1499.004,T1499,impact,</group>
+    <mitre>
+      <id>T1499.004</id>
+      <id>T1499</id>
+    </mitre>
+</rule>
+
+<rule id="113714" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%SCVIF-2-DB_ENTRY_ALLOC_FAIL$</field>
+    <description>Cisco-Router: SCVIF database entry allocation failure.</description>
+    <info type="text">This rule triggers when the SCVIF system fails to allocate memory for database entries. This indicates potential resource exhaustion affecting interface management. The impact includes degraded system performance and possible service disruptions. Immediate investigation of database resources and memory utilization is required. Check for signs of resource depletion attacks or system misconfiguration.</info>
+    <group>medium,one-on-one,T1485,impact,</group>
+    <mitre>
+      <id>T1485</id>
+    </mitre>
+</rule>
+
+<rule id="113715" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%SCVIF-2-DB_INSERT_FAIL$</field>
+    <description>Cisco-Router: SCVIF database insertion failure.</description>
+    <info type="text">This rule triggers when the SCVIF system fails to add new entries to the database. This indicates database corruption or resource issues. The impact includes potential configuration management failures and system instability. Immediate investigation of database operations and integrity is required. Check for signs of data manipulation or system resource constraints.</info>
+    <group>medium,one-on-one,T1485,impact,</group>
+    <mitre>
+      <id>T1485</id>
+    </mitre>
+</rule>
+
+<rule id="113716" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%SCVIF-2-DB_DELETE_FAIL$</field>
+    <description>Cisco-Router: SCVIF database deletion failure.</description>
+    <info type="text">This rule triggers when the SCVIF system fails to delete entries from the database. This indicates potential database corruption or access issues. The impact includes possible resource leaks and degraded system performance. Immediate investigation of database operations and access controls is required. Verify database integrity and check for unauthorized modifications.</info>
+    <group>medium,one-on-one,T1485,impact,</group>
+    <mitre>
+      <id>T1485</id>
+    </mitre>
+</rule>
+
+<rule id="113717" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%SCVIF-2-DB_ENTRY_FREE_FAIL$</field>
+    <description>Cisco-Router: SCVIF entry memory release failure.</description>
+    <info type="text">This rule triggers when the SCVIF system fails to properly release memory for database entries. This indicates potential memory management issues or resource leaks. The impact includes gradual system resource depletion and degraded performance. Immediate investigation of memory management processes is required. Monitor for memory leaks and implement resource utilization checks.</info>
+    <group>medium,one-on-one,T1485,impact,</group>
+    <mitre>
+      <id>T1485</id>
+    </mitre>
+</rule>
+
+<rule id="113718" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%SCVIF-2-DB_ALLOC_FAIL$</field>
+    <description>Cisco-Router: SCVIF database allocation failure.</description>
+    <info type="text">This rule triggers when the SCVIF system fails to allocate memory for the entire database structure. This indicates severe resource constraints or system instability. The impact includes potential failure of interface management and configuration systems. Immediate investigation of system resources and memory allocation is required. Check for signs of resource exhaustion attacks.</info>
+    <group>high,one-on-one,T1485,impact,</group>
+    <mitre>
+      <id>T1485</id>
+    </mitre>
+</rule>
+
+<rule id="113719" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%SCVIF-2-DB_DESTROY_FAIL$</field>
+    <description>Cisco-Router: SCVIF database destruction failure.</description>
+    <info type="text">This rule triggers when the SCVIF pair database cannot be properly destroyed. This indicates potential system resource management issues or database corruption. The impact includes possible resource leaks and system instability. Immediate investigation of database cleanup processes is required. Check for signs of resource exhaustion or system corruption.</info>
+    <group>high,one-on-one,T1485,impact,</group>
+    <mitre>
+      <id>T1485</id>
+    </mitre>
+</rule>
+
+<rule id="113720" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%APPNAV_CONTROLLER-2SC_SN_UNREACHABLE$</field>
+    <description>Cisco-Router: APPNAV-CONTROLLER service node unreachable.</description>
+    <info type="text">This rule triggers when an APPNAV service node becomes unreachable. This indicates potential network connectivity issues or service node failure. The impact includes degraded application optimization capabilities and reduced network performance. Immediate investigation of network connectivity and service node status is required. Check for signs of network disruption or service node issues.</info>
+    <group>high,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113721" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%APPNAV_CONTROLLER-2SNG_UNAVAILABLE$</field>
+    <description>Cisco-Router: AppNav controller service node group unavailable.</description>
+    <info type="text">This rule triggers when an entire AppNav Controller service node group becomes unavailable. This indicates widespread service disruption affecting application optimization capabilities. The impact includes significant degradation of network optimization and potential service outages. Immediate investigation of the service node group and network infrastructure is required. Check for systemic issues affecting multiple service nodes.</info>
+    <group>high,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113722" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%APPNAV_CONTROLLER-2SNG_AO_UNAVAILABLE$</field>
+    <description>Cisco-Router: APPNAV-CONTROLLER service node group optimization unavailable.</description>
+    <info type="text">This rule triggers when optimization services become unavailable for an AppNav controller service node group. This indicates critical failure in application optimization capabilities, potentially affecting network performance and service delivery. The impact includes degraded application performance and potential service disruptions. Immediate investigation of optimization services and node group status is required. Check for configuration issues and service node health status.</info>
+    <group>high,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113723" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%APPNAV_CONTROLLER-2SC_CONVERGENCE_FAILED$</field>
+    <description>Cisco-Router: APPNAV-CONTROLLER convergence failure.</description>
+    <info type="text">This rule triggers when the AppNav controller fails to achieve convergence in its service node group. This indicates severe synchronization issues affecting service delivery capabilities. The impact includes inconsistent application optimization and potential service degradation. Immediate investigation of convergence processes and node group configuration is required. Verify network connectivity and check for configuration inconsistencies.</info>
+    <group>high,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113724" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%APPNAV_CONTROLLER-2SC_DEGRADED_CLUSTER$</field>
+    <description>Cisco-Router: APPNAV-CONTROLLER cluster degradation detected.</description>
+    <info type="text">This rule triggers when the AppNav controller cluster enters a degraded state. This indicates cluster performance issues that could affect service optimization capabilities. The impact includes reduced application optimization effectiveness and potential service quality degradation. Immediate investigation of cluster health and performance metrics is required. Check for resource constraints and cluster member connectivity issues.</info>
+    <group>high,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113725" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%APPNAV_CONTROLLER-2SC_SC_UNREACHABLE$</field>
+    <description>Cisco-Router: APPNAV-CONTROLLER service controller unreachable.</description>
+    <info type="text">This rule triggers when the AppNav service controller becomes unreachable. This indicates connectivity issues or controller failure affecting service management capabilities. The impact includes potential loss of service control and optimization functions. Immediate investigation of controller connectivity and status is required. Check network paths and controller health status.</info>
+    <group>high,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113726" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%APPNAV_CONTROLLER-2SC_SN_EXCLUDED$</field>
+    <description>Cisco-Router: APPNAV-CONTROLLER service node exclusion.</description>
+    <info type="text">This rule triggers when service nodes are excluded due to reachability issues across AppNav controllers. This indicates network partition or connectivity problems affecting service node availability. The impact includes reduced service capacity and potential load balancing issues. Immediate investigation of network connectivity and node status is required. Verify network paths and check for routing issues.</info>
+    <group>medium,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113727" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%APPNAV_CONTROLLER-2ACG_IP_CHANGED$</field>
+    <description>Cisco-Router: APPNAV-CONTROLLER group IP address change.</description>
+    <info type="text">This rule triggers when the AppNav controller group IP address changes, causing service context disablement. This indicates configuration changes that could affect service availability. The impact includes temporary service disruption and potential routing inconsistencies. Immediate investigation of IP address changes and configuration updates is required. Verify change management processes and check for unauthorized modifications.</info>
+    <group>medium,one-on-one,T1498,impact,</group>
+    <mitre>
+      <id>T1498</id>
+    </mitre>
+</rule>
+
+<rule id="113728" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%CGC-2-CGC_CRIT$</field>
+    <description>Cisco-Router: Critical CGC internal error detected.</description>
+    <info type="text">This rule triggers when a critical internal error occurs in the CGC system. This indicates severe internal processing issues that could affect system stability. The impact includes potential service disruptions and system reliability issues. Immediate investigation of system logs and CGC component status is required. Check for system resource issues and error patterns.</info>
+    <group>high,one-on-one,T1499,impact,</group>
+    <mitre>
+      <id>T1499</id>
+    </mitre>
+</rule>
+
+<rule id="113729" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%SPA-2-VOLT_CRITICAL$</field>
+    <description>Cisco-Router: Critical voltage level detected.</description>
+    <info type="text">This rule triggers when voltage levels deviate significantly from nominal values. This indicates potential hardware issues or power supply problems that could lead to system failure. The impact includes risk of hardware damage and unexpected system shutdown. Immediate investigation of power systems and voltage readings is required. Check environmental conditions and power supply status.</info>
+    <group>high,one-on-one,T1499,impact,</group>
+    <mitre>
+      <id>T1499</id>
+    </mitre>
+</rule>
+
+<rule id="113730" level="1">
+    <if_sid>113701</if_sid>
+    <field name="message" type="pcre2">(?i)^%SPA-2-VOLT_SHUTDOWN_OVR$</field>
+    <description>Cisco-Router: Critical voltage shutdown override.</description>
+    <info type="text">This rule triggers when voltage levels exceed operating ranges, potentially forcing a system shutdown. This indicates severe power system issues that threaten hardware integrity. The impact includes imminent system failure and potential hardware damage. Immediate power system investigation and hardware inspection is required. Implement emergency shutdown procedures if necessary.</info>
+    <group>high,one-on-one,T1499,impact,</group>
+    <mitre>
+      <id>T1499</id>
+    </mitre>
+</rule>
+
+</group>

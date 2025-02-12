@@ -1,0 +1,2809 @@
+<!--
+PRODUCT RULES
+Web Server - Nginx
+Database Server - MySQL
+Directory Server - Microsoft Windows Active Directory
+Web Server - Apache
+Web Server - Apache - 2
+Web Server - Microsoft IIS Server Security
+DNS Server - Microsoft Windows
+Web Server - Microsoft IIS Server Shielding
+Microsoft Windows Events
+Microsoft Windows Security Events - 1
+Microsoft Windows Security Events - 2
+Microsoft Windows Security Events - 3
+Microsoft Windows Security Events - 4
+Unix - Syslog
+Authentication Module - Unix Pluggable Authentication Module
+Microsoft Windows Sysmon Events IDs
+Application - Secure Shell Daemon (SSHD)
+Application - Docker
+Database Server - Microsoft SQL
+Microsoft Windows - Remote Desktop Services (ATT&CK T1021.001)
+Microsoft PowerShell Command Execution (ATT&CK T1059.001)
+Microsoft Windows - Print Spooler Failed Loading Plugin Module (PrintNightmare)
+DHCP Server - Microsoft Windows
+-->
+<group name= "deep-security,">
+	<!-- base rule -->
+	<!-- <rule id="104000" level="0" noalert="1">
+		<decoded_as>deep-security</decoded_as>
+		<description>Log Inspection Events</description>
+		<group>info,one-on-one,</group>
+	</rule> -->
+	<!-- <rule id="104253" level="0" noalert="1"> -->
+		
+	<rule id="104254" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="product_name" type="pcre2">(?i)^Deep Security Agent$</field>
+		<description>Log Inspection Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<!-- Products rule -->
+	<rule id="104001"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Web Server - Nginx</field>
+		<description>Web Server - Nginx</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104002"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Database Server - MySQL</field>
+		<description>Database Server - MySQL</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104003"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Web Server - Apache</field>
+		<description>Web Server - Apache</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104004"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Directory Server - Microsoft Windows Active Directory</field>
+		<description>Directory Server - Microsoft Windows Active Directory</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104005"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Web Server - Apache - 2</field>
+		<description>Web Server - Apache - 2</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104006"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Web Server - Microsoft IIS Server Security</field>
+		<description>Web Server - Microsoft IIS Server Security</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104007"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">DNS Server - Microsoft Windows</field>
+		<description>DNS Server - Microsoft Windows</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104008" level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Web Server - Microsoft IIS Server Shielding</field>
+		<description>Web Server - Microsoft IIS Server Shielding</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104009"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Microsoft Windows Events</field>
+		<description>Microsoft Windows Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104010"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Microsoft Windows Security Events - 1</field>
+		<description>Microsoft Windows Security Events - 1</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104011"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Microsoft Windows Security Events - 2</field>
+		<description>Microsoft Windows Security Events - 2</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104012"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Microsoft Windows Security Events - 3</field>
+		<description>Microsoft Windows Security Events - 3</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104013"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Microsoft Windows Security Events - 4</field>
+		<description>Microsoft Windows Security Events - 4</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104014"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Unix - Syslog</field>
+		<description>Unix - Syslog</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104015"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Authentication Module - Unix Pluggable Authentication Module</field>
+		<description>Authentication Module - Unix Pluggable Authentication Module</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104016"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Microsoft Windows Sysmon Events IDs</field>
+		<description>Microsoft Windows Sysmon Events IDs</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104017"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Application - Secure Shell Daemon (SSHD)</field>
+		<description>Application - Secure Shell Daemon (SSHD)</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104018"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Application - Docker</field>
+		<description>Application - Docker</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104019"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Database Server - Microsoft SQL</field>
+		<description>Database Server - Microsoft SQL</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104020"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name">Microsoft Windows - Remote Desktop Services \(ATT(.*)CK T1021.001\)</field>
+		<description>Microsoft Windows - Remote Desktop Services (ATTACK T1021.001)</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104021"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name" type="pcre2">Microsoft PowerShell Command Execution \(ATT(.*)CK T1059.001\)</field>
+		<description>Microsoft PowerShell Command Execution (ATTACK T1059.001)</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104022"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name" type="pcre2">Microsoft Windows - Print Spooler Failed Loading Plugin Module (PrintNightmare)</field>
+		<description>Microsoft Windows - Print Spooler Failed Loading Plugin Module (PrintNightmare)</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="104023"  level="0">
+		<if_sid>104254</if_sid>
+		<field name="event_name" type="pcre2">DHCP Server - Microsoft Windows</field>
+		<description>DHCP Server - Microsoft Windows</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<!-- Web Server - Nginx Rules-->
+	<rule id="104024" level="1" noalert="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Requested page isn't found in Nginx server root directory</field>
+		<description>Requested page isn't found in Nginx server root directory</description>
+		<group>medium,one-on-one,nginx,web,server,system-discovery,user-discovery,T1083,T1071,T1071.001,initial-access,</group>
+		<mitre>
+			<id>T1083</id>
+			<!-- File and Directory Discovery -->
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol -->
+		</mitre>
+	</rule>
+	<rule id="104025" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Request is forbidden</field>
+		<description>Request is forbidden</description>
+		<group>medium,one-on-one,nginx,web,server,initial-access,access-control,T1190,</group>
+		<mitre>
+			<id>T1190</id>
+			<!-- Exploit Public-Facing Application  -->
+		</mitre>
+	</rule>
+	<rule id="104026" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Conflicting server name on host</field>
+		<description>Conflicting server name on host</description>
+		<group>medium,one-on-one,nginx,web,server,execution,configuration,T1496,</group>
+		<mitre>
+			<id>T1496</id>
+			<!-- Resource Hijacking  -->
+		</mitre>
+	</rule>
+	<rule id="104027" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Nginx proxy configuration failed</field>
+		<description>Nginx proxy configuration failed</description>
+		<group>medium,one-on-one,nginx,web,server,configuration,defense-evasion,T1556.004,T1556,failure,</group>
+		<mitre>
+			<id>T1556</id>
+			<!-- Modify Authentication Process -->
+			<id>T1556.004</id>
+			<!-- Network Device Authentication -->
+		</mitre>
+	</rule>
+	<rule id="104028" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Nginx is not able to bind on configured port </field>
+		<description>Nginx is not able to bind on configured port</description>
+		<group>medium,one-on-one,nginx,web,server,T1049,discovery,network-discovery,configuration,</group>
+		<mitre>
+			<id>T1049</id>
+			<!-- System Network Connections Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104029" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Connection is closed by the server</field>
+		<description>Connection is closed by the server</description>
+		<group>medium,one-on-one,nginx,web,server,T1071.001,T1071,command-and-control,connection,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104030" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Nginx configuration file issue</field>
+		<description>Nginx configuration file issue</description>
+		<group>medium,one-on-one,nginx,web,server,configuration,file,T1574.010,T1574,persistence,</group>
+		<mitre>
+			<id>T1574</id>
+			<id>T1574.010</id>
+			<!-- Hijack Execution Flow: Services File Permissions Weakness -->
+		</mitre>
+	</rule>
+	<rule id="104031" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Nginx connection refused</field>
+		<description>Nginx connection refused</description>
+		<group>medium,one-on-one,nginx,web,server,T1071.001,T1071,command-and-control,connection,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104032" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Incomplete client request</field>
+		<description>Incomplete client request</description>
+		<group>medium,one-on-one,nginx,web,server,T1190,initial-access,suspicious-behavior,</group>
+		<mitre>
+			<id>T1190</id>
+			<!-- Exploit Public-Facing Application -->
+		</mitre>
+	</rule>
+	<rule id="104033" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Initial 401 authentication request</field>
+		<description>Initial 401 authentication request</description>
+		<group>medium,one-on-one,nginx,web,server,defense-evasion,T1078,authentication,request,</group>
+		<mitre>
+			<id>T1078</id>
+			<!-- Valid Accounts -->
+		</mitre>
+	</rule>
+	<rule id="104034" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Web authentication failed</field>
+		<description>Web authentication failed</description>
+		<group>medium,one-on-one,nginx,web,server,T1110,credential-access,authentication,failure,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force -->
+		</mitre>
+	</rule>
+	<rule id="104035" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Multiple web authentication failures</field>
+		<description>Multiple times web authentication failures</description>
+		<group>high,aggregation,soar-alert,nginx,web,server,T1110,credential-access,authentication,failure,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force -->
+		</mitre>
+		<info type="text">
+Description:
+Multiple times web authentication failures occur when a user attempts to log in to a website but it unsuccessful after several tries. This can happen due to incorrect passwords, issues with the user account, or problems with the website itself. Frequent failures may lead to temporary account locks or additional security measures to protect against unauthorized access.
+</info>
+	</rule>
+	<rule id="104036" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Common cache error when files were removed</field>
+		<description>Common cache error when files were removed</description>
+		<group>medium,one-on-one,nginx,web,server,T1070.004,T1070,file,defense-evasion,</group>
+		<mitre>
+			<id>T1070</id>
+			<id>T1070.004</id>
+			<!-- Indicator Removal: File Deletion -->
+		</mitre>
+	</rule>
+	<rule id="104037" level="1">
+		<if_sid>104001</if_sid>
+		<field name="sub_rule_name">Invalid URI, file name too long</field>
+		<description>Invalid URI, file name too long</description>
+		<group>medium,one-on-one,nginx,web,server,T1071.001,T1071,command-and-control,file,uri,invalid,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<!-- Database Server - MySQL -->
+	<rule id="104038" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Database authentication attempt</field>
+		<description>Database authentication attempt</description>
+		<group>low,one-on-one,mysql,database,T1110.002,T1110,credential-access,authentication,attempt,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1110.002</id>
+			<!-- Brute Force: Password Guessing -->
+		</mitre>
+	</rule>
+	<rule id="104039" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Database authentication failure</field>
+		<description>Database authentication failure</description>
+		<group>medium,one-on-one,mysql,database,T1110,credential-access,authentication,failure,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force -->
+		</mitre>
+	</rule>
+	<rule id="104040" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Database query</field>
+		<description>Database query</description>
+		<group>info,one-on-one,mysql,database,query</group>
+	</rule>
+	<rule id="104041" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">User disconnected from database</field>
+		<description>User disconnected from database</description>
+		<group>low,one-on-one,mysql,database,disconnect,T1070,defense-evasion,</group>
+		<mitre>
+			<id>T1070</id>
+			<!-- Indicator Removal on Host -->
+		</mitre>
+	</rule>
+	<rule id="104255" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Database shutdown message</field>
+		<description>Database shutdown message</description>
+		<group>medium,one-on-one,mysql,database,T1489,T1529,impact,shutdown-event,</group>
+		<mitre>
+			<id>T1529</id>
+			<!-- System Shutdown/Reboot  -->
+			<id>T1489</id>
+			<!-- Service Stop  -->
+		</mitre>
+	</rule>
+	<rule id="104043" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Database startup message</field>
+		<description>Database startup message</description>
+		<group>low,one-on-one,mysql,database,</group>
+	</rule>
+	<rule id="104044" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Database error</field>
+		<description>Database error</description>
+		<group>low,one-on-one,mysql,database,error,</group>
+	</rule>
+	<rule id="104045" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Database fatal error</field>
+		<description>Database fatal error</description>
+		<group>low,one-on-one,mysql,database,error,T1499,impact,</group>
+		<mitre>
+			<id>T1499</id>
+			<!-- Endpoint Denial of Service  -->
+		</mitre>
+	</rule>
+	<rule id="104046" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Multiple database errors</field>
+		<description>Multiple database errors</description>
+		<group>medium,aggregation,mysql,database,error,T1496,impact,</group>
+		<mitre>
+			<id>T1496</id>
+			<!-- Resource Hijacking  -->
+		</mitre>
+	</rule>
+	<rule id="104047" level="1">
+		<if_sid>104002</if_sid>
+		<field name="sub_rule_name">Possible brute force attack detected (ATTACK T1110.001, T1110.003)</field>
+		<description>Possible brute force attack detected (ATTACK T1110.001, T1110.003)</description>
+		<group>critical,one-on-one,soar-alert,mysql,database,authentication,credential-access,T1110,T1110.001,T1110.003,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force -->
+			<id>T1110.001</id>
+			<id>T1110.003</id>
+		</mitre>
+		<info type="text">
+Description:
+A possible brute force attack detected means that there have been repeated attempts to gain unauthorized access to an account or system by trying many different passwords or encryption keys in quick succession. This method relies on systematically guessing credentials until the correct one is found. Detection typically triggers security alerts to prevent potential breaches.
+</info>
+	</rule>
+	<!-- Web Server - Apache Rules -->
+	<rule id="104048" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Apache User Authentication Failed.</field>
+		<description>Apache User Authentication Failed.</description>
+		<group>medium,one-on-one,web,server,apache,T1110,credential-access,authentication,failure,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force -->
+		</mitre>
+	</rule>
+	<rule id="104049" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Attempt to access a non-existent file.</field>
+		<description>Attempt to access a non-existent file.</description>
+		<group>medium,one-on-one,web,server,apache,T1071.001,T1071,command-and-control,file,access,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104050" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Attempt to access forbidden directory index.</field>
+		<description>Attempt to access forbidden directory index.</description>
+		<group>high,one-on-one,web,server,apache,T1212,credential-access,T1083,discovery,directory,access,notable-behaviour,</group>
+		<mitre>
+			<id>T1212</id>
+			<!-- Exploitation for Credential Access  -->
+			<id>T1083</id>
+			<!--  File and Directory Discovery   -->
+		</mitre>
+	</rule>
+	<rule id="104051" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Apache Bash Shellshock attack attempt detected in error log.</field>
+		<description>ATTACK T1190: Apache Bash Shellshock attack attempt detected in error log.</description>
+		<group>critical,one-on-one,soar-alert,web,server,apache,T1190,initial-access,attack,shellshock,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application -->
+		</mitre>
+		<info type="text">
+Description:
+An Apache Bash Shellshock attack attempt detected in the error log means someone is trying to exploit a vulnerability in the Bash shell on a web server. This could allow them to run harmful commands. The error log records this suspicious activity to help protect the server.
+</info>
+	</rule>
+	<rule id="104052" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Attempt to authenticate a non-existent user.</field>
+		<description>Attempt to authenticate a non-existent user.</description>
+		<group>high,one-on-one,soar-alert,web,server,apache,T1110,T1078,credential-access,defense-evasion,T1110,T1110.004,authentication,attempt,suspicious-behavior,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force -->
+			<id>T1110.004</id>
+			<!-- Brute Force:  Credential Stuffing -->
+			<id>T1078</id>
+			<!-- Valid Accounts  -->
+		</mitre>
+		<info type="text">
+Description:
+An attempt to authenticate a non-existent user means that someone is trying to log in using a username that doesn't exist in the system. This could happen by mistake or as part of a malicious attempt to access accounts. The system recognizes that the user is not registered and typically denies access.
+</info>
+	</rule>
+	<rule id="104053" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Apache Segmentation Fault.</field>
+		<description>Apache Segmentation Fault.</description>
+		<group>high,one-on-one,web,server,apache,initial-access,T1190,Segmentation,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+		</mitre>
+	</rule>
+	<rule id="104054" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Malformed Host header.</field>
+		<description>ATTACK T1190: Malformed Host header.</description>
+		<group>critical,one-on-one,web,server,apache,T1190,T1071,T1071.001,initial-access,notable-behaviour,suspicious-behavior,command-and-control,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104055" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Invalid URI request performed.</field>
+		<description>ATTACK T1190: Invalid URI request performed.</description>
+		<group>medium,one-on-one,web,server,apache,notable-behaviour,T1071,T1071.001,T1190,initial-access,command-and-control,uri,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104056" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Invalid Method request performed.</field>
+		<description>Invalid Method request performed.</description>
+		<group>high,one-on-one,web,server,apache,notable-behaviour,T1071,T1071.001,T1190,initial-access,command-and-control,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104057" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">HTTP request without a hostname.</field>
+		<description>HTTP request without a hostname.</description>
+		<group>medium,one-on-one,web,server,apache,discovery,T1018,</group>
+		<mitre>
+			<id>T1018</id>
+			<!--  Remote System Discovery   -->
+		</mitre>
+	</rule>
+	<rule id="104058" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Request contains malformed headers.</field>
+		<description>Request contains malformed headers.</description>
+		<group>high,one-on-one,web,server,apache,notable-behaviour,command-and-control,T1071,T1071.001,suspicious-behavior,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104059" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Apache child process ended.</field>
+		<description>Apache child process ended.</description>
+		<group>medium,one-on-one,web,server,apache,process,command-and-control,T1102,</group>
+		<mitre>
+			<id>T1102</id>
+			<!--  Web Service   -->
+		</mitre>
+	</rule>
+	<rule id="104060" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Apache server shutting down.</field>
+		<description>Apache server shutting down.</description>
+		<group>low,one-on-one,web,server,apache,shutdown-event,impact,T1529,T1489,</group>
+		<mitre>
+			<id>T1529</id>
+			<!-- System Shutdown/Reboot  -->
+			<id>T1489</id>
+			<!-- Service Stop  -->
+		</mitre>
+	</rule>
+	<rule id="104061" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Apache server configuration denied client access.</field>
+		<description>Apache server configuration denied client access.</description>
+		<group>medium,one-on-one,web,server,apache,access,configuration,T1133,persistence,initial-access,</group>
+		<mitre>
+			<id>T1133</id>
+			<!--  External Remote Services   -->
+		</mitre>
+	</rule>
+	<rule id="104062" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Apache server running out of threads.</field>
+		<description>Apache server running out of threads.</description>
+		<group>medium,one-on-one,web,server,apache,defense-evasion,notable-behaviour,T1055.003,T1055,</group>
+		<mitre>
+			<id>T1055</id>
+			<id>T1055.003</id>
+			<!--  Process Injection: Thread Execution Hijacking   -->
+		</mitre>
+	</rule>
+	<rule id="104063" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Requested Page Moved Permanently.</field>
+		<description>Requested Page Moved Permanently.</description>
+		<group>low,one-on-one,web,server,apache,command-and-control,T1071,</group>
+		<mitre>
+			<id>T1071</id>
+			<!--  Application Layer Protocol  -->
+		</mitre>
+	</rule>
+	<rule id="104064" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Requested Page - Temporary Redirect.</field>
+		<description>Requested Page - Temporary Redirect.</description>
+		<group>low,one-on-one,web,server,apache,T1204.001,T1204,execution,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.001</id>
+			<!--  User Execution: Malicious Link   -->
+		</mitre>
+	</rule>
+	<rule id="104065" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Bad Request.</field>
+		<description>Bad Request.</description>
+		<group>low,one-on-one,web,server,apache,T1071,T1071.001,request,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104066" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Request Refused.</field>
+		<description>Request Refused.</description>
+		<group>low,one-on-one,web,server,apache,T1071,T1071.001,request,command-and-control,request,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104067" level="1" noalert="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Requested Page Not Found.</field>
+		<description>Requested Page Not Found.</description>
+		<group>low,one-on-one,web,server,apache,T1071,T1071.001,request,command-and-control,request,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104068" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Request Timeout.</field>
+		<description>Request Timeout.</description>
+		<group>low,one-on-one,web,server,apache,T1557,credential-access,collection,T1185,request,</group>
+		<mitre>
+			<id>T1557</id>
+			<!-- Adversary-in-the-Middle    -->
+			<id>T1185</id>
+			<!--  Browser Session Hijacking   -->
+		</mitre>
+	</rule>
+	<rule id="104069" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Request URI Too Long.</field>
+		<description>Request URI Too Long.</description>
+		<group>medium,one-on-one,web,server,apache,T1210,lateral-movement,request,uri,</group>
+		<mitre>
+			<id>T1210</id>
+			<!-- Exploitation of Remote Services   -->
+		</mitre>
+	</rule>
+	<rule id="104070" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Internal Server Error.</field>
+		<description>Internal Server Error.</description>
+		<group>medium,one-on-one,web,server,apache,T1210,lateral-movement,</group>
+		<mitre>
+			<id>T1210</id>
+			<!-- Exploitation of Remote Services   -->
+		</mitre>
+	</rule>
+	<rule id="104071" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Bad Gateway.</field>
+		<description>Bad Gateway.</description>
+		<group>low,one-on-one,web,server,apache,T1071,T1071.004,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<!-- Application Layer Protocol: DNS    -->
+			<id>T1071.004 </id>
+		</mitre>
+	</rule>
+	<rule id="104072" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Service Unavailable.</field>
+		<description>Service Unavailable.</description>
+		<group>medium,one-on-one,web,server,apache,T1489,impact,Service,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+		</mitre>
+	</rule>
+	<rule id="104073" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Gateway Time-out.</field>
+		<description>Gateway Time-out.</description>
+		<group>medium,one-on-one,web,server,apache,process,command-and-control,T1102,</group>
+		<mitre>
+			<id>T1102</id>
+			<!--  Web Service   -->
+		</mitre>
+	</rule>
+	<rule id="104074" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">HTTP Version Not Supported.</field>
+		<description>HTTP Version Not Supported.</description>
+		<group>medium,one-on-one,web,server,apache,T1071.001,T1071,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<!-- Application Layer Protocol: Web Protocols -->
+		</mitre>
+	</rule>
+	<rule id="104075" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Apache Bash Shellshock attack attempt detected in access log.</field>
+		<description>ATTACK T1190: Apache Bash Shellshock attack attempt detected in access log.</description>
+		<group>critical,one-on-one,soar-alert,web,server,apache,T1190,initial-access,attack,shellshock,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+		</mitre>
+		<info type="text">
+Description:
+An Apache Bash Shellshock attack attempt detected in the access log means that someone is trying to exploit a known vulnerability in the Bash shell on a web server. This activity is recorded in the access log, which tracks all requests made to the server. Such attempts can indicate malicious intent, as attackers may be trying to execute harmful commands. The log helps administrators monitor and respond to these potential threats.
+</info>
+	</rule>
+	<rule id="104076" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1110: Multiple authentication failures from same source IP.</field>
+		<description>ATTACK T1110: Multiple authentication failures from same source IP.</description>
+		<group>medium,one-on-one,soar-alert,web,server,apache,authentication,failure,T1110,attack,credential-access,</group>
+		<mitre>
+			<id>T1110</id>
+			<!--  Brute Force  -->
+		</mitre>
+		<info type="text">
+Description:
+Multiple authentication failures from the same source IP means that a single IP address is trying to log in repeatedly but failing each time. This can indicate a potential security issue, such as a user forgetting their password or an attempt to gain unauthorized access. Monitoring these failures helps identify suspicious activity and protect against possible attacks.
+</info>
+	</rule>
+	<rule id="104077" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">Multiple access attempts of a non existent file.</field>
+		<description>Multiple access attempts of a non existent file.</description>
+		<group>high,aggregation,soar-alert,web,server,apache,access,file,T1070,defense-evasion,credential-access,T1110,</group>
+		<mitre>
+			<id>T1070</id>
+			<!--  Indicator Removal   -->
+			<id>T1110</id>
+			<!--  Brute Force  -->
+		</mitre>
+		<info type="text">
+Description:
+Multiple access attempts of a non-existent file means that there have been repeated attempts to open or retrieve a file that doesn't exist on the server. This could be due to a user typing the wrong filename, a broken link, or a malicious attempt to find vulnerabilities. Monitoring these attempts helps detect unusual activity and maintain server security.
+</info>
+	</rule>
+	<rule id="104078" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: SQL injection attempt.</field>
+		<description>ATTACK T1190: SQL injection attempt</description>
+		<group>medium,one-on-one,soar-alert,web,server,apache,attack,initial-access,defense-evasion,T1190,T1055,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+			<id>T1055</id>
+			<!--  Process Injection  -->
+		</mitre>
+		<info type="text">
+Description:
+An SQL injection attempt is a type of attack where someone tries to manipulate a website's database by inserting malicious SQL code into input fields, like login forms. This can allow the attacker to access, modify, or delete data from the database without authorization. Detecting such attempts is crucial for protecting sensitive information and maintaining the security of the website.
+</info>
+	</rule>
+	<rule id="104079" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Common web attack.</field>
+		<description>ATTACK T1190: Common web attack.</description>
+		<group>medium,one-on-one,soar-alert,web,server,apache,attack,initial-access,T1190,T1102,command-and-control,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+			<id>T1102</id>
+			<!--  Web Service  -->
+		</mitre>
+		<info type="text">
+Description:
+A common web attack refers to various tactics used by cybercriminals to exploit vulnerabilities in websites or web applications. These attacks can include methods like phishing (tricking users into revealing personal information), SQL injection (manipulating databases), cross-site scripting (injecting malicious scripts), and denial-of-service attacks (overloading a server to make it unavailable).
+</info>
+	</rule>
+	<rule id="104080" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">directory travesal attack</field>
+		<description>directory travesal attack</description>
+		<group>medium,one-on-one,soar-alert,web,server,apache,directory,attack,T1222,defense-evasion,</group>
+		<mitre>
+			<id>T1222</id>
+			<!--  File and Directory Permissions Modification   -->
+		</mitre>
+		<info type="text">
+Description:
+A directory traversal attack is a method used by attackers to access restricted files and directories on a web server by manipulating the file path in a URL. By using special characters (like "../"), they can navigate outside the intended directory and potentially access sensitive information, such as configuration files or user data.
+</info>
+	</rule>
+	<rule id="104081" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: ASCII control characters in URL encoding detected</field>
+		<description>ATTACK T1190: ASCII control characters in URL encoding detected</description>
+		<group>medium,one-on-one,soar-alert,web,server,apache,T1132,command-and-control,T1190,initial-access,</group>
+		<mitre>
+			<id>T1132</id>
+			<!-- Data Encoding  -->
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+		</mitre>
+		<info type="text">
+Description:
+ASCII control characters in URL encoding detected means that a URL contains characters that are not typically allowed, such as non-printable control characters. These characters can be used maliciously to manipulate how the server processes the request. Detecting them is important for identifying potential security threats and ensuring that only valid, safe URLs are processed by the server.
+</info>
+	</rule>
+	<rule id="104082" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: XSS (Cross Site Scripting) attempt</field>
+		<description>ATTACK T1190: XSS (Cross Site Scripting) attempt</description>
+		<group>medium,one-on-one,soar-alert,web,server,apache,attack,T1190,initial-access,T1189,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+			<id>T1189</id>
+			<!--  Drive-by Compromise  -->
+		</mitre>
+		<info type="text">
+Description:
+An XSS (Cross Site Scripting) attempt occurs when an attacker tries to inject malicious scripts into a web page that other users will view. This can allow the attacker to steal sensitive information, such as cookies or login credentials, or to perform actions on behalf of the user without their consent.
+</info>
+	</rule>
+	<rule id="104083" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">A web attack returned code 200 (success)</field>
+		<description>A web attack returned code 200 (success)</description>
+		<group>high,one-on-one,soar-alert,web,server,apache,attack,T1190,initial-access,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+		</mitre>
+		<info type="text">
+Description:
+A web attack that returned code 200 (success) means that the malicious request was processed by the server without triggering any errors, indicating that the server executed the request successfully. This can be misleading, as a successful response doesn’t mean the request was legitimate; it may indicate that the attacker was able to access or manipulate data without detection.
+</info>
+	</rule>
+	<rule id="104084" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Multiple SQL injection attempts from same source ip</field>
+		<description>ATTACK T1190: Multiple SQL injection attempts from same source ip</description>
+		<group>high,aggregation,soar-alert,web,server,apache,attack,initial-access,defense-evasion,T1190,T1055,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+			<id>T1055</id>
+			<!--  Process Injection  -->
+		</mitre>
+		<info type="text">
+Description:
+Multiple SQL injection attempts from same source IP means that a specific IP address is making repeated attempts to exploit vulnerabilities in a website's database by injecting harmful SQL code. This pattern suggests a potential attack, where the attacker is trying to gain unauthorized access to data or manipulate the database.
+</info>
+	</rule>
+	<rule id="104085" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Multiple common web attacks from same source ip</field>
+		<description>ATTACK T1190: Multiple common web attacks from same source ip</description>
+		<group>high,aggregation,soar-alert,web,server,apache,attack,T1190,initial-access,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+		</mitre>
+		<info type="text">
+Description:
+Multiple common web attacks from same source IP means that a specific IP address is making repeated attempts to execute various types of attacks on a web application or server. These attacks may include methods like phishing, SQL injection, cross-site scripting (XSS), or denial-of-service attempts. This behavior indicates a potential threat, suggesting that the attacker is targeting the system to exploit vulnerabilities.
+</info>
+	</rule>
+	<rule id="104086" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Multiple directory traversal attacks from same source ip</field>
+		<description>ATTACK T1190: Multiple directory traversal attacks from same source ip.</description>
+		<group>high,aggregation,soar-alert,web,server,apache,directory,attack,T1222,defense-evasion,</group>
+		<mitre>
+			<id>T1222</id>
+			<!--  File and Directory Permissions Modification   -->
+		</mitre>
+		<info type="text">
+Description:
+Multiple directory traversal attacks from same source IP means that a specific IP address is repeatedly trying to exploit vulnerabilities in a web server to access restricted files and directories. This behavior suggests an attempt to navigate outside the intended file structure, potentially exposing sensitive information.
+</info>
+	</rule>
+	<rule id="104087" level="1">
+		<if_sid>104003</if_sid>
+		<field name="sub_rule_name">ATTACK T1190: Multiple XSS (Cross Site Scripting) attempts from same source ip.</field>
+		<description>ATTACK T1190: Multiple XSS (Cross Site Scripting) attempts from same source ip.</description>
+		<group>high,aggregation,soar-alert,web,server,apache,attack,T1190,initial-access,T1189,</group>
+		<mitre>
+			<id>T1190</id>
+			<!--  Exploit Public-Facing Application  -->
+			<id>T1189</id>
+			<!--  Drive-by Compromise  -->
+		</mitre>
+		<info type="text">
+Description:
+Multiple XSS (Cross Site Scripting) attempts from same source IP means that a specific IP address is repeatedly trying to inject malicious scripts into a web application. This behavior indicates an effort to exploit vulnerabilities in the site, potentially allowing the attacker to steal sensitive data or perform unauthorized actions on behalf of users. Monitoring these attempts is crucial for enhancing security and protecting users from such threats.
+</info>
+	</rule>
+	<!--<rule id="104088" level="1">-->
+	<!--    <if_sid>104003</if_sid>-->
+	<!--    <field name="sub_rule_name">ATTACK T1190: Directory enumeration attempts from same source ip</field>-->
+	<!--    <description>ATTACK T1190: Directory enumeration attempts from same source ip</description>-->
+	<!--    <group>web,server,apache,one-on-one,high,T1190,initial-access,directory,notable-behaviour,s-a,</group>-->
+	<!--    <mitre>-->
+	<!--        <id>T1190</id>                  -->
+	<!--    </mitre>-->
+	<!--      <info type="text">-->
+	<!--     Description:-->
+	<!--        Directory enumeration attempts from same source IP means that a specific IP address is repeatedly trying to discover accessible directories and files on a web server. This technique involves sending requests to find hidden or sensitive directories, which may lead to unauthorized access to information. -->
+	<!--    </info>-->
+	<!--</rule>-->
+	<!-- microsoft windows active directory rule -->
+	<rule id="104089" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Online defragmentation started.</field>
+		<description>Online defragmentation started.</description>
+		<group>low,one-on-one,windows,server,active-directory,T1003,T1003.003,credential-access,</group>
+		<mitre>
+			<id>T1003</id>
+			<id>T1003.003</id>
+			<!-- OS Credential Dumping: NTDS    -->
+		</mitre>
+	</rule>
+	<rule id="104090" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Online defragmentation complete.</field>
+		<description>Online defragmentation complete.</description>
+		<group>medium,one-on-one,windows,server,active-directory,T1003,T1003.003,credential-access,</group>
+		<mitre>
+			<id>T1003</id>
+			<id>T1003.003</id>
+			<!-- OS Credential Dumping: NTDS    -->
+		</mitre>
+	</rule>
+	<rule id="104091" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">LDAP over SSL failed.</field>
+		<description>LDAP over SSL failed.</description>
+		<group>medium,one-on-one,soar-alert,windows,server,active-directory,T1046,discovery,notable-behaviour,failure,</group>
+		<mitre>
+			<id>T1046</id>
+			<!-- Network Service Discovery   -->
+		</mitre>
+		<info type="text">
+Description:
+An attempt to establish an LDAP (Lightweight Directory Access Protocol) connection over SSL (Secure Sockets Layer) has failed. This issue may indicate problems with the server configuration, certificate validation, or network connectivity. A failed SSL connection can compromise the security of data transmission and should be investigated promptly to ensure secure access to directory services and protect sensitive information.
+</info>
+	</rule>
+	<rule id="104092" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Directory Service database update success.</field>
+		<description>Directory Service database update success.</description>
+		<group>low,one-on-one,windows,active-directory,T1098,server,privilege-escalation,success,</group>
+		<mitre>
+			<id>T1098</id>
+			<!--  Account Manipulation  -->
+		</mitre>
+	</rule>
+	<rule id="104093" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine recovery complete.</field>
+		<description>Database engine recovery complete.</description>
+		<group>low,one-on-one,windows,server,active-directory,T1003,T1003.003,credential-access,</group>
+		<mitre>
+			<id>T1003</id>
+			<id>T1003.003</id>
+			<!-- OS Credential Dumping: NTDS    -->
+		</mitre>
+	</rule>
+	<rule id="104094" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine start success.</field>
+		<description>Database engine start success.</description>
+		<group>low,one-on-one,windows,active-directory,server,success,T1569,T1569.002,execution,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!-- System Services: Service Execution    -->
+		</mitre>
+	</rule>
+	<rule id="104095" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Intersite transport logon failed.</field>
+		<description>Intersite transport logon failed.</description>
+		<group>low,one-on-one,windows,active-directory,T1098,server,privilege-escalation,failure,T1078,initial-access,</group>
+		<mitre>
+			<id>T1098</id>
+			<!--  Account Manipulation  -->
+			<id>T1078</id>
+			<!--  Valid Accounts  -->
+		</mitre>
+	</rule>
+	<rule id="104096" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Multiple intersite transport logon failures.</field>
+		<description>Multiple intersite transport logon failures.</description>
+		<group>medium,aggreation,soar-alert,windows,active-directory,server,T1110,failure,authentication,credential-access,</group>
+		<mitre>
+			<id>T1110</id>
+			<!--  Brute Force   -->
+		</mitre>
+		<info type="text">
+			Description:
+			Multiple intersite transport logon failures refer to repeated unsuccessful attempts to authenticate or log in to a network service or application across different sites or domains within a distributed system. This is often seen in environments using protocols like LDAP or Kerberos for authentication.
+			</info>
+	</rule>
+	<rule id="104097" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Local domain controller became topology generator.</field>
+		<description>Local domain controller became topology generator.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1207,defense-evasion,</group>
+		<mitre>
+			<id>T1207</id>
+			<!--  Rogue Domain Controller   -->
+		</mitre>
+	</rule>
+	<rule id="104098" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Active directory rebuilding quota-tracking table success.</field>
+		<description>Active directory rebuilding quota-tracking table success.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1484,defense-evasion,success,</group>
+		<mitre>
+			<id>T1484</id>
+			<!--   Domain or Tenant Policy Modification  -->
+		</mitre>
+	</rule>
+	<rule id="104099" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Global catalog location success.</field>
+		<description>Global catalog location success.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1018,discovery,success,</group>
+		<mitre>
+			<id>T1018</id>
+			<!-- Remote System Discovery   -->
+		</mitre>
+	</rule>
+	<rule id="104100" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Active directory database update problems resolved.</field>
+		<description>Active directory database update problems resolved.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1556,credential-access,</group>
+		<mitre>
+			<id>T1556</id>
+			<!--  Modify Authentication Process   -->
+		</mitre>
+	</rule>
+	<rule id="104101" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Active directory problems resolved.</field>
+		<description>Active directory problems resolved.</description>
+		<group>low,one-on-one,windows,active-directory,server,</group>
+		<!-- <mitre><id></id><id></id></mitre> -->
+	</rule>
+	<rule id="104102" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine new instance started.</field>
+		<description>Database engine new instance started.</description>
+		<group>info,one-on-one,windows,active-directory,server,T1569,T1569.002,execution,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution   -->
+		</mitre>
+	</rule>
+	<rule id="104103" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine instance stopped.</field>
+		<description>Database engine instance stopped.</description>
+		<group>medium,one-on-one,windows,active-directory,T1489,notable-behaviour,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<!-- Service Stop   -->
+		</mitre>
+	</rule>
+	<rule id="104104" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine replaying logfile.</field>
+		<description>Database engine replaying logfile.</description>
+		<group>low,one-on-one,windows,active-directory,server,credential-access,</group>
+	</rule>
+	<rule id="104105" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine index cleanup started.</field>
+		<description>Database engine index cleanup started.</description>
+		<group>info,one-on-one,windows,active-directory,server,T1070,defense-evasion,</group>
+		<mitre>
+			<id>T1070</id>
+			<!-- Indicator Removal   -->
+		</mitre>
+	</rule>
+	<rule id="104106" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Internal schema cache update failed.</field>
+		<description>Internal schema cache update failed.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1485,impact,failure,</group>
+		<mitre>
+			<id>T1485</id>
+			<!--  Data Destruction  -->
+		</mitre>
+	</rule>
+	<rule id="104107" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Bad page link has been detected.</field>
+		<description>Bad page link has been detected.</description>
+		<group>low,one-on-one,soar-alert,windows,active-directory,server,T1204,T1204.001,execution,suspicious-behavior,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.001</id>
+			<!--   User Execution: Malicious Link  -->
+		</mitre>
+		<info type="text">
+Description:
+A bad page link has been detected, potentially indicating a malicious link that may have been executed by the user. This could suggest an attempt to exploit vulnerabilities or compromise security. Immediate investigation is necessary to assess the risk and take appropriate action to protect users and the system.
+</info>
+	</rule>
+	<rule id="104108" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Active directory shutdown success.</field>
+		<description>Active directory shutdown success.</description>
+		<group>low,one-on-one,windows,active-directory,T1489,impact,success,</group>
+		<mitre>
+			<id>T1489</id>
+			<!-- Service Stop   -->
+		</mitre>
+	</rule>
+	<rule id="104109" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine stopped.</field>
+		<description>Database engine stopped.</description>
+		<group>low,one-on-one,windows,active-directory,T1489,notable-behaviour,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<!-- Service Stop   -->
+		</mitre>
+	</rule>
+	<rule id="104110" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine started.</field>
+		<description>Database engine started.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1569,T1569.002,execution,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution   -->
+		</mitre>
+	</rule>
+	<rule id="104111" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Database engine recovered success.</field>
+		<description>Database engine recovered success.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1569,T1569.002,execution,T1490,impact,success,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution   -->
+			<id>T1490</id>
+			<!--  Inhibit System Recovery  -->
+		</mitre>
+	</rule>
+	<rule id="104112" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">File Replication Service started.</field>
+		<description>File Replication Service started.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1569,T1569.002,execution,file,service,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution   -->
+		</mitre>
+	</rule>
+	<rule id="104113" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">File Replication Service detected low on disk space.</field>
+		<description>File Replication Service detected low on disk space.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1561,impact,notable-behaviour,</group>
+		<mitre>
+			<id>T1561</id>
+			<!--  Disk Wipe  -->
+		</mitre>
+	</rule>
+	<rule id="104114" level="1" noalert="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Active directory Success Audit event.</field>
+		<description>Active directory Success Audit event.</description>
+		<group>low,one-on-one,windows,active-directory,server,success,</group>
+	</rule>
+	<rule id="104115" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Active directory Failure Audit event.</field>
+		<description>Active directory Failure Audit event.</description>
+		<group>low,one-on-one,windows,active-directory,server,failure,</group>
+	</rule>
+	<rule id="104116" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Special privileges assigned success.</field>
+		<description>Special privileges assigned success.</description>
+		<group>low,one-on-one,windows,active-directory,server,TA0004,notable-behaviour,privilege-escalation,</group>
+		<mitre>
+			<id>TA0004</id>
+		</mitre>
+	</rule>
+	<rule id="104117" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Process stopped.</field>
+		<description>Process stopped.</description>
+		<group>low,one-on-one,windows,active-directory,T1489,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<!-- Service Stop   -->
+		</mitre>
+	</rule>
+	<rule id="104118" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Object operation info.</field>
+		<description>Object operation info.</description>
+		<group>low,one-on-one,windows,active-directory,server,</group>
+	</rule>
+	<rule id="104119" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Object open success.</field>
+		<description>Object open success.</description>
+		<group>low,one-on-one,windows,active-directory,server,</group>
+	</rule>
+	<rule id="104120" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">ATTACK T1550.003 : Use Alternate Authentication Material: Pass the Ticket.</field>
+		<description>ATTACK T1550.003 : Use Alternate Authentication Material: Pass the Ticket.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1550,T1550.003,defense-evasion,authentication,</group>
+		<mitre>
+			<id>T1550</id>
+			<id>T1550.003</id>
+		</mitre>
+	</rule>
+	<rule id="104121" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">ATTACK T1550.003 : Multiple Use Alternate Authentication Material: Pass the Ticket.</field>
+		<description>ATTACK T1550.003 : Multiple Use Alternate Authentication Material: Pass the Ticket.</description>
+		<group>medium,aggregation,windows,active-directory,server,T1550,T1550.003,defense-evasion,notable-behaviour,authentication,</group>
+		<mitre>
+			<id>T1550</id>
+			<id>T1550.003</id>
+		</mitre>
+	</rule>
+	<rule id="104122" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">ATTACK T1558.003: ATTACK Steal or Forge Kerberos Tickets: Kerberoasting</field>
+		<description>ATTACK T1558.003: ATTACK Steal or Forge Kerberos Tickets: Kerberoasting</description>
+		<group>medium,one-on-one,windows,active-directory,server,T1558,T1558.003,notable-behaviour,credential-access,</group>
+		<mitre>
+			<id>T1558</id>
+			<id>T1558.003</id>
+			<!--  Steal or Forge Kerberos Tickets: Kerberoasting  -->
+		</mitre>
+	</rule>
+	<rule id="104123" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Kerberos Tickets Details</field>
+		<description>Kerberos Tickets Details</description>
+		<group>info,one-on-one,windows,active-directory,server,T1558,credential-access,</group>
+		<mitre>
+			<id>T1558</id>
+			<!--  Steal or Forge Kerberos Tickets  -->
+		</mitre>
+	</rule>
+	<rule id="104124" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Kerberos authentication ticket requested</field>
+		<description>Kerberos authentication ticket requested</description>
+		<group>info,one-on-one,windows,active-directory,server,T1550,T1550.003,defense-evasion,authentication,request,</group>
+		<mitre>
+			<id>T1550</id>
+			<id>T1550.003</id>
+			<!--  Use Alternate Authentication Material: Pass the Ticket   -->
+		</mitre>
+	</rule>
+	<rule id="104125" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Multiple Kerberos authentication tickets requested</field>
+		<description>Multiple Kerberos authentication tickets requested</description>
+		<group>medium,aggregation,soar-alert,windows,active-directory,server,T1558,credential-access,notable-behaviour,authentication,request,</group>
+		<mitre>
+			<id>T1558</id>
+			<!--  Steal or Forge Kerberos Tickets  -->
+		</mitre>
+		<info type="text">
+Description:
+Multiple Kerberos authentication tickets have been requested, which may indicate unusual or suspicious activity, such as potential credential abuse or a brute-force attack. This behavior can suggest an attempt to gain unauthorized access to network resources.
+</info>
+	</rule>
+	<rule id="104126" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">User account deleted.</field>
+		<description>User account deleted.</description>
+		<group>low,one-on-one,windows,active-directoryserver,T1531,impact,notable-behaviour,</group>
+		<mitre>
+			<id>T1531</id>
+			<!-- Account Access Removal    -->
+		</mitre>
+	</rule>
+	<rule id="104127" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">User account created.</field>
+		<description>User account created.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1136,persistence,</group>
+		<mitre>
+			<id>T1136</id>
+			<!-- Create Account   -->
+		</mitre>
+	</rule>
+	<rule id="104128" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Logon failed</field>
+		<description>Logon failed</description>
+		<group>low,one-on-one,windows,active-directory,server,T1078,initial-access,failure,</group>
+		<mitre>
+			<id>T1078</id>
+			<!--  Valid Accounts   -->
+		</mitre>
+	</rule>
+	<rule id="104129" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Pre-authentication failed.</field>
+		<description>Pre-authentication failed.</description>
+		<group>medium,one-on-one,windows,active-directory,server,T1110,notable-behaviour,credential-access,failure,authentication,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force    -->
+		</mitre>
+	</rule>
+	<rule id="104130" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Multiple Pre-authentication failures.</field>
+		<description>Multiple Pre-authentication failures.</description>
+		<group>medium,aggregation,windows,active-directory,server,T1110,notable-behaviour,credential-access,failure,authentication,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force    -->
+		</mitre>
+	</rule>
+	
+	<rule id="104132" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Kerberos service ticket request failed</field>
+		<description>Kerberos service ticket request failed</description>
+		<group>low,one-on-one,windows,active-directory,server,T1558,credential-access,failure,</group>
+		<mitre>
+			<id>T1558</id>
+			<!--  Steal or Forge Kerberos Tickets  -->
+		</mitre>
+	</rule>
+	<rule id="104133" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Multiple Kerberos service ticket requests failed</field>
+		<description>Multiple Kerberos service ticket requests failed</description>
+		<group>high,aggregation,windows,active-directory,server,T1558,credential-access,failure,notable-behaviour,</group>
+		<mitre>
+			<id>T1558</id>
+			<!--  Steal or Forge Kerberos Tickets  -->
+		</mitre>
+	</rule>
+	<rule id="104134" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Object Open failed.</field>
+		<description>Object Open failed.</description>
+		<group>low,one-on-one,windows,active-directory,server,</group>
+	</rule>
+	<rule id="104135" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">User account password set failed.</field>
+		<description>User account password set failed.</description>
+		<group>low,one-on-one,windows,active-directory,server,credential-access,</group>
+	</rule>
+	<rule id="104136" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">ATTACK T1489: File Replication Service stopped.</field>
+		<description>ATTACK T1489: File Replication Service stopped.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1489,service,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<!-- Service Stop    -->
+		</mitre>
+	</rule>
+	<rule id="104137" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">ATTACK T1484.001: Group policy objects applied success.</field>
+		<description>ATTACK T1484.001: Group policy objects applied success.</description>
+		<group>info,one-on-one,windows,active-directory,server,T1484,T1484.001,success,defense-evasion,</group>
+		<mitre>
+			<id>T1484</id>
+			<id>T1484.001</id>
+			<!--  Domain or Tenant Policy Modification: Group Policy Modification   -->
+		</mitre>
+	</rule>
+	<rule id="104138" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">MSDTC process Promotion or Demotion event failed.</field>
+		<description>MSDTC process Promotion or Demotion event failed.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1055,process,defense-evasion,</group>
+		<mitre>
+			<id>T1055</id>
+			<!-- Process Injection   -->
+		</mitre>
+	</rule>
+	<rule id="104139" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Policy processing notifications delayed.</field>
+		<description>Policy processing notifications delayed.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1055,process,defense-evasion,</group>
+		<mitre>
+			<id>T1055</id>
+			<!-- Process Injection   -->
+		</mitre>
+	</rule>
+	<rule id="104140" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">Remote Login failed.</field>
+		<description>Remote Login failed.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1110,credential-access,failure,authentication,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force    -->
+		</mitre>
+	</rule>
+	<rule id="104141" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">The Key Distribution Center (KDC) encountered a user certificate that was valid but could not be mapped to a user in a strong way.</field>
+		<description>The Key Distribution Center (KDC) encountered a user certificate that was valid but could not be mapped to a user in a strong way.</description>
+		<group>medium,one-on-one,windows,active-directory,server,T1649,credential-access,</group>
+		<mitre>
+			<id>T1649</id>
+			<!--  Steal or Forge Authentication Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104142" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">The Key Distribution Center (KDC) encountered a user certificate that was valid but could not be mapped to a user in a strong way. The certificate also predated the user it mapped to. </field>
+		<description>The Key Distribution Center (KDC) encountered a user certificate that was valid but could not be mapped to a user in a strong way. The certificate also predated the user it mapped to. </description>
+		<group>medium,one-on-one,windows,active-directory,server,T1649,credential-access,</group>
+		<mitre>
+			<id>T1649</id>
+			<!--  Steal or Forge Authentication Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104143" level="1">
+		<if_sid>104004</if_sid>
+		<field name="sub_rule_name">The Key Distribution Center (KDC) encountered a user certificate that was valid but contained a different SID than the user to which it mapped.</field>
+		<description>The Key Distribution Center (KDC) encountered a user certificate that was valid but contained a different SID than the user to which it mapped.</description>
+		<group>low,one-on-one,windows,active-directory,server,T1649,credential-access,</group>
+		<mitre>
+			<id>T1649</id>
+			<!--  Steal or Forge Authentication Certificates   -->
+		</mitre>
+	</rule>
+	<!-- Web Server - Apache - 2 -->
+	<rule id="104144" level="1">
+		<if_sid>104005</if_sid>
+		<field name="sub_rule_name">ATTACK T1505.003: Server Software Component: Web Shell</field>
+		<description>ATTACK T1505.003: Server Software Component: Web Shell</description>
+		<group>low,one-on-one,web,apache-2,T1505,T1505.003,persistence,notable-behaviour,</group>
+		<mitre>
+			<id>T1505</id>
+			<!-- Server Software Component: Web Shell -->
+			<id>T1505.003</id>
+		</mitre>
+	</rule>
+	<rule id="104145" level="1">
+		<if_sid>104005</if_sid>
+		<field name="sub_rule_name">ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1033: System Owner/User Discovery</field>
+		<description>ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1033: System Owner/User Discovery</description>
+		<group>low,one-on-one,web,apache-2,T1505,T1505.003,persistence,notable-behaviour,T1033,discovery,</group>
+		<mitre>
+			<id>T1505</id>
+			<!-- Server Software Component: Web Shell -->
+			<id>T1505.003</id>
+			<id>T1033</id>
+			<!-- System Owner/User Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104146" level="1">
+		<if_sid>104005</if_sid>
+		<field name="sub_rule_name">ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1082: System Information Discovery</field>
+		<description>ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1082: System Information Discovery</description>
+		<group>low,one-on-one,web,apache-2,T1505,T1505.003,persistence,notable-behaviour,T1082,discovery,</group>
+		<mitre>
+			<id>T1505</id>
+			<!-- Server Software Component: Web Shell -->
+			<id>T1505.003</id>
+			<id>T1082</id>
+			<!-- System information Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104147" level="1">
+		<if_sid>104005</if_sid>
+		<field name="sub_rule_name">ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1083: File and Directory Discovery</field>
+		<description>ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1083: File and Directory Discovery</description>
+		<group>low,one-on-one,web,apache-2,T1505,T1505.003,persistence,notable-behaviour,T1083,discovery,</group>
+		<mitre>
+			<id>T1505</id>
+			<!-- Server Software Component: Web Shell -->
+			<id>T1505.003</id>
+			<id>T1083</id>
+			<!--  File and Directory Discovery -->
+		</mitre>
+	</rule>
+	<!-- Duplicate
+<rule id="101700" level="3"><if_sid>104005</if_sid><field name="sub_rule_name">ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1082: System Information Discovery</field><description>ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1082: System Information Discovery</description></rule><rule id="101703" level="3"><if_sid>104005</if_sid><field name="sub_rule_name">ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1083: File and Directory Discovery</field><description>ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1083: File and Directory Discovery</description></rule>
+-->
+	<rule id="104148" level="1">
+		<if_sid>104005</if_sid>
+		<field name="sub_rule_name">ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1048: Exfiltration Over Alternative Protocol</field>
+		<description>ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1048: Exfiltration Over Alternative Protocol</description>
+		<group>low,one-on-one,web,apache-2,T1505,T1505.003,persistence,notable-behaviour,T1048,discovery,</group>
+		<mitre>
+			<id>T1505</id>
+			<!-- Server Software Component: Web Shell -->
+			<id>T1505.003</id>
+			<id>T1048</id>
+			<!--  Exfiltration Over Alternative Protocol -->
+		</mitre>
+	</rule>
+	<rule id="104149" level="1">
+		<if_sid>104005</if_sid>
+		<field name="sub_rule_name">ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1222.002: Linux and Mac File and Directory Permissions Modification</field>
+		<description>ATTACK T1505.003: Server Software Component: Web Shell/ATTACK T1222.002: Linux and Mac File and Directory Permissions Modification</description>
+		<group>low,one-on-one,web,apache-2,T1505,T1505.003,persistence,notable-behaviour,T1222,T1222.002,defense-evasion,</group>
+		<mitre>
+			<id>T1505</id>
+			<!-- Server Software Component: Web Shell -->
+			<id>T1505.003</id>
+			<id>T1222</id>
+			<id>T1222.002</id>
+			<!--   File and Directory Permissions Modification : Linux and Mac File and Directory Permissions Modification -->
+		</mitre>
+	</rule>
+	<!-- Web Server - Microsoft IIS Server Security -->
+	<rule id="104150" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">HTTP Server Could not initialize its security</field>
+		<description>HTTP Server Could not initialize its security</description>
+		<group>low,one-on-one,web,server,iis-security,T1505.004,T1505,persistence,</group>
+		<mitre>
+			<id>T1505</id>
+			<id>T1505.004</id>
+			<!-- Server Software Component: IIS Components   -->
+		</mitre>
+	</rule>
+	<rule id="104151" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">CryptoAPI error encountered trying to retrieve the server certificate</field>
+		<description>CryptoAPI error encountered trying to retrieve the server certificate</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104152" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The server certificate has been revoked</field>
+		<description>The server certificate has been revoked</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104153" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The identity of the application pool is invalid</field>
+		<description>The identity of the application pool is invalid</description>
+		<group>medium,one-on-one,web,server,iis-security,T1505.004,T1505,persistence,</group>
+		<mitre>
+			<id>T1505</id>
+			<id>T1505.004</id>
+			<!-- Server Software Component: IIS Components   -->
+		</mitre>
+	</rule>
+	<rule id="104154" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">IIS Logging error: cannot create directory</field>
+		<description>IIS Logging error: cannot create directory</description>
+		<group>low,one-on-one,web,server,iis-security,defense-evasion,T1562,T1562.002,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.002</id>
+			<!-- Impair Defenses: Disable Windows Event Logging   -->
+		</mitre>
+	</rule>
+	<rule id="104155" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The server was unable to find the log file directory</field>
+		<description>The server was unable to find the log file directory</description>
+		<group>medium,one-on-one,web,server,iis-security,defense-evasion,T1562,T1562.002,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.002</id>
+			<!-- Impair Defenses: Disable Windows Event Logging   -->
+		</mitre>
+	</rule>
+	<rule id="104156" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Could not initialize the logging module for site</field>
+		<description>Could not initialize the logging module for site</description>
+		<group>medium,one-on-one,web,server,iis-security,defense-evasion,T1562,T1562.002,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.002</id>
+			<!-- Impair Defenses: Disable Windows Event Logging   -->
+		</mitre>
+	</rule>
+	<rule id="104157" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">A CryptoAPI error encountered while retrieving the server Certificate trust List</field>
+		<description>A CryptoAPI error encountered while retrieving the server Certificate trust List</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104158" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">FTP Server could not create a client worker thread for user at host</field>
+		<description>FTP Server could not create a client worker thread for user at host</description>
+		<group>low,one-on-one,web,server,iis-security,T1071,T1071.002,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.002</id>
+			<!-- Application Layer Protocol: File Transfer Protocols   -->
+		</mitre>
+	</rule>
+	<rule id="104159" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The server certificate has expired or is not yet valid</field>
+		<description>The server certificate has expired or is not yet valid</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104160" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Server certificate has invalid metabase data associated with it</field>
+		<description>Server certificate has invalid metabase data associated with it</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104161" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">IIS Logging error: can't create file</field>
+		<description>IIS Logging error: can't create file</description>
+		<group>medium,one-on-one,web,server,iis-security,defense-evasion,T1562,T1562.002,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.002</id>
+			<!-- Impair Defenses: Disable Windows Event Logging   -->
+		</mitre>
+	</rule>
+	<rule id="104162" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Server suspended request logging as an error occurred writing a log record</field>
+		<description>Server suspended request logging as an error occurred writing a log record</description>
+		<group>low,one-on-one,web,server,iis-security,defense-evasion,T1562,T1562.002,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.002</id>
+			<!-- Impair Defenses: Disable Windows Event Logging   -->
+		</mitre>
+	</rule>
+	<rule id="104163" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Server certificate could not be retrieved due to an internal error</field>
+		<description>Server certificate could not be retrieved due to an internal error</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104164" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Server certificate could not be retrieved: Not found in a certificate store</field>
+		<description>Server certificate could not be retrieved: Not found in a certificate store</description>
+		<group>medium,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104165" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The server was unable to logon the Windows NT account</field>
+		<description>The server was unable to logon the Windows NT account</description>
+		<group>low,one-on-one,web,server,iis-security,authentication,defense-evasion,T1078,</group>
+		<mitre>
+			<id>T1078</id>
+			<!--  Valid Accounts  -->
+		</mitre>
+	</rule>
+	<rule id="104166" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">SMTP server cannot initialize its security</field>
+		<description>SMTP server cannot initialize its security</description>
+		<group>low,one-on-one,web,server,iis-security,T1071,T1071.003,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.003</id>
+			<!--  Application Layer Protocol: Mail Protocols  -->
+		</mitre>
+	</rule>
+	<rule id="104167" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">User denied access to the current directory because of a security change</field>
+		<description>User denied access to the current directory because of a security change</description>
+		<group>low,one-on-one,web,server,iis-security,T1222,defense-evasion,</group>
+		<mitre>
+			<id>T1222</id>
+			<!-- File and Directory Permissions Modification   -->
+		</mitre>
+	</rule>
+	<rule id="104168" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">FTP Server could not initialize its security</field>
+		<description>FTP Server could not initialize its security</description>
+		<group>low,one-on-one,web,server,iis-security,T1071,T1071.002,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.002</id>
+			<!-- Application Layer Protocol: File Transfer Protocols   -->
+		</mitre>
+	</rule>
+	<rule id="104169" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The server certificate could not be retrieved</field>
+		<description>The server certificate could not be retrieved</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104170" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The server was unable to acquire a license for a SSL connection</field>
+		<description>The server was unable to acquire a license for a SSL connection</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104171" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Server Certificate Trust List has invalid metabase data associated with it</field>
+		<description>Server Certificate Trust List has invalid metabase data associated with it</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104172" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Digest authentication: stalled authentication</field>
+		<description>Digest authentication: stalled authentication</description>
+		<group>medium,one-on-one,web,server,iis-security,authentication,T1556,credential-access,</group>
+		<mitre>
+			<id>T1556</id>
+			<!-- Modify Authentication Process  -->
+		</mitre>
+	</rule>
+	<rule id="104173" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">WWW Publishing Service failed to query SSL configuration data</field>
+		<description>WWW Publishing Service failed to query SSL configuration data</description>
+		<group>low,one-on-one,web,server,iis-security,T1587.003,T1587,resource-development,</group>
+		<mitre>
+			<id>T1587</id>
+			<id>T1587.003</id>
+			<!-- Develop Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104174" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Server certificate Trust List not retrieved: Not found in a certificate store</field>
+		<description>Server certificate Trust List not retrieved: Not found in a certificate store</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104175" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The server was unable to read the file due to the lack of access permissions</field>
+		<description>The server was unable to read the file due to the lack of access permissions</description>
+		<group>low,one-on-one,web,server,iis-security,T1222,defense-evasion,</group>
+		<mitre>
+			<id>T1222</id>
+			<!-- File and Directory Permissions Modification   -->
+		</mitre>
+	</rule>
+	<rule id="104176" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Unable to configure logging for site</field>
+		<description>Unable to configure logging for site</description>
+		<group>low,one-on-one,web,server,iis-security,defense-evasion,T1562,T1562.002,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.002</id>
+			<!-- Impair Defenses: Disable Windows Event Logging   -->
+		</mitre>
+	</rule>
+	<rule id="104177" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">User failed to log on</field>
+		<description>User failed to log on</description>
+		<group>low,one-on-one,web,server,iis-security,T1078,initial-access,</group>
+		<mitre>
+			<id>T1078</id>
+			<!--  Valid Accounts  -->
+		</mitre>
+	</rule>
+	<rule id="104178" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">The WWW Publishing Service encountered an error</field>
+		<description>The WWW Publishing Service encountered an error</description>
+		<group>low,one-on-one,web,server,iis-security,T1543.003,T1543,persistence,service,</group>
+		<mitre>
+			<id>T1543</id>
+			<id>T1543.003</id>
+			<!--  Create or Modify System Process: Windows Service  -->
+		</mitre>
+	</rule>
+	<rule id="104179" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">One of the certificates has an invalid signature</field>
+		<description>One of the certificates has an invalid signature</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104180" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">A CryptoAPI error was encountered trying to retrieve the server certificate</field>
+		<description>A CryptoAPI error was encountered trying to retrieve the server certificate</description>
+		<group>low,one-on-one,web,server,iis-security,T1588,T1588.004,resource-development,</group>
+		<mitre>
+			<id>T1588</id>
+			<id>T1588.004</id>
+			<!-- Obtain Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104181" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">IIS Logging error: disk full</field>
+		<description>IIS Logging error: disk full</description>
+		<group>medium,one-on-one,web,server,iis-security,defense-evasion,T1562,T1562.002,notable-behaviour,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.002</id>
+			<!-- Impair Defenses: Disable Windows Event Logging   -->
+		</mitre>
+	</rule>
+	<rule id="104182" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">An SSL error occurred</field>
+		<description>An SSL error occurred</description>
+		<group>medium,one-on-one,web,server,iis-security,T1587.003,T1587,resource-development,error,</group>
+		<mitre>
+			<id>T1587</id>
+			<id>T1587.003</id>
+			<!-- Develop Capabilities: Digital Certificates   -->
+		</mitre>
+	</rule>
+	<rule id="104183" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">IIS application pool suffered fatal communication error with Windows Process Activation Service</field>
+		<description>IIS application pool suffered fatal communication error with Windows Process Activation Service</description>
+		<group>medium,one-on-one,web,server,iis-security,error,T1569,T1569.002,execution,</group>
+		<mitre>
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<rule id="104184" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">IIS application pool disabled</field>
+		<description>IIS application pool disabled</description>
+		<group>low,one-on-one,web,server,iis-security,T1505.004,T1505,persistence,</group>
+		<mitre>
+			<id>T1505</id>
+			<id>T1505.004</id>
+			<!-- Server Software Component: IIS Components   -->
+		</mitre>
+	</rule>
+	<rule id="104185" level="1">
+		<if_sid>104006</if_sid>
+		<field name="sub_rule_name">Application pool worker process requested a recycle because it reached its private bytes memory limit</field>
+		<description>Application pool worker process requested a recycle because it reached its private bytes memory limit</description>
+		<group>medium,one-on-one,web,server,iis-security,T1071,command-control,</group>
+		<mitre>
+			<id>T1071</id>
+		</mitre>
+	</rule>
+	<!-- DNS Server - Microsoft Windows -->
+	<rule id="104186" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server was unable to open zone in Active Directory</field>
+		<description>DNS server was unable to open zone in Active Directory</description>
+		<group>low,one-on-one,windows,dns,server,T1584,T1584.002,resource-development,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.002</id>
+			<!--Compromise Infrastructure: DNS Server  -->
+		</mitre>
+	</rule>
+	<rule id="104187" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server was unable to add zone in Active Directory</field>
+		<description>DNS server was unable to add zone in Active Directory</description>
+		<group>low,one-on-one,windows,dns,server,T1584,T1584.002,resource-development,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.002</id>
+			<!--Compromise Infrastructure: DNS Server  -->
+		</mitre>
+	</rule>
+	<rule id="104188" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server was unable to complete directory service enumeration</field>
+		<description>DNS server was unable to complete directory service enumeration</description>
+		<group>low,one-on-one,windows,dns,server,T1584,T1584.002,resource-development,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.002</id>
+			<!--Compromise Infrastructure: DNS Server  -->
+		</mitre>
+	</rule>
+	<rule id="104189" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server was unable to add or write an update</field>
+		<description>DNS server was unable to add or write an update</description>
+		<group>low,one-on-one,windows,dns,server,T1584,T1584.002,resource-development,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.002</id>
+			<!--Compromise Infrastructure: DNS Server  -->
+		</mitre>
+	</rule>
+	<rule id="104190" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server has encountered a critical error from the Active Directory</field>
+		<description>DNS server has encountered a critical error from the Active Directory</description>
+		<group>medium,one-on-one,windows,dns,server,error,command-and-control,T1071.004,T1071,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.004</id>
+			<!-- Application Layer Protocol: DNS   -->
+		</mitre>
+	</rule>
+	<rule id="104191" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server has updated its own host records</field>
+		<description>DNS server has updated its own host records</description>
+		<group>medium,one-on-one,windows,dns,server,error,command-and-control,T1071,T1071.004,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.004</id>
+			<!-- Application Layer Protocol: DNS   -->
+		</mitre>
+	</rule>
+	<rule id="104192" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server has encountered numerous run-time events</field>
+		<description>DNS server has encountered numerous run-time events</description>
+		<group>medium,one-on-one,windows,dns,server,T1016,discovery,</group>
+		<mitre>
+			<id>T1016</id>
+			<!-- System Network Configuration Discovery  -->
+		</mitre>
+	</rule>
+	<rule id="104193" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server could not configure the network connections</field>
+		<description>DNS server could not configure the network connections</description>
+		<group>low,one-on-one,windows,dns,server,T1016,discovery,configuration,connection,</group>
+		<mitre>
+			<id>T1016</id>
+			<!-- System Network Configuration Discovery  -->
+		</mitre>
+	</rule>
+	<rule id="104194" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server machine currently has no DNS domain name</field>
+		<description>DNS server machine currently has no DNS domain name</description>
+		<group>low,one-on-one,windows,dns,server,T1016,discovery,</group>
+		<mitre>
+			<id>T1016</id>
+			<!-- System Network Configuration Discovery  -->
+		</mitre>
+	</rule>
+	<rule id="104195" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server was unable to open the Active Directory</field>
+		<description>DNS server was unable to open the Active Directory</description>
+		<group>low,one-on-one,windows,dns,server,T1584,T1584.002,resource-development,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.002</id>
+			<!--Compromise Infrastructure: DNS Server  -->
+		</mitre>
+	</rule>
+	<rule id="104196" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server has started</field>
+		<description>DNS server has started</description>
+		<group>low,one-on-one,windows,dns,server,command-and-control,T1071,T1071.004,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.004</id>
+			<!-- Application Layer Protocol: DNS   -->
+		</mitre>
+	</rule>
+	<rule id="104197" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server has shutdown</field>
+		<description>DNS server has shutdown</description>
+		<group>low,one-on-one,windows,dns,server,command-and-control,T1071,T1071.004,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.004</id>
+			<!-- Application Layer Protocol: DNS   -->
+		</mitre>
+	</rule>
+	<rule id="104198" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server did not detect any zones of either primary or secondary type</field>
+		<description>DNS server did not detect any zones of either primary or secondary type</description>
+		<group>low,one-on-one,windows,dns,server,T1584,T1584.002,resource-development,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.002</id>
+			<!--Compromise Infrastructure: DNS Server  -->
+		</mitre>
+	</rule>
+	<rule id="104199" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">Zone is configured to accept updates but the A record is not available</field>
+		<description>Zone is configured to accept updates but the A record is not available</description>
+		<group>medium,one-on-one,windows,dns,server,T1016,discovery,</group>
+		<mitre>
+			<id>T1016</id>
+			<!-- System Network Configuration Discovery  -->
+		</mitre>
+	</rule>
+	<rule id="104200" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS server successfully auto-configured</field>
+		<description>DNS server successfully auto-configured</description>
+		<group>low,one-on-one,windows,dns,server,command-and-control,T1071,T1071.004,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.004</id>
+			<!-- Application Layer Protocol: DNS   -->
+		</mitre>
+	</rule>
+	<rule id="104201" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">Zone is deleted from the Active Directory</field>
+		<description>Zone is deleted from the Active Directory</description>
+		<group>low,one-on-one,windows,dns,server,T1584,T1584.002,resource-development,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.002</id>
+			<!--Compromise Infrastructure: DNS Server  -->
+		</mitre>
+	</rule>
+	<rule id="104202" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">DNS Application Directory Partition created</field>
+		<description>DNS Application Directory Partition created</description>
+		<group>low,one-on-one,windows,dns,server,command-and-control,T1071,T1071.004,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.004</id>
+			<!-- Application Layer Protocol: DNS   -->
+		</mitre>
+	</rule>
+	<rule id="104203" level="1">
+		<if_sid>104007</if_sid>
+		<field name="sub_rule_name">Zone transfer is in progress</field>
+		<description>Zone transfer is in progress</description>
+		<group>low,one-on-one,windows,dns,server,T1584,T1584.002,resource-development,</group>
+		<mitre>
+			<id>T1584</id>
+			<id>T1584.002</id>
+			<!--Compromise Infrastructure: DNS Server  -->
+		</mitre>
+	</rule>
+	<!-- Web Server - Microsoft IIS Server Shielding -->
+	<rule id="104204" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Alerter service entered the running/stopped state</field>
+		<description>The Alerter service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,T1489,service,impact,T1036,T1036.004,defense-evasion,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1036</id>
+			<!--  Masquerading: Masquerade Task or Service   -->
+			<id>T1036.004</id>
+		</mitre>
+	</rule>
+	<rule id="104205" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">Alerter service started/stopped multiple times</field>
+		<description>Alerter service started/stopped multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding,T1489,service,impact,T1036,T1036.004,defense-evasion,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1036</id>
+			<!--  Masquerading: Masquerade Task or Service   -->
+			<id>T1036.004</id>
+		</mitre>
+	</rule>
+	<rule id="104206" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The ClipBook service is disabled or it is not enabled</field>
+		<description>The ClipBook service is disabled or it is not enabled</description>
+		<group>low,one-on-one,web,server,iis-sheilding,T1562,T1562.001,service,defense-evasion,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.001</id>
+			<!--  Impair Defenses: Disable or Modify Tools    -->
+		</mitre>
+	</rule>
+	<rule id="104207" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Network DDE service is disabled or it is not enabled</field>
+		<description>The Network DDE service is disabled or it is not enabled</description>
+		<group>low,one-on-one,web,server,iis-sheilding,T1562,T1562.001,service,defense-evasion,</group>
+		<mitre>
+			<id>T1562</id>
+			<id>T1562.001</id>
+			<!--  Impair Defenses: Disable or Modify Tools    -->
+		</mitre>
+	</rule>
+	<rule id="104208" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Network DDE DSDM service entered the running/stopped state</field>
+		<description>The Network DDE DSDM service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,T1489,impact,T1046,discovery,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1046</id>
+			<!--  Network Service Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104209" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">Network DDE DSDM service started/stopped multiple times</field>
+		<description>Network DDE DSDM service started/stopped multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding,T1489,impact,T1046,discovery,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1046</id>
+			<!--  Network Service Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104210" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Network DDE service entered the running/stopped state</field>
+		<description>The Network DDE service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,T1489,impact,T1046,discovery,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1046</id>
+			<!--  Network Service Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104211" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">Network DDE service started multiple times</field>
+		<description>Network DDE service started multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding,T1489,impact,T1046,discovery,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1046</id>
+			<!--  Network Service Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104212" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The ClipBook service entered the running/stopped state</field>
+		<description>The ClipBook service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,service,T1489,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+		</mitre>
+	</rule>
+	<rule id="104213" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">ClipBook service started/stopped multiple times</field>
+		<description>ClipBook service started/stopped multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding,service,T1489,impact,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+		</mitre>
+	</rule>
+	<rule id="104214" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The DHCP Client service entered running/stopped state</field>
+		<description>The DHCP Client service entered running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,service,T1562.001,T1562,defense-evasion,T1489,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1562</id>
+			<id>T1562.001</id>
+			<!--  Impair Defenses: Disable or Modify Tools    -->
+		</mitre>
+	</rule>
+	<rule id="104215" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">DHCP Client service started/stopped multiple times</field>
+		<description>DHCP Client service started/stopped multiple times</description>
+		<group>medium,aggregation,soar-alert,web,server,iis-sheilding,service,T1489,impact,T1562.001,T1562,defense-evasion,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1562</id>
+			<id>T1562.001</id>
+			<!--  Impair Defenses: Disable or Modify Tools    -->
+		</mitre>
+		<info type="text">
+Description:
+Frequent starts and stops of the DHCP Client service may indicate potential network instability or malicious activity, such as attempts to disrupt network services or evade detection. Monitoring is recommended to identify underlying issues or threats.
+</info>
+	</rule>
+	<rule id="104216" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Messenger service entered the running/stopped state</field>
+		<description>The Messenger service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,service,T1489,impact,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+		</mitre>
+	</rule>
+	<rule id="104217" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">Messenger service started multiple times</field>
+		<description>Messenger service started multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding,service,T1489,impact,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+		</mitre>
+	</rule>
+	<rule id="104218" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Net Logon service entered the running/stopped state</field>
+		<description>The Net Logon service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,service,T1489,impact,execution,T1589,T1569,T1569.002,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1589</id>
+			<!--  Service Stop  -->
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<rule id="104219" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">There are currently no logon servers available</field>
+		<description>There are currently no logon servers available</description>
+		<group>low,one-on-one,web,server,iis-sheilding ,T1018,discovery,</group>
+		<mitre>
+			<id>T1018</id>
+			<!--  Remote System Discovery   -->
+		</mitre>
+	</rule>
+	<rule id="104220" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">This computer is configured not as a member of a domain</field>
+		<description>This computer is configured not as a member of a domain</description>
+		<group>low,one-on-one,web,server,iis-sheilding ,T1087.002,T1087,discovery,notable-behaviour,</group>
+		<mitre>
+			<id>T1087</id>
+			<id>T1087.002</id>
+			<!--  Account Discovery: Domain Account   -->
+		</mitre>
+	</rule>
+	<rule id="104221" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">Net Logon service started/stopped multiple times</field>
+		<description>Net Logon service started/stopped multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding,service,T1489,impact,execution,T1589,T1569,T1569.002,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1589</id>
+			<!--  Service Stop  -->
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<rule id="104222" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The TCP/IP NetBIOS Helper service entered the running/stopped state</field>
+		<description>The TCP/IP NetBIOS Helper service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,T1489,impact,T1046,discovery,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1046</id>
+			<!--  Network Service Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104223" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">TCP/IP NetBIOS Helper service started/stopped multiple times</field>
+		<description>TCP/IP NetBIOS Helper service started/stopped multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding ,T1489,impact,T1046,discovery,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<!--  Service Stop  -->
+			<id>T1046</id>
+			<!--  Network Service Discovery -->
+		</mitre>
+	</rule>
+	<rule id="104224" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Print Spooler service entered the running/stopped state</field>
+		<description>The Print Spooler service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding ,service,T1489,impact,execution,T1589,T1569.002,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1589</id>
+			<!--  Service Stop  -->
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<rule id="104225" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">Print Spooler Helper service started/stopped multiple times</field>
+		<description>Print Spooler Helper service started/stopped multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding ,service,T1489,impact,execution,T1589,T1569.002,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1589</id>
+			<!--  Service Stop  -->
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<rule id="104226" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Computer Browser service entered the running/stopped state</field>
+		<description>The Computer Browser service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding ,service,T1489,impact,execution,T1589,T1569.002,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1589</id>
+			<!--  Service Stop  -->
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<rule id="104227" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">Computer Browser service started/stopped multiple times</field>
+		<description>Computer Browser service started/stopped multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding,service,T1489,impact,execution,T1589,T1569.002,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1589</id>
+			<!--  Service Stop  -->
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<rule id="104228" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">The Server service entered the running/stopped state</field>
+		<description>The Server service entered the running/stopped state</description>
+		<group>low,one-on-one,web,server,iis-sheilding,service,T1489,impact,execution,T1589,T1569.002,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1589</id>
+			<!--  Service Stop  -->
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<rule id="104229" level="1">
+		<if_sid>104008</if_sid>
+		<field name="sub_rule_name">Server Helper service started/stopped multiple times</field>
+		<description>Server Helper service started/stopped multiple times</description>
+		<group>medium,aggregation,web,server,iis-sheilding ,service,T1489,impact,execution,T1589,T1569.002,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<id>T1589</id>
+			<!--  Service Stop  -->
+			<id>T1569</id>
+			<id>T1569.002</id>
+			<!--  System Services: Service Execution  -->
+		</mitre>
+	</rule>
+	<!-- New LI Rules  -->
+	<rule id="104230" level="1">
+		<if_sid>104014</if_sid>
+		<field name="sub_rule_name">ATTACK T1548.003: Elevation of privileges performed using SUDO</field>
+		<description>ATTACK T1548.003: Elevation of privileges performed using SUDO</description>
+		<group>medium,one-on-one,unix,syslog,T1548,T1548.003,privilege-escalation,defense-evasion,</group>
+		<mitre>
+			<id>T1548</id>
+			<id>T1548.003</id>
+			<!-- Abuse Elevation Control Mechanism: Sudo and Sudo Caching  -->
+		</mitre>
+	</rule>
+	<rule id="104231" level="1">
+		<if_sid>104021</if_sid>
+		<field name="sub_rule_name">ATTACK T1059.001: Detect PowerShell activity</field>
+		<description>ATTACK T1059.001: Detect PowerShell activity</description>
+		<group>medium,one-on-one,command-execution,T1059,T1059.001,powershell,execution,windows,</group>
+		<mitre>
+			<id>T1059</id>
+			<id>T1059.001</id>
+			<!-- Command and Scripting Interpreter: PowerShell   -->
+		</mitre>
+	</rule>
+	<rule id="104232" level="1">
+		<if_sid>104010</if_sid>
+		<field name="sub_rule_name">ATTACK T1543.003: Create or Modify System Process: Windows Service</field>
+		<description>ATTACK T1543.003: Create or Modify System Process: Windows Service</description>
+		<group>medium,one-on-one,windows,process,T1543,T1543.003,persistence,service,</group>
+		<mitre>
+			<id>T1543</id>
+			<id>T1543.003</id>
+			<!-- Create or Modify System Process: Windows Service    -->
+		</mitre>
+	</rule>
+	<rule id="104233" level="1">
+		<if_sid>104013</if_sid>
+		<field name="sub_rule_name">An attempt was made to register a security event source</field>
+		<description>An attempt was made to register a security event source</description>
+		<group>low,one-on-one,windows,defense-evasion,T1036,T1036.004,</group>
+		<mitre>
+			<id>T1036</id>
+			<id>T1036.004</id>
+			<!--  Masquerading: Masquerade Task or Service -->
+		</mitre>
+	</rule>
+	<rule id="104234" level="1">
+		<if_sid>104011</if_sid>
+		<field name="sub_rule_name">The service terminated unexpectedly</field>
+		<description>The service terminated unexpectedly</description>
+		<group>low,one-on-one,windows,service,T1489,impact,terminate,notable-behaviour,</group>
+		<mitre>
+			<id>T1489</id>
+			<!-- Service Stop  -->
+		</mitre>
+	</rule>
+	<rule id="104235" level="1">
+		<if_sid>104019</if_sid>
+		<field name="sub_rule_name">ATTACK T1505.001: Configuration option 'show advanced options' modified</field>
+		<description>ATTACK T1505.001: Configuration option 'show advanced options' modified</description>
+		<group>low,one-on-one,database,mysql,T1505,T1505.001,configuration,persistence,notable-behaviour,</group>
+		<mitre>
+			<id>T1505</id>
+			<id>T1505.001</id>
+			<!--  Server Software Component: SQL Stored Procedures  -->
+		</mitre>
+	</rule>
+	<rule id="104236" level="1">
+		<if_sid>104010</if_sid>
+		<field name="sub_rule_name">ATTACK T1531: Member removed from security enabled global group</field>
+		<description>ATTACK T1531: Member removed from security enabled global group</description>
+		<group>medium,one-on-one,windows,T1531,impact,notable-behaviour,</group>
+		<mitre>
+			<id>T1531</id>
+			<!-- Account Access Removal    -->
+		</mitre>
+	</rule>
+	<rule id="104237" level="1">
+		<if_sid>104017</if_sid>
+		<field name="sub_rule_name">ATTACK T1021.004, T1078: Successful SSH authentication detected</field>
+		<description>ATTACK T1021.004, T1078: Successful SSH authentication detected</description>
+		<group>low,one-on-one,application,secureshell,deamon,authentication,success,T1078,T1021,T1021.004,defense-evasion,lateral-movement,</group>
+		<mitre>
+			<id>T1021</id>
+			<id>T1021.004</id>
+			<!-- Remote Services: SSH   -->
+			<id>T1078</id>
+			<!--  Valid Accounts -->
+		</mitre>
+	</rule>
+	<rule id="104238" level="1">
+		<if_sid>104010</if_sid>
+		<field name="sub_rule_name">Special privileges assigned to new logon</field>
+		<description>Special privileges assigned to new logon</description>
+		<group>medium,one-on-one,privileges,privilege-escalation,windows,T1078,notable-behaviour,</group>
+		<mitre>
+			<id>T1078</id>
+			<!--  Valid Accounts -->
+		</mitre>
+	</rule>
+	
+	<!-- Alert to be generated -->
+	<rule id="104240" level="1">
+		<if_sid>104017</if_sid>
+		<field name="sub_rule_name">Attempt to login using a non-existent user (ATTACK T1087)</field>
+		<description>Attempt to login using a non-existent user (ATTACK T1087)</description>
+		<group>medium,one-on-one,soar-alert,application,secureshell,deamon,suspicious-behavior,T1087,discovery,</group>
+		<mitre>
+			<id>T1087</id>
+			<!-- Account Discovery  -->
+		</mitre>
+		<info type="text">
+Description:
+An attempt to log in using a non-existent user account has been detected (related to ATTACK T1087). This behavior may indicate probing for valid usernames or unauthorized access attempts, potentially signaling an attack. It is crucial to investigate the source of these login attempts to mitigate the risk of credential harvesting or further exploitation of the system.
+</info>
+	</rule>
+	<rule id="104241" level="1">
+		<if_sid>104012</if_sid>
+		<field name="sub_rule_name">ATTACK T1069.001: Permission Groups Discovery: Local Groups</field>
+		<description>ATTACK T1069.001: Permission Groups Discovery: Local Groups</description>
+		<group>low,one-on-one,windows,discovery,T1069.001,T1069,</group>
+		<mitre>
+			<id>T1069</id>
+			<id>T1069.001</id>
+			<!--Permission Groups Discovery: Local Groups  -->
+		</mitre>
+	</rule>
+	
+	<rule id="104243" level="1">
+		<if_sid>104014</if_sid>
+		<field name="sub_rule_name">ATTACK T1548.003: A successful SUDO session opened to ROOT.</field>
+		<description>ATTACK T1548.003: A successful SUDO session opened to ROOT.</description>
+		<mitre>
+			<id>T1548</id>
+			<id>T1548.003</id>
+			<!--  Abuse Elevation Control Mechanism: Sudo and Sudo Caching  -->
+		</mitre>
+		<group>medium,one-on-one,s-a,unix,syslog,notable-behaviour,T1548.003,T1548.003,privilege-escalation,defense-evasion,</group>
+		<info type="text">
+Description:
+A successful SUDO session has been opened to the ROOT account (related to ATTACK T1548.003). This activity indicates elevated privileges being granted, which can pose significant security risks if exploited. It may suggest unauthorized access or misconfigured permissions.
+</info>
+	</rule>
+	<rule id="104244" level="1">
+		<if_sid>104009</if_sid>
+		<field name="sub_rule_name">ATTACK T1110: Multiple Windows Logon Failures</field>
+		<description>ATTACK T1110: Multiple Windows Logon Failures</description>
+		<mitre>
+			<id>T1110</id>
+			<!--  Brute Force  -->
+		</mitre>
+		<group>medium,aggregation,windows,authentication,failure,credential-access,T1110,</group>
+	</rule>
+	
+	<rule id="104250" level="1">
+		<if_sid>104015</if_sid>
+		<field name="sub_rule_name">Attempt to login with an invalid user (ATTACK T1087)</field>
+		<description>Attempt to login with an invalid user (ATTACK T1087)</description>
+		<mitre>
+			<id>T1087</id>
+			<!-- Account Discovery   -->
+		</mitre>
+		<group>low,one-on-one,soar-alert,T1087,discovery,authentication,notable-behaviour,attempt,T1087,</group>
+		<info type="text">
+Description:
+An attempt to log in with an invalid user account has been detected (related to ATTACK T1087). This behavior may indicate unauthorized access attempts or probing for valid usernames, raising concerns about potential security breaches.
+</info>
+	</rule>
+	<rule id="104251" level="1">
+		<if_sid>104014</if_sid>
+		<field name="sub_rule_name">ATTACK T1548.003: User successfully changed UID to root</field>
+		<description>ATTACK T1548.003: User successfully changed UID to root.</description>
+		<group>medium,one-on-one,notable-behaviour,unix,syslog,privilege-escalation,defense-evasion,suspicious-behavior,T1548,T1548.003,</group>
+		<mitre>
+			<id>T1548</id>
+			<id>T1548.003</id>
+			<!--  Abuse Elevation Control Mechanism: Sudo and Sudo Caching -->
+		</mitre>
+	</rule>
+
+	<rule id="104131" level="2" frequency="10" timeframe="60">
+		<if_matched_sid>104130</if_matched_sid>
+		<same_field>dst_usr</same_field>
+		<same_field>tenant</same_field>
+		<description>Multiple Pre-authentication failures from same user in one minutes.</description>
+		<group>high,aggregation,soar-alert,windows,active-directory,server,T1110,notable-behaviour,credential-access,failure,authentication,</group>
+		<mitre>
+			<id>T1110</id>
+			<!-- Brute Force    -->
+		</mitre>
+		<info type="text">
+		Description:
+		Multiple pre-authentication failures from the same user within a minute indicate that the user is attempting to log in repeatedly but is entering incorrect credentials. This could be a sign of user error or, in some cases, a potential security threat like a brute force attack. It’s advisable to monitor the situation and consider implementing measures like account lockout or CAPTCHA to prevent further attempts.
+		</info>
+	</rule>
+
+	<rule id="104239" level="2" frequency="50" timeframe="60">
+		<if_matched_sid>104238</if_matched_sid>
+		<same_field>endpoint_name</same_field>
+		<same_field>tenant</same_field>
+		<description>Multiple times Special privileges assigned.</description>
+		<group>medium,aggregation,soar-alert,windows,active-directory,server,TA0004,notable-behaviour,T1078,privilege-escalation,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>TA0004</id>
+			<!--  Valid Accounts -->
+		</mitre>
+		<info type="text">
+		Description:
+		Multiple assignments of special privileges have been detected, which may indicate unauthorized changes to user permissions or an attempt to escalate privileges within the system. This behavior could suggest malicious activity or misconfiguration.
+		</info>
+	</rule>
+
+	<!--<rule id="104242" level="2" frequency="20" timeframe="60">-->
+	<!--    <if_matched_sid>104241</if_matched_sid>-->
+	<!--    <same_field>endpoint_name</same_field>-->
+	<!--    <description>Multiple times gives the permission to local groups</description>-->
+	<!--    <group>s-a,aggregation,medium,notable-behaviour,windows,suspicious-behavior,discovery,T1069.001,T1069,</group>-->
+	<!--   <mitre>-->
+	<!--        <id>T1069</id>                     Permission Groups Discovery: Local Groups  -->
+	<!--        <id>T1069.001</id>         -->
+	<!--    </mitre>-->
+	<!--    <info type="text">-->
+	<!--     Description:-->
+	<!--         Multiple times gives the permission to local groups refers to the process where a user or administrator assigns permissions or access rights to various local groups repeatedly. This can lead to potential security risks, as over-assigning permissions may allow unauthorized access or create confusion about who has what access. It's important to manage permissions carefully and ensure that only necessary rights are granted to maintain security.-->
+	<!--    </info>-->
+	<!--</rule>-->
+
+	<rule id="104245" level="2" frequency="5" timeframe="60">
+		<if_matched_sid>104244</if_matched_sid>
+		<same_field>endpoint_name</same_field>
+		<same_field>tenant</same_field>
+		<description>Multiple times failed Windows Logon on same endpoint</description>
+		<mitre>
+			<id>T1110</id>
+			<!--  Brute Force  -->
+		</mitre>
+		<group>high,aggregation,s-a,windows,authentication,failure,credential-access,T1110,</group>
+		<info type="text">
+Description:
+Multiple failed Windows logon attempts have been detected on the same endpoint. This pattern may indicate unauthorized access attempts, such as brute-force attacks or credential guessing.
+</info>
+	</rule>
+	
+	<!-- Multiple login failure on same endpoint - can be different users -->
+	<!-- <rule id="104246" level="2" frequency="5" timeframe="60">
+		<if_matched_sid>104244</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>endpoint_name</same_field>
+		<different_field>dstuser</different_field>
+		<description>Multiple times Windows Logon failed from same endpoint but different user.</description>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+		<group>s-a,windows,authentication,failure,medium,aggregation,credential-access,T1110,</group>
+		<info type="text">
+Description:
+Multiple times Windows logon failed from the same endpoint but different users indicates repeated unsuccessful login attempts from various users on the same device. This often suggests a brute force attack, where an attacker tries different usernames and passwords to gain unauthorized access. Monitoring and implementing security measures, such as account lockouts, is essential to mitigate this threat.
+</info>
+	</rule>-->
+	<!-- Multiple login failure same user- can be different endpoints -->
+	<rule id="104247" level="2" frequency="5" timeframe="60">
+		<if_matched_sid>104244</if_matched_sid>
+		<same_field>dstuser</same_field>
+		<same_field>tenant</same_field>
+		<different_field>endpoint_name</different_field>
+		<description>Multiple times Windows Logon failed from same user and different endpoint.</description>
+		<mitre>
+			<id>T1110</id>
+			<!--  Brute Force  -->
+		</mitre>
+		<group>high,aggregation,soar-alert,windows,authentication,failure,credential-access,T1110,</group>
+		<info type="text">
+Description:
+Multiple times Windows logon failed from the same user and different endpoints indicates that one user is repeatedly trying to log in unsuccessfully from various devices. This often suggests a brute force attack, where different passwords are being tested.
+</info>
+	</rule>
+	<!-- Multiple Local login failed -->
+	<rule id="104248" level="2" frequency="5" timeframe="60">
+		<if_matched_sid>104244</if_matched_sid>
+		<field name="logon_type" type="pcre2">Logon Type:\s+(2)</field>
+		<same_field>endpoint_name</same_field>
+		<same_field>tenant</same_field>
+		<description>Multiple times Windows local Login failed</description>
+		<mitre>
+			<id>T1110</id>
+			<!--  Brute Force  -->
+		</mitre>
+		<group>medium,aggregation,soar-alert,windows,authentication,failure,credential-access,T1110,</group>
+		<info type="text">
+Description:
+Multiple times Windows local login failed refers to a scenario where an attacker or unauthorized user repeatedly tries to access a local Windows account by entering various passwords within a short timeframe. This pattern suggests a brute force attack, where the goal is to guess the correct password through exhaustive trial and error. Such attempts can lead to account compromise if successful.
+</info>
+	</rule>
+	<!-- Multuple Domain login failed -->
+	<rule id="104249" level="2" frequency="5" timeframe="60">
+		<if_matched_sid>104244</if_matched_sid>
+		<field name="logon_type" type="pcre2">Logon Type:\s+(3)</field>
+		<same_field>endpoint_name</same_field>
+		<same_field>tenant</same_field>
+		<description>Multiple times domain Login failed</description>
+		<mitre>
+			<id>T1110</id>
+			<!--  Brute Force  -->
+		</mitre>
+		<group>medium,aggregation,soar-alert,windows,authentication,failure,credential-access,T1110,</group>
+		<info type="text">
+Description:
+Multiple times domain login failed refers to a situation where a user’s account is targeted by repeated login attempts using various passwords in a bid to gain unauthorized access. This pattern typically involves multiple failed login attempts within a short period, indicating a brute force attack. Such attacks can compromise account security and lead to unauthorized access if successful.
+</info>
+	</rule>
+
+	<rule id="104252" level="2" frequency="40" timeframe="60">
+		<if_matched_sid>104251</if_matched_sid>
+		<same_field>endpoint_name</same_field>
+		<same_field>tenant</same_field>
+		<description>Multiple times User changed UID to root</description>
+		<group>high,aggregation,s-a,notable-behaviour,unix,syslog,privilege-escalation,defense-evasion,suspicious-behavior,T1548,T1548.003,</group>
+		<mitre>
+			<id>T1548</id>
+			<id>T1548.003</id>
+			<!--  Abuse Elevation Control Mechanism: Sudo and Sudo Caching -->
+		</mitre>
+		<info type="text">
+		Description:
+		Multiple changes to the User ID (UID) to the root account have been detected. This behavior may indicate unauthorized attempts to gain elevated privileges, which can pose significant security risks.
+		</info>
+	</rule>
+</group>

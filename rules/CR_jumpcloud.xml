@@ -1,0 +1,285 @@
+<group name="jumpcloud,">
+<rule id="114001" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="productName" type="pcre2">(?i)^JumpCloud$</field>
+		<description>JumpCloud: JumpCloud Events detected.</description>
+        <group>info,one-on-one,</group>
+</rule>
+
+<rule id="114002" level="1" noalert="1">
+		<if_sid>114001</if_sid>
+		<field name="productModule" type="pcre2">(?i)^Software Events$</field>
+		<description>JumpCloud: Software events detected.</description>
+		<info type="text">
+        Description: Detected software-related events in JumpCloud.
+        </info>
+		<group>info,one-on-one,T1098,persistence,</group>
+        <mitre>
+        <id>T1098</id>
+    </mitre>
+</rule>
+
+<rule id="114003" level="1" noalert="1">
+    <if_sid>114002</if_sid>
+    <field name="event_type" type="pcre2">(?i)^software_add$</field>
+    <description>JumpCloud: A new software installation event detected.</description>
+    <group>low,one-on-one,T1072,execution,lateral-movement,</group>
+    <mitre>
+        <id>T1072</id>
+    </mitre>
+</rule>
+
+<rule id="114004" level="1">
+    <if_sid>114002</if_sid>
+    <field name="event_type" type="pcre2">(?i)^software_change$</field>
+    <description>JumpCloud: A software modification event detected.</description>
+    <group>low,one-on-one,T1089,defense-evasion,</group>
+    <mitre>
+        <id>T1089</id>
+    </mitre>
+</rule>
+
+<rule id="114005" level="1">
+    <if_sid>114002</if_sid>
+    <field name="event_type" type="pcre2">(?i)^software_remove$</field>
+    <description>JumpCloud: A software removal event detected.</description>
+    <group>low,one-on-one,T1098,persistence,</group>
+    <mitre>
+        <id>T1098</id>
+    </mitre>
+</rule>
+
+<rule id="114006" level="1" noalert="1">
+		<if_sid>114001</if_sid>
+		<field name="productModule" type="pcre2">(?i)^Systems Events$</field>
+		<description>JumpCloud: System events detected.</description>
+		<info type="text">
+        Description: Detected system-related events in JumpCloud.
+        </info>
+		<group>low,one-on-one,T1070,defense-evasion,</group>
+        <mitre>
+        <id>T1070</id>
+    </mitre>
+</rule>
+
+<rule id="114007" level="1" noalert="1">
+    <if_sid>114006</if_sid>
+    <field name="event_type" type="pcre2">(?i)^login_attempt$</field>
+    <field name="success" type="pcre2">(?i)^false$</field>
+    <description>JumpCloud: Failed login attempt event detected..</description>
+    <group>low,one-on-one,T1078,initial-access,</group>
+    <mitre>
+        <id>T1078</id>
+    </mitre>
+</rule>
+
+
+<rule id="114009" level="1">
+    <if_sid>114006</if_sid>
+    <field name="event_type" type="pcre2">(?i)^user_lockout$</field>
+    <description>JumpCloud: User account locked out event detected.</description>
+    <group>medium,one-on-one,soar-alert,T1078,initial-access,</group>
+    <mitre>
+        <id>T1078</id>
+    </mitre>
+</rule>
+
+<rule id="114010" level="1">
+    <if_sid>114006</if_sid>
+    <field name="event_type" type="pcre2">(?i)^system_fde_key_decrypt$</field>
+    <description>JumpCloud: The FDE key decrypted on a system event detected.</description>
+    <group>medium,one-on-one,T1550,defense-evasion,</group>
+    <mitre>
+        <id>T1550</id>
+    </mitre>
+</rule>
+
+<rule id="114011" level="1">
+    <if_sid>114006</if_sid>
+    <field name="event_type" type="pcre2">(?i)^os_minor_upgrade$</field>
+    <description>JumpCloud: A minor OS upgrade detected on a system.</description>
+    <group>low,one-on-one,T1037,execution,</group>
+    <mitre>
+        <id>T1037</id>
+    </mitre>
+</rule>
+
+<rule id="114012" level="1">
+    <if_sid>114006</if_sid>
+    <field name="event_type" type="pcre2">(?i)^os_major_upgrade$</field>
+    <description>JumpCloud: A major OS upgrade detected on a system,</description>
+    <group>medium,one-on-one,T1072,execution,</group>
+    <mitre>
+        <id>T1072</id>
+    </mitre>
+</rule>
+
+<rule id="114013" level="1">
+    <if_sid>114006</if_sid>
+    <field name="event_type" type="pcre2">(?i)^google_emm_create$</field>
+    <description>JumpCloud: A google EMM profile created event detected.</description>
+    <group>medium,one-on-one,T1114,collection,</group>
+    <mitre>
+        <id>T1114</id>
+    </mitre>
+</rule>
+
+<rule id="114014" level="1">
+    <if_sid>114006</if_sid>
+    <field name="event_type" type="pcre2">(?i)^google_emm_delete$</field>
+    <description>JumpCloud: A google EMM profile deleted event detected.</description>
+    <group>medium,one-on-one,T1114,collection,</group>
+    <mitre>
+        <id>T1114</id>
+    </mitre>
+</rule>
+
+
+<rule id="114015" level="1" noalert="1">
+		<if_sid>114001</if_sid>
+		<field name="productModule" type="pcre2">(?i)^Password Manager Events$</field>
+		<description>JumpCloud: Password manager events detected.</description>
+		<info type="text">
+        Description: Detected password manager-related events in JumpCloud.
+        </info>
+		<group>low,one-on-one,T1078,defense-evasion,</group>
+        <mitre>
+        <id>T1078</id>
+    </mitre>
+</rule>
+	
+
+<rule id="114016" level="1">
+    <if_sid>114015</if_sid>
+    <field name="event_type" type="pcre2">(?i)^passwordmanager_disable$</field>
+    <description>JumpCloud: Password manager disabled event detected.</description>
+    <group>medium,one-on-one,T1556,defense-evasion,</group>
+    <mitre>
+        <id>T1556</id>
+    </mitre>
+</rule>
+
+<rule id="114017" level="1">
+    <if_sid>114015</if_sid>
+    <field name="event_type" type="pcre2">(?i)^passwordmanager_user_disable$</field>
+    <description>JumpCloud: Disable Password Manager for $(resource_username) by $(initiated_by_username).</description>
+    <group>medium,one-on-one,soar-alert,T1078,privilege-escalation,</group>
+    <mitre>
+        <id>T1078</id>
+    </mitre>
+</rule>
+
+<rule id="114018" level="1">
+    <if_sid>114015</if_sid>
+    <field name="event_type" type="pcre2">(?i)^passwordmanager_folder_create$</field>
+    <description>JumpCloud: Folder creation event detected.</description>
+    <group>low,one-on-one,T1036,defense-evasion,</group>
+    <mitre>
+        <id>T1036</id>
+    </mitre>
+</rule>
+
+<rule id="114019" level="1">
+    <if_sid>114015</if_sid>
+    <field name="event_type" type="pcre2">(?i)^passwordmanager_folder_delete$</field>
+    <description>JumpCloud: Folder deletion event detected.</description>
+    <group>medium,one-on-one,T1485,impact,</group>
+    <mitre>
+        <id>T1485</id>
+    </mitre>
+</rule>
+
+<rule id="114020" level="1">
+    <if_sid>114015</if_sid>
+    <field name="event_type" type="pcre2">(?i)^passwordmanager_backup_disable$</field>
+    <description>JumpCloud: Backup disable event detected.</description>
+    <group>medium,one-on-one,T1537,exfiltration,</group>
+    <mitre>
+        <id>T1537</id>
+    </mitre>
+</rule>
+
+<rule id="114021" level="1">
+    <if_sid>114015</if_sid>
+    <field name="event_type" type="pcre2">(?i)^passwordmanager_sharedfolders_policy_group_remove$</field>
+    <description>JumpCloud: Shared folder policy group removal event detected.</description>
+    <group>medium,one-on-one,T1070,defense-evasion,</group>
+    <mitre>
+        <id>T1070</id>
+    </mitre>
+</rule>
+
+<rule id="114022" level="1">
+    <if_sid>114015</if_sid>
+    <field name="event_type" type="pcre2">(?i)^passwordmanager_paranoid_mode_disable$</field>
+    <description>JumpCloud: Paranoid mode disable event detected.</description>
+    <group>medium,one-on-one,T1600,defense-evasion,</group>
+    <mitre>
+        <id>T1600</id>
+    </mitre>
+</rule>
+
+
+<rule id="114023" level="1" noalert="1">
+		<if_sid>114001</if_sid>
+		<field name="productModule" type="pcre2">(?i)^Directory Events$</field>
+		<description>JumpCloud: Directory events detected.</description>
+		<info type="text">
+        Description: Detected Directory-related events in JumpCloud.
+        </info>
+		<group>medium,one-on-one,T1083,discovery,</group>
+        <mitre>
+        <id>T1083</id>
+    </mitre>
+	</rule>
+
+<rule id="114024" level="1">
+    <if_sid>114023</if_sid>
+    <field name="event_type" type="pcre2">(?i)^user_delete$</field>
+    <description>JumpCloud: User Deletion Event Detected.</description>
+    <group>medium,one-on-one,soar-alert,T1531,impact,</group>
+    <mitre>
+        <id>T1531</id>
+    </mitre>
+</rule>
+
+<rule id="114025" level="1">
+    <if_sid>114023</if_sid>
+    <field name="event_type" type="pcre2">(?i)^user_create$</field>
+    <description>JumpCloud: User creation event detected.</description>
+    <group>medium,one-on-one,T1136,persistence,</group>
+    <mitre>
+        <id>T1136</id>
+    </mitre>
+</rule>
+
+<!--Level: 2-->
+
+<rule id="114008" level="2" frequency="10" timeframe="60">
+    <if_matched_sid>114007</if_matched_sid>
+    <same_field>client_ip</same_field>
+    <same_field>tenant</same_field>
+    <description>JumpCloud: 10 failed login attempts from the same IP within 60 seconds.</description>
+    <group>high,aggregation,s-a,T1078,initial-access,</group>
+    <mitre>
+        <id>T1078</id>
+    </mitre>
+</rule>
+
+<!--Level: 3-->
+
+
+<rule id="114026" level="3" timeframe="120">
+    <if_matched_sid>114024</if_matched_sid>
+    <if_sid>114025</if_sid>
+    <same_field>client_ip</same_field>
+    <same_field>tenant</same_field>
+    <description>JumpCloud: Deletion of a user account, followed by the addition of a new user within a short timeframe.</description>
+    <group>high,correlation,soar-alert,T1531,T1136,persistence,impact,login,failure,</group>
+    <mitre>
+        <id>T1531</id>
+        <id>T1136</id>
+    </mitre>
+</rule>
+
+</group>

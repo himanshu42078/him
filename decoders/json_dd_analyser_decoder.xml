@@ -1,0 +1,275 @@
+<!-- 
+___TMEF System Event Logs___
+{"full_log":"Jul 23 11:33:50 10-1-19-211.prometheus-kube-prometheus-kubelet.kube-system.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|300102|Updates: Component updates initiated by scheduled update|3|rt=Jul 23 2024 11:32:29 GMT+05:30 dvc=172.30.20.86 dvchost=PMUTMDAN01 dvcmac=90:8D:6E:C5:42:B0 deviceExternalId=35EECE89-5318-477B-B5F1-1F61BD4A6B19 cs1Label=eventType cs1=System Update outcome=Success tenant=BARC02 productName=Fortigate productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+ACTUAL LOG
+
+Sep 23 07:38:02 10-1-19-210.prometheus-kube-prometheus-kubelet.kube-system.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|300102|Updates: Component updates initiated by scheduled update|3|rt=Sep 23 2024 07:37:36 GMT+05:30 dvc=172.40.20.86 dvchost=PCHTMDAN01 dvcmac=90:8D:6E:C5:45:14 deviceExternalId=406552A2-9819-4F47-8A24-69A86242639B cs1Label=eventType cs1=System Update outcome=Success tenant=SIDBI logType=other cust1=logger03
+
+{"full_log":"Sep 23 07:38:02 10-1-19-210.prometheus-kube-prometheus-kubelet.kube-system.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|300102|Updates: Component updates initiated by scheduled update|3|rt=Sep 23 2024 07:37:36 GMT+05:30 dvc=172.40.20.86 dvchost=PCHTMDAN01 dvcmac=90:8D:6E:C5:45:14 deviceExternalId=406552A2-9819-4F47-8A24-69A86242639B cs1Label=eventType cs1=System Update outcome=Success tenant=SIDBI logType=other cust1=logger03","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+Sep 26 21:48:00 10-1-19-106.prometheus-kube-prometheus-kube-proxy.kube-system.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|200127|Notable Characteristics of the analyzed sample|6|rt=Sep 26 2024 21:47:01 GMT+05:30 dvc=172.40.20.86 dvchost=PCHTMDAN01 dvcmac=90:8D:6E:C5:45:14 deviceExternalId=406552A2-9819-4F47-8A24-69A86242639B fname=NONAMEFL fileHash=B09EB2935D304AFCDADC6CBEE61E539D5CBAC3B1 fileType=PDF 1.4 fsize=96681 cs1Label=PolicyCategory cs1=Process, service, or memory object change msg=\\\\.\\pipe\\LOCAL\\mojo.2296.2864.972107445593719574 cs3Label=SandboxImageType cs3=WindowsServer cs2Label=PolicyName cs2=Creates named pipe tenant=SIDBI productName=DD-Analyser productType=sandbox logType=quarantine cust1=logger04 fromhost=172.20.190.58
+
+Oct  4 08:08:11 10-1-19-76.prometheus-kube-prometheus-kube-proxy.kube-system.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|300102|Updates: Component updates initiated by scheduled update|3|rt=Oct 04 2024 08:08:11 GMT+05:30 dvc=172.40.20.86 dvchost=PCHTMDAN01 dvcmac=90:8D:6E:C5:45:14 deviceExternalId=406552A2-9819-4F47-8A24-69A86242639B cs1Label=eventType cs1=System Update outcome=Success tenant=SIDBI productName=DD-Analyser productType=sandbox logType=quarantine cust1=logger04 fromHost=172.20.190.58 hostName=172.20.190.58
+
+	
+Sep 27 13:08:07 10-1-19-36.prometheus-prometheus-node-exporter.monitoring.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|200119|Sample file sandbox analysis is finished|3|rt=Sep 27 2024 13:06:28 GMT+05:30 dvc=172.40.20.86 dvchost=PCHTMDAN01 dvcmac=90:8D:6E:C5:45:14 deviceExternalId=406552A2-9819-4F47-8A24-69A86242639B fname=NONAMEFL fileHash=877085F1FF6A173F09C1EE82F5D714DB841D9271 fileType=PDF 1.4 fsize=27015 cs1Label=SandboxImageType cs1=WindowsServer cs3Label=ParentFileSHA1 cs3=7B20CA8DE8FD04CF8CB40FE63D2150E2FB8EE683 cn1Label=GRIDIsKnownGood cn1=-1 cn2Label=ROZRating cn2=3 cs2Label=MalwareName cs2=VAN_DROPPER.UMXX cn3Label=PcapReady cn3=1 tenant=SIDBI productName=DD-Analyser productType=sandbox logType=quarantine cust1=logger03 fromhost=172.20.190.58
+
+-->
+<!-- dd-inspector : Deep Discovery Analyzer -->
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <prematch type="pcre2">\|Trend Micro\|Deep\s+Discovery\s+Analyzer\|</prematch>
+    <regex type="pcre2">(\d+)\|(Trend Micro)\|(Deep\s+Discovery\s+Analyzer)\|([^|]+)\|([^|]+)\|([^|]+)\|([^|]+)\|</regex>
+    <order>cef_format_version,vendor,product_name,product_version,event_id,event_name,severity</order>
+</decoder>
+<!-- Multi Fields, CS Different Value Start-->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs1Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>cs1Label</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs2Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>cs2Label</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs3Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>cs3Label</order>
+</decoder> -->
+<!-- Multi Fields, CN Different Value Start-->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcn1Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>cn1Label</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcn2Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>cn2Label</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcn3Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>cn3Label</order>
+</decoder> -->
+<!-- Need to revisit -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bc6a1Label\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>c6a2Label</order>
+</decoder> -->
+<!-- Multi Fields, Different Value End-->
+<!-- c6a* series start -->
+<!-- Need to revisit -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bc6a2Label=srcIPv6.*\bc6a2\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>src_ipv6_adresss</order>
+</decoder> -->
+<!-- c6a* series end -->
+<!-- cs* series start -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs1Label=eventType.*\bcs1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>event_type</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs1Label=PolicyCategory.*\bcs1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>policy_category</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs1Label=SandboxImageType.*\bcs1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>sandbox_type</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs2Label=PolicyName.*\bcs2\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>policy_name</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs2Label=MalwareName.*\bcs2\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>malware_name</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs3Label=SandboxImageType.*\bcs3\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>sandbox_os_version</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcs3Label=ParentFileSHA1.*\bcs3\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>parent_file_SHA1</order>
+</decoder> -->
+<!-- cs* series end -->
+<!-- cn* series start -->
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcn1Label=GRIDIsKnownGood.*\bcn1\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>file_status</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcn2Label=ROZRating.*\bcn2\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>risk_level</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bcn3Label=PcapReady.*\bcn3\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>pcap_ready</order>
+</decoder>
+<!-- cn* series end -->
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdvc\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>endpoint_ip</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdvc\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>endpoint_ip</order>
+</decoder>
+<!-- Need to revisit -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdeviceMacAddress\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>endpoint_mac</order>
+</decoder> -->
+<!-- Need to revisit -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdeviceMacAddress\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>endpoint_mac</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdvchost\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>endpoint_name</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdvchost\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>endpoint_name</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdeviceGUID\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>device_guid</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdeviceGUID\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>device_guid</order>
+</decoder> -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdeviceExternalId\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>external_id</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bdeviceExternalId\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>external_id</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\brt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>event_time</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\brt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>event_time</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bduser\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>dstuser</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bduser\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>dstuser</order>
+</decoder> -->
+<!-- Need to revisit -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bmsg\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>message_text</order>
+</decoder> -->
+<!-- Need to revisit -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bmsg\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>message_text</order>
+</decoder> -->
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bsrc\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>src_ip</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bsrc\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>src_ip</order>
+</decoder>
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bshost\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>src_host</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bshost\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>src_host</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bshost\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>src_host</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bshost\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>src_host</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\boutcome\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+    <order>event_outcome</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\boutcome\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>event_outcome</order>
+</decoder> -->
+<!-- <decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bfname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>file_name</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bfileHash\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>file_hash</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bfileType\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>file_type</order>
+</decoder>
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bfsize\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>file_size</order>
+</decoder> -->
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="dd-analyzer-json">
+    <parent>json</parent>
+    <plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

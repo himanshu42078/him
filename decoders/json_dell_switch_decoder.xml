@@ -1,0 +1,65 @@
+<!-- Dec  5 06:56:01 bom-esdl-rsyslog.bomprodlistener.bomvcnprod.oraclevcn.com  {"full_log":"<45>1 2024-12-05T12:26:01.698604+05:30 ALIC-MUM-DC-MZ-SW2-6F-R7-30U syslog-ng 29450 - [meta sequenceId=\"6\"] Node.1-Unit.1:PRI [audit], Dell EMC (OS10) Syslog connection established; fd='17', server='AF_INET(172.16.6.230:9001)', local='AF_INET(0.0.0.0:0)' ","tenant":"Bandhan","productName":"DellSwitch","productType":"Switches","logType":"network","cust1":"Logger01","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"ad7990b5-7129-4b5d-859e-39965c36852f"} 
+
+Dec  5 06:37:01 bom-esdl-rsyslog.bomprodlistener.bomvcnprod.oraclevcn.com  {"full_log":"<45>1 2024-12-05T12:06:01.809311+05:30 ALIC-MUM-DC-MZ-SW2-6F-R7-30U syslog-ng 29450 - [meta sequenceId=\"1\"] Node.1-Unit.1:PRI [audit], Dell EMC (OS10) Syslog connection closed; fd='13', server='AF_INET(172.16.6.230:9001)', time_reopen='60' ","tenant":"Bandhan","productName":"DellSwitch","productType":"Switches","logType":"network","cust1":"Logger02","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"ad7990b5-7129-4b5d-859e-39965c36852f"}
+
+syslog-ng 15697 - [meta sequenceId=\"3\"] Node.1-Unit.1:PRI [audit], Dell EMC (OS10) Syslog connection failed; fd='13', server='AF_INET(172.16.6.230:9001)', error='Connection refused (111)', time_reopen='60' ","tenant":"Bandhan","productName":"DellSwitch","productType":"Switches","logType":"network","cust1":"Logger01","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"ad7990b5-7129-4b5d-859e-39965c36852f"}
+
+Dec  5 06:30:01 bom-esdl-rsyslog.bomprodlistener.bomvcnprod.oraclevcn.com  {"full_log":"<45>1 2024-12-05T12:00:01.817339+05:30 ALIC-MUM-DC-MZ-SW2-6F-R7-30U syslog-ng 29450 - [meta sequenceId=\"10\"] Node.1-Unit.1:PRI [audit], Dell EMC (OS10) Syslog connection established; fd='17', server='AF_INET(172.16.6.230:9001)', local='AF_INET(0.0.0.0:0)' ","tenant":"Bandhan","productName":"DellSwitch","productType":"Switches","logType":"network","cust1":"Logger02","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"ad7990b5-7129-4b5d-859e-39965c36852f"
+
+meta sequenceId=\\"([^"]*)\\"
+\s*=\s*?[(\\"']?[(\\"'](.*?)[\\"|,](?=('|"|\\"|))
+\s*=\s*([^,]*?)(?=\s*,|$)
+.*:"(<\d*>\d.*)-\s\[
+-->
+<decoder name="dell-switch-json">
+  <parent>json</parent>
+  <prematch type="pcre2">\"productName\":\"DellSwitch\"</prematch>
+  <!--<prematch type="pcre2">Dell\s+EMC.*connection\s+(established|closed|failed);</prematch>-->
+  <regex type="pcre2">meta\ssequenceId\s*=\s*?[(\\"']?[(\\"'](.*?)[\\"|'|,](?=('|"|\\"|))</regex>
+  <order>sequence_id</order>
+</decoder>
+
+<decoder name="dell-switch-json">
+  <parent>json</parent>
+  <regex type="pcre2">Dell\s+EMC.*connection\s+(established|closed|failed);</regex>
+  <order>connection_type</order>
+</decoder>
+
+<decoder name="dell-switch-json">
+  <parent>json</parent>
+  <regex type="pcre2">\bNode.1-Unit.1\s*:.*\s?(audit|notice|OS10|alert)\],</regex>
+  <order>event_type</order>
+</decoder>
+
+<decoder name="dell-switch-json">
+  <parent>json</parent>
+  <regex type="pcre2">fd\s*=\s*?[(\\"']?[(\\"'](.*?)[\\"|'|,](?=('|"|\\"|))</regex>
+  <order>fd</order>
+</decoder>
+
+<decoder name="dell-switch-json">
+  <parent>json</parent>
+  <regex type="pcre2">server\s*=\s*?[(\\"']?[(\\"'](.*?)[\\"|'|,](?=('|"|\\"|))</regex>
+  <order>server</order>
+</decoder>
+
+<decoder name="dell-switch-json">
+  <parent>json</parent>
+  <regex type="pcre2">local\s*=\s*?[(\\"']?[(\\"'](.*?)[\\"|'|,](?=('|"|\\"|))</regex>
+  <order>local</order>
+</decoder>
+
+<!--<regex type="pcre2">.*\s*:\s*\"\<?.*\>\d.*-\s</regex>-->
+<!--  <order>full_log</order>-->
+  
+<!--  <decoder name="dell-switch-json">-->
+<!--  <parent>json</parent>-->
+<!--  <regex type="pcre2">meta\ssequenceId=\\"([^"]*)\\"</regex>-->
+<!--  <order>sequence_id</order>-->
+<!--</decoder>-->
+
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="dell-switch-json">
+  <parent>json</parent>
+  <plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

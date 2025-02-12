@@ -1,0 +1,4 @@
+<decoder name="json-child">
+    <parent>json</parent>
+    <plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

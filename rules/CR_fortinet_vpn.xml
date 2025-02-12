@@ -1,0 +1,398 @@
+<group name="fortinet-vpn,">
+
+<rule id="116404" level="0" noalert="1">
+    <decoded_as>json</decoded_as>
+    <field name="vendor" type="pcre2">(?i)^Fortinet$</field>
+    <field name="productName" type="pcre2">(?i)^Fortinet-VPN$</field>
+    <description>Fortinet VPN: Security Event Detection Rule</description>
+    <group>info,one-on-one</group>
+</rule>
+
+<!--Fortinet-VPN-->
+
+<!-- <rule id="116405" level="11" noalert="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^37134$</field>
+    <description>Fortinet VPN: IPsec Phase 1 SA deletion detected.</description>
+    <group>high,deletion,s-a,one-on-one,T1071,T1071.001,connection,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that an IPsec Phase 1 Security Association (SA) has been deleted. While this can occur during normal VPN termination, frequent or unexpected deletions may indicate misconfigurations, connection instability, or suspicious activity.
+    </info>
+</rule>
+
+<rule id="116406" level="13" frequency="5" timeframe="60">
+    <if_matched_sid>116405</if_matched_sid>
+	<same_field>src_ip</same_field>
+	<same_field>tenant</same_field>
+    <description>Fortinet VPN: Multiple IPsec Phase 1 SA deletions detected.</description>
+    <group>high,deletion,s-a,aggregation,T1071,T1071.001,connection,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        Multiple IPsec Phase 1 Security Associations (SAs) were deleted within a short timeframe. This may indicate misconfigurations, connection instability, or potential malicious activity targeting VPN connections.
+    </info>
+</rule> -->
+
+<rule id="116407" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^37135$</field>
+    <!--VPN connection (Phase 2) was closed or deleted.-->
+    <description>Fortinet VPN: IPsec Phase 2 SA deletion detected.</description>
+    <group>medium,one-on-one,s-a,deletion,T1071,T1071.001,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        Description: This event indicates that an IPsec Phase 2 Security Association (SA) has been deleted. While this can be a normal occurrence when a VPN session ends, unexpected or frequent deletions may indicate misconfigurations or suspicious activity.
+    </info>
+</rule>
+
+
+<rule id="116409" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^37139$</field>
+    <description>Fortinet VPN: IPsec Phase 2 status changed.</description>
+   <group>medium,one-on-one,s-a,deletion,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that the status of an IPsec Phase 2 Security Association (SA) has changed. Frequent or unexpected changes could signify connection instability or potential misconfigurations.
+    </info>
+</rule>
+
+
+<rule id="116411" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^32550$</field>
+    <description>Fortinet VPN: Autoscript deletion result.</description>
+   <group>medium,one-on-one,s-a,deletion,T1070,defense-evasion,T1070.004,</group>
+    <mitre>
+        <id>T1070</id>
+        <id>T1070.004</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that an autoscript has been deleted. Monitoring autoscript deletions can help detect unauthorized changes to system configurations or automated tasks.
+    </info>
+</rule>
+
+
+<rule id="116413" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^32096$</field>
+    <description>Fortinet VPN: Log file downloaded via GUI.</description>
+   <group>medium,one-on-one,deletion,T1567,T1567.002,exfiltration,</group>
+    <mitre>
+        <id>T1567</id>
+        <id>T1567.002</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that a log file was downloaded through the GUI. Monitoring such events helps track access to potentially sensitive data and identify unauthorized downloads.
+    </info>
+</rule>
+
+<rule id="116414" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^39426$</field>
+    <description>Fortinet VPN: SSL VPN login failure detected.</description>
+   <group>high,one-on-one,s-a,deletion,T1110,credential-access,T1078,defense-evasion,</group>
+    <mitre>
+        <id>T1110</id>
+        <id>T1078</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates a failed SSL VPN login attempt. Monitoring such events helps detect potential brute force attacks or unauthorized access attempts.
+    </info>
+</rule>
+
+
+<rule id="116416" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^29021$</field>
+    <description>Fortinet VPN: SNMP query failed.</description>
+    <group>medium,one-on-one,s-a,T1046,reconnaissance,</group>
+    <mitre>
+        <id>T1046</id> 
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that an SNMP query has failed. This could be due to misconfigurations, network issues, or unauthorized scanning attempts.
+    </info>
+</rule>
+
+
+<rule id="116418" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^22919$</field>
+    <description>Fortinet VPN: Server logging status changed.</description>
+    <group>medium,one-on-one,s-a,deletion,T1070,T1070.001,T1562,T1562.002,defense-evasion,</group>
+    <mitre>
+        <id>T1070</id> 
+        <id>T1070.001</id> 
+        <id>T1562</id> 
+        <id>T1562.002</id> 
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that the server's logging status has been changed. Monitoring such events helps detect potential tampering with logging settings, which could be an attempt to hide malicious activity or impair security defenses.
+    </info>
+</rule>
+
+<rule id="116419" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^39944$</field>
+    <description>Fortinet VPN: SSL VPN session alert detected.</description>
+    <group>medium,one-on-one,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1071</id> 
+        <id>T1071.001</id> 
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates an SSL VPN alert during a session. Monitoring such events helps identify critical errors or potential tampering in VPN communication.
+    </info>
+</rule>
+
+<rule id="116420" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^37137$</field>
+    <description>Fortinet VPN: VPN connection failure detected.</description>
+    <group>medium,one-on-one,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1071</id> 
+        <id>T1071.001</id> 
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that a VPN connection failed to establish. It could result from network issues, configuration problems, or potentially malicious activity disrupting connectivity.
+    </info>
+</rule>
+
+<rule id="116421" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^37136$</field>
+    <description>Fortinet VPN: IPsec Dead Peer Detection (DPD) failure detected.</description>
+    <group>medium,one-on-one,T1071,T1071.001,connection,command-and-control,T1499,impact,</group>
+    <mitre>
+        <id>T1071</id> 
+        <id>T1071.001</id> 
+        <id>T1499</id> 
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that the Dead Peer Detection (DPD) process failed. Monitoring such failures helps identify connection instability, network issues, or potential malicious interference with the VPN connection.
+    </info>
+</rule>
+
+<rule id="116422" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^39937$</field>
+    <description>Fortinet VPN: SSL VPN session denied.</description>
+    <group>high,one-on-one,s-a,T1110,credential-access,T1078,defense-evasion,</group>
+    <mitre>
+        <id>T1110</id> 
+        <id>T1078</id> 
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that an SSL VPN session was denied. This could be caused by policy violations, unauthorized access attempts, or misconfigurations.
+    </info>
+</rule>
+
+<rule id="116423" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^39951$</field>
+    <description>Fortinet VPN: SSL VPN session tunnel error detected.</description>
+    <group>medium,one-on-one,s-a,deletion,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates an SSL VPN session tunnel error. Monitoring such errors is crucial to identify potential connectivity issues, misconfigurations, or security threats affecting VPN communication.
+    </info>
+</rule>
+
+<!-- Based on the Logs Level: Warning-->
+
+<rule id="116424" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^00011$</field>
+    <description>Fortinet VPN: Failed connection attempt detected.</description>
+    <group>high,one-on-one,s-a,deletion,T1049,discovery,T1071,T1071.001,command-and-control,</group>
+    <mitre>
+        <id>T1049</id>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates a failed connection attempt. Monitoring these events helps identify potential misconfigurations, blocked traffic, or unauthorized access attempts.
+    </info>
+</rule>
+
+
+<rule id="116426" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^53401$</field>
+    <description>Fortinet VPN: Central Management connectivity is inactive.</description>
+    <group>high,one-on-one,soar-alert,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that the Central Management tunnel is inactive. This could signify network connectivity issues or potential misconfigurations affecting Central Management.
+    </info>
+</rule>
+
+<!-- Based on the Logs Description-->
+
+<rule id="116427" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^22912$</field>
+    <description>Fortinet VPN: FortiCloud server connection failed</description>
+    <group>medium,one-on-one,T1071,T1071.001,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        This event indicates that a connection to the FortiCloud server has failed. This could result from temporary network issues, server unavailability, or misconfigurations.
+    </info>
+</rule>
+
+<!--VPN connection from an anonymous proxy-->
+
+<rule id="116428" level="1">
+    <if_sid>116404</if_sid>
+    <field name="signature_id" type="pcre2">^39943$</field>
+    <description>Fortinet VPN: SSL VPN new connection established.</description>
+    <group>low,one-on-one,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        An SSL VPN new connection event was logged, indicating a successful session initiation. This activity is typically expected but should be monitored for unusual patterns or unauthorized access attempts.
+    </info>
+</rule>
+
+<!--Level 2-->
+
+<rule id="116408" level="2" frequency="5" timeframe="60">
+    <if_matched_sid>116407</if_matched_sid>
+	<same_field>src_ip</same_field>
+	<same_field>tenant</same_field>
+    <description>Fortinet VPN: Multiple IPsec Phase 2 SA deletions detected.</description>
+    <group>high,aggregation,s-a,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        Multiple IPsec Phase 2 Security Associations (SAs) were deleted within a short timeframe. This may indicate misconfigurations, connection instability, or potential malicious activity targeting VPN connections.
+    </info>
+</rule>
+
+<rule id="116410" level="2" frequency="5" timeframe="60">
+    <if_matched_sid>116409</if_matched_sid>
+	<same_field>src_ip</same_field>
+	<same_field>tenant</same_field>
+    <description>Fortinet VPN: Multiple IPsec Phase 2 status changes detected.</description>
+    <group>high,aggregation,s-a,deletion,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        Multiple status changes for an IPsec Phase 2 Security Association (SA) were detected within a short timeframe. This could indicate connection instability or potential misconfigurations.
+    </info>
+</rule>
+
+<rule id="116412" level="2" frequency="5" timeframe="60">
+    <if_matched_sid>116411</if_matched_sid>
+	<same_field>src_ip</same_field>
+	<same_field>tenant</same_field>
+    <description>Fortinet VPN: Multiple autoscript deletions detected.</description>
+    <group>medium,aggregation,soar-alert,T1070,defense-evasion,T1070.004,</group>
+    <mitre>
+        <id>T1070</id>
+        <id>T1070.004</id>
+    </mitre>
+    <info type="text">
+    Description:
+        Multiple autoscript deletions detected in a short time. Frequent deletions could indicate malicious activity or unauthorized changes to system configurations.
+    </info>
+</rule>
+
+<rule id="116415" level="2" frequency="5" timeframe="60">
+    <if_matched_sid>116414</if_matched_sid>
+	<same_field>src_ip</same_field>
+	<same_field>tenant</same_field>
+    <description>Fortinet VPN: Multiple SSL VPN login failures detected.</description>
+   <group>critical,aggregation,soar-alert,deletion,T1110,credential-access,T1078,defense-evasion,</group>
+    <mitre>
+        <id>T1110</id>
+        <id>T1078</id>
+    </mitre>
+    <info type="text">
+    Description:
+        Multiple failed SSL VPN login attempts were detected within a short timeframe. This could indicate a brute force attack or unauthorized access attempt.
+    </info>
+</rule>
+
+<rule id="116417" level="2" frequency="5" timeframe="60">
+    <if_matched_sid>116416</if_matched_sid>
+    <same_field>src_ip</same_field>
+    <same_field>tenant</same_field>
+    <description>Fortinet VPN: Multiple SNMP query failures detected.</description>
+    <group>high,aggregation,s-a,T1046,reconnaissance,</group>
+    <mitre>
+        <id>T1046</id> 
+    </mitre>
+    <info type="text">
+    Description:
+        Multiple failed SNMP queries were detected within a short timeframe. This could indicate unauthorized scanning or a misconfigured device attempting repeated access.
+    </info>
+</rule>
+
+<rule id="116425" level="2" frequency="5" timeframe="60">
+    <if_matched_sid>116424</if_matched_sid>
+    <same_field>src_ip</same_field>
+    <same_field>tenant</same_field>
+    <description>Fortinet VPN: Multiple failed connection attempts detected.</description>
+    <group>high,aggregation,soar-alert,T1049,discovry,T1071,T1071.001,connection,command-and-control,</group>
+    <mitre>
+        <id>T1049</id>
+        <id>T1071</id>
+        <id>T1071.001</id>
+    </mitre>
+    <info type="text">
+    Description:
+        Multiple failed connection attempts were detected from the same source IP within a short timeframe. This could indicate misconfigurations, blocked traffic, or potential reconnaissance or attack attempts.
+    </info>
+</rule>
+
+</group>

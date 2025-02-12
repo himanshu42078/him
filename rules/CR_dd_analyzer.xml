@@ -1,0 +1,216 @@
+<!-- Oct  4 08:08:11 10-1-19-76.prometheus-kube-prometheus-kube-proxy.kube-system.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|300102|Updates: Component updates initiated by scheduled update|3|rt=Oct 04 2024 08:08:11 GMT+05:30 dvc=172.40.20.86 dvchost=PCHTMDAN01 dvcmac=90:8D:6E:C5:45:14 deviceExternalId=406552A2-9819-4F47-8A24-69A86242639B cs1Label=eventType cs1=System Update outcome=Success tenant=SIDBI productName=DD-Analyser productType=sandbox logType=quarantine cust1=logger04 fromHost=172.20.190.58 hostName=172.20.190.58
+
+Sep 26 21:48:00 10-1-19-106.prometheus-kube-prometheus-kube-proxy.kube-system.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|200127|Notable Characteristics of the analyzed sample|6|rt=Sep 26 2024 21:47:01 GMT+05:30 dvc=172.40.20.86 dvchost=PCHTMDAN01 dvcmac=90:8D:6E:C5:45:14 deviceExternalId=406552A2-9819-4F47-8A24-69A86242639B fname=NONAMEFL fileHash=B09EB2935D304AFCDADC6CBEE61E539D5CBAC3B1 fileType=PDF 1.4 fsize=96681 cs1Label=PolicyCategory cs1=Process, service, or memory object change msg=\\\\.\\pipe\\LOCAL\\mojo.2296.2864.972107445593719574 cs3Label=SandboxImageType cs3=WindowsServer cs2Label=PolicyName cs2=Creates named pipe tenant=SIDBI productName=DD-Analyser productType=sandbox logType=quarantine cust1=logger04 fromhost=172.20.190.58
+	
+Sep 27 13:08:07 10-1-19-36.prometheus-prometheus-node-exporter.monitoring.svc.cluster.local 0|Trend Micro|Deep Discovery Analyzer|7.5.0.1159|200119|Sample file sandbox analysis is finished|3|rt=Sep 27 2024 13:06:28 GMT+05:30 dvc=172.40.20.86 dvchost=PCHTMDAN01 dvcmac=90:8D:6E:C5:45:14 deviceExternalId=406552A2-9819-4F47-8A24-69A86242639B fname=NONAMEFL fileHash=877085F1FF6A173F09C1EE82F5D714DB841D9271 fileType=PDF 1.4 fsize=27015 cs1Label=SandboxImageType cs1=WindowsServer cs3Label=ParentFileSHA1 cs3=7B20CA8DE8FD04CF8CB40FE63D2150E2FB8EE683 cn1Label=GRIDIsKnownGood cn1=-1 cn2Label=ROZRating cn2=3 cs2Label=MalwareName cs2=VAN_DROPPER.UMXX cn3Label=PcapReady cn3=1 tenant=SIDBI productName=DD-Analyser productType=sandbox logType=quarantine cust1=logger03 fromhost=172.20.190.58-->
+
+<group name="deep-discovery-analyzer,">
+	<!-- <rule id="117100" level="0" noalert="1"> -->
+	<!-- <rule id="117101" level="0" noalert="1">
+		<decoded_as>dd-analyzer</decoded_as>
+		<description>Deep-Discovery-Analyzer: Log event detected.</description>
+	</rule> -->
+
+	<rule id="117102" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="product_name" type="pcre2">(?i)Deep\sDiscovery\sAnalyzer</field>
+		<description>Deep-Discovery-Analyzer: Log event detected.</description>
+	</rule>
+	<rule id="117103" level="1">
+		<if_sid>117102</if_sid>
+		<field name="file_status" type="pcre2">^\-1$</field>
+		<field name="risk_level" type="pcre2">^2$</field>
+		<description>Deep-Discovery-Analyzer: Unknown file with mediun risk detected in Sandbox.</description>
+		<group>medium,one-on-one,s-a,T1204,T1204.002,T1497,defense-evasion,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+			<id>T1497</id>
+		</mitre>
+		<info type="text">
+        Description : A medium-risk malicious file type has been detected in the sandbox environment. This means an unknown file type has been identified as potentially harmful to the system. The sandbox allows for safe examination of this file without affecting the main network. Security teams need to investigate further to determine the file’s source and potential impact. It’s important to monitor or quarantine the file to reduce any risk.
+        </info>
+	</rule>
+	<rule id="117104" level="1">
+		<if_sid>117102</if_sid>
+		<field name="file_status" type="pcre2">^\-1$</field>
+		<field name="risk_level" type="pcre2">^3$</field>
+		<description>Deep-Discovery-Analyzer: Unknown file with high risk detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1204,T1204.002,T1497,defense-evasion,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+			<id>T1497</id>
+		</mitre>
+		<info type="text">
+        Description : A high-risk malicious file type has been detected in the sandbox environment. This unknown file has shown harmful behavior that could pose a serious threat to system security. By analyzing the file in the sandbox, security teams can observe its actions—such as attempting to access sensitive data or communicate with external servers—without risking the main network. The high-risk classification means immediate attention is needed to investigate the file’s origin and potential impact. If malicious behavior is confirmed, the file can be quarantined or deleted to prevent any harm.
+        </info>
+	</rule>
+	<rule id="117105" level="1">
+		<if_sid>117102</if_sid>
+		<field name="file_status" type="pcre2">^0$</field>
+		<field name="risk_level" type="pcre2">^2$</field>
+		<description>Deep-Discovery-Analyzer: Detection of a bad file with medium risk in sandbox environment</description>
+		<group>medium,one-on-one,s-a,T1204,T1204.002,T1497,defense-evasion,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+			<id>T1497</id>
+		</mitre>
+		<info type="text">
+        Description : A high-risk malicious file type has been detected in the sandbox environment. This bad file has shown harmful behavior that could pose a serious threat to system security. By analyzing the file in the sandbox, security teams can observe its actions—such as attempting to access sensitive data or communicate with external servers—without risking the main network. The high-risk classification means immediate attention is needed to investigate the file’s origin and potential impact. If malicious behavior is confirmed, the file can be quarantined or deleted to prevent any harm.
+        </info>
+	</rule>
+	<rule id="117106" level="1">
+		<if_sid>117102</if_sid>
+		<field name="file_status" type="pcre2">^0$</field>
+		<field name="risk_level" type="pcre2">^3$</field>
+		<description>Deep-Discovery-Analyzer: Detection of a bad file with high risk in sandbox environment.</description>
+		<group>high,one-on-one,s-a,T1204,T1204.002,T1497,defense-evasion,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+			<id>T1497</id>
+		</mitre>
+		<info type="text">
+        Description : A high-risk malicious file type has been detected in the sandbox environment. This bad file has shown harmful behavior that could pose a serious threat to system security. By analyzing the file in the sandbox, security teams can observe its actions—such as attempting to access sensitive data or communicate with external servers—without risking the main network. The high-risk classification means immediate attention is needed to investigate the file’s origin and potential impact. If malicious behavior is confirmed, the file can be quarantined or deleted to prevent any harm.
+        </info>
+	</rule>
+	<rule id="117107" level="1">
+		<if_sid>117102</if_sid>
+		<field name="file_status" type="pcre2">^1$</field>
+		<field name="risk_level" type="pcre2">^3$</field>
+		<description>Deep-Discovery-Analyzer: Detection of a trusted file with high risk in sandbox environment.</description>
+		<group>high,one-on-one,s-a,T1204,T1204.002,T1497,defense-evasion,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+			<id>T1497</id>
+		</mitre>
+		<info type="text">
+        Description : A high-risk malicious file type has been detected in the sandbox environment. This good file has shown harmful behavior that could pose a serious threat to system security. By analyzing the file in the sandbox, security teams can observe its actions—such as attempting to access sensitive data or communicate with external servers—without risking the main network. The high-risk classification means immediate attention is needed to investigate the file’s origin and potential impact. If malicious behavior is confirmed, the file can be quarantined or deleted to prevent any harm.
+        </info>
+	</rule>
+	<rule id="117108" level="1">
+		<if_sid>117102</if_sid>
+		<field name="deny_list_type" type="pcre2">(?i)^Deny List IP$|^Deny List Port$</field>
+		<field name="risk_level" type="pcre2">^High$</field>
+		<description>Deep-Discovery-Analyzer: Denied IP list or Port list with high risk detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1204,T1204.002,T1497,defense-evasion,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+			<id>T1497</id>
+		</mitre>
+		<info type="text">
+        Description : A denied IP list or port list containing high-risk detections in a sandbox environment serves as a critical security measure. It identifies potentially malicious IP addresses and ports that have exhibited suspicious behavior during analysis. By blocking these entities, organizations can prevent potential attacks and reduce the risk of data breaches. This proactive approach enhances network security by ensuring that only trusted connections are allowed.
+        </info>
+	</rule>
+	<rule id="117109" level="1">
+		<if_sid>117102</if_sid>
+		<field name="deny_list_type" type="pcre2">(?i)^Deny List IP$|^Deny List Port$</field>
+		<field name="risk_level" type="pcre2">^Confirmed Malware$</field>
+		<description>Deep-Discovery-Analyzer: Denied IP or Port list having confirmed malware detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1190,T1498,T1040,discovery,</group>
+		<mitre>
+			<id>T1190</id>
+			<id>T1498</id>
+			<id>T1040</id>
+		</mitre>
+		<info type="text">
+        Description : A denied IP or port list featuring confirmed malware detections in a sandbox environment is an essential tool for enhancing cybersecurity. This list identifies specific IP addresses and ports associated with malicious activity that has been verified through thorough analysis. By blocking these entities, organizations can significantly reduce the risk of infection and unauthorized access to their networks. Maintaining this list helps in swiftly mitigating threats, as it ensures that known malicious actors are unable to interact with the system.
+        </info>
+	</rule>
+	<rule id="117110" level="1">
+		<if_sid>117102</if_sid>
+		<field name="deny_list_type" type="pcre2">(?i)^Deny List URL$</field>
+		<field name="risk_level" type="pcre2">^High$</field>
+		<description>Deep-Discovery-Analyzer: Denied URL list with high risk detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1071,T1071.001,T1566,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<id>T1566</id>
+		</mitre>
+		<info type="text">
+        Description : A denied URL list containing high-risk detections in a sandbox environment is a crucial component of an organization’s cybersecurity strategy. This list identifies web addresses that have been flagged for malicious activity during analysis, such as phishing attempts or malware distribution. By blocking these URLs, organizations can effectively prevent users from accessing harmful sites, thereby reducing the risk of data breaches and infections. Regularly updating this list ensures that the organization stays protected against emerging threats.
+        </info>
+	</rule>
+	<rule id="117111" level="1">
+		<if_sid>117102</if_sid>
+		<field name="deny_list_type" type="pcre2">(?i)^Deny List URL$</field>
+		<field name="risk_level" type="pcre2">^Confirmed Malware$</field>
+		<description>Deep-Discovery-Analyzer: Denied URL list having confirmed malware detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1071,T1071.001,T1204,execution,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+        Description : A denied URL list with confirmed malware detections in a sandbox environment is vital for cybersecurity. This list includes web addresses verified to host malicious content, such as ransomware or phishing schemes. By blocking these URLs, organizations prevent users from accessing harmful sites, thereby reducing the risk of data breaches and infections. Regular updates to the list ensure protection against evolving threats, while integration into web filtering solutions provides real-time defense.
+        </info>
+	</rule>
+	<rule id="117112" level="1">
+		<if_sid>117102</if_sid>
+		<field name="deny_list_type" type="pcre2">(?i)^Deny List File SHA1$</field>
+		<field name="risk_level" type="pcre2">^High$</field>
+		<description>Deep-Discovery-Analyzer: Denied file SHA1 list with high risk detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1203,T1027,T1078,defense-evasion,</group>
+		<mitre>
+			<id>T1203</id>
+			<id>T1027</id>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+        Description : A denied file SHA1 list with high-risk detections in a sandbox environment is essential for bolstering cybersecurity. This list catalogs SHA1 hashes of files confirmed to be malicious, including malware and viruses, enabling organizations to proactively block their execution across systems and prevent infections. By analyzing files in a sandbox, any exhibiting harmful behavior is recorded, allowing for precise identification and blocking. Regular updates to the list are crucial for adapting to new threats, leveraging threat intelligence, and conducting periodic audits. Integrating this list into security solutions facilitates automated blocking and real-time alerts, thereby strengthening the organization’s overall security posture and ensuring a resilient IT environment against evolving cyber threats.
+        </info>
+	</rule>
+	<rule id="117113" level="1">
+		<if_sid>117102</if_sid>
+		<field name="deny_list_type" type="pcre2">(?i)^Deny List File SHA1$</field>
+		<field name="risk_level" type="pcre2">^Confirmed Malware$</field>
+		<description>Deep-Discovery-Analyzer: Denied file SHA1 list having confirmed malware detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1203,T1027,T1078,defense-evasion,</group>
+		<mitre>
+			<id>T1203</id>
+			<id>T1027</id>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+        Description : A denied file SHA1 list containing confirmed malware detections in a sandbox environment is a vital element of an organization’s cybersecurity strategy. This list specifically catalogs SHA1 hashes of files that have been thoroughly analyzed and confirmed to harbor malicious content, such as viruses, Trojans, or ransomware. By documenting these unique hashes, organizations can effectively block these files from execution across all endpoints, thereby preventing potential infections and safeguarding sensitive data. The analysis occurs in a controlled sandbox, where files are observed for malicious behavior without risking the broader network. Regular updates to this list are crucial, as they ensure the organization remains protected against newly identified threats and evolving malware techniques.
+        </info>
+	</rule>
+	<rule id="117114" level="1">
+		<if_sid>117102</if_sid>
+		<field name="deny_list_type" type="pcre2">(?i)^Deny List Domain$</field>
+		<field name="risk_level" type="pcre2">^High$</field>
+		<description>Deep-Discovery-Analyzer: Denied domain list with high risk detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1078,T1078.004,T1583,T1483,privilege-escalation,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.004</id>
+			<id>T1583</id>
+			<id>T1483</id>
+		</mitre>
+		<info type="text">
+        Description : A denied domain list with high-risk detections in a sandbox environment is crucial for strengthening an organization’s cybersecurity measures. This list identifies domains confirmed to engage in malicious activities, such as hosting phishing sites or distributing malware. By blocking these domains, organizations can effectively mitigate the risk of users unknowingly accessing harmful content, thereby protecting sensitive information and ensuring system integrity. The analysis takes place in a secure sandbox, which allows for the safe evaluation of potentially dangerous domains before they are added to the list. 
+        </info>
+	</rule>
+	<rule id="117115" level="1">
+		<if_sid>117102</if_sid>
+		<field name="deny_list_type" type="pcre2">(?i)^Deny List Domain$</field>
+		<field name="risk_level" type="pcre2">^Confirmed Malware$</field>
+		<description>Deep-Discovery-Analyzer: Denied domain list having confirmed malware detected in Sandbox.</description>
+		<group>high,one-on-one,s-a,T1078,T1078.004,T1583,T1483,privilege-escalation,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.004</id>
+			<id>T1583</id>
+			<id>T1483</id>
+		</mitre>
+		<info type="text">
+        Description : A denied domain list featuring confirmed malware detections in a sandbox environment is a vital component of an organization’s cybersecurity strategy. This list includes domains that have been rigorously analyzed and verified to host malicious content, such as malware distribution or phishing schemes. By blocking access to these specific domains, organizations can prevent users from inadvertently interacting with harmful sites, thereby safeguarding sensitive data and maintaining system integrity. The analysis process occurs within a secure sandbox, where potentially dangerous domains are evaluated without risking the broader network.
+        </info>
+	</rule>
+</group>

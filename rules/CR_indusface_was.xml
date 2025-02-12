@@ -1,0 +1,320 @@
+
+<group name="indusface-was,">
+	<!-- Base Rules -->
+	<rule id="102750" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="productName" type="pcre2">(?i)IndusFace-WAS</field>
+		<description>IndusFace-WAS Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<!-- Severity base Rules -->
+	<rule id="102751" level="0" noalert="1">
+		<if_sid>102750</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Severity"\s*:\s*"Critical"</match>
+		<description>Critical Severity Events.</description>
+		<group>critical,one-on-one,</group>
+	</rule>
+	<rule id="102752" level="0" noalert="1">
+		<if_sid>102750</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Severity"\s*:\s*"High"</match>
+		<description>High Severity Events.</description>
+		<group>high,one-on-one,</group>
+	</rule>
+	<rule id="102753" level="0" noalert="1">
+		<if_sid>102750</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Severity"\s*:\s*"Medium"</match>
+		<description>Medium Severity Events.</description>
+		<group>medium,one-on-one,</group>
+	</rule>
+	<!-- Starting Rules -->
+	<rule id="102754" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(SSL\s*Certificate\s*Common\s*Name\s*Mismatch)"</match>
+		<description>indusface-was: SSL Certificate Common Name Mismatch detected</description>
+		<group>critical,one-on-one,s-a,credential-access,T1649</group>
+		<mitre>
+			<id>T1649</id>
+		</mitre>
+		<info type="text">
+        Description:
+			SSL Certificate Common Name Mismatch occurs when the common name in the SSL certificate does not match the domain name of the website
+     </info>
+	</rule>
+	<rule id="102755" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"SQL\s*Injection\s*"</match>
+		<description>indusface-was: SQL Injection attempt detected. Possible malicious attempt to manipulate database queries through input validation.</description>
+		<group>critical,one-on-one,s-a,attack,injection,T1190,initial-access,malicious,</group>
+		<mitre>
+			<id>T1190</id>
+		</mitre>
+		<info type="text">
+        Description:
+            SQL Injection attempt detected. Possible malicious attempt to manipulate database queries through input validation.
+     </info>
+	</rule>
+	<rule id="102756" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(OS\s*Command\s*Injection\s)*"</match>
+		<description>indusface-was: OS Command Injection attempt detected. Possible attempt to execute unauthorized system commands through application input.</description>
+		<group>critical,one-on-one,s-a,attack,injection,T1203,execution,malicious,</group>
+		<mitre>
+			<id>T1203</id>
+		</mitre>
+		<info type="text">
+        Description:
+			An OS command injection vulnerability occurs when a developer uses invalidated user controlled parameters to execute operating system commands. OS command injection vulnerabilities allow attackers to run arbitrary commands on the
+remote server.
+     </info>
+	</rule>
+	<rule id="102757" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"Remote\s*File\s*Inclusion\s*"</match>
+		<description>indusface-was: Remote File Inclusion (RFI) attempt detected. Possible attempt to include remote files through application input.</description>
+		<group>critical,one-on-one,s-a,attack,T1203,execution,malicious,</group>
+		<mitre>
+			<id>T1203</id>
+		</mitre>
+		<info type="text">
+        Description:
+			Remote File Inclusion (RFI) vulnerabilities allow attackers to inject a file from a remote location to a web application. 
+            This can lead to unauthorized access, code execution, or data exposure.
+     </info>
+	</rule>
+	<rule id="102758" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Password\s*Field\s*Submitted\s*Using\s*GET\s*Method)"</match>
+		<description>indusface-was: Password field submitted using the GET method detected. This can expose sensitive credentials in URL parameters.</description>
+		<group>critical,one-on-one,s-a,credential-access,T1552.003,T1552,</group>
+		<mitre>
+			<id>T1552</id>
+			<id>T1552.003</id>
+		</mitre>
+		<info type="text">
+        Description:
+			Submitting passwords or other sensitive information via the GET method is insecure as it exposes the data in URLs, which can be logged or intercepted.
+     </info>
+	</rule>
+	<rule id="102759" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"(Oracle\s*WebLogic\s*Server\s*Deserializati\s*on\s*Remote\s*Command\s*Execution\s*Vulnerability)"</match>
+		<description>indusface-was: Oracle WebLogic Server Deserialization Remote Command Execution detected. This indicates a critical vulnerability exploited to execute unauthorized commands remotely.</description>
+		<group>critical,one-on-one,s-a,execution,T1210,vulnerability,</group>
+		<mitre>
+			<id>T1210</id>
+		</mitre>
+		<info type="text">
+        Description:
+			This vulnerability in Oracle WebLogic Server allows attackers to exploit unsafe deserialization mechanisms to execute arbitrary commands on the server remotely.
+     </info>
+	</rule>
+	<rule id="102760" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Dot\s*Net\s*Insecure\s*Deserializati\s*on\s*Remote\s*Command\s*Execution\s*Vulnerability)"</match>
+		<description>indusface-was: Dot Net Insecure Deserialization on Remote Command Execution Vulnerability detected. Potential exploitation attempt to execute remote commands via insecure deserialization in .NET applications.</description>
+		<group>critical,one-on-one,s-a,lateral-movement,T1210,malicious,</group>
+		<mitre>
+			<id>T1210</id>
+		</mitre>
+		<info type="text">
+        Description:
+			Dot Net Insecure Deserialization triggers when an attacker abuses deserialization features when the application is deserializing untrusted data which the user controls. Successful insecure deserialization attacks could allow an attacker to carry out denial-of-service (DoS) ,authentication bypasses and remote code execution attacks.
+     </info>
+	</rule>
+	<rule id="102761" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"(Oracle\s*WebLogic\s*Server\s*Deserializati\s*on\s*Remote\s*Command\s*Execution\s*Bypass\s*Vulnerability)"</match>
+		<description>indusface-was: Oracle WebLogic Server Deserialization on Remote Command Execution Bypass Vulnerability detected. Potential exploitation attempt to bypass security measures and execute remote commands.</description>
+		<group>critical,one-on-one,s-a,lateral-movement,T1210,bypass,</group>
+		<mitre>
+			<id>T1210</id>
+		</mitre>
+		<info type="text">
+        Description:
+            Oracle WebLogic Server Deserialization on Remote Command Execution Bypass Vulnerability allows attackers to bypass security mechanisms and execute arbitrary commands remotely by exploiting unsafe deserialization processes.
+    </info>
+	</rule>
+	<rule id="102762" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(VBulletin\s*Pre-Auth\s*RCE\s*Vulnerability)"</match>
+		<description>indusface-was: VBulletin Pre-Auth Remote Code Execution Vulnerability detected. Potential exploitation attempt to execute arbitrary commands without authentication.</description>
+		<group>critical,one-on-one,s-a,lateral-movement,T1210,malicious,</group>
+		<mitre>
+			<id>T1210</id>
+		</mitre>
+		<info type="text">
+        Description:
+            vBulletin is a software for running forums on your website. A pre-authentication remote code execution vulnerability exists in this which allows attacker to execute commands and compromise your systems
+    </info>
+	</rule>
+	<rule id="102763" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Server\s*Side\s*JavaScript\s*Injection)"</match>
+		<description>indusface-was: Server Side JavaScript Injection detected. Potential exploitation attempt to execute unauthorized JavaScript code on the server-side.</description>
+		<group>critical,one-on-one,s-a,execution,T1059.007,T1059,</group>
+		<mitre>
+			<id>T1059.007</id>
+			<id>T1059</id>
+		</mitre>
+		<info type="text">
+        Description:
+            Server-side JavasScript injection vulnerability arises when an application uses user-controllable data into a string that is processed by a server. An attacker can abuse such functionality to inject malicious code and in turn use system in malicious way.
+    </info>
+	</rule>
+	<rule id="102765" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Server-Side\s*Template\s*Injection)"</match>
+		<description>indusface-was: Server-Side Template Injection detected. Potential exploitation attempt to execute arbitrary code through vulnerable template engines.</description>
+		<group>critical,one-on-one,s-a,defense-evasion,T1221,</group>
+		<mitre>
+			<id>T1221</id>
+		</mitre>
+		<info type="text">
+        Description:
+            Server-side Template injection vulnerability arises when an application uses user-controllable data added to server side template which is then processed by template engine. An attacker can abuse such functionality to inject templatedirectives/code and execute arbitrary code in system in-turn compromising it.
+    </info>
+	</rule>
+	<rule id="102766" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(PHP\s*Nginx\s*Remote\s*Command\s*Execution)"</match>
+		<description>indusface-was: PHP Nginx Remote Command Execution detected. Potential exploitation attempt to execute arbitrary commands on the server.</description>
+		<group>critical,one-on-one,s-a,execution,T1059,vulnerability,</group>
+		<mitre>
+			<id>T1059</id>
+		</mitre>
+		<info type="text">
+        Description:
+            This vulnerability is an extension to OS Command Injection where php sites hosted on ngnix servers are vulnerable to remote command execution. Once attacker gains successful rce, it can be used further to compromise the system or use it in malicious way
+    </info>
+	</rule>
+	<rule id="102768" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Apache\s*Log4j\s*RCE\s*Vulnerability)</match>
+		<description>indusface-was: Apache Log4j Remote Code Execution (RCE) vulnerability detected. Exploitation attempt identified in logging framework.</description>
+		<group>critical,one-on-one,s-a,lateral-movement,T1210,vulnerability,</group>
+		<mitre>
+			<id>T1210</id>
+		</mitre>
+		<info type="text">
+        Description:
+            CVE-2021-44228 is a remote code execution (RCE) vulnerability in Apache Log4j 2.0 through 2.14.1. An attacker can exploit this vulnerability by sending a crafted request to the vulnerable server. This can be done by submitting an exploit string on the text field found in the website running on the vulnerable server or by including the exploit string as part of the header destined to the vulnerable server.
+    </info>
+	</rule>
+	<rule id="102769" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(OS\s*Command\s*Injection\s*-+\s*OOB)"</match>
+		<description>indusface-was: OS Command Injection Out-of-Band (OOB) detected. Possible attempt to execute unauthorized system commands via external callbacks.</description>
+		<group>critical,one-on-one,s-a,attack,T1203,execution,malicious,</group>
+		<mitre>
+			<id>T1203</id>
+		</mitre>
+		<info type="text">
+        Description:
+            An OS command injection vulnerability occurs when a developer uses invalidated user controlled parameters to execute operating system commands. OS command injection vulnerabilities allow attackers to run arbitrary commands on the remote server. This is one of the flaws under the category of Code Injection, in the OWASP Top Ten.
+    </info>
+	</rule>
+	<rule id="102770" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(SQL\s*Injection\s*+\s*OOB)"</match>
+		<description>indusface-was: SQL Injection Out-of-Band (OOB) detected. Possible attempt to manipulate database queries using external callbacks.</description>
+		<group>critical,one-on-one,s-a,attack,injection,T1190,initial-access,malicious,</group>
+		<mitre>
+			<id>T1190</id>
+		</mitre>
+		<info type="text">
+        Description:
+            Web applications that do not properly sanitize user input before passing it to a database system are vulnerable to SQL injection. This type of attack potentially allows a malicious user to recover and/or modify any data that the application has access to.
+    </info>
+	</rule>
+	<rule id="102771" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Server\s*-Side\s*Template\s*Injection\s*+\s*OOB)"</match>
+		<description>indusface-was: Server-Side Template Injection Out-of-Band (OOB) detected. Potential exploitation of template engines to execute unauthorized operations via external callbacks.</description>
+		<group>critical,one-on-one,s-a,attack,injection,T1221,execution,malicious,</group>
+		<mitre>
+			<id>T1221</id>
+		</mitre>
+		<info type="text">
+        Description:
+            Server-side Template injection vulnerability arises when an application uses user-controllable data added to server side template which is then processed by template engine. An attacker can abuse such functionality to inject template directives/code and execute arbitrary code in system in-turn compromising it.
+    </info>
+	</rule>
+	<rule id="102772" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Code\s*Injection\s*-+\s*OOB)"</match>
+		<description>indusface-was: Code Injection Out-of-Band (OOB) detected. Potential execution of arbitrary code via external callbacks or channels.</description>
+		<group>critical,one-on-one,s-a,attack,T1055,defense-evasion,malicious,</group>
+		<mitre>
+			<id>T1055</id>
+		</mitre>
+		<info type="text">
+        Description:
+            Code injection vulnerability occurs when a developer uses invalidated user controlled parameters to interpreted/executed by the application. Impact could cover loss of confidentiality, loss of integrity, loss of availability, and/or loss of accountability
+    </info>
+	</rule>
+	<rule id="102773" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(VMware\s*Server-side\s*Template\s*Injection\s*\(RCE\)\s*Vulnerability)"</match>
+		<description>indusface-was: VMware Server-side Template Injection (RCE) Vulnerability detected. Potential risk of remote code execution due to improper input handling in template engines.</description>
+		<group>critical,one-on-one,s-a,attack,injection,T1221,execution,malicious,</group>
+		<mitre>
+			<id>T1221</id>
+		</mitre>
+		<info type="text">
+        Description:
+            VMware Workspace ONE Access and Identity Manager ontain a remote code execution vulnerability due to serverside template injection. A malicious actor with network access can trigger a server-side template injection that may result in remote code execution.
+    </info>
+	</rule>
+	<rule id="102774" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(EPMM\s*Authentication\s*Bypass)"</match>
+		<description>indusface-was: EPMM Authentication Bypass Vulnerability detected. Potential exploitation to bypass authentication mechanisms and gain unauthorized access.</description>
+		<group>critical,one-on-one,s-a,attack,bypass,T1556,credential-access,malicious,</group>
+		<mitre>
+			<id>T1556</id>
+		</mitre>
+		<info type="text">
+        Description:
+            Web applications with weak authentication controls and access control polices may allow remote attackers to bypass authentication. Successful attacks result in unauthenticated, remote attackers to gain complete control of the account/admin privileges and conducts attacks further.
+    </info>
+	</rule>
+	<rule id="102775" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Client-side\s*Template\s*Injection)"</match>
+		<description>indusface-was: Client-side Template Injection detected. Potential risk of code execution or unauthorized data exposure through vulnerable template rendering.</description>
+		<group>critical,one-on-one,s-a,attack,injection,T1221,execution,malicious,</group>
+		<mitre>
+			<id>T1221</id>
+		</mitre>
+		<info type="text">
+        Description:
+            Client-side Template injection vulnerability arises when an application uses user-controllable data added to client side template which is then processed by template engine. An attacker can abuse such functionality to inject template directives/code and execute arbitrary JavaScript code in the victim.
+    </info>
+	</rule>
+	<rule id="102777" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(PHP\s*CGI\s*Argument\s*Injection\s*Vulnerability)"</match>
+		<description>indusface-was: PHP CGI Argument Injection Vulnerability detected. Potential risk of executing unauthorized commands via crafted query strings.</description>
+		<group>critical,one-on-one,s-a,attack,injection,T1202,execution,malicious,</group>
+		<mitre>
+			<id>T1202</id>
+		</mitre>
+		<info type="text">
+        Description:
+			In PHP versions 8.1.* before 8.1.29, 8.2.* before 8.2.20, 8.3.* before 8.3.8, when using Apache and PHP-CGI on Windows, ifthe system is set up to use certain code pages, Windows may use "Best-Fit" behavior to replace characters in command line given to Win32 API functions. PHP CGI module may misinterpret those characters as PHP options, which may allow a malicious user to pass options to PHP binary being run, and thus reveal the source code of scripts, run arbitrary PHP codeon the server, etc
+    </info>
+	</rule>
+	<rule id="102778" level="1">
+		<if_sid>102751</if_sid>
+		<match type="pcre2">(?i)"Vulnerabilities_\d+_Title"\s*:\s*"(Path\s*Traversal\s*Vulnerability\s*in\s*Apache\s*OFBiz)"</match>
+		<description>indusface-was: Path Traversal Vulnerability in Apache OFBiz detected. Potential unauthorized access to sensitive files on the server.</description>
+		<group>critical,one-on-one,s-a,attack,traversal,T1006,defense-evasion,malicious,</group>
+		<mitre>
+			<id>T1006</id>
+		</mitre>
+		<info type="text">
+        Description:
+			The vulnerability allows an attacker to access files and directories that are stored outside the web serverâ€™s root directory. If exploited, it could allow the attacker to read sensitive files from the server, modify server configurations, or even execute arbitrary code, leading to full server compromise. which could lead to Remote Code Execution (RCE). This vulnerability affects versions of Apache OFBiz before 18.12.14.
+    </info>
+	</rule>
+</group>

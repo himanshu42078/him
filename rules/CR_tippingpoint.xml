@@ -1,0 +1,92 @@
+<!-- 
+
+{"full_log":"Aug 28 14:47:29 10-1-19-158.prometheus-kube-prometheus-kube-proxy.kube-system.svc.cluster.local 0|TippingPoint|UnityOne|1.0.0.17|3243|3243: HTTP: Localhost Host Header in HTTP Request|1|app=HTTP cnt=1 dst=172.16.180.31 dpt=80 act=Block cn1=0 cn1Label=VLAN ID cn2=100862972 cn2Label=Taxonomy cn3=0 cn3Label=Packet Trace cs1=SIDBI-PRODUCTION-IN cs1Label=Profile Name cs2=00000002-0002-0002-0002-000000003243 cs2Label=Policy UUID cs3=00000001-0001-0001-0001-000000003243 cs3Label=Signature UUID cs4=4-1A 4-1B cs4Label=ZoneNames cs5=DC-IPS-TIP-SMS cs5Label=SMS Name dvchost=DC-IPS-TIP-Sec cs6=  cs6Label=Filter Message Parms src=45.148.10.251 spt=60772 externalId=524587771 rt=1724837307244 cat=Security Policy proto=HTTP deviceInboundInterface=37 c6a2= c6a2Label=Source IPv6 c6a3= c6a3Label=Destination IPv6 request=/logon.htm requestMethod=GET dhost=127.0.0.1 sourceTranslatedAddress=45.148.10.251 c6a1= c6a1Label=Client IPv6 suser= sntdom= duser= dntdom= tenant=SIDBI productName=TippingPoint productType=TMSecurity logType=network cust1=logger01","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"} 
+
+-->
+
+<group name="tippingpoint,">
+    <!-- <rule id="116900" level="0" noalert="1">
+        <decoded_as>json</decoded_as>
+        <field name="vendor" type="pcre2">(?i)^TippingPoint$</field>
+        <description>TippingPoint: TippingPoint Log event detected.</description>
+    </rule>
+
+    <rule id="116829" level="0" noalert="1">
+        <decoded_as>tipping-point-custom</decoded_as>
+        <description>TippingPoint: TippingPoint Log event detected.</description>
+    </rule> -->
+
+    <rule id="116900" level="0" noalert="1">
+        <decoded_as>json</decoded_as>
+        <field name="vendor" type="pcre2">(?i)^TippingPoint$</field>
+        <description>TippingPoint: TippingPoint Log event detected.</description>
+    </rule>
+
+
+
+    <rule id="116901" level="1">
+        <if_sid>116900</if_sid>
+        <action type="pcre2">^Detect$</action>
+        <field name="event_class_id" type="pcre2">.*(?i).*syn.*flood.*</field>
+    <description>Tipping-Point: Syn flood attack detected</description>
+    <group>medium,one-on-one,s-a,T1105,T1071,T1071.001,command-and-control,</group>
+        <mitre>
+        <id>T1105</id>
+        <id>T1071</id>
+        <id>T1071.001</id>
+        </mitre>
+        <info type="text">
+        Description : A SYN flood attack is a type of Distributed Denial of Service (DDoS) attack that exploits the TCP handshake process. In this attack, an attacker sends a flood of SYN requests to a target server, which responds with SYN-ACK packets. However, the attacker does not complete the handshake by sending the final ACK packet, leaving the server with half-open connections. This consumes server resources and can lead to degraded performance or service outages.
+        </info>
+    </rule>
+
+    <rule id="116902" level="1">
+        <if_sid>116900</if_sid>
+        <dstport type="pcre2">^137$|^138$|^139$|^445$</dstport>
+        <field name="src_ip" type="pcre2">^(10\.[0-9]{1,3}|172\.(3[01]|2[0-9]|1[6-9])|192\.168)\.[0-9]{1,3}\.[0-9]{1,3}$</field>
+        <field name="event_class_id" type="pcre2">.*(?i)worm.*</field>
+    <description>Tipping-Point: Worm attack detected</description>
+    <group>medium,one-on-one,s-a,T1105,T1071,T1071.001,command-and-control,</group>
+        <mitre>
+        <id>T1105</id>
+        <id>T1071</id>
+        <id>T1071.001</id>
+        </mitre>
+        <info type="text">
+        Description : A worm attack occurs when a malicious self-replicating program, known as a worm, spreads across a network without needing user intervention. Unlike viruses, worms do not attach themselves to files but instead exploit vulnerabilities in operating systems or software to propagate. Once a worm infects a system, it can consume bandwidth, disrupt services, and potentially deliver additional payloads like malware or ransomware.
+        </info>
+    </rule>
+
+    <rule id="116903" level="2" timeframe="60" frequency="10">
+        <if_matched_sid>116901</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>src_ip</same_field>
+        <description>Tipping-Point:Possible detection of syn flood from single sources.</description>
+        <group>high,aggregation,s-a,T1105,T1071,T1071.001,command-and-control,</group>
+        <mitre>
+        <id>T1105</id>
+        <id>T1071</id>
+        <id>T1071.001</id>
+        </mitre>
+        <info type="text">
+        Description : Detecting a SYN flood attack originating from a single source requires vigilant monitoring of network traffic for abnormal patterns, such as a surge of SYN packets from one IP address. By employing anomaly detection techniques, network administrators can establish a baseline of normal traffic behavior and identify significant deviations. Intrusion detection systems (IDS) can further enhance detection by alerting administrators when traffic exceeds specific thresholds. Prompt identification allows for quick mitigation measures, such as blocking the offending IP address or implementing rate limiting, to protect the target server from resource depletion.
+        </info>
+    </rule>
+
+    <rule id="116904" level="2" timeframe="60" frequency="10">
+        <if_matched_sid>116902</if_matched_sid>
+        <same_field>tenant</same_field>
+        <different_field>src_ip</different_field>
+        <description>Tipping-Point:Possible Detection of worm from multiple sources.</description>
+        <group>high,aggregation,s-a,T1105,T1071,T1071.001,command-and-control,</group>
+        <mitre>
+        <id>T1105</id>
+        <id>T1071</id>
+        <id>T1071.001</id>
+        </mitre>
+        <info type="text">
+        Description : Detecting a worm attack from multiple sources means keeping a close eye on network traffic for strange behavior that suggests many systems are infected. Look for signs like a sudden rise in outbound connections, repeated requests to certain ports, or spikes in data transfer across different devices. Anomaly detection systems can help spot these patterns by comparing current traffic to normal behavior. Intrusion detection systems (IDS) can alert administrators when unusual activity comes from various IP addresses.
+        </info>
+    </rule>
+
+</group>

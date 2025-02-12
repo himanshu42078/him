@@ -1,0 +1,1284 @@
+<!-- 
+Rule Id range: 104500 - 104699
+Last Rule used: 
+Unused ID: 104583,104584,104585
+
+-->
+
+<!-- References
+
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4726
+https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4720 
+
+
+-->
+
+<!-- Windows AD Rules -->
+ 
+<group name="windows-ad,">
+
+<!-- Base Rules -->
+
+    <!-- <rule id="104500" level="0" noalert="1">
+        <decoded_as>windows-ad-custom</decoded_as>
+        <description>active directory windows Events</description>
+		<group>info,one-on-one,</group>
+    </rule> -->
+
+    <rule id="104501" level="0" noalert="1">
+        <decoded_as>json</decoded_as>
+        <field name="productName" type="pcre2">(?i)^Windows-AD$</field>
+        <description>active directory windows Events</description>
+		<group>info,one-on-one,</group>
+    </rule>
+
+    <rule id="104502" level="1" noalert="1">
+        <if_sid>104501</if_sid> 
+        <description>active directory windows Events</description>
+		<group>info,one-on-one,</group>
+    </rule>
+
+
+<!-- SIDBI UC030- Multiple Failed Logon Followed By Successful Logon -->
+
+    <rule id="104517" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4624$|^528$|^540$</field>
+        <description>A successful logon from impersonated account.</description>
+        <group>low,one-on-one,windows,server,active-directory,defense-evasion,T1550,success,authentication,</group>
+        <mitre>
+            <id>T1550</id>
+        </mitre>
+    </rule>
+    
+    <!-- New - SIDBI Specific -->
+    <rule id="104565" level="1">
+        <if_sid>104517</if_sid>                                
+        <field name="logon_type" type="pcre2" negate="yes">3</field>
+        <field name="tenant" type="pcre2">(?i)sidbi</field>
+        <description>A successful logon from impersonated account.</description>
+        <group>low,one-on-one,windows,server,active-directory,defense-evasion,T1550,success,authentication,</group>
+        <mitre>
+            <id>T1550</id>
+        </mitre>
+    </rule>
+
+    <rule id="104536" level="1">
+        <if_sid>104502</if_sid>
+        <field name="win_eventid" type="pcre2">^4625$|^529$|^537$|^539$</field>
+        <description>Failed logon via windows event.</description>
+        <group>low,one-on-one,windows,server,active-directory,credential-access,T1110,failure,</group>
+        <mitre>
+            <id>T1110</id>
+        </mitre>
+    </rule>
+
+    <rule id="104586" level="1">
+        <if_sid>104536</if_sid>
+        <match type="pcre2">0xC0000072</match>
+        <description>Failed Logon Attempt Detected from a Disabled Account.</description>
+        <group>low,one-on-one,windows,server,active-directory,credential-access,T1110,failure,</group>
+        <mitre>
+            <id>T1110</id>
+        </mitre>
+    </rule>
+
+    <!-- New SIDBI Specific -->
+    <rule id="104574" level="1">
+        <if_sid>104536</if_sid>
+         <field name="logon_type" type="pcre2" negate="yes">3</field>
+          <field name="tenant" type="pcre2">(?i)sidbi</field>
+        <description>Failed logon via windows event.</description>
+        <group>low,one-on-one,windows,server,active-directory,credential-access,T1110,failure,</group>
+        <mitre>
+            <id>T1110</id>
+        </mitre>
+    </rule>
+    
+      <rule id="104567" level="1">
+        <if_sid>104536</if_sid>
+        <field name="dst_usr" type="pcre2">.*\$$</field>
+        <description>Failed logon via windows event.</description>
+        <group>low,one-on-one,windows,server,active-directory,credential-access,T1110,failure,</group>
+        <mitre>
+            <id>T1110</id>
+        </mitre>
+    </rule>
+    
+    <rule id="104566" level="1">
+        <if_sid>104517</if_sid>                                
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>
+        <description>A successful logon from impersonated account.</description>
+        <group>low,one-on-one,windows,server,active-directory,defense-evasion,T1550,success,authentication,</group>
+        <mitre>
+            <id>T1550</id>
+        </mitre>
+    </rule>
+    
+<!-- SIDBI UC038- Windows Account Created and Deleted within 1Hour -->
+
+    <rule id="104509" level="1">
+        <if_sid>104502</if_sid>                                <!--  windows event -->
+        <field name="win_eventid" type="pcre2">^4720$|^624$</field>
+        <description>User account creation.</description>
+        <group>low,one-on-one,windows,server,active-directory,persistence,T1136,</group>
+        <mitre>
+            <id>T1136</id>
+        </mitre>
+    </rule>
+
+    <rule id="104510" level="1">
+        <if_sid>104502</if_sid>                                <!--  windows event -->
+        <field name="win_eventid" type="pcre2">^4726$|^630$</field>
+        <description>User account deletion.</description>
+        <group>low,one-on-one,windows,server,active-directory,impact,T1531,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+    </rule>
+    
+        <!-- SIDBI UC046-AD group created & deleted within 24 hours -->
+
+    <rule id="104512" level="1">
+        <if_sid>104502</if_sid>                                <!--  windows event -->
+        <field name="win_eventid" type="pcre2">^4727$|^631$</field>
+        <description>Security-enabled global group creation.</description>
+        <group>low,one-on-one,windows,server,active-directory,persistence,T1098,</group>
+        <mitre>
+            <id>T1098</id>
+        </mitre>
+    </rule>
+
+    <rule id="104513" level="1">
+        <if_sid>104502</if_sid>                                <!--  windows event -->
+        <field name="win_eventid" type="pcre2">^4730$|^634$</field>
+        <description>Security-enabled global group deletion.</description>
+        <group>low,one-on-one,windows,server,active-directory,impact,T1531,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+    </rule>
+    
+      <!-- SIDBI UC049-Same User Login to multiple Host within 1 hr -->
+    
+    <!-- New -->
+
+    <rule id="104555" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4776$</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*svc.*</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*ad_sso.*</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*ldap_user.*</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*system.*</field>
+        <field name="src_ip" type="pcre2">.*</field>
+        <description>A successful Login attempts in a domain controller (DC).</description>
+        <group>low,one-on-one,windows,server,active-directory,defense-evasion,T1550,success,authentication,</group>
+        <mitre>
+            <id>T1550</id>
+        </mitre>
+    </rule>
+    
+    <!--SIDBI UC081-WINDOWS-A scheduled task was created. -->
+    <rule id="104516" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4698$|^602$</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>
+        <description>WindowsAD: A scheduled task was created.</description>
+        <group>low,one-on-one,soar-alert,windows,server,active-directory,persistence,T1053,notable-behaviour,</group>
+        <mitre>
+            <id>T1053</id>
+        </mitre>
+         <info type="text">
+         Description:
+             This rule identifies the creation of a scheduled task in a Windows Active Directory environment. Such events may indicate administrative activities or potentially malicious actions, such as an attacker setting up tasks to maintain persistence or execute unauthorized scripts.
+        </info>
+    </rule>
+
+
+    <!-- SIDBI UC083-WINDOWS-Interactive use of service account -->
+    <!-- SIDBI Specific -->
+
+    <rule id="104518" level="1">
+        <if_sid>104502</if_sid>                                <!--  windows event -->
+        <field name="win_eventid" type="pcre2">^4624$</field>
+        <field name="logon_type" type="pcre2">2</field>
+        <field name="dst_usr" type="pcre2">.*svc.*</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*svc_mfa.*</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*svc_biom.*</field>
+        <field name="tenant" type="pcre2">^(?i)SIDBI</field>
+        <description>Interactive use of service account.</description>
+        <group>medium,one-on-one,soar-alert,windows,server,active-directory,defense-evasion,T1078,notable-behaviour,</group>
+        <mitre>
+            <id>T1078</id>
+        </mitre>
+          <info type="text">
+         Description:
+            The interactive use of a service account refers to a scenario where a service account, typically designed for automated processes and non-interactive tasks, is accessed directly by a user to perform actions interactively. This practice can pose security risks, as service accounts often have elevated privileges intended for specific applications or services. Interactive access can lead to unauthorized actions, increased attack surfaces, and difficulties in tracking usage.
+        </info>
+    </rule>
+
+<!-- SIDBI UC129-WINDOWS-user added, or deleted Security enabled local group -->
+<!--SIDBI UC130-WINDOWS-user added followed by cert.in--> 
+
+    <rule id="104519" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4732$|^636$</field>
+        <description>User added to security enabled local group.</description>
+        <group>low,one-on-one,windows,server,active-directory,persistence,T1098,notable-behaviour,</group>
+        <mitre>
+            <id>T1098</id>
+        </mitre>
+    </rule>
+
+    <rule id="104520" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4733$|^637$</field>
+        <description>User deleted from security enabled local group.</description>
+        <group>low,one-on-one,windows,server,active-directory,impact,T1531,notable-behaviour,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+    </rule>
+    
+  <!-- SIDBI UC150 Windows Critical Service Stopped -->
+
+<rule id="104521" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^7036$</field>
+        <match type="pcre2">(?i)stopped</match>
+        <match type="pcre2">(?i)Windows Time</match>
+        <description>windows time service is stopped in the windows server.</description>
+        <group>medium,one-on-one,soar-alert,windows,server,active-directory,persistence,T1547,service,</group>
+        <mitre>
+            <id>T1547</id>
+        </mitre>
+        <info type="text">
+         Description:
+          when the Windows Time Service is stopped on a Windows server. The Windows Time Service is crucial for synchronizing system clocks, which is vital for security protocols, logging accuracy, and the functioning of various services. Stopping this service may indicate potential malicious activity, such as attempts to disrupt auditing processes or exploit time-based vulnerabilities. 
+        </info>
+    </rule>
+    
+  <!-- SIDBI UC 101.01 Windows Service account failure more than 3 times -->
+
+    <rule id="104522" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="dst_usr" type="pcre2">(?i).*(?:admin|svc).*</field>
+        <field name="ec_outcome" type="pcre2">(?i)failure</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*sqlsvc.*</field>
+        <field name="tenant" type="pcre2">^(?i)SIDBI</field>
+        <field name="src_ip" type="pcre2">.*</field>
+        <description>windows service account failure.</description>
+        <group>medium,one-on-one,windows,server,active-directory,persistence,T1543,T1543.003,failure,service,</group>
+        <mitre>
+            <id>T1543</id>
+            <id>T1543.003</id>
+        </mitre>
+    </rule>
+    
+    
+    <!-- SIDBI UC 120 Network Share Created followed by Remote Logon -->
+
+    <rule id="104524" level="1">
+        <if_sid>104502</if_sid>                                <!--  windows event -->
+        <field name="win_eventid" type="pcre2">^4624$|^528$|^540$</field>
+        <field name="logon_type" type="pcre2">10</field>       <!-- 10 = when a user remotely accesses the computer through RDP applications such as Remote Desktop, Remote Assistance or Terminal Services    -->
+        <description>Remote logon.</description>
+        <group>low,one-on-one,windows,server,active-directory,lateral-movement,T1021,success,</group>
+        <mitre>
+            <id>T1021</id>
+        </mitre>
+    </rule>
+
+    <rule id="104525" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^5142$</field>
+        <description>Network share creation</description>
+        <group>low,one-on-one,windows,server,active-directory,discovery,T1135,network,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+    </rule>
+    
+    <rule id="104556" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^5144$|^4726$</field>
+        <description>Network share deletion</description>
+        <group>low,one-on-one,windows,server,active-directory,discovery,T1135,network,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+    </rule>
+    
+<!-- SIDBI UC002 - WINDOWS- Account created locally on server -->
+
+    <rule id="104527" level="1">
+        <if_sid>104502</if_sid>                                <!--  windows event -->
+        <field name="win_eventid" type="pcre2">^4720$|^624$</field>
+        <field name="computer_name" type="pcre2" negate="yes">.*vwadc001.sidbifarm.com.*</field>
+        <field name="computer_name" type="pcre2" negate="yes">.*vwmdc001.sidbifarm.com.*</field>
+        <field name="computer_name" type="pcre2" negate="yes">.*vwcdc101.sidbifarm.com.*</field>
+        <field name="computer_name" type="pcre2" negate="yes">.*pwdradc101.sidbifarm.com.*</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>
+        <field name="tenant" type="pcre2">(?i)SIDBI</field>
+        <description>Local account creation.</description>
+        <group>medium,one-on-one,soar-alert,windows,server,active-directory,persistence,T1136,T1136.001,notable-behaviour,</group>
+        <mitre>
+            <id>T1136</id>
+            <id>T1136.001</id>
+        </mitre>
+        <info type="text">
+         Description:
+            This rule detects the creation of a local user account on a system. Creating local accounts can pose security risks, especially if done without proper authorization, as it may allow unauthorized access to the system.
+        </info>
+    </rule>
+
+    <rule id="104528" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4726$|^630$</field>
+        <field name="computer_name" type="pcre2" negate="yes">.*vwadc001.sidbifarm.com.*</field>
+        <field name="computer_name" type="pcre2" negate="yes">.*vwmdc001.sidbifarm.com.*</field>
+        <field name="computer_name" type="pcre2" negate="yes">.*vwcdc101.sidbifarm.com.*</field>
+        <field name="computer_name" type="pcre2" negate="yes">.*pwdradc101.sidbifarm.com.*</field>
+        <field name="tenant" type="pcre2">^(?i)SIDBI</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>
+        <description>Local account deletion</description>
+        <group>medium,one-on-one,soar-alert,windows,server,active-directory,impact,T1531,notable-behaviour,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+        <info type="text">
+         Description:
+           The deletion of a local account on a system removes a user’s access to that specific machine and any associated data. This action may occur as part of routine administrative tasks, such as offboarding employees or managing user permissions. However, if the deletion happens unexpectedly or without proper authorization, it could signal potential security risks, such as attempts to cover up unauthorized access or malicious activity.  
+        </info>
+    </rule> 
+    
+       <!--  SIDBI UC003-Windows- Account Created in AD -->
+
+    <rule id="104529" level="1">
+        <if_sid>104502</if_sid>                                <!--  windows event -->
+        <field name="win_eventid" type="pcre2">^4720$|^624$</field>
+        <field name="computer_name">.*vwadc001.sidbifarm.com.*|.*vwmdc001.sidbifarm.com.*|.*vwcdc101.sidbifarm.com.*|.*pwdradc101.sidbifarm.com.*</field>
+        <field name="tenant" type="pcre2">^(?i)SIDBI</field>
+        <description>Account creation in windows AD.</description>
+        <group>medium,one-on-one,soar-alert,windows,server,active-directory,persistence,T1136,T1136.001,notable-behaviour,</group>
+        <mitre>
+            <id>T1136</id>
+            <id>T1136.001</id>
+        </mitre>
+        <info type="text">
+         Description:
+            The creation of accounts in Windows Active Directory (AD) can pose significant risks if not properly monitored. Unauthorized account creation may indicate malicious activities, such as an attacker gaining administrative access to set up rogue accounts for future exploitation. This could facilitate unauthorized access to sensitive resources, data exfiltration, or lateral movement within the network.
+        </info>
+    </rule>
+    
+   <!-- SIDBI UC005-Windows-Attempting to login in disabled account -->
+
+    <rule id="104531" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^531$</field>
+        <match type="pcre2">(?i)\bAccount currently disabled.\b</match>
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>
+        <field name="dst_usr" type="pcre2" negate="yes">^x$</field>
+        <field name="dst_usr" type="pcre2" negate="yes">^(?i)guest</field>
+         <field name="tenant" type="pcre2">^(?i)SIDBI</field>
+        <description>login attempts with disabled account.</description>
+        <group>high,one-on-one,soar-alert,windows,server,active-directory,defense-evasion,T1078,</group>
+        <mitre>
+            <id>T1078</id>
+        </mitre>
+         <info type="text">
+         Description:
+           Login attempts with a disabled account are a critical security concern. Such attempts typically indicate either a user trying to access the account after it has been intentionally disabled, or potentially malicious activity, such as an attacker attempting to exploit known credentials. This behavior could signal attempts to gain unauthorized access or conduct reconnaissance within the network.   
+        </info>
+    </rule>
+    
+    <!-- SIDBI UC006-Windows-Powershell Execution -->
+
+    <rule id="104532" level="1">
+        <if_sid>104502</if_sid>    
+        <field name="process_name" type="pcre2">(?i)^C:\\{1,2}Windows\\{1,2}system32\\{1,2}Windowspowershell\\{1,2}v1.0\\{1,2}powershell.exe$</field>
+        <match type="pcre2">^(?!.*winrmconfig.ps1).*$</match>
+        <match type="pcre2">^(?!.*ca-script.ps1).*$</match>
+        <match type="pcre2">^(?!.*ps.ps1).*$</match>
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>  
+        <field name="tenant" type="pcre2">^(?i)SIDBI</field>                  
+        <description>Windows powershell execution.</description>
+        <group>high,one-on-one,windows,server,active-directory,execution,powershell,T1059,T1059.001,</group>
+        <mitre>
+            <id>T1059</id>
+            <id>T1059.001</id>
+        </mitre>
+    </rule>
+    
+      <!-- SIDBI UC008-ActiveDirectory admin Activity Monitoring -->
+
+    <rule id="104533" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^5141$|^5136$</field>
+        <field name="tenant" type="pcre2">^(?i)SIDBI</field> 
+        <description>Active Directory GPO Deletion Detection.</description>
+        <group>high,one-on-one,s-a,windows,server,active-directory,defense-evasion,T1070,T1070.004,suspicious-behavior,</group>
+        <info type="text">description : This rule is triggered when the deletion of Group Policy Objects (GPOs) in an Active Directory environment happened.The deletion of GPOs can be a normal administrative action, but it can also be a sign of malicious activity, particularly if an attacker is trying to remove security policies or cover their tracks.</info>
+        <mitre>
+            <id>T1070</id>
+            <id>T1070.004</id>
+        </mitre>
+    </rule>
+
+     <!-- SIDBI UC010-WINDOWS-Shutdown activity  -->
+
+     <rule id="104534" level="1">
+      <if_sid>104502</if_sid> 
+      <field name="win_eventid" type="pcre2">^1074$</field>                          
+      <field name="dst_usr" type="pcre2" negate="yes">.*nt authority.*</field>
+      <match type="pcre2">(?i)\bsystem.shutdown\b</match>
+      <description>Windows server shutdown</description>
+      <group>medium,one-on-one,soar-alert,windows,server,active-directory,impact,T1529,</group>
+      <mitre>
+          <id>T1529</id>
+      </mitre>
+       <info type="text">
+         Description:
+          A Windows Server shutdown refers to the process of turning off the server, either intentionally by an administrator or due to unexpected issues such as power failures or critical system errors. While planned shutdowns may be part of routine maintenance or updates, unplanned shutdowns can lead to significant disruptions in services, potential data loss, and security vulnerabilities. 
+        </info>
+  </rule>
+
+   <!-- SIDBI UC011-WINDOWS- Policy Changes (ACL) -->
+
+    <rule id="104535" level="1">
+        <if_sid>104502</if_sid> 
+        <match type="pcre2">(?i)\bauthentication policy change\b</match>
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>                       
+        <description>Windows policy changes(ACL).</description>
+        <group>medium,one-on-one,soar-alert,windows,server,active-directory,T1222,defense-evasion,policy,change,</group>
+        <mitre>
+            <id>T1222</id>
+        </mitre>
+        <info type="text">
+         Description:
+           Windows policy changes to ACLs can indicate routine administrative tasks, such as updating user permissions or implementing new security measures. However, unauthorized or unexpected modifications may signal a potential security threat, such as an insider attack or an external breach attempting to gain unauthorized access to sensitive data.   
+        </info>
+    </rule>
+
+     <!-- New -->
+    <!-- SIDBI UC012-Windows User Account Added and Removed from Security Enabled Global Group -->
+
+    <rule id="104570" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4728$</field>
+        <description>User added to security enabled Global group.</description>
+        <group>low,one-on-one,soar-alert,windows,server,active-directory,persistence,T1098,notable-behaviour,</group>
+        <mitre>
+            <id>T1098</id>
+        </mitre>
+        <info type="text">
+         Description:
+           Adding a user to a global group can be routine; however, it also raises potential security concerns. If this action occurs without proper authorization or oversight, it may indicate unauthorized privilege escalation or a potential insider threat.
+        </info>
+    </rule>
+
+    <rule id="104571" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4729$</field>
+        <description>User deleted from security enabled Global group.</description>
+        <group>low,one-on-one,soar-alert,windows,server,active-directory,impact,T1531,notable-behaviour,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+        <info type="text">
+         Description:
+           User deleted from security enabled Global group this can be a routine administrative task, it also warrants careful monitoring. Unauthorized or unexpected removals may indicate potential security risks, such as an insider threat or attempts to disrupt access controls. Keeping track of who initiated the deletion, the timing, and the context of the action is crucial to ensure that access management policies are being followed. 
+        </info>
+    </rule>
+
+<!-- SIDBI UC021-Account lock out 5 attempts in 1 hour -->
+
+    <rule id="104562" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4740$</field>
+        <field name="dst_usr" type="pcre2" negate="yes">.*sqlsvc.*</field>
+        <description>A user account was locked out.</description>
+        <group>low,one-on-one,windows,server,active-directory,impact,T1531,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+    </rule>
+    
+     <!-- SIDBI UC022-Windows-Account Deleted from AD -->
+
+    <rule id="104530" level="1">
+        <if_sid>104502</if_sid>                                
+        <field name="win_eventid" type="pcre2">^4726$|^630$</field>
+        <field name="computer_name">.*vwadc001.sidbifarm.com.*|.*wmdc001.sidbifarm.com.*|.*vwcdc101.sidbifarm.com.*|.*pwdradc101.sidbifarm.com.*</field>
+        <field name="tenant" type="pcre2">^(?i)SIDBI</field>
+        <description>Account deletion From windows AD.</description>
+        <group>medium,one-on-one,soar-alert,windows,server,active-directory,impact,T1531,notable-behaviour,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+         <info type="text">
+         Description:
+            Account deletion from Windows Active Directory (AD) permanently removes a user or computer account, revoking access to network resources and associated data.Account deletion must be closely monitored. While it can be a routine administrative task, unauthorized or unexpected deletions may indicate potential security risks, such as attempts to cover up malicious activity or insider threats.
+        </info>
+    </rule>
+    
+    <!-- SIDBI UC037-Windows-Audit logs deleted -->
+
+    <rule id="104537" level="1">
+        <if_sid>104502</if_sid> 
+        <field name="win_eventid" type="pcre2">^1102$|^517$</field>                         
+        <description>User try to delete the security/audit logs from host.</description>
+        <group>high,one-on-one,soar-alert,windows,server,active-directory,T1070,defense-evasion,suspicious-behavior,</group>
+        <mitre>
+            <id>T1070</id>
+        </mitre>
+        <info type="text">
+         Description:
+           When a user attempts to delete security or audit logs from a host, it raises significant security concerns. These logs are critical for tracking user activities, monitoring for unauthorized access, and maintaining compliance with security policies. An attempt to delete them may indicate malicious intent, such as an effort to cover up unauthorized actions, evade detection, or disrupt investigations into suspicious behavior.   
+        </info>
+    </rule>
+
+<!-- SIDBI UC043-Password changed for same user three times on same day -->
+
+    <rule id="104538" level="1">
+        <if_sid>104502</if_sid> 
+        <field name="win_eventid" type="pcre2">^4724$</field> 
+        <field name="dst_usr" type="pcre2" negate="yes">.*svc_pimservice.*</field>  
+        <field name="dst_usr" type="pcre2" negate="yes">.*serlasidbi.*</field> 
+        <field name="src_usr" type="pcre2" negate="yes">.*</field>    
+        <description>User attempt was made to reset an account's password.</description>
+        <group>low,one-on-one,windows,server,active-directory,T1098,privilege-escalation,</group>
+        <mitre>
+            <id>T1098</id>
+        </mitre>
+    </rule>
+    
+     <!-- SIDBI UC052-WINDOWS-The system time was changed -->
+
+    <rule id="104540" level="1">
+        <if_sid>104502</if_sid> 
+        <field name="win_eventid" type="pcre2">^4616$</field> 
+        <field name="process_name" type="pcre2" negate="yes">C:\\{1,2}Windows\\{1,2}system32\\{1,2}svchost.exe$</field> 
+        <field name="process_name" type="pcre2" negate="yes">C:\\{1,2}Program Files\\{1,2}VMware\\{1,2}VMware Tools\\{1,2}vmtoolsd.exe$</field> 
+        <field name="dst_usr" type="pcre2" negate="yes">.*\$$</field>
+        <field name="dst_usr" type="pcre2" negate="yes">LOCAL SERVICE</field>   
+        <description>The system time was changed in windows.</description>
+        <group>low,one-on-one,soar-alert,windows,server,active-directory,T1124,discovery,</group>
+        <mitre>
+            <id>T1124</id>
+        </mitre>
+        <info type="text">
+         Description:
+            Changing the system time in Windows can pose significant risks. Unauthorized changes may indicate malicious activity, disrupt security protocols like Kerberos, and compromise the integrity of security logs. Monitoring for unexpected time changes is essential to detect potential threats and maintain system security.
+        </info>
+    </rule>
+    
+    <!-- SIDBI : Malicious Account Creation Followed by Failed Authorization -->
+    <!-- Detects when a new account is created on a system and three authentication failures occur from that system with the new account name (i.e. someone gains access to a system, creates a user account, and attempts to log into other appliances from the compromised system hoping that the system is considered trusted). -->
+
+    <!-- User creation rule : 104509 
+        login failed : 104536
+        Multiple times authentication failures.frq-3, timeframe-300  : 104505
+    -->
+    
+      
+    <rule id="104578" level="1">
+        <if_sid>104502</if_sid>
+        <field name="src_usr" type="pcre2">.*</field>
+        <field name="src_ip" type="pcre2">.*</field> 
+        <match type="pcre2">(?i)\buser\b</match>
+        <match type="pcre2">(?i)\Create\b</match>
+        <match type="pcre2">(?i)\bUserGroup\b</match>
+        <match type="pcre2">(?i)\bSuccess\b</match>
+        <field name="tenant" type="pcre2">(?i)sidbi</field> 
+        <description>Account Creation Event Detected</description>
+        <group>high,one-on-one,windows,server,active-directory,credential-access,failure,T1110,T1110.001,authentication,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+    </rule>
+    
+      <rule id="104579" level="1">
+        <if_sid>104502</if_sid>
+        <field name="dst_usr" type="pcre2">.*</field>
+        <field name="src_ip" type="pcre2">.*</field> 
+        <match type="pcre2">(?i)\buser\b</match>
+        <match type="pcre2">(?i)\bAuthentication\b</match>
+        <match type="pcre2">(?i)\bFailure\b</match>
+        <field name="tenant" type="pcre2">(?i)sidbi</field> 
+        <description>Authentication Failure Event Detected.</description>
+        <group>high,one-on-one,windows,server,active-directory,credential-access,failure,T1110,T1110.001,authentication,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+    </rule>
+
+<!-- Windows Suspicious Admin Activity: Audit Log Cleared -->
+
+    <rule id="104580" level="1">
+        <if_sid>104509</if_sid>                                <!--  windows event -->
+        <field name="src_usr" type="pcre2">.*</field>
+        <match type="pcre2">\bmicrosoft-windows-security-auditing\b</match>
+        <field name="tenant">(?i)sidbi</field>
+        <description>User account creation.</description>
+        <group>low,one-on-one,windows,server,active-directory,persistence,T1136,</group>
+        <mitre>
+            <id>T1136</id>
+        </mitre>
+    </rule>
+    
+    <rule id="104545" level="1">
+        <if_sid>104502</if_sid> 
+        <field name="win_eventid" type="pcre2">^4732$|^4728$|^632$|^636$|^4756$|^660$|^4761$|^655$</field>
+        <match>(?i)\bWindows Hosts\b</match>
+         <match type="pcre2">\bmicrosoft-windows-security-auditing\b</match>
+        <field name="tenant">(?i)sidbi</field>
+         <match type="pcre2">\bAdmin|Administrator\b</match>
+        <description>Member added to admin group.</description> 
+        <group>low,one-on-one,windows,server,active-directory,T1098,persistence,</group>
+        <mitre>
+            <id>T1098</id>
+        </mitre>
+    </rule>
+    
+        <rule id="104546" level="1">
+        <if_sid>104537</if_sid>                                <!--  windows event -->
+        <field name="dst_usr" type="pcre2">.*</field>
+        <match type="pcre2">\bmicrosoft-windows-eventlog\b</match>
+        <match type="pcre2">\bWindows Hosts\b</match>
+        <field name="tenant">(?i)sidbi</field>
+        <description>Audit log Cleared event detected.</description>
+        <group>low,one-on-one,windows,server,active-directory,persistence,T1136,</group>
+        <mitre>
+            <id>T1136</id>
+        </mitre>
+    </rule>
+
+<!-- Windows Suspicious Admin Activity: Firewall Service Stopped -->
+
+    <rule id="104548" level="1">
+        <if_sid>104502</if_sid> 
+        <field name="win_eventid" type="pcre2">^5025$</field>
+        <match type="pcre2">\bmicrosoft-windows-eventlog\b</match>
+        <match type="pcre2">\bWindows Hosts\b</match>
+        <description>Windows firewall service stopped.</description>  
+        <group>low,one-on-one,windows,server,active-directory,defense-evasion,T1562,T1562.004,service,firewall,</group>
+        <mitre>
+            <id>T1562</id>
+            <id>T1562.004</id>
+        </mitre>
+    </rule>
+
+<!-- SIDBI : Account Added to Administrators Group and Removed -->
+    <!-- Detects log events when a user is added to an administrative group and then removed from the group within 15 minutes. Both the list of administrator groups and event time window are configurable. 
+
+    Rule1: One-on-One: Addition of a member to a Admin group : 104545 -->
+
+    <rule id="104550" level="1">
+        <if_sid>104502</if_sid> 
+        <field name="win_eventid" type="pcre2">^4729$|^633$|^4733$|^637$|^4747$|^651$|^4752$|^656$</field>
+        <match>(?i)\badmin\b|(?i)\bAdministrator\b</match>
+        <description>Removal of a member from admin group.</description>
+        <group>low,one-on-one,windows,server,active-directory,impact,T1531,</group> 
+        <mitre>
+            <id>T1531</id>
+        </mitre> 
+    </rule>
+
+<!-- Fortinet+AD : Windows service installation.  -->
+
+    <rule id="104553" level="1">
+        <if_sid>104502</if_sid> 
+        <field name="win_eventid" type="pcre2">^4697$|^601$</field>
+        <description>Windows service installation.</description>  
+        <group>low,one-on-one,windows,server,active-directory,persistence,T1543,T1543.003,service,</group>
+        <mitre>
+            <id>T1543</id>
+            <id>T1543.003</id>
+        </mitre>
+    </rule>
+
+<!-- SIDBI UC133 Multiple Failed Logins to Single Host from Multiple Hosts
+ 
+104536 - Failed Login -->
+ <!--                                       Aggregation Rules                                                       -->
+
+<rule id="104581" level="2" frequency="3" timeframe="300">
+        <if_matched_sid>104536</if_matched_sid>
+        <field name="dst_usr" type="pcre2">.*</field>
+        <field name="tenant" type="pcre2">(?i)sidbi</field>
+        <field name="src_ip" type="pcre2">.*</field>
+        <same_field>dst_usr</same_field>
+        <different_field>src_ip</different_field>  
+        <description>Multiple Failed Logins to Single Host from Multiple Hosts.</description>
+        <group>medium,aggregation,soar-alert,windows,server,active-directory,credential-access,notable-behaviour,T1110,T1110.001,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+        <info type="text">
+         Description:
+           When a user is added to an administrative group and then removed within 15 minutes, it raises security concerns. This could indicate temporary privilege escalation for a specific task, potential misuse of admin rights, or even malicious intent to perform unauthorized actions.   
+        </info>
+    </rule>
+ 
+<rule id="104582" level="2" frequency="3" timeframe="300">
+        <if_matched_sid>104536</if_matched_sid>
+        <field name="endpoint_name" type="pcre2">.*</field>
+        <field name="dst_usr" type="pcre2">.*</field>
+        <field name="tenant" type="pcre2">(?i)sidbi</field>
+        <same_field>dst_usr</same_field>
+        <different_field>endpoint_name</different_field>  
+        <description>Multiple Failed Logins to Single Host from Multiple Hosts.</description>
+        <group>medium,aggregation,soar-alert,windows,server,active-directory,credential-access,notable-behaviour,T1110,T1110.001,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+        <info type="text">
+         Description:
+           Multiple failed logins to a single host from various source hosts indicate a potential security threat, often pointing to a brute force attack or an attempted unauthorized access. This pattern suggests that an attacker may be trying to guess credentials by targeting the same account from different locations, increasing the likelihood of success.
+         </info>
+    </rule>
+
+       <rule id="104505" level="2" frequency="3" timeframe="300">
+        <if_matched_sid>104574</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <description>Multiple times authentication failures.</description>
+        <group>high,aggregation,soar-alert,windows,server,active-directory,credential-access,failure,T1110,T1110.001,authentication,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+        <info type="text">
+         Description:
+            This rule identifies instances of multiple authentication failures for the same tenant and destination user within a 5-minute window. Specifically, it triggers when three or more failed login attempts are detected. Such patterns may indicate potential unauthorized access attempts or credential stuffing attacks
+        </info>
+    </rule>
+    
+
+     <!-- SIDBI UC009-Multiple Failed Logins from Same Source User to Multiple Hosts -->
+
+    <rule id="104508" level="2" frequency="3" timeframe="180">
+        <if_matched_sid>104536</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <different_field>endpoint_name</different_field>
+        <description> Multiple failed logins from same source user to multiple hosts.</description>
+        <group>high,aggregation,soar-alert,windows,server,active-directory,credential-access,T1110,failure,T1110.001,suspicious-behavior,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+         <info type="text">
+         Description:
+            This rule identifies multiple failed login attempts originating from the same source user across various hosts within a specified timeframe. This pattern may suggest potential malicious activity, such as credential stuffing or targeted brute force attacks.
+        </info>
+    </rule>
+    
+      <rule id="104575" level="2" frequency="3" timeframe="180">
+        <if_matched_sid>104536</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <different_field>src_ip</different_field> 
+        <description> Multiple failed logins from same source user to multiple hosts.</description>
+        <group>high,aggregation,soar-alert,windows,server,active-directory,credential-access,T1110,failure,T1110.001,suspicious-behavior,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+        <info type="text">
+         Description:
+            Multiple failed logins from the same source user to multiple hosts typically indicate a potential security threat, such as a brute force attack or unauthorized access attempts. This pattern suggests that an attacker may be trying to gain access to various systems using the same credentials. Monitoring and responding to such activity is crucial to safeguard against data breaches and to maintain system integrity. 
+        </info>
+    </rule>
+
+  <rule id="104503" level="2" frequency="3" timeframe="1800">
+        <if_matched_sid>104567</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <description>Multiple failed logon attempt within 30 minutes.</description>
+        <group>medium,aggregation,soar-alert,windows,server,active-directory,credential-access,notable-behaviour,T1110,T1110.001,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+         <info type="text">
+         Description:
+            Multiple failed logon attempts within a 30-minute window often signal a possible brute force attack, where an individual or automated script tries various password combinations to gain unauthorized access to an account. 
+        </info>
+    </rule>
+
+    <rule id="104515" level="2" frequency="2" timeframe="3600">
+        <if_matched_sid>104555</if_matched_sid>
+        <description>User has logged in to multiple hosts within in 1 hr.</description>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <!--<different_field>endpoint_name</different_field>   -->
+        <group>high,aggregation,soar-alert,windows,server,active-directory,defense-evasion,T1078,suspicious-behavior,</group>
+        <mitre>
+            <id>T1078</id>
+        </mitre>
+        <info type="text">
+         Description:
+           A user logging in to multiple hosts within one hour may raise red flags for potential unauthorized access or account compromise. This behavior could indicate an attacker trying to spread laterally across the network or exploit multiple systems using stolen credentials.
+        </info>
+    </rule>
+
+    <rule id="104523" level="2" frequency="3" timeframe="600">
+        <if_matched_sid>104522</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <description>Multiple windows service account failure.</description>
+        <group>medium,aggregation,soar-alert,windows,server,active-directory,persistence,T1543,T1543.003,failure,service,suspicious-behavior,</group>
+        <mitre>
+            <id>T1543</id>
+            <id>T1543.003</id>
+        </mitre>
+        <info type="text">
+         Description:
+            This rule identifies multiple failed login attempts involving Windows service accounts. Service accounts are typically used for automated processes, and repeated failures may suggest potential issues such as incorrect credentials, account lockout, or malicious activity like credential stuffing or brute force attacks. 
+        </info>
+    </rule>
+
+    <rule id="104563" level="2" frequency="5" timeframe="3600">
+        <if_matched_sid>104562</if_matched_sid> 
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <description>User account has been locked 5 times in an hour.</description>
+        <group>high,aggregation,soar-alert,windows,server,active-directory,impact,T1531,suspicious-behavior,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+        <info type="text">
+         Description:
+           When a user account is locked five times in an hour, it usually indicates multiple failed login attempts, potentially due to incorrect credentials or a security threat like a brute-force attack. Most systems lock accounts after a set number of failed attempts to prevent unauthorized access.
+        </info>
+    </rule>
+
+    <rule id="104539" level="2" frequency="3" timeframe="3600">
+        <if_matched_sid>104538</if_matched_sid>                           
+        <same_field>tenant</same_field>
+        <same_field>src_usr</same_field> 
+        <description>User change the password three times in 60 minutes.</description>
+        <group>medium,aggregation,soar-alert,windows,server,active-directory,T1098,privilege-escalation,suspicious-behavior,</group>
+        <mitre>
+            <id>T1098</id>
+        </mitre>
+        <info type="text">
+         Description:
+          When a user changes their password three times within 60 minutes, it may indicate unusual behavior that warrants investigation. While this could be due to legitimate reasons, such as forgetting a password or troubleshooting access issues, it may also raise security concerns.
+        </info>
+    </rule>
+
+    <!-- SIDBI : Insider Threat Mass Audit Clearing -->
+    <!-- Detects when the same user logs on multiple times to multiple Windows machines, then clears the audit log on each machine within a configurable time frame. -->
+
+    <rule id="104542" level="2" frequency="5" timeframe="600">
+        <if_matched_sid>104537</if_matched_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <different_field>endpoint_name</different_field>  
+        <description>Multiple times Audit Log cleared</description>
+        <group>medium,aggregation,soar-alert,windows,server,active-directory,credential-access,notable-behaviour,T1078,</group>
+        <mitre>
+            <id>T1078</id>
+        </mitre>
+        <info type="text">
+          Description:
+          When audit logs are cleared multiple times, it indicates a significant security threat. This behavior often suggests attempts to conceal unauthorized activities or cover tracks after a security breach. Investigating who cleared the logs, when it happened, and any related actions is essential.   
+        </info>
+    </rule>
+
+    <rule id="104511" level="2" timeframe="3600">
+        <if_matched_sid>104509</if_matched_sid>
+        <if_sid>104510</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <description>User account has been created and deleted within an hour.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+         <info type="text">
+         Description:
+            The creation and deletion of a user account within an hour may indicate suspicious activity, such as an unauthorized attempt to gain access to a system or the testing of privileges. This pattern could suggest that someone is trying to bypass security measures or exploit vulnerabilities.
+        </info>
+    </rule>
+
+    <!-- New  -->
+    <!-- Alert generates when user account has been deleted & created within an hour -->
+
+    <rule id="104506" level="2" timeframe="3600">
+        <if_matched_sid>104510</if_matched_sid>
+        <if_sid>104509</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <description>User account has been deleted and created within an hour.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+        <info type="text">
+         Description:
+            The deletion and subsequent creation of a user account within an hour may indicate potentially suspicious activity, such as an attempt to evade security measures or manipulate access controls. This behavior could suggest that someone is trying to exploit system vulnerabilities or cover their tracks. 
+        </info>
+    </rule>
+
+    <rule id="104514" level="2" timeframe="86400">
+        <if_matched_sid>104512</if_matched_sid>
+        <if_sid>104513</if_sid>
+        <description>AD Group is created and deleted within 24 hours.</description>
+        <same_field>tenant</same_field>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+        <info type="text">
+         Description:
+            This rule detects a scenario where a user experiences three consecutive failed login attempts followed by a successful login within a 10-minute timeframe. This pattern may indicate a potential attack, such as a brute force attempt or credential guessing, where an attacker tries various passwords before ultimately gaining access. 
+        </info>
+    </rule>
+
+    <!-- New -->
+    <!-- Alert generates when AD Group is deleted & created within 24 hours. -->
+
+    <rule id="104554" level="2" timeframe="86400">
+        <if_matched_sid>104513</if_matched_sid>
+        <if_sid>104512</if_sid>
+        <description>AD Group is delated and created within 24 hours.</description>
+        <same_field>tenant</same_field>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+         <info type="text">
+         Description:
+            The creation and deletion of an Active Directory (AD) group within 24 hours may signal unusual activity that warrants further investigation. This behavior could indicate attempts to manipulate permissions, circumvent security policies, or carry out unauthorized actions within the network.
+        </info>
+    </rule>
+
+     <rule id="104568" level="2" timeframe="1800">
+        <if_matched_sid>104519</if_matched_sid>
+        <if_sid>104520</if_sid>
+        <description>Windows User Account Added and Removed from Security Enabled Local Group in 30 minutes</description>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+         <info type="text">
+         Description:
+            The addition and subsequent removal of a Windows user account from a security-enabled local group within 30 minutes may indicate suspicious activity. This pattern could suggest an attempt to manipulate user permissions, gain temporary elevated access, or cover up unauthorized actions.
+        </info>
+    </rule>
+
+     <rule id="104569" level="2" timeframe="1800">
+        <if_matched_sid>104520</if_matched_sid>
+        <if_sid>104519</if_sid>
+        <description>Windows User Account removed and then added in Security Enabled Local Group in 30 minutes</description>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+         <info type="text">
+         Description:
+            The removal of a Windows user account followed by its re-addition to a security-enabled local group within 30 minutes may indicate potentially suspicious activity. This behavior could suggest attempts to manipulate access privileges, possibly to gain temporary elevated rights or to avoid security measures. 
+        </info>
+    </rule>
+
+<!-- SIDBI UC013-Windows User Account Added and Removed from Security Enabled Local Group -->
+    <rule id="104576" level="2" timeframe="86400">
+        <if_matched_sid>104519</if_matched_sid>
+        <if_sid>104520</if_sid>
+        <description>Windows User Account Added and Removed from Security Enabled Local Group in 1440 minutes</description>
+        <same_field>tenant</same_field>
+        <same_field>src_usr</same_field>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+        <info type="text">
+         Description:
+             The addition and removal of a Windows user account from a security-enabled local group within 1440 minutes (24 hours) may indicate routine administrative actions or changes in user access. However, if this activity is unusual for the account or lacks clear justification, it could also suggest potential security concerns, such as unauthorized privilege manipulation. 
+        </info>
+    </rule>
+
+    <rule id="104577" level="2" timeframe="1800">
+        <if_matched_sid>104524</if_matched_sid>
+        <if_matched_sid>104525</if_matched_sid>
+        <if_sid>104556</if_sid>
+        <same_field>tenant</same_field>
+         <same_field>src_ip</same_field>
+        <description>Detect Creation and Deletion of network shares followed by a remote logon in 30 Minutes</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,discovery,T1135,network,suspicious-behavior,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+        <info type="text">
+         Description:
+             This rule detects the creation or deletion of network shares followed by a remote logon within a 30-minute window. Such activities may indicate suspicious behavior, as changes to network shares can impact data accessibility and security. A remote logon shortly after these changes may suggest unauthorized access attempts or potential malicious intent.
+        </info>
+    </rule>
+
+    <rule id="104526" level="2" timeframe="1800">
+        <if_matched_sid>104524</if_matched_sid>
+        <if_sid>104525</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>src_ip</same_field>
+        <description>Network share created followed by remote logon.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,discovery,T1135,network,suspicious-behavior,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+         <info type="text">
+         Description:
+             The creation of a network share immediately followed by a remote logon. This sequence of events may indicate potential malicious activity, as an unauthorized user might create a share to facilitate access to sensitive data.
+        </info>
+    </rule>
+    
+     <rule id="104558" level="2" timeframe="1800">
+        <if_matched_sid>104525</if_matched_sid>
+        <if_sid>104556</if_sid>
+        <same_field>tenant</same_field>
+         <same_field>src_ip</same_field>
+        <description>Detect the creation and subsequent deletion of network shares</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,discovery,T1135,network,suspicious-behavior,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+         <info type="text">
+         Description:
+            Detecting the creation and subsequent deletion of network shares is crucial for maintaining network security and integrity. This activity may indicate administrative actions, but it can also signal potential security threats, such as attempts to exfiltrate data or hide unauthorized access.
+        </info>
+    </rule>
+
+    <!-- New 6 rules -->
+
+    <rule id="104557" level="2" timeframe="1800">
+        <if_matched_sid>104524</if_matched_sid>
+        <if_sid>104556</if_sid>
+        <same_field>tenant</same_field>
+         <same_field>src_ip</same_field>
+        <description>Network share deletion followed by remote logon.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,discovery,T1135,network,suspicious-behavior,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+         <info type="text">
+         Description:
+            The deletion of a network share followed by a remote logon can be a cause for concern. This might indicate that someone is trying to hide resources while accessing the system remotely, which could suggest malicious activity. It’s important to check who made these changes, when they happened, and any related logs to see if this behavior is legitimate or a security threat.
+        </info>
+    </rule>
+
+     <rule id="104559" level="2" timeframe="1800">
+        <if_matched_sid>104556</if_matched_sid>
+        <if_sid>104525</if_sid>
+        <same_field>tenant</same_field>
+         <same_field>src_ip</same_field>
+        <description>Detect the deletion and subsequent creation of network shares</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,discovery,T1135,network,suspicious-behavior,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+         <info type="text">
+         Description:
+            Detecting the deletion and subsequent creation of network shares is crucial for network security. While it may indicate normal administrative actions, it can also suggest potential risks, such as attempts to hide unauthorized access or data theft. 
+        </info>
+    </rule>
+
+     <rule id="104572" level="2" timeframe="86400">
+        <if_matched_sid>104570</if_matched_sid>
+        <if_sid>104571</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>src_usr</same_field>
+         <description>Windows User Account Added and Removed from Security Enabled Global Group</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+        <info type="text">
+         Description:
+           Adding and removing Windows user accounts from a security-enabled global group is crucial for controlling access to sensitive resources. When a user is added to such a group, they inherit specific permissions that can expose critical data. Conversely, removing users ensures that former employees or those no longer needing access cannot compromise the network. 
+        </info>
+    </rule>
+
+     <rule id="104573" level="2" timeframe="86400">
+        <if_matched_sid>104571</if_matched_sid>
+        <if_sid>104570</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>src_usr</same_field>
+        <description>Windows User Account removed and then added in Security Enabled Global Group</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,suspicious-behavior,T1531,impact,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre>
+        <info type="text">
+         Description:
+          When a Windows user account is removed from a security-enabled global group and then added back, it involves temporarily revoking access to group permissions and later restoring them. This process is important for maintaining security, especially during role changes or security reviews. Proper logging and permission review are essential to ensure compliance and prevent unauthorized access, making it a critical part of user access management in an Active Directory environment. 
+        </info>
+    </rule>
+
+    <rule id="104544" level="2" timeframe="300">
+        <if_matched_sid>104578</if_matched_sid>
+        <if_sid>104579</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <same_field>src_ip</same_field>
+        <description>Possible Suspicious account creation followed by failed authorization.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,credential-access,failure,T1110,T1110.001,authentication,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+         <info type="text">
+         Description:
+          Possible suspicious account creation followed by failed authorization attempts may indicate unauthorized activity. This pattern could suggest that an attacker is trying to create a rogue account to gain access to the system but is failing to authenticate.    
+        </info>
+    </rule> 
+
+    <rule id="104547" level="2" timeframe="300">
+        <if_matched_sid>104580</if_matched_sid>
+        <if_matched_sid>104545</if_matched_sid>
+        <if_sid>104546</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>src_usr</same_field>  
+        <description>User account creation and added to admin group , after that audit log  has been cleared.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,T1070,T1070.001,defense-evasion,suspicious-behavior,</group>
+        <mitre>
+            <id>T1070</id>
+            <id>T1070.001</id>
+        </mitre>
+        <info type="text">
+         Description:
+           When a user account is created and added to an admin group, followed by the clearing of audit logs, it raises serious cybersecurity concerns. This could indicate unauthorized privilege escalation and attempts to cover malicious activities. Such actions should be closely monitored, as they can suggest a potential security breach.   
+        </info>
+    </rule>
+
+<rule id="104549" level="2" timeframe="300">    <!-- Corelation -->
+    <if_matched_sid>104580</if_matched_sid>
+    <if_matched_sid>104545</if_matched_sid>
+    <if_sid>104548</if_sid>
+    <same_field>tenant</same_field>
+    <same_field>endpoint_name</same_field>  
+    <description>User account creation and added to admin group , after that firewall service is been stopped.</description>
+    <group>high,correlation,soar-alert,windows,server,active-directory,defense-evasion,T1562,T1562.004,service,firewall,suspicious-behavior,</group>
+    <mitre>
+        <id>T1562</id>
+        <id>T1562.004</id>
+    </mitre>
+    <info type="text">
+     Description:
+         When a user account is created and added to an admin group, followed by stopping the firewall service, it raises serious security concerns. This sequence can indicate unauthorized privilege escalation and potential malicious intent to disable security measures, exposing the system to threats.      
+    </info>
+</rule>
+
+    <rule id="104551" level="2" timeframe="900">    <!-- Corelation -->
+        <if_matched_sid>104545</if_matched_sid>
+        <if_sid>104550</if_sid>
+        <description>User is added to an administrative group and then removed from the group within 15 minutes.</description>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <group>high,correlation,soar-alert,windows,server,active-directory,T1531,impact,suspicious-behavior,</group>
+        <mitre>
+            <id>T1531</id>
+        </mitre> 
+        <info type="text">
+         Description:
+           When a user is added to an administrative group and then removed within 15 minutes, it raises security concerns. This could indicate temporary privilege escalation for a specific task, potential misuse of admin rights, or even malicious intent to perform unauthorized actions.   
+        </info>
+    </rule>
+<!--                                                Correlation Rules                                                           -->
+
+     <rule id="104507" level="3" timeframe="600">
+        <if_matched_sid>104505</if_matched_sid>
+        <if_sid>104565</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <description>Multiple failed logons 3 attempts followed by a successful logon by the same user within 10 minutes.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,failure,T1110,T1110.001,credential-access,suspicious-behavior,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+         <info type="text">
+         Description:
+            This rule detects a scenario where a user experiences three consecutive failed login attempts followed by a successful login within a 10-minute timeframe. This pattern may indicate a potential attack, such as a brute force attempt or credential guessing, where an attacker tries various passwords before ultimately gaining access. 
+        </info>
+    </rule>
+
+    <rule id="104504" level="3" timeframe="1800">
+        <if_matched_sid>104503</if_matched_sid>
+        <if_sid>104566</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field>
+        <same_field>src_ip</same_field>
+        <description>Multiple failed logons 3 attempts followed by a successful logon by the same user within 30 minutes.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,notable-behaviour,credential-access,T1110,T1110.001,failure,</group>
+        <mitre>
+            <id>T1110</id>
+            <id>T1110.001</id>
+        </mitre>
+        <info type="text">
+         Description:
+            The occurrence of three failed logon attempts followed by a successful logon by the same user within 30 minutes may suggest a potential security issue, such as an individual attempting to guess their password or an attacker gaining access after several failed attempts. This pattern raises concerns about account compromise and warrants further investigation to ensure the account's security. 
+        </info>
+    </rule>
+
+    <rule id="104560" level="3" timeframe="1800">
+        <if_matched_sid>104524</if_matched_sid>
+        <if_sid>104558</if_sid>
+        <same_field>tenant</same_field>
+         <same_field>src_ip</same_field>
+        <description>Detect the creation and deletion of network shares followed by a remote logon.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,discovery,T1135,network,suspicious-behavior,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+         <info type="text">
+         Description:
+             Detects when a network share is created and then deleted, followed by a remote logon. This pattern may indicate suspicious activity, such as an unauthorized user trying to access or hide data.
+        </info>
+    </rule>
+
+    <rule id="104561" level="3" timeframe="1800">
+        <if_matched_sid>104524</if_matched_sid>
+        <if_sid>104559</if_sid>
+        <same_field>tenant</same_field>
+         <same_field>src_ip</same_field>
+        <description>Detect the deletion and creation of network shares followed by a remote logon.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,discovery,T1135,network,suspicious-behavior,</group>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+          <info type="text">
+         Description:
+            Detecting the deletion and creation of network shares followed by a remote logon raises significant security concerns. This sequence may indicate that someone is trying to manipulate shared resources—removing access to certain files or folders and then logging in remotely, possibly to exfiltrate data or carry out unauthorized actions.
+        </info>
+    </rule>
+
+    <rule id="104543" level="3" frequency="5" timeframe="600">
+        <if_matched_sid>104517</if_matched_sid>  
+        <if_sid>104542</if_sid>
+        <same_field>tenant</same_field>
+        <same_field>dst_usr</same_field> 
+        <description>User Logs into the sytem and clear Audit logs.</description>
+        <group>high,correlation,soar-alert,windows,server,active-directory,defense-evasion,T1070,T1070.001,suspicious-behavior,</group>
+        <mitre>
+            <id>T1070</id>
+            <id>T1070.001</id>
+        </mitre>
+         <info type="text">
+         Description:
+           When a user logs into a system and subsequently clears the audit logs, it raises serious security concerns. This action may indicate an attempt to hide unauthorized activities or manipulate evidence of malicious behavior. 
+        </info>
+    </rule>
+
+</group>

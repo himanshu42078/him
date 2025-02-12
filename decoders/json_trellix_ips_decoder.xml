@@ -1,0 +1,265 @@
+<!--
+
+{"full_log":" tid 7987: [notifyd.INFO]: [ips_notify_thread]ips event notification is sent out[93813]: desc={\"alert-url\": \"https:\/\/FireEye-NX01-DC-F01-C5.qumc.edu.sa\/notification_url\/ips_events?ev_id=1502768\", \"action-taken\": \"may be blocked in future by the default policy\", \"acknowledged\": false, \"id\": 1502768, \"verified\": false, \"vlan\": \"105\", \"occurred\": \"2024-10-16T05:24:49Z\", \"non-hidden\": false, \"attack-mode\": \"client\", \"blocked\": false, \"uuid\": \"4cf11457-ce8b-4edd-becc-e1ecf62912ec\", \"dst\": {\"ip\": \"10.13.0.33\", \"host\": \"\", \"port\": 63133, \"mac\": \"00:3a:9c:58:33:c2\"}, \"src\": {\"ip\": \"52.111.243.29\", \"host\": \"\", \"port\": 443, \"mac\": \"b4:0c:25:e2:80:10\"}, \"signature\": {\"sid\": \"85321973\", \"revision\": \"3\", \"cve-id\": \"\", \"sname\": \"FE_Anomalous - Microsoft Office - EXE Download Request (T1204.002 \/ User Execution: Malicious File)\"}, \"severity\": {\"value\": 2, \"category\": \"minr\"}}","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"}
+
+-->
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<prematch type="pcre2">tid \d+: \[notifyd\..*\]: \[ips_notify_thread\].*productName\":\"Trellix-IPS\"</prematch>
+	<regex type="pcre2">(\[\w+\]\s*[\w\s]+?\s*\[\d+\])</regex>
+	<order>ips_notify_thread</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">desc\s*=\s*(.*?)(?=\s*(\s\w+)=|\,\")</regex>
+	<order>description</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"alert-url\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>alert_url</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"action-taken\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>action_taken</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"acknowledged\\"\s*:\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>acknowledged</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"id\\"\s*:\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>id</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"verified\\"\s*:\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>verified</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"vlan\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>vlan</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"occurred\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>occurred</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"non-hidden\\"\s*:\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>non_hidden</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"attack-mode\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>attack_mode</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"blocked\\"\s*:\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>blocked</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"uuid\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>uuid</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"dst\\"\s*:\s*{\\"ip\\":\s\\"(.*?)\\"</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"dst\\"\s*:\s*{\\"ip\\":\s*\\".*?\\",\s*\\"host\\":\s\\"(.*?)\\"</regex>
+	<order>dst_host</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"dst\\"\s*:\s*{\\"ip\\":\s*\\".*?\\",\s*\\"host\\":\s\\".*?\\",\s\\"port\\":\s(\d*)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"dst\\"\s*:\s*{\\"ip\\":\s*\\".*?\\",\s*\\"host\\":\s\\".*?\\",\s\\"port\\":\s\d*,\s\\"mac\\":\s\\"(.*?)\\"</regex>
+	<order>dst_mac</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"src\\"\s*:\s*{\\"ip\\":\s\\"(.*?)\\"</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"src\\"\s*:\s*{\\"ip\\":\s*\\".*?\\",\s*\\"host\\":\s\\"(.*?)\\"</regex>
+	<order>src_host</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"src\\"\s*:\s*{\\"ip\\":\s*\\".*?\\",\s*\\"host\\":\s\\".*?\\",\s\\"port\\":\s(\d*)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"src\\"\s*:\s*{\\"ip\\":\s*\\".*?\\",\s*\\"host\\":\s\\".*?\\",\s\\"port\\":\s\d*,\s\\"mac\\":\s\\"(.*?)\\"</regex>
+	<order>src_mac</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"sid\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>signature_id</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"revision\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>signature_revision</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"cve-id\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>signature_cve_id</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"sname\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>signature_name</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"value\\"\s*:\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>severity_value</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\\"category\\"\s*:\s*\\"\K(.*?)(?=\s*(\s\w+)=|\\")</regex>
+	<order>severity_category</order>
+</decoder>
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\"cust1\":\"(.*?)\",</regex>
+	<order>logger_id</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="trellix-ips-field1-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!--
+
+{"full_log":" [java.INFO]: drlWorker01 BaleServer.java to return kbase:org.drools.impl.KnowledgeBaseImpl@5fa47eee to profile:Profile[name=WINDOWS,ruleNumbers=4152,version=1510.100,targetRelease=7.3.0.XXXXX,createdAt=Nov 19, 2013,correlationPackge=com.fireeye.baleCorrEngine.windows,droolHome=\/data\/bale\/rules\/\/fe\/windows,context=com.sun.org.apache.xerces.internal.jaxp.validation.SimpleXMLSchema@2e3a5237,knowdge=2,ruleExtractor=] kbaseProfile:2 original kbase:org.drools.impl.KnowledgeBaseImpl@7220b26c","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"}
+
+-->
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<prematch type="pcre2">\[java.\w+\].*productName\":\"Trellix-IPS\"</prematch>
+	<regex type="pcre2">name\s*=\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>name</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">ruleNumbers\s*=\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>rule_number</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">\[(java.\w+)\]</regex>
+	<order>java</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">version\s*=\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>version</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">targetRelease\s*=\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>target_release</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">createdAt=([A-Za-z]{3} [0-9]{1,2}, [0-9]{4})</regex>
+	<order>created_at</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">correlationPackge\s*=\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>correlation_packge</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">droolHome\s*=\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>drool_home</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">context\s*=\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>context</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">knowdge\s*=\s*(.*?)(?=\s*(\s\w+)=|,)</regex>
+	<order>knowdge</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">ruleExtractor\s*=\s*(.*?)(?=\s*(\s\w+)=|])</regex>
+	<order>rule_extractor</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">kbaseProfile\s*:\s*(.*?)(?=\s*(\s\w+)=|:)</regex>
+	<order>kbase_profile</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">original kbase\s*:\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>original_kbase</order>
+</decoder>
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<regex type="pcre2">\"cust1\":\"(.*?)\",</regex>
+	<order>logger_id</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="trellix-ips-field2-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!--
+
+{"full_log":" [mgmtd.INFO]: TIMING: Query req 11509173 from statsd-14509: rn[2]: id 1002 \/fireeye\/fedb\/mon\/alerts\/cumulative_malware_callback_count","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"}
+ 
+{"full_log":" [mgmtd.INFO]: TIMING: Query req 11509173 from statsd-14509: rn[3]: id 1003 \/fireeye\/fedb\/mon\/alerts\/cumulative_malware_object_count","tenant":"QUMC","productName":"Trellix-IPS","productType":"IPS","logType":"network","cust1":"QUMC-Logger1","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"}
+
+-->
+<decoder name="trellix-ips-field3-json">
+	<parent>json</parent>
+	<prematch type="pcre2">\[mgmtd.\w+\].*productName\":\"Trellix-IPS\"</prematch>
+	<regex type="pcre2">id\s+(\d+)\s+</regex>
+	<order>event_id</order>
+</decoder>
+<decoder name="trellix-ips-field3-json">
+	<parent>json</parent>
+	<regex type="pcre2">\s+(.*?)(?=\s*(\s\w+)=|\","tenant)</regex>
+	<order>message</order>
+</decoder>
+<decoder name="trellix-ips-field3-json">
+	<parent>json</parent>
+	<regex type="pcre2">\[(mgmtd.\w+)\]</regex>
+	<order>mgmtd</order>
+</decoder>
+<decoder name="trellix-ips-field3-json">
+	<parent>json</parent>
+	<regex type="pcre2">\"cust1\":\"(.*?)\",</regex>
+	<order>logger_id</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="trellix-ips-field3-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

@@ -1,0 +1,427 @@
+<!-- {"full_log":"0|Aruba|A72xx|85711|log|SystemEvent|6|deviceProcessName=authmgr dvcpid=3735 dvchost=ARUBAMC1.qu.edu.sa msg=<124038><3735>  \\|authmgr\\|  Selected server External_CPPM for method\\=radius-accounting; user\\=c0335e347d39,  essid\\=QU-Student, domain\\=<>, server-group\\=External_CPPM_Group","tenant":"AlQassim","productName":"Aruba","productType":"access-point","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"} 117099-->
+<group name="aruba-access-point,">
+	<rule id="117000" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="vendor" type="pcre2">(?i)^Aruba$</field>
+		<description>Aruba: Aruba log event detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117001" level="0">
+		<if_sid>117000</if_sid>
+		<field name="severity" type="pcre2">^0$</field>
+		<description>Aruba: Emergency severity alert detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117002" level="0">
+		<if_sid>117000</if_sid>
+		<field name="severity" type="pcre2">^1$</field>
+		<description>Aruba: Alert severity alert detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117003" level="0">
+		<if_sid>117000</if_sid>
+		<field name="severity" type="pcre2">^2$</field>
+		<description>Aruba: Critical severity alert detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117004" level="0">
+		<if_sid>117000</if_sid>
+		<field name="severity" type="pcre2">^3$</field>
+		<description>Aruba: Error severity alert detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117005" level="0">
+		<if_sid>117000</if_sid>
+		<field name="severity" type="pcre2">^4$</field>
+		<description>Aruba: Warning severity alert detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117006" level="0">
+		<if_sid>117000</if_sid>
+		<field name="severity" type="pcre2">^5$</field>
+		<description>Aruba: Notification severity alert detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117007" level="0">
+		<if_sid>117000</if_sid>
+		<field name="severity" type="pcre2">^6$</field>
+		<description>Aruba: Informational severity alert detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117008" level="0">
+		<if_sid>117000</if_sid>
+		<field name="severity" type="pcre2">^7$</field>
+		<description>Aruba: Debug severity alert detected.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="117009" level="1">
+		<if_sid>117004</if_sid>
+		<field name="log_id" type="pcre2">^122019$</field>
+		<description>Aruba: TACACS accounting failed detected.</description>
+		<group>medium,one-on-one,T1078,T1098,T1564,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1098</id>
+			<id>T1564</id>
+		</mitre>
+		<info type="text">
+        Description: The "TACACS Accounting Failed Detected" alert from Aruba indicates that there have been unsuccessful attempts to log accounting information using the TACACS (Terminal Access Controller Access-Control System) protocol. This failure could stem from various issues, such as incorrect configuration settings, network connectivity problems, or authentication errors. It’s crucial to investigate these failures to ensure that accounting data is accurately captured and that no unauthorized access attempts are being masked by the issue.
+        </info>
+	</rule>
+	<!-- * -->
+	<rule id="117010" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^124008$</field>
+		<description>Aruba: User has been blacklisted.</description>
+		<group>low,one-on-one,T1023,T1069,execution,</group>
+		<mitre>
+			<id>T1023</id>
+			<id>T1069</id>
+		</mitre>
+		<info type="text">
+        Description: The "User Blacklist Log Detected" alert from Aruba indicates that a user account has been flagged and added to a blacklist due to suspicious or malicious activity. This action is typically taken to protect the network from potential threats, such as unauthorized access attempts or policy violations. The detection of this log should prompt an immediate review of the user’s recent activities to determine the cause of the blacklist status. It is essential to analyze related logs and user behavior patterns to ensure that the action was warranted and to prevent future incidents.
+        </info>
+	</rule>
+	<rule id="117011" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^124009$</field>
+		<description>Aruba: Maximum authentication failures set on authentication method log detected.</description>
+		<group>medium,one-on-one,s-a,T1110,T1078,privilege-escalation,valid-accounts,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+        Description: The "Maximum Authentication Failures Set on Authentication Method Log Detected" alert from Aruba indicates that the system has reached the predefined limit for failed authentication attempts using a specific authentication method. This log entry serves as a critical warning, suggesting that users may be experiencing difficulties accessing the network, potentially due to incorrect credentials or attempts to breach security. It is essential to investigate the circumstances surrounding these failures to identify any patterns of misuse or technical issues. Reviewing the authentication method configurations and ensuring that users are informed about proper access procedures can help mitigate future incidents.
+        </info>
+	</rule>
+	<rule id="117012" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^124025$</field>
+		<description>Aruba: Successful authentication of administrative User.</description>
+		<group>low,one-on-one,T1078,T1071,command-and-control,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1071</id>
+		</mitre>
+		<info type="text">
+        Description: The "Administrative User Authenticated Successfully Log Detected" alert from Aruba indicates that an administrative user has successfully logged into the system. This log entry is crucial for monitoring access to sensitive administrative functions and ensuring that only authorized personnel are granted elevated privileges. It is important to verify the identity of the user and ensure that their access aligns with organizational policies. Regularly auditing these authentication events helps maintain security by identifying any unusual login patterns or unauthorized access attempts.
+        </info>
+	</rule>
+	<rule id="117013" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^125059$</field>
+		<description>Aruba: User authentication rejected by authentication server.</description>
+		<group>medium,one-on-one,T1078,T1071,command-and-control,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1071</id>
+		</mitre>
+		<info type="text">
+        Description: The "User Access Denial by Server Role" alert from Aruba indicates that a user has been denied access to a resource or service based on their assigned server role. This log entry highlights potential misconfigurations in user permissions or role assignments, which could prevent legitimate access to necessary resources. It's essential to investigate the specific reasons for the denial, such as incorrect role settings or policy violations. Ensuring that user roles are properly defined and aligned with organizational access policies can help mitigate these issues.
+        </info>
+	</rule>
+	<rule id="117014" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^121017$</field>
+		<description>Aruba: Detection of unknown vendor or attribute ID.</description>
+		<group>medium,one-on-one,s-a,T1078,T1133,T1046,initial-access,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1133</id>
+			<id>T1046</id>
+		</mitre>
+		<info type="text">
+        Description: The "Detection of Log for Unknown Vendor or Attribute ID" alert from Aruba indicates that a log entry has been generated for a vendor or attribute ID that the system cannot recognize. This may point to unregistered devices or configurations that could pose security risks. It is essential to investigate these unknown entries to determine whether they represent legitimate devices or potential unauthorized access attempts. Conducting a comprehensive review of the network inventory and ensuring proper documentation of all devices can help address these concerns.
+        </info>
+	</rule>
+	<rule id="117015" level="1">
+		<if_sid>117007</if_sid>
+		<field name="log_id" type="pcre2">^103084$</field>
+		<description>Aruba: Detection of EAP-authentication failed for user.</description>
+		<group>medium,one-on-one,T1078,T1068,T1203,execution,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1068</id>
+			<id>T1203</id>
+		</mitre>
+		<info type="text">
+        Description: The "Detection of EAP Authentication Failure for User" alert from Aruba indicates that a user has experienced a failure during the Extensible Authentication Protocol (EAP) authentication process. This failure can occur for various reasons, such as incorrect credentials, misconfigured authentication settings, or issues with the user’s device. It’s essential to investigate the specific circumstances surrounding the failure to determine whether it is a legitimate issue or indicative of potential unauthorized access attempts.
+        </info>
+	</rule>
+	<rule id="117016" level="1">
+		<if_sid>117007</if_sid>
+		<field name="log_id" type="pcre2">^103069$</field>
+		<description>Aruba: VPN connection terminated due to access point down or rebooting.</description>
+		<group>medium,one-on-one,T1078,T1069,T1499,discovery,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1499</id>
+			<id>T1069</id>
+		</mitre>
+		<info type="text">
+        Description: The "VPN Connection Terminated Due to Access Point Down or Rebooting" alert from Aruba indicates that a user's VPN session has been interrupted because the associated access point is either offline or undergoing a reboot. This can disrupt connectivity and impact user productivity. It's essential to investigate the status of the access point to determine the cause of the downtime, whether it’s a scheduled maintenance, hardware failure, or a network issue. Promptly addressing these problems can help restore connectivity and prevent future disruptions.
+        </info>
+	</rule>
+	<rule id="117017" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^124021$</field>
+		<description>Aruba: Web server security protocol has been changed.</description>
+		<group>medium,one-on-one,T1070,T1070.004,T1078,defense-evasion</group>
+		<mitre>
+			<id>T1070</id>
+			<id>T1070.004</id>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+			Description: This log indicates that the web server’s security protocol was modified to include SSLv2, SSLv3, or TLSv1. These protocols are outdated and vulnerable, representing a significant security risk. Their use should be restricted or avoided, as they are susceptible to various attacks, including man-in-the-middle attacks, downgrade attacks, and other exploits targeting weak cryptographic standards. This rule helps detect when insecure protocols are introduced into the server configuration, which could compromise the integrity and confidentiality of web traffic.
+		</info>
+	</rule>
+	<rule id="117018" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^124037$</field>
+		<description>Aruba: A NAT pool has been created.</description>
+		<group>medium,one-on-one,T1071,T1584,T1556,credential-access,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1584</id>
+			<id>T1556</id>
+		</mitre>
+		<info type="text">
+        Description: The "A NAT Pool Has Been Created" alert from Aruba indicates that a new Network Address Translation (NAT) pool has been successfully configured on the network device. This pool allows for the translation of private IP addresses to public IP addresses, facilitating internet access for internal devices while conserving the use of public IPs. It's important to review the configuration details to ensure that the NAT pool is set up correctly and aligns with the organization's network policies.
+        </info>
+	</rule>
+	<rule id="117019" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^124036$</field>
+		<description>Aruba: A NAT pool has been deleted.</description>
+		<group>medium,one-on-one,T1071,T1562,T1553,defense-evasion,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1562</id>
+			<id>T1553</id>
+		</mitre>
+		<info type="text">
+        Description: The "A NAT Pool Has Been Deleted" alert from Aruba indicates that an existing Network Address Translation (NAT) pool has been removed from the network device. This action can affect the ability of internal devices to access external networks if they were relying on that specific NAT pool for IP address translation. It’s crucial to review the reasons for the deletion, whether it was part of a planned network reconfiguration or an unintended action.  It is important to investigate why the NAT pool was deleted—whether it was part of a planned change, an error, or a response to network policy adjustments.
+        </info>
+	</rule>
+	<rule id="117020" level="1">
+		<if_sid>117002</if_sid>
+		<field name="log_id" type="pcre2">^300109$</field>
+		<description>Aruba: Licenses scheduled to expire in 2 days.</description>
+		<group>low,one-on-one,T1078,T1190,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1190</id>
+		</mitre>
+		<info type="text">
+        Description: This notification is issued to inform all relevant personnel that licenses are set to expire in just 2 days, which could lead to serious operational disruptions. The expiration of these licenses may result in the unavailability of essential features and functionalities, necessitating a system restart that could impact ongoing projects and user productivity. It is imperative that stakeholders immediately assess their current licensing agreements and determine the steps required for renewal or upgrade. Failure to act swiftly may not only hinder access to critical services but could also compromise system security and compliance with regulatory requirements. To prevent any lapse in service, we recommend that all teams prioritize this issue, engage with licensing representatives, and ensure that any necessary actions are completed within the next 48 hours.
+        </info>
+	</rule>
+	<rule id="117021" level="1">
+		<if_sid>117004</if_sid>
+		<field name="log_id" type="pcre2">^126000$</field>
+		<description>Aruba: Unauthorized rogue access point detected on wired network"</description>
+		<group>medium,one-on-one,T1071,T1071.001,T1570,lateral-movement,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<id>T1570</id>
+		</mitre>
+		<info type="text">
+        Description: The alert "Unauthorized Rogue Access Point Detected on Wired Network" signifies that a potentially malicious access point has been identified as connected to the wired network without proper authorization. This rogue access point may have been introduced by an unauthorized user, posing a significant security risk. Such devices can intercept sensitive data, enable unauthorized access to the network, and facilitate man-in-the-middle attacks, compromising both the integrity and confidentiality of the network's communications. The presence of a rogue access point can lead to data breaches, unauthorized network access, and a potential loss of sensitive information.
+        </info>
+	</rule>
+	<rule id="117022" level="1">
+		<if_sid>117005</if_sid>
+		<field name="log_id" type="pcre2">^305049$</field>
+		<description>Aruba: Unsecure access point blocked by control plane security.</description>
+		<group>medium,one-on-one,s-a,T1071,T1562,T1070,defense-evasion,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1562</id>
+			<id>T1070</id>
+		</mitre>
+		<info type="text">
+        Description: The statement "An unsecure AP has been denied access to the controller by the Control Plane Security mechanism" highlights a critical security action taken to protect the network. The Control Plane Security mechanism is designed to ensure that only trusted and secure access points (APs) can connect to the network controller, which manages and controls network resources. By denying access to the unsecure AP, the system mitigates the risk of unauthorized access and potential security breaches, which could lead to data theft, loss of sensitive information, or even network outages. If the unsecure AP were allowed to connect, it could serve as a gateway for malicious actors to infiltrate the network, intercept data, or disrupt operations. 
+        </info>
+	</rule>
+	<rule id="117023" level="1">
+		<if_sid>117003</if_sid>
+		<field name="log_id" type="pcre2">^132137$</field>
+		<description>Aruba: Private key does not found in the certificate.</description>
+		<group>medium,one-on-one,s-a,T1071,T1562,T1553,defense-evasion,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1562</id>
+			<id>T1553</id>
+		</mitre>
+		<info type="text">
+        Description: The error "Private key does not found in the certificate" indicates that the private key, which is essential for the certificate's cryptographic operations, is missing. The private key is crucial for secure communication, as it pairs with the public key in the certificate to enable encryption, decryption, and digital signatures. Without the private key, the certificate cannot function properly, leading to authentication failures, inability to establish secure connections, and disruption of encrypted communications. This could result in issues like failed server authentication, inability to access secure websites or services, and compromised security for data transmission. 
+        </info>
+	</rule>
+	<rule id="117024" level="1">
+		<if_sid>117007</if_sid>
+		<field name="log_id" type="pcre2">^132048$</field>
+		<description>Aruba: Stateful RADIUS disabled, controller stops tracking EAPOL frames</description>
+		<group>medium,one-on-one,T1071,T1562,T1553,defense-evasion,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1562</id>
+			<id>T1553</id>
+		</mitre>
+		<info type="text">
+        Description: The disabling of Stateful RADIUS presents a critical security concern, as it removes the controller's ability to actively monitor authentication processes via EAPOL frames. This lapse in oversight can create an opportunity for attackers to exploit the network by flooding it with EAPOL frames, potentially overwhelming the system and causing disruption. Without the RADIUS server's monitoring capabilities, these malicious actors can more easily attempt to gain unauthorized access, as there would be no real-time tracking of authentication requests. This could lead to unauthorized devices connecting to the network, which poses a significant risk to sensitive data and overall network integrity. The absence of Stateful RADIUS makes it easier for attackers to execute man-in-the-middle attacks, eavesdrop on communications, or launch denial-of-service attacks. 
+        </info>
+	</rule>
+	<rule id="117025" level="1">
+		<if_sid>117004</if_sid>
+		<field name="log_id" type="pcre2">^132197$</field>
+		<description>Aruba: Station deauthenticated after failed authentication attempts.</description>
+		<group>medium,one-on-one,T1110,T1499,T1555,credential-access,redential-access,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1499</id>
+			<id>T1555</id>
+		</mitre>
+		<info type="text">
+        Description: In an Aruba access point, the message indicating that "the maximum number of retries was attempted for the station to complete the authentication phase" signifies that a connected client device has failed to authenticate successfully within the specified retry limits. The access point uses configured authentication methods, such as WPA2-Enterprise or 802.1X, to validate the station's credentials. After exceeding the allowed number of attempts, the access point deauthenticates the station, effectively disconnecting it from the network. This deauthentication prevents the device from accessing network resources until it can initiate the authentication process again. The failure to authenticate could result from various issues, including incorrect credentials, misconfigurations, or connectivity problems. 
+        </info>
+	</rule>
+	<rule id="117026" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^404400$</field>
+		<description>Aruba: Detection of new Wi-Fi device by spectrum radio.</description>
+		<group>medium,one-on-one,T1071,T1071.001,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+		</mitre>
+		<info type="text">
+        Description: This log indicates a new Wi-Fi device is detected by the spectrum radio highlights a crucial aspect of cybersecurity within wireless networks. When an Aruba access point identifies a new Wi-Fi device through its spectrum radio, it serves as an important alert for network administrators. This detection can signify the presence of legitimate devices that require access to the network or potentially unauthorized or rogue devices that pose security risks. Monitoring such logs is essential for maintaining the integrity of the network, as unauthorized devices can facilitate attacks such as data interception or unauthorized access to sensitive information. By continuously scanning for new devices, organizations can proactively address potential vulnerabilities, ensuring that only approved devices are allowed to connect. 
+        </info>
+	</rule>
+	<rule id="117027" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^404401$</field>
+		<description>Aruba: Previously detected Wi-Fi device deleted due to inactivity.</description>
+		<group>medium,one-on-one,T1070,T1070.004,T1078,defense-evasion,</group>
+		<mitre>
+			<id>T1070</id>
+			<id>T1070.004</id>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+        Description: This log indicates a previously detected Wi-Fi device is being deleted due to inactivity underscores an important aspect of network management and cybersecurity. When a Wi-Fi device is marked for deletion due to inactivity, it reflects the access point's efforts to maintain an accurate and efficient device registry. Removing inactive devices helps minimize potential vulnerabilities, as dormant connections may be exploited by malicious actors looking to gain unauthorized access to the network. Regularly updating the device list ensures that only active and authorized devices are allowed to connect, reducing the attack surface. Additionally, it frees up resources and enhances network performance.
+        </info>
+	</rule>
+	<rule id="117028" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^404402$</field>
+		<description>Aruba: Detection of new Non-Wi-Fi device by spectrum radio.</description>
+		<group>medium,one-on-one,T1110,T1499,T1555,credential-access,redential-access,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1499</id>
+			<id>T1555</id>
+		</mitre>
+		<info type="text">
+        Description: This log indicates a new non-Wi-Fi device is detected by the spectrum radio highlights the detection of a device operating on the same frequency bands as Wi-Fi but using non-Wi-Fi protocols. From a cybersecurity perspective, this could indicate the presence of devices like Bluetooth transmitters, cordless phones, or even malicious hardware designed to interfere with or eavesdrop on wireless communications. Non-Wi-Fi devices can pose potential threats by causing signal interference, disrupting network performance, or being used in attacks such as jamming or data interception. Identifying these devices is critical for securing the wireless environment, as they could be a vector for sophisticated attacks or unintentional disruptions. 
+        </info>
+	</rule>
+	<rule id="117029" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^404403$</field>
+		<description>Aruba: Previously detected Non-Wi-Fi device deleted due to inactivity.</description>
+		<group>medium,one-on-one,T1078,T1495,T1429,impact,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1495</id>
+			<id>T1429</id>
+		</mitre>
+		<info type="text">
+        Description: This log indicates a previously detected non-Wi-Fi device is being deleted due to inactivity reflects the removal of a non-Wi-Fi device from the network’s device logs after a period of inactivity. In cybersecurity terms, this could indicate that a potential threat or interference source has gone dormant or is no longer present. Non-Wi-Fi devices, especially those operating in the same frequency range as Wi-Fi, can be sources of wireless interference, or even tools for malicious activities such as eavesdropping, signal jamming, or unauthorized access attempts. While inactivity suggests no immediate threat, cybersecurity teams must remain vigilant, as such devices could have been probing or disrupting the network. Tracking and analyzing the presence and behavior of non-Wi-Fi devices is crucial to maintaining a secure environment, as these devices could become active again or could have already been used to exploit vulnerabilities in the network. 
+        </info>
+	</rule>
+ 
+	<rule id="117030" level="1">
+		<if_sid>117006</if_sid>
+		<field name="log_id" type="pcre2">^124022$</field>
+		<description>Web server cipher suite was changed to low, medium, or high strength.</description>
+		<group>medium,one-on-one,T1070,T1070.004,T1078,defense-evasion</group>
+		<mitre>
+			<id>T1070</id>
+			<id>T1070.004</id>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+			Description: This log indicates that the web server's cipher suite was changed to include low, medium, or high strength ciphers. Cipher suites are used to secure communication channels, and weak or outdated cipher suites (low-strength) pose a security risk. Using low-strength ciphers can make the server vulnerable to attacks like brute force or cryptographic exploits. It's important to ensure that the server is configured with strong, up-to-date cipher suites to maintain the confidentiality and integrity of the communication.
+		</info>
+	</rule>
+
+	<rule id="117031" level="2" timeframe="300" frequency="5">
+		<if_matched_sid>117026</if_matched_sid>
+		<if_sid>117027</if_sid>
+		<same_field>dvcpid</same_field>
+		<same_field>tenant</same_field>
+		<description>Aruba: Previously detected Wi-Fi device deleted.</description>
+		<group>high,correlation,s-a,T1070,T1070.004,T1078,defense-evasion,</group>
+		<mitre>
+			<id>T1070</id>
+			<id>T1070.004</id>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+        Description: This log indicates a previously detected Wi-Fi device is being deleted due to inactivity underscores an important aspect of network management and cybersecurity. When a Wi-Fi device is marked for deletion due to inactivity, it reflects the access point's efforts to maintain an accurate and efficient device registry. Removing inactive devices helps minimize potential vulnerabilities, as dormant connections may be exploited by malicious actors looking to gain unauthorized access to the network. Regularly updating the device list ensures that only active and authorized devices are allowed to connect, reducing the attack surface. Additionally, it frees up resources and enhances network performance.
+        </info>
+	</rule>
+	<rule id="117032" level="2" timeframe="300" frequency="5">
+		<if_matched_sid>117028</if_matched_sid>
+		<if_sid>117029</if_sid>
+		<same_field>dvcpid</same_field>
+		<same_field>tenant</same_field>
+		<description>Aruba: Previously detected Non-Wi-Fi device deleted.</description>
+		<group>medium,correlation,s-a,T1078,T1495,T1429,impact,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1495</id>
+			<id>T1429</id>
+		</mitre>
+		<info type="text">
+        Description: This log indicates a previously detected non-Wi-Fi device is being deleted due to inactivity reflects the removal of a non-Wi-Fi device from the network’s device logs after a period of inactivity. In cybersecurity terms, this could indicate that a potential threat or interference source has gone dormant or is no longer present. Non-Wi-Fi devices, especially those operating in the same frequency range as Wi-Fi, can be sources of wireless interference, or even tools for malicious activities such as eavesdropping, signal jamming, or unauthorized access attempts. While inactivity suggests no immediate threat, cybersecurity teams must remain vigilant, as such devices could have been probing or disrupting the network. Tracking and analyzing the presence and behavior of non-Wi-Fi devices is crucial to maintaining a secure environment, as these devices could become active again or could have already been used to exploit vulnerabilities in the network. 
+        </info>
+	</rule>
+
+	<rule id="117033" level="2" timeframe="300" frequency="5">
+		<if_matched_sid>117017</if_matched_sid>
+		<if_sid>117030</if_sid>
+		<same_field>tenant</same_field>
+		<description>Aruba: Insecure protocol and weak cipher suite configuration detected.</description>
+		<group>high,correlation,s-a,T1071,T1071.001,T1040,defense-evasion,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<id>T1040</id>
+		</mitre>
+		<info type="text">
+			Description: When a web server is configured to use both an insecure protocol (such as SSLv2, SSLv3, or TLSv1) and weak cipher suites (low or medium strength), it leaves the server vulnerable to cryptographic attacks, including man-in-the-middle attacks. These older protocols and weaker ciphers have known vulnerabilities that attackers can exploit to intercept or manipulate data exchanged between users and the server. To mitigate these risks, security teams should reconfigure the server to use modern, secure protocols like TLS 1.2 or higher, alongside high-strength cipher suites. This ensures that data transmission is protected with stronger encryption, reducing the chances of security breaches and maintaining the integrity of sensitive communications.
+		</info>
+	</rule>
+	
+	<rule id="117034" level="2" timeframe="300" frequency="5">
+		<if_matched_sid>117010</if_matched_sid>
+		<if_sid>117011</if_sid>
+		<same_field>src_ip</same_field>
+		<same_field>tenant</same_field>
+		<description>Aruba: Blacklisting user after exceeding max authentication failure count.</description>
+		<group>high,correlation,s-a,T1078,T1110,initial-access,account-takeover</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1110</id>
+		</mitre>
+		<info type="text">
+			Description: When a user is blacklisted after exceeding the maximum allowed number of authentication failures, it typically signifies a security mechanism kicking in to protect against potential threats like brute-force attacks or unauthorized login attempts. This blacklisting event is likely triggered by repeated failed attempts to access an account using incorrect credentials, which could indicate an attacker is trying to force their way in. By monitoring these events, security teams can quickly identify malicious activity, prevent unauthorized access, and mitigate the risk of account takeovers. Alerts notify administrators, enabling them to investigate and take corrective actions to secure the affected accounts.
+		</info>
+	</rule>
+
+</group>

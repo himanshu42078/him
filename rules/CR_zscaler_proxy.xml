@@ -1,0 +1,1682 @@
+<!-- 
+    Rule Range 100900 To 101199
+    Last Rule used: 100994	
+-->
+<group name="zscaler,network,proxy,">
+    <rule id="100978" level="0" noalert="1">
+        <decoded_as>json</decoded_as>
+        <field name="productName" type="pcre2">(?i)Zscaler-Proxy</field>
+        <description>Zscaler-Proxy Rules.</description>
+    </rule>
+
+
+<rule id="100986" level="1">
+  <if_sid>100978</if_sid>
+  <list field="src_ip">etc/lists/activelist-proxy</list>
+  <description>Zscaler-Proxy: Possible Suspicious Inbound Connection to Known Malicious IP.</description>
+  <group>high,one-on-one,s-a,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,inbound,</group>
+  <info type="text">
+  Description:
+    Malicious IP Access by Category refers to network traffic associated with IP addresses flagged as malicious based on threat intelligence categories, such as botnets, phishing, ransomware, or command and control (C2) servers. These categories help prioritize response actions and assess the potential impact on the network.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<rule id="100987" level="1">
+  <if_sid>100978</if_sid>
+  <list field="src_ip">etc/lists/activelist-threatintel-ip</list>
+  <description>Zscaler-Proxy: Possible Suspicious Inbound Connection to Known Malicious IP.</description>
+  <group>high,one-on-one,s-a,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,inbound,</group>
+  <info type="text">
+  Description:
+    Malicious IP Access by Category refers to network traffic associated with IP addresses flagged as malicious based on threat intelligence categories, such as botnets, phishing, ransomware, or command and control (C2) servers. These categories help prioritize response actions and assess the potential impact on the network.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<rule id="100988" level="1">
+  <if_sid>100978</if_sid>
+  <list field="dst_ip">etc/lists/activelist-proxy</list>
+  <description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious IP.</description>
+  <group>high,one-on-one,s-a,T1566.002,T1566,T1204.001,execution,initial-access,phishing,outbound,</group>
+  <info type="text">
+  Description:
+    Malicious IP Access by Category refers to network traffic associated with IP addresses flagged as malicious based on threat intelligence categories, such as botnets, phishing, ransomware, or command and control (C2) servers. These categories help prioritize response actions and assess the potential impact on the network.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<rule id="100989" level="1">
+  <if_sid>100978</if_sid>
+  <list field="dst_ip">etc/lists/activelist-threatintel-ip</list>
+  <description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious IP.</description>
+  <group>high,one-on-one,s-a,T1566.002,T1566,T1204.001,execution,initial-access,phishing,outbound,</group>
+  <info type="text">
+  Description:
+    Malicious IP Access by Category refers to network traffic associated with IP addresses flagged as malicious based on threat intelligence categories, such as botnets, phishing, ransomware, or command and control (C2) servers. These categories help prioritize response actions and assess the potential impact on the network.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<rule id="100990" level="1">
+  <if_sid>100978</if_sid>
+  <list field="dst_host">etc/lists/activelist-proxy</list>
+  <description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious Domain.</description>
+  <group>high,one-on-one,s-a,T1566.002,T1566,T1204.001,execution,initial-access,phishing,outbound,</group>
+  <info type="text">
+  Description:
+    Malicious Domain Access by Category refers to attempts to access domains identified as hosting or distributing malicious content, such as phishing pages, malware, ransomware, or serving as command and control (C2) infrastructure. Categorization helps in prioritizing the threat and guiding response actions.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<rule id="100991" level="1">
+  <if_sid>100978</if_sid>
+  <list field="dst_host">etc/lists/activelist-threatintel-domain</list>
+  <description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious Domain.</description>
+  <group>high,one-on-one,s-a,T1566.002,T1566,T1204.001,execution,initial-access,phishing,outbound,</group>
+  <info type="text">
+  Description:
+    Malicious Domain Access by Category refers to attempts to access domains identified as hosting or distributing malicious content, such as phishing pages, malware, ransomware, or serving as command and control (C2) infrastructure. Categorization helps in prioritizing the threat and guiding response actions.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<rule id="100992" level="1">
+	<if_sid>100978</if_sid>
+	<list field="request_url">etc/lists/activelist-proxy</list>
+	<description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious URL.</description>
+	<group>high,one-on-one,s-a,T1102,command-and-control,T1204.001,T1204,execution,outbound,</group>
+	<info type="text">
+    Description: Access to a malicious website has been detected, categorized based on its harmful content. This website may be involved in phishing, malware distribution, drive-by downloads, or other malicious activities designed to compromise users or systems. Visiting such sites can lead to infections, credential theft, or unauthorized access to the network.
+	</info>
+	<mitre>
+		<id>T1102</id>
+		<id>T1204</id>
+		<id>T1204.001</id>
+	</mitre>
+</rule>
+
+<rule id="100993" level="1">
+	<if_sid>100978</if_sid>
+	<list field="request_url">etc/lists/activelist-threatintel-domain</list>
+	<description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious URL.</description>
+	<group>high,one-on-one,s-a,T1102,command-and-control,T1204.001,T1204,execution,outbound,</group>
+	<info type="text">
+    Description: Access to a malicious website has been detected, categorized based on its harmful content. This website may be involved in phishing, malware distribution, drive-by downloads, or other malicious activities designed to compromise users or systems. Visiting such sites can lead to infections, credential theft, or unauthorized access to the network.
+	</info>
+	<mitre>
+		<id>T1102</id>
+		<id>T1204</id>
+		<id>T1204.001</id>
+	</mitre>
+</rule>
+
+	<rule id="100901" level="0" noalert="1">
+		<if_sid>100978</if_sid>
+		<field name="ZscalerNSSWeblogURLClass">Productivity Loss</field>
+		<description>Zscaler-Proxy: Productivity Loss Rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100902" level="0" noalert="1">
+		<if_sid>100978</if_sid>
+		<field name="ZscalerNSSWeblogURLClass">Security Risk</field>
+		<description>Zscaler-Proxy: Security Risk Rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100903" level="0" noalert="1">
+		<if_sid>100978</if_sid>
+		<field name="ZscalerNSSWeblogURLClass">General Surfing</field>
+		<description>Zscaler-Proxy: General Surfing Rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100904" level="0" noalert="1">
+		<if_sid>100978</if_sid>
+		<field name="ZscalerNSSWeblogURLClass">Bandwidth Loss</field>
+		<description>Zscaler-Proxy: Bandwidth Loss Rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100905" level="0" noalert="1">
+		<if_sid>100978</if_sid>
+		<field name="ZscalerNSSWeblogURLClass">Business Use</field>
+		<description>Zscaler-Proxy: Business Use Rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100906" level="0" noalert="1">
+		<if_sid>100978</if_sid>
+		<field name="ZscalerNSSWeblogURLClass">Advanced Security Risk</field>
+		<description>Zscaler-Proxy: Advanced Security Risk Rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100907" level="0" noalert="1">
+		<if_sid>100978</if_sid>
+		<field name="ZscalerNSSWeblogURLClass">Legal Liability Rules</field>
+		<description>Zscaler-Proxy: Legal Liability Rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<!-- <rule id="100908" level="3">
+		<if_sid>100901,100902,100903,100904,100905,100907</if_sid>
+		<field name="reason" type="pcre2">Allowed</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: The $(destination_servicename) transaction was allowed.</description>
+		<group>low,one-on-one,T1102,command-and-control,allow,policy,violation,</group>
+		<mitre>
+			<id>T1102</id>
+		</mitre>
+		<info type="text">	
+	Description:
+		This rule detects instances where a website transaction is allowed with a risk score is between 46 to 100 by the Zscaler Proxy. The transaction involves traffic permitted by the security policies configured in the Zscaler Proxy.
+	Impact:
+		Network visibility is enhanced by monitoring and logging web traffic, which provides insights into the types of websites accessed by users. This information is crucial for understanding user behavior and identifying potential security risks. Additionally, it ensures that web access complies with the organization's security policies, helping to identify any deviations or necessary adjustments to those policies.
+	Recommendation:
+		Regularly review the logs of allowed transactions to ensure compliance with security policies and identify any patterns that may indicate potential risks. Based on the analysis of allowed transactions, refine and update security policies as needed to block access to harmful or inappropriate content. Additionally, educate users on safe browsing practices and the organization's acceptable use policy to reduce the risk of exposure to malicious websites.
+	</info>
+	</rule> -->
+	<!--Note: We can add main rule id which is(100978) insert of all SID-->
+	<!-- <rule id="100909" level="5">
+		<if_sid>100978</if_sid>
+		<field name="reason" type="pcre2">Not allowed to browse this category</field>
+		<description>Zscaler-Proxy: The transaction was blocked by a URL Filtering policy.</description>
+		<group>low,one-on-one,T1204,execution,block,policy,violation,</group>
+		<mitre>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">    
+	Description:
+        This rule detects instances where a URL Filtering policy with a Block action has been triggered. The transaction involves an attempt to access a URL that is restricted by the organization's security policies, which may include categories such as malicious sites, inappropriate content, or unauthorized domains.
+    Impact:
+        Protection from Security Threats: Blocking access to harmful or inappropriate websites mitigates risks such as malware infections, phishing attacks, and data breaches.
+        Secure Browsing Environment: Helps maintain a secure browsing environment for users and prevents exposure to content that could compromise network security or violate company policies.
+        Regulatory Compliance: Aids in compliance with regulatory requirements and industry standards, reducing legal and reputational risks associated with accessing prohibited content.
+    Recommendation:
+        Regular Policy Review: Regularly review and update the URL Filtering policies to ensure they remain relevant and effective in addressing emerging threats and organizational needs.
+        Log Analysis: Analyze the logs of blocked transactions to identify trends or repeated access attempts, which may indicate a need for user education or policy adjustments.
+        User Awareness Training: Conduct awareness training for employees to inform them about the dangers of accessing restricted sites and the rationale behind the blocking policies.
+        Reporting and Whitelisting: Encourage users to report any legitimate sites that may have been mistakenly blocked so they can be appropriately reviewed and whitelisted if necessary.
+        Exception Handling: Implement a process for handling exceptions to the policy, ensuring that any necessary access is securely managed and documented.
+	</info>
+	</rule> -->
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100910" level="5" noalert="1">
+		<if_sid>100901,100903,100904,100905,100907</if_sid>
+		<field name="reason" type="pcre2">Dropped due to failed client SSL handshake</field>
+		<description>Zscaler-Proxy: The transaction was dropped after a client SSL handshake failure.</description>
+		<group>low,one-on-one,T1071.001,T1071,command-and-control,failure,ssl,policy,violation,</group>
+		<mitre>
+			<id>T1071.001</id>
+			<id>T1071</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule identifies instances where a network transaction is dropped due to a failed client SSL handshake. This situation typically occurs when there are issues with SSL/TLS certificates or protocol mismatches between the client and server.
+    Impact:
+        Security Assurance: Dropping connections with failed SSL handshakes prevents potential security breaches that could occur if data were transmitted over an insecure connection.
+        Prevention of Unauthorized Access: Helps prevent unauthorized access attempts, ensuring that only properly authenticated and encrypted communications are established.
+        Network Stability: Maintains network stability by ensuring that all connections meet security standards, reducing the risk of data leaks or other security incidents.
+    Recommendation:
+        Investigate SSL Issues: Analyze the logs to identify the cause of the failed SSL handshake, such as certificate issues, protocol mismatches, or configuration errors.
+        Update and Renew Certificates: Ensure that all SSL/TLS certificates are valid, properly configured, and up to date. Renew any expired certificates and address any issues related to certificate trust chains.
+        Configure Secure Protocols: Verify that the latest and most secure SSL/TLS protocols are enabled and properly configured on both client and server systems.
+	</info>
+	</rule>
+	<!-- NOTE: Remove riskscore field in base rule to get alert for aggregation rule.-->
+	<!-- Note: Added S-A to the group tag. I think this rule has become noisy. I will monitor this rule, and after that, I will enable case creation. -->
+	<rule id="100911" level="8" timeframe="180" frequency="5">
+		<if_matched_sid>100910</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>ZscalerNSSWeblogURLClass</same_field>
+		<same_field>device_hostname</same_field>
+		<description>Zscaler-Proxy: Multiple transaction was dropped after a client SSL handshake failure.</description>
+		<group>medium,aggregation,T1071.001,T1072,command-and-control,failure,ssl,policy,violation,</group>
+		<mitre>
+			<id>T1071.001</id>
+			<id>T1072</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple instances where network transactions are dropped due to failed client SSL handshakes within a 3-minute window, with a frequency of 5 requests from the same endpoint. This pattern suggests repeated issues with SSL/TLS handshake failures, which may indicate underlying problems with SSL/TLS configuration or potential malicious activity.
+    Impact:
+        Increased Security Risk: Frequent failed SSL handshakes could indicate potential security threats such as attempts at unauthorized access or attacks on the SSL/TLS protocol.
+        Service Disruption: Repeated failures can disrupt legitimate network communications and impact user experience and service availability.
+        Potential Misconfiguration: A high frequency of handshake failures might reveal misconfigurations or issues with SSL/TLS certificates or protocol settings that need addressing.
+    Recommendation:
+        Investigate Repeated Failures: Analyze the logs to determine the root cause of the repeated SSL handshake failures, including possible issues with SSL/TLS certificates, protocol mismatches, or client-side problems.
+        Review SSL/TLS Configuration: Check and update SSL/TLS configurations on both client and server sides to ensure compatibility and proper setup. Verify that all certificates are valid and correctly installed.
+        Monitor for Malicious Activity: Increase monitoring for potential malicious activities or denial-of-service attacks that could be exploiting SSL/TLS handshake failures.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100912" level="5">
+		<if_sid>100904</if_sid>
+		<field name="reason" type="pcre2">Not allowed to use this Streaming Media site</field>
+		<description>Zscaler-Proxy: Access to $(destination_servicename) site is blocked.</description>
+		<group>low,one-on-one,T1102,command-and-control,block,policy,violation,</group>
+		<mitre>
+			<id>T1102</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when a user attempts to access a website site that is restricted by the organization's policies. The restriction may be in place due to bandwidth management, content control, or regulatory compliance.
+    Impact:
+        Bandwidth Management: Blocking access to streaming media sites helps conserve bandwidth for critical business applications and prevents network congestion.
+        Content Control: Ensures compliance with organizational policies regarding acceptable use and content restrictions, preventing exposure to potentially inappropriate or non-work-related content.
+        Regulatory Compliance: Supports adherence to legal and regulatory requirements that may prohibit access to certain types of content or websites.
+    Recommendation:
+        Communicate Policies: Clearly communicate the organization's acceptable use policy to all users, explaining the reasons for restricting access to streaming media sites.
+        Monitor Access Attempts: Monitor logs for repeated access attempts to restricted sites, which may indicate a need for further policy enforcement or user education.
+        Evaluate Exceptions: Consider implementing a process for handling exceptions, allowing access to specific streaming sites if needed for legitimate business purposes, while ensuring that usage is monitored and controlled.
+        Optimize Bandwidth: Implement bandwidth management solutions to prioritize essential business traffic and optimize network performance.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100913" level="5">
+		<if_sid>100901,100903,100904,100905</if_sid>
+		<field name="reason" type="pcre2">Access denied due to bad server certificate</field>
+		<description>Zscaler-Proxy: The transaction to the SSL site was blocked due to a server certificate validation error or a failed OCSP revocation check.</description>
+		<group>low,one-on-one,T1649,credential-access,deny,policy,violation,</group>
+		<mitre>
+			<id>T1649</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when access is denied due to a bad server certificate. This situation occurs when the server's SSL/TLS certificate is invalid, expired, not trusted, or incorrectly configured, preventing a secure connection from being established.
+    Impact:
+        Security Integrity: Denying access to servers with bad certificates helps maintain the integrity and security of communications by preventing connections to potentially compromised or insecure servers.
+        Prevention of Data Breach: Protects sensitive data from being transmitted over potentially insecure connections, reducing the risk of data breaches and man-in-the-middle attacks.
+        User Trust: Ensures that users only connect to trusted and secure servers, maintaining user trust in the organization's network and systems.
+    Recommendation:
+        Certificate Validation: Verify that all server certificates are valid, properly configured, and trusted. Address issues such as expired certificates, incorrect configurations, or untrusted certificate authorities.
+        Update Server Certificates: Ensure that all servers use up-to-date SSL/TLS certificates and renew them before they expire. Implement automated processes to track certificate lifecycles and prevent lapses.
+        Educate Users: Inform users about the importance of server certificates and the risks associated with ignoring certificate warnings. Encourage users to report any certificate-related issues they encounter.
+        Implement Monitoring: Continuously monitor for bad server certificates and unauthorized certificate changes. Use automated tools to detect and respond to certificate issues in real-time.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100914" level="5">
+		<if_sid>100901,100903,100904,100905</if_sid>
+		<field name="reason" type="pcre2">Blocked due to Bad SSL record</field>
+		<description>Zscaler-Proxy: The SSL connection was blocked due to the forwarding of non-SSL traffic to HTTPS port.</description>
+		<group>low,one-on-one,T1571,T1071.001,T1071,command-and-control,ssl,block,policy,violation,</group>
+		<mitre>
+			<id>T1571</id>
+			<id>T1071.001</id>
+			<id>T1071</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an SSL connection is blocked because non-SSL traffic was forwarded to an HTTPS port. This situation occurs when there is a mismatch between the expected secure protocol and the actual traffic, potentially indicating a configuration error or an attempt to bypass security controls.
+    Impact:
+        Security Enforcement: Blocking non-SSL traffic on an HTTPS port helps enforce strict security protocols, preventing unsecured data transmission that could be intercepted or tampered with.
+        Protection from Misconfigurations: Prevents potential vulnerabilities and security breaches that may arise from misconfigured network settings or improper use of secure ports.
+        Network Integrity: Maintains the integrity of secure communications by ensuring that only properly encrypted traffic is allowed on secure ports, protecting sensitive information from exposure.
+    Recommendation:
+        Correct Configuration Errors: Review and correct any configuration errors that may be causing non-SSL traffic to be forwarded to an HTTPS port. Ensure that all network settings are aligned with security policies.
+        Enforce SSL/TLS Protocols: Ensure that SSL/TLS protocols are correctly implemented and that all sensitive data is transmitted securely. Validate that all necessary certificates and encryption standards are in place.
+        Monitor for Misuse: Implement monitoring tools to detect and alert on any instances of non-SSL traffic being forwarded to HTTPS ports. Investigate and address any such occurrences promptly.
+	</info>
+	</rule>
+	<!-- NOTE: Remove riskscore field in base rule to get alert for aggregation rule.-->
+	<!-- Note: Added S-A to the group tag. I think this rule has become noisy. I will monitor this rule, and after that, I will enable case creation. -->
+	<rule id="100915" level="8" timeframe="180" frequency="5">
+		<if_matched_sid>100914</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>ZscalerNSSWeblogURLClass</same_field>
+		<same_field>device_hostname</same_field>
+		<description>Zscaler-Proxy: Multiple  SSL connection was blocked due to the forwarding of non-SSL traffic to the HTTPS port.</description>
+		<group>medium,aggregation,T1571,T1071.001,T1071,command-and-control,ssl,block,policy,violation,</group>
+		<mitre>
+			<id>T1571</id>
+			<id>T1071.001</id>
+			<id>T1071</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple instances of SSL connections being blocked due to the forwarding of non-SSL traffic to the HTTPS port within a 3-minute window, with a frequency of 5 requests from the same endpoint. This pattern may indicate a recurring configuration issue or an attempt to exploit insecure traffic routing.
+    Impact:
+        Security Breach Prevention: Repeated blocking of non-SSL traffic on HTTPS ports prevents potential breaches where unsecured data could be intercepted or compromised.
+        Identification of Misconfigurations: Frequent occurrences highlight possible systemic misconfigurations or oversight in network settings, requiring immediate attention to prevent security vulnerabilities.
+        Network Integrity Maintenance: Ensures that secure communication standards are upheld, preventing unauthorized access and protecting sensitive information from being exposed over unencrypted channels.
+    Recommendation:
+        Investigate and Resolve Configuration Issues: Thoroughly investigate the cause of the repeated incidents to identify any misconfigurations or errors in network setup. Correct these issues to prevent future occurrences.
+        Strengthen SSL/TLS Enforcement: Verify that SSL/TLS enforcement mechanisms are robust and that all traffic intended for HTTPS ports is properly encrypted. Ensure compliance with organizational security protocols.
+	</info>
+	</rule>
+	<rule id="100916" level="5">
+		<if_sid>100903,100904,100905</if_sid>
+		<field name="reason" type="pcre2">Not allowed to access this file type</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: The file was blocked because it triggered a File Type Control policy.</description>
+		<group>low,one-on-one,T1204.002,T1204,execution,block,malicious,policy,violation,</group>
+		<mitre>
+			<id>T1204.002</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is activated when a file is blocked because a File Type Control policy has been triggered and with a risk score between 46 to 100 by the Zscaler Proxy. The policy restricts the transfer or download of certain file types based on security guidelines, which may include preventing the spread of malicious files or enforcing data governance policies.
+    Impact:
+        Malware Prevention: Blocking restricted file types helps prevent the introduction of malware or potentially harmful files into the organization's network, thereby reducing the risk of infections and security breaches.
+        Data Governance and Compliance: Ensures compliance with organizational data policies and regulatory requirements by controlling the types of files that can be transferred or accessed within the network.
+        Resource Management: Helps manage network resources by restricting large or unnecessary files that may consume bandwidth or storage, ensuring optimal performance and resource allocation.
+    Recommendation:
+        Review and Update Policies: Regularly review the File Type Control policies to ensure they are up-to-date and reflect current security and compliance requirements. Adjust the list of restricted file types as needed.
+        Incident Monitoring and Reporting: Monitor incidents where file blocks occur and analyze trends to identify potential gaps in policy or areas for improvement. Implement a reporting mechanism for users to request exceptions or report issues.
+        Implement Access Controls: Strengthen access controls to ensure that only authorized personnel can bypass file type restrictions when necessary, and document all exceptions with appropriate justification.
+	</info>
+	</rule>
+	<rule id="100917" level="8" timeframe="180" frequency="5">
+		<if_matched_sid>100916</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>ZscalerNSSWeblogURLClass</same_field>
+		<description>Zscaler-Proxy: Multiple file was blocked because it triggered a File Type Control policy.</description>
+		<group>s-a,medium,aggregation,T1204.002,T1204,execution,block,malicious,policy,violation,</group>
+		<mitre>
+			<id>T1204.002</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple instances of files being blocked due to a File Type Control policy being triggered within a 3-minute window, with a frequency of 5 requests from the same endpoint. This indicates repeated attempts to transfer or access file types that are restricted by the organization's security policies.
+    Impact:
+        Increased Security: Blocking restricted file types helps prevent the introduction of potentially malicious files, protecting the network from security threats.
+        Compliance with Data Policies: Ensures adherence to data governance and compliance policies by controlling the types of files that can be transferred or accessed, thereby preventing unauthorized data transfers.
+        Resource Management: Helps manage and optimize network resources by preventing the transfer of unauthorized files, which can consume bandwidth and storage unnecessarily.
+    Recommendation:
+        Investigate and Address Repeated Attempts: Analyze the logs to understand why multiple blocked attempts occurred in a short period. Determine if they are due to user errors, policy misconfigurations, or potential malicious activity.
+        Update and Communicate Policies: Review the current File Type Control policies and update them if necessary to align with the latest security requirements.
+        Manage Exceptions: Establish a process for handling exceptions where access to restricted file types is required for legitimate business purposes, ensuring that such exceptions are well-documented and monitored.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100918" level="3">
+		<if_sid>100901,100905</if_sid>
+		<field name="reason" type="pcre2">Not allowed the use of this Social Network site</field>
+		<description>Zscaler-Proxy: Detects access attempt to a blocked social network site.</description>
+		<group>low,one-on-one,T1102,command-and-control,block,policy,violation,</group>
+		<mitre>
+			<id>T1102</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when access to a social networking site is blocked according to the organization's security and usage policies. The restriction is enforced to prevent potential security risks and ensure productivity.
+    Impact:
+        Enhanced Security: Blocking access to social networking sites reduces the risk of malware infections, phishing attacks, and data breaches that can occur through these platforms.
+        Improved Productivity: Prevents employees from accessing non-work-related content, helping to maintain focus and productivity during work hours.
+        Compliance and Data Protection: Ensures adherence to organizational policies and regulatory requirements regarding acceptable use and data protection, preventing potential legal and compliance issues.
+    Recommendation:
+        Monitor and Review: Regularly monitor access attempts to ensure compliance with the policy. Review the policy periodically to ensure it remains relevant and effective.
+        Implement Technical Controls: Use technical controls such as web filters and firewalls to enforce the policy and prevent access to restricted sites. Regularly update these controls to adapt to emerging threats.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100919" level="3">
+		<if_sid>100978</if_sid>
+		<field name="reason" type="pcre2">Blocked due to Server Probe Failure</field>
+		<description>Zscaler-Proxy: Undecryptable traffic was blocked as SSL Inspection couldn't establish a server-side connection.</description>
+		<group>low,one-on-one,T1562.006,T1562,defense-evasion,block,policy,violation,</group>
+		<mitre>
+			<id>T1562.006</id>
+			<id>T1562</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when traffic is blocked due to the inability of the Zscaler service to establish a server-side connection (TCP or SSL) while SSL Inspection is enabled. This occurs when the Zscaler service cannot decrypt or inspect the traffic as per the policy, possibly due to connection issues or server misconfigurations.
+    Impact:
+        Security Assurance: Blocking undecryptable traffic ensures that only traffic that can be inspected for security threats is allowed, maintaining the integrity of SSL Inspection policies.
+        Network Visibility: Prevents traffic from bypassing security measures due to issues with SSL decryption, ensuring that potential threats or malicious activity are not overlooked.
+        Troubleshooting Required: Indicates a potential issue with the Zscaler service or the server configuration, requiring investigation to resolve connection problems and restore full inspection capabilities.
+    Recommendation:
+        Investigate Connection Issues: Analyze logs and error messages to identify the cause of the failed server-side connection. Check for network issues, server misconfigurations, or compatibility problems that may be affecting SSL Inspection.
+        Review SSL Inspection Configuration: Ensure that SSL Inspection settings are properly configured on the Zscaler service and that any required certificates are correctly installed and up to date.
+        Verify Network Settings: Check and validate network configurations to ensure that the Zscaler service can establish connections to the servers and perform traffic inspection as intended.
+        Monitor and Test: Continuously monitor traffic and conduct regular tests to ensure that SSL Inspection is functioning correctly and that any issues are promptly addressed. Use this data to adjust and improve inspection policies.
+	</info>
+	</rule>
+	<rule id="100920" level="4">
+		<if_sid>100901,100903,100904,100905</if_sid>
+		<field name="reason" type="pcre2">Web application is blocked by Firewall rule</field>
+		<description>Zscaler-Proxy: Access to the Network Application was blocked by a Firewall Filtering rule.</description>
+		<group>low,one-on-one,T1071.001,T1072,command-and-control,block,policy,violation,</group>
+		<mitre>
+			<id>T1071.001</id>
+			<id>T1072</id>
+		</mitre>
+		<info type="text">
+    Description: Access to the Network Application was blocked by a Firewall Filtering rule, indicating that a specific rule within the firewall's security policies prevented traffic from reaching the application. This typically occurs when the network traffic matches a predefined filtering rule, which could be based on factors such as IP address, port, protocol, or application type, and is deemed unauthorized or potentially harmful.
+    </info>
+	</rule>
+	<rule id="100921" level="8">
+		<if_sid>100901,100903,100904,100905</if_sid>
+		<field name="reason" type="pcre2">Quarantined</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: The file download was temporarily held due to a Sandbox First Time Action policy set to Quarantine.</description>
+		<group>medium,one-on-one,T1497,defense-evasion,sandbox,policy,violation,</group>
+		<mitre>
+			<id>T1497</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an attempt to download a file is temporarily held due to a Sandbox First Time Action policy set to Quarantine with a risk score between 46 to 100 by the Zscaler Proxy. This policy holds the file in quarantine to allow for further analysis and ensure it is not malicious before it is fully downloaded or accessed.
+    Impact:
+        Enhanced Threat Detection: Quarantining files for analysis helps detect and prevent the download of potentially malicious files, reducing the risk of malware infections and security breaches.
+        Reduced Risk of Immediate Threats: By temporarily holding the file, the system prevents potential threats from being immediately executed or accessed, giving time for detailed analysis.
+        Compliance with Security Policies: Ensures adherence to security policies by applying a cautious approach to first-time downloads and maintaining control over potentially risky files.
+    Recommendation:
+        Analyze Quarantined Files: Review and analyze quarantined files to determine if they pose any threats. Use sandbox analysis to assess the file's behavior and content before allowing its download.
+        Update Sandbox Policies: Ensure that Sandbox First Time Action policies are appropriately configured to balance security and usability. Adjust policies if needed based on threat intelligence and operational requirements.
+        Monitor and Review: Continuously monitor the effectiveness of quarantine actions and adjust policies based on observed trends and emerging threats. Regularly review the results of sandbox analyses to improve detection capabilities.
+        Maintain and Upgrade Security Tools: Keep sandbox and security tools updated with the latest threat intelligence and analysis capabilities to ensure effective detection and handling of new threats.
+	</info>
+	</rule>
+	<rule id="100922" level="8">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">Reputation block outbound request: phishing site</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: Outbound request to a phishing site was blocked.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1204.001,T1204,T1566,execution,initial-access,block,policy,violation,outbound,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+			<id>T1566</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an outbound request is blocked due to the destination being identified as a phishing site with a risk score between 46 to 100 by the Zscaler Proxy. The reputation-based block is applied to prevent users from accessing potentially harmful sites that could compromise sensitive information.
+    Impact:
+        Protection Against Phishing Attacks: Blocking access to known phishing sites helps protect users from scams designed to steal credentials, personal information, and financial data.
+        Enhanced Network Security: Prevents the spread of phishing attacks within the organization, reducing the risk of malware infections and data breaches.
+    Recommendation:
+        Investigate Blocked Requests: Analyze the nature of the blocked requests to understand why users are attempting to access phishing sites. Determine if additional user education or security measures are needed.
+        Update Security Policies: Regularly review and update security policies to ensure they include the latest threat intelligence and reputation data for effective phishing site blocking.
+        Regularly Review Reputation Data: Ensure that the reputation-based blocking system is continuously updated with the latest threat intelligence to effectively identify and block new phishing sites.
+	</info>
+	</rule>
+	<rule id="100923" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100922</if_matched_sid>
+		<same_field>tenant</same_field>
+		<different_field>request_url</different_field>
+		<same_field>device_hostname</same_field>
+		<description>Zscaler-Proxy: Multiple Outbound requests to a phishing site from the same user was blocked.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1204.001,T1204,T1566,execution,initial-access,block,policy,violation,outbound,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+			<id>T1566</id>
+		</mitre>
+		<info type="text">
+    Description:
+         This rule is triggered when an outbound request is blocked due to the destination being identified as a phishing site within a 3-minute window, with a frequency of 7 requests from same endpoint with different URLs. The reputation-based block is applied to prevent users from accessing potentially harmful sites that could compromise sensitive information.
+</info>
+	</rule>
+	<rule id="100979" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100922</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: Multiple Outbound requests to the same phishing site from the same user were blocked.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1204.001,T1204,T1566,execution,initial-access,block,policy,violation,outbound,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+			<id>T1566</id>
+		</mitre>
+		<info type="text">
+    Description:
+         This rule is triggered when an outbound request is blocked due to the destination being identified as a phishing site within a 3-minute window, with a frequency of 7 requests from same user using same phishing URL. The reputation-based block is applied to prevent users from accessing potentially harmful sites that could compromise sensitive information.
+</info>
+	</rule>
+	<rule id="100924" level="8">
+		<if_sid>100904,100906</if_sid>
+		<field name="reason" type="pcre2">IPS block outbound request: cross-site scripting (XSS) attack</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: IPS block an outbound request involving a cross-site scripting (XSS) attack.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1189,initial-access,block,outbound,policy,violation,ips,</group>
+		<mitre>
+			<id>T1189</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an outbound request is blocked by the Intrusion Prevention System (IPS) due to detection of a cross-site scripting (XSS) attack with a risk score between 46 to 100 by the Zscaler Proxy. The IPS identifies and prevents the malicious request from reaching its destination, thereby mitigating potential security risks.
+    Impact:
+        Prevention of Data Theft: Blocking XSS attacks helps protect sensitive user data from being stolen or manipulated by malicious actors.
+        Application Security: Ensures that web applications remain secure and free from malicious script injections, maintaining their integrity and functionality.
+        Mitigation of Exploitation Risks: Reduces the risk of further exploitation, which could lead to more severe security breaches or system compromises.
+    Recommendation:
+        Analyze the Attack Vector: Investigate the specifics of the blocked request to understand the method and source of the attempted XSS attack. Identify if any particular application or user is being targeted.
+        Implement Input Validation: Strengthen web application security by implementing robust input validation and sanitization to prevent the injection of malicious scripts.
+        Monitor Web Traffic: Enhance monitoring of web traffic for unusual patterns that may indicate attempted XSS attacks. Use advanced analytics to detect and respond to these threats more effectively.
+        Patch and Update: Ensure that all web applications, libraries, and frameworks are up-to-date with the latest security patches to mitigate known XSS vulnerabilities.
+        Collaborate with Security Teams: Work closely with security teams to share insights from the blocked request and develop more effective defense strategies against XSS attacks.
+	</info>
+	</rule>
+	<rule id="100925" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100924</if_matched_sid>
+		<same_field>tenant</same_field>
+		<different_field>request_url</different_field>
+		<same_field>device_hostname</same_field>
+		<description>Zscaler-Proxy: IPS blocks multiple outbound requests involving a cross-site scripting (XSS) attack.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1189,initial-access,block,outbound,policy,violation,ips,</group>
+		<mitre>
+			<id>T1189</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple instances of outbound requests being blocked by the Intrusion Prevention System (IPS) due to cross-site scripting (XSS) attacks within a 3-minute window, with a frequency of 7 requests from the same user and different URLs. This indicates repeated attempts to exploit XSS vulnerabilities in a short period.
+    Impact:
+        High Risk of Compromise: Multiple XSS attack attempts within a short timeframe suggest a focused effort to exploit vulnerabilities, indicating a higher risk of successful compromise.
+        Application Vulnerability: Frequent blocks highlight potential weaknesses in web applications that attackers are trying to exploit.
+        Increased Monitoring and Response Load: Handling multiple XSS attempts in quick succession can strain security monitoring and response capabilities, requiring prompt and effective action.
+    Recommendation:
+        Immediate Investigation: Analyze the source and nature of the repeated XSS attempts. Identify the targeted web application and understand the attack patterns to mitigate the vulnerability.
+        Strengthen Input Validation: Ensure all web applications implement comprehensive input validation and sanitization to prevent XSS vulnerabilities.
+        Enhance Web Application Firewalls (WAF): Deploy or update WAF rules to better detect and block XSS attempts before they reach the web applications.
+        Conduct Security Reviews: Perform thorough security reviews and code audits on the targeted applications to identify and fix any underlying XSS vulnerabilities.
+        Educate Developers and Users: Provide ongoing training for developers on secure coding practices to prevent XSS vulnerabilities and educate users about recognizing potential phishing attempts that could lead to XSS attacks.
+        Review and Update IPS Rules: Regularly update IPS rules and threat intelligence feeds to ensure the system can detect and block the latest XSS attack techniques.
+	</info>
+	</rule>
+	<rule id="100980" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100924</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: IPS blocked multiple outbound requests from the same URL and host, involving a cross-site scripting (XSS) attack.</description>
+		<group>s-a,medium,aggregation,T1189,initial-access,block,outbound,policy,violation,ips,</group>
+		<mitre>
+			<id>T1189</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple instances of outbound requests being blocked by the Intrusion Prevention System (IPS) due to cross-site scripting (XSS) attacks within a 3-minute window, with a frequency of 7 requests from the same URL and host. This indicates repeated attempts to exploit XSS vulnerabilities in a short period.
+	</info>
+	</rule>
+	<!-- Note: Added S-A to the group tag. I think this rule has become noisy. I will monitor this rule, and after that, I will enable case creation. -->
+	<rule id="100926" level="5">
+		<if_sid>100901,100903,100904,100905</if_sid>
+		<field name="reason" type="pcre2">Malware block: malicious file</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: The download of malicious content was blocked by the inline antivirus engine due to a signature match.</description>
+		<group>soar-alert,zscaler-soar,low,one-on-one,T1059,T1204.002,T1204,execution,initial-access,block,malicious,policy,violation,exploitation,exploit,</group>
+		<mitre>
+			<id>T1059</id>
+			<id>T1204.002</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when a file is blocked due to being identified as malicious by malware detection systems with a risk score between 46 to 100 by the Zscaler Proxy. The detection involves scanning and analyzing the file to prevent the execution or distribution of malware within the network.
+    Impact:
+        Prevention of Malware Infections: Blocking malicious files helps prevent malware from infecting systems, reducing the risk of data breaches, system compromise, and other security incidents.
+        Protection of Sensitive Data: Ensures that sensitive data remains secure by preventing malware from accessing or exfiltrating information.
+        Network Integrity: Maintains the integrity and reliability of the network by stopping the spread of malware that could disrupt operations or damage systems.
+    Recommendation:
+        Analyze the Blocked File: Investigate the details of the blocked file to understand the nature of the malware and its potential impact. Determine the source and method of delivery.
+        Update Malware Definitions: Ensure that antivirus and malware detection systems are updated with the latest definitions and signatures to detect and block new threats effectively.
+        Conduct a Full System Scan: Perform a thorough scan of the network and affected systems to identify and remove any other instances of the malware.
+        Implement Advanced Threat Protection: Utilize advanced threat protection tools and techniques, such as sandboxing and behavioral analysis, to enhance malware detection and prevention capabilities.
+	</info>
+	</rule>
+	<rule id="100927" level="8" timeframe="180" frequency="7">
+		<if_matched_sid>100926</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>ZscalerNSSWeblogURLClass</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: Multiple downloads of malicious content were blocked by the inline antivirus engine due to signature matches.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1059,T1204.002,T1204,execution,initial-access,block,malicious,policy,violation,exploitation,exploit,</group>
+		<mitre>
+			<id>T1059</id>
+			<id>T1204.002</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple instances of files being blocked due to malware detection within a 3-minute window, with a frequency of 7 requests from the same endpoint. This indicates repeated attempts to deliver malicious files in a short period.
+    Impact:
+        High Threat Level: Multiple attempts to deliver malware in a brief timeframe suggest a concerted effort to infect systems, indicating a high threat level.
+        Increased Risk of Infection: The frequent blocking of malicious files highlights a potential compromise or targeted attack that could lead to successful infections if not addressed promptly.
+        Resource Strain: Repeated malware blocking requires continuous monitoring and can strain security resources and incident response efforts.
+    Recommendation:
+        Immediate Investigation: Investigate the source and nature of the repeated malware attempts. Identify the delivery mechanism and targeted systems or users.
+        Enhance Email and Web Filtering: Strengthen email and web filtering to detect and block malicious files before they reach end users. Implement additional layers of security to prevent malware delivery.
+        Conduct Comprehensive Scans: Perform full system and network scans to ensure that no malware has bypassed the detection systems. Use updated antivirus and anti-malware tools.
+        Implement Advanced Threat Protection: Utilize advanced threat protection solutions, such as endpoint detection and response (EDR) and threat intelligence, to identify and mitigate advanced malware threats.
+	</info>
+	</rule>
+	<rule id="100928" level="7">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">(?i)Reputation block outbound request: malicious URL|Custom Reputation block outbound request: malicious URL</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: Blocked an outbound request to a malicious URL.</description>
+		<group>s-a,medium,one-on-one,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,outbound,</group>
+		<mitre>
+			<id>T1566.002</id>
+			<id>T1566</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an outbound request is blocked due to the destination being identified as a malicious URL by reputation-based filtering with a risk score between 46 to 100 by the Zscaler Proxy. The system prevents access to known harmful websites to protect the network and users.
+    Impact:
+        Prevention of Malware Infections: Blocking access to malicious URLs helps prevent the download and execution of malware, protecting systems from potential infections.
+        Data Protection: Ensures sensitive information is not exposed to malicious websites, reducing the risk of data breaches and theft.
+        Network Security: Maintains the integrity and security of the network by preventing connections to sites that could compromise systems or data.
+    Recommendation:
+        Investigate the Blocked Request: Analyze the details of the blocked outbound request to determine the source and context. Identify any patterns or potential compromised systems.
+        Update Security Measures: Ensure that reputation-based filtering systems are updated with the latest threat intelligence to effectively block new and emerging malicious URLs.
+        Conduct System Scans: Perform scans on systems that attempted to access the malicious URL to ensure they are not compromised. Use updated antivirus and anti-malware tools.
+        Implement Multi-Layered Security: Utilize a multi-layered security approach, combining reputation-based filtering with other security measures such as web filtering and endpoint protection, to enhance overall protection.
+	</info>
+	</rule>
+	<rule id="100929" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100928</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: Blocked multiple outbound requests to a malicious URL from the same user.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,outbound,</group>
+		<mitre>
+			<id>T1566.002</id>
+			<id>T1566</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple outbound requests being blocked due to attempts to access a malicious URL within a 3-minute window, with a frequency of 7 requests from the same URL and endpoint. This indicates repeated attempts to reach a harmful site in a short period.
+    Impact:
+        Elevated Security Risk: Frequent attempts to access a malicious URL suggest targeted or persistent efforts to exploit a vulnerability or engage in malicious activity.
+        Potential Compromise Indicators: Multiple requests to a known malicious site could indicate that a system or user is compromised or being targeted by a malicious campaign.
+        Increased Monitoring and Response: Handling multiple blocked requests within a short timeframe requires prompt investigation and can increase the load on security monitoring and response teams.
+    Recommendation:
+        Immediate Investigation: Investigate the source of the repeated attempts to access the malicious URL. Determine if these requests are due to a compromised system, targeted attack, or user behavior.
+        Enhance URL Filtering: Review and strengthen URL filtering rules to ensure they effectively block access to malicious sites. Update threat intelligence to detect and block emerging threats.
+        Review and Update Security Policies: Regularly update security policies to address the detection of multiple malicious URL access attempts and ensure robust protection against emerging threats.
+        Implement Advanced Threat Detection: Utilize advanced threat detection and response solutions to monitor for and mitigate persistent or sophisticated attack attempts targeting malicious URLs.
+	</info>
+	</rule>
+	<rule id="100981" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100928</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<different_field>request_url</different_field>
+		<description>Zscaler-Proxy: Blocked multiple outbound requests from the same user accessing different malicious URLs.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,outbound,</group>
+		<mitre>
+			<id>T1566.002</id>
+			<id>T1566</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple outbound requests being blocked due to attempts to access a malicious URL within a 3-minute window, with a frequency of 7 requests from the different URLs and same endpoint. This indicates repeated attempts to reach a harmful site in a short period.
+	</info>
+	</rule>
+	<rule id="100932" level="7">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">IPS block inbound response: malicious content</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: IPS blocks malicious content in an outbound request.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,inbound,ips,</group>
+		<mitre>
+			<id>T1566.002</id>
+			<id>T1566</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an inbound response containing malicious content is blocked by the Intrusion Prevention System (IPS) with a risk score between 46 to 100 by the Zscaler Proxy. The IPS identifies and prevents the delivery of harmful content that could compromise the security of the network or systems.
+    Impact:
+        Prevention of Threats: Blocking malicious inbound responses prevents harmful content from reaching systems, reducing the risk of malware infections, data breaches, and other security incidents.
+        Enhanced Security Posture: Ensures that the network remains secure by intercepting and blocking known threats before they can exploit vulnerabilities or cause damage.
+        Protection of Sensitive Information: Helps protect sensitive data from being exposed or compromised by malicious content embedded in inbound responses.
+    Recommendation:
+        Analyze Malicious Content: Investigate the nature of the blocked malicious content to understand its origin, purpose, and potential impact. Determine if it is part of a targeted attack or a broader threat.
+        Review IPS Configurations: Regularly review and update IPS configurations and signatures to ensure they effectively detect and block new and evolving threats. Tune IPS rules to minimize false positives while maximizing detection.
+        Conduct System Scans: Perform comprehensive scans on systems that received the blocked content to ensure they are not already compromised. Use updated anti-malware tools and threat detection solutions.
+        Strengthen Security Measures: Implement additional security layers such as network segmentation, advanced threat protection, and endpoint detection and response (EDR) to enhance overall protection against malicious content.
+        Monitor Threat Trends: Stay informed about emerging threats and trends related to malicious content. Update security policies and measures accordingly to address new and evolving threats.
+	</info>
+	</rule>
+	<rule id="100933" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100932</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: IPS blocked multiple instances of malicious content in outbound requests from the same user.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,inbound,ips,</group>
+		<mitre>
+			<id>T1566.002</id>
+			<id>T1566</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple outbound requests being blocked due to reputation-based filtering of malicious content within a 3-minute window, with a frequency of 7 requests from the same endpoint. This indicates a concentrated effort to send harmful content based on reputation data.
+	</info>
+	</rule>
+	<rule id="100934" level="7">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">Reputation block outbound request: adware/spyware site</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: Block an outbound request related to adware or spyware.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1204.001,T1204,execution,phishing,block,malicious,outbound,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an outbound request is blocked due to the destination being identified as an adware or spyware site through reputation-based filtering with a risk score between 46 to 100 by the Zscaler Proxy. The system prevents access to sites known for distributing or facilitating adware and spyware.
+    Impact:
+        Prevention of Adware/Spyware Infection: Blocking access to adware and spyware sites helps prevent the installation and spread of unwanted software that can compromise system performance and user privacy.
+        Protection of Privacy: Ensures that sensitive personal and organizational information is not exposed to malicious entities known for data collection and tracking.
+        Reduced Risk of System Performance Issues: Prevents potential performance degradation caused by adware and spyware, which often results in system slowdowns and instability.
+    Recommendation:
+        Review Blocked Requests: Investigate the blocked outbound requests to determine if they are part of a larger adware or spyware campaign. Assess if specific users or systems are repeatedly targeted.
+        Update Adware/Spyware Definitions: Regularly update the definitions and criteria used for reputation-based filtering to ensure effective detection and blocking of new and emerging adware and spyware sites.
+        Implement Content Filtering: Enhance content filtering mechanisms to include checks for adware and spyware beyond reputation-based blocking, providing additional layers of protection.
+        Conduct System Audits: Perform security audits and scans on systems involved in the blocked requests to identify and remove any adware or spyware already present.
+        Monitor Network Traffic: Continuously monitor network traffic for signs of attempts to access known adware or spyware sites, and use this data to refine security measures and improve overall network security.
+	</info>
+	</rule>
+	<rule id="100935" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100934</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: Blocked multiple outbound requests from the same user related to an adware or spyware site.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1204.001,T1204,execution,phishing,block,malicious,outbound,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple outbound requests related to adware or spyware being blocked within a 3-minute window, with a frequency of 7 requests from same user and same URL. This indicates repeated attempts to access sites associated with adware or spyware, as identified by reputation-based filtering.
+	</info>
+	</rule>
+	<rule id="100983" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100934</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<different_field>request_url</different_field>
+		<description>Zscaler-Proxy: Blocked multiple outbound requests from the same user related to different adware or spyware sites.</description>
+		<group>s-a,medium,aggregation,T1204.001,T1204,execution,phishing,block,malicious,outbound,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule detects multiple outbound requests related to adware or spyware being blocked within a 3-minute window, with a frequency of 7 requests from same user to different malicious URLs. This indicates repeated attempts to access sites associated with adware or spyware, as identified by reputation-based filtering.
+	</info>
+	</rule>
+	<rule id="100936" level="7">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">IPS block: cryptomining (.*) blockchain traffic</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: IPS block cryptomining and blockchain traffic.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1486,impact,block,ips,policy,violation,</group>
+		<mitre>
+			<id>T1486</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when the Intrusion Prevention System (IPS) blocks outbound traffic associated with cryptomining and blockchain activities with a risk score between 46 to 100 by the Zscaler Proxy. The IPS identifies such traffic patterns and prevents unauthorized use of network resources for cryptomining operations.
+    Impact:
+        Resource Exploitation Prevention: Blocking cryptomining traffic prevents unauthorized use of computational resources, ensuring they are available for legitimate business activities.
+        Reduced Risk of Performance Degradation: Cryptomining can significantly degrade system performance and increase power consumption, leading to higher operational costs and reduced productivity.
+        Mitigation of Security Risks: Cryptomining activities often indicate compromised systems or malicious software, which can pose additional security risks and vulnerabilities.
+    Recommendation:
+        Investigate Traffic Source: Analyze the origin of the blocked cryptomining and blockchain traffic to determine if it is a result of compromised systems or unauthorized user activities. Address any security breaches identified.
+        Implement Anti-Mining Tools: Deploy anti-mining tools and solutions to detect and block cryptomining activities at the endpoint level, preventing unauthorized resource usage.
+        Conduct System Audits: Perform thorough audits on systems exhibiting cryptomining traffic to identify and remove any mining software or malware. Ensure systems are secured and patched.
+        Educate Users: Provide training on the risks associated with cryptomining and blockchain activities, emphasizing the importance of not engaging in such activities on organizational resources.
+        Monitor Network Traffic: Continuously monitor network traffic for signs of cryptomining and blockchain activities, adjusting security policies and measures as necessary to respond to emerging threats.
+	</info>
+	</rule>
+	<rule id="100937" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100936</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: IPS blocked multiple cryptomining and blockchain traffic from the same user.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1486,impact,block,ips,policy,violation,</group>
+		<mitre>
+			<id>T1486</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when the Intrusion Prevention System (IPS) blocks multiple instances of cryptomining and blockchain traffic within a 3-minute window, with a frequency of 7 requests from the same user and same URLs. This indicates repeated attempts to use network resources for cryptomining activities.
+    Impact:
+        Persistent Resource Exploitation: The high frequency of blocked cryptomining requests suggests a continuous attempt to exploit computational resources, which could significantly impact system performance and availability.
+        Increased Security Risks: Multiple attempts at cryptomining traffic indicate potential compromise of systems or unauthorized activities, posing significant security risks.
+        Financial and Operational Impact: Unchecked cryptomining can lead to increased power consumption, higher operational costs, and potential damage to hardware due to sustained high usage.
+    Recommendation:
+        Investigate and Mitigate: Thoroughly investigate the source of the cryptomining traffic to determine if it originates from compromised systems or unauthorized user activities. Implement immediate measures to contain and mitigate the threat.
+        Deploy Anti-Mining Solutions: Use anti-mining software and endpoint protection tools to detect and block cryptomining activities at the source, preventing unauthorized resource usage.
+        Conduct Detailed Forensics: Perform in-depth forensic analysis on affected systems to identify and eliminate cryptomining malware. Ensure all systems are fully patched and secured against future threats.
+	</info>
+	</rule>
+	<rule id="100938" level="7">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">IPS block outbound request: botnet command and control traffic</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: Outbound botnet C2 traffic was detected and blocked by IPS.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1071.001,T1071,command-and-control,block,ips,outbound,</group>
+		<mitre>
+			<id>T1071.001</id>
+			<id>T1071</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when the Intrusion Prevention System (IPS) blocks an outbound request identified as botnet command and control (C2) traffic with a risk score between 46 to 100 by the Zscaler Proxy. This indicates an attempt by a compromised device within the network to communicate with a botnet server.
+    Impact:
+        Prevention of Data Exfiltration: Blocking botnet C2 traffic prevents potential data exfiltration, protecting sensitive information from being transmitted to malicious actors.
+        Interruption of Malicious Activities: Disrupting communication with C2 servers hampers the ability of botnets to execute malicious commands, reducing the threat of coordinated attacks.
+        Identification of Compromised Systems: Detection of botnet C2 traffic helps identify compromised systems within the network that need immediate attention and remediation.
+    Recommendation:
+        Investigate the Source: Conduct a thorough investigation to identify the compromised system generating the botnet C2 traffic. Determine the extent of the compromise and the potential impact on the network.
+        Isolate Affected Systems: Immediately isolate compromised systems from the network to prevent further communication with the botnet C2 servers and mitigate the spread of malware.
+        Conduct Malware Removal: Use advanced antivirus and anti-malware tools to scan and clean the affected systems. Ensure that all malware is fully eradicated and that the systems are secure.
+        Review and Update Security Policies: Enhance security policies to better detect and prevent botnet activities. Implement stricter network monitoring and access controls to identify and block C2 traffic.
+        Strengthen Endpoint Protection: Deploy and maintain robust endpoint protection solutions across all devices in the network. Regularly update these solutions to address emerging threats.
+	</info>
+	</rule>
+	<rule id="100939" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100938</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: IPS detected and blocked multiple outbound botnet Command and Control traffic requests from the same user.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1071.001,T1071,command-and-control,block,ips,outbound,</group>
+		<mitre>
+			<id>T1071.001</id>
+			<id>T1071</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when the Intrusion Prevention System (IPS) blocks multiple outbound requests identified as botnet command and control (C2) traffic within a 3-minute window, with a frequency of 7 requests from the same user. This indicates an active attempt by compromised devices within the network to communicate with a botnet server.
+    Impact:
+        High Risk of Coordinated Attack: The repeated attempts to communicate with C2 servers suggest a significant risk of coordinated malicious activities, such as data theft, DDoS attacks, or the deployment of additional malware.
+        Potential Widespread Compromise: Multiple blocked requests indicate that several systems within the network may be compromised, leading to a broader security breach.
+        Resource Drain: The high frequency of attempts to connect to C2 servers can consume network resources and impact overall performance, potentially disrupting legitimate activities.
+    Recommendation:
+        Immediate Investigation: Quickly investigate the source of the blocked outbound requests to identify all compromised systems. Determine the extent of the compromise and the potential impact on the network.
+        Isolate Compromised Systems: Isolate any identified compromised systems from the network to prevent further communication with botnet C2 servers and mitigate the spread of malware.
+        Conduct Comprehensive Malware Removal: Use advanced antivirus and anti-malware tools to thoroughly scan and clean the affected systems. Ensure complete removal of any botnet-related malware.
+        Enhance Network Security: Implement additional network security measures, such as improved intrusion detection systems and more granular access controls, to better detect and prevent botnet activities.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100940" level="4">
+		<if_sid>100978</if_sid>
+		<field name="reason" type="pcre2">Access denied due to Domain Fronting</field>
+		<description>Zscaler-Proxy: The transaction was blocked due to domain fronting, indicated by FQDN mismatches in the URL, host header, and SNI.</description>
+		<group>low,one-on-one,T1090.004,T1090,block,command-and-control,</group>
+		<mitre>
+			<id>T1090</id>
+			<id>T1090.004</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when access is denied due to the detection of domain fronting. Domain fronting is a technique used to disguise the true destination of web traffic by routing requests through legitimate domains, often to bypass network security measures.
+    Impact:
+        Security Evasion: Domain fronting is commonly used by malicious actors to evade network security controls, potentially allowing unauthorized access to restricted resources.
+        Increased Risk of Data Exfiltration: If successful, domain fronting can facilitate data exfiltration, as it enables communication with external malicious servers while appearing legitimate.
+        Difficulty in Traffic Analysis: The use of legitimate domains to mask true destinations complicates traffic analysis and monitoring, making it harder to detect and respond to malicious activities.
+    Recommendation:
+        Investigate Source: Identify the source of the domain fronting attempt and determine if it is part of a broader attempt to bypass security measures. Analyze the intent and potential impact.
+        Enhance Filtering Rules: Update and refine filtering rules and signatures to detect and block domain fronting attempts more effectively. Ensure that security systems are capable of identifying such techniques.
+        Monitor Network Traffic: Continuously monitor network traffic for signs of domain fronting and other evasion techniques. Use advanced analytics and threat intelligence to stay ahead of emerging threats.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100941" level="5">
+		<if_sid>100904,100905</if_sid>
+		<field name="reason" type="pcre2">Access denied due to CONNECT host and SNI mismatch</field>
+		<description>Zscaler-Proxy: Access denied due to CONNECT host and SNI mismatch.</description>
+		<group>low,one-on-one,deny,T1498,impact,</group>
+		<mitre>
+			<id>T1498</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when access is denied due to a mismatch between the CONNECT host and the Server Name Indication (SNI) in an SSL/TLS handshake. This mismatch can indicate attempts to bypass security measures or connect to unauthorized destinations.
+    Impact:
+        Detection of Evasion Techniques: A mismatch between the CONNECT host and SNI suggests attempts to bypass security controls, which could be indicative of malicious intent or misconfigured applications.
+        Potential Compromise Indicators: Such mismatches may signal compromised systems trying to communicate with malicious servers, increasing the risk of data breaches and unauthorized access.
+        Interference with Legitimate Traffic: Misconfigurations leading to SNI mismatches can disrupt legitimate traffic, potentially affecting user experience and business operations.
+    Recommendation:
+        Immediate Analysis: Investigate the source of the SNI and CONNECT host mismatches to determine whether they are due to malicious activity or misconfigurations. Address any identified issues promptly.
+        Tighten Security Configurations: Ensure that SSL/TLS configurations are properly set up to prevent mismatches. Verify that all internal and external domains use correctly configured certificates.
+        Employ Advanced Threat Detection: Use advanced threat detection tools to identify and mitigate attempts to use SNI mismatches for malicious purposes. Leverage machine learning and AI to enhance detection capabilities.
+        Update Security Protocols: Regularly update security protocols and policies to handle new evasion techniques. Implement stricter rules for SSL/TLS handshakes and certificate validations.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100942" level="6">
+		<if_sid>100902,100907</if_sid>
+		<field name="reason" type="pcre2">Request method cautioned</field>
+		<description>Zscaler-Proxy: The attempt to post content to the webpage was flagged by a URL Filtering policy.</description>
+		<group>medium,one-on-one,T1071.001,T1071,T1204.001,T1204,execution,command-and-control,</group>
+		<mitre>
+			<id>T1071.001</id>
+			<id>T1071</id>
+			<id>T1204.001</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an attempt to post content to a webpage is cautioned by a URL Filtering policy. This policy flags potentially harmful or inappropriate content before it can be uploaded to the internet.
+    Impact:
+        Prevention of Inappropriate Content: The caution helps in preventing the upload of potentially harmful, sensitive, or inappropriate content, maintaining the organization's compliance with content policies.
+        Protection Against Data Leakage: By flagging suspicious posts, the policy reduces the risk of accidental or intentional data leakage, protecting sensitive information from being exposed.
+    Recommendation:
+        Update Filtering Rules: Regularly update URL filtering rules to adapt to new threats and ensure they effectively identify inappropriate or harmful content.
+        Implement Content Monitoring: Use content monitoring tools to continuously scan and analyze posts for compliance with the organization's policies. Ensure these tools are updated with the latest threat intelligence.
+        Utilize Advanced Threat Detection: Implement advanced threat detection mechanisms to identify and block more sophisticated attempts to post harmful content.
+	</info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100943" level="3">
+		<if_sid>100903,100905</if_sid>
+		<field name="reason" type="pcre2">FTP proxy is disabled</field>
+		<description>Zscaler-Proxy: FTP proxy is disabled.</description>
+		<group>low,one-on-one,T1071.002,T1071,command-and-control,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.002</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when the FTP proxy is disabled. An FTP proxy is used to mediate and control FTP traffic, ensuring secure file transfer operations between clients and servers.
+    Impact:
+        Increased Exposure to Threats: Disabling the FTP proxy removes a layer of security, potentially exposing the network to malicious FTP traffic, data theft, and unauthorized access.
+        Loss of Monitoring Capabilities: Without the FTP proxy, the ability to monitor, log, and analyze FTP traffic is significantly reduced, making it harder to detect and respond to malicious activities.
+        Compliance Risks: Many compliance frameworks require the monitoring and control of file transfers. Disabling the FTP proxy could result in non-compliance with these regulations, leading to potential legal and financial penalties.
+    Recommendation:
+        Re-enable FTP Proxy: Immediately re-enable the FTP proxy to restore the necessary security controls and monitoring capabilities for FTP traffic.
+        Investigate Reason for Disabling: Determine why the FTP proxy was disabled. If it was intentional, ensure that appropriate security measures are in place to compensate for the loss of the proxy.
+        Implement Additional Security Controls: If the FTP proxy must remain disabled, deploy additional security measures such as network-based intrusion detection systems (IDS) and intrusion prevention systems (IPS) to monitor FTP traffic.
+        Monitor FTP Traffic: Continuously monitor FTP traffic using alternative methods to detect and respond to any suspicious activities promptly. Use advanced threat intelligence to stay informed about new FTP-related threats.
+	</info>
+	</rule>
+	<rule id="100944" level="7">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">IPS block outbound request: adware/spyware traffic</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-proxy: Outbound adware or spyware traffic was detected and blocked by IPS.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1204.002,T1204,execution,block,outbound,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an Intrusion Prevention System (IPS) blocks an outbound request identified as adware or spyware traffic with a risk score between 46 to 100 by the Zscaler Proxy. The action is based on security policies designed to detect and prevent the spread of unwanted software.
+	</info>
+	</rule>
+	<rule id="100945" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100944</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-proxy: IPS detected and blocked multiple outbound adware or spyware traffic requests from the same user.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1204.002,T1204,execution,outbound,block,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an Intrusion Prevention System (IPS) blocks multiple outbound requests identified as adware or spyware traffic within a 3-minute window, with a frequency of 7 requests from the same user and same URL. This indicates a potential outbreak or persistent threat.
+    Impact:
+        Indication of Persistent Threat: Multiple blocked requests suggest an ongoing attempt to distribute or communicate with adware or spyware, indicating a persistent security threat.
+        Potential Compromise of Multiple Systems: The frequency and volume of requests may indicate that multiple systems within the network are compromised and attempting to communicate with external adware/spyware servers.
+        Increased Risk of Data Breach: Repeated adware/spyware traffic raises the risk of sensitive data being exfiltrated or monitored without user consent, compromising privacy and security.
+    Recommendation:
+        Immediate Network Segmentation: Isolate affected systems from the network to prevent further spread of adware/spyware and contain the threat.
+        Comprehensive Malware Scan: Perform a thorough scan of all systems using updated anti-malware tools to detect and remove any adware or spyware. Pay special attention to systems generating frequent outbound requests.
+        Root Cause Analysis: Conduct a detailed investigation to identify the root cause of the infection. Determine how the adware or spyware was introduced and address the vulnerabilities exploited.
+        Enhance Endpoint Protection: Deploy advanced endpoint protection solutions that can detect and block adware/spyware in real-time. Ensure all endpoints are updated with the latest security patches.
+        Network Monitoring and Alerts: Implement robust network monitoring to detect unusual outbound traffic patterns. Set up alerts for similar activities to enable rapid response.
+	</info>
+	</rule>
+	<rule id="100984" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100944</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<different_field>request_url</different_field>
+		<description>Zscaler-proxy: IPS detected and blocked multiple outbound adware or spyware traffic requests from the same user, targeting various malicious URLs.</description>
+		<group>s-a,medium,aggregation,T1204.002,T1204,execution,outbound,block,</group>
+		<mitre>
+			<id>T1204</id>
+			<id>T1204.002</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an Intrusion Prevention System (IPS) blocks multiple outbound requests identified as adware or spyware traffic within a 3-minute window, with a frequency of 7 requests from the same user and different malware URL. This indicates a potential outbreak or persistent threat.
+    </info>
+	</rule>
+	<!-- NOTE: Risk score for this rule 0(zero) in past 90 days, I have doubt that this rule is not triggerd, for gets alerts remove riskscore field-->
+	<rule id="100946" level="5">
+		<if_sid>100905</if_sid>
+		<field name="reason" type="pcre2">Not allowed to browse this P2P site</field>
+		<description>Zscaler-Proxy: Access to a known peer-to-peer site was blocked.</description>
+		<group>low,one-on-one,block,T1210,lateral-movement,</group>
+		<mitre>
+			<id>T1210</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when access to a Peer-to-Peer (P2P) site is blocked according to security policies. The restriction is in place to prevent potential security threats and unauthorized file sharing associated with P2P networks.
+    Impact:
+        Prevention of Unauthorized Data Exchange: Blocking P2P sites helps prevent unauthorized data exchanges that could lead to leaks of sensitive or proprietary information.
+        Mitigation of Malware Risks: P2P networks are known for distributing malware and other malicious software. Restricting access reduces the risk of malware infections from P2P sources.
+        Network Performance Improvement: Preventing access to P2P sites can improve network performance by reducing bandwidth consumption and network congestion caused by file sharing activities.
+    Recommendation:
+        Update Access Control Lists: Ensure that the access control lists and policies accurately reflect the need to block P2P sites. Regularly update these lists to include new P2P sites that may pose risks.
+        Analyze Traffic Patterns: Investigate traffic patterns to understand if users are trying to access blocked P2P sites through alternative methods or proxies. Address any attempts to bypass the restrictions.
+        Implement Web Filtering Solutions: Utilize web filtering solutions to enforce restrictions on P2P sites effectively. Ensure these solutions are configured to recognize and block a wide range of P2P traffic.
+	</info>
+	</rule>
+	<rule id="100947" level="7">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">Reputation block outbound request: botnet site</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: An outbound request to a known Command and Control server was blocked.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1071.001,T1071,command-and-control,T1204.001,T1204,execution,block,outbound,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<id>T1204</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an outbound request is blocked due to a reputation-based policy identifying the destination as a known botnet site with a risk score between 46 to 100 by the Zscaler Proxy. The blocking is based on reputation data indicating that the site is associated with botnet activities.
+    Impact:
+        Prevention of Botnet Communication: Blocking requests to known botnet sites helps prevent compromised systems from communicating with command-and-control servers, thus mitigating potential botnet activities.
+        Reduced Risk of Compromise: By stopping outbound requests to botnet sites, the risk of further system compromise and unauthorized control by attackers is minimized.
+        Enhanced Network Security: Implementing reputation-based blocking improves overall network security by preventing interaction with known malicious entities and reducing the attack surface.
+    Recommendation:
+        Investigate Source Systems: Identify and investigate the systems attempting to connect to the botnet site. Determine if they are compromised and take appropriate actions to remediate any infections or vulnerabilities.
+        Update Security Definitions: Ensure that reputation-based filters and threat intelligence databases are up-to-date with the latest information on botnet sites and related threats.
+        Strengthen Endpoint Protection: Deploy advanced endpoint security solutions to detect and block malware associated with botnets. Ensure that all endpoints are regularly updated with security patches.
+        Conduct Network Traffic Analysis: Analyze network traffic for patterns or anomalies that might indicate attempts to communicate with other botnet sites or command-and-control servers. Implement additional monitoring as needed.
+	</info>
+	</rule>
+	<rule id="100948" level="10" timeframe="180" frequency="7">
+		<if_matched_sid>100947</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>device_hostname</same_field>
+		<same_field>request_url</same_field>
+		<description>Zscaler-Proxy: Multiple outbound requests from the same user to a known Command and Control server were blocked.</description>
+		<group>soar-alert,zscaler-soar,medium,aggregation,T1071.001,T1071,command-and-control,T1204.001,T1204,execution,block,outbound,</group>
+		<mitre>
+			<id>T1071</id>
+			<id>T1071.001</id>
+			<id>T1204</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when multiple outbound requests to a botnet site are blocked within a 3-minute window, with a frequency of 7 requests. The blocking is based on reputation data identifying the destination as a known botnet site, aiming to prevent communication with malicious command and control servers.
+	</info>
+	</rule>
+	<rule id="100949" level="7">
+		<if_sid>100906</if_sid>
+		<field name="reason" type="pcre2">PageRisk block inbound response: page is unsafe</field>
+		<field name="risk_score" type="pcre2">^(9[0-9]|100)$|^(7[5-9]|8[0-9])$|^(4[6-9]|5[0-9]|6[0-9]|7[0-4])$</field>
+		<description>Zscaler-Proxy: The transaction was blocked due to the page's content score exceeding the risk threshold.</description>
+		<group>soar-alert,zscaler-soar,medium,one-on-one,T1204.001,T1204,execution,block,inbound,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description:
+        This rule is triggered when an inbound response is blocked by the PageRisk service due to the page being classified as unsafe with a risk score between 46 to 100 by the Zscaler Proxy. The PageRisk service evaluates the safety of web pages based on known threats, malicious content, or other security risks.
+    Impact:
+        Protection Against Malicious Content: Blocking access to pages deemed unsafe helps prevent exposure to malicious content, which could compromise system security or result in data breaches.
+        Reduced Risk of User Impact: By preventing access to unsafe pages, the risk of users encountering harmful or misleading content that could affect their personal or professional activities is minimized.
+        Enhanced Security Posture: Implementing page risk assessments contributes to an overall stronger security posture by integrating proactive measures to block potential threats before they can impact the network.
+    Recommendation:
+        Verify Page Risk Classification: Confirm the accuracy of the PageRisk assessment to ensure that the page is genuinely unsafe and not a false positive. Review threat intelligence and classification criteria used by the service.
+        Investigate Source of Requests: Analyze the source of the blocked inbound requests to determine if there are patterns of suspicious behavior or compromised systems attempting to access unsafe pages.
+        Update and Configure Security Solutions: Ensure that the PageRisk service and other security solutions are up-to-date and properly configured to provide accurate and effective threat detection and prevention.
+        Monitor and Analyze Web Traffic: Continuously monitor web traffic for patterns that may indicate attempts to access unsafe pages. Implement logging and alerting to track such activities and respond promptly.
+	</info>
+	</rule>
+	<!-- SIDBI USECASES -->
+	<rule id="100952" level="4">
+		<if_sid>100978</if_sid>
+		<field name="tenant" type="pcre2">(?i)^sidbi$</field>
+		<field name="request_url" type="pcre2">(?i).*(?:teamviewer\.com|anydesk\.com|ultraviewer.net).*</field>
+		<description>Zscaler-Proxy: Unauthorized Remote Tool Access.</description>
+		<group>soar-alert,zscaler-soar,T1219,one-on-one,policy,violation,command-and-control,network,proxy,low,</group>
+		<mitre>
+			<id>T1219</id>
+		</mitre>
+		<info type="text">
+    Description: Unauthorized Remote Tool Access refers to an instance where a remote access tool, such as Remote Desktop Protocol (RDP) or Secure Shell (SSH), is used without proper authorization to access a system or network. This is a serious security concern, as it can lead to potential data breaches, system compromise, or exploitation by malicious actors.
+	</info>
+	</rule>
+	<rule id="100953" level="8">
+		<if_sid>100906,100928,100934,100922,100946</if_sid>
+		<field name="reason" type="pcre2">(?i)reputation block outbound request: adware\/spyware site|Reputation block outbound request: malicious URL|reputation block outbound request: phishing site|not allowed to browse this p2p site</field>
+		<field name="request_url" type="pcre2" negate="yes">.*ssoapm.com.*</field>
+		<field name="tenant" type="pcre2">(?i)sidbi</field>
+		<description>Zscaler-Proxy: Proxy-Hacker tool website access.</description>
+		<group>soar-alert,zscaler-soar,T1566.002,T1566,T1204.001,phishing,one-on-one,block,policy,violation,medium,malicious,outbound,network,proxy,</group>
+		<mitre>
+			<id>T1566</id>
+			<id>T1566.002</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description: Access to a Proxy-Hacker tool website indicates an attempt to visit a site known for offering tools that can be used to bypass security controls, anonymize traffic, or engage in malicious hacking activities. Such access is a red flag for potential misuse or security threats, as these tools could be used for unauthorized activities, including data exfiltration, network probing, or evading detection.
+	</info>
+	</rule>
+	<rule id="100954" level="11" frequency="5" timeframe="3600">
+		<if_matched_sid>100953</if_matched_sid>
+		<same_field>src_usr</same_field>
+		<same_field>tenant</same_field>
+		<description>Zscaler-Proxy: Multiple Proxy-Hacker tool website access.</description>
+		<group>s-a,T1566.002,T1566,T1204.001,phishing,aggregation,block,policy,violation,high,malicious,outbound,network,proxy,</group>
+		<mitre>
+			<id>T1566</id>
+			<id>T1566.002</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description: Multiple attempts to access Proxy-Hacker tool websites within 1 hour, with a frequency of 5, indicate a potentially coordinated effort to engage with or exploit tools that facilitate anonymous or malicious activity. This repeated access raises concerns about either unauthorized internal behavior or a compromised system.
+	</info>
+	</rule>
+	<rule id="100955" level="11">
+		<if_sid>100953</if_sid>
+		<match type="pcre2">aggregationParameter=aggregationAlert</match>
+		<description>Zscaler-Proxy: Multiple Proxy-Hacker tool website access.</description>
+		<group>s-a,T1566.002,T1566,T1204.001,phishing,aggregation,block,policy,violation,high,malicious,outbound,network,proxy,</group>
+		<mitre>
+			<id>T1566</id>
+			<id>T1566.002</id>
+			<id>T1204.001</id>
+		</mitre>
+		<info type="text">
+    Description: Multiple attempts to access Proxy-Hacker tool websites within 1 hour, with a frequency of 5, indicate a potentially coordinated effort to engage with or exploit tools that facilitate anonymous or malicious activity. This repeated access raises concerns about either unauthorized internal behavior or a compromised system.
+	</info>
+	</rule>
+
+<rule id="100956" level="12">
+	<if_sid>100906</if_sid>
+	<list field="request_url">etc/lists/certiniocs</list>
+	<field name="dst_host" type="pcre2" negate="yes">(?i)microsoft|zscaler</field>
+	<description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious URL.</description>
+	<group>s-a,T1102,one-on-one,command-and-control,allowed,network,proxy,high,T1204.001,T1204,execution,</group>
+		<info type="text">
+    Description: Access to a malicious website has been detected, categorized based on its harmful content. This website may be involved in phishing, malware distribution, drive-by downloads, or other malicious activities designed to compromise users or systems. Visiting such sites can lead to infections, credential theft, or unauthorized access to the network.
+	</info>
+	<mitre>
+		<id>T1102</id>
+		<id>T1204</id>
+		<id>T1204.001</id>
+	</mitre>
+</rule>
+
+
+	<rule id="100957" level="8">
+		<if_sid>100906,100928,100953</if_sid>
+		<field name="reason">reputation block outbound request: malicious url</field>
+		<field name="tenant" type="pcre2">(?i)^sidbi$</field>
+		<field name="src_ip" type="pcre2">\b(10|172\.(1[6-9]|2\d|3[01])|192\.168)\.\d{1,3}\.\d{1,3}\b</field>
+		<field name="dst_ip" type="pcre2" negate="yes">\b(10|172\.(1[6-9]|2\d|3[01])|192\.168)\.\d{1,3}\.\d{1,3}\b</field>
+		<description>Zscaler-Proxy: Unwanted Internet access.</description>
+		<group>T1016.001,T1016,block,one-on-one,policy,violation,discovery,outbound,malicious,network,proxy,medium,</group>
+		<mitre>
+			<id>T1016.001</id>
+			<id>T1016</id>
+		</mitre>
+		<info type="text">
+    Description: Unwanted Internet access refers to instances where a system or user accesses external websites or online resources that are unauthorized or unnecessary, potentially exposing the network to risks such as malware, phishing attacks, or data leakage.
+	</info>
+	</rule>
+	<rule id="100958" level="11" frequency="10" timeframe="600">
+		<if_matched_sid>100957</if_matched_sid>
+		<same_field>src_usr</same_field>
+		<same_field>tenant</same_field>
+		<description>Zscaler-Proxy: Multiple Unwanted Internet access.</description>
+		<group>s-a,T1016,T1016.001,block,network,aggregation,policy,violation,discovery,outbound,malicious,proxy,high,</group>
+		<mitre>
+			<id>T1016.001</id>
+			<id>T1016</id>
+		</mitre>
+		<info type="text">
+    Description: Multiple instances of unwanted internet access within 10 minutes, with a frequency of 10, suggest a possible security issue or policy violation. This behavior could be indicative of malicious software attempting to reach external sites, a compromised system generating unwanted traffic, or a user intentionally bypassing restrictions.
+	</info>
+	</rule>
+	<rule id="100959" level="8">
+		<if_sid>100978</if_sid>
+		<field name="request_url">sourceforge.net/projects/websploit</field>
+		<field name="request_method">(?i)get</field>
+		<field name="src_ip">.*</field>
+		<field name="tenant" type="pcre2">(?i)^sidbi$</field>
+		<description>Zscaler-Proxy: Detects WebSploit tool download from (sourceforge.net).</description>
+		<group>T1105,detects,one-on-one,network,policy,violation,malicious,command-and-control,proxy,medium,</group>
+		<mitre>
+			<id>T1105</id>
+		</mitre>
+		<info type="text">
+    Description: The detection of a WebSploit tool download from sourceforge.net indicates an attempt to acquire a penetration testing tool often used for network and web application security testing. While WebSploit can be employed for legitimate security assessments, it is also frequently misused for malicious purposes, such as network exploitation, sniffing, and man-in-the-middle (MITM) attacks.
+	</info>
+	</rule>
+	<rule id="100960" level="3" noalert="1">
+		<if_sid>100978</if_sid>
+		<match type="pcre2">(?i)\bwebsploit\b</match>
+		<match type="pcre2">(?i)\bDownload\b</match>
+		<field name="request_method">(?i)get</field>
+		<field name="src_ip">.*</field>
+		<field name="tenant" type="pcre2">(?i)^sidbi$</field>
+		<description>Zscaler-Proxy: Possible Web Sploit Tool Download.</description>
+		<group>T1105,detects,one-on-one,network,policy,violation,malicious,command-and-control,proxy,low,</group>
+		<mitre>
+			<id>T1105</id>
+		</mitre>
+		<info type="text">
+    Description: The detection of a possible WebSploit tool download indicates an attempt to obtain a potentially risky penetration testing tool that can be used for network scanning, exploitation, and other security testing purposes. While WebSploit is used by security professionals, it can also be exploited by malicious actors for unauthorized activities, including network attacks.
+	</info>
+	</rule>
+	<rule id="100961" level="11" timeframe="300">
+		<if_matched_sid>100959</if_matched_sid>
+		<if_sid>100960</if_sid>
+		<same_field>tenant</same_field>
+		<description>Zscaler-Proxy: Web Sploit Tool Download.</description>
+		<group>T1105,T1190,network,correlation,policy,violation,initial-access,command-and-control,proxy,high,</group>
+		<mitre>
+			<id>T1190</id>
+			<id>T1105</id>
+		</mitre>
+		<info type="text">
+    Description: The detection of a WebSploit tool download indicates that a potentially powerful penetration testing tool has been acquired. WebSploit is commonly used for tasks such as network scanning, exploitation, and web vulnerability testing.
+	</info>
+	</rule>
+	
+	<rule id="100962" level="10">
+		<if_sid>100902,100906</if_sid>
+		<field name="request_url" type="pcre2">.*</field>
+		<action type="pcre2">allowed</action>
+		<field name="tenant" type="pcre2">(?i)sidbi</field>
+		<field name="request_url" type="pcre2" negate="yes">(?i)judge\.me|vidazoo\.com|kxcdn\.com</field>
+		<description>Zscaler-proxy: User accessing the malware URL.</description>
+		<group>execution,one-on-one,malicious,medium,proxy,network,T1204.001,T1204,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description: A user accessing a malware URL indicates that a potentially harmful website, known for hosting malware or malicious content, has been visited. This poses a significant risk of infection, data theft, or system compromise.
+	</info>
+	</rule>
+	<rule id="100963" level="12" frequency="3" timeframe="3600">
+		<if_matched_sid>100962</if_matched_sid>
+		<same_field>request_url</same_field>
+		<same_field>tenant</same_field>
+		<different_field>src_usr</different_field>
+		<description>Zscaler-proxy: Multiple users accessing the same malware URL in 60 minutes.</description>
+		<group>execution,aggregation,malicious,high,proxy,network,T1204.001,T1204,soar-alert,zscaler-soar,</group>
+		<mitre>
+			<id>T1204.001</id>
+			<id>T1204</id>
+		</mitre>
+		<info type="text">
+    Description: Multiple users accessing the same malware URL within 60 minutes signals a serious security incident, potentially indicating a coordinated attack or widespread phishing attempt. The URL likely poses a high risk of delivering malware, leading to system compromise, data breaches, or ransomware.
+	</info>
+	</rule>
+	<rule id="100964" level="8">
+		<if_sid>100978</if_sid>
+		<action type="pcre2">(?i)allowed</action>
+		<field name="tenant" type="pcre2">(?i)sidbi</field>
+		<field name="url_category" type="pcre2">(?i)Remote Access Tools|shareware download</field>
+		<field name="src_usr" type="pcre2">.*</field>
+		<description>Zscaler-proxy: Unwanted application allowed.</description>
+		<group>one-to-one,medium,T1190,initial_access,network,proxy,s-a,</group>
+		<mitre>
+			<id>T1190</id>
+		</mitre>
+		<info type="text">
+    Description: The detection of an unwanted application being allowed indicates that a potentially unauthorized or risky program has bypassed security controls and gained access to the system or network. This could expose the environment to security vulnerabilities, malware, or data leaks.
+	</info>
+	</rule>
+	<!--        IFFCOADMIN UseCase      -->
+	<!--
+User Creation: IFFCOADMIN (Any user will create IFFCOADMIN)
+User Delete: IFFCOADMIN (Any User will delete the IFFCOADMIN after performing the activity)
+Policy Modification: By IFFCOADMIN
+Privileges Changes: By IFFCOADMIN
+Data Transfer: By IFFCOADMIN
+User Creation: By IFFCOADMIN
+User Delete: By IFFCOADMIN
+-->
+	<!-- {"time": "31 Jul 2024 07:54:04, PDT", "category": "Provisioning", "subcategory": "SCIM", "result": "Delete User Lara Angel Vaz", "message": "Successful", "error code": "", "status code": "204", "pre action": "", "post action": "", "tenant": "BARC", "productName": "Zscaler", "productType": "Proxy", "productModule": "Event Logs", "logType": "Zscaler Proxy"} -->
+	<!-- Note: The action field might have come on a log or not I am not sure but for logic accuracy I am adding an action field. -->
+	<!-- Note: In some of the use cases I didn't find any reference I have taken a match string logic to create a rule. -->
+	<rule id="100965" level="15">
+		<if_sid>100978</if_sid>
+		<action>Delete</action>
+		<field name="result" type="pcre2">(?i)Delete User.*</field>
+		<field name="message">Successful</field>
+		<match type="pcre2">(?i)IFFCOADMIN</match>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: User Delete By IFFCOADMIN.</description>
+		<group>soar-alert,zscaler-soar,one-on-one,persistence,T1136,critical,policy,violation,T1531,impact,</group>
+		<info type="text">
+        Description: This detection rule triggers when a user account is deleted by the IFFCOADMIN. It ensures that any deletion activity carried out by this specific user is monitored for potential unauthorized or suspicious actions.
+    </info>
+		<mitre>
+			<id>T1136</id>
+			<id>T1531</id>
+		</mitre>
+	</rule>
+	<rule id="100966" level="15">
+		<if_sid>100978</if_sid>
+		<action type="pcre2">(?i)Create</action>
+		<field name="result" type="pcre2">(?i)Create User.*</field>
+		<field name="message">Successful</field>
+		<match type="pcre2">(?i)IFFCOADMIN</match>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: User Creation By IFFCOADMIN.</description>
+		<group>soar-alert,zscaler-soar,one-on-one,persistence,T1136,success,critical,policy,violation,</group>
+		<info type="text">
+        Description: This rule monitors the creation of new users in the Zscaler-Proxy environment by the IFFCOADMIN account. It is designed to detect potential unauthorized user account creations or administrative activities that could signal a compromise or misuse of the IFFCOADMIN account.
+    </info>
+		<mitre>
+			<id>T1136</id>
+		</mitre>
+	</rule>
+	<rule id="100967" level="15">
+		<if_sid>100978</if_sid>
+		<action type="pcre2">(?i)Update</action>
+		<match type="pcre2">(?i)IFFCOADMIN</match>
+		<match type="pcre2">(?i)\bPolicy</match>
+		<match type="pcre2">(?i)\bModification</match>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: Policy Modification By IFFCOADMIN.</description>
+		<group>s-a,one-on-one,persistence,T1136,success,critical,policy,violation,</group>
+		<info type="text">
+        The alert of a "Policy Modification by IFFCOADMIN" indicates that a user with administrative privileges, specifically "IFFCOADMIN," has made changes to a security policy within the system. Such modifications could involve adjustments to firewall rules, access controls, or security settings, which can significantly impact the network�s security posture.
+    </info>
+		<mitre>
+			<id>T1136</id>
+		</mitre>
+	</rule>
+	<rule id="100968" level="15">
+		<if_sid>100978</if_sid>
+		<action type="pcre2">(?i)Update</action>
+		<match type="pcre2">(?i)IFFCOADMIN</match>
+		<match type="pcre2">(?i)\bPrivilege</match>
+		<match type="pcre2">(?i)\bChange|\bUpdate|\bModify|\bModified|\bModification</match>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: Privileges Changes By IFFCOADMIN.</description>
+		<group>s-a,one-on-one,critical,policy,violation,T1098,persistence,T1078,defense-evasion,</group>
+		<info type="text">
+        Description: This rule triggers when privileges are changed by a user with the identifier IFFCOADMIN. This detection is essential for monitoring potential unauthorized privilege escalations,particularly by IFFCOADMIN, which could indicate a compromise or misuse of elevated privileges within the organization.
+    </info>
+		<mitre>
+			<id>T1098</id>
+		</mitre>
+	</rule>
+	<rule id="100969" level="15">
+		<if_sid>100978</if_sid>
+		<match type="pcre2">(?i)IFFCOADMIN</match>
+		<match type="pcre2">(?i)\bData</match>
+		<match type="pcre2">(?i)\bTransfer</match>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: Data Transfer By IFFCOADMIN.</description>
+		<group>s-a,one-on-one,critical,policy,violation,T1030,exfiltration,</group>
+		<info type="text">
+        Description: The Alert of "Data Transfer by IFFCOADMIN" suggests that a user with administrative privileges, specifically "IFFCOADMIN," has initiated a data transfer. This could involve moving, copying, or sharing sensitive data within or outside the network. Given the potential implications for data security and privacy, it's important to verify the legitimacy of the transfer, ensuring it complies with internal data handling policies and regulatory requirements.
+    
+			<mitre>
+				<id>T1030</id>
+			</mitre>
+		</info>
+	</rule>
+	<rule id="100970" level="15">
+		<if_sid>100978</if_sid>
+		<field name="src_usr">.*</field>
+		<match type="pcre2">(?i)\bCreate</match>
+		<match type="pcre2">(?i)IFFCOADMIN</match>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: Any user can create IFFCOADMIN.</description>
+		<group>s-a,one-on-one,critical,policy,violation,T1136,persistence,T1098,T1078,defense-evasion,</group>
+		<info type="text">
+        Description: The detection rule triggers an alert when a user account named IFFCOADMIN is created within the IFFCO tenant in Zscaler-Proxy. This specific user account may be intended for administrative purposes and could potentially have elevated privileges. Monitoring the creation of such accounts is critical, as it may indicate unauthorized or suspicious activity.
+    </info>
+		<mitre>
+			<id>T1136</id>
+			<id>T1098</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	<rule id="100971" level="15">
+		<if_sid>100978</if_sid>
+		<field name="src_usr">.*</field>
+		<match type="pcre2">(?i)Delete</match>
+		<match type="pcre2">(?i)IFFCOADMIN</match>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: Any user will delete IFFCOADMIN after completing the activity.</description>
+		<group>s-a,one-on-one,critical,policy,violation,defense-evasion,impact,T1070,T1531,</group>
+		<info type="text">
+         Description: The detection rule monitors the deletion of the user account "IFFCOADMIN". The user "IFFCOADMIN" is critical, and its deletion could indicate an unauthorized or unexpected action within the organization.
+    </info>
+		<mitre>
+			<id>T1531</id>
+			<id>T1070</id>
+		</mitre>
+	</rule>
+	<rule id="100972" level="4">
+		<if_sid>100978</if_sid>
+		<action type="pcre2">(?i)Sign In</action>
+		<field name="result">Successful</field>
+		<field name="category">Login</field>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: Successful sign-in.</description>
+		<group>one-to-one,success,network,policy,violation,proxy,T1078,low,</group>
+		<info type="text">
+         Description: A "Successful sign-in" alert indicates that a user has successfully authenticated and gained access to a system or application. While this is typically a routine event, it's important to ensure that the sign-in is legitimate and aligns with expected user behavior.
+    </info>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	<rule id="100973" level="15">
+		<if_sid>100972</if_sid>
+		<field name="src_usr" type="pcre2">(?i)\bIFFCOADMIN\b</field>
+		<description>Zscaler-Proxy: IFFCOADMIN sign-in event detected.</description>
+		<group>one-to-one,success,network,policy,violation,proxy,T1078,critical,soar-alert,zscaler-soar,</group>
+		<info type="text">
+         Description: A "Successful IFFCOADMIN sign-in" alert indicates that a user has successfully authenticated and gained access to a system or application. While this is typically a routine event, it's important to ensure that the sign-in is legitimate and aligns with expected user behavior.
+    </info>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	<rule id="100974" level="4">
+		<if_sid>100978</if_sid>
+		<action type="pcre2">(?i)Sign Out</action>
+		<field name="result">Successful</field>
+		<field name="category">Login</field>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: Successful sign-Out.</description>
+		<group>one-to-one,success,network,policy,violation,proxy,T1078,low,</group>
+		<info type="text">
+         Description: A "Successful sign-out" alert indicates that a user has successfully logged out of a system or application, effectively ending their session. While this is generally a routine event, it's important to monitor sign-out activities in conjunction with sign-ins to ensure that sessions are properly terminated, especially for users with elevated privileges or access to sensitive data.
+    </info>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	<rule id="100975" level="4">
+		<if_sid>100978</if_sid>
+		<action type="pcre2">(?i)Sign In</action>
+		<field name="result">failed</field>
+		<field name="category">Login</field>
+		<field name="tenant" type="pcre2">(?i)IFFCO.*</field>
+		<description>Zscaler-Proxy: Failed to sign-in.</description>
+		<group>one-to-one,fail,network,policy,violation,proxy,T1078,low,</group>
+		<info type="text">
+         Description: A "Failed to sign-in" alert indicates that a user or an entity attempted to authenticate but was unsuccessful in doing so. This could be due to incorrect credentials, account lockout, or other security measures blocking the access attempt. While occasional failed sign-ins may result from simple user errors, repeated or unusual failed attempts could signal a potential brute force attack or unauthorized access attempt.
+    </info>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	<rule id="100976" level="7" frequency="5" timeframe="180">
+		<if_matched_sid>100975</if_matched_sid>
+		<same_field>tenant</same_field>
+		<description>Zscaler-Proxy: Multiple failed sign-in within 3 minutes, with a frequency of 5 requests.</description>
+		<group>soar-alert,zscaler-soar,aggregation,failed,network,policy,violation,proxy,T1078,medium,</group>
+		<info type="text">
+         Description: The detection of "Multiple failed sign-in attempts within 3 minutes, with a frequency of 5 requests" suggests a potential security concern, such as a brute force attack or an unauthorized user trying to gain access. This behavior is often indicative of attempts to guess or crack user credentials by rapidly submitting different password combinations.
+    </info>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+
+<rule id="100930" level="13">
+	<if_sid>100978</if_sid>
+	<field name="outbound_bytes" type="pcre2">([2-9]\d{6,}|[1-9]\d{7,})</field>
+	<description>Zscaler-proxy: Detects outbound data uploads exceeding 2MB.</description>
+	<group>s-a,one-to-one,high,T1030,exfiltration,T1041,T1560,collect,outbound,upload,</group>
+	<mitre>
+		<id>T1030</id>
+		<id>T1041</id>
+		<id>T1560</id>
+	</mitre>
+	<info type="text">
+    Description: Detection of outbound data uploads exceeding 2MB indicates potential unauthorized data exfiltration, where large volumes of sensitive information are transferred from the network to external destinations. This behavior may be indicative of malicious actors attempting to steal proprietary data or compromise the confidentiality of sensitive files. Monitoring data transfers and setting thresholds, such as the 10MB upload limit, helps to detect unusually large data movements.
+	</info>
+</rule>
+
+<!-- Zscaler-Proxy URL after privileged -->
+<rule id="100982" level="1">
+    <if_sid>100906</if_sid>
+    <field name="request_url" type="pcre2">https:\/\/drive.google.com.*</field>
+    <description>Zscaler-Proxy: Detects access to specific google drive URLs.</description>        
+    <group>low,one-on-one,T1102,command-control,T1530,collection,</group>
+    <mitre>
+    <id>T1102</id>
+    <id>T1530</id>
+    </mitre>
+  <info type="text">
+    Description:
+    Monitors and detects user access to specific Google Drive URLs, including the main drive, shared folders, and individual file links. This rule helps track interactions with cloud storage, identifying potential data-sharing activities or unauthorized file access. By capturing these access attempts, the rule supports visibility into cloud storage usage that could pose security risks, such as data exfiltration or unauthorized resource access.
+ </info>
+</rule>
+
+<rule id="100951" level="2">
+  <if_sid>100978</if_sid>
+  <field name="outbound_bytes" type="pcre2">([2-9]\d{6,}|[1-9]\d{7,})</field>
+  <description>Zscaler-proxy: Detects outbound data uploads exceeding 20MB.</description>
+<group>s-a,one-to-one,high,T1030,exfiltration,T1041,T1560,collect,outbound,upload,</group>
+<info type="text">
+  Description: Detection of outbound data uploads exceeding 20MB indicates potential unauthorized data exfiltration, where large volumes of sensitive information are transferred from the network to external destinations. This behavior may be indicative of malicious actors attempting to steal proprietary data or compromise the confidentiality of sensitive files. Monitoring data transfers and setting thresholds, such as the 10MB upload limit, helps to detect unusually large data movements.
+</info>
+<mitre>
+  <id>T1030</id>
+  <id>T1041</id>
+  <id>T1560</id>
+</mitre>
+</rule>
+
+<rule id="100994" level="7">
+  <if_sid>100906</if_sid>
+  <list field="dst_host">etc/lists/certiniocs</list>
+  <description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious Domain.</description>
+  <group>s-a,medium,one-on-one,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,outbound,</group>
+  <info type="text">
+  Description:
+    Malicious Domain Access by Category refers to attempts to access domains identified as hosting or distributing malicious content, such as phishing pages, malware, ransomware, or serving as command and control (C2) infrastructure. Categorization helps in prioritizing the threat and guiding response actions.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<rule id="100931" level="7">
+  <if_sid>100906</if_sid>
+  <list field="dst_ip">etc/lists/certiniocs</list>
+  <description>Zscaler-Proxy: Possible Suspicious Outbound Connection to Known Malicious IP.</description>
+  <group>s-a,medium,one-on-one,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,outbound,</group>
+  <info type="text">
+  Description:
+    Malicious IP Access by Category refers to network traffic associated with IP addresses flagged as malicious based on threat intelligence categories, such as botnets, phishing, ransomware, or command and control (C2) servers. These categories help prioritize response actions and assess the potential impact on the network.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<rule id="100985" level="7">
+  <if_sid>100906</if_sid>
+  <list field="src_ip">etc/lists/certiniocs</list>
+  <description>Zscaler-Proxy: Possible Suspicious Inbound Connection to Known Malicious IP.</description>
+  <group>s-a,medium,one-on-one,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,inbound,</group>
+  <info type="text">
+  Description:
+    Malicious IP Access by Category refers to network traffic associated with IP addresses flagged as malicious based on threat intelligence categories, such as botnets, phishing, ransomware, or command and control (C2) servers. These categories help prioritize response actions and assess the potential impact on the network.
+</info>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+</rule>
+
+<!-- <rule id="100950" level="8">
+  <if_sid>100931,100994,100985</if_sid>
+  <description>Zscaler-Proxy: Possible Suspicious Connection Detected.</description>
+  <group>s-a,medium,one-on-one,T1566.002,T1566,T1204.001,execution,initial-access,phishing,block,outbound,</group>
+  <mitre>
+    <id>T1566</id>
+    <id>T1566.002</id>
+    <id>T1204.001</id>
+  </mitre>
+  <info type="text">
+  Description:
+    Malicious Website/IP Access by Category indicates that a user or system accessed websites or IP addresses identified as malicious, categorized under threats such as phishing, malware distribution, botnets, or command and control (C2) servers. These categories help prioritize risk levels and guide mitigation efforts.
+</info>
+</rule> -->
+
+</group>

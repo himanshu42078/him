@@ -1,0 +1,95 @@
+<!-- fortiauthenticator: 111900 to 111950 -->
+<group name="forti-authenticator,">
+	<!-- base rule -->
+	<!-- <rule id="111908" level="0" noalert="1">
+		<decoded_as>forti-auth-custom</decoded_as>
+		<description>FortiGate: Forti-authenticator events.</description>
+	</rule> -->
+	<rule id="111907" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="productName" type="pcre2">(?i)^FortiAuthenticator$</field>
+		<description>Fortigate: Forti-authenticator json events.</description>
+		<group>info,one-on-one</group>
+	</rule>
+	<rule id="111900" level="1" noalert="1">
+		<description>Fortigate: Forti-authenticator json events.</description>
+		<if_sid>111907,111908</if_sid>
+		<group>info,one-on-one</group>
+	</rule>
+	<!-- Forti-Authenticator: user account locked out -->
+	<rule id="111901" level="1">
+		<if_sid>111900</if_sid>
+		<field name="message_text" type="pcre2">(?i).*remote ldap user authentication with fortitoken failed: lock user as reached maximum attempts.*</field>
+		<description>Forti-Authenticator: User account locked out.</description>
+		<group>low,one-on-one,T1531,impact,outbound,match,policy,authentication,sidbi,</group>
+		<mitre>
+			<id>T1531</id>
+		</mitre>
+	</rule>
+	
+	<!--Forti-Authenticator: User login failed. -->
+	<rule id="111903" level="1">
+		<if_sid>111900</if_sid>
+		<action type="pcre2">(?i)^Authentication$</action>
+		<field name="auth_status" type="pcre2">(?i)^failed$</field>
+		<description>Forti-Authenticator: login failed by $(username).</description>
+		<group>low,one-on-one,login,authentication,failure,credential-access,defense-evasion,T1078,T1110,sidbi,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	
+	<!--Forti-Authenticator: Admin login failed in Master Console.-->
+	<rule id="111905" level="1">
+		<if_sid>111903</if_sid>
+		<field name="username" type="pcre2">(?i)^admin$|^softcelladm_sureshc$|^softcelladm_saravana$|^softcelladm_aravindk$|^softcelladm_lokeshb$</field>
+		<field name="message_text" type="pcre2">(?i).*web access denied.*</field>
+		<description>Forti-Authenticator: Admin login failed in master console.</description>
+		<group>low,one-on-one,soar-alert,login,authentication,failure,credential-access,defense-evasion,T1078,T1110,sidbi,</group>
+		<mitre>
+			<id>T1110</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+
+    <!--Forti-Authenticator: User account locked out 3 times in 60 secounds.-->
+	<rule id="111902" level="2" timeframe="3600" frequency="3">
+		<if_matched_sid>111901</if_matched_sid>
+		<description>Forti-Authenticator: User account locked out 3 times in 60 secounds.</description>
+		<same_field>tenant</same_field>
+		<same_field>auth_nas_ip</same_field>
+		<mitre>
+			<id>T1531</id>
+		</mitre>
+		<group>low,aggregation,soar-alert,T1531,impact,outbound,match,policy,authentication,sidbi,</group>
+	</rule>
+
+    <!--aggregation: Forti-Authenticator: Multiple failed login attempt -->
+	<rule id="111904" level="2" timeframe="3600" frequency="3">
+		<if_matched_sid>111903</if_matched_sid>
+		<description>Forti-Authenticator: Multiple Login Failed Attempts by $(username).</description>
+		<same_field>username</same_field>
+		<same_field>tenant</same_field>
+		<same_field>auth_nas_ip</same_field>
+		<mitre>
+			<id>T1110</id>
+			<id>T1078</id>
+		</mitre>
+		<group>medium,aggregation,soar-alert,login,authentication,failure,credential-access,defense-evasion,T1078,T1110,sidbi,</group>
+	</rule>
+
+	<!--Forti-Authenticator:Multiple Admin login failed attempt in Master Console.-->
+	<rule id="111906" level="2" timeframe="3600" frequency="3">
+		<if_matched_sid>111905</if_matched_sid>
+		<description>Forti-Authenticator:Multiple admin login failed attempt in master console.</description>
+		<same_field>username</same_field>
+		<same_field>tenant</same_field>
+		<same_field>auth_nas_ip</same_field>
+		<mitre>
+			<id>T1110</id>
+			<id>T1078</id>
+		</mitre>
+		<group>medium,aggregation,soar-alert,login,authentication,failure,credential-access,defense-evasion,T1078,T1110,sidbi,</group>
+	</rule>
+</group>
