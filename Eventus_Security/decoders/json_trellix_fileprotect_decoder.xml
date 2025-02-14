@@ -1,0 +1,16 @@
+<decoder name="trellix-fileprotect-json">
+	<parent>json</parent>
+	<prematch type="pcre2">\"productName\":\"Trellix-FileProtect\"</prematch>
+	<regex type="pcre2">type\:(.*?),\s*uuid</regex>
+	<order>event_name</order>
+</decoder>
+<decoder name="trellix-fileprotect-json">
+    <parent>json</parent>
+	<regex type="pcre2">action\s*=\s*(.*?)(?=\s*(\^\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="trellix-fileprotect-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

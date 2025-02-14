@@ -1,0 +1,4134 @@
+<!--
+
+{"full_log":"Mar  7 05:41:34 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com  timestamp=\"2024-03-07T13:41:51+0800\" device_model=\"XGS4500\" device_serial_id=\"X450092B2YVQK60\" log_id=\"010302602002\" log_type=\"Firewall\" log_component=\"Appliance Access\" log_subtype=\"Denied\" log_version=1 severity=\"Information\" fw_rule_id=\"N/A\" nat_rule_id=\"0\" fw_rule_type=\"NETWORK\" ether_type=\"IPv4 (0x0800)\" in_interface=\"Port4\" src_mac=\"00:04:96:8b:c6:d6\" src_ip=\"163.70.130.13\" src_country=\"PHL\" dst_ip=\"202.90.136.188\" dst_country=\"PHL\" protocol=\"UDP\" src_port=443 dst_port=63594 hb_status=\"No Heartbeat\" app_resolved_by=\"Signature\" app_is_cloud=\"FALSE\" qualifier=\"New\" in_display_interface=\"Port4\" log_occurrence=\"1\" tenant=DICTDMW productName=Sophos productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"Sep 13 14:29:27 listener.k8slistenerpubl.sinvcnprod.oraclevcn.com  message repeated 2 times: [ timestamp=\"2024-09-13T14:15:29+0800\" device_model=\"XG450\" device_serial_id=\"C4307BRQTDRPG98\" log_id=\"010302602002\" log_type=\"Firewall\" log_component=\"Appliance Access\" log_subtype=\"Denied\" log_version=1 severity=\"Information\" fw_rule_id=\"N/A\" nat_rule_id=\"0\" fw_rule_type=\"NETWORK\" ether_type=\"IPv4 (0x0800)\" in_interface=\"Port4\" src_mac=\"00:04:96:f5:84:c5\" src_ip=\"216.247.27.67\" src_country=\"PHL\" dst_ip=\"202.90.134.99\" dst_country=\"PHL\" protocol=\"UDP\" src_port=38553 dst_port=63093 hb_status=\"No Heartbeat\" app_resolved_by=\"Signature\" app_is_cloud=\"FALSE\" qualifier=\"New\" in_display_interface=\"Port4\" log_occurrence=\"1\"] tenant=DICTPRC productName=Sophos productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"device=\"SFW\" date=2019-10-09 time=17:19:06 timezone=\"+08\" device_name=\"XG210\" device_id=AAAAAAAA1234567 log_id=010101010101 log_type=\"Firewall\" log_component=\"Firewall Rule\" log_subtype=\"Allowed\" status=\"Allow\" priority=Information duration=0 fw_rule_id=22 policy_type=1 user_name=\"\" user_gp=\"\" iap=0 ips_policy_id=9 appfilter_policy_id=0 application=\"DNS\" application_risk=1 application_technology=\"Network Protocol\" application_category=\"Infrastructure\" in_interface=\"Port3\" out_interface=\"Port2\" src_mac=11:22:aa:bb:22:11 src_ip=11.22.33.44 src_country_code=R1 dst_ip=8.8.8.8 dst_country_code=USA protocol=\"UDP\" src_port=60778 dst_port=53 sent_pkts=0  recv_pkts=0 sent_bytes=0 recv_bytes=0 tran_src_ip=11.22.33.44 tran_src_port=0 tran_dst_ip= tran_dst_port=0 srczonetype=\"DMZ\" srczone=\"DMZ\" dstzonetype=\"WAN\" dstzone=\"WAN\" dir_disp=\"\" connevent=\"Start\" connid=\"17709984\" vconnid=\"\" hb_health=\"No Heartbeat\" message=\"\" appresolvedby=\"Signature\"","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"Nov 23 04:13:05 202.90.133.118  date=2023-11-23 time=12:12:20 timezone=\"PST\" device_name=\"XG450\" device_id=C4105DRTBF8TX46 log_id=010101600001 log_type=\"Firewall\" log_component=\"Firewall Rule\" log_subtype=\"Allowed\" status=\"Allow\" priority=Information duration=11 fw_rule_id=23 nat_rule_id=7 policy_type=1 user_name=\"\" user_gp=\"\" iap=12 ips_policy_id=12 appfilter_policy_id=10 application=\"Secure Socket Layer Protocol\" application_risk=1 application_technology=\"Network Protocol\" application_category=\"Infrastructure\" vlan_id=\"\" ether_type=Unknown (0x0000) bridge_name=\"\" bridge_display_name=\"\" in_interface=\"PortA4\" in_display_interface=\"PortA4\" out_interface=\"PortA8\" out_display_interface=\"PortA8\" src_mac=FA:62:ED:67:13:20 dst_mac=00:1A:8C:6C:7A:7D src_ip=192.168.10.52 src_country_code=R1 dst_ip=23.220.203.56 dst_country_code=SGP protocol=\"TCP\" src_port=59704 dst_port=443 sent_pkts=12  recv_pkts=10 sent_bytes=954 recv_bytes=4811 tran_src_ip=202.90.133.118 tran_src_port=0 tran_dst_ip= tran_dst_port=0 srczonetype=\"LAN\" srczone=\"WLAN\" dstzonetype=\"WAN\" dstzone=\"WAN\" dir_disp=\"\" connevent=\"Stop\" connid=\"1991542016\" vconnid=\"\" hb_health=\"No Heartbeat\" message=\"\" appresolvedby=\"Signature\" app_is_cloud=0 agent.labels.DICTCPG:DICTCPG","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}91542016" vconnid="" hb_health="No Heartbeat" message="" appresolvedby="Signature" app_is_cloud=0 agent.labels.DICTCPG:DICTCPG
+
+{"full_log":"Jul 15 14:23:45 10-1-19-233.prometheus-prometheus-node-exporter.monitoring.svc.cluster.local   timestamp=\"2024-07-15T14:23:13+0530\" device_model=\"XG230\" device_serial_id=\"C24077TKQKDC7D7\" log_id=\"020804407002\" log_type=\"IDP\" log_component=\"Signatures\" log_subtype=\"Drop\" log_version=1 severity=\"Warning\" ips_policy_id=1 fw_rule_id=\"92\" fw_rule_name=\"Internet_Access\" fw_rule_section=\"Local rule\" signature_id=26658 message=\"BROWSER-WEBKIT Possible Google Chrome Plugin install from non-trusted source\" classification=\"Potentially Bad Traffic\" rule_priority=\"Critical\" src_ip=\"192.168.26.89\" src_country=\"R1\" dst_ip=\"13.126.23.132\" dst_country=\"IND\" protocol=\"TCP\" src_port=62359 dst_port=80 os_name=\"Linux,Mac,Windows\" category=\"browser-webkit\" victim=\"Server\" tenant=Merino productName=Sophos productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+-->
+<!-- Sophos Decoder type 2 -->
+<!--
+{"full_log":"Mar  7 05:41:34 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com  timestamp=\"2024-03-07T13:41:51+0800\" device_model=\"XGS4500\" device_serial_id=\"X450092B2YVQK60\" log_id=\"010302602002\" log_type=\"Firewall\" log_component=\"Appliance Access\" log_subtype=\"Denied\" log_version=1 severity=\"Information\" fw_rule_id=\"N/A\" nat_rule_id=\"0\" fw_rule_type=\"NETWORK\" ether_type=\"IPv4 (0x0800)\" in_interface=\"Port4\" src_mac=\"00:04:96:8b:c6:d6\" src_ip=\"163.70.130.13\" src_country=\"PHL\" dst_ip=\"202.90.136.188\" dst_country=\"PHL\" protocol=\"UDP\" src_port=443 dst_port=63594 hb_status=\"No Heartbeat\" app_resolved_by=\"Signature\" app_is_cloud=\"FALSE\" qualifier=\"New\" in_display_interface=\"Port4\" log_occurrence=\"1\" tenant=DICTDMW productName=Sophos productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"Jul 15 14:43:41 10-1-19-206.prometheus-kube-prometheus-kube-proxy.kube-system.svc.cluster.local   timestamp=\"2024-07-15T14:43:11+0530\" device_model=\"XG230\" device_serial_id=\"C24077TDMM7BM76\" log_id=054402617051 log_type=\"Content Filtering\" log_component=\"Application\" log_subtype=\"Denied\" log_version=1 severity=\"Information\" fw_rule_id=\"92\" fw_rule_name=\"Internet_Access\" fw_rule_section=\"Local rule\" app_filter_policy_id=6 app_name=\"ISAKMP VPN\" app_risk=5 app_technology=\"Client Server\" app_category=\"Proxy and Tunnel\" src_ip=\"192.168.27.42\" src_country=\"R1\" dst_ip=\"49.44.57.163\" dst_country=\"IND\" protocol=\"UDP\" src_port=10500 dst_port=500 app_resolved_by=\"Signature\" app_is_cloud=\"FALSE\" qualifier=\"New\" tenant=Merino productName=Sophos productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+-->
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<prematch type="pcre2">\s+date=\d+-\d+-\d+\s+time=\d+:\d+:\d+\s+timezone=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)|device_model=.*device_serial_id=.*log_id=</prematch>
+	<regex type="pcre2">\s+date=(\d+-\d+-\d+)\s+time=(\d+:\d+:\d+)\s+timezone=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>date,time,timezone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_component=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_component</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_component\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_component</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_subtype=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_subtype</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_subtype\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_subtype</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bseverity=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bseverity\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw_rule_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>fw_rule_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw_rule_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>fw_rule_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw_rule_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>fw_rule_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpackets_received=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>received_packets</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpackets_sent=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sent_packets</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">buser_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bweb_policy_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>web_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bweb_policy_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>web_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmalware=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>malware</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmalware\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>malware</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\burl=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\burl\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdomain=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>domain</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdomain\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>domain</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_ip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_ip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_country=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_country</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_country\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_country</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_ip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_ip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_country=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_country</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_country\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_country</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_port=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_port\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_port=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_port\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytes_sent=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytes_sent\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_status=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>status_code</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_status\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>status_code</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmessage=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>message</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmessage\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>message</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprotocol\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprotocol=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_zone=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_zone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_zone\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_zone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_zone=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_zone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_zone\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_zone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_group=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user_group</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_group\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user_group</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpriority=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>priority</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpriority\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>priority</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\biap=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>web_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\biap\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>web_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bvirus=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>virus</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bvirus\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>virus</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdomainname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>domain</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdomainname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>domain</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsent_bytes=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sent_byte</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsent_bytes\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sent_byte</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brecv_bytes=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rcvd_byte</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brecv_bytes\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rcvd_byte</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_agent=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_agent\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstatus_code=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>status_code</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstatus_code\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>status_code</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>device</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>device</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>device_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>device_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>device_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>device_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcon_direction=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>direction</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcon_direction\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>direction</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfile_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>file_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfile_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>file_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfile_size=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>file_size</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfile_size\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>file_size</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfile_path=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>file_path</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfile_path\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>file_path</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bftpcommand=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>command</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bftpcommand\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>command</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstdomain=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>domain</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstdomain\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>domain</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice_model=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>device_model</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice_model\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>device_model</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_version=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_version</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blog_version\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_version</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bFTP_url=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bFTP_url\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bFTP_direction=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>direction</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bFTP_direction\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>direction</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfilename=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>file_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfilename\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>file_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_filter_policy_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_filter_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_filter_policy_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_filter_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcategory=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcategory\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_risk=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_risk</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_risk\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_risk</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_technology=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_technology</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_technology\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_technology</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_category=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_category\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytes_received=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytes_received\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_is_cloud=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_is_cloud</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_is_cloud\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_is_cloud</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bparent_app=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>parent_app</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bparent_app\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>parent_app</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bparent_app_category=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>parent_app_category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bparent_app_category\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>parent_app_category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bparent_app_risk=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>parent_app_risk</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bparent_app_risk\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>parent_app_risk</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclassification=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>classification</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclassification\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>classification</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_resolved_by=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_resolved_by</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp_resolved_by\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_resolved_by</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bqualifier=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>qualifier</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bqualifier\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>qualifier</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstatus=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstatus\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_gp=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dynamic_user_group_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_gp\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dynamic_user_group_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_filter_ policy=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>application_filter_policy</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_filter_ policy\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>application_filter_policy</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>application_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>application_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_risk=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_risk\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_country_code=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_country</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_country_code\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_country</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_country_code=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_country</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_country_code\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_country</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bappresolvedby=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_resolved_by</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bappresolvedby\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_resolved_by</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_zone_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_zone_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_zone_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_zone_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_zone_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_zone_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_zone_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_zone_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bevent_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bevent_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>event_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bevent_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bevent_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>event_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breported_user=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>reported_user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breported_user\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>reported_user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bproc_user=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>proc_user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bproc_user\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>proc_user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breported_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>reported_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breported_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>reported_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsourceip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsourceip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdestinationip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdestinationip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bthreatname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>threat</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bthreatname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>threat</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\beventid=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\beventid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>event_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\beventtype=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\beventtype\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blogin_user=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>host_login_user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blogin_user\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>host_login_user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprocess_user=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>host_process_user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprocess_user\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>host_process_user</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_uuid=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>endpoint_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_uuid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>endpoint_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bexecution_path=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>execution_path</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bexecution_path\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>execution_path</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclient_used=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>client_used</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclient_used\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>client_used</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bauth_mechanism=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>auth_mechanism</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bauth_mechanism\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>auth_mechanism</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breason=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breason\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_mac=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_mac</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_mac\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_mac</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstart=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>start_timestamp</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstart\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>start_timestamp</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bend=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>end_timestamp</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bend\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>end_timestamp</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_full_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user_full_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser_full_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user_full_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\busergroupname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user_group</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\busergroupname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user_group</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bauth_client=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>client_used</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bauth_client\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>client_used</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstart_time=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>start_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstart_time\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>start_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_host=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_host</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_host\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_host</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breported_ip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>reported_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breported_ip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>reported_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhost=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>host</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhost\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>host</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bupdatedip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>updated_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bupdatedip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>updated_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breported_host=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>reported_host</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breported_host\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>reported_host</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blease_time=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>lease_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blease_time\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>lease_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bipaddress=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>leased_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bipaddress\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>leased_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclient_physical_address=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_mac</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclient_physical_address\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_mac</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclient_host_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>client_host_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclient_host_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>client_host_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\braw_data=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>raw_data</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\braw_data\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>raw_data</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpolicy_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpolicy_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsender=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sender</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsender\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sender</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brecipient=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>recipient</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brecipient\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>recipient</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsubject=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>subject</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsubject\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>subject</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmessage_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>message_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmessage_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>message_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bemail_size=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>message_size</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bemail_size\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>message_size</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\baction=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\baction\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bquarantine_reason=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>quarantine_reason</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bquarantine_reason\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>quarantine_reason</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_host=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_host</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_host\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_host</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bav_policy_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bav_policy_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfrom_email_address=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sender</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfrom_email_address\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sender</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bto_email_address=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>recipient</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bto_email_address\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>recipient</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bemail_subject=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>subject</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bemail_subject\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>subject</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmailid=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>message_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmailid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>message_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmailsize=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>email_size</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmailsize\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>email_size</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bspamaction=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bspamaction\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bquarantine=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>quarantine</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bquarantine\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>quarantine</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_domainname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_domain_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc_domainname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_domain_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_domainname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_domainname</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_domainname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_domainname</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfrom_email_address=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sender</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfrom_email_address\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sender</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bto_email_address=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>recipient</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bto_email_address\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>recipient</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bduration=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>duration</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bduration\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>duration</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw_rule_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>fw_rule_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw_rule_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>fw_rule_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpolicy_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>policy_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpolicy_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>policy_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bips_policy_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ips_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bips_policy_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ips_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bappfilter_policy_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>appfilter_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bappfilter_policy_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>appfilter_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>application</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>application</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_technology=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>application_technology</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_technology\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>application_technology</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_category=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>application_category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapplication_category\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>application_category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bin_interface=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>inbound_interface</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bin_interface\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>inbound_interface</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bout_interface=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>outbound_interface</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bout_interface\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>outbound_interface</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_mac=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_mac</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst_mac\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_mac</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bvlan_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>vlan_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bvlan_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>vlan_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bicmp_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>icmp_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bicmp_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>icmp_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bicmp_code=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>icmp_code</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bicmp_code\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>icmp_code</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsent_pkts=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sent_packt</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsent_pkts\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sent_packt</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brecv_pkts=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rcvd_packt</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brecv_pkts\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rcvd_packt</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btran_src_ip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_trans_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btran_src_ip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_trans_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btran_src_port=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_trans_port</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btran_src_port\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_trans_port</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btran_dst_ip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_trans_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btran_dst_ip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_trans_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btran_dst_port=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_trans_port</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btran_dst_port\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_trans_port</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrczonetype=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_zone_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrczonetype\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_zone_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrczone=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_zone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrczone\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_zone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstzonetype=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_zone_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstzonetype\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_zone_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstzone=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_zone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstzone\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_zone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdir_disp=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dir_disp</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdir_disp\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dir_disp</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bconnevent=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connection_event</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bconnevent\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connection_event</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bconnid=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connection_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bconnid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connection_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bvconnid=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>virt_con_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bvconnid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>virt_con_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhb_status=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>hb_status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhb_health=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>hb_health</order>
+</decoder>
+<!--
+<decoder name="sophos-fw-json">
+    <parent>json</parent>
+    <regex type="pcre2">\bhb_health\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+    <order>hb_health</order>
+</decoder> -->
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bether_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ether_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bether_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ether_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_profile_id_request=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sdwan_profile_id_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_profile_id_request\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sdwan_profile_id_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_profile_name_request=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sdwan_profile_name_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_profile_name_request\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sdwan_profile_name_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_profile_id_reply=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sdwan_profile_id_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_profile_id_reply\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sdwan_profile_id_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_profile_name_reply=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sdwan_profile_name_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_profile_name_reply\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sdwan_profile_name_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_id_request=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>gateway_id_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_id_request\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>gateway_id_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_name_request=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>gateway_name_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_name_request\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>gateway_name_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_id_reply=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>gateway_id_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_id_reply\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>gateway_id_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_name_reply=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>gateway_name_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_name_reply\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>gateway_name_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_route_id_request=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sdwan_route_id_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_route_id_request\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sdwan_route_id_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_route_name_request=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sdwan_route_name_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_route_name_request\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sdwan_route_name_request</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_route_id_reply=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sdwan_route_id_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_route_id_reply\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sdwan_route_id_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_route_name_reply=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sdwan_route_name_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsdwan_route_name_reply\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sdwan_route_name_reply</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bnat_rule_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>nat_rule_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bnat_rule_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>nat_rule_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bnat_rule_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>nat_rule_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bnat_rule_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>nat_rule_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgatewayname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>gateway_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgatewayname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>gateway_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdate=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>date</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdate\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>date</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btimestamp=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>time_stamp</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btimestamp\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>time_stamp</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btime=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btimezone=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>timezone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btimezone\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>timezone</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bRED=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>total_number_of_endpoints_in_state_RED</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bRED\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>total_number_of_endpoints_in_state_RED</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bYELLOW=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>total_number_of_endpoints_in_state_YELLOW</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bYELLOW\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>total_number_of_endpoints_in_state_YELLOW</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bGREEN=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>total_number_of_endpoints_in_state_GREEN</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bGREEN\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>total_number_of_endpoints_in_state_GREEN</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bTOTAL=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>total_number_of_endpoints_in_state_TOTAL</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bTOTAL\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>total_number_of_endpoints_in_state_TOTAL</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>endpoint_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>endpoint_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_ip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>endpoint_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_ip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>endpoint_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_health=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>endpoint_health</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_health\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>endpoint_health</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_event_time=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>endpoint_event_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bep_event_time\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>endpoint_event_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bidp_policy_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ips_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bidp_policy_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ips_policy_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsignature_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>signature_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsignature_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>signature_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsignature_msg=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>message</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsignature_msg\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>message</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brule_priority=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rule_priority</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brule_priority\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rule_priority</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bplatform=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>platform</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bplatform\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>platform</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btarget=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>victim</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btarget\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>victim</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bvictim=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>victim</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bvictim\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>victim</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bconnectionname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connection_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bconnectionname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connection_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bconnectiontype=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connection_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bconnectiontype\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connection_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blocalinterfaceip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>local_interface_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blocalinterfaceip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>local_interface_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blocalgateway=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>local_gateway_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blocalgateway\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>local_gateway_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blocalnetwork=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>local_network</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blocalnetwork\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>local_network</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bremoteinterfaceip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bremoteinterfaceip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bremotenetwork=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>remote_network</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bremotenetwork\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>remote_network</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blocalip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\blocalip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bremotepeer=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bremotepeer\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bipleased=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>leased_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bipleased\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>leased_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytes_recv=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytes_recv\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcon_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connection_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcon_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connection_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdisable_count=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>disable_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdisable_count\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>disable_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\benable_count=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>enable_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\benable_count\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>enable_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdisconnect_count=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>disconnect_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdisconnect_count\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>disconnect_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcon_count=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connection_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcon_count\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connection_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bred_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>red_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bred_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>red_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\beventtime=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\beventtime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>event_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbranch_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>branch_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbranch_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>branch_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfiletype=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>file_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfiletype\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>file_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfilesize=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>file_size</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfilesize\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>file_size</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfile_hash=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>file_hash</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfile_hash\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>file_hash</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsource=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>source</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsource\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>source</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdestination=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdestination\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsha1sum=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>file_hash</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsha1sum\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>file_hash</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprofile_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>profile_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprofile_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>profile_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprofile_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>profile_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprofile_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>profile_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>gateway_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>gateway_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>gateway_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>gateway_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprobe_target=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>probe_target</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprobe_target\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>probe_target</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_status=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>gateway_status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgw_status\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>gateway_status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsla_status=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sla_status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsla_status\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sla_status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstarttime=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>start_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstarttime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>start_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcon_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connection_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcon_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connection_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brule_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rule_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brule_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rule_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbitmask=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>bit_mask</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbitmask\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>bit_mask</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bkey_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>key_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bkey_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>key_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bresumed=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>resumed</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bresumed\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>resumed</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcert_chain_served=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cert_chain_served</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcert_chain_served\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cert_chain_served</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bkey_param=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>key_parameter</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bkey_param\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>key_parameter</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfingerprint=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>fingerprint</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfingerprint\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>fingerprint</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcipher_suite=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cipher_suite</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcipher_suite\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cipher_suite</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsni=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>server_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsni\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>server_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brule_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rule_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brule_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rule_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btls_version=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>tls_version</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btls_version\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>tls_version</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bexceptions=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>exceptions</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bexceptions\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>exceptions</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmode=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>access_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmode\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>access_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bremote_ip=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bremote_ip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsessionid=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>session_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsessionid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>session_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bresource_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bresource_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bresource=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bresource\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bserver=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>server</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bserver\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>server</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bws_protocol=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>websocket_protocol</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bws_protocol\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>websocket_protocol</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bqueryString=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>query_string</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bqueryString\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>query_string</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcookie=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cookie</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcookie\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cookie</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breferer=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breferer\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmethod=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmethod\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttpstatus=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>http_status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttpstatus\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>http_status</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bextra=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>message</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bextra\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>message</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buseragent=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buseragent\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bresponse time=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>response_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bresponse time\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>response_time</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytessent=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytessent\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytesrcv=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bbytesrcv\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice_serial_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>device_serial_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice_serial_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>device_serial_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontent_filter_key=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>content_filter_key</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontent_filter_key\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>content_filter_key</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontext_match=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>context_match</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontext_match\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>context_match</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontext_prefix=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>context_prefix</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontext_prefix\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>context_prefix</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontext_suffix=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>context_suffix</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontext_suffix\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>context_suffix</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btransactionid=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>transaction_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btransactionid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>transaction_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdictionaryname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>content_filter_key</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdictionaryname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>content_filter_key</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsitecategory=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>site_category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsitecategory\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>site_category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bwebsite=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>website</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bwebsite\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>website</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdirection=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connection_direction</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdirection\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connection_direction</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontextmatch=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>context_match</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontextmatch\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>context_match</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontextprefix=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>context_prefix</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontextprefix\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>context_prefix</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontextsuffix=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>context_suffix</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontextsuffix\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>context_suffix</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_category=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_category\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>category</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_category_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>category_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_category_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>category_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontent_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontent_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boverride_token=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>override_token</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boverride_token\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>override_token</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boverride_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>override_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boverride_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>override_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boverride_authorizer=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>override_authorizer</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boverride_authorizer\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>override_authorizer</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bactivity_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>activity_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bactivity_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>activity_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_user_agent=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_user_agent\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btransaction_id=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>transaction_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btransaction_id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>transaction_id</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_referer=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bhttp_referer\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdownload_file_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>download_file_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdownload_file_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>download_file_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdownload_file_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>download_file_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdownload_file_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>download_file_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bupload_file_name=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>upload_file_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bupload_file_name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>upload_file_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bupload_file_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>upload_file_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bupload_file_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>upload_file_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bused_quota=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>used_quota</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bused_quota\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>used_quota</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcategory_type=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>category_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcategory_type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>category_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontenttype=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcontenttype\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bactivityname=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>activity_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bactivityname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>activity_name</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bssid=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ssid</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bssid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ssid</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bap=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>access_point</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bap\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>access_point</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclients_conn_SSID=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connected_client_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bclients_conn_SSID\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connected_client_count</order>
+</decoder>
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<regex type="pcre2">message=.*'(\d+.\d+.\d+.\d+)'</regex>
+	<order>src_ip</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the file -->
+<decoder name="sophos-fw-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!-- Sophos SG550 Start -->
+<!--
+{"full_log":"May 9 08:10:40 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-16:10:40 smtp afcd[19982]: vy_plugin: E: failed to parse DNS RR in answer section of length 12 at offset 4 [C0 1D 00 1C 00 FF 00 00 00 00 00 00], unsupported resource records class (Success) tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":"May 9 08:10:40 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-16:10:40 smtp afcd[19982]: vy_plugin: E: failed to parse DNS RR in answer section of length 12 at offset 4 [C0 1D 00 1C 00 FF 00 00 00 00 00 00], unsupported resource records class (Success) tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+{"full_log":"May 9 08:08:24 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-16:08:24 smtp afcd[24712]: STATUS: alert_lvl="GREEN" run_time=21600 num_cts=0 pktps_avg=122.24 pktps_avg_max=466.76 skipped_pktps_avg=1.99 skipped_pktps_avg_max=63.51 connps_avg=20.51 connps_avg_max=55.94 rusage_sys=74.816 rusage_usr=93.356 tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+"full_log":"May  9 08:08:24 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-16:08:24 smtp afcd[24712]:   AKAMAI (nfmark 0000031f):      3 packets,   1 connections tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":"May  9 08:08:24 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-16:08:24 smtp afcd[24712]:   AMAZON (nfmark 00000016):     37 packets,   4 connections tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+-->
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<prematch type="pcre2">(\s+smtp\s+afcd\[\d+\])</prematch>
+	<regex type="pcre2">alert_lvl\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>alert_lvl</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">alert_lvl\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>alert_lvl</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">run_time\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>run_time</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">run_time\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>run_time</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">num_cts\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>num_cts</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">num_cts\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>num_cts</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">vy_plugin\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>vy_plugin</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">vy_plugin\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>vy_plugin</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">pktps_avg_max\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>pktps_avg_max</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">pktps_avg_max\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>pktps_avg_max</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>pktps_avg</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">pktps_avg\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>pktps_avg</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">skipped_pktps_avg\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>skipped_pktps_avg</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">skipped_pktps_avg\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>skipped_pktps_avg</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">skipped_pktps_avg_max\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>skipped_pktps_avg_max</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">skipped_pktps_avg_max\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>skipped_pktps_avg_max</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">connps_avg\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connps_avg</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">connps_avg\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connps_avg</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">connps_avg_max\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>connps_avg_max</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">connps_avg_max\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>connps_avg_max</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">rusage_sys\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rusage_sys</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">rusage_sys\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rusage_sys</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">rusage_usr\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rusage_usr</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">rusage_usr\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rusage_usr</order>
+</decoder>
+<decoder name="sophos-smtp-afcd-field-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!--
+
+{"full_log":"May 9 11:02:40 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-19:02:40 smtp ulogd[28071]: id=\"2001\" severity=\"info\" sys=\"SecureNet\" sub=\"packetfilter\" name=\"Packet dropped\" action=\"drop\" fwrule=\"60001\" initf=\"eth3\" srcmac=\"cc:2d:e0:f6:ff:7d\" dstmac=\"00:1a:8c:6b:62:f1\" srcip=\"95.214.55.244\" dstip=\"122.54.234.30\" proto=\"6\" length=\"40\" tos=\"0x00\" prec=\"0x00\" ttl=\"241\" srcport=\"58903\" dstport=\"4145\" tcpflags=\"SYN\"  tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+-->
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<prematch type="pcre2">(\s+smtp\s+ulogd\[\d+\])</prematch>
+	<regex type="pcre2">id\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">severity\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">severity\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sys\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sys</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sys\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sys</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sub\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sub</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sub\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sub</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">name\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>name</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>name</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">action\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">action\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\\"|)\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">fwrule\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>fwrule</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">fwrule\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>fwrule</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">initf\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>initf</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">initf\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>initf</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcmac\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>srcmac</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcmac\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>srcmac</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dstmac\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dstmac</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dstmac\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dstmac</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcip\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dstip\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dstip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">proto\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>proto</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">proto\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>proto</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">length\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>length</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">length\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>length</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">tos\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>tos</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">tos\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>tos</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">prec\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>prec</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">prec\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>prec</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">ttl\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ttl</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">ttl\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ttl</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcport\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcport\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dstport\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dstport\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">tcpflags\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>tcpflags</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">tcpflags\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>tcpflags</order>
+</decoder>
+<decoder name="sophos-smtp-ulogd-field-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!--
+{"full_log":"May 9 11:05:49 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-19:05:50 smtp httpproxy[28356]: id=\"0001\" severity=\"info\" sys=\"SecureWeb\" sub=\"http\" name=\"http access\" action=\"pass\" method=\"GET\" srcip=\"192.168.0.34\" dstip=\"4.1.82.132\" user=\"\" group=\"\" ad_domain=\"\" statuscode=\"404\" cached=\"0\" profile=\"REF_DefaultHTTPProfile (Default Web Filter Profile)\" filteraction=\"REF_DefaultHTTPCFFAction (Default content filter action)\" size=\"343\" request=\"0x2428400\" url=\"http://dnl-13.geo.kaspersky.com/diffs/updaters/5.2.9.0/5.2.9.0-updater.xml.14122022.0803.pack\" referer=\"\" error=\"\" authtime=\"0\" dnstime=\"0\" aptptime=\"97\" cattime=\"32013\" avscantime=\"2326\" fullreqtime=\"106288\" device=\"0\" auth=\"0\" ua=\"*BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwMAAAAAAAAAAAA=\" exceptions=\"\" category=\"105\" reputation=\"unverified\" categoryname=\"Business\" sandbox=\"-\" content-type=\"text/html\" tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+-->
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<prematch type="pcre2">(\s+smtp\s+httpproxy\[\d+\])</prematch>
+	<regex type="pcre2">id\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">severity\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">severity\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sys\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sys</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sys\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sys</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sub\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sub</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sub\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sub</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">name\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>name</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">name\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>name</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">action\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">action\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\\"|)\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">method\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">method\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcip\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dstip\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dstip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">user\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">user\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">group\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>group</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">group\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>group</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">ad_domain\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ad_domain</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">ad_domain\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ad_domain</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">statuscode\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>statuscode</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">statuscode\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>statuscode</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">cached\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cached</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">cached\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cached</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">profile\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>profile</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">profile\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>profile</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">filteraction\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>filteraction</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">filteraction\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>filteraction</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">size\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>size</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">size\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>size</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">request\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>request</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">request\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>request</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">url\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">url\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\\"|)\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">referer\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">referer\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">error\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>error</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">error\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>error</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">authtime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>authtime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">authtime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>authtime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dnstime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dnstime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">dnstime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dnstime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">aptptime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>aptptime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">aptptime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>aptptime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">cattime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cattime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">cattime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cattime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">avscantime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>avscantime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">avscantime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>avscantime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">fullreqtime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>fullreqtime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">fullreqtime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>fullreqtime</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">device\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>device</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">device\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>device</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">auth\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>auth</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">auth\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>auth</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">ua\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ua</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">ua\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ua</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">exceptions\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>exceptions</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">exceptions\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>exceptions</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">category\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>category</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">category\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>category</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">reputation\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>reputation</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">reputation\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>reputation</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">categoryname\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>categoryname</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">categoryname\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>categoryname</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sandbox\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sandbox</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">sandbox\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sandbox</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">content-type\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>content-type</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<regex type="pcre2">content-type\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>content-type</order>
+</decoder>
+<decoder name="sophos-smtp-httpproxy-field-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!--
+
+{"full_log":"May 9 11:17:04 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-19:15:55 smtp httpd: id=\"0299\" srcip=\"207.46.13.78\" localip=\"122.54.234.47\" size=\"822\" user=\"-\" host=\"207.46.13.78\" method=\"GET\" statuscode=\"403\" reason=\"-\" extra=\"-\" exceptions=\"-\" time=\"669769\" url=\"/wp-content/uploads/2014/01/As-of-31-December-2016.pdf\" server=\"ledac.neda.gov.ph\" port=\"80\" query=\"\" referer=\"-\" cookie=\"-\" set-cookie=\"-\" websocket_scheme=\"-\" websocket_protocol=\"-\" websocket_key=\"-\" websocket_version=\"-\" uid=\"ZjywayJTpqJ2rH_VDu2wiQAAAC0\" tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":"May 9 11:17:35 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com 05: 09-19:17:36 smtp httpd[26732]: [security2:error] [pid 26732:tid 3942554432] [client 124.158.52.117:62314] [client 124.158.52.117] ModSecurity: Access allowed (phase 1). Operator GT matched 0 at ENV. [file \"/usr/apache/conf/waf/base.conf\"] [line \"14\"] [id \"900000\"] [hostname \"neda.gov.ph\"] [uri \"/.waf/blockpage/assets/default.css\"] [unique_id \"Zjyw0CJTpqJ2rH_VDu2wiwAAABY\"], referer: http://ledac.neda.gov.ph/resources-2/resources/ tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+-->
+<!--(\s+smtp\s+httpd\[\d+\])-->
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<prematch type="pcre2">\s+smtp\s+httpd</prematch>
+	<regex type="pcre2">\bid\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcip\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">srcip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">localip\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>localip</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">localip\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>localip</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">size\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>size</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">size\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>size</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">user\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>user</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">user\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">host\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>host</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">host\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>host</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">method\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">method\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">statuscode\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>statuscode</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">statuscode\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>statuscode</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">reason\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">reason\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">extra\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>extra</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">extra\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>extra</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">exceptions\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>exceptions</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">exceptions\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>exceptions</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">time\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>time</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">time\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>time</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">url\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">url\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\\"|)\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">server\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>server</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">server\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>server</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">port\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>port</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">port\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>port</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">query\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>query</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">query\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>query</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">referer\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">referer\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">cookie\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)|$)</regex>
+	<order>cookie</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">cookie\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>cookie</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">set-cookie\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>set-cookie</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">set-cookie\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>set-cookie</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">websocket_scheme\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>websocket_scheme</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">websocket_scheme\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>websocket_scheme</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">websocket_protocol\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>websocket_protocol</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">websocket_protocol\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>websocket_protocol</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">websocket_key\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>websocket_key</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">websocket_key\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>websocket_key</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">websocket_version\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>websocket_version</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<regex type="pcre2">websocket_version\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>websocket_version</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-1-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!--
+
+{"full_log":" 05: 09-19:17:36 smtp httpd[26732]: [security2:error] [pid 26732:tid 3942554432] [client 124.158.52.117:62314] [client 124.158.52.117] ModSecurity: Access allowed (phase 1). Operator GT matched 0 at ENV. [file \"/usr/apache/conf/waf/base.conf\"] [line \"14\"] [id \"900000\"] [hostname \"neda.gov.ph\"] [uri \"/.waf/blockpage/assets/default.css\"] [unique_id \"Zjyw0CJTpqJ2rH_VDu2wiwAAABY\"], referer: http://ledac.neda.gov.ph/resources-2/resources/ tenant=DICTNEDA productName=Sophos productType=firewall logType=network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+-->
+<decoder name="sophos-smtp-httpd-field-2-json">
+	<parent>json</parent>
+	<prematch type="pcre2">\s+smtp\s+httpd\[\d+\]</prematch>
+	<regex type="pcre2">\[security2:([^\]]+)\]</regex>
+	<order>security2</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-2-json">
+	<parent>json</parent>
+	<regex type="pcre2">\[pid (\d+):tid (\d+)\]</regex>
+	<order>pid</order>
+</decoder>
+<decoder name="sophos-smtp-httpd-field-2-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!-- Sophos SG550 End -->
+<!-- {"full_log":"11:25-14:06:46 rydutm-1 httpproxy[3296]: id=\"0060\" severity=\"info\" sys=\"SecureWeb\" sub=\"http\" name=\"web request blocked, forbidden category detected\" action=\"block\" method=\"CONNECT\" srcip=\"10.2.124.215\" dstip=\"\" user=\"\" group=\"\" ad_domain=\"\" statuscode=\"403\" cached=\"0\" profile=\"REF_HttProContaLan1Netwo5 (Default Group)\" filteraction=\"REF_DefaultHTTPCFFBlockAction (Default content filter block action)\" size=\"68577\" request=\"0x7f76f040d800\" url=\"https:\/\/firefox-settings-attachments.cdn.mozilla.net\/\" referer=\"\" error=\"\" authtime=\"0\" dnstime=\"0\" aptptime=\"103\" cattime=\"56\" avscantime=\"0\" fullreqtime=\"263774\" device=\"0\" auth=\"0\" ua=\"\" exceptions=\"\" category=\"175\" reputation=\"trusted\" categoryname=\"Software\/Hardware\" reason=\"category\"","tenant":"SGH","productName":"Sophos","productType":"firewall","logType":"network","cust1":"SGH-RUH","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"bd9f845e-3b1e-435f-9536-ad5474e47529"} -->
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<prematch type="pcre2">\[\d+\]:\s*id.*severity.*sys</prematch>
+	<regex type="pcre2">\bid\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>id</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bseverity\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsys\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sys</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsub\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sub</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bname\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>name</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\baction\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmethod\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrcip\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstip\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\buser\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>user</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bgroup\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>group</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bad_domain\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ad_domain</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bstatuscode\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>statuscode</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcached\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cached</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bprofile\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>profile</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfilteraction\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>filteraction</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsize\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>size</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brequest\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>request</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\burl\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breferer\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\berror\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>error</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bauthtime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>authtime</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdnstime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dnstime</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\baptptime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>aptptime</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcattime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>cattime</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bavscantime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>avscantime</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfullreqtime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>fullreqtime</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdevice\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>device</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bauth\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>auth</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bua\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>ua</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bexceptions\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>exceptions</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcategory\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>category</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breputation\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>reputation</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bcategoryname\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>category_name</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\breason\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfwrule\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>fw_rule</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\binitf\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>initf</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\boutitf\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>outitf</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrcmac\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>src_mac</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstmac\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>dst_mac</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bproto\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>proto</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrcport\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstport\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|\\")</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<regex type="pcre2">\"cust1\"\s*:\s*"((?:\\"|[^"])+)\"</regex>
+	<order>logger_id</order>
+</decoder>
+<decoder name="sophos-SG230-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<!-- sophos-SG230-end -->

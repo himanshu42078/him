@@ -1,0 +1,427 @@
+<!-- inbound - 0 
+     outbound - 1 -->
+ 
+<group name="forcepoint-emailsecurity,">
+
+<!-- Base Rule -->
+
+<!-- <rule id="104900" level="0" noalert="1">
+	<decoded_as>forcepoint_connection</decoded_as>
+	<description>Forcepoint Email-security Events.</description>
+	<group>info,one-on-one,</group>
+</rule> -->
+
+<rule id="104901" level="0" noalert="1">
+	<decoded_as>json</decoded_as>
+	<field name="vendor" type="pcre2">(?i)Forcepoint</field>
+	<field name="product_name" type="pcre2">(?i)Email security</field>
+	<description>Forcepoint Email-security Events.</description>
+	<group>info,one-on-one,</group>
+</rule>
+
+<rule id="104902" level="1" noalert="1">
+	<!-- <if_sid>104900,104901</if_sid> -->
+	<if_sid>104901</if_sid>
+	<description>Forcepoint Email-security Events.</description>
+	<group>info,one-on-one,</group>
+</rule>
+
+<!-- Product base Rule -->
+<!-- {"full_log":"0|Forcepoint|Email Security|8.5.0|Connection|Connection|5| dvc=192.168.9.90 dvchost=bs-esg-esg rt=1730102916000 externalId=8959362140619976855 src=13.114.170.252 dst=192.168.9.90 app=TLS reason=Accepted spfResult=PASS  tenant=ABPLBS productName=Forcepoint productType=Emailsecurity logType=network","tenant":"ABPLBS","productName":"Forcepoint","productType":"Emailsecurity","logType":"network","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"b6544898-5642-4fea-bdf0-eac4fc4d0e17"}
+ -->
+<rule id="104903" level="1" noalert="1">
+	<if_sid>104902</if_sid>
+	<field name="event_name" type="pcre2">Connection</field>
+	<description>Forcepoint Email-security Connection Events.</description>
+	<group>info,one-on-one,</group>
+</rule>
+
+<!-- {"full_log":"0|Forcepoint|Email Security|8.5.0|Policy|Commercial Bulk|5| dvc=192.168.9.90 dvchost=bs-esg-esg rt=1730104297108 messageId=5915492231092943353 suser=bounce-mc.us2_5947314.2850897-cc3779efe6@mail245.atl241.mcsv.net duser=silpa.s@anthembio.com from=\"LOBA CHEMIE PVT. LTD.\"  replyTo=LOBA CHEMIE PVT. LTD.  to= cc= in=37414 deviceDirection=0 deviceFacility=Inbound Default deviceProcessName=Commercial Bulk act=Drop and Quarantine url= cat= cs1= fnameAndfileHash= exceptionReason= hybridSpamScore=-100000000 localSpamScore=-339 message_text=HAPPY DIWALI-LOBA CHEMIE trueSrc=198.2.141.245 x-mailer=Mailchimp Mailer - **CID3af7d71800cc3779efe6**  tenant=ABPLBS productName=Forcepoint productType=Emailsecurity logType=network","tenant":"ABPLBS","productName":"Forcepoint","productType":"Emailsecurity","logType":"network","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"b6544898-5642-4fea-bdf0-eac4fc4d0e17"}
+ -->
+<rule id="104904" level="1" noalert="1">
+	<if_sid>104902</if_sid>
+	<field name="event_name" type="pcre2">Policy</field>
+	<description>Forcepoint Email-security Policy Events.</description>
+	<group>info,one-on-one,</group>
+</rule>
+
+<!-- {"full_log":"0|Forcepoint|Email Security|8.5.0|Delivery|Delivery|5| dvc=192.168.9.90 dvchost=bs-esg-esg rt=1730106718000 externalId=1574505652491380676 messageId=2299381874940194697 duser=msramaiah_placements@msrcasc.edu.in src=192.168.9.90 dst=172.253.118.26 encryptedDelivery=TLS delivery using opportunistic TLS deliveryCode=200 deliveryCodeInfo=250 2.0.0 OK  1730106735 41be03b00d2f7-7edc8a01e67si7169408a12.385 - gsmtp app=TLS act=Success Delivery  tenant=ABPLBS productName=Forcepoint productType=Emailsecurity logType=network","tenant":"ABPLBS","productName":"Forcepoint","productType":"Emailsecurity","logType":"network","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"b6544898-5642-4fea-bdf0-eac4fc4d0e17"}
+ -->
+<rule id="104905" level="1" noalert="1">
+	<if_sid>104902</if_sid>
+	<field name="event_name" type="pcre2">Delivery</field>
+	<description>Forcepoint Email-security Delivery Events.</description>
+	<group>info,one-on-one,</group>
+</rule>
+
+
+<!-- {"full_log":"0|Forcepoint|Email Security|8.5.0|Message|Message|5| dvc=192.168.9.90 dvchost=bs-esg-esg rt=1730111412000 externalId=5114251422466054884 messageId=298195707789456133 suser=vault-emails@veeva.com duser=manjunath.a@anthembio.com  message_text=You have been assigned the following task: Review Task in=9895 trueSrc=52.69.227.72 from=Vault Quality  to=manjunath.a@anthembio.com cc= x-mailer=  tenant=ABPLBS productName=Forcepoint productType=Emailsecurity logType=network","tenant":"ABPLBS","productName":"Forcepoint","productType":"Emailsecurity","logType":"network","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"b6544898-5642-4fea-bdf0-eac4fc4d0e17"}
+ -->
+<rule id="104906" level="1" noalert="1">
+	<if_sid>104902</if_sid>
+	<field name="event_name" type="pcre2">Message</field>
+	<description>Forcepoint Email-security Message Events.</description>
+	<group>info,one-on-one,</group>
+</rule>
+
+
+<!-- {"full_log":"0|Forcepoint|Email Security|8.5.0|Audit Log|Audit Log|5| rt=1730108171000 dvc=192.168.9.90 src=192.168.12.149 suser=harshitha.p spriv=Quarantine Administrator page=ConsoleSIEMLog element=ConsoleSIEMLog act=Forcepoint Security Manager log on message_text=Log in action success  tenant=ABPLBS productName=Forcepoint productType=Emailsecurity logType=network","tenant":"ABPLBS","productName":"Forcepoint","productType":"Emailsecurity","logType":"network","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"b6544898-5642-4fea-bdf0-eac4fc4d0e17"}
+ -->
+<rule id="104907" level="1" noalert="1">
+	<if_sid>104902</if_sid>
+	<field name="event_name" type="pcre2">Audit Log</field>
+	<description>Forcepoint Email-security Audit Events.</description>
+	<group>info,one-on-one,</group>
+</rule>
+
+<rule id="104908" level="1" noalert="1">
+	<if_sid>104902</if_sid>
+	<field name="event_name" type="pcre2">Hybrid</field>
+	<description>Forcepoint Email-security Hybrid Events.</description>
+	<group>info,one-on-one,</group>
+</rule>
+
+<!-- Connection Rules -->
+<rule id="104909" level="1">
+	<if_sid>104903</if_sid>
+	<field name="spf_result" type="pcre2">(?i)^SOFTFAIL$|^fail$</field>
+	<description>Forcepoint Email-Security: SPF failure error detected.</description>
+	<group>low,one-on-one,s-a,T1566,initial-access,phishing,email-spoofing,spf-error,</group>
+	<mitre>
+		<id>T1566</id>
+	</mitre>
+	<info type="text">Description : This alert is triggered when an incoming email fails the Sender Policy Framework (SPF) check, indicating the sender's domain did not authorize the sending mail server. This could be due to misconfigured SPF records or potential email spoofing.
+	</info>
+</rule>
+
+<rule id="104910" level="1">
+	<if_sid>104903</if_sid>
+	<field name="spf_result" type="pcre2">(?i)^TEMPERROR$</field>
+	<description>Forcepoint Email-Security: SPF temperror error detected.</description>
+	<group>low,one-on-one,T1071.003,T1071,command-and-control,phishing,email-spoofing,misconfiguration,spf-error,</group>
+	<mitre>
+		<id>T1071.003</id>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">Description: This alert is triggered when the SPF (Sender Policy Framework) verification fails due to a temporary DNS error, preventing the SPF record from being retrieved or validated.
+	</info>
+</rule>
+
+
+<rule id="104923" level="1">
+	<if_sid>104903</if_sid>
+	<field name="spf_result" type="pcre2">(?i)^NEUTRAL$</field>
+	<description>Forcepoint Email-Security: SPF natural error detected.</description>
+	<group>low,one-on-one,T1071.003,T1071,command-and-control,phishing,email-spoofing,misconfiguration,spf-error,</group>
+	<mitre>
+		<id>T1071.003</id>
+		<id>T1071</id>
+	</mitre>
+	<info type="text">Description: This alert is triggered when an email fails the SPF (Sender Policy Framework) validation, indicating that the sending server is not authorized to send emails on behalf of the domain, which could signify spoofing or misconfiguration.
+	</info>
+</rule>
+
+
+
+<!-- Audit Rules -->
+<rule id="104911" level="1">
+	<if_sid>104907</if_sid>
+	<action type="pcre2">update</action>
+	<field name="user_role" type="pcre2">^(Quarantine Administrator)$|^(Security Administrator)$</field>
+	<field name="message_text" type="pcre2">^(Global IP address block list)$</field>
+	<description>Forcepoint Email-Security: Global IP address block list updated by Security or Quarantine administrator.</description>
+	<group>medium,one-on-one,T1595.001,T1595,reconnaissance,administrator,blocked,ip-blacklist,suspicious-behaviour,</group>
+	<mitre>
+		<id>T1595.001</id>
+		<id>T1595</id>
+	</mitre>
+	<info type="text">Description :This rule triggers an alert when a Security Administrator or Quarantine Administrator updates the Global IP Address Block List. Changes to this list can significantly affect the network�s security posture by blocking or unblocking specific IP addresses, possibly preventing malicious traffic or altering security controls.
+	</info>
+</rule>
+
+<rule id="104912" level="1">
+	<if_sid>104907</if_sid>
+	<action type="pcre2">update</action>
+	<field name="user_role" type="pcre2">^(Quarantine Administrator)$|^(Security Administrator)$</field>
+	<field name="message_text" type="pcre2">^(Global email address block list)$</field>
+	<description>Forcepoint Email-Security: Global Email address block list updated by Security or Quarantine administrator.</description>
+	<group>medium,one-on-one,T1070.008,T1070,defense-evasion,administrator,blocked,email-blacklist,suspicious-behaviour,spam,</group>
+	<mitre>
+		<id>T1070.008</id>
+		<id>T1070</id>
+	</mitre>
+	<info type="text">Description :This rule triggers when a Security Administrator or Quarantine Administrator updates the Global Email Address Block List. Modifying this list can either allow or block specific email addresses, affecting email communication, spam filtering, and phishing prevention measures.
+	</info>
+</rule>
+
+<rule id="104913" level="1">
+	<if_sid>104907</if_sid>
+	<action type="pcre2">stop</action>
+	<field name="user_role" type="pcre2">^(CLI Administrator)$</field>
+	<field name="message_text" type="pcre2">^(Operation: set service --name SSL-proxy --action stop Result: Success)$</field>
+	<description>Forcepoint Email-Security: SSL-Proxy service stopped by CLI administrator.</description>
+	<group>high,one-on-one,s-a,T1489,impact,service-stopped,ssl-proxy,administrator,malicious-behaviour,</group>
+	<mitre>
+		<id>T1489</id>
+	</mitre>
+	<info type="text">Description : Stopping or disabling security-related services, like SSL-proxy, can be part of an attempt to weaken the system's defenses and allow malicious traffic through encrypted channels.
+	</info>
+</rule>
+
+<rule id="104914" level="1">
+	<if_sid>104907</if_sid>
+	<action type="pcre2">save</action>
+	<field name="user_role" type="pcre2">^(CLI Administrator)$</field>
+	<field name="src_usr" type="pcre2" negate="yes">^(?i)admin$</field>
+	<field name="message_text" type="pcre2">^(Operation: save configuration Result: Success)$</field>
+	<description>Forcepoint Email-Security: Configuration saved by CLI user with non-admin privileges</description>
+	<group>medium,one-on-one,s-a,T1016,discovery,configuration-change,notable-behaviour,administrator,</group>
+	<mitre>
+		<id>T1016</id>
+	</mitre>
+	<info type="text">Description : This rule tracks when a CLI Administrator saves configuration changes in the Forcepoint Security Manager. Saving configurations can affect system policies, security settings, and operational behavior. This action requires monitoring to ensure that configuration changes are authorized and do not degrade the system's security posture.
+	</info>
+</rule>
+
+
+<rule id="104924" level="1">
+	<if_sid>104907</if_sid>
+	<action type="pcre2">^Forcepoint Security Manager log on$</action>
+	<field name="user_role" type="pcre2">^(Security Administrator)$|^(Super Administrator)$|^(Auditor)$|^(Quarantine Administrator)$</field>
+	<field name="message_text" type="pcre2">^(Log in action success)$</field>
+	<description>Forcepoint Email-Security: $(user_role) has logged in successfully.</description>
+	<group>low,one-on-one,login,authentication,successful,defense-evasion,T1078</group>
+	<mitre>
+		<id>T1078</id>
+	</mitre>
+	<info type="text">Description : his rule tracks when a CLI Administrator saves configuration changes in the Forcepoint Security Manager. Saving configurations can affect system policies, security settings, and operational behavior. This action requires monitoring to ensure that configuration changes are authorized and do not degrade the system's security posture.
+	</info>
+</rule>
+
+
+<rule id="104925" level="1">
+	<if_sid>104907</if_sid>
+	<action type="pcre2">^Forcepoint Security Manager log off$</action>
+	<field name="user_role" type="pcre2">^(Security Administrator)$|^(Super Administrator)$|^(Auditor)$|^(Quarantine Administrator)$</field>
+	<field name="message_text" type="pcre2">^(Log off action success)$</field>
+	<description>Forcepoint Email-Security: $(user_role) has logged off successfully.</description>
+	<group>low,one-on-one,login,authentication,defense-evasion,T1078</group>
+	<mitre>
+		<id>T1078</id>
+	</mitre>
+	<info type="text">Description : his rule tracks when a CLI Administrator saves configuration changes in the Forcepoint Security Manager. Saving configurations can affect system policies, security settings, and operational behavior. This action requires monitoring to ensure that configuration changes are authorized and do not degrade the system's security posture.
+	</info>
+</rule>
+
+
+
+<!-- Policy Rules -->
+
+<rule id="104915" level="1" noalert="1">
+	<if_sid>104904</if_sid>
+	<action type="pcre2">^(Drop and Quarantine)$</action>
+	<description>Forcepoint Email-Security: Drop and quarantine events detected.</description>
+	<group>low,one-on-one,T1566,T1534,initial-access,lateral-movement,malicious,phishing,suspicious-activity,spam,virus,</group>
+	<mitre>
+		<id>T1566</id>
+		<id>T1534</id>
+	</mitre>
+	<info type="text">Description: This alert is triggered when emails are dropped or quarantined due to security policies, such as detecting malicious content, unauthorized attachments, or policy violations.
+	</info>
+</rule>
+
+
+<rule id="104917" level="1">
+	<if_sid>104915</if_sid>
+	<field name="rule_name" type="pcre2">^Anti-Spam$|^Anti-Virus$</field>
+	<description>Forcepoint Email-Security: Email dropped and quarantined due to spam or virus.</description>
+	<group>medium,one-on-one,T1566,initial-access,lateral-movement,notable-behaviour,quarantine,accept,spam,virus,</group>
+	<mitre>
+		<id>T1566</id>
+	</mitre>
+	<info type="text">Description: This rule triggers when an email is accepted but subsequently quarantined due to being identified as spam or containing a virus. This process ensures that emails flagged for further analysis are not delivered to recipients while protecting the organization from potential risks.
+	</info>
+</rule>
+
+<rule id="104916" level="2" timeframe="60" frequency="5">
+	<if_matched_sid>104917</if_matched_sid>
+	<same_field>src_ip</same_field>
+	<same_field>tenant</same_field>
+	<description>Forcepoint Email-Security: Multiple emails dropped and quarantined due to spam or virus from same source IP.</description>
+	<group>high,aggregation,s-a,T1566,T1566.001,initial-access,lateral-movement,drop,quarantine,malicious,phishing,suspicious-activity,spam,virus,</group>
+	<mitre>
+		<id>T1566</id>
+		<id>T1566.001</id>
+	</mitre>
+	<info type="text">Description:This rule triggers an alert when five emails are dropped and quarantined due to being flagged as spam or containing a virus from the same source IP but involving different users within a minute. This behavior can be indicative of a mass email attack, such as a phishing campaign, or a misconfigured email server attempting to send spam/malicious emails. 
+	</info>
+</rule>
+
+<rule id="104927" level="1">
+	<if_sid>104915</if_sid>
+	<field name="rule_name" type="pcre2">^Suspecious_Domains$</field>
+	<description>Forcepoint Email-Security: Email dropped but quarantined due to suspecious domains.</description>
+	<group>medium,one-on-one,T1566,initial-access,lateral-movement,notable-behaviour,quarantine,suspicious-behaviour,</group>
+	<mitre>
+		<id>T1566</id>
+	</mitre>
+	<info type="text">Description: This alert was triggered because an email contained one or more suspicious domains flagged for potential phishing, malware, or other malicious activity. To prevent harm, the email was dropped and quarantined for further review.
+	</info>
+</rule>
+
+<rule id="104918" level="2" timeframe="60" frequency="5">
+	<if_matched_sid>104927</if_matched_sid>
+	<same_field>src_ip</same_field>
+	<same_field>tenant</same_field>
+	<description>Forcepoint Email-Security: Multiple emails dropped and quarantined due to suspecious domains from same source IP.</description>
+	<group>high,aggregation,s-a,T1566,initial-access,lateral-movement,quarantine,malicious-behaviour,phishing,</group>
+	<mitre>
+		<id>T1566</id>
+	</mitre>
+	<info type="text">Description: This rule triggers when five emails are accepted and quarantined due to being flagged as spam or containing a virus from the same source IP but involving different users within a minute. This can indicate a coordinated attack, where multiple emails containing potentially harmful content are being sent rapidly from the same source, but they are intercepted by quarantine mechanisms.
+	</info>
+</rule>
+
+<rule id="104926" level="1">
+	<if_sid>104915</if_sid>
+	<field name="rule_name" type="pcre2">^Phishing attachement$</field>
+	<description>Forcepoint Email-Security: Email dropped and quarantined due to phishing attachement.</description>
+	<group>medium,one-on-one,T1566,initial-access,lateral-movement,notable-behaviour,quarantine,suspicious-behaviour,</group>
+	<mitre>
+		<id>T1566</id>
+	</mitre>
+	<info type="text">Description: This alert was triggered because an email contained a phishing attachment designed to steal sensitive information or deliver malware. To mitigate the threat, the email was dropped and quarantined.
+	</info>
+</rule>
+
+
+
+
+<!--{"full_log":"0|Forcepoint|Email Security|8.5.0|Delivery|Delivery|5| dvc=192.168.9.90 dvchost=bs-esg-esg rt=1730106718000 externalId=1574505652491380676 messageId=2299381874940194697 duser=msramaiah_placements@msrcasc.edu.in src=192.168.9.90 dst=172.253.118.26 encryptedDelivery=TLS delivery using opportunistic TLS deliveryCode=200 deliveryCodeInfo=250 2.0.0 OK  1730106735 41be03b00d2f7-7edc8a01e67si7169408a12.385 - gsmtp app=TLS act=Success Delivery  tenant=ABPLBS productName=Forcepoint productType=Emailsecurity logType=network","tenant":"ABPLBS","productName":"Forcepoint","productType":"Emailsecurity","logType":"network","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"b6544898-5642-4fea-bdf0-eac4fc4d0e17"}
+ --> 
+
+<!-- Delivery Rules -->
+<rule id="104919" level="1">
+	<if_sid>104905</if_sid>
+	<action type="pcre2">^(Failed for delivery not authorized, message refused)$|(^Delayed for delivery not authorized, message refused)$</action>
+	<field name="delivery_status_code" type="pcre2">^(471)$|^(571)$</field>
+	<description>Forcepoint Email-Security: Email delayed or failed due to unauthorized delivery, message refused.</description>
+	<group>medium,one-on-one,T1071.003,T1071,command-and-control,failure,unauthorization,delivery-failure,</group>
+	<mitre>
+		<id>T1071.003</id> <!-- Application Layer Protocol: Web Protocols (e.g., email delivery issues caused by web protocols) -->
+		<id>T1071</id> <!-- Application Layer Protocol: Web Protocols (General use of application layer protocols for command and control) -->
+	</mitre>
+	<info type="text">Description: This rule detects instances where emails are delayed or failed due to delivery not being authorized, and the message is refused by the recipient's mail server. This typically occurs when the sender is not permitted to deliver emails to the recipient domain due to policy restrictions, potential blacklisting, or sender authentication failures (e.g., SPF/DKIM issues). It can be indicative of attempted spoofing, phishing, or malicious email activity blocked by security policies.</info>
+</rule>
+
+<rule id="104920" level="1">
+	<if_sid>104905</if_sid>
+	<action type="pcre2">^(Failed for bad destination mailbox address)$|^(Delayed for bad destination mailbox address)$</action>
+	<field name="delivery_status_code" type="pcre2">^(411)$|^(511)$</field>
+	<description>Forcepoint Email-Security: Invalid email destination detected.</description>
+	<group>medium,one-on-one,T1589.002,T1589,reconnaissance,invalid-email,email-misconfiguration,suspicious-activity,</group>
+	<mitre>
+        <id>T1589</id> 
+		<id>T1589.002</id> <!-- Gather Victim Identity Information: Gather Victim Email Addresses -->
+	</mitre>
+	<info type="text">Description: This rule monitors instances where email delivery fails or is delayed due to an invalid or non-existent destination mailbox address. This may be due to a typo in the email address or could indicate a Directory Harvesting Attack (DHA), where attackers attempt to discover valid email addresses by sending messages to many invalid recipients. It's essential to track these events to detect potential malicious enumeration of mailboxes or poorly configured email routing.</info>
+</rule>
+
+<rule id="104921" level="1">
+	<if_sid>104905</if_sid>
+	<action type="pcre2">^(Failed for message too big for system)$</action>
+	<field name="delivery_status_code" type="pcre2">^(534)$</field>
+	<description>Forcepoint Email-Security: Email delivery failed due to an oversized message exceeding system limits.</description>
+	<group>medium,one-on-one,T1071.003,T1071,command-and-control,oversized-message,malicious-activity,phishing,</group>
+	<mitre>
+		<id>T1071.003</id> <!-- Application Layer Protocol: Web Protocols (related to web protocols and large data, phishing or malicious activity) -->
+		<id>T1071</id> <!-- Application Layer Protocol: Web Protocols -->
+	</mitre>
+	<info type="text">Description: This rule detects when email delivery fails due to the message size exceeding the maximum allowed by the recipient's system. Such failures might occur due to large attachments, multimedia content, or improperly configured email servers. Though not directly malicious, repeated occurrences could indicate attempts to bypass email security filters or overwhelm the mail system with large volumes of data.</info>
+</rule>
+
+<rule id="104922" level="1">
+	<if_sid>104905</if_sid>
+	<action type="pcre2">^(Delayed for bad sender system address)$</action>
+	<field name="delivery_status_code" type="pcre2">^(418)$</field>
+	<description>Forcepoint Email-Security: Email delivery delayed due to bad sender system address.</description>
+	<group>medium,one-on-one,T1071.003,T1071,command-and-control,delay,notable-behaviour,bad-email,</group>
+	<mitre>
+		<id>T1071.003</id> <!-- Application Layer Protocol: Web Protocols -->
+		<id>T1071</id> <!-- Application Layer Protocol: Web Protocols -->
+	</mitre>
+	<info type="text">Description: This rule detects when email deliveries are delayed due to issues with the sender's system address. Such delays can arise from misconfigured email servers, compromised systems sending spam, or network issues affecting the sender's ability to relay emails.</info>
+</rule>
+
+<rule id="104928" level="1">
+	<if_sid>104905</if_sid>
+	<action type="pcre2">^(Delayed for other error)$|^(Failed for other error)$</action>
+	<field name="delivery_status_code" type="pcre2">^(400)$|^(500)$</field>
+	<description>Forcepoint Email-Security: Email delivery delayed or failed due to other errors.</description>
+	<group>medium,one-on-one,T1071.003,T1071,command-and-control,delay,notable-behaviour,bad-email,</group>
+	<mitre>
+		<id>T1071.003</id> <!-- Application Layer Protocol: Web Protocols -->
+		<id>T1071</id> <!-- Application Layer Protocol: Web Protocols -->
+	</mitre>
+	<info type="text">Description: This rule detects emails delayed or failed due to unspecified errors. These errors might indicate underlying misconfigurations, server issues, or attempts to bypass normal email security protocols.</info>
+</rule>
+
+<rule id="104929" level="1">
+	<if_sid>104905</if_sid>
+	<action type="pcre2">^(Delayed for unable to route)$|^(Failed for unable to route)$</action>
+	<field name="delivery_status_code" type="pcre2">^(444)$|^(544)$</field>
+	<description>Forcepoint Email-Security: Email delivery delayed or failed due to routing issues.</description>
+	<group>medium,one-on-one,T1071.003,T1071,command-and-control,delay,notable-behaviour,bad-email,</group>
+	<mitre>
+		<id>T1071.003</id> <!-- Application Layer Protocol: Web Protocols -->
+		<id>T1071</id> <!-- Application Layer Protocol: Web Protocols -->
+	</mitre>
+	<info type="text">Description: This rule detects emails delayed or failed due to routing problems. Such issues may stem from misconfigured servers, network outages, or attempts to deliver emails to invalid destinations, possibly signaling malicious activity.</info>
+</rule>
+
+<rule id="104930" level="1">
+	<if_sid>104905</if_sid>
+	<action type="pcre2">^(Failed for unknown delivery error)$</action>
+	<field name="delivery_status_code" type="pcre2">^(5726)$|^(5751)$</field>
+	<description>Forcepoint Email-Security: Email delivery failed due to unknown errors.</description>
+	<group>medium,one-on-one,T1071.003,T1071,command-and-control,delay,notable-behaviour,bad-email,</group>
+	<mitre>
+		<id>T1071.003</id> <!-- Application Layer Protocol: Web Protocols -->
+		<id>T1071</id> <!-- Application Layer Protocol: Web Protocols -->
+	</mitre>
+	<info type="text">Description: This rule identifies emails that failed due to unknown delivery errors. Such failures might indicate server misconfigurations, unsupported recipients, or potential malicious activities attempting to disrupt communication.</info>
+</rule>
+
+<rule id="104931" level="1">
+    <if_sid>104905</if_sid>
+    <action type="pcre2">^(Failed for bad sender mailbox address syntax)$</action>
+    <field name="delivery_status_code" type="pcre2">^(517)$</field>
+    <description>Forcepoint Email-Security: Email delivery failed due to bad sender mailbox address syntax.</description>
+    <group>medium,one-on-one,T1071.003,T1071,command-and-control,delay,notable-behavior,bad-email,</group>
+    <mitre>
+        <id>T1071.003</id> <!-- Application Layer Protocol: Web Protocols -->
+		<id>T1071</id> <!-- Application Layer Protocol: Web Protocols -->
+    </mitre>
+    <info type="text">
+        Description: This rule identifies emails that failed due to incorrect sender mailbox address syntax. Such errors may stem from misconfigured email clients or servers, malicious activities, or user mistakes in email addressing.
+    </info>
+</rule>
+
+
+<rule id="104932" level="1">
+    <if_sid>104905</if_sid>
+    <action type="pcre2">^(Failed for routing loop detected)$</action>
+    <field name="delivery_status_code" type="pcre2">^(546)$</field>
+    <description>Forcepoint Email-Security: Email delivery failed due to a detected routing loop.</description>
+    <group>medium,one-on-one,T1071.003,T1071,command-and-control,delay,notable-behavior,routing-error,bad-email,</group>
+    <info type="text">
+        Description: This rule identifies emails that failed due to a routing loop, which may indicate email server misconfiguration or malicious redirection attempts causing emails to be indefinitely rerouted.
+    </info>
+    <mitre>
+        <id>T1071.003</id> <!-- Application Layer Protocol: Web Protocols (related to the use of web protocols that may be used to manipulate email routing or control-->
+        <id>T1071</id> <!-- Application Layer Protocol: Web Protocols (General use of application layer protocols for command and control) -->
+    </mitre>
+</rule>
+
+
+</group>

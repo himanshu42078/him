@@ -1,0 +1,563 @@
+<!--
+
+**Radius-Accounting
+ 0002428785 2 0 2024-09-25 05:47:20.175 +03:00 0166436753 3002 NOTICE Radius-Accounting: RADIUS Accounting watchdog update, ConfigVersionId=217, Device IP Address=10.140.255.3, UserName=faoajie, NetworkDeviceName=RS7-DC04-AS3, User-Name=faoajie, NAS-IP-Address=10.140.255.3, NAS-Port=50125, Framed-IP-Address=10.140.13.225, Class=CACS:03FF8C0A0000003C6E32B876:NAC-PSN01/514058393/117793, Called-Station-ID=F8-E5-7E-F5-2A-19, Calling-Station-ID=6C-3C-8C-48-1B-A4, NAS-Identifier=RS7-DC04-AS3, Acct-Status-Type=Interim-Update, Acct-Delay-Time=0, Acct-Input-Octets=2399388922, Acct-Output-Octets=0, Acct-Session-Id=00000062, Acct-Authentic=Remote, Acct-Input-Packets=9538278, Acct-Output-Packets=0, Event-Timestamp=1727232439, NAS-Port-Type=Ethernet, NAS-Port-Id=GigabitEthernet1/0/25, cisco-av-pair=dhcp-option=dhcp-parameter-request-list=1\, 3\, 6\, 15\, 31\, 33\, 43\, 44\, 46\, 47\, 119\, 121\, 249\, 252, cisco-av-pair=dhcp-option=dhcp-class-identifier=MSFT 5.0, tenant=AlQassim productName=CiscoNAC productType=NAC logType=network
+
+**Failed-Attempt
+ 0002428973 2 0 2024-09-25 05:48:19.659 +03:00 0166440679 5400 NOTICE Failed-Attempt: Authentication failed, ConfigVersionId=217, Device IP Address=10.26.255.3, Device Port=1812, DestinationIPAddress=172.20.21.125, DestinationPort=1812, RadiusPacketType=AccessRequest, UserName=ise, Protocol=Radius, NetworkDeviceName=Gym-GF-As3, User-Name=ise, NAS-IP-Address=10.26.255.3, Service-Type=Login, NAS-Identifier=Gym-GF-As3, Event-Timestamp=1, NetworkDeviceProfileName=Cisco, NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c, IsThirdPartyDeviceFlow=false, AcsSessionID=NAC-PSN01/514659232/6224692, AuthenticationIdentityStore=DenyAccess, AuthenticationMethod=PAP_ASCII, SelectedAccessService=Default Network Access, RequestLatency=2, FailureReason=22017 Selected Identity Source is DenyAccess, Step=11001, Step=11017, Step=11117, Step=15049, Step=15008, Step=15048, Step=15041, Step=15013, Step=22017, Step=11003, NetworkDeviceGroups=Location#All Locations#QU HQ#Gym, tenant=AlQassim productName=CiscoNAC productType=NAC logType=network
+
+{"full_log":" 0003230068 2 0 2024-09-27 10:26:38.712 +03:00 0185735515 5400 NOTICE Failed-Attempt: Authentication failed, ConfigVersionId=366, Device IP Address=10.150.255.19, Device Port=55212, DestinationIPAddress=172.20.21.125, DestinationPort=1812, RadiusPacketType=AccessRequest, UserName=ise, Protocol=Radius, NetworkDeviceName=OZ11-DC2-AS7-F117-3, User-Name=ise, NAS-IP-Address=10.150.255.19, Service-Type=16777216, Event-Timestamp=1, NetworkDeviceProfileName=Cisco, NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c, IsThirdPartyDeviceFlow=false, AcsSessionID=NAC-PSN01\/514659232\/6865655, AuthenticationIdentityStore=DenyAccess, AuthenticationMethod=PAP_ASCII, SelectedAccessService=Default Network Access, RequestLatency=2, FailureReason=22017 Selected Identity Source is DenyAccess, Step=11001, Step=11017, Step=11117, Step=15049, Step=15008, Step=15048, Step=15041, Step=15013, Step=22017, Step=11003, NetworkDeviceGroups=Location#All Locations#QU Remote#OZ3,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":" 0003230065 2 0 2024-09-27 10:26:37.744 +03:00 0185735489 3002 NOTICE Radius-Accounting: RADIUS Accounting watchdog update, ConfigVersionId=366, Device IP Address=10.16.255.150, UserName=ise, NetworkDeviceName=Nursing-DC-GF, User-Name=ise, NAS-IP-Address=10.16.255.150, Service-Type=Framed, Acct-Status-Type=Interim-Update, Acct-Delay-Time=0, Acct-Session-Id=00000000, Acct-Authentic=RADIUS, AcsSessionID=NAC-PSN01\/514659232\/6865653, SelectedAccessService=Default Network Access, RequestLatency=1, Step=11004, Step=11017, Step=11117, Step=15049, Step=15008, Step=15048, Step=22094, Step=11005, NetworkDeviceGroups=Location#All Locations#QU HQ#OE, NetworkDeviceGroups=Device Type#All Device Types#Small-Switch, NetworkDeviceGroups=IPSEC#Is IPSEC Device#No, NetworkDeviceGroups=HW#HW, NetworkDeviceGroups=HW test#HW test, CPMSessionID=ac14157dVFi0g9Ek87OHeNq\/deOYJPfH4mtcKpAMXf9IDMaYrTY, TotalAuthenLatency=1, ClientLatency=0, HW=HW#HW, HW test=HW test#HW test,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":" 0003230064 2 0 2024-09-27 10:26:36.902 +03:00 0185735471 3002 NOTICE Radius-Accounting: RADIUS Accounting watchdog update, ConfigVersionId=366, Device IP Address=10.2.255.1, UserName=waoad, NetworkDeviceName=Eco-DC1_1-AS1, User-Name=waoad, NAS-IP-Address=10.2.255.1, NAS-Port=50116, Framed-IP-Address=10.2.11.193, Class=CACS:0A020B0100011E221DFDDD1A:NAC-PSN01\/514659232\/5973901, Called-Station-ID=6C-41-6A-59-59-10, Calling-Station-ID=30-D0-42-EA-0E-18, Acct-Status-Type=Interim-Update, Acct-Delay-Time=0, Acct-Input-Octets=4275404755, Acct-Output-Octets=3629799637, Acct-Session-Id=00004FD9, Acct-Input-Packets=15282299, Acct-Output-Packets=57041527, Event-Timestamp=1727421996, NAS-Port-Type=Ethernet, NAS-Port-Id=GigabitEthernet1\/0\/16, cisco-av-pair=dhcp-option=dhcp-parameter-request-list=1\\, 3\\, 6\\, 15\\, 31\\, 33\\, 43\\, 44\\, 46\\, 47\\, 119\\, 121\\, 249\\, 252, cisco-av-pair=dhcp-option=dhcp-class-identifier=MSFT 5.0, cisco-av-pair=dhcp-option=host-name=CBE-CBE-183,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":" 0003230132 2 0 2024-09-27 10:26:55.430 +03:00 0185736874 5232 NOTICE Passed-Authentication: DACL Download Succeeded, ConfigVersionId=366, Device IP Address=10.46.255.2, DestinationIPAddress=172.20.21.125, DestinationPort=1812, UserName=#ACSACL#-IP-QU-Devices-Internal-Access-66d8d2e3, Protocol=Radius, NetworkDeviceName=MD-DC3-AS2., User-Name=#ACSACL#-IP-QU-Devices-Internal-Access-66d8d2e3, NAS-IP-Address=10.46.255.2, cisco-av-pair=aaa:service=ip_admission, cisco-av-pair=aaa:event=acl-download, NetworkDeviceProfileName=Cisco, NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c, IsThirdPartyDeviceFlow=false, AcsSessionID=NAC-PSN01\/514659232\/6865702, RequestLatency=1, Step=11001, Step=11017, Step=11117, Step=11002, NetworkDeviceGroups=Location#All Locations#QU HQ#MEDICINE, NetworkDeviceGroups=Device Type#All Device Types#Access Switches, NetworkDeviceGroups=IPSEC#Is IPSEC Device#No, NetworkDeviceGroups=HW#HW, NetworkDeviceGroups=HW test#HW test,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":" 0003230133 2 0 2024-09-27 10:26:55.436 +03:00 0185736881 3000 NOTICE Radius-Accounting: RADIUS Accounting start request, ConfigVersionId=366, Device IP Address=10.46.255.2, UserName=28-29-86-92-CB-7C, NetworkDeviceName=MD-DC3-AS2., User-Name=28-29-86-92-CB-7C, NAS-IP-Address=10.46.255.2, NAS-Port=50148, Framed-IP-Address=10.46.12.240, Class=CACS:02FF2E0A0001C066326065F0:NAC-PSN01\/514659232\/6865701, Called-Station-ID=F8-6B-D9-21-5A-30, Calling-Station-ID=28-29-86-92-CB-7C, NAS-Identifier=MD-DC3-AS2, Acct-Status-Type=Start, Acct-Delay-Time=0, Acct-Session-Id=0000e921, Acct-Authentic=Remote, Event-Timestamp=1727422015, NAS-Port-Type=Ethernet, NAS-Port-Id=GigabitEthernet1\/0\/48, cisco-av-pair=audit-session-id=02FF2E0A0001C066326065F0, cisco-av-pair=method=mab, cisco-nas-port=GigabitEthernet1\/0\/48, AcsSessionID=NAC-PSN01\/514659232\/6865703, SelectedAccessService=QU Network Access, RequestLatency=1, Step=11004, Step=11017, Step=15049, Step=15008, Step=22095,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":" 0001129429 2 0 2024-09-27 10:27:13.300 +03:00 0056142839 3002 NOTICE Radius-Accounting: RADIUS Accounting watchdog update, ConfigVersionId=257, Device IP Address=10.20.255.219, UserName=ise, NetworkDeviceName=ADMIN-3214-AS18-RM3208, User-Name=ise, NAS-IP-Address=10.20.255.219, Service-Type=Framed, Acct-Status-Type=Interim-Update, Acct-Delay-Time=0, Acct-Session-Id=00000000, Acct-Authentic=RADIUS, AcsSessionID=NAC-PSN02\/514807999\/2349661, SelectedAccessService=Default Network Access, RequestLatency=2, Step=11004, Step=11017, Step=11117, Step=15049, Step=15008, Step=15048, Step=22094, Step=11005, NetworkDeviceGroups=Location#All Locations#QU HQ#admin, NetworkDeviceGroups=Device Type#All Device Types#Small-Switch, NetworkDeviceGroups=IPSEC#Is IPSEC Device#No, NetworkDeviceGroups=HW#HW, NetworkDeviceGroups=HW test#HW test, CPMSessionID=ac14157e8o7PK5fZCCUNoeg5VMI\/IzRSMS1UD9A7GfXX7AK5l3o, TotalAuthenLatency=2, ClientLatency=0, HW=HW#HW, HW test=HW test#HW test,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":" 0003230197 3 1  cisco-av-pair=dhcp-option=host-name=S-ENG-EE-133, cisco-av-pair=dhcp-option=dhcp-requested-address=10.14.23.205, cisco-av-pair=dhcp-option=dhcp-client-identifier=01:30:d0:42:e3:0d:0f, cisco-av-pair=audit-session-id=0A0E1702000001CAE418054E, cisco-av-pair=method=dot1x, cisco-nas-port=GigabitEthernet1\/0\/27, AcsSessionID=NAC-PSN01\/514659232\/6865756, SelectedAccessService=QU Network Access, RequestLatency=2, Step=11004, Step=11017, Step=15049, Step=15008, Step=22094, Step=11005, NetworkDeviceGroups=Location#All Locations#QU HQ#ENG, NetworkDeviceGroups=Device Type#All Device Types#Access Switches, NetworkDeviceGroups=IPSEC#Is IPSEC Device#No, NetworkDeviceGroups=HW#HW, NetworkDeviceGroups=HW test#HW test, CPMSessionID=0A0E1702000001CAE418054E, TotalAuthenLatency=2, ClientLatency=0, HW=HW#HW, HW test=HW test#HW test, Network Device Profile=Cisco, Location=Location#All Locations#QU HQ#ENG, Device Type=Device Type#All Device Types#Access Switches,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":" 0001129462 2 0 2024-09-27 10:27:33.704 +03:00 0056143619 3002 NOTICE Radius-Accounting: RADIUS Accounting watchdog update, ConfigVersionId=257, Device IP Address=10.3.255.13, UserName=ise, NetworkDeviceName=AGRI-DC6_3-AS4, User-Name=ise, NAS-IP-Address=10.3.255.13, Service-Type=Framed, Acct-Status-Type=Interim-Update, Acct-Delay-Time=0, Acct-Session-Id=00000000, Acct-Authentic=RADIUS, AcsSessionID=NAC-PSN02\/514807999\/2349694, SelectedAccessService=Default Network Access, RequestLatency=1, Step=11004, Step=11017, Step=11117, Step=15049, Step=15008, Step=15048, Step=22094, Step=11005, NetworkDeviceGroups=Location#All Locations#QU HQ#agri, NetworkDeviceGroups=Device Type#All Device Types#Access Switches, NetworkDeviceGroups=IPSEC#Is IPSEC Device#No, NetworkDeviceGroups=HW#HW, NetworkDeviceGroups=HW test#HW test, CPMSessionID=ac14157ewU7qNt99hV\/EwsHooLGHwPNdT\/SGHp7wj1HQxh_z5wg, TotalAuthenLatency=1, ClientLatency=0, HW=HW#HW, HW test=HW test#HW test,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":" 0001129460 2 0 2024-09-27 10:27:33.012 +03:00 0056143565 5400 NOTICE Failed-Attempt: Authentication failed, ConfigVersionId=257, Device IP Address=10.150.255.23, Device Port=60866, DestinationIPAddress=172.20.21.126, DestinationPort=1812, RadiusPacketType=AccessRequest, UserName=ise, Protocol=Radius, NetworkDeviceName=OZ11-DC2-AS12-S168-2, User-Name=ise, NAS-IP-Address=10.150.255.23, Service-Type=16777216, Event-Timestamp=1, NetworkDeviceProfileName=Cisco, NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c, IsThirdPartyDeviceFlow=false, AcsSessionID=NAC-PSN02\/514807999\/2349691, AuthenticationIdentityStore=DenyAccess, AuthenticationMethod=PAP_ASCII, SelectedAccessService=Default Network Access, RequestLatency=2, FailureReason=22017 Selected Identity Source is DenyAccess, Step=11001, Step=11017, Step=11117, Step=15049, Step=15008, Step=15048, Step=15041, Step=15013, Step=22017, Step=11003, NetworkDeviceGroups=Location#All Locations#QU Remote#OZ11,","tenant":"AlQassim","productName":"CiscoNAC","productType":"NAC","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+-->
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <prematch>"productName":"CiscoNAC"</prematch>
+    <regex type="pcre2">\s*\d+\s+\d+\s+\d+\s+(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\.\d+\s+[+-]\d{2}:\d{2})\s+(\d+)\s+(\d+)\s+([A-Za-z\-]+)\s+([A-Za-z\-]+):\s+([^,]+)</regex>
+    <order>event_time,seq_num,log_id,severity,message_type,message_text</order>
+</decoder>
+
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">ConfigVersionId\s*=\s*?[(\\"']?[(\\"'](.*?)[\\"|,](?=('|"|\\"|))</regex>
+    <order>rule_version</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">ConfigVersionId\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>rule_version</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Device IP Address\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>object_ip</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Device IP Address\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>object_ip</order>
+</decoder> -->
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">DestinationIPAddress\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>dst_ip</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">DestinationIPAddress\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>dst_ip</order>
+</decoder>
+
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">DestinationPort\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>dstport</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">DestinationPort\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>dstport</order>
+</decoder> -->
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">UserName\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>username</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">UserName\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>username</order>
+</decoder>
+
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Protocol\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>protocol</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Protocol\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>protocol</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NetworkDeviceName\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>device_name</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NetworkDeviceName\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>device_name</order>
+</decoder> -->
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">User-Name\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>username</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">User-Name\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>username</order>
+</decoder>
+
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NAS-IP-Address\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>auth_nas_ip</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NAS-IP-Address\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>auth_nas_ip</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">cisco-av-pair\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>cisco-av-pair</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">cisco-av-pair\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>cisco-av-pair</order>
+</decoder> -->
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NetworkDeviceProfileName\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>profile_name</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NetworkDeviceProfileName\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>profile_name</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NetworkDeviceProfileId\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>profile_id</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NetworkDeviceProfileId\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>profile_id</order>
+</decoder>
+
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">IsThirdPartyDeviceFlow\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>third_party_device</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">IsThirdPartyDeviceFlow\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>third_party_device</order>
+</decoder> -->
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">AcsSessionID\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>session_id</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">AcsSessionID\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>session_id</order>
+</decoder>
+
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">RequestLatency\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>request_latency</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">RequestLatency\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>request_latency</order>
+</decoder> -->
+
+<!-- step have multiple field with different value -->
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Step\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>step</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Step\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>step</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">\bNetworkDeviceGroups\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>device_group</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">\bNetworkDeviceGroups\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>device_group</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Status-Type\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>acct_status_type</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Status-Type\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>acct_status_type</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Delay-Time\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>acct_delay_time</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Delay-Time\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>acct_delay_time</order>
+</decoder> -->
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Session-Id\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>session_id</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Session-Id\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>session_id</order>
+</decoder>
+
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Authentic\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>acct_authentic</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Authentic\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>acct_authentic</order>
+</decoder> -->
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">CPMSessionID\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>session_id</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">CPMSessionID\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>session_id</order>
+</decoder>
+
+<!-- <decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">TotalAuthenLatency\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>total_authen_latency</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">TotalAuthenLatency\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>total_authen_latency</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">ClientLatency\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>client_latency</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">ClientLatency\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>client_latency</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">HW\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>hw</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">HW\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>hw</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">test\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>test</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">test\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>test</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">test\s*=([^",]+)</regex>
+    <order>test</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">RadiusPacketType\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>packet_type</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">RadiusPacketType\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>packet_type</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Service-Type\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>service_type</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Service-Type\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>service_type</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">AuthenticationIdentityStore\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>access_permission</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">AuthenticationIdentityStore\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>access_permission</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">AuthenticationMethod\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>auth_method</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">AuthenticationMethod\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>auth_method</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">SelectedAccessService\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>access_service</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">SelectedAccessService\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>access_service</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">FailureReason\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>failure_reason</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">FailureReason\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>failure_reason</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">cisco-nas-port\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>auth_nas_port</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">cisco-nas-port\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>auth_nas_port</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Framed-IP-Address\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>acct_frame_ipaddress</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Framed-IP-Address\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>acct_frame_ipaddress</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Class\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>class</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Class\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>class</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Called-Station-ID\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>auth_station_id</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Called-Station-ID\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>auth_station_id</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Calling-Station-ID\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>calling_station_id</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Calling-Station-ID\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>calling_station_id</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NAS-Identifier\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>nas_identifier</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NAS-Identifier\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>nas_identifier</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Event-Timestamp\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>event_time</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Event-Timestamp\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NAS-Port-Type\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>auth_nas_port_type</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NAS-Port-Type\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>auth_nas_port_type</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NAS-Port-Id\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>auth_nas_port_id</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">NAS-Port-Id\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>auth_nas_port_id</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">\bNAS-Port\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>nas_port</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">\bNAS-Port\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>nas_port</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Input-Octets\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>acct_input_octet</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Input-Octets\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>acct_input_octet</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Output-Octets\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>acct_output_octet</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Output-Octets\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>acct_output_octet</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Input-Packets\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>acct_input_packets</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Input-Packets\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>acct_input_packets</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Output-Packets\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>acct_output_packets</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Acct-Output-Packets\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>acct_output_packets</order>
+</decoder>
+
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Device\sPort\s*=\s*?[(\\"']?[(\\"'](.*?)[,](?=('|"|\\"|))</regex>
+    <order>device_port</order>
+</decoder>
+<decoder name="cisco-nac">
+    <parent>json</parent>
+    <regex type="pcre2">Device\sPort\s*=\s*([^,]*?)(?=\s*,|$)</regex>
+    <order>device_port</order>
+</decoder> -->
+
+<!-- Do Not Alter or Delete || Keep this at the end of the file -->
+<decoder name="cisco-nac">
+  <parent>json</parent>
+  <plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

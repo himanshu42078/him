@@ -1,0 +1,97 @@
+<!--
+{"full_log":"<189>Jan 18 2025 01:18:28 ALIC-MUM-DC-ISP-SW1-6F-R7-37U %%01CM\/5\/USER_ACCESSRESULT(s)[2145]:[USER_INFO_AUTHENTICATION]DEVICEMAC:b0-08-75-84-14-20;DEVICENAME:ALIC-MUM-DC-ISP-SW1-6F-R7-37U;USER:ALIC-ADM-NET;MAC:ff-ff-ff-ff-ff-ff;IPADDRESS:202.65.148.252;TIME:1737163108;ZONE:UTC+0530;DAYLIGHT:false;ERRCODE:132;RESULT:Authentication fail;CIB ID:3;ACCESS TYPE:SSH;RDSIP:-;Portal TYPE:-;AUTHID=4294967295;","tenant":"Bandhan","productName":"HuaweiSwitch","productType":"Switches","logType":"network","cust1":"Logger01","L0":"050ab1ad-01d1-4fd5-aeff-17788fe0e6fb","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"ad7990b5-7129-4b5d-859e-39965c36852f"}
+-->
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<prematch type="pcre2">(?i)"productName"\s*:\s*"HuaweiSwitch"|productName=HuaweiSwitch</prematch>
+	<regex type="pcre2">.*%%\d+\s*([\s*\w*]+)\\\/(\d+)\\\/([\w*]+)</regex>
+	<order>module_name,severity,description</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">DEVICEMAC\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>endpoint_mac</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">DEVICENAME\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>endpoint_name</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">USER\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>user</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">MAC\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>mac</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">IPADDRESS\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">TIME\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>time</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">ZONE\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>zone</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">DAYLIGHT\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>day_light</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">ERRCODE\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>error_code</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">RESULT\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">CIB\s*ID\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>cib_id</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">ACCESS\s*TYPE\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>access_type</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">RDSIP\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">Portal\s*TYPE\s*:\s*(.*?)(?=\s*?;(\s\w*)|;|$)</regex>
+	<order>portal_type</order>
+</decoder>
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">AUTHID\s*=\s*([^";]*)</regex>
+	<order>authentication_id</order>
+</decoder>
+
+<!--
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<regex type="pcre2">AUTHID\s*=\s*(.*?)(?=\s*(\s\w+)|;|$)</regex>
+	<order>authentication_id</order>
+</decoder> -->
+
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="huawei-switch">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

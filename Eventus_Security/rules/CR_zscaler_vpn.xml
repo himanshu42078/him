@@ -1,0 +1,125 @@
+<!-- 
+    Rule Range 100800 To 100899
+    Last Rule used:100811
+-->
+<group name="zscaler_vpn,">
+	<!-- <rule id="100800" level="0" noalert="1">
+		<decoded_as>zscaler-vpn</decoded_as>
+		<description>Zscaler VPN Rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100808" level="0" noalert="1">
+		<decoded_as>zscaler-vpn-audit</decoded_as>
+		<description>Zscaler vpn audit log.</description>
+		<group>info,one-on-one,</group>
+	</rule> -->
+	<rule id="100809" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="AuditNewValue" type="pcre2">.*</field>
+		<field name="AuditOperationType" type="pcre2">.*</field>
+		<description>Zscaler vpn audit log.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100810" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="vendor" type="pcre2">(?i)Zscaler</field>
+		<field name="product_name" type="pcre2">(?i)zpa</field>
+		<description>Zscaler vpn rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100811" level="1" noalert="1">
+		<!-- <if_sid>100800,100808,100809,100810</if_sid> -->
+		<if_sid>100809,100810</if_sid>
+		<description>Zscaler vpn rules.</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="100801" level="1" noalert="1">
+		<if_sid>100811</if_sid>
+		<field name="session_status">ZPN_STATUS_AUTHENTICATED</field>
+		<description>Zscaler-VPN: VPN Login.</description>
+		<group>low,one-on-one,network,persistence,defense-evasion,T1133,T1078,vpn,login,authentication,success,</group>
+		<mitre>
+			<id>T1133</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	<rule id="100802" level="1" noalert="1">
+		<if_sid>100801</if_sid>
+		<field name="country_code" type="pcre2" negate="yes">(?i)IN</field>
+		<field name="username" type="pcre2" negate="yes">(?i).*zpa lss client.*</field>
+		<field name="tenant" type="pcre2">(?i)sidbi</field>
+		<match type="pcre2" negate="yes">(?i)amazonaws.com</match>
+		<description>Zscaler-VPN: Account VPN Login.</description>
+		<group>low,one-on-one,network,persistence,defense-evasion,T1133,T1078,vpn,login,authentication,success,</group>
+		<mitre>
+			<id>T1133</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	<rule id="100804" level="1">
+		<if_sid>100801</if_sid>
+		<field name="country_code" type="pcre2" negate="yes">(?i)IN</field>
+		<field name="username" type="pcre2" negate="yes">(?i)zpa lss client</field>
+		<field name="tenant">(?i)SIDBI</field>
+		<description>Zscaler-VPN: VPN Access from Outside Country.</description>
+		<group>medium,one-on-one,s-a,policy,violation,network,persistence,T1133,vpn,login,authentication,</group>
+		<mitre>
+			<id>T1133</id>
+		</mitre>
+	</rule>
+	<rule id="100805" level="1">
+		<if_sid>100811</if_sid>
+		<field name="session_status">ZPN_STATUS_AUTH_FAILED</field>
+		<field name="username" type="pcre2">.*</field>
+		<description>Zscaler-VPN: VPN Login failed.</description>
+		<group>low,one-on-one,network,policy,violation,vpn,T1078,T1133,login,failed,persistence,defense-evasion,</group>
+		<mitre>
+			<id>T1133</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+	<rule id="100807" level="1">
+		<if_sid>100811</if_sid>
+		<field name="AuditNewValue" type="pcre2">.*</field>
+		<field name="AuditOldValue" type="pcre2">.*</field>
+		<!--<field name="src_user" type="pcre2">.*</field>-->
+		<field name="AuditOperationType" type="pcre2">(?i)^update$|^delete$|^create$</field>
+		<description>Zscaler-VPN: VPN configuration change observed.</description>
+		<group>medium,one-on-one,soar-alert,network,policy,violation,vpn,T1078,T1133,T1562.001,T1562,T1098,defense-evasion,persistence,</group>
+		<mitre>
+			<id>T1133</id>
+			<id>T1098</id>
+			<id>T1562.001</id>
+            <id>T1562</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+
+    <!-- aggregation -->
+
+	<rule id="100803" level="2" frequency="3" timeframe="180">
+		<if_matched_sid>100802</if_matched_sid>
+		<different_field>country_code</different_field>
+		<same_field>username</same_field>
+		<same_field>tenant</same_field>
+		<description>Zscaler-VPN: VPN Login from multiple locations.</description>
+		<group>medium,aggregation,s-a,network,vpn,T1078,T1133,login,persistence,defense-evasion,authentication,success,</group>
+		<mitre>
+			<id>T1133</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+
+	<rule id="100806" level="2" frequency="3" timeframe="3600">
+		<if_matched_sid>100805</if_matched_sid>
+		<same_field>private_ip</same_field>
+		<same_field>username</same_field>
+		<same_field>tenant</same_field>
+		<description>Zscaler-VPN: Multiple VPN Login failed Attempt Detected.</description>
+		<group>medium,aggregation,soar-alert,network,policy,violation,vpn,T1078,T1133,login,failed,persistence,defense-evasion,</group>
+		<mitre>
+			<id>T1133</id>
+			<id>T1078</id>
+		</mitre>
+	</rule>
+</group>

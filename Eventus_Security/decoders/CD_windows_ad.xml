@@ -1,0 +1,11 @@
+<decoder name="windows-ad-custom">
+<type>syslog</type>
+<prematch type="pcre2">\s+productName=Windows-AD\s+</prematch>
+</decoder>
+
+
+<decoder name="windows-ad-fields">
+    <parent>windows-ad-custom</parent>
+    <regex type="pcre2">msg=(.*?)(?=\s*(\S+)=|$)</regex>
+    <order>message_text</order>
+</decoder>

@@ -1,0 +1,272 @@
+<group name="clearpass,">
+	<!-- <rule id="103044" level="0" noalert="1">
+		<decoded_as>clearpass</decoded_as>
+		<description>ClearPass Rules</description>
+	</rule> -->
+	<rule id="103045" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="product_name">ClearPass</field>
+		<description>ClearPass Rules</description>
+	</rule>
+	<rule id="103046" level="0" noalert="1">
+		<if_sid>103045</if_sid>
+		<description>ClearPass Rules</description>
+	</rule>
+	<!-- Base  Rules -->
+	<rule id="103047" level="0" noalert="1">
+		<if_sid>103046</if_sid>
+		<field name="event_category" type="pcre2">(?i)Audit Records</field>
+		<description>Audit Records Logs Events.</description>
+	</rule>
+	<rule id="103048" level="0" noalert="1">
+		<if_sid>103046</if_sid>
+		<field name="event_category" type="pcre2">(?i)Insight Logs</field>
+		<description>Insight Logs Events.</description>
+	</rule>
+	<rule id="103049" level="0" noalert="1">
+		<if_sid>103046</if_sid>
+		<field name="event_category " type="pcre2">(?i)Session Logs</field>
+		<description>Session Logs Events.</description>
+	</rule>
+	<rule id="103050" level="0" noalert="1">
+		<if_sid>103046</if_sid>
+		<field name="event_category" type="pcre2">(?i)System Events</field>
+		<description>System Logs Events.</description>
+	</rule>
+	<rule id="103051" level="0" noalert="1">
+		<if_sid>103046</if_sid>
+		<match type="pcre2">(?i)IFFCOADMIN</match>
+		<field name="tenant" type="pcre2">(?i)^IFFCO.*</field>
+		<description>Events occurred by IFFCOADMIN.</description>
+	</rule>
+	<!-- Starting Rules  -->
+	<rule id="103922" level="1">
+		<if_sid>103050</if_sid>
+		<field name="event_name">RADIUS Authentications</field>
+		<field name="ArubaClearpassCppmErrorCodeErrorCode" type="pcre2">^206$</field>
+		<field name="ArubaClearpassCppmErrorCodeErrorCodeDetails" type="pcre2">(?i)Access denied by policy</field>
+		<description>ClearPass: access denied by policy detected.</description>
+		<group>low,one-on-one,defense-evasion,failure,denied,T1078,command-and-control,policy,</group>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+            Description: This alert is triggered when Aruba ClearPass denies access to a user or device based on a policy violation. It indicates that an authentication attempt was made, but the request was rejected due to not meeting the criteria set in the access policies.
+        </info>
+	</rule>
+	
+	<rule id="103924" level="1">
+		<if_sid>103050</if_sid>
+		<field name="event_name">RADIUS Authentications</field>
+		<field name="ArubaClearpassCppmErrorCodeErrorCodeDetails" type="pcre2">(?i)User authentication failed</field>
+		<field name="ArubaClearpassCppmErrorCodeErrorCode" type="pcre2">^216$</field>
+		<description>ClearPass: User Authentication Failure</description>
+		<group>medium,one-on-one,credential-access,failure,denied,T1110,authentication,</group>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+		<info type="text">
+		Description: This rule identifies a failed user authentication attempt through ClearPass RADIUS service for the tenant. The failure is associated with error code 216, which signals an authentication failure due to incorrect or invalid credentials.
+	</info>
+	</rule>
+	<rule id="103925" level="1">
+		<if_sid>103050</if_sid>
+		<field name="event_name">Filesystem Integrity Check</field>
+		<field name="outcome" type="pcre2">(?i)Failure</field>
+		<field name="process_name" type="pcre2">(?i)File System Integrity Check</field>
+		<description>ClearPass: Failed filesystem integrity check detected.</description>
+		<group>medium,one-on-one,impact,failure,denied,T1495,integrity,</group>
+		<mitre>
+			<id>T1495 </id>
+		</mitre>
+		<info type="text">
+		Description: This rule is triggered when a filesystem integrity check fails in ClearPass. Such checks are essential for verifying that files have not been altered, corrupted, or compromised, ensuring system integrity.
+	</info>
+	</rule>
+	<rule id="103926" level="1">
+		<if_sid>103047</if_sid>
+		<field name="event_name" type="pcre2">(?i)Admin Login</field>
+		<description>ClearPass: Admin user login detected.</description>
+		<group>low,one-on-one,authentication,admin,T1078,command-and-control,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+		Description: This rule detects an admin user login on ClearPass. Admin logins should be closely monitored as they have elevated privileges that could be exploited for unauthorized actions.
+	</info>
+	</rule>
+	<rule id="103927" level="1">
+		<if_sid>103048</if_sid>
+		<field name="event_name" type="pcre2">(?i)User Role Change</field>
+		<description>ClearPass: User role modification detected.</description>
+		<group>medium,one-on-one,account-modification,T1098,persistence,</group>
+		<mitre>
+			<id>T1098</id>
+		</mitre>
+		<info type="text">
+		Description: This rule is triggered when a user role change is detected in ClearPass. Role modifications can grant or restrict access to critical systems and resources, which should be carefully monitored for unauthorized changes.
+	</info>
+	</rule>
+	
+	<rule id="103929" level="1">
+		<if_sid>103049</if_sid>
+		<field name="event_name" type="pcre2">(?i)Unauthorized Access Attempt</field>
+		<description>ClearPass: Unauthorized access attempt detected.</description>
+		<group>medium,one-on-one,access_attempt,unauthorized,T1078,command-and-control,,</group>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+		Description: This rule is triggered when an unauthorized access attempt is detected in ClearPass. Unauthorized access attempts can indicate malicious activity, such as someone trying to gain entry into a system or resource without proper credentials.
+	</info>
+	</rule>
+	<rule id="103930" level="1">
+		<if_sid>103050</if_sid>
+		<field name="event_name">RADIUS Authentications</field>
+		<field name="ArubaClearpassCppmErrorCodeErrorCode">^0$</field>
+		<field name="ArubaClearpassCppmErrorCodeErrorCodeDetails" type="pcre2">(?i)User authentication succeeded</field>
+		<description>ClearPass: User Authentication Success</description>
+		<group>low,one-on-one,authentication,authentication_success,T1556,</group>
+		<mitre>
+		<id>T1556</id>
+		</mitre>
+		<info type="text">
+		Description: This rule is triggered when a user authentication succeeds in ClearPass. Successful authentications are a normal part of network operations but should still be monitored, especially when paired with previous failed attempts or for users with elevated privileges.
+	</info>
+	</rule>
+	<!-- <rule id="103931" level="1" noalert="1">
+		<if_sid>103050</if_sid>
+		<field name="ArubaClearpassCppmErrorCodeErrorCode" type="pcre2">^201$</field>
+		<description>ClearPass: User Not Found.</description>
+	</rule> -->
+
+	<!-- IFFCO Usecase  -->
+	<rule id="103932" level="1">
+		<if_sid>103924</if_sid>
+		<field name="tenant" type="pcre2">(?i)^IFFCO.*</field>
+		<field name="ArubaClearpassAuthAuthUsername" type="pcre2">(?i)IFFCOADMIN</field>
+		<description>ClearPass:  User IFFCOADMIN Authentication Failure Detected.</description>
+		<group>scritical,one-on-one,soar-alert,credential-access,authentication,T1110,brute-force,T1110,</group>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+		<info type="text">
+		Description: This rule is triggered when the user "IFFCOADMIN" experiences an authentication failure in ClearPass. This indicates either a failed login attempt targeting the privileged IFFCOADMIN account.
+	</info>
+	</rule>
+	<rule id="103933" level="1">
+		<if_sid>103930</if_sid>
+		<field name="tenant" type="pcre2">(?i)^IFFCO.*</field>
+		<field name="ArubaClearpassAuthAuthUsername" type="pcre2">(?i)IFFCOADMIN</field>
+		<description>ClearPass: User IFFCOADMIN Authentication Success Detected.</description>
+		<group>critical,one-on-one,soar-alert,credential-access,authentication,T1556,</group>
+		<mitre>
+			<id>T1556</id>
+		</mitre>
+		<info type="text">
+		Description: This rule is triggered when a successful authentication is detected for the "IFFCOADMIN" user in ClearPass. This may indicate either legitimate access or, potentially, a successful compromise of the privileged account, especially following failed attempts.
+	</info>
+	</rule>
+	<rule id="103934" level="1">
+		<if_sid>103932</if_sid>
+		<field name="tenant" type="pcre2">(?i)^IFFCO.*</field>
+		<field name="ArubaClearpassAuthAuthUsername" type="pcre2">(?i)IFFCOADMIN</field>
+		<description>ClearPass: User IFFCOADMIN User not found.</description>
+		<group>critical,one-on-one,soar-alert,authentication,defense-evasion,T1078,command-and-control,</group>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+		Description: This rule is triggered when an authentication attempt for the "IFFCOADMIN" user fails due to the user not being found in ClearPass. This may indicate potential tampering with the account or an attempt to authenticate using an invalid or deleted account.
+	</info>
+	</rule>
+	<!-- User Creation: IFFCOADMIN (Any user will create IFFCOADMIN) -->
+	<rule id="103935" level="1">
+		<if_sid>103051</if_sid>
+		<action type="pcre2">(?i)^ADD.*</action>
+		<field name="event_name" type="pcre2">(?i)^Guest User.*</field>
+		<field name="duser" type="pcre2">(?i)IFFCOADMIN</field>
+		<description>Clearpass : IFFCOADMIN User Creation event detected.</description>
+		<group>critical,one-on-one,s-a,iffco,T1136,persistence,</group>
+		<mitre>
+			<id>T1136</id>
+		</mitre>
+		<info type="text">
+            Description: The detection rule triggers an alert when a user account named IFFCOADMIN is created within the IFFCO tenant in Clearpass. This specific user account may be intended for administrative purposes and could potentially have elevated privileges. Monitoring the creation of such accounts is critical, as it may indicate unauthorized or suspicious activity.
+        </info>
+	</rule>
+	<!-- User Delete: IFFCOADMIN (Any User will delete the IFFCOADMIN after performing the activity) -->
+	<rule id="103936" level="1">
+		<if_sid>103051</if_sid>
+		<action type="pcre2">(?i)REMOVE</action>
+		<field name="event_name" type="pcre2">(?i)^Guest User.*</field>
+		<field name="duser" type="pcre2">(?i)IFFCOADMIN</field>
+		<group>critical,one-on-one,s-a,iffco,T1531,impact,</group>
+		<description>Clearpass: IFFCOADMIN User deletion event detected.</description>
+		<mitre>
+			<id>T1531</id>
+		</mitre>
+		<info type="text">
+            Description: This detection rule triggers when a IFFCOADMIN user account is deleted. It ensures that any deletion activity carried out by this specific user is monitored for potential unauthorized or suspicious actions.
+        </info>
+	</rule>
+	<!-- Privileges changes: By IFFCOADMIN -->
+	<rule id="103937" level="1">
+		<if_sid>103051</if_sid>
+		<field name="event_name" type="pcre2">(?i)^Guest User.*</field>
+		<action type="pcre2">(?i)MODIFY</action>
+		<field name="duser" type="pcre2">(?i)IFFCOADMIN</field>
+		<description>Clearpass: Privileges modify by IFFCOADMIN</description>
+		<group>critical,one-on-one,s-a,iffco,T1098,persistence,</group>
+		<mitre>
+			<id>T1098</id>
+		</mitre>
+		<info type="text">
+            Description: This rule triggers when privileges are changed by a user with the identifier IFFCOADMIN. This detection is essential for monitoring potential unauthorized privilege escalations,particularly by IFFCOADMIN, which could indicate a compromise or misuse of elevated privileges within the organization.
+        </info>
+	</rule>
+	<!-- Policy Modification: By IFFCOADMIN -->
+	<rule id="103938" level="1">
+		<if_sid>103051</if_sid>
+		<field name="event_name" type="pcre2">(?i)Role Mapping Policy|(?i)Enforcement Policy</field>
+		<action type="pcre2">(?i)MODIFY</action>
+		<field name="duser" type="pcre2">(?i)IFFCOADMIN</field>
+		<group>critical,one-on-one,s-a,iffco,T1484,defense evasion,</group>
+		<description>Clearpass: Policy Modification By IFFCOADMIN</description>
+		<mitre>
+			<id>T1484</id>
+		</mitre>
+		<info type="text">
+            Description: Policy Modification by IFFCOADMIN this event indicates that the user IFFCOADMIN has modified a security policy. This action may involve changes to configurations or rules affecting access controls, permissions, or system settings, potentially impacting security posture or operational procedures.
+        </info>
+	</rule>
+
+<rule id="103923" level="2" frequency="30" timeframe="600">
+		<if_matched_sid>103922</if_matched_sid>
+		<same_field>ArubaClearpassAuthAuthUsername</same_field>
+		<same_field>tenant</same_field>
+		<description>ClearPass: Multiple access denial attempts by policy detected for a single user.</description>
+		<group>medium,aggregation,defense-evasion,failure,denied,T1078,command-and-control,policy,</group>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+		<info type="text">
+            Description: This rule triggers when multiple access requests from the same user are denied by ClearPass policy within a short period. This behavior could indicate unauthorized access attempts or misconfiguration issues. Monitoring and investigation are recommended to ensure proper access controls are in place.
+        </info>
+	</rule>
+
+	<rule id="103928" level="2" frequency="5" timeframe="120">
+		<if_matched_sid>103924</if_matched_sid>
+		<same_field>ArubaClearpassAuthClientMacAddress</same_field>
+		<same_field>tenant</same_field>
+		<description>ClearPass: Multiple authentication failures from same MAC address.</description>
+		<group>medium,aggregation,authentication-failures,brute-force,T1110,mac,</group>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+		<info type="text">
+		Description: This rule is triggered when multiple authentication failures (5 or more) are detected from the same MAC address within a seconds window. This could indicate a brute-force attack or other unauthorized attempts to gain access using the same device.
+	</info>
+	</rule>
+
+</group>

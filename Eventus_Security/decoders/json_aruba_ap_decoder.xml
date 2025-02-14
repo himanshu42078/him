@@ -1,0 +1,72 @@
+<!--
+
+{"full_log":"0|Aruba|A72xx|85711|log|SystemEvent|6|deviceProcessName=mdns dvcpid=4058 dvchost=ARUBAMC1.qu.edu.sa msg=<343005><4058>  \\|mdns\\|  716090112 mdns_auth_userinfo_req_message 378  GSM mac-user lookup failed, error(error_htbl_key_not_found) for ip 10.90.35.44 mac 86:e9:c7:75:f6:c4 ","tenant":"AlQassim","productName":"Aruba-AP","productType":"access-point","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":"0|Aruba|A72xx|85711|log|SystemEvent|6|deviceProcessName=mdns dvcpid=4058 dvchost=ARUBAMC1.qu.edu.sa msg=<343005><5457>  \\|mdns\\|  853669040 mdns_queue_deque 194 Number of Elements in the Queue 1 thread_num 5 ","tenant":"AlQassim","productName":"Aruba-AP","productType":"access-point","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":"0|Aruba|A72xx|85711|log|SystemEvent|5|deviceProcessName=sapd dvcpid=3303 dvchost=10.21.15.173 msg=<326091>  \\|AP ENG-03@10.21.15.173 sapd\\| \\|ap\\| AM: Radio Stats: APs\\=7 STAs\\=1 Mon-APs\\=38 Mon-STAs\\=4","tenant":"AlQassim","productName":"Aruba-AP","productType":"access-point","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+{"full_log":"0|Aruba|A72xx|85711|log|SystemEvent|5|deviceProcessName=sapd dvcpid=3469 dvchost=10.21.27.174 msg=<326091>  \\|AP CSC-2F-AP08@10.21.27.174 sapd\\| \\|ap\\| AM: Radio Stats: APs\\=10 STAs\\=0 Mon-APs\\=24 Mon-STAs\\=0","tenant":"AlQassim","productName":"Aruba-AP","productType":"access-point","logType":"network","L0":"76c21c7e-ab70-4e56-8795-ff8c62c9a7a9","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L3":"955a7eb8-2427-4119-aa4b-5f4c882f7d20"}
+
+-->
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<prematch>\|Aruba\|</prematch>
+	<regex type="pcre2">^(?:[^|]*\|){1}([^|]*)\|</regex>
+	<order>vendor</order>
+</decoder>
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">^(?:[^|]*\|){2}([^|]*)\|</regex>
+	<order>product_name</order>
+</decoder>
+<!-- <decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">^(?:[^|]*\|){3}([^|]*)\|</regex>
+	<order>value1</order>
+</decoder>
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">^(?:[^|]*\|){4}([^|]*)\|</regex>
+	<order>value2</order>
+</decoder>
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">^(?:[^|]*\|){5}([^|]*)\|</regex>
+	<order>log_type</order>
+</decoder> -->
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">^(?:[^|]*\|){6}([^|]*)\|</regex>
+	<order>severity</order>
+</decoder>
+<!-- <decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">\bdeviceProcessName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>process_name</order>
+</decoder> -->
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">\bdvcpid\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dvcpid</order>
+</decoder>
+<!-- <decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">\bdvchost\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dvchost</order>
+</decoder>
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">\bmsg\s*=\s*([^"]+)</regex>
+	<order>message_text</order>
+</decoder> -->
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<regex type="pcre2">\bmsg=.(\d*).</regex>
+	<order>log_id</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="aruba-ap">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

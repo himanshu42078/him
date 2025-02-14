@@ -1,0 +1,220 @@
+<!--
+Rule ID Range: 115100 to 115199
+Last ID Used: 
+Unused IDs: 
+-->
+<group name="cisco-ise,">
+    <!-- Level 0 Rules -->
+    <rule id="115100" level="0" noalert="1">
+        <field name="productName" type="pcre2">(?i)^CiscoISE$</field>
+        <description>Cisco ISE Rules</description>
+        <group>info,one-on-one,</group>
+    </rule>
+    <!-- Level 1 Rules -->
+    <rule id="115101" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^5200$</field>
+        <description>Cisco-ISE: Authentication Succeeded. User: $(username)</description>
+		<info type="text">
+		Description: Authentication for a user successfully completed. This indicates normal behavior unless found to be part of suspicious activities in context with other events.
+		</info>
+		<group>low,one-on-one,authentication-success,T1078,T1078.001,credential-access,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.001</id>
+		</mitre>
+    </rule>
+    <rule id="115102" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^5203$</field>
+        <description>Cisco-ISE: Session Authorization Succeeded</description>
+		<info type="text">
+        Description: The session authorization request was successfully processed. This indicates normal behavior unless combined with other suspicious events.
+		</info>
+		<group>low,one-on-one,session-authorization,authentication,T1078,credential-access,</group>
+		<mitre>
+			<id>T1078</id>
+		</mitre>
+    </rule>
+    <rule id="115103" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51000$</field>
+        <description>Cisco-ISE: Administrator Authentication Failed</description>
+		<info type="text">
+        Description: Administrator authentication failed, which may indicate a failed login attempt due to incorrect credentials or potential unauthorized access attempts.
+		</info>
+		<group>high,one-on-one,s-a,authentication-failure,T1110,credential-access,T1078,T1078.003,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+			<id>T1110</id>
+		</mitre>
+    </rule>
+    <rule id="115104" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51001$</field>
+        <description>Cisco-ISE: Administrator Authentication Succeeded</description>
+		<info type="text">
+        Description: An administrator authentication attempt was successful. This indicates normal behavior unless found to be part of suspicious activity.
+		</info>
+		<group>low,one-on-one,authentication-success,administration,credential-access,T1078,T1078.003,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+		</mitre>
+    </rule>
+    <rule id="115105" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51004$</field>
+        <description>Cisco-ISE: Rejected Administrator Session from Unauthorized Client IP Address</description>
+		<info type="text">
+        Description: An attempt to initiate an administrator session from an unauthorized client IP address was rejected. This may indicate a misconfigured client or an unauthorized access attempt. Check the client's administration access settings for further details.
+		</info>
+		<group>high,one-on-one,unauthorized-access,administration,T1078,T1078.003,credential-access,T1556,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+			<id>T1556</id>
+		</mitre>
+    </rule>
+    <rule id="115106" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51005$</field>
+        <description>Cisco-ISE: Administrator Authentication Failed - Account Disabled</description>
+		<info type="text">
+        Description: An administrator authentication attempt failed because the administrator account is disabled. This may indicate an intentional restriction or an unauthorized attempt to access a disabled account. Review account settings and investigate further if necessary.
+		</info>
+		<group>high,one-on-one,authentication-failure,account-disabled,T1078,T1078.003,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+		</mitre>
+    </rule>
+    <rule id="115107" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51006$</field>
+        <description>Cisco-ISE: Administrator Authentication Failed - Account Disabled Due to Inactivity</description>
+		<info type="text">
+        Description: An administrator authentication attempt failed because the account is disabled due to inactivity. This may indicate a policy-driven restriction or a potential unauthorized access attempt. Investigate if this event is unexpected or part of unusual activity.
+		</info>
+		<group>high,one-on-one,authentication-failure,account-inactivity,T1078,T1078.003,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+		</mitre>
+    </rule>
+    <rule id="115108" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51007$</field>
+        <description>Cisco-ISE: Authentication Failed - Account Disabled Due to Password Expiration</description>
+		<info type="text">
+        Description: An authentication attempt failed because the account is disabled due to password expiration. This may be a policy-driven restriction or an attempt to access an expired account. Investigate if this failure is unexpected or indicative of suspicious behavior.
+		</info>
+		<group>high,one-on-one,authentication-failure,password-expiration,T1078,T1078.003,credential-access,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+		</mitre>
+    </rule>
+    <rule id="115109" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51008$</field>
+        <description>Cisco-ISE: Administrator Authentication Failed - Account Disabled Due to Excessive Failed Attempts</description>
+		<info type="text">
+        Description: An administrator authentication attempt failed because the account was disabled due to excessive failed authentication attempts. This indicates either a brute-force attack or repeated login failures. Immediate investigation is recommended to determine the cause and secure the account.
+		</info>
+		<group>high,one-on-one,s-a,authentication-failure,account-lockout,T1110,credential-access,defense-evasion,T1078,T1078.003,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+			<id>T1110</id>
+		</mitre>
+    </rule>
+    <rule id="115110" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51020$</field>
+        <description>Cisco-ISE: Administrator Authentication Failed - Username Does Not Exist</description>
+		<info type="text">
+        Description: An administrator authentication attempt failed because the provided login username does not exist. This may indicate a misconfiguration, a user error, or an unauthorized access attempt. Investigate further to determine the cause.
+		</info>
+		<group>medium,one-on-one,authentication-failure,invalid-username,T1078,T1078.003,credential-access,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+		</mitre>
+    </rule>
+    <rule id="115111" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51021$</field>
+        <description>Cisco-ISE: Administrator Authentication Failed - Wrong Password</description>
+		<info type="text">
+        Description: An administrator authentication attempt failed due to an incorrect password. This may indicate a user error or a potential unauthorized access attempt. Monitor for repeated failures and investigate if necessary.
+		</info>
+		<group>medium,one-on-one,authentication-failure,wrong-password,T1110,credential-access,</group>
+		<mitre>
+			<id>T1110</id>
+		</mitre>
+    </rule>
+    <rule id="115112" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^51023$</field>
+        <description>Cisco-ISE: Administrator Account Unlocked</description>
+		<info type="text">
+        Description: An administrator account was unlocked. This may be due to an automatic process or manual intervention. Review account activity to ensure this action is authorized and consistent with security policies.
+		</info>
+		<group>medium,one-on-one,account-unlock,authentication,T1078,T1078.003,defense-evasion,</group>
+		<mitre>
+			<id>T1078</id>
+			<id>T1078.003</id>
+		</mitre>
+    </rule>
+    <rule id="115113" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^52000$</field>
+        <description>Cisco-ISE: Configuration Added</description>
+		<info type="text">
+        Description: A new configuration was added to the system. Review the change to ensure it aligns with security policies and was performed by an authorized administrator.
+		</info>
+		<group>medium,one-on-one,configuration-change,system-monitoring,T1484,defense-evasion,</group>
+		<mitre>
+			<id>T1484</id>
+		</mitre>
+    </rule>
+    <rule id="115114" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^52001$</field>
+        <description>Cisco-ISE: Configuration Changed</description>
+		<info type="text">
+        Description: A system configuration was modified. Review this change to verify it was made by an authorized administrator and adheres to security policies.
+		</info>
+		<group>medium,one-on-one,configuration-change,system-monitoring,T1484,defense-evasion,</group>
+		<mitre>
+			<id>T1484</id>
+		</mitre>
+    </rule>
+    <rule id="115115" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^52002$</field>
+        <description>Cisco-ISE: Configuration Deleted</description>
+		<info type="text">
+        Description: A system configuration was deleted. Review this action to confirm it was performed by an authorized administrator and complies with security policies.
+		</info>
+		<group>medium,one-on-one,configuration-change,system-monitoring,T1484,defense-evasion,</group>
+		<mitre>
+			<id>T1484</id>
+		</mitre>
+    </rule>
+    <rule id="115116" level="1">
+        <if_sid>115100</if_sid>
+        <field name="log_id" type="pcre2">^58014$</field>
+        <description>Cisco-ISE: ISE Core Files Deleted</description>
+		<info type="text">
+        Description: The ISE core files have been deleted. Review this action to determine if it was performed intentionally and authorized, as it could impact system diagnostics and troubleshooting capabilities.
+    	</info>
+		<group>medium,one-on-one,file-management,system-monitoring,T1070,T1070.004,defense-evasion,</group>
+		<mitre>
+			<id>T1070</id>
+			<id>T1070.004</id>
+		</mitre>
+    </rule>
+</group>

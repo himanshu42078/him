@@ -1,0 +1,116 @@
+<group name="dell_switch,">
+	<!-- Base Rules -->
+	<rule id="102829" level="0" noalert="1">
+		<decoded_as>json</decoded_as>
+		<field name="productName" type="pcre2">(?i)DellSwitch</field>
+		<description>dell switch Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<!-- Category of Rules  -->
+	<rule id="102830" level="1">
+		<if_sid>102829</if_sid>
+		<field name="event_type" type="pcre2">(?i)System</field>
+		<description>System Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="102831" level="1">
+		<if_sid>102829</if_sid>
+		<field name="event_type" type="pcre2">(?i)Interface</field>
+		<description>Interface Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="102832" level="1">
+		<if_sid>102829</if_sid>
+		<field name="event_type" type="pcre2">(?i)Security</field>
+		<description>Security Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="102833" level="1">
+		<if_sid>102829</if_sid>
+		<field name="event_type" type="pcre2">(?i)Protocol</field>
+		<description>Protocol Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="102834" level="1">
+		<if_sid>102829</if_sid>
+		<field name="event_type" type="pcre2">(?i)Configuration</field>
+		<description>Configuration Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="102835" level="1">
+		<if_sid>102829</if_sid>
+		<field name="event_type" type="pcre2">(?i)Audit</field>
+		<description>Audit Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="102836" level="1">
+		<if_sid>102829</if_sid>
+		<field name="event_type" type="pcre2">(?i)Hardware</field>
+		<description>Hardware Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<rule id="102837" level="1">
+		<if_sid>102829</if_sid>
+		<field name="event_type" type="pcre2">(?i)Service</field>
+		<description>Service Events</description>
+		<group>info,one-on-one,</group>
+	</rule>
+	<!-- Start Rules -->
+	<rule id="102838" level="1">
+		<if_sid>102835</if_sid>
+		<field name="connection_type" type="pcre2">(?i)established</field>
+		<description>DellSwitch: Syslog Connection Established</description>
+		<group>low,one-on-one,T1049,discovery,connection,</group>
+		<mitre>
+			<id>T1049</id>
+		</mitre>
+		<info type="text">
+            Description: 
+                The Dell switch has successfully established a syslog connection, indicating that it is actively sending log data to the configured syslog server. This connection ensures the availability of log data for monitoring and analysis, aiding in system activity tracking and potential threat detection.
+        </info>
+	</rule>
+	<rule id="102839" level="1">
+		<if_sid>102835</if_sid>
+		<field name="connection_type" type="pcre2">(?i)closed</field>
+		<description>DellSwitch: Syslog Connection close</description>
+		<group>low,one-on-one,T1070.002,T1070,defense-evasion,</group>
+		<mitre>
+			<id>T1070.002</id>
+			<id>T1070</id>
+		</mitre>
+		<info type="text">
+            Description: 
+                The Dell switch has closed its syslog connection, which may indicate normal operation or an attempt to evade detection by stopping log transmission. 
+        </info>
+	</rule>
+	<rule id="102840" level="1">
+		<if_sid>102835</if_sid>
+		<field name="connection_type" type="pcre2">(?i)failed</field>
+		<description>DellSwitch: Syslog Connection failed</description>
+		<group>low,one-on-one,T1070.002,T1070,defense-evasion,failed,</group>
+		<mitre>
+			<id>T1070.002</id>
+			<id>T1070</id>
+		</mitre>
+		<info type="text">
+            Description: 
+                The Dell switch attempted to establish a syslog connection but failed. This could indicate a misconfiguration, network issue, or a deliberate attempt to disable logging for defense evasion purposes.
+        </info>
+	</rule>
+	<!-- Aggregation  -->
+	<rule id="102841" level="2" timeframe="900" frequency="50">
+		<if_matched_sid>102840</if_matched_sid>
+		<same_field>tenant</same_field>
+		<same_field>fd</same_field>
+		<description>DellSwitch: Multiple Syslog Connection Failures</description>
+		<group>medium,aggregation,s-a,T1070.002,T1070,defense-evasion,failed,</group>
+		<mitre>
+			<id>T1070.002</id>
+			<id>T1070</id>
+		</mitre>
+		<info type="text">
+            Description: 
+                Multiple syslog connection failures detected within a short timeframe. This may indicate persistent network issues, misconfigurations, or an active attempt to prevent logging for evasion purposes.
+        </info>
+	</rule>
+</group>

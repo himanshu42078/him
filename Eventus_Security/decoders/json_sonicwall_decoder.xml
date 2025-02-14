@@ -1,0 +1,277 @@
+<!-- 
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=1024 m=537 msg=\"Connection Closed\" app=49177 appName='General HTTPS' sess=\"Auto\" n=1123183318 usr=\"Unknown (SSO bypassed)\" src=192.168.102.148:50253:X2 dst=91.108.56.131:443:X1 proto=tcp/https sent=52 spkt=1 dpi=0 fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=262144 m=98 msg=\"Connection Opened\" app=49175 appName='General HTTP' sess=\"Auto\" n=835396186 usr=\"Unknown (SSO bypassed)\" src=192.168.102.148:50254:X2 dst=91.108.56.131:80:X7 proto=tcp/http sent=52 dpi=0 fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=262144 m=98 msg=\"Connection Opened\" app=49177 appName='General HTTPS' n=835396187 src=172.16.60.25:62344:X2 dst=163.70.159.5:443:X1 proto=tcp/https sent=64 dpi=0 fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=1024 m=537 msg=\"Connection Closed\" app=49177 appName='General HTTPS' n=1123183319 src=172.16.60.25:62344:X2 dst=163.70.159.5:443:X1 proto=tcp/https sent=64 spkt=1 dpi=0 fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=262144 m=98 msg=\"Connection Opened\" app=49175 appName='General HTTP' sess=\"Auto\" n=835396186 usr=\"Unknown (SSO bypassed)\" src=192.168.102.148:50254:X2 dst=91.108.56.131:80:X7 proto=tcp/http sent=52 dpi=0 fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=262144 m=98 msg=\"Connection Opened\" app=49177 appName='General HTTPS' n=835396187 src=172.16.60.25:62344:X2 dst=163.70.159.5:443:X1 proto=tcp/https sent=64 dpi=0 fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=1024 m=537 msg=\"Connection Closed\" app=49177 appName='General HTTPS' n=1123183319 src=172.16.60.25:62344:X2 dst=163.70.159.5:443:X1 proto=tcp/https sent=64 spkt=1 dpi=0 fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=262144 m=98 msg=\"Connection Opened\" app=4398 sess=\"Auto\" n=835396188 usr=\"Unknown (SSO bypassed)\" src=192.168.95.37:33825:X2 dst=1.1.1.1:53:X1 dstMac=8c:94:1f:22:f4:33 proto=udp/dns sent=71 dpi=1 rule=\"126 (EHAMain->WAN)\" fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=262144 m=98 msg=\"Connection Opened\" app=4398 sess=\"Auto\" n=835396188 usr=\"Unknown (SSO bypassed)\" src=192.168.95.37:33825:X2 dst=1.1.1.1:53:X1 dstMac=8c:94:1f:22:f4:33 proto=udp/dns sent=71 dpi=1 rule=\"126 (EHAMain->WAN)\" fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+{"full_log":"May 15 04:46:37 prod-sin-listener.sinprodlistener.sinvcnprod.oraclevcn.com   id=firewall sn=C0EAE4FAD216 time=\"2024-05-15 04:46:57 UTC\" fw=58.71.99.130 pri=6 c=1024 m=537 msg=\"Connection Closed\" app=49202 appName='General UDP' n=1123183320 src=49.149.67.44:14955:X7 dst=202.57.40.114:60586:X7 proto=udp/60586 sent=80 spkt=1 dpi=0 fw_action=\"NA\" tenant=DICTDFP productName=SonicWall productType=firewall logType=network","L0":"ddd4b256-d7fe-47b5-bf3c-2c8669f35355","L1":"rrrrrrrr-rrrr-rrrr-rrrr-rrrrrrrrrrrr","L2":"a8eee020-d655-40f8-98b8-bdc5a6a9e45c","L3":"fbdbbd91-9eba-479e-902c-6f857cc81365"}
+
+-->
+
+
+
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<prematch type="pcre2">\bid=.*\s+sn=.*\s+time=.*\s+fw=.*\spri=</prematch>
+	<regex type="pcre2">id\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>webtrends_prefix</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">id\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>webtrends_prefix</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">sn\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>device_id</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">sn\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>device_id</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btime\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_time</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\btime\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<!-- <regex type="pcre2">time=?\\"(.*?)(?=\s*(\S+)=|$)?\\"</regex> -->
+	<order>event_time</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>firewall_wan_ip</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>firewall_wan_ip</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpri\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>priority_level</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bpri\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>priority_level</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bc\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>category_number</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bc\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>category_number</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bm\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bm\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmsg\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bmsg\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>app_id</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bapp\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>app_id</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bn\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>event_count</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bn\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>event_count</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrc\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_ip</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdst\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_ip</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bproto\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>protocol_name</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bproto\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>protocol_name</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsent\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sent_byte</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsent\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sent_byte</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bspkt\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>sent_packt</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bspkt\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>sent_packt</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdpi\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dpi</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdpi\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dpi</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw_action\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>fw_action</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bfw_action\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<!-- <regex type="pcre2">\bfw_action=?\\"(.*?)(?=\s*(\S+)=|$)?\\"</regex> -->
+	<order>fw_action</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsess\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<!-- <regex type="pcre2">\bsess=?\\"(.*?)(?=\s*(\S+)=|$)?\\"</regex> -->
+	<order>session_type</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsess\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>session_type</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrcMac\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>src_mac</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bsrcMac\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>src_mac</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstMac\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>dst_mac</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bdstMac\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>dst_mac</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brcvd\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brcvd\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brule\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>rule_id</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\brule\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>rule_id</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bipscat\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<!-- <regex type="pcre2">\bipscat=?\\"(.*?)(?=\s*(\S+)=|$)?\\"</regex> -->
+	<order>ips_category</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bipspri\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>ips_priority</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bappName\s*=\s*?[(\\"']?[(\\"'](.*?)(?=('|"|\\"|)\s*(\s\w+)=|$)</regex>
+	<order>appName</order>
+</decoder>
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<regex type="pcre2">\bappName\s*=\s*(.*?)(?=\s*(\s\w+)=|$)</regex>
+	<order>appName</order>
+</decoder>
+<!-- Do Not Alter or Delete || Keep this at the end of the decoder -->
+<decoder name="sonicwall-json">
+	<parent>json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
