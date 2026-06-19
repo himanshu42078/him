@@ -1,0 +1,138 @@
+policy:
+  id: "sca_infosec_baseline_rhel_6.9"
+  file: "sca_infosec_baseline_rhel_6.9.yml"
+  name: "SCA InfoSec Baseline RHEL 6.9 check"
+  description: "InfoSec Baseline SCA policy for Red Hat Enterprise Linux 6.9: verifies the Wazuh agent configuration, the SSH daemon (no password auth), the Verve InfoSec password policy (min 12 chars + 3-of-4 character classes, enforced via pam_cracklib), and that yum-cron auto-updates are deactivated. RHEL 6 predates systemd and /etc/os-release, so this policy uses /etc/redhat-release, SysV chkconfig, and pam_cracklib instead of the RHEL 7+ equivalents."
+
+requirements:
+  title: "Check that the system is RHEL 6.9"
+  description: "This policy applies only to Red Hat Enterprise Linux 6.9 systems running the Wazuh agent."
+  condition: all
+  regex_type: pcre2
+  rules:
+    - 'f:/etc/redhat-release -> r:Red Hat Enterprise Linux.+release 6\.9'
+
+variables:
+  $internal_files: /var/ossec/etc/local_internal_options.conf
+  $sshd_config: /etc/ssh/sshd_config
+  $sshd_config_d: /etc/ssh/sshd_config.d
+  $system_auth: /etc/pam.d/system-auth
+  $login_defs: /etc/login.defs
+  $yum_cron_sysconfig: /etc/sysconfig/yum-cron
+
+checks:
+  # -------------------------------------------------------------------------
+  # Wazuh agent configuration
+  # -------------------------------------------------------------------------
+  - id: 109000
+    title: "Wazuh Agent: wazuh_command.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^wazuh_command\.remote_commands=1$'
+
+  - id: 109001
+    title: "Wazuh Agent: logcollector.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^logcollector\.remote_commands=1$'
+
+  - id: 109002
+    title: "Wazuh Agent: sca.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^sca\.remote_commands=1$'
+
+  # -------------------------------------------------------------------------
+  # SSH daemon
+  # -------------------------------------------------------------------------
+  - id: 109010
+    title: "SSHD: Password authentication is disabled (effective config via sshd -T)"
+    description: "PasswordAuthentication must be set to 'no' so that users cannot log in via SSH using a password. Only key-based authentication is permitted."
+    rationale: "Allowing password authentication exposes the SSH service to brute-force and credential stuffing attacks. Disabling it enforces key-based authentication, which is significantly harder to compromise."
+    remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config, then reload sshd: 'service sshd reload'. Verify the effective setting with 'sshd -T | grep -i passwordauthentication'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'c:sshd -T -> r:^\s*passwordauthentication\s+no\s*$'
+
+  - id: 109011
+    title: "SSHD: Password authentication is disabled (file-based fallback)"
+    description: "File-based check that does not require sca.remote_commands. Verifies that PasswordAuthentication is explicitly set to 'no' in /etc/ssh/sshd_config and that no drop-in file under /etc/ssh/sshd_config.d/ re-enables it (drop-in directory is typically absent on RHEL 6)."
+    rationale: "On hosts where remote command execution for SCA is disabled, the effective-config check (sshd -T) cannot run. This fallback inspects the configuration file directly. Note: it cannot fully resolve Match blocks, so the sshd -T check should be preferred when available."
+    remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config and reload sshd with 'service sshd reload'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$sshd_config -> r:^\s*PasswordAuthentication\s+no\s*$'
+      - 'not f:$sshd_config -> r:^\s*PasswordAuthentication\s+yes'
+      - 'not d:$sshd_config_d -> \.conf -> r:^\s*PasswordAuthentication\s+yes'
+
+  # -------------------------------------------------------------------------
+  # Password policy (Verve Policy on Acceptable Use v2.2, section 2.2)
+  # RHEL 6 uses pam_cracklib (pam_pwquality is RHEL 7+).
+  # -------------------------------------------------------------------------
+  - id: 109020
+    title: "Linux Password policy: pam_cracklib enforces minimum length 12"
+    description: "pam_cracklib in /etc/pam.d/system-auth must enforce a minimum password length of at least 12 (minlen) per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "RHEL 6 predates pam_pwquality; pam_cracklib is the password-quality module. Setting minlen at the PAM layer enforces length on every password change via passwd / chpasswd."
+    remediation: "Edit /etc/pam.d/system-auth and set the pam_cracklib line to e.g. 'password requisite pam_cracklib.so try_first_pass retry=3 minlen=12 minclass=3'. Use authconfig to make the change persistent: 'authconfig --passminlen=12 --passminclass=3 --update'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$system_auth -> n:pam_cracklib\.so.*minlen\s*=\s*(\d+) compare >= 12'
+
+  - id: 109021
+    title: "Linux Password policy: pam_cracklib requires at least 3 character classes"
+    description: "pam_cracklib in /etc/pam.d/system-auth must require at least three character classes (minclass=3) per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "Complexity requirements raise the cost of brute-force and dictionary attacks by enlarging the keyspace each password is drawn from. On RHEL 6 this is enforced by pam_cracklib's minclass parameter."
+    remediation: "Edit /etc/pam.d/system-auth and add 'minclass=3' to the pam_cracklib.so line, or run 'authconfig --passminclass=3 --update'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$system_auth -> n:pam_cracklib\.so.*minclass\s*=\s*(\d+) compare >= 3'
+
+  - id: 109022
+    title: "Linux Password policy: pam_cracklib is enabled in the password stack"
+    description: "The password-changing PAM stack (/etc/pam.d/system-auth) must invoke pam_cracklib so that the minlen / minclass settings are actually enforced. Parameters on a module that is not in the stack have no effect."
+    rationale: "Without pam_cracklib in the PAM stack, passwd will accept any password regardless of the configured minlen / minclass."
+    remediation: "Ensure /etc/pam.d/system-auth contains a 'password ... pam_cracklib.so ...' line. This is normally provided by the default RHEL 6 authconfig configuration."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$system_auth -> r:^\s*password\s+\S+\s+pam_cracklib\.so'
+
+  - id: 109023
+    title: "Linux Password policy: login.defs PASS_MIN_LEN is at least 12"
+    description: "As a defense-in-depth backstop for utilities that do not go through PAM (e.g. some chpasswd / useradd paths), PASS_MIN_LEN in /etc/login.defs must be at least 12."
+    rationale: "PAM with pam_cracklib is the primary enforcement point, but login.defs is honored by shadow-utils for tools that bypass PAM. Keeping both aligned prevents accidental weak passwords."
+    remediation: "Edit /etc/login.defs and set 'PASS_MIN_LEN   12' (whitespace, not '=')."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$login_defs -> n:^\s*PASS_MIN_LEN\s+(\d+) compare >= 12'
+
+  # -------------------------------------------------------------------------
+  # yum-cron auto-update deactivation (SysV / RHEL 6)
+  # -------------------------------------------------------------------------
+  - id: 109030
+    title: "Auto-update: yum-cron SysV service is not enabled in any runlevel"
+    description: "The SysV yum-cron service must be off in all runlevels so that the daily yum-cron job does not run automatic updates. A service that is off everywhere or not installed satisfies this check."
+    rationale: "On RHEL 6 the yum-cron service triggers the /etc/cron.daily yum job that can download and install updates; it must be disabled to prevent automatic, unreviewed patching."
+    remediation: "Run 'chkconfig yum-cron off' and 'service yum-cron stop'. Verify with 'chkconfig --list yum-cron' — every runlevel should read 'off'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not c:chkconfig --list yum-cron -> r::on'
+
+  - id: 109031
+    title: "Auto-update: yum-cron is configured to check only (no automatic install)"
+    description: "If yum-cron is present, /etc/sysconfig/yum-cron must not disable check-only mode (CHECK_ONLY must not be set to 'no'), so that yum-cron does not download and install updates automatically. If the file is absent the check passes."
+    rationale: "RHEL 6 yum-cron downloads and installs updates by default; setting CHECK_ONLY=yes restricts it to only checking for updates, preventing automatic installation."
+    remediation: "In /etc/sysconfig/yum-cron set 'CHECK_ONLY=yes' (and optionally 'DOWNLOAD_ONLY=yes'). If you do not need yum-cron at all, remove the package: 'yum remove yum-cron'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not f:$yum_cron_sysconfig -> r:^\s*CHECK_ONLY\s*=\s*no'

@@ -1,0 +1,153 @@
+policy:
+  id: "sca_infosec_baseline_amazon_2"
+  file: "sca_infosec_baseline_amazon_2.yml"
+  name: "SCA InfoSec Baseline Amazon Linux 2 check"
+  description: "InfoSec Baseline SCA policy for Amazon Linux 2: verifies the Wazuh agent configuration, the SSH daemon (no password auth), the Verve InfoSec password policy (min 12 chars + 3-of-4 character classes), and that yum-cron auto-updates are deactivated."
+
+requirements:
+  title: "Check that the system is Amazon Linux 2"
+  description: "This policy applies only to Amazon Linux 2 systems running the Wazuh agent."
+  condition: all
+  regex_type: pcre2
+  rules:
+    - 'f:/etc/os-release -> r:^ID="amzn"$'
+    - 'f:/etc/os-release -> r:^VERSION_ID="2"$'
+
+variables:
+  $internal_files: /var/ossec/etc/local_internal_options.conf
+  $sshd_config: /etc/ssh/sshd_config
+  $sshd_config_d: /etc/ssh/sshd_config.d
+  $pwquality: /etc/security/pwquality.conf
+  $pwquality_d: /etc/security/pwquality.conf.d
+  $login_defs: /etc/login.defs
+  $yum_cron: /etc/yum/yum-cron.conf
+  $yum_cron_hourly: /etc/yum/yum-cron-hourly.conf
+
+checks:
+  # -------------------------------------------------------------------------
+  # Wazuh agent configuration
+  # -------------------------------------------------------------------------
+  - id: 113000
+    title: "Wazuh Agent: wazuh_command.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^wazuh_command\.remote_commands=1$'
+
+  - id: 113001
+    title: "Wazuh Agent: logcollector.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^logcollector\.remote_commands=1$'
+
+  - id: 113002
+    title: "Wazuh Agent: sca.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^sca\.remote_commands=1$'
+
+  # -------------------------------------------------------------------------
+  # SSH daemon
+  # -------------------------------------------------------------------------
+  - id: 113010
+    title: "SSHD: Password authentication is disabled (effective config via sshd -T)"
+    description: "PasswordAuthentication must be set to 'no' so that users cannot log in via SSH using a password. Only key-based authentication is permitted."
+    rationale: "Allowing password authentication exposes the SSH service to brute-force and credential stuffing attacks. Disabling it enforces key-based authentication, which is significantly harder to compromise."
+    remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config (or in a drop-in file under /etc/ssh/sshd_config.d/), then reload sshd: 'systemctl reload sshd'. Verify the effective setting with 'sshd -T | grep -i passwordauthentication'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'c:sshd -T -> r:^\s*passwordauthentication\s+no\s*$'
+
+  - id: 113011
+    title: "SSHD: Password authentication is disabled (file-based fallback)"
+    description: "File-based check that does not require sca.remote_commands. Verifies that PasswordAuthentication is explicitly set to 'no' in /etc/ssh/sshd_config and that no drop-in file under /etc/ssh/sshd_config.d/ re-enables it."
+    rationale: "On hosts where remote command execution for SCA is disabled, the effective-config check (sshd -T) cannot run. This fallback inspects the configuration files directly. Note: it cannot fully resolve Match blocks or Include semantics, so the sshd -T check should be preferred when available."
+    remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config and ensure no file under /etc/ssh/sshd_config.d/ sets 'PasswordAuthentication yes'. Reload sshd with 'systemctl reload sshd'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$sshd_config -> r:^\s*PasswordAuthentication\s+no\s*$'
+      - 'not f:$sshd_config -> r:^\s*PasswordAuthentication\s+yes'
+      - 'not d:$sshd_config_d -> \.conf -> r:^\s*PasswordAuthentication\s+yes'
+
+  # -------------------------------------------------------------------------
+  # Password policy (Verve Policy on Acceptable Use v2.2, section 2.2)
+  # -------------------------------------------------------------------------
+  - id: 113020
+    title: "Linux Password policy: Password minimum length is at least 12 (pwquality)"
+    description: "pam_pwquality must enforce a minimum password length of 12 characters per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "Shorter passwords are dramatically easier to brute force. Enforcing a minimum length at the PAM layer guarantees that every password set via passwd / chpasswd / useradd meets the policy."
+    remediation: "Set 'minlen = 12' in /etc/security/pwquality.conf (or a drop-in under /etc/security/pwquality.conf.d/). Confirm with 'grep -E ^minlen /etc/security/pwquality.conf'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$pwquality -> n:^\s*minlen\s*=\s*(\d+) compare >= 12'
+      - 'not d:$pwquality_d -> \.conf -> n:^\s*minlen\s*=\s*(\d+) compare < 12'
+
+  - id: 113021
+    title: "Linux Password policy: Password requires at least 3 of 4 character classes (pwquality)"
+    description: "pam_pwquality must require at least three different character classes (upper, lower, digit, special) per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "Complexity requirements raise the cost of brute-force and dictionary attacks by enlarging the keyspace each password is drawn from."
+    remediation: "Set 'minclass = 3' in /etc/security/pwquality.conf. Confirm with 'grep -E ^minclass /etc/security/pwquality.conf'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$pwquality -> n:^\s*minclass\s*=\s*(\d+) compare >= 3'
+      - 'not d:$pwquality_d -> \.conf -> n:^\s*minclass\s*=\s*(\d+) compare < 3'
+
+  - id: 113022
+    title: "Linux Password policy: pam_pwquality is enabled in the password stack"
+    description: "The password-changing PAM stack must invoke pam_pwquality so that the pwquality.conf settings are actually enforced. Configuration values without an active PAM module have no effect."
+    rationale: "Without pam_pwquality in the PAM stack, /etc/security/pwquality.conf is dead config — passwd will accept any password regardless of minlen / minclass."
+    remediation: "Ensure /etc/pam.d/system-auth and /etc/pam.d/password-auth include a line such as 'password requisite pam_pwquality.so try_first_pass local_users_only retry=3'. On Amazon Linux 2 these are managed by authconfig: 'authconfig --enablereqlower --enablerequpper --enablereqdigit --enablereqother --passminlen=12 --passminclass=3 --update'."
+    condition: any
+    regex_type: pcre2
+    rules:
+      - 'f:/etc/pam.d/system-auth -> r:^\s*password\s+\S+\s+pam_pwquality\.so'
+      - 'f:/etc/pam.d/password-auth -> r:^\s*password\s+\S+\s+pam_pwquality\.so'
+
+  - id: 113023
+    title: "Linux Password policy: login.defs PASS_MIN_LEN is at least 12"
+    description: "As a defense-in-depth backstop for utilities that do not go through PAM (e.g. some chpasswd / useradd paths), PASS_MIN_LEN in /etc/login.defs must be at least 12."
+    rationale: "PAM with pwquality is the primary enforcement point, but login.defs is honored by shadow-utils for tools that bypass PAM. Keeping both aligned prevents accidental weak passwords."
+    remediation: "Edit /etc/login.defs and set 'PASS_MIN_LEN   12' (whitespace, not '=')."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$login_defs -> n:^\s*PASS_MIN_LEN\s+(\d+) compare >= 12'
+
+  # -------------------------------------------------------------------------
+  # yum-cron auto-update deactivation
+  # -------------------------------------------------------------------------
+  - id: 113030
+    title: "Auto-update: yum-cron does not apply updates"
+    description: "In /etc/yum/yum-cron.conf, apply_updates must not be set to 'yes', so that yum-cron does not install updates automatically. If yum-cron is not installed, the file is absent and the check passes."
+    rationale: "Automatic installs can deploy untested package versions and restart services outside of maintenance windows, bypassing controlled change management."
+    remediation: "In /etc/yum/yum-cron.conf set 'apply_updates = no' under the [commands] section. If you do not need yum-cron at all, remove the package: 'yum remove yum-cron'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not f:$yum_cron -> r:^\s*apply_updates\s*=\s*yes\s*$'
+
+  - id: 113031
+    title: "Auto-update: yum-cron-hourly does not apply updates"
+    description: "In /etc/yum/yum-cron-hourly.conf, apply_updates must not be set to 'yes'. If the file is absent the check passes."
+    rationale: "The hourly yum-cron job can also install updates if apply_updates is enabled."
+    remediation: "In /etc/yum/yum-cron-hourly.conf set 'apply_updates = no'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not f:$yum_cron_hourly -> r:^\s*apply_updates\s*=\s*yes\s*$'
+
+  - id: 113032
+    title: "Auto-update: yum-cron.service is not enabled"
+    description: "The yum-cron.service systemd unit must not be enabled so that scheduled automatic update runs do not start. A unit that is disabled, masked, or not installed satisfies this check."
+    rationale: "An enabled yum-cron service triggers automatic update operations; disabling it prevents automatic patching even if the config files are later changed."
+    remediation: "Run 'systemctl disable --now yum-cron.service' (or 'systemctl mask yum-cron.service'). Verify with 'systemctl is-enabled yum-cron.service'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not c:systemctl is-enabled yum-cron.service -> r:^enabled$'

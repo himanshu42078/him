@@ -1,0 +1,152 @@
+policy:
+  id: "sca_infosec_baseline_rocky_8.10"
+  file: "sca_infosec_baseline_rocky_8.10.yml"
+  name: "SCA InfoSec Baseline Rocky Linux 8.10 check"
+  description: "InfoSec Baseline SCA policy for Rocky Linux 8.10: verifies the Wazuh agent configuration, the SSH daemon (no password auth), the Verve InfoSec password policy (min 12 chars + 3-of-4 character classes), and that dnf-automatic auto-updates are deactivated."
+
+requirements:
+  title: "Check that the system is Rocky Linux 8.10"
+  description: "This policy applies only to Rocky Linux 8.10 systems running the Wazuh agent."
+  condition: all
+  regex_type: pcre2
+  rules:
+    - 'f:/etc/os-release -> r:^ID="rocky"$'
+    - 'f:/etc/os-release -> r:^VERSION_ID="8\.10"$'
+
+variables:
+  $internal_files: /var/ossec/etc/local_internal_options.conf
+  $sshd_config: /etc/ssh/sshd_config
+  $sshd_config_d: /etc/ssh/sshd_config.d
+  $pwquality: /etc/security/pwquality.conf
+  $pwquality_d: /etc/security/pwquality.conf.d
+  $login_defs: /etc/login.defs
+  $dnf_automatic: /etc/dnf/automatic.conf
+
+checks:
+  # -------------------------------------------------------------------------
+  # Wazuh agent configuration
+  # -------------------------------------------------------------------------
+  - id: 110000
+    title: "Wazuh Agent: wazuh_command.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^wazuh_command\.remote_commands=1$'
+
+  - id: 110001
+    title: "Wazuh Agent: logcollector.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^logcollector\.remote_commands=1$'
+
+  - id: 110002
+    title: "Wazuh Agent: sca.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^sca\.remote_commands=1$'
+
+  # -------------------------------------------------------------------------
+  # SSH daemon
+  # -------------------------------------------------------------------------
+  - id: 110010
+    title: "SSHD: Password authentication is disabled (effective config via sshd -T)"
+    description: "PasswordAuthentication must be set to 'no' so that users cannot log in via SSH using a password. Only key-based authentication is permitted."
+    rationale: "Allowing password authentication exposes the SSH service to brute-force and credential stuffing attacks. Disabling it enforces key-based authentication, which is significantly harder to compromise."
+    remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config (or in a drop-in file under /etc/ssh/sshd_config.d/), then reload sshd: 'systemctl reload sshd'. Verify the effective setting with 'sshd -T | grep -i passwordauthentication'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'c:sshd -T -> r:^\s*passwordauthentication\s+no\s*$'
+
+  - id: 110011
+    title: "SSHD: Password authentication is disabled (file-based fallback)"
+    description: "File-based check that does not require sca.remote_commands. Verifies that PasswordAuthentication is explicitly set to 'no' in /etc/ssh/sshd_config and that no drop-in file under /etc/ssh/sshd_config.d/ re-enables it."
+    rationale: "On hosts where remote command execution for SCA is disabled, the effective-config check (sshd -T) cannot run. This fallback inspects the configuration files directly. Note: it cannot fully resolve Match blocks or Include semantics, so the sshd -T check should be preferred when available."
+    remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config and ensure no file under /etc/ssh/sshd_config.d/ sets 'PasswordAuthentication yes'. Reload sshd with 'systemctl reload sshd'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$sshd_config -> r:^\s*PasswordAuthentication\s+no\s*$'
+      - 'not f:$sshd_config -> r:^\s*PasswordAuthentication\s+yes'
+      - 'not d:$sshd_config_d -> \.conf -> r:^\s*PasswordAuthentication\s+yes'
+
+  # -------------------------------------------------------------------------
+  # Password policy (Verve Policy on Acceptable Use v2.2, section 2.2)
+  # -------------------------------------------------------------------------
+  - id: 110020
+    title: "Linux Password policy: Password minimum length is at least 12 (pwquality)"
+    description: "pam_pwquality must enforce a minimum password length of 12 characters per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "Shorter passwords are dramatically easier to brute force. Enforcing a minimum length at the PAM layer guarantees that every password set via passwd / chpasswd / useradd meets the policy."
+    remediation: "Set 'minlen = 12' in /etc/security/pwquality.conf (or a drop-in under /etc/security/pwquality.conf.d/). Confirm with 'grep -E ^minlen /etc/security/pwquality.conf'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$pwquality -> n:^\s*minlen\s*=\s*(\d+) compare >= 12'
+      - 'not d:$pwquality_d -> \.conf -> n:^\s*minlen\s*=\s*(\d+) compare < 12'
+
+  - id: 110021
+    title: "Linux Password policy: Password requires at least 3 of 4 character classes (pwquality)"
+    description: "pam_pwquality must require at least three different character classes (upper, lower, digit, special) per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "Complexity requirements raise the cost of brute-force and dictionary attacks by enlarging the keyspace each password is drawn from."
+    remediation: "Set 'minclass = 3' in /etc/security/pwquality.conf. Confirm with 'grep -E ^minclass /etc/security/pwquality.conf'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$pwquality -> n:^\s*minclass\s*=\s*(\d+) compare >= 3'
+      - 'not d:$pwquality_d -> \.conf -> n:^\s*minclass\s*=\s*(\d+) compare < 3'
+
+  - id: 110022
+    title: "Linux Password policy: pam_pwquality is enabled in the password stack"
+    description: "The password-changing PAM stack must invoke pam_pwquality so that the pwquality.conf settings are actually enforced. Configuration values without an active PAM module have no effect."
+    rationale: "Without pam_pwquality in the PAM stack, /etc/security/pwquality.conf is dead config — passwd will accept any password regardless of minlen / minclass."
+    remediation: "Ensure /etc/pam.d/system-auth and /etc/pam.d/password-auth include a line such as 'password requisite pam_pwquality.so ...'. These are managed by authselect: 'authselect select sssd with-pwquality' (or your active profile) then 'authselect apply-changes'."
+    condition: any
+    regex_type: pcre2
+    rules:
+      - 'f:/etc/pam.d/system-auth -> r:^\s*password\s+\S+\s+pam_pwquality\.so'
+      - 'f:/etc/pam.d/password-auth -> r:^\s*password\s+\S+\s+pam_pwquality\.so'
+
+  - id: 110023
+    title: "Linux Password policy: login.defs PASS_MIN_LEN is at least 12"
+    description: "As a defense-in-depth backstop for utilities that do not go through PAM (e.g. some chpasswd / useradd paths), PASS_MIN_LEN in /etc/login.defs must be at least 12."
+    rationale: "PAM with pwquality is the primary enforcement point, but login.defs is honored by shadow-utils for tools that bypass PAM. Keeping both aligned prevents accidental weak passwords."
+    remediation: "Edit /etc/login.defs and set 'PASS_MIN_LEN   12' (whitespace, not '=')."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$login_defs -> n:^\s*PASS_MIN_LEN\s+(\d+) compare >= 12'
+
+  # -------------------------------------------------------------------------
+  # dnf-automatic auto-update deactivation
+  # -------------------------------------------------------------------------
+  - id: 110030
+    title: "Auto-update: dnf-automatic does not apply updates"
+    description: "In /etc/dnf/automatic.conf, apply_updates must not be set to 'yes', so that dnf-automatic does not install updates automatically. If dnf-automatic is not installed, the file is absent and the check passes."
+    rationale: "Automatic installs can deploy untested package versions and restart services or reboot outside of maintenance windows, bypassing controlled change management."
+    remediation: "In /etc/dnf/automatic.conf set 'apply_updates = no' under the [commands] section. If you do not need dnf-automatic at all, remove the package: 'dnf remove dnf-automatic'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not f:$dnf_automatic -> r:^\s*apply_updates\s*=\s*yes\s*$'
+
+  - id: 110031
+    title: "Auto-update: dnf-automatic.timer is not enabled"
+    description: "The dnf-automatic.timer systemd unit must not be enabled so that scheduled automatic update runs do not start. A unit that is disabled, masked, or not installed satisfies this check."
+    rationale: "An enabled timer triggers dnf-automatic on schedule; disabling or masking it prevents any automatic update activity even if automatic.conf is later changed."
+    remediation: "Run 'systemctl disable --now dnf-automatic.timer' (or 'systemctl mask dnf-automatic.timer'). Verify with 'systemctl is-enabled dnf-automatic.timer'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not c:systemctl is-enabled dnf-automatic.timer -> r:^enabled$'
+
+  - id: 110032
+    title: "Auto-update: dnf-automatic-install.timer is not enabled"
+    description: "The dnf-automatic-install.timer systemd unit must not be enabled; this timer installs updates regardless of apply_updates in automatic.conf. A unit that is disabled, masked, or not installed satisfies this check."
+    rationale: "dnf-automatic-install.timer force-installs available updates and must be disabled on hosts where automatic patching is not permitted."
+    remediation: "Run 'systemctl disable --now dnf-automatic-install.timer' (or 'systemctl mask dnf-automatic-install.timer'). Verify with 'systemctl is-enabled dnf-automatic-install.timer'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not c:systemctl is-enabled dnf-automatic-install.timer -> r:^enabled$'

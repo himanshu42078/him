@@ -1,0 +1,151 @@
+policy:
+  id: "sca_infosec_baseline_ubuntu_20.04"
+  file: "sca_infosec_baseline_ubuntu_20.04.yml"
+  name: "SCA InfoSec Baseline Ubuntu 20.04 check"
+  description: "InfoSec Baseline SCA policy for Ubuntu 20.04: verifies the Wazuh agent configuration, the SSH daemon (no password auth), the Verve InfoSec password policy (min 12 chars + 3-of-4 character classes), and that APT auto-updates are deactivated."
+
+requirements:
+  title: "Check that the system is Ubuntu 20.04"
+  description: "This policy applies only to Ubuntu 20.04 systems running the Wazuh agent."
+  condition: all
+  regex_type: pcre2
+  rules:
+    - 'f:/etc/os-release -> r:^ID=ubuntu$'
+    - 'f:/etc/os-release -> r:^VERSION_ID="20\.04"$'
+
+variables:
+  $internal_files: /var/ossec/etc/local_internal_options.conf
+  $sshd_config: /etc/ssh/sshd_config
+  $sshd_config_d: /etc/ssh/sshd_config.d
+  $apt_periodic: /etc/apt/apt.conf.d/20auto-upgrades
+  $apt_conf_d: /etc/apt/apt.conf.d
+
+checks:
+  # -------------------------------------------------------------------------
+  # Wazuh agent configuration
+  # -------------------------------------------------------------------------
+  - id: 105000
+    title: "Wazuh Agent: wazuh_command.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^wazuh_command\.remote_commands=1$'
+
+  - id: 105001
+    title: "Wazuh Agent: logcollector.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^logcollector\.remote_commands=1$'
+
+  - id: 105002
+    title: "Wazuh Agent: sca.remote_commands are enabled"
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$internal_files -> r:^sca\.remote_commands=1$'
+
+  # -------------------------------------------------------------------------
+  # SSH daemon
+  # -------------------------------------------------------------------------
+  - id: 105010
+    title: "SSHD: Password authentication is disabled (effective config via sshd -T)"
+    description: "PasswordAuthentication must be set to 'no' so that users cannot log in via SSH using a password. Only key-based authentication is permitted."
+    rationale: "Allowing password authentication exposes the SSH service to brute-force and credential stuffing attacks. Disabling it enforces key-based authentication, which is significantly harder to compromise."
+    remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config (or in a drop-in file under /etc/ssh/sshd_config.d/), then reload sshd: 'systemctl reload sshd'. Verify the effective setting with 'sshd -T | grep -i passwordauthentication'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'c:sshd -T -> r:^\s*passwordauthentication\s+no\s*$'
+
+  - id: 105011
+    title: "SSHD: Password authentication is disabled (file-based fallback)"
+    description: "File-based check that does not require sca.remote_commands. Verifies that PasswordAuthentication is explicitly set to 'no' in /etc/ssh/sshd_config and that no drop-in file under /etc/ssh/sshd_config.d/ re-enables it."
+    rationale: "On hosts where remote command execution for SCA is disabled, the effective-config check (sshd -T) cannot run. This fallback inspects the configuration files directly. Note: it cannot fully resolve Match blocks or Include semantics, so the sshd -T check should be preferred when available."
+    remediation: "Set 'PasswordAuthentication no' in /etc/ssh/sshd_config and ensure no file under /etc/ssh/sshd_config.d/ sets 'PasswordAuthentication yes'. Reload sshd with 'systemctl reload sshd'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$sshd_config -> r:^\s*PasswordAuthentication\s+no\s*$'
+      - 'not f:$sshd_config -> r:^\s*PasswordAuthentication\s+yes'
+      - 'not d:$sshd_config_d -> \.conf -> r:^\s*PasswordAuthentication\s+yes'
+
+  # -------------------------------------------------------------------------
+  # Password policy (Verve Policy on Acceptable Use v2.2, section 2.2)
+  # -------------------------------------------------------------------------
+  - id: 105020
+    title: "Linux Password policy: pam_pwquality enforces minlen=12 in common-password"
+    description: "The pam_pwquality.so line in /etc/pam.d/common-password must set 'minlen=12' (or higher) per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "On Debian/Ubuntu the password-quality parameters are taken from the pam_pwquality.so arguments in the PAM stack. Setting minlen directly on the module line guarantees it is enforced on every password change via passwd / chpasswd / useradd."
+    remediation: "Edit /etc/pam.d/common-password and add 'minlen=12' to the pam_pwquality.so line, e.g. 'password requisite pam_pwquality.so retry=3 minlen=12 minclass=3'. Install the module first if needed: 'apt install libpam-pwquality'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:/etc/pam.d/common-password -> n:pam_pwquality\.so.*minlen\s*=\s*(\d+) compare >= 12'
+
+  - id: 105021
+    title: "Linux Password policy: pam_pwquality requires minclass=3 in common-password"
+    description: "The pam_pwquality.so line in /etc/pam.d/common-password must set 'minclass=3' (or higher) per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "Complexity requirements raise the cost of brute-force and dictionary attacks by enlarging the keyspace each password is drawn from. On Debian/Ubuntu this is enforced via the minclass argument on the pam_pwquality.so line."
+    remediation: "Edit /etc/pam.d/common-password and add 'minclass=3' to the pam_pwquality.so line, e.g. 'password requisite pam_pwquality.so retry=3 minlen=12 minclass=3'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:/etc/pam.d/common-password -> n:pam_pwquality\.so.*minclass\s*=\s*(\d+) compare >= 3'
+
+  - id: 105022
+    title: "Linux Password policy: pam_pwquality (or pam_cracklib) is enabled in the password stack"
+    description: "The password-changing PAM stack must invoke pam_pwquality so that the minlen / minclass arguments on its line are actually enforced. The legacy pam_cracklib module is accepted as a fallback."
+    rationale: "Without pam_pwquality in the PAM stack, passwd will accept any password regardless of the configured minlen / minclass."
+    remediation: "Ensure /etc/pam.d/common-password includes a line such as 'password requisite pam_pwquality.so retry=3'. On Debian/Ubuntu: 'apt install libpam-pwquality'."
+    condition: any
+    regex_type: pcre2
+    rules:
+      - 'f:/etc/pam.d/common-password -> r:^\s*password\s+\S+\s+pam_pwquality\.so'
+      - 'f:/etc/pam.d/common-password -> r:^\s*password\s+\S+\s+pam_cracklib\.so'
+
+  # -------------------------------------------------------------------------
+  # APT auto-update deactivation
+  # -------------------------------------------------------------------------
+  - id: 105030
+    title: "APT auto-update: APT periodic package list updates are disabled"
+    description: "APT::Periodic::Update-Package-Lists must be set to \"0\" so that apt does not automatically refresh the package lists."
+    rationale: "Automatic apt operations can introduce unreviewed changes, trigger network activity outside of maintenance windows, and interfere with controlled patching processes managed by InfoSec / Ops."
+    remediation: "Edit /etc/apt/apt.conf.d/20auto-upgrades and set 'APT::Periodic::Update-Package-Lists \"0\";'. If the file does not exist, create it. Alternatively run 'dpkg-reconfigure --priority=low unattended-upgrades' and select 'No'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$apt_periodic -> r:^\s*APT::Periodic::Update-Package-Lists\s+"0"\s*;'
+      - 'not d:$apt_conf_d -> .* -> r:^\s*APT::Periodic::Update-Package-Lists\s+"[^0]"\s*;'
+
+  - id: 105031
+    title: "APT auto-update: APT unattended-upgrades are disabled"
+    description: "APT::Periodic::Unattended-Upgrade must be set to \"0\" so that apt does not automatically install upgrades in the background."
+    rationale: "Unattended upgrades can install package versions that have not been tested in the environment, may require service restarts, and bypass change management."
+    remediation: "Edit /etc/apt/apt.conf.d/20auto-upgrades and set 'APT::Periodic::Unattended-Upgrade \"0\";'. Optionally also 'systemctl mask --now apt-daily.timer apt-daily-upgrade.timer' to fully stop the daily APT timers."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'f:$apt_periodic -> r:^\s*APT::Periodic::Unattended-Upgrade\s+"0"\s*;'
+      - 'not d:$apt_conf_d -> .* -> r:^\s*APT::Periodic::Unattended-Upgrade\s+"[^0]"\s*;'
+
+  - id: 105032
+    title: "APT auto-update: APT does not auto-download upgradeable packages"
+    description: "APT::Periodic::Download-Upgradeable-Packages should be set to \"0\" so that apt does not silently pre-fetch upgrade candidates."
+    rationale: "Pre-downloading upgrades produces unexpected network traffic and stages packages that may then be installed unattended."
+    remediation: "Edit /etc/apt/apt.conf.d/20auto-upgrades and set 'APT::Periodic::Download-Upgradeable-Packages \"0\";'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'not d:$apt_conf_d -> .* -> r:^\s*APT::Periodic::Download-Upgradeable-Packages\s+"[^0]"\s*;'
+
+  - id: 105033
+    title: "APT auto-update: apt-daily systemd timers are masked or disabled"
+    description: "The systemd timers apt-daily.timer and apt-daily-upgrade.timer must not be active, so that no automatic APT operation can be triggered even if config files are changed."
+    rationale: "Even with APT::Periodic options set to 0, the timers remain active and will run again as soon as the config is reset. Masking the timers provides defense in depth."
+    remediation: "Run: 'systemctl mask --now apt-daily.timer apt-daily-upgrade.timer'. Verify with 'systemctl is-enabled apt-daily.timer' — it should return 'masked' or 'disabled'."
+    condition: all
+    regex_type: pcre2
+    rules:
+      - 'c:systemctl is-enabled apt-daily.timer -> r:^(masked|disabled)$'
+      - 'c:systemctl is-enabled apt-daily-upgrade.timer -> r:^(masked|disabled)$'

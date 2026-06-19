@@ -1,0 +1,91 @@
+policy:
+  id: "sca_infosec_baseline_windows_server_2012"
+  file: "sca_infosec_baseline_windows_server_2012.yml"
+  name: "SCA InfoSec Baseline Windows Server 2012 check"
+  description: "InfoSec Baseline SCA policy for Windows Server 2012: verifies the Wazuh agent configuration, the Verve InfoSec password policy (min 12 chars + complexity), and that Windows automatic updates are deactivated."
+
+requirements:
+  title: "Check that the system is Windows Server 2012"
+  description: "This policy applies only to Windows Server 2012 (build 9200) systems running the Wazuh agent."
+  condition: all
+  regex_type: pcre2
+  rules:
+    - 'r:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion -> InstallationType -> r:^Server'
+    - 'r:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion -> CurrentBuildNumber -> r:^9200$'
+
+variables:
+  $ossec_files: C:\Program Files (x86)\ossec-agent\ossec.conf
+  $internal_files: C:\Program Files (x86)\ossec-agent\local_internal_options.conf
+
+checks:
+  # -------------------------------------------------------------------------
+  # Wazuh agent configuration
+  # -------------------------------------------------------------------------
+  - id: 200000
+    title: "Wazuh Agent: wazuh_command.remote_commands are enabled"
+    condition: all
+    rules:
+      - 'f:$internal_files -> r:^wazuh_command.remote_commands=1$'
+
+  - id: 200001
+    title: "Wazuh Agent: logcollector.remote_commands are enabled"
+    condition: all
+    rules:
+      - 'f:$internal_files -> r:^logcollector.remote_commands=1$'
+
+  - id: 200002
+    title: "Wazuh Agent: sca.remote_commands are enabled"
+    condition: all
+    rules:
+      - 'f:$internal_files -> r:^sca.remote_commands=1$'
+
+  # -------------------------------------------------------------------------
+  # Password policy (Verve Policy on Acceptable Use v2.2, section 2.2)
+  # -------------------------------------------------------------------------
+  - id: 200010
+    title: "Windows Password policy: 'Minimum password length' is at least 12 characters"
+    description: "The effective password policy must require at least 12 characters per Verve Policy on Acceptable Use v2.2 section 2.2."
+    rationale: "Shorter passwords can be cracked in tractable time using modern GPU-based brute-force. Enforcement at the OS / domain level guarantees every account follows the rule."
+    remediation: "Local: open secpol.msc → Account Policies → Password Policy → 'Minimum password length' → set to 12 or higher. Domain: edit the Default Domain Policy GPO (or a higher-priority GPO linked at the domain root) → Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Password Policy. Verify with 'net accounts'."
+    condition: all
+    rules:
+      - 'c:net accounts -> n:Minimum password length\s*:\s*(\d+) compare >= 12'
+
+  - id: 200011
+    title: "Windows Password policy: 'Password must meet complexity requirements' is enabled"
+    description: "PasswordComplexity must be set to 1 in the effective security policy. Windows complexity enforces characters from 3 of 5 categories (uppercase, lowercase, digits, non-alphanumeric, Unicode), which satisfies the Verve requirement of 3 of 4 character classes."
+    rationale: "Without complexity enabled, a 12-character password could still be 'aaaaaaaaaaaa' or all lowercase. Complexity multiplies the keyspace and is a hard requirement of the Verve policy."
+    remediation: "Local: secpol.msc → Account Policies → Password Policy → 'Password must meet complexity requirements' → Enabled. Domain: same path under the Default Domain Policy GPO. Verify with: powershell.exe -c \"secedit /export /cfg $env:temp\\sec.cfg | out-null; Select-String 'PasswordComplexity' $env:temp\\sec.cfg; Remove-Item $env:temp\\sec.cfg\"."
+    condition: all
+    rules:
+      - 'c:powershell.exe -Command "secedit /export /cfg $env:temp\secpol.cfg | Out-Null; (Select-String -Path $env:temp\secpol.cfg -Pattern ''^PasswordComplexity'').Line; Remove-Item $env:temp\secpol.cfg -Force" -> r:^PasswordComplexity\s*=\s*1$'
+
+  # -------------------------------------------------------------------------
+  # Auto-update deactivation
+  # -------------------------------------------------------------------------
+  - id: 200021
+    title: "Windows Server auto-update: 'No auto-update' policy is enabled (NoAutoUpdate = 1)"
+    description: "The Group Policy / registry value HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU\\NoAutoUpdate must be set to 1 so that Windows does not automatically check for, download, or install updates."
+    rationale: "Automatic Windows updates can reboot a server outside of a maintenance window, install patches that have not been validated in the environment, and bypass the controlled patching process managed by InfoSec / Ops."
+    remediation: "Set the registry value HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU\\NoAutoUpdate to DWORD 1. Via GPO: Computer Configuration → Administrative Templates → Windows Components → Windows Update → 'Configure Automatic Updates' → Disabled. Apply with 'gpupdate /force'."
+    condition: all
+    rules:
+      - 'r:HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU -> NoAutoUpdate -> 1'
+
+  - id: 200022
+    title: "Windows Server auto-update: 'Configure Automatic Updates' is not set to auto-install (AUOptions != 4)"
+    description: "The registry value HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU\\AUOptions must not be 4 (auto-download and auto-install). A value of 1 (never check) is preferred; 2 (notify before download) or 3 (auto-download, notify install) are acceptable interim states."
+    rationale: "AUOptions = 4 causes Windows to install updates and reboot without operator approval, which violates the controlled change-management process."
+    remediation: "Set HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU\\AUOptions to DWORD 1 (never check for updates). Via GPO: 'Configure Automatic Updates' → Disabled, OR set to Enabled with option '2 - Notify for download and notify for install'."
+    condition: all
+    rules:
+      - 'r:HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU -> AUOptions -> r:^1$|^2$|^3$'
+
+  - id: 200023
+    title: "Windows Server auto-update: Windows Update service (wuauserv) is disabled"
+    description: "The Windows Update service must have start type 'Disabled' so that the update agent cannot start, even if the GPO is reverted."
+    rationale: "Defense in depth: with the service disabled, no automatic update operation can run even if the NoAutoUpdate registry value is removed or overridden by Windows Update for Business cloud policy."
+    remediation: "Run as administrator: 'sc.exe config wuauserv start= disabled' and then 'sc.exe stop wuauserv'. Verify with 'sc.exe qc wuauserv' — START_TYPE should be '4 DISABLED'."
+    condition: all
+    rules:
+      - 'r:HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv -> Start -> 4'
