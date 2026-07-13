@@ -1,0 +1,74 @@
+<!-- DEV-4539 -->
+<!-- 
+Jun 23 01:09:44 SGUATCTM01 KeySecure: <134>1 2023-06-23T01:09:42.364256Z SGUATCTM01 CipherTrust Manager k170v - 4ebf59fa-a406-44c6-a46f-9e07afbafec7 [msg="Use Key" sev="6" details="'Use Key' succeeded ({"client_ip":"10.37.19.179","createdAt":"2023-06-23T01:09:42.364256Z","details":{"identifier":"ORACLE.TDE.HSM.MK.065CF5F29548764F85BFD45ABD57EED203"},"domain_id":"7551d1ea-95ec-4785-90f1-40dd23213bd6","message":"Use Key","service":"minerva","severity":"info","source":"SGUATCTM01","success":true,"username":"uatebsdb"})"]
+-->
+<decoder name="CipherTrust-Manager">
+    <program_name>KeySecure</program_name>
+</decoder>
+
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>msg="(\.*)"</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>sev="(\.*)"</regex>
+	<order>sev</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>details="(\.*) \(</regex>
+	<order>details</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"client_ip":"(\.*)"</regex>
+	<order>client_ip</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"createdAt":"(\.*)"</regex>
+	<order>createdAt</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"identifier":"(\.*)"</regex>
+	<order>identifier</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"domain_id":"(\.*)"</regex>
+	<order>domain_id</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"service":"(\.*)"</regex>
+	<order>service</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"severity":"(\.*)"</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"source":"(\.*)"</regex>
+	<order>source</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"success":(\S+),</regex>
+	<order>success</order>
+</decoder>
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"username":"(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+
+<decoder name="ciphertrust-manager-fields">
+	<parent>CipherTrust-Manager</parent>
+	<regex>"details":{"errorMessage":"(\.*)","id":"(\.*)","name":"(\.*)","operation":"(\.*)","worker_id":"(\.*)"},</regex>
+	<order>errorMessage,id,name,operation,worker_id</order>
+</decoder>

@@ -1,0 +1,546 @@
+<!-- DEV-5774 -->
+<decoder name="sangfor_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|SANGFOR\|</prematch>
+</decoder>
+
+<decoder name="sangfor_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|SANGFOR\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="sangfor_cef">
+	<prematch>CEF:\s*0\|SANGFOR\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<!-- Security Incident Format -->
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>spt=(\.*) \S+=</regex>
+    <order>cef.extensions.spt</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>spt=(\.*) \S+=</regex>
+    <order>srcport</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>smac=(\.*) \S+=</regex>
+    <order>cef.extensions.smac</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>end=(\.*) \S+=</regex>
+    <order>cef.extensions.end</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dst=(\.*) \S+=</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dst=(\.*) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>start=(\.*) \S+=</regex>
+    <order>cef.extensions.start</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>msg=(\.*) \S+=</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dmac=(\.*) \S+=</regex>
+    <order>cef.extensions.dmac</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>shost=(\.*) \S+=</regex>
+    <order>cef.extensions.shost</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>src=(\.*) \S+=</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>src=(\.*) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dpt=(\.*) \S+=</regex>
+    <order>cef.extensions.dpt</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dpt=(\.*) \S+=</regex>
+    <order>dstport</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>cn2=(\.*) \S+=</regex>
+    <order>cef.extensions.cn2</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>cn1=(\.*) \S+=</regex>
+    <order>cef.extensions.cn1</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>cs4=[(\.+)] \S+=</regex>
+    <order>cef.extensions.cs4</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dhost=(\.*) \S+=</regex>
+    <order>cef.extensions.dhost</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>cs1=(\.*) \S+=</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>cs3=(\.*) \S+=|cs3=(\.*)$</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>cs2=(\.*) \S+=|cs2=(\d*)\s*$</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>src_branch_name=(\.*) \S+=</regex>
+    <order>cef.extensions.src_branch_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dst_branch_name=(\.*) \S+=</regex>
+    <order>cef.extensions.dst_branch_name</order>
+</decoder>
+
+<!-- Security Alert format -->
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_classify_id=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_classify_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_classify1_id_name=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_classify1_id_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_state=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_state</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dev_id=(\.*) \S+=</regex>
+    <order>cef.extensions.dev_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>dev_name=(\.*) \S+=</regex>
+    <order>cef.extensions.dev_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>module_type_name=(\.*) \S+=</regex>
+    <order>cef.extensions.module_type_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_type_name=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_type_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>sub_attack_type_name=(\.*) \S+=</regex>
+    <order>cef.extensions.sub_attack_type_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>status_code=(\.*) \S+=</regex>
+    <order>cef.extensions.status_code</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>event_desc=(\.*) \S+=</regex>
+    <order>cef.extensions.event_desc</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>updated_at=(\.*) \S+=</regex>
+    <order>cef.extensions.updated_at</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>brief=(\.*) \S+=</regex>
+    <order>cef.extensions.brief</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_branch_id=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_branch_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>Suffer_country=(\.*) \S+=</regex>
+    <order>cef.extensions.Suffer_country</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>alert_id=(\.*) \S+=</regex>
+    <order>cef.extensions.alert_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>reliability=(\.*) \S+=</regex>
+    <order>cef.extensions.reliability</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>relation=(\.*) \S+=</regex>
+    <order>cef.extensions.relation</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>is_white=(\.*) \S+=</regex>
+    <order>cef.extensions.is_white</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>last_time=(\.*) \S+=</regex>
+    <order>cef.extensions.last_time</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>x_forwarded_for=(\.*) \S+=</regex>
+    <order>cef.extensions.x_forwarded_for</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>module_type=(\.*) \S+=</regex>
+    <order>cef.extensions.module_type</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>sub_attack_type=(\.*) \S+=</regex>
+    <order>cef.extensions.sub_attack_type</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suggest=(\.*) \S+=</regex>
+    <order>cef.extensions.suggest</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_ip=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_ip</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>tags=(\.*) \S+=</regex>
+    <order>cef.extensions.tags</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>damage=(\.*) \S+=</regex>
+    <order>cef.extensions.damage</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>multi_deal_status=(\.*) \S+=</regex>
+    <order>cef.extensions.multi_deal_status</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>event_evidence=(\.*) \S+=</regex>
+    <order>cef.extensions.event_evidence</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_classify_id=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_classify_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_classify1_id_name=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_classify1_id_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>mining_stage=(\.*) \S+=</regex>
+    <order>cef.extensions.mining_stage</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_direction=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_direction</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>log_ids=(\.*) \S+=</regex>
+    <order>cef.extensions.log_ids</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>hash_id=(\.*) \S+=</regex>
+    <order>cef.extensions.hash_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>engine=(\.*) \S+=</regex>
+    <order>cef.extensions.engine</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>first_time=(\.*) \S+=</regex>
+    <order>cef.extensions.first_time</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_port=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_port</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>emergency=(\.*) \S+=</regex>
+    <order>cef.extensions.emergency</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_province=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_province</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_branch_name=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_branch_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>is_read=(\.*) \S+=</regex>
+    <order>cef.extensions.is_read</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>invasion_stage=(\.*) \S+=</regex>
+    <order>cef.extensions.invasion_stage</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_ip=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_ip</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_port=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_port</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>principle=(\.*) \S+=</regex>
+    <order>cef.extensions.principle</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>ioc=(\.*) \S+=</regex>
+    <order>cef.extensions.ioc</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_branch_id=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_branch_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_classify1_id=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_classify1_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_asset_id=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_asset_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>count=(\.*) \S+=</regex>
+    <order>cef.extensions.count</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_classify1_id=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_classify1_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>analyze_suggest=(\.*) \S+=</regex>
+    <order>cef.extensions.analyze_suggest</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_asset_id=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_asset_id</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>asset_direction=(\.*) \S+=</regex>
+    <order>cef.extensions.asset_direction</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>created_at=(\.*) \S+=</regex>
+    <order>cef.extensions.created_at</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_country=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_country</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>misreport=(\.*) \S+=</regex>
+    <order>cef.extensions.misreport</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>suffer_province=(\.*) \S+=</regex>
+    <order>cef.extensions.suffer_province</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>url=(\.*) \S+=</regex>
+    <order>url</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>record_date=(\.*) \S+=</regex>
+    <order>cef.extensions.record_date</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>net_action=(\.*) \S+=</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>attack_branch_name=(\.*) \S+=</regex>
+    <order>cef.extensions.attack_branch_name</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>hole_ids=(\.*) \S+=</regex>
+    <order>cef.extensions.hole_ids</order>
+</decoder>
+
+<decoder name="sangfor_cef_fields">
+    <parent>sangfor_cef</parent>
+    <regex>linkage_status=(\.*) \S+=</regex>
+    <order>cef.extensions.linkage_status</order>
+</decoder>

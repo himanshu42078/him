@@ -1,0 +1,83 @@
+<!-- DEV-4028 -->
+<!--
+May 10 14:00:08 GJS-FutBackDBN1 db2audit[3719934]: timestamp=2023-05-10-13.56.50.439596; category=VALIDATE; audit event=AUTHENTICATION; event correlator=2; event status=0; database=OPTMAP; userid=db2inst1; authid=DB2INST1; execution id=db2inst1; application id=*LOCAL.db2inst1.230510055656; application name=DB2HMON; auth type=SERVER; plugin name=IBMOSauthserver; instance name=db2inst1; hostname=GJS-FutBackDBN1.gtjai.com;
+-->
+<decoder name="db2audit">
+    <program_name>db2audit</program_name>
+    <prematch>^timestamp=\S+; category=\S+; audit event=</prematch>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>timestamp=(\S+);</regex>
+    <order>timestamp</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>category=(\S+);</regex>
+    <order>category</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>audit event=(\S+);</regex>
+    <order>audit_event</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>event correlator=(\S+);</regex>
+    <order>event_correlator</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>event status=(\S+);</regex>
+    <order>event_status</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>database=(\S+);</regex>
+    <order>database</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>userid=(\S+);</regex>
+    <order>userid</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>authid=(\S+);</regex>
+    <order>authid</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>execution id=(\S+);</regex>
+    <order>execution_id</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>application id=(\S+);</regex>
+    <order>application_id</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>application name=(\S+);</regex>
+    <order>application_name</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>auth type=(\S+);</regex>
+    <order>auth_type</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>plugin name=(\S+);</regex>
+    <order>plugin_name</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>instance name=(\S+);</regex>
+    <order>instance_name</order>
+</decoder>
+<decoder name="db2audit-fields">
+    <parent>db2audit</parent>
+    <regex>hostname=(\S+);</regex>
+    <order>hostname</order>
+</decoder>

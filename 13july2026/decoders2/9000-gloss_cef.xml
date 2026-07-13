@@ -1,0 +1,217 @@
+<decoder name="gloss_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Gloss\|</prematch>
+</decoder>
+
+<decoder name="gloss_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|Gloss\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="gloss_cef">
+	<prematch>CEF:\s*0\|Gloss\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>Partition=(\.+) \S+=</regex>
+    <order>cef.extensions.Partition</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>UserShortName=(\.+) \S+=</regex>
+    <order>cef.extensions.UserShortName</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>UserType=(\.+) \S+=</regex>
+    <order>cef.extensions.UserType</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>LoginID=(\.+) \S+=</regex>
+    <order>cef.extensions.LoginID</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>UserShortName=(\.+) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>LastLoginDate=(\.+) \S+=</regex>
+    <order>cef.extensions.LastLoginDate</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>LastLoggedOn=(\.+) \S+=</regex>
+    <order>cef.extensions.LastLoggedOn</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>ProfileLocked=(\.+) \S+=</regex>
+    <order>cef.extensions.ProfileLocked</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>UnsuccessfulLogonAttempts=(\.+) \S+=</regex>
+    <order>cef.extensions.UnsuccessfulLogonAttempts</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>DisabledStatus=(\.+) \S+=</regex>
+    <order>cef.extensions.DisabledStatus</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>DisabledType=(\.+) \S+=</regex>
+    <order>cef.extensions.DisabledType</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>DisabledReason=(\.+) \S+=</regex>
+    <order>cef.extensions.DisabledReason</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>DaysToPasswordExpiry=(\.+) \S+=</regex>
+    <order>cef.extensions.DaysToPasswordExpiry</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>PasswordResetFlag=(\.+) \S+=</regex>
+    <order>cef.extensions.PasswordResetFlag</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>Template=(\.+) \S+=</regex>
+    <order>cef.extensions.Template</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>TemplateName=(\.+) \S+=</regex>
+    <order>cef.extensions.TemplateName</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>FullName=(\.+) \S+=</regex>
+    <order>cef.extensions.FullName</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>Locale=(\.+) \S+=</regex>
+    <order>cef.extensions.Locale</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>Timezone=(\.+) \S+=</regex>
+    <order>cef.extensions.Timezone</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>DefaultMode=(\.+) \S+=</regex>
+    <order>cef.extensions.DefaultMode</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>ThresholdPriority=(\.+) \S+=</regex>
+    <order>cef.extensions.ThresholdPriority</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>OutofOffice=(\.+) \S+=</regex>
+    <order>cef.extensions.OutofOffice</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>ReturnDate=(\.+) \S+=</regex>
+    <order>cef.extensions.ReturnDate</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>Email=(\.+) \S+=</regex>
+    <order>cef.extensions.Email</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>JobTitle=(\.+) \S+=</regex>
+    <order>cef.extensions.JobTitle</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>PhoneNo=(\.+) \S+=</regex>
+    <order>cef.extensions.PhoneNo</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>AlternatePhoneNo=(\.+) \S+=</regex>
+    <order>cef.extensions.AlternatePhoneNo</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>FaxNo=(\.+) \S+=</regex>
+    <order>cef.extensions.FaxNo</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>CreationDate=(\.+) \S+=</regex>
+    <order>cef.extensions.CreationDate</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>CreationDate=(\.+) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>LastAmended=(\.+) \S+=</regex>
+    <order>cef.extensions.LastAmended</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>AmendedBy=(\.+) \S+=</regex>
+    <order>cef.extensions.AmendedBy</order>
+</decoder>
+
+<decoder name="gloss_cef_fields">
+    <parent>gloss_cef</parent>
+    <regex>Aliases=(\.*) \S+=|Aliases=(\.*)$</regex>
+    <order>cef.extensions.Aliases</order>
+</decoder>

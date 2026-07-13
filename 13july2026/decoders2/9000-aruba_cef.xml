@@ -1,0 +1,43 @@
+<decoder name="aruba_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Aruba\|</prematch>
+</decoder>
+
+<decoder name="aruba_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|Aruba\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="aruba_cef">
+	<prematch>CEF:\s*0\|Aruba\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="aruba_cef_fields">
+    <parent>aruba_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="aruba_cef_fields">
+    <parent>aruba_cef</parent>
+    <regex>deviceProcessName=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceProcessName</order>
+</decoder>
+
+<decoder name="aruba_cef_fields">
+    <parent>aruba_cef</parent>
+    <regex>dvcpid=(\.+) \S+=</regex>
+    <order>cef.extensions.dvcpid</order>
+</decoder>
+
+<decoder name="aruba_cef_fields">
+    <parent>aruba_cef</parent>
+    <regex>dvchost=(\.+) \S+=</regex>
+    <order>cef.extensions.dvchost</order>
+</decoder>
+
+<decoder name="aruba_cef_fields">
+    <parent>aruba_cef</parent>
+    <regex>msg=(\.*) \S+=|msg=(\.*)$</regex>
+    <order>cef.extensions.msg</order>
+</decoder>

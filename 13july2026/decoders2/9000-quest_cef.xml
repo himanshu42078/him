@@ -1,0 +1,523 @@
+<decoder name="quest_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Quest Software Inc.\|</prematch>
+</decoder>
+
+<decoder name="quest_cef">
+    <program_name></program_name>
+    <prematch>CEF:\s*0\|Quest Software Inc.\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="quest_cef">
+    <prematch>CEF:\s*0\|Quest Software Inc.\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>recordId=(\.+) \S+=</regex>
+    <order>cef.extensions.recordId</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>event=(\.+) \S+=</regex>
+    <order>cef.extensions.event</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>link=(\.+) \S+=</regex>
+    <order>cef.extensions.link</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>categoryBehavior=(\.+) \S+=</regex>
+    <order>cef.extensions.categoryBehavior</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>facility=(\.+) \S+=</regex>
+    <order>cef.extensions.facility</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>subsystem=(\.+) \S+=</regex>
+    <order>cef.extensions.subsystem</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>categoryOutcome=(\.+) \S+=</regex>
+    <order>cef.extensions.categoryOutcome</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>result=(\.+) \S+=</regex>
+    <order>cef.extensions.result</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>agentID=(\.+) \S+=</regex>
+    <order>cef.extensions.agentID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>eventClassID=(\.+) \S+=</regex>
+    <order>cef.extensions.eventClassID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>subsystemID=(\.+) \S+=</regex>
+    <order>cef.extensions.subsystemID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>facilityID=(\.+) \S+=</regex>
+    <order>cef.extensions.facilityID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>valueTypeID=(\.+) \S+=</regex>
+    <order>cef.extensions.valueTypeID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>severityID=(\.+) \S+=</regex>
+    <order>cef.extensions.severityID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>actionID=(\.+) \S+=</regex>
+    <order>cef.extensions.actionID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>resultID=(\.+) \S+=</regex>
+    <order>cef.extensions.resultID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>start=(\.+) \S+=</regex>
+    <order>cef.extensions.start</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>start=(\.+) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>end=(\.+) \S+=</regex>
+    <order>cef.extensions.end</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>timeDetected=(\.+) \S+=</regex>
+    <order>cef.extensions.timeDetected</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>timeZoneOffset=(\.+) \S+=</regex>
+    <order>cef.extensions.timeZoneOffset</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>timeBatched=(\.+) \S+=</regex>
+    <order>cef.extensions.timeBatched</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>timeOfDay=(\.+) \S+=</regex>
+    <order>cef.extensions.timeOfDay</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>timeReceived=(\.+) \S+=</regex>
+    <order>cef.extensions.timeReceived</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>coordinatorId=(\.+) \S+=</regex>
+    <order>cef.extensions.coordinatorId</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>suid=(\.+) \S+=</regex>
+    <order>cef.extensions.suid</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>userSid=(\.+) \S+=</regex>
+    <order>cef.extensions.userSid</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>userSIDHash=(\.+) \S+=</regex>
+    <order>cef.extensions.userSIDHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>cef.extensions.suser</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>srcuser</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>user=(\.+) \S+=</regex>
+    <order>cef.extensions.user</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>userNameHash=(\.+) \S+=</regex>
+    <order>cef.extensions.userNameHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>shost=(\.+) \S+=</regex>
+    <order>cef.extensions.shost</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>origin=(\.+) \S+=</regex>
+    <order>cef.extensions.origin</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>userAddressHash=(\.+) \S+=</regex>
+    <order>cef.extensions.userAddressHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>src=(\.+) \S+=</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>src=(\.+) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>originIPv4=(\.+) \S+=</regex>
+    <order>cef.extensions.originIPv4</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>userAddressIPv4Hash=(\.+) \S+=</regex>
+    <order>cef.extensions.userAddressIPv4Hash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>userAddressIPv6Hash=(\.+) \S+=</regex>
+    <order>cef.extensions.userAddressIPv6Hash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>userMailHash=(\.+) \S+=</regex>
+    <order>cef.extensions.userMailHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>msg=(\.+) \S+=</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>description=(\.+) \S+=</regex>
+    <order>cef.extensions.description</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>serverDn=(\.+) \S+=</regex>
+    <order>cef.extensions.serverDn</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>dvchost=(\.+) \S+=</regex>
+    <order>cef.extensions.dvchost</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>serverFqdn=(\.+) \S+=</regex>
+    <order>cef.extensions.serverFqdn</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>serverFQDNHash=(\.+) \S+=</regex>
+    <order>cef.extensions.serverFQDNHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>computer=(\.+) \S+=</regex>
+    <order>cef.extensions.computer</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>serverNameHash=(\.+) \S+=</regex>
+    <order>cef.extensions.serverNameHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>serverOu=(\.+) \S+=</regex>
+    <order>cef.extensions.serverOu</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>osVersion=(\.+) \S+=</regex>
+    <order>cef.extensions.osVersion</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>dvc=(\.+) \S+=</regex>
+    <order>cef.extensions.dvc</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>ipAddress=(\.+) \S+=</regex>
+    <order>cef.extensions.ipAddress</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>iPAddressHash=(\.+) \S+=</regex>
+    <order>cef.extensions.iPAddressHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>dc=(\.+) \S+=</regex>
+    <order>cef.extensions.dc</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>gc=(\.+) \S+=</regex>
+    <order>cef.extensions.gc</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>exchange=(\.+) \S+=</regex>
+    <order>cef.extensions.exchange</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>domainID=(\.+) \S+=</regex>
+    <order>cef.extensions.domainID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>parentDomainID=(\.+) \S+=</regex>
+    <order>cef.extensions.parentDomainID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>domainDn=(\.+) \S+=</regex>
+    <order>cef.extensions.domainDn</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>domainFqdn=(\.+) \S+=</regex>
+    <order>cef.extensions.domainFqdn</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>domain=(\.+) \S+=</regex>
+    <order>cef.extensions.domain</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>domainNameHash=(\.+) \S+=</regex>
+    <order>cef.extensions.domainNameHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>siteID=(\.+) \S+=</regex>
+    <order>cef.extensions.siteID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>siteDn=(\.+) \S+=</regex>
+    <order>cef.extensions.siteDn</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>site=(\.+) \S+=</regex>
+    <order>cef.extensions.site</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>siteNameHash=(\.+) \S+=</regex>
+    <order>cef.extensions.siteNameHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>organizationalUnit=(\.+) \S+=</regex>
+    <order>cef.extensions.organizationalUnit</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>organizationalUnitHash=(\.+) \S+=</regex>
+    <order>cef.extensions.organizationalUnitHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>parentObjectID=(\.+) \S+=</regex>
+    <order>cef.extensions.parentObjectID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>objectID=(\.+) \S+=</regex>
+    <order>cef.extensions.objectID</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>objectClass=(\.+) \S+=</regex>
+    <order>cef.extensions.objectClass</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>objectClassHash=(\.+) \S+=</regex>
+    <order>cef.extensions.objectClassHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>objectName=(\.+) \S+=</regex>
+    <order>cef.extensions.objectName</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>objectNameHash=(\.+) \S+=</regex>
+    <order>cef.extensions.objectNameHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>objectDn=(\.+) \S+=</regex>
+    <order>cef.extensions.objectDn</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>objectCanonical=(\.+) \S+=</regex>
+    <order>cef.extensions.objectCanonical</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>objectCanonicalHash=(\.+) \S+=</regex>
+    <order>cef.extensions.objectCanonicalHash</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>samAccountName=(\.+) \S+=</regex>
+    <order>cef.extensions.samAccountName</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>logonType=(\.+) \S+=</regex>
+    <order>cef.extensions.logonType</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>administrator=(\.+) \S+=</regex>
+    <order>cef.extensions.administrator</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>originAdSite=(\.+) \S+=</regex>
+    <order>cef.extensions.originAdSite</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>eventId=(\.+) \S+=</regex>
+    <order>cef.extensions.eventId</order>
+</decoder>
+
+<decoder name="quest_cef_fields">
+    <parent>quest_cef</parent>
+    <regex>id=(\.*) \S+=|id=(\.*)$</regex>
+    <order>cef.extensions.id</order>
+</decoder>

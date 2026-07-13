@@ -1,0 +1,35 @@
+<!-- DEV-5686 -->
+<!--
+Nov  9 21:49:13 AZ2HPVNLBV01P a10logd: [audit log]<6> Partition: shared, [admin] web: [67:10.17.32.210:13254] POST: /axapi/v3/slb/template/client-ssl/Client-ssl/certificate
+Dec  3 14:49:22 A10-1 a10logd: [audit log]<6>  A web session[190] opened,  username: hxadm.jacky, remote host: 10.81.88.134
+-->
+<decoder name="a10logd">
+	<program_name>a10logd</program_name>
+	<prematch>^[audit log]\p\d+\p </prematch>
+</decoder>
+
+<decoder name="a10logd-fields">
+	<parent>a10logd</parent>
+	<regex>^[(\.+)]\p(\d+)\p (\.+)</regex>
+	<order>module_name,severity,msg</order>
+</decoder>
+<decoder name="a10logd-fields">
+	<parent>a10logd</parent>
+	<regex>^[\.+]\p\d+\p\s+\.+\s*[(\.+)] \S+: [\d+:(\d+.\d+.\d+.\d+):(\d+)]</regex>
+	<order>dstuser,srcip,srcport</order>
+</decoder>
+<decoder name="a10logd-fields">
+	<parent>a10logd</parent>
+	<regex>username: (\S+),</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="a10logd-fields">
+	<parent>a10logd</parent>
+	<regex>remote host: (\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="a10logd-fields">
+	<parent>a10logd</parent>
+	<regex>POST: (\S+)|GET: (\S+)</regex>
+	<order>url</order>
+</decoder>

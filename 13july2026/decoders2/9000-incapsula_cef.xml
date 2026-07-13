@@ -1,0 +1,381 @@
+
+<decoder name="incapsula_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Incapsula\|</prematch>
+</decoder>
+
+<decoder name="incapsula_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|Incapsula\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="incapsula_cef">
+	<prematch>CEF:\s*0\|Incapsula\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>fileId=(\.*) \S+=</regex>
+    <order>cef.extensions.fileId</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>sourceServiceName=(\.*) \S+=</regex>
+    <order>cef.extensions.sourceServiceName</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>siteid=(\.*) \S+=</regex>
+    <order>cef.extensions.siteid</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>suid=(\.*) \S+=</regex>
+    <order>cef.extensions.suid</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>requestClientApplication=(\.*) \S+=</regex>
+    <order>cef.extensions.requestClientApplication</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>deviceFacility=(\.*) \S+=</regex>
+    <order>cef.extensions.deviceFacility</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs2=(\.*) \S+=</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs2Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs3=(\.*) \S+=</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs3Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs1=(\.*) \S+=</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs1Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs1Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs4=(\.*) \S+=</regex>
+    <order>cef.extensions.cs4</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs4Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs4Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs5=(\.*) \S+=</regex>
+    <order>cef.extensions.cs5</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs5Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs5Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>dproc=(\.*) \S+=</regex>
+    <order>cef.extensions.dproc</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs6=(\.*) \S+=</regex>
+    <order>cef.extensions.cs6</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs6Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs6Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>ccode=(\.*) \S+=</regex>
+    <order>cef.extensions.ccode</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cicode=(\.*) \S+=</regex>
+    <order>cef.extensions.cicode</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs7=(\.*) \S+=</regex>
+    <order>cef.extensions.cs7</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs7Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs7Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs8=(\.*) \S+=</regex>
+    <order>cef.extensions.cs8</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs8Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs8Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>Customer=(\.*) \S+=</regex>
+    <order>cef.extensions.Customer</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>start=(\.*) \S+=</regex>
+    <order>cef.extensions.start</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>start=(\.*) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>request=(\.*) \S+=</regex>
+    <order>cef.extensions.request</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>ref=(\.*) \S+=</regex>
+    <order>cef.extensions.ref</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>requestMethod=(\.*) \S+=</regex>
+    <order>cef.extensions.requestMethod</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>postbody=(\.*) \S+=</regex>
+    <order>cef.extensions.postbody</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cn1=(\.*) \S+=</regex>
+    <order>cef.extensions.cn1</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>app=(\.*) \S+=</regex>
+    <order>cef.extensions.app</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>act=(\.*) \S+=</regex>
+    <order>cef.extensions.act</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>act=(\.*) \S+=</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>deviceExternalId=(\.*) \S+=</regex>
+    <order>cef.extensions.deviceExternalId</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>sip=(\.*) \S+=</regex>
+    <order>cef.extensions.sip</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>spt=(\.*) \S+=</regex>
+    <order>cef.extensions.spt</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>in=(\.*) \S+=</regex>
+    <order>cef.extensions.in</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>xff=(\.*) \S+=</regex>
+    <order>cef.extensions.xff</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cpt=(\.*) \S+=</regex>
+    <order>cef.extensions.cpt</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>src=(\.*) \S+=</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>src=(\.*) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>ver=(\.*) \S+=</regex>
+    <order>cef.extensions.ver</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>end=(\.*) \S+=|end=(\.*)$</regex>
+    <order>cef.extensions.end</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>qstr=(\.*) \S+=</regex>
+    <order>cef.extensions.qstr</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>fileType=(\.*) \S+=</regex>
+    <order>cef.extensions.fileType</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>filePermission=(\.*) \S+=</regex>
+    <order>cef.extensions.filePermission</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs9=(\.*) \S+=</regex>
+    <order>cef.extensions.cs9</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs9Label=(\.*) \S+=|cs9Label=(\.*)$</regex>
+    <order>cef.extensions.cs9Label</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs10=(\.*) \S+=</regex>
+    <order>cef.extensions.cs10</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs10Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs10Label</order>
+</decoder>
+
+<!-- Customized fields -->
+<decoder name="incapsula_cef_fields">
+	<parent>incapsula_cef</parent>
+	<regex>SIEMintegration\|\.+\|(\.+)\|(\.+)\|(\d+)</regex>
+	<order>configID, alertSeverity, internalRuleID</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>app=(\.*)\s</regex>
+    <order>protocol</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>sip=(\.*) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>spt=(\.*) \S+=</regex>
+    <order>dstport</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cn1=(\.*)\s</regex>
+    <order>status</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cpt=(\.*)\s</regex>
+    <order>srcport</order>
+</decoder>
+
+<decoder name="incapsula_cef_fields">
+    <parent>incapsula_cef</parent>
+    <regex>request=(\.*)\s</regex>
+    <order>url</order>
+</decoder>

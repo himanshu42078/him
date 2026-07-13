@@ -1,0 +1,10 @@
+<!-- Modify it at your will. -->
+<decoder name="genian_nac">
+	<prematch>INFO \d\d\d|INFO \d\d\d\d</prematch>
+	<program_name/>
+</decoder>
+<decoder name="genian_nac_field">
+	<parent>genian_nac</parent>
+	<regex>(INFO) (\d+) (\S+) (\S+) (\S+) (\.+)</regex>
+	<order>genian_nac.log_type, genian_nac.log_id, genian_nac.sensor_ip, genian_nac.node_ip, genian_nac.node_mac, genian_nac.description</order>
+</decoder>

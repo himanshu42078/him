@@ -1,0 +1,186 @@
+<!--
+Jun 29 09:42:19 Event Source Information - Server Name: "cm-uat.crp.iclnet2.hk" Server Protocol: "HTTP/1.1" Hostname: "az1hcswafv01d.iclcloud.hk" Host: "cm-uat.crp.iclnet2.hk" Date and Timestamp Information - Local Time: "29/Jun/2023:09:42:19 +0800" ISO8601 Time: "2023-06-29T09:42:19+08:00" Username Information - Basic Authentication User: "" Source Address Information - Source Address:Port: "192.168.134.253:46490" Destination Address Information - Desination Address:Port "10.22.67.81:443 " Request Information - Request: "GET /healthz HTTP/1.1" HTTP Response Status: "502" Referer: "" Content Type: "" Body Bytes Sent: "662" User Agent: "" X_Forwarded_For: "-"
+-->
+<decoder name="nginx-accesslog">
+  <prematch>Source Information - Server Name: "\.*" Server Protocol: "\.*"</prematch>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Date and Timestamp Information - Local Time: "(\.*)"</regex>
+	<order>event_time</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Source Address:Port: "(\.*):(\.*)"</regex>
+	<order>srcip, srcport</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Desination Address:Port "(\.*):(\.*)"</regex>
+	<order>dstip, dstport</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>(\.*) - Server Name</regex>
+	<order>event_name</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Hostname: "(\.*)"</regex>
+	<order>hostname</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Server Name: "(\.*)"</regex>
+	<order>server_name</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>HTTP Response Status: "(\.*)"</regex>
+	<order>response_status</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Request Information - Request: "(\.*)"</regex>
+	<order>request</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>User Agent: "(\.*)"</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Body Bytes Sent: "(\.*)"</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Referer: "(\.*)"</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>Content Type: "(\.*)"</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="nginx-accesslog-fields">
+	<parent>nginx-accesslog</parent>
+	<regex>X_Forwarded_For: "(\.*)"</regex>
+	<order>x_forwarded_for</order>
+</decoder>
+<!--
+Jul 11 07:34:45 10.23.67.81 attack_type="Information Leakage,Other Application Activity",blocking_exception_reason="N/A",date_time="2023-07-11 07:34:44",dest_port="443",ip_client="192.168.134.249",is_truncated="false",method="GET",policy_name="app_protect_default_policy",protocol="HTTPS",request_status="alerted",response_code="502",severity="Notice",sig_cves="N/A",sig_ids="N/A",sig_names="N/A",sig_set_names="N/A",src_port="52042",sub_violations="N/A",support_id="8822104721734512236",threat_campaign_names="N/A",unit_hostname="az2hcswafv01d.iclcloud.hk",uri="/healthz",violation_rating="1",vs_name="10-cm-dev.crp.iclnet2.hk:10-/50x.html",x_forwarded_for_header_value="N/A",outcome="PASSED",outcome_reason="SECURITY_WAF_FLAGGED",violations="Illegal HTTP status in response,Unsupported browser",json_log="{""violations"":[{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_HTTP_RESPONSE_STATUS""}},{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_BROWSER""}}]}",violation_details="<?xml version='1.0' encoding='UTF-8'?><BAD_MSG><violation_masks><block>410000000000c00-3a03030c30000072-8000000000000000-0</block><alarm>477f0ffcb9d0fea-befbf35cb000007e-8000000000000000-0</alarm><learn>0-2-0-0</learn><staging>0-0-0-0</staging></violation_masks><request-violations><violation><viol_index>126</viol_index><viol_name>VIOL_BROWSER</viol_name><unknown_browser_action>alarm</unknown_browser_action></violation></request-violations><response_violations><violation><viol_index>56</viol_index><viol_name>VIOL_HTTP_RESPONSE_STATUS</viol_name><response_code>502</response_code></violation></response_violations></BAD_MSG>",bot_signature_name="N/A",bot_category="N/A",bot_anomalies="N/A",enforced_bot_anomalies="N/A",client_class="Unknown",client_application="N/A",client_application_version="N/A",request="GET /healthz HTTP/1.1\r\nHost: cm-dev.crp.iclnet2.hk\r\nConnection: Close\r\nConnection: close\r\n\r\n",transport_protocol="HTTP/1.1"
+-->
+<decoder name="nginx-securitylog">
+  <prematch>attack_type="\.*",blocking_exception_reason</prematch>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>date_time="(\.*)",</regex>
+	<order>event_time</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>attack_type="(\.*)",</regex>
+	<order>attack_type</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>blocking_exception_reason="(\.*)",</regex>
+	<order>blocking_exception_reason</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>dest_port="(\d*)",</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>ip_client="(\d+.\d+.\d+.\d+)",</regex>
+	<order>scrip</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>method="(\.*)",</regex>
+	<order>method</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>policy_name="(\.*)",</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>protocol="(\.*)",</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>response_code="(\d*)",</regex>
+	<order>response_code</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>severity="(\.*)",</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>src_port="(\d*)",</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>support_id="(\d*)",</regex>
+	<order>support_id</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>unit_hostname="(\.*)",</regex>
+	<order>hostname</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>uri="(\.*)",</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>violation_rating="(\.*)",</regex>
+	<order>violation_rating</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>violations="(\.*)",</regex>
+	<order>violations</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>bot_signature_name="(\.*)",</regex>
+	<order>bot_signature_name</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>bot_category="(\.*)",</regex>
+	<order>bot_category</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>bot_anomalies="(\.*)",</regex>
+	<order>bot_anomalies</order>
+</decoder>
+
+<!--
+Oct 22 08:42:16 10.22.67.81 attack_type="Predictable Resource Location,Other Application Activity,HTTP Parser Attack",blocking_exception_reason="N/A",date_time="2023-10-22 08:42:14",dest_port="443",ip_client="10.22.67.1",is_truncated="false",method="GET",policy_name="app_protect_security_policy_blocking",protocol="HTTPS",request_status="blocked",response_code="0",severity="Critical",sig_cves="N/A,N/A,N/A",sig_ids="200010098,200010021,200010104",sig_names="/trace access,""/Trace.axd"" access,Trace.axd file access",sig_set_names="{Predictable Resource Location Signatures},{Predictable Resource Location Signatures},{Predictable Resource Location Signatures}",src_port="54054",sub_violations="HTTP protocol compliance failed:Host header contains IP address",support_id="16688224470502884434",threat_campaign_names="N/A",unit_hostname="az1hcswafv01d.iclcloud.hk",uri="/trace.axd",violation_rating="4",vs_name="58-localhost:79-/404.html",x_forwarded_for_header_value="N/A",outcome="REJECTED",outcome_reason="SECURITY_WAF_VIOLATION",violations="HTTP protocol compliance failed,Attack signature detected,Violation Rating Threat detected",json_log="{""violations"":[{""enforcementState"":{""isBlocked"":false},""violation"":{""name"":""VIOL_HTTP_PROTOCOL""}},{""enforcementState"":{""isBlocked"":true},""violation"":{""name"":""VIOL_RATING_THREAT""}},{""enforcementState"":{""isBlocked"":false},""signature"":{""name"":""/trace access"",""signatureId"":200010098},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""}},{""enforcementState"":{""isBlocked"":false},""signature"":{""name"":""\""/Trace.axd\"" access"",""signatureId"":200010021},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""}},{""enforcementState"":{""isBlocked"":false},""signature"":{""name"":""Trace.axd file access"",""signatureId"":200010104},""violation"":{""name"":""VIOL_ATTACK_SIGNATURE""}}]}",violation_details="<?xml version='1.0' encoding='UTF-8'?><BAD_MSG><violation_masks><block>410000000000c00-3a03030c30000072-8000000000000000-0</block><alarm>477f0ffcbbd0fea-befbf35cb000007e-8000000000000000-0</alarm><learn>0-0-0-0</learn><staging>0-0-0-0</staging></violation_masks><request-violations><violation><viol_index>42</viol_index><viol_name>VIOL_ATTACK_SIGNATURE</viol_name><context>url</context><sig_data><sig_id>200010098</sig_id><blocking_mask>2</blocking_mask><kw_data><buffer>L3RyYWNlLmF4ZA==</buffer><offset>0</offset><length>6</length></kw_data></sig_data><sig_data><sig_id>200010021</sig_id><blocking_mask>2</blocking_mask><kw_data><buffer>L3RyYWNlLmF4ZA==</buffer><offset>0</offset><length>10</length></kw_data></sig_data><sig_data><sig_id>200010104</sig_id><blocking_mask>2</blocking_mask><kw_data><buffer>L3RyYWNlLmF4ZA==</buffer><offset>1</offset><length>9</length></kw_data></sig_data></violation><violation><viol_index>14</viol_index><viol_name>VIOL_HTTP_PROTOCOL</viol_name><http_sanity_checks_status>2048</http_sanity_checks_status><http_sub_violation_status>2048</http_sub_violation_status><http_sub_violation>SG9zdCBoZWFkZXIgd2l0aCBJUCB2YWx1ZTogMTAuMjIuNjcuODE=</http_sub_violation></violation><violation><viol_index>93</viol_index><viol_name>VIOL_RATING_THREAT</viol_name></violation></request-violations></BAD_MSG>",bot_signature_name="N/A",bot_category="N/A",bot_anomalies="N/A",enforced_bot_anomalies="N/A",client_class="Browser",client_application="Internet Explorer",client_application_version="8",transport_protocol="HTTP/1.1"
+-->
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>request_status="(\.*)",</regex>
+	<order>request_status</order>
+</decoder>
+<decoder name="nginx-securitylog-fields">
+	<parent>nginx-securitylog</parent>
+	<regex>outcome_reason="(\.*)",</regex>
+	<order>outcome_reason</order>
+</decoder>

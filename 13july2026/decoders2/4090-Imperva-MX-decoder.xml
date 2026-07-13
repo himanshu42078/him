@@ -1,0 +1,18 @@
+<!-- DEV-5829 -->
+<!--
+Dec  2 17:46:41 Imperva-MX Login failed Login failed for user netadmin7 (IP: 192.168.50.168) Reason: bad credentials High suser=netadmin7
+Dec  2 18:17:37 Imperva-MX User logged in User netadmin7 logged in from 192.168.50.168. High suser=netadmin7
+-->
+<decoder name="Imperva-MX">
+  <prematch>^User logged in User \S+ logged in from \d+.\d+.\d+.\d+. High suser=\S+$|^Login failed Login failed for user \S+ \pIP: \d+.\d+.\d+.\d+\p Reason: \.* High suser=\S+$</prematch>
+</decoder>
+<decoder name="Imperva-MX_fields">
+    <parent>Imperva-MX</parent>
+    <regex>User logged in User (\S+) logged in from (\d+.\d+.\d+.\d+). High suser=</regex>
+    <order>dstuser,srcip</order>
+</decoder>
+<decoder name="Imperva-MX_fields">
+    <parent>Imperva-MX</parent>
+    <regex>Login failed Login failed for user (\S+) \pIP: (\d+.\d+.\d+.\d+)\p</regex>
+    <order>dstuser,srcip</order>
+</decoder>

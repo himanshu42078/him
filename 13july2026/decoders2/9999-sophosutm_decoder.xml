@@ -1,0 +1,187 @@
+<decoder name="sophos-utm">
+  <program_name/>
+  <prematch>utm httpproxy|utm ulogd</prematch>
+</decoder>
+<decoder name="sophos-utm">
+	<program_name>^httpproxy</program_name>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> id="(\.*)"</regex>
+  <order>id</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> severity="(\.*)"</regex>
+  <order>severity</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> sys="(\.*)"</regex>
+  <order>sys</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> sub="(\.*)"</regex>
+  <order>sub</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> name="(\.*)"</regex>
+  <order>name</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> action="(\.*)"</regex>
+  <order>action</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> method="(\.*)"</regex>
+  <order>method</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> srcip="(\.*)"</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> dstip="(\.*)"</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> user="(\.*)"</regex>
+  <order>user</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> group="(\.*)"</regex>
+  <order>group</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> ad_domain="(\.*)"</regex>
+  <order>ad_domain</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> statuscode="(\.*)"</regex>
+  <order>statuscode</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> cached="(\.*)"</regex>
+  <order>cached</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> profile="(\.*)"</regex>
+  <order>profile</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> filteraction="(\.*)" size</regex>
+  <order>filteraction</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> size="(\.*)"</regex>
+  <order>size</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> request="(\.*)"</regex>
+  <order>request</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> url="(\.*)"</regex>
+  <order>url</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> url="\.+://(\.*)/"| url="\.+://(\.*)" | url="(\.*)/" | url="(\.*)"</regex>
+  <order>url_domain</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> url="\.*.(\w+.\w+)/"| url="\.*.(\w+.\w+)"| url="\.*(\w+.\w+)/"| url="\.*(\w+.\w+)"</regex>
+  <order>url_sld</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> referer="(\.*)"</regex>
+  <order>referer</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> error="(\.*)"</regex>
+  <order>error</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> authtime="(\.*)"</regex>
+  <order>authtime</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> dnstime="(\.*)"</regex>
+  <order>dnstime</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> aptptime="(\.*)"</regex>
+  <order>aptptime</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> cattime="(\.*)"</regex>
+  <order>cattime</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> avscantime="(\.*)"</regex>
+  <order>avscantime</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> fullreqtime="(\.*)"</regex>
+  <order>fullreqtime</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> device="(\.*)"</regex>
+  <order>device</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> auth="(\.*)"</regex>
+  <order>auth</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> ua="(\.*)"</regex>
+  <order>user_agent</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> exceptions="(\.*)"</regex>
+  <order>exceptions</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> category="(\.*)"</regex>
+  <order>category</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> reputation="(\.*)"</regex>
+  <order>reputation</order>
+</decoder>
+<decoder name="sophos-utm-fields">
+  <parent>sophos-utm</parent>
+  <regex> categoryname="(\.*)"</regex>
+  <order>categoryname</order>
+</decoder>

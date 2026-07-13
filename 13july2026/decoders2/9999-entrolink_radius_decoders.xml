@@ -1,0 +1,25 @@
+<!--May 3 18:28:02 203.236.122.112 dhcpd: DHCPDISCOVER from 14:dd:a9:d3:ea:1b via eth0: network 203.236.122.0/24: no free leases-->
+
+<decoder name="entrolink_radius">
+        <program_name>dhcpd</program_name>
+        <prematch>DHCPDISCOVER from</prematch>
+</decoder>
+
+<decoder name="entrolink_radius">
+        <program_name>radiusd</program_name>
+        <prematch>Ignoring request to</prematch>
+</decoder>
+
+<decoder name="entrolink_radius-field">
+	<parent>entrolink_radius</parent>
+    <regex offset="after_parent">(\S+) from (\S+) via (\S+):</regex>
+	<order>entrolink.pck,entrolink.mac,entrolink.interface</order>
+</decoder>
+
+<decoder name="entrolink_radius-field">
+	<parent>entrolink_radius</parent>
+	<regex>network (\S+):(\.+)</regex>
+	<order>dstip,entrolink.msg</order>
+</decoder>
+
+

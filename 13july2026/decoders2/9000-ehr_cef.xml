@@ -1,0 +1,98 @@
+
+<decoder name="ehr_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|eHR\|</prematch>
+</decoder>
+
+<decoder name="ehr_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|eHR\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="ehr_cef">
+	<prematch>CEF:\s*0\|eHR\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>Date=(\.+) \S+=</regex>
+    <order>cef.extensions.Date</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>LENGTH=(\.+) \S+=</regex>
+    <order>cef.extensions.LENGTH</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>ACTION=(\.+) \S+=</regex>
+    <order>cef.extensions.ACTION</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>DATABASEUSER=(\.+) \S+=</regex>
+    <order>cef.extensions.DATABASEUSER</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>PRIVILEGE=(\.+) \S+=</regex>
+    <order>cef.extensions.PRIVILEGE</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>CLIENTUSER=(\.+) \S+=</regex>
+    <order>cef.extensions.CLIENTUSER</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>CLIENTTERMINAL=(\.+) \S+=</regex>
+    <order>cef.extensions.CLIENTTERMINAL</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>STATUS=(\.+) \S+=</regex>
+    <order>cef.extensions.STATUS</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>DBID=(\.+) \S+=</regex>
+    <order>cef.extensions.DBID</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>SESSIONID=(\.+) \S+=</regex>
+    <order>cef.extensions.SESSIONID</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>USERHOST=(\.+) \S+=</regex>
+    <order>cef.extensions.USERHOST</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>CLIENTADDRESS=(\.+) \S+=</regex>
+    <order>cef.extensions.CLIENTADDRESS</order>
+</decoder>
+
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>ACTIONNUMBER=(\.*) \S+=|ACTIONNUMBER=(\.*)$</regex>
+    <order>cef.extensions.ACTIONNUMBER</order>
+</decoder>

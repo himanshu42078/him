@@ -1,0 +1,173 @@
+<!-- DEV-4973 -->
+<decoder name="Alcatel-Lucent-Firewall">
+    <prematch>\p\d+\p\S+\s+\d+ \d\d:\d\d:\d\d \S+ \S+: SerialNum=\S+ GenTime=</prematch>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>(\S+): SerialNum=</regex>
+    <order>type</order>
+</decoder>
+<!-- NAT -->
+<!--
+Aug 17 14:40:58 172.16.100.1  <326>Aug 17 14:42:03 CDXUZ-FW-01 NAT: SerialNum=100851002022070505431688 GenTime="2023-08-17 14:42:03" NatType="Source NAT" SrcIP=10.138.61.19 SrcPort=62648 DstIP=117.18.232.200 DstPort=443 BeforeTransAddr=10.138.61.19 AfterTransAddr=223.113.80.254 Protocol=TCP BeforeTransPort=62648 AfterTransPort=34101 PolicyID=1 Content="Session Backout" EvtCount=1
+-->
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>SerialNum=(\d+) \S+=</regex>
+    <order>SerialNum</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>SerialNum=(\d+) \S+=</regex>
+    <order>SerialNum</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>GenTime="(\.+)" \S+=</regex>
+    <order>GenTime</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>NatType="(\.+)" \S+=</regex>
+    <order>NatType</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>SrcIP=(\d+.\d+.\d+.\d+) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>SrcPort=(\d+) \S+=</regex>
+    <order>srcport</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>DstIP=(\d+.\d+.\d+.\d+) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>DstPort=(\d+) \S+=</regex>
+    <order>dstport</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>BeforeTransAddr=(\S+) \S+=</regex>
+    <order>BeforeTransAddr</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>AfterTransAddr=(\S+) \S+=</regex>
+    <order>AfterTransAddr</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>Protocol=(\S+) \S+=</regex>
+    <order>protocol</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>BeforeTransPort=(\d+) \S+=</regex>
+    <order>BeforeTransPort</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>AfterTransPort=(\d+) \S+=</regex>
+    <order>AfterTransPort</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>PolicyID=(\d+) \S+=</regex>
+    <order>PolicyID</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>Content="(\.+)" \S+=</regex>
+    <order>Content</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>EvtCount=(\d+)</regex>
+    <order>EvtCount</order>
+</decoder>
+
+<!-- FILTER -->
+<!--
+Aug 17 14:40:57 172.16.100.1  <318>Aug 17 14:42:03 CDXUZ-FW-01 FILTER: SerialNum=100851002022070505431688 GenTime="2023-08-17 14:42:03" SrcIP=10.138.61.202 DstIP=10.10.80.220 Protocol=UDP SrcPort=62221 DstPort=53 PolicyID=2 Action=PERMIT Content="Session Setup" EvtCount=1
+-->
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>Action=(\S+) \S+=</regex>
+    <order>Action</order>
+</decoder>
+
+<!-- CONNTRACK -->
+<!--
+Aug 17 14:40:57 172.16.100.1  <790>Aug 17 14:42:02 CDXUZ-FW-01 CONNTRACK: SerialNum=100851002022070505431688 GenTime="2023-08-17 14:42:02" SrcIP=10.138.63.81 DstIP=113.28.91.132 Application=ssl ReportReason="Timeout" Content="{"GeneralInfo":{"SrcIP":"10.138.63.81","DstIP":"113.28.91.132","Protocol":"TCP","SrcPort":"61082","DstPort":"443","InInterface":"ge0/3","OutInterface":"ge0/1","Existed":"00:00:07","Application":"ssl","FlowUp":"0.76KB","FlowDown":"1.63KB","ReportReason":"Timeout"},"Snat":{"BeforeTransAddr":"10.138.63.81","AfterTransAddr":"223.113.80.254","BeforeTransPort":"61082","AfterTransPort":"61082","PolicyID":"1"},"FwPolicy":{"PolicyID":"32","Action":"PERMIT"}}" EvtCount=1
+-->
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>Application=(\S+) \S+=</regex>
+    <order>Application</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>ReportReason="(\.+)" \S+=</regex>
+    <order>ReportReason</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>"Snat":{\.*"BeforeTransAddr":"(\.+)"</regex>
+    <order>Snat.BeforeTransAddr</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>"Snat":{\.*"AfterTransAddr":"(\.+)"</regex>
+    <order>Snat.AfterTransAddr</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>"Snat":{\.*"BeforeTransPort":"(\.+)"</regex>
+    <order>Snat.BeforeTransPort</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>"Snat":{\.*"AfterTransPort":"(\.+)"</regex>
+    <order>Snat.AfterTransPort</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>"Snat":{\.*"PolicyID":"(\.+)"</regex>
+    <order>Snat.PolicyID</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>"FwPolicy":{\.*"PolicyID":"(\.+)"</regex>
+    <order>FwPolicy.PolicyID</order>
+</decoder>
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>"FwPolicy":{\.*"Action":"(\.+)"</regex>
+    <order>FwPolicy.Action</order>
+</decoder>
+
+<!-- IPSECVPN -->
+<!--
+Aug 17 15:09:31 172.16.100.1  <269>Aug 17 15:10:37 CDXUZ-FW-01 IPSECVPN: SerialNum=100851002022070505431688 GenTime="2023-08-17 15:10:37" SrcIP=223.113.80.254 DstIP=210.177.245.148 Content="10.138.60.0/22to10.10.78.0/23: Deleting IPSEC sa(STATE_CHILDSA_DEL) for received delete informatin, serial id 4848."
+-->
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>Content="(\.+)"</regex>
+    <order>Content</order>
+</decoder>
+
+<!-- SSLVPN -->
+<!--
+Aug 17 14:49:52 172.16.100.1  <277>Aug 17 14:50:57 CDXUZ-FW-01 SSLVPN: SerialNum=100851002022070505431688 GenTime="2023-08-17 14:50:57" SrcIP=58.218.34.166 DstIP=223.113.80.254 DstPort=10443 UserName=michael.kwok@langhamhotels.com Content="auth failed"
+-->
+<decoder name="Alcatel-Lucent-Firewall-fields">
+    <parent>Alcatel-Lucent-Firewall</parent>
+    <regex>UserName=(\S+) \S+=</regex>
+    <order>dstuser</order>
+</decoder>

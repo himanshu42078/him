@@ -1,0 +1,94 @@
+<!-- DEV-3989 -->
+<!--
+Apr 17 17:19:31 192.168.1.41 CEF: 0|Infoexpress|CGX|2.3|dm|add-device-list|4|shost=hkmcplcaas1 start=Apr 17 2023 17:19:21 msg=Add device to list suser=hyfso-cs cat=application dmac=00:50:56:8A:89:6C dvc=192.168.1.226
+
+Apr 17 17:16:28 192.168.1.41 CEF: 0|Infoexpress|CGX|2.3|cgx-admin|login|4|shost=hkmcplcaas1 src=192.168.1.41 start=Apr 17 2023 17:16:19 msg=Admin logged in suser=hyfso-cs cat=system dvc=192.168.122.43
+
+Apr 17 09:42:09 192.168.1.41 CEF: 0|Infoexpress|CGX|2.3|cgx-admin|logout|4|shost=hkmcplcaas1 src=192.168.1.41 start=Apr 17 2023 09:42:00 msg=Admin logout suser=hyfso-cs cat=system dvc=192.168.122.43
+-->
+
+<decoder name="infoexpress_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Infoexpress\|</prematch>
+</decoder>
+
+<decoder name="infoexpress_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|Infoexpress\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="infoexpress_cef">
+	<prematch>CEF:\s*0\|Infoexpress\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>shost=(\.+) \S+=</regex>
+    <order>cef.extensions.shost</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>src=(\.+) \S+=</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>src=(\.+) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>start=(\.+) \S+=</regex>
+    <order>cef.extensions.start</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>start=(\.+) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>msg=(\.+) \S+=</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>cef.extensions.suser</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>srcuser</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>cat=(\.*) \S+=|cat=(\.*)$</regex>
+    <order>cef.extensions.cat</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>dvc=(\.*) \S+=|dvc=(\.*)$</regex>
+    <order>cef.extensions.dvc</order>
+</decoder>
+
+<decoder name="infoexpress_cef_fields">
+    <parent>infoexpress_cef</parent>
+    <regex>dmac=(\.+) \S+=</regex>
+    <order>cef.extensions.dmac</order>
+</decoder>

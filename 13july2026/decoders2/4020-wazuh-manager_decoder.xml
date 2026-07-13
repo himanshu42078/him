@@ -1,0 +1,67 @@
+<!-- DEV-5118 -->
+<!--
+2023/09/11 13:42:48 wazuh-authd[23101] main-server.c:587 at run_dispatcher(): INFO: New connection from 10.0.116.121
+-->
+<decoder name="wazuh-manager">
+	<prematch>^\d+/\d+/\d+ \d+:\d+:\d+ wazuh-authd|^\d+/\d+/\d+ \d+:\d+:\d+ wazuh-remoted|^\d+/\d+/\d+ \d+:\d+:\d+ wazuh-db|^\d+/\d+/\d+ \d+:\d+:\d+ wazuh-integratord</prematch>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>ERROR: Invalid password provided by (\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>ERROR: No such group '(\.+)' for agent '(\d+)'</regex>
+	<order>groupname, agent_id</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>ERROR: TCP peer \S+ at (\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>ERROR: Unable to update '(\S+)' table for agent '(\d+)'</regex>
+	<order>tablename, agent_id</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>INFO: Agent '(\d+)' \p(\S+)\p deleted</regex>
+	<order>agent_id, agent_name</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>INFO: Agent '(\d+)' won't be removed</regex>
+	<order>agent_id</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>INFO: New connection from (\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>INFO: Received request for a new agent \p(\S+)\p from: (\d+.\d+.\d+.\d+)</regex>
+	<order>agent_name, srcip</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>WARNING:\.+Invalid ID (\d+) for the source ip: '(\d+.\d+.\d+.\d+)' \pname '(\S+)'\p.</regex>
+	<order>agent_id, srcip, dstuser</order>
+</decoder>
+
+<decoder name="wazuh-manager-fields">
+	<parent>wazuh-manager</parent>
+	<regex>WARNING:\.+Authentication error. Wrong key or corrupt payload. Message received from agent '(\d+)'</regex>
+	<order>agent_id</order>
+</decoder>

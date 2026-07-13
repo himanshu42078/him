@@ -1,0 +1,252 @@
+<!-- Modify it at your will. -->
+<!-- Parent decoders-->
+<decoder name="02">
+  <program_name>^02$</program_name>
+</decoder>
+<decoder name="17">
+  <program_name>^17$</program_name>
+</decoder>
+<decoder name="23">
+  <program_name>^23$</program_name>
+</decoder>
+<!-- Child decoders-->
+<!-- '02'-->
+<decoder name="02-fields">
+  <parent>02</parent>
+  <regex>(\d+:\d+),(\d+\s\d+.\d+.\d+.\d+)</regex>
+  <order>windows_eventchannel.time,srcip</order>
+</decoder>
+<decoder name="02-fields">
+  <parent>02</parent>
+  <regex>Timestamp=(\.+),</regex>
+  <order>windows_eventchannel.Timestamp</order>
+</decoder>
+<decoder name="02-fields">
+  <parent>02</parent>
+  <regex>Component=(\.+),</regex>
+  <order>windows_eventchannel.Component</order>
+</decoder>
+<decoder name="02-fields">
+  <parent>02</parent>
+  <regex>Level=(\.+),</regex>
+  <order>windows_eventchannel.Level</order>
+</decoder>
+<decoder name="02-fields">
+  <parent>02</parent>
+  <regex>Category=(\.+),</regex>
+  <order>windows_eventchannel.Category</order>
+</decoder>
+<decoder name="02-fields">
+  <parent>02</parent>
+  <regex>Action=(\w+)</regex>
+  <order>windows_eventchannel.Action</order>
+</decoder>
+<decoder name="02-fields">
+  <parent>02</parent>
+  <regex>Description=(\.+)</regex>
+  <order>windows_eventchannel.Description</order>
+</decoder>
+<!-- '17' -->
+<!--
+Feb 25 17:39:47 2021-02-25 17: 39:46,50 10.2.62.64 Failed Authentications 1775 1 0 Common.Username=host/MV19090238J.hkcg.corp.towngas.com,Common.Service=Towngas 802.1x Wired (Prod)(MTK1F),Common.Roles=Towngas General PC, [Machine Authenticated],RADIUS.Auth-Source=AD:hkadnpb1.hkcg.corp.towngas.com,RADIUS.Auth-Method=EAP-PEAP,EAP-MSCHAPv2,Common.System-Posture-Token=HEALTHY,Common.Enforcement-Profiles=Towngas 802.1x Wired (Prod VLAN),Common.Host-MAC-Address=c8d9d230d5d4,Common.NAS-IP-Address=10.2.2.12,Common.Error-Code=0,Common.Request-Timestamp=2021-02-25 17:39:06+08
+-->
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>(\d+:\d+),(\d+\s\d+.\d+.\d+.\d+)</regex>
+  <order>windows_eventchannel.time,srcip</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.Username=(\.+),</regex>
+  <order>srcuser</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.Service=(\.+),</regex>
+  <order>windows_eventchannel.Service</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.Roles=(\.+),</regex>
+  <order>windows_eventchannel.Roles</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>RADIUS.Auth-Source=(\.+)</regex>
+  <order>windows_eventchannel.Auth-Source</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>RADIUS.Auth-Method=(\.+,\.+),</regex>
+  <order>windows_eventchannel.Auth-Method</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.System-Posture-Token=(\w+)</regex>
+  <order>windows_eventchannel.System-Posture-Token</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.Enforcement-Profiles=(\.+),</regex>
+  <order>windows_eventchannel.Enforcement-Profiles</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.Host-MAC-Address=(\.+),</regex>
+  <order>windows_eventchannel.Host-MAC-Address</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.NAS-IP-Address=(\d+.\d+.\d+.\d+)|Common.NAS-IP-Address=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)</regex>
+  <order>windows_eventchannel.NAS-IP-Address</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.Error-Code=(\d+)</regex>
+  <order>windows_eventchannel.Error-Code</order>
+</decoder>
+<decoder name="17-fields">
+  <parent>17</parent>
+  <regex>Common.Request-Timestamp=(\d+-\d+-\d+\s\d+:\d+:\d+\p\d+)</regex>
+  <order>windows_eventchannel.Request-Timestamp</order>
+</decoder>
+<!-- '23' -->
+<!--
+Feb 25 23:57:43 2021-02-25 23: 57:41,945 10.1.62.64 Failed Authentications 18291 1 0 Common.Username=0011329d7194,Common.Service=Towngas Wired Mac Auth,Common.Roles=Towngas Authorized Printer, [User Authenticated],RADIUS.Auth-Source=None,RADIUS.Auth-Method=MAC-AUTH,Common.System-Posture-Token=UNKNOWN,Common.Enforcement-Profiles=Towngas 802.1x Wired (Prod VLAN),Common.Host-MAC-Address=0011329d7194,Common.NAS-IP-Address=10.9.2.72,Common.Error-Code=0,Common.Request-Timestamp=2021-02-25 23:57:15+08
+Feb 25 23:57:43 2021-02-25 23: 57:41,945 10.1.62.64 Failed Authentications 18286 1 0 Common.Username=COMNPB\Lillian_Lai,Common.Service=Towngas 802.1x Wired (Prod)(NP15F),Common.Roles=Towngas General PC, [Machine Authenticated], [User Authenticated],RADIUS.Auth-Source=AD:hkadnpb1.hkcg.corp.towngas.com,RADIUS.Auth-Method=EAP-PEAP,EAP-MSCHAPv2,Common.System-Posture-Token=HEALTHY,Common.Enforcement-Profiles=Towngas 802.1x Wired (Prod VLAN),Common.Host-MAC-Address=c8d9d2308cc9,Common.NAS-IP-Address=10.9.1.155,Common.Error-Code=0,Common.Request-Timestamp=2021-02-25 23:55:46+08
+-->
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>(\d+:\d+),(\d+\s\d+.\d+.\d+.\d+)</regex>
+  <order>windows_eventchannel.time,srcip</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Timestamp=(\.+),</regex>
+  <order>windows_eventchannel.Timestamp</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.Username=(\.+),</regex>
+  <order>srcuser</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Username=(\.+),</regex>
+  <order>srcuser</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.Service=(\.+),</regex>
+  <order>windows_eventchannel.Service</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.Roles=(\.+),</regex>
+  <order>windows_eventchannel.Roles</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Auth-Source=(\.+),</regex>
+  <order>windows_eventchannel.Auth-Source</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Auth-Method=(\.+,\.+),</regex>
+  <order>windows_eventchannel.Auth-Method</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.System-Posture-Token=(\w+)</regex>
+  <order>windows_eventchannel.System-Posture-Token</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.Enforcement-Profiles=(\.+),</regex>
+  <order>windows_eventchannel.Enforcement-Profiles</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.Host-MAC-Address=(\.+),</regex>
+  <order>windows_eventchannel.Host-MAC-Address</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.NAS-IP-Address=(\d+.\d+.\d+.\d+)|Common.NAS-IP-Address=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-NAS-IP-Address=(\d+.\d+.\d+.\d+)|RADIUS.Acct-NAS-IP-Address=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Framed-IP-Address=(\d+.\d+.\d+.\d+)|RADIUS.Acct-Framed-IP-Address=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Session-Id=(\w+)</regex>
+  <order>windows_eventchannel.Acct-Session-Id</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Session-Time=(\d+)</regex>
+  <order>windows_eventchannel.Acct-Session-Time</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Output-Pkts=(\d+)</regex>
+  <order>windows_eventchannel.Acct-Output-Pkts</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Input-Pkts=(\d+)</regex>
+  <order>windows_eventchannel.Acct-Input-Pkts</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Output-Octets=(\d+)</regex>
+  <order>windows_eventchannel.Acct-Output-Octets</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Input-Octets=(\d+)</regex>
+  <order>windows_eventchannel.Acct-Input-Octets</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Service-Name=(\.+),</regex>
+  <order>windows_eventchannel.Acct-Service-Name</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-NAS-Port=(\d+)</regex>
+  <order>srcport</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-NAS-Port-Type=(\w+)</regex>
+  <order>windows_eventchannel.Acct-NAS-Port-Type</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Calling-Station-Id=(\w+-\w+-\w+-\w+-\w+-\w+)</regex>
+  <order>windows_eventchannel.Acct-Calling-Station-Id</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.Error-Code=(\d+)</regex>
+  <order>windows_eventchannel.Error-Code</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>Common.Request-Timestamp=(\d+-\d+-\d+\s\d+:\d+:\d+\p\d+)</regex>
+  <order>windows_eventchannel.Request-Timestamp</order>
+</decoder>
+<decoder name="23-fields">
+  <parent>23</parent>
+  <regex>RADIUS.Acct-Timestamp=(\d+-\d+-\d+\s\d+:\d+:\d+\p\d+)</regex>
+  <order>windows_eventchannel.Acct-Timestamp</order>
+</decoder>

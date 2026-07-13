@@ -1,0 +1,134 @@
+
+<decoder name="thycoticsoftware_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Thycotic Software\|</prematch>
+</decoder>
+
+<decoder name="thycoticsoftware_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|Thycotic Software\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="thycoticsoftware_cef">
+	<prematch>CEF:\s*0\|Thycotic Software\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>msg=(\.+) \S+=</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>suid=(\.+) \S+=</regex>
+    <order>cef.extensions.suid</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>cef.extensions.suser</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>srcuser</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>cs4=(\.+) \S+=</regex>
+    <order>cef.extensions.cs4</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>cs4Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs4Label</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>rt=(\.*) \S+=|rt=(\.*)$</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>rt=(\.*) \S+=|rt=(\.*)$</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>fname=(\.+) \S+=</regex>
+    <order>cef.extensions.fname</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>fname=(\.+) \S+=</regex>
+    <order>filename</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>fileType=(\.+) \S+=</regex>
+    <order>cef.extensions.fileType</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>fileId=(\.+) \S+=</regex>
+    <order>cef.extensions.fileId</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>cs3Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>cs3=(\.*) \S+=|cs3=(\.*)$</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>src=(\.+) \S+=</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>src=(\.+) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>duser=(\.+) \S+=</regex>
+    <order>cef.extensions.duser</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>duser=(\.+) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="thycoticsoftware_cef_fields">
+    <parent>thycoticsoftware_cef</parent>
+    <regex>duid=(\.+) \S+=</regex>
+    <order>cef.extensions.duid</order>
+</decoder>

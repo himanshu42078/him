@@ -1,0 +1,26 @@
+<!-- DEV-5881 -->
+<!--
+Dec 19 16:15:20 10.212.5.4  {"sourcetype": "je-workday", "deviceType": "Desktop", "activityAction": "READ", "requestTime": "2023-12-19T08:14:49.395Z", "sessionId": "64d387", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0", "taskDisplayName": "Get OMS Session Data (Web Service)", "taskId": "dc1bea8c446c11de98360015c5e6daf6", "systemAccount": "ShaoQing Li", "ipAddress": "103.9.194.74", "target": {"descriptor": "ShaoQing Li / ShaoQing Li \uff08\u674e\u5c11\u537f\uff09", "id": "b1a284bf2a240136bbe605b33e49e935"}}
+-->
+<decoder name="je-workday">
+  <prematch>{"sourcetype": "je-workday",</prematch>
+</decoder>
+<decoder name="je-workday-fields">
+  <parent>je-workday</parent>
+  <plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="je-workday-fields">
+    <parent>je-workday</parent>
+    <regex>"sourcetype": "(\.*)", "\S+":|"sourcetype": "(\.*)"}$</regex>
+    <order>logsource</order>
+</decoder>
+<decoder name="je-workday-fields">
+    <parent>je-workday</parent>
+    <regex>"ipAddress": "(\d+.\d+.\d+.\d+)", "\S+":|"ipAddress": "(\d+.\d+.\d+.\d+)"}$</regex>
+    <order>srcip</order>
+</decoder>
+<decoder name="je-workday-fields">
+    <parent>je-workday</parent>
+    <regex>"systemAccount": "(\.*)", "\S+":|"systemAccount": "(\.*)"}$</regex>
+    <order>dstuser</order>
+</decoder>

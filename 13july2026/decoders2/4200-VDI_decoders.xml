@@ -1,0 +1,43 @@
+<!-- DEV-5830 -->
+<!--
+Dec 19 09:31:37 Original Address=192.168.3.62 1 2023-12-19T09:31:37.180+08:00 NTPRDVDIA3.GTJA.COM.HK View - 73 [View@6876 Severity="AUDIT_SUCCESS" Module="Broker" EventType="BROKER_USERLOGGEDIN" UserSID="S-1-5-21-565778803-1153044154-926709054-6656" UserDisplayName="JAHK\\wyzheng" BrokerSessionId="a8455ee0_4e3f_4511_aaba_7af1d4fcf80e" ClientIpAddress="10.1.1.83" ForwardedClientIpAddress="38.181.79.76"] User JAHK\wyzheng has logged in
+Dec  8 09:54:02 Original Address=192.168.1.82 1 2023-12-08T09:54:02.635+08:00 NTPRDVDIA1.GTJA.COM.HK View - 141 [View@6876 Severity="AUDIT_FAIL" Module="Broker" *EventType="BROKER_USER_AUTHFAILED_BAD_USER_PASSWORD"* UserDisplayName="JAHK\\Zia.hu" ClientIpAddress="192.168.51.39" ForwardedClientIpAddress="192.168.51.39"] User JAHK\Zia.hu failed to authenticate because of a bad username or password
+-->
+<decoder name="VDI">
+  <prematch>^Address=\d+.\d+.\d+.\d+ \d+ \d+-\d+-\d+T\d+:\d+:\d+.\S+ \S+ \S+ - \d+ \p\S+ Severity=</prematch>
+</decoder>
+<decoder name="VDI-fields">
+    <parent>VDI</parent>
+    <regex>Severity="(\S+)"</regex>
+    <order>severity</order>
+</decoder>
+<decoder name="VDI-fields">
+    <parent>VDI</parent>
+    <regex>Module="(\S+)"</regex>
+    <order>Module</order>
+</decoder>
+<decoder name="VDI-fields">
+    <parent>VDI</parent>
+    <regex>EventType="(\S+)"</regex>
+    <order>EventType</order>
+</decoder>
+<decoder name="VDI-fields">
+    <parent>VDI</parent>
+    <regex>ClientIpAddress="(\d+.\d+.\d+.\d+)"</regex>
+    <order>ClientIpAddress</order>
+</decoder>
+<decoder name="VDI-fields">
+    <parent>VDI</parent>
+    <regex>ForwardedClientIpAddress="(\d+.\d+.\d+.\d+)"</regex>
+    <order>ForwardedClientIpAddress</order>
+</decoder>
+<decoder name="VDI-fields">
+    <parent>VDI</parent>
+    <regex>ForwardedClientIpAddress="\S+"] (\.+)$</regex>
+    <order>msg</order>
+</decoder>
+<decoder name="VDI-fields">
+    <parent>VDI</parent>
+    <regex>User (\S+) has logged in|User (\S+) failed to authenticate because of a bad username or password</regex>
+    <order>dstuser</order>
+</decoder>

@@ -1,0 +1,25 @@
+<!-- DEV-4336 -->
+<!--
+May 30 22:17:47 PwCSoCESXi53 Hostd: info hostd[2102076] [Originator@6876 sub=Vimsvc.ha-eventmgr opID=19a067dc user=vpxuser] Event 10760 : User vpxuser@172.18.0.28 logged out (login time: Tuesday, 30 May, 2023 10:17:47 PM, number of API invocations: 0, user agent: VMware-client/6.5.0)
+May 30 16:17:42 PwCSoCESXi60 Hostd: info hostd[2101670] [Originator@6876 sub=Vimsvc.ha-eventmgr opID=af97e05d] Event 9284 : User vpxuser@172.18.0.28 logged in as VMware-client/6.5.0
+May 31 04:23:31 TP-CL-Blade05 Hostd: info hostd[2100656] [Originator@6876 sub=Vimsvc.TaskManager opID=2a661383 user=vpxuser] Task Completed : haTask--vim.PerformanceManager.queryStats-1684779625 Status success
+-->
+<decoder name="hostd">
+    <program_name>hostd</program_name>
+</decoder>
+
+<decoder name="hostd-fields">
+    <parent>hostd</parent>
+    <regex>^(\S+) \S+ [\S+ sub=(\S+) opID=(\S+) user=\.*] Event (\d*) : (\.*)|^(\S+) \S+ [\S+ sub=(\S+) opID=(\S+)] Event (\d*) : (\.*)</regex>
+    <order>severity, sub, opid, event_number, msg</order>
+</decoder>
+<decoder name="hostd-fields">
+    <parent>hostd</parent>
+    <regex>^(\S+) \S+ [\S+ sub=(\S+) opID=(\S+) user=(\S+)] Task (\S+) : (\.*)</regex>
+    <order>severity, sub, opid, srcuser, action, msg</order>
+</decoder>
+<decoder name="hostd-fields">
+    <parent>hostd</parent>
+    <regex>User (\S+)@(\d+.\d+.\d+.\d+) logged out \(\.*user agent: (\S+)\)|User (\S+)@(\d+.\d+.\d+.\d+) logged in as (\S+)</regex>
+    <order>srcuser, srcip, user_agent</order>
+</decoder>

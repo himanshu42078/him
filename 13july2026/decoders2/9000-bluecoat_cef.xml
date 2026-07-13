@@ -1,0 +1,674 @@
+
+<decoder name="bluecoat_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|bluecoat\|</prematch>
+</decoder>
+
+<decoder name="bluecoat_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|bluecoat\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="bluecoat_cef">
+	<prematch>CEF:\s*0\|bluecoat\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>c-ip=(\.+) \S+=</regex>
+    <order>cef.extensions.c-ip</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-username=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-username</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-auth-groups=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-auth-groups</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-supplier-name=(\.+) \S+=</regex>
+    <order>cef.extensions.s-supplier-name</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-supplier-ip=(\.+) \S+=</regex>
+    <order>cef.extensions.s-supplier-ip</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-supplier-country="(\.*)" \S+=|s-supplier-country="(\.*)"$</regex>
+    <order>cef.extensions.s-supplier-country</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-supplier-failures=(\.+) \S+=</regex>
+    <order>cef.extensions.s-supplier-failures</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-id=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-id</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>sc-filter-result=(\.+) \S+=</regex>
+    <order>cef.extensions.sc-filter-result</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-categories=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-categories</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-Referer=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-Referer</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>sc-status=(\.+) \S+=</regex>
+    <order>cef.extensions.sc-status</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-action=(\.+) \S+=</regex>
+    <order>cef.extensions.s-action</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-method=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-method</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>rs-Content-Type=(\.+) \S+=</regex>
+    <order>cef.extensions.rs-Content-Type</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-uri-scheme=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-uri-scheme</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-host=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-host</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-uri-port=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-uri-port</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-uri-path=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-uri-path</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-uri-query="(\.*)" \S+=|cs-uri-query="(\.*)"$</regex>
+    <order>cef.extensions.cs-uri-query</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-uri-extension=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-uri-extension</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-User-Agent=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-User-Agent</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-ip=(\.+) \S+=</regex>
+    <order>cef.extensions.s-ip</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>sc-bytes=(\.+) \S+=</regex>
+    <order>cef.extensions.sc-bytes</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-bytes=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-bytes</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-virus-id=(\.+) \S+=</regex>
+    <order>cef.extensions.x-virus-id</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-bluecoat-application-name=(\.+) \S+=</regex>
+    <order>cef.extensions.x-bluecoat-application-name</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-bluecoat-application-operation=(\.+) \S+=</regex>
+    <order>cef.extensions.x-bluecoat-application-operation</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-bluecoat-application-groups=(\.+) \S+=</regex>
+    <order>cef.extensions.x-bluecoat-application-groups</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-threat-risk=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-threat-risk</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-bluecoat-transaction-uuid=(\.+) \S+=</regex>
+    <order>cef.extensions.x-bluecoat-transaction-uuid</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-icap-reqmod-header=(\.+) \S+=</regex>
+    <order>cef.extensions.x-icap-reqmod-header</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-icap-respmod-header="(\.*)" \S+=|x-icap-respmod-header="(\.*)"$</regex>
+    <order>cef.extensions.x-icap-respmod-header</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-certificate-observed-errors=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-certificate-observed-errors</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-ocsp-error=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-ocsp-error</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-ocsp-error=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-ocsp-error</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-connection-negotiated-cipher-strength=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-connection-negotiated-cipher-strength</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-certificate-hostname=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-certificate-hostname</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-certificate-hostname-category=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-certificate-hostname-category</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-certificate-hostname-threat-risk=(\.*) \S+=|x-rs-certificate-hostname-threat-risk=(\.*)$</regex>
+    <order>cef.extensions.x-rs-certificate-hostname-threat-risk</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>rs-bytes=(\.+) \S+=</regex>
+    <order>cef.extensions.rs-bytes</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>c-starttime=(\.+) \S+=</regex>
+    <order>cef.extensions.c-starttime</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>filelength=(\.+) \S+=</regex>
+    <order>cef.extensions.filelength</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>filesize=(\.+) \S+=</regex>
+    <order>cef.extensions.filesize</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>avgbandwidth=(\.+) \S+=</regex>
+    <order>cef.extensions.avgbandwidth</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-streaming-content=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-streaming-content</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-streaming-rtmp-app-name=(\.+) \S+=</regex>
+    <order>cef.extensions.x-streaming-rtmp-app-name</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-streaming-rtmp-stream-name=(\.+) \S+=</regex>
+    <order>cef.extensions.x-streaming-rtmp-stream-name</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-streaming-rtmp-swf-url=(\.+) \S+=</regex>
+    <order>cef.extensions.x-streaming-rtmp-swf-url</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-streaming-rtmp-page-url=(\.+) \S+=</regex>
+    <order>cef.extensions.x-streaming-rtmp-page-url</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-dns=(\.+) \S+=</regex>
+    <order>cef.extensions.s-dns</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-session-id=(\.+) \S+=</regex>
+    <order>cef.extensions.s-session-id</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cache-info=(\.*) \S+=|x-cache-info=(\.*)$</regex>
+    <order>cef.extensions.x-cache-info</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-ip=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-ip</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>dnslookup-time=(\.+) \S+=</regex>
+    <order>cef.extensions.dnslookup-time</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>duration=(\.+) \S+=</regex>
+    <order>cef.extensions.duration</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>rs-status=(\.+) \S+=</regex>
+    <order>cef.extensions.rs-status</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>rs-version=(\.+) \S+=</regex>
+    <order>cef.extensions.rs-version</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>time-taken=(\.+) \S+=</regex>
+    <order>cef.extensions.time-taken</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>c-url=(\.+) \S+=</regex>
+    <order>cef.extensions.c-url</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>c-cpu=(\.+) \S+=</regex>
+    <order>cef.extensions.c-cpu</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>connect-time=(\.+) \S+=</regex>
+    <order>cef.extensions.connect-time</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>cs-headerlength=(\.+) \S+=</regex>
+    <order>cef.extensions.cs-headerlength</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>r-ip=(\.+) \S+=</regex>
+    <order>cef.extensions.r-ip</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>r-supplier-ip=(\.+) \S+=</regex>
+    <order>cef.extensions.r-supplier-ip</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>rs-time-taken=(\.+) \S+=</regex>
+    <order>cef.extensions.rs-time-taken</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>rs-server=(\.+) \S+=</regex>
+    <order>cef.extensions.rs-server</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-connect-type=(\.+) \S+=</regex>
+    <order>cef.extensions.s-connect-type</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-icap-status=(\.+) \S+=</regex>
+    <order>cef.extensions.s-icap-status</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-sitename=(\.+) \S+=</regex>
+    <order>cef.extensions.s-sitename</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>s-source-port=(\.+) \S+=</regex>
+    <order>cef.extensions.s-source-port</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>sc-Content-Encoding=(\.+) \S+=</regex>
+    <order>cef.extensions.sc-Content-Encoding</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>sr-Accept-Encoding=(\.+) \S+=</regex>
+    <order>cef.extensions.sr-Accept-Encoding</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-auth-credential-type=(\.+) \S+=</regex>
+    <order>cef.extensions.x-auth-credential-type</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cookie-date=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cookie-date</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-certificate-subject=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-certificate-subject</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-connection-negotiated-cipher=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-connection-negotiated-cipher</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-connection-negotiated-cipher-size=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-connection-negotiated-cipher-size</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-connection-negotiated-ssl-version=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-connection-negotiated-ssl-version</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-address=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-address</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-extension=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-extension</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-host=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-host</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-hostname=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-hostname</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-path=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-path</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-pathquery=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-pathquery</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-port=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-port</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-query=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-query</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-scheme=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-scheme</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-cs-Referer-uri-stem=(\.+) \S+=</regex>
+    <order>cef.extensions.x-cs-Referer-uri-stem</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-category=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-category</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-category-review-message=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-category-review-message</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-company-name=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-company-name</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-contact=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-contact</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-details=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-details</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-header=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-header</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-help=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-help</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-last-error=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-last-error</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-reason=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-reason</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-sourcefile=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-sourcefile</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-sourceline=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-sourceline</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-exception-summary=(\.+) \S+=</regex>
+    <order>cef.extensions.x-exception-summary</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-icap-error-code=(\.+) \S+=</regex>
+    <order>cef.extensions.x-icap-error-code</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-certificate-subject=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-certificate-subject</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-certificate-validate-status=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-certificate-validate-status</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-connection-negotiated-cipher=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-connection-negotiated-cipher</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-connection-negotiated-cipher-size=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-connection-negotiated-cipher-size</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>x-rs-connection-negotiated-ssl-version=(\.+) \S+=</regex>
+    <order>cef.extensions.x-rs-connection-negotiated-ssl-version</order>
+</decoder>
+
+<decoder name="bluecoat_cef_fields">
+    <parent>bluecoat_cef</parent>
+    <regex>c-uri-pathquery=(\.*) \S+=|c-uri-pathquery=(\.*)$</regex>
+    <order>cef.extensions.c-uri-pathquery</order>
+</decoder>

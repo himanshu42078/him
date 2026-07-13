@@ -1,0 +1,776 @@
+<!-- DEV-364 -->
+<decoder name="impervainc_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Imperva Inc.\|</prematch>
+</decoder>
+
+<decoder name="impervainc_cef">
+    <program_name></program_name>
+    <prematch>CEF:\s*0\|Imperva Inc.\|</prematch>
+</decoder>
+
+<decoder name="impervainc_cef">
+    <prematch>CEF:\s*0\|Imperva Inc.\|</prematch>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wact="(\.*)" \S+=|\Wact="(\.*)"$|\Wact=(\.*) \S+=|\Wact=(\.*)$</regex>
+    <order>cef.extensions.act</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wact="(\.*)" \S+=|\Wact="(\.*)"$|\Wact=(\.*) \S+=|\Wact=(\.*)$</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wdst="(\.*)" \S+=|\Wdst="(\.*)"$|\Wdst=(\.*) \S+=|\Wdst=(\.*)$</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wdst="(\.*)" \S+=|\Wdst="(\.*)"$|\Wdst=(\.*) \S+=|\Wdst=(\.*)$</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wdpt="(\.*)" \S+=|\Wdpt="(\.*)"$|\Wdpt=(\.*) \S+=|\Wdpt=(\.*)$</regex>
+    <order>cef.extensions.dpt</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wdpt="(\.*)" \S+=|\Wdpt="(\.*)"$|\Wdpt=(\.*) \S+=|\Wdpt=(\.*)$</regex>
+    <order>dstport</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wduser="(\.*)" \S+=|\Wduser="(\.*)"$|\Wduser=(\.*) \S+=|\Wduser=(\.*)$</regex>
+    <order>cef.extensions.duser</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wduser="(\.*)" \S+=|\Wduser="(\.*)"$|\Wduser=(\.*) \S+=|\Wduser=(\.*)$</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wsrc="(\.*)" \S+=|\Wsrc="(\.*)"$|\Wsrc=(\.*) \S+=|\Wsrc=(\.*)$</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wsrc="(\.*)" \S+=|\Wsrc="(\.*)"$|\Wsrc=(\.*) \S+=|\Wsrc=(\.*)$</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wspt="(\.*)" \S+=|\Wspt="(\.*)"$|\Wspt=(\.*) \S+=|\Wspt=(\.*)$</regex>
+    <order>cef.extensions.spt</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wspt="(\.*)" \S+=|\Wspt="(\.*)"$|\Wspt=(\.*) \S+=|\Wspt=(\.*)$</regex>
+    <order>srcport</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wproto="(\.*)" \S+=|\Wproto="(\.*)"$|\Wproto=(\.*) \S+=|\Wproto=(\.*)$</regex>
+    <order>cef.extensions.proto</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wproto="(\.*)" \S+=|\Wproto="(\.*)"$|\Wproto=(\.*) \S+=|\Wproto=(\.*)$</regex>
+    <order>protocol</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wrt="(\.*)" \S+=|\Wrt="(\.*)"$|\Wrt=(\.*) \S+=|\Wrt=(\.*)$</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wrt="(\.*)" \S+=|\Wrt="(\.*)"$|\Wrt=(\.*) \S+=|\Wrt=(\.*)$</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcat="(\.*)" \S+=|\Wcat="(\.*)"$|\Wcat=(\.*) \S+=|\Wcat=(\.*)$</regex>
+    <order>cef.extensions.cat</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs1="(\.*)" \S+=|\Wcs1="(\.*)"$|\Wcs1=(\.*) \S+=|\Wcs1=(\.*)$</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs1Label="(\.*)" \S+=|\Wcs1Label="(\.*)"$|\Wcs1Label=(\.*) \S+=|\Wcs1Label=(\.*)$</regex>
+    <order>cef.extensions.cs1Label</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs2="(\.*)" \S+=|\Wcs2="(\.*)"$|\Wcs2=(\.*) \S+=|\Wcs2=(\.*)$</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs2Label="(\.*)" \S+=|\Wcs2Label="(\.*)"$|\Wcs2Label=(\.*) \S+=|\Wcs2Label=(\.*)$</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs3="(\.*)" \S+=|\Wcs3="(\.*)"$|\Wcs3=(\.*) \S+=|\Wcs3=(\.*)$</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs3Label="(\.*)" \S+=|\Wcs3Label="(\.*)"$|\Wcs3Label=(\.*) \S+=|\Wcs3Label=(\.*)$</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs4="(\.*)" \S+=|\Wcs4="(\.*)"$|\Wcs4=(\.*) \S+=|\Wcs4=(\.*)$</regex>
+    <order>cef.extensions.cs4</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs4Label="(\.*)" \S+=|\Wcs4Label="(\.*)"$|\Wcs4Label=(\.*) \S+=|\Wcs4Label=(\.*)$</regex>
+    <order>cef.extensions.cs4Label</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs5="(\.*)" \S+=|\Wcs5="(\.*)"$|\Wcs5=(\.*) \S+=|\Wcs5=(\.*)$</regex>
+    <order>cef.extensions.cs5</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs5Label="(\.*)" \S+=|\Wcs5Label="(\.*)"$|\Wcs5Label=(\.*) \S+=|\Wcs5Label=(\.*)$</regex>
+    <order>cef.extensions.cs5Label</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WrequestMethod="(\.*)" \S+=|\WrequestMethod="(\.*)"$|\WrequestMethod=(\.*) \S+=|\WrequestMethod=(\.*)$</regex>
+    <order>cef.extensions.requestMethod</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WrequestHost="(\.*)" \S+=|\WrequestHost="(\.*)"$|\WrequestHost=(\.*) \S+=|\WrequestHost=(\.*)$</regex>
+    <order>cef.extensions.requestHost</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wurl="(\.*)" \S+=|\Wurl="(\.*)"$|\Wurl=(\.*) \S+=|\Wurl=(\.*)$</regex>
+    <order>cef.extensions.url</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WresponseCode="(\.*)" \S+=|\WresponseCode="(\.*)"$|\WresponseCode=(\.*) \S+=|\WresponseCode=(\.*)$</regex>
+    <order>cef.extensions.responseCode</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WrequestClientApplication="(\.*)" \S+=|\WrequestClientApplication="(\.*)"$|\WrequestClientApplication=(\.*) \S+=|\WrequestClientApplication=(\.*)$</regex>
+    <order>cef.extensions.requestClientApplication</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WdeviceExternalId="(\.*)" \S+=|\WdeviceExternalId="(\.*)"$|\WdeviceExternalId=(\.*) \S+=|\WdeviceExternalId=(\.*)$</regex>
+    <order>cef.extensions.deviceExternalId</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WexternalId="(\.*)" \S+=|\WexternalId="(\.*)"$|\WexternalId=(\.*) \S+=|\WexternalId=(\.*)$</regex>
+    <order>cef.extensions.externalId</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wreason="(\.*)" \S+=|\Wreason="(\.*)"$|\Wreason=(\.*) \S+=|\Wreason=(\.*)$</regex>
+    <order>cef.extensions.reason</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WflexString2Label="(\.*)" \S+=|\WflexString2Label="(\.*)"$|\WflexString2Label=(\.*) \S+=|\WflexString2Label=(\.*)$</regex>
+    <order>cef.extensions.flexString2Label</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WflexString2="(\.*)" \S+=|\WflexString2="(\.*)"$|\WflexString2=(\.*) \S+=|\WflexString2=(\.*)$</regex>
+    <order>cef.extensions.flexString2</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs6Label="(\.*)" \S+=|\Wcs6Label="(\.*)"$|\Wcs6Label=(\.*) \S+=|\Wcs6Label=(\.*)$</regex>
+    <order>cef.extensions.cs6Label</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcs6="(\.*)" \S+=|\Wcs6="(\.*)"$|\Wcs6=(\.*) \S+=|\Wcs6=(\.*)$</regex>
+    <order>cef.extensions.cs6</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wrequest="(\.*)" \S+=|\Wrequest="(\.*)"$|\Wrequest=(\.*) \S+=|\Wrequest=(\.*)$</regex>
+    <order>cef.extensions.request</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WflexString1Label="(\.*)" \S+=|\WflexString1Label="(\.*)"$|\WflexString1Label=(\.*) \S+=|\WflexString1Label=(\.*)$</regex>
+    <order>cef.extensions.flexString1Label</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WflexString1="(\.*)" \S+=|\WflexString1="(\.*)"$|\WflexString1=(\.*) \S+=|\WflexString1=(\.*)$</regex>
+    <order>cef.extensions.flexString1</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wid="(\.*)" \S+=|\Wid="(\.*)"$|\Wid=(\.*) \S+=|\Wid=(\.*)|\Wid="(\.*)"$</regex>
+    <order>cef.extensions.id</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wcharset="(\.*)" \S+=|\Wcharset="(\.*)"$|\Wcharset=(\.*) \S+=|\Wcharset=(\.*)$</regex>
+    <order>cef.extensions.charset</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WAuthorization="(\.*)" \S+=|\WAuthorization="(\.*)"$|\WAuthorization=(\.*) \S+=|\WAuthorization=(\.*)$</regex>
+    <order>cef.extensions.Authorization</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WVia="(\.*)" \S+=|\WVia="(\.*)"$|\WVia=(\.*) \S+=|\WVia=(\.*)$</regex>
+    <order>cef.extensions.Via</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WC_platform="(\.*)" \S+=|\WC_platform="(\.*)"$|\WC_platform=(\.*) \S+=|\WC_platform=(\.*)$</regex>
+    <order>cef.extensions.C_platform</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WOrigin="(\.*)" \S+=|\WOrigin="(\.*)"$|\WOrigin=(\.*) \S+=|\WOrigin=(\.*)$</regex>
+    <order>cef.extensions.Origin</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wauthorization="(\.*)" \S+=|\Wauthorization="(\.*)"$|\Wauthorization=(\.*) \S+=|\Wauthorization=(\.*)$</regex>
+    <order>cef.extensions.authorization</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Worigin="(\.*)" \S+=|\Worigin="(\.*)"$|\Worigin=(\.*) \S+=|\Worigin=(\.*)$</regex>
+    <order>cef.extensions.origin</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WlastCached="(\.*)" \S+=|\WlastCached="(\.*)"$|\WlastCached=(\.*) \S+=|\WlastCached=(\.*)$</regex>
+    <order>cef.extensions.lastCached</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WDnt="(\.*)" \S+=|\WDnt="(\.*)"$|\WDnt=(\.*) \S+=|\WDnt=(\.*)$</regex>
+    <order>cef.extensions.Dnt</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WCharset="(\.*)" \S+=|\WCharset="(\.*)"$|\WCharset=(\.*) \S+=|\WCharset=(\.*)$</regex>
+    <order>cef.extensions.Charset</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wallow_url_include="(\.*)" \S+=|\Wallow_url_include="(\.*)"$|\Wallow_url_include=(\.*) \S+=|\Wallow_url_include=(\.*)$</regex>
+    <order>cef.extensions.allow_url_include</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\Wauto_prepend_file="(\.*)" \S+=|\Wauto_prepend_file="(\.*)"$|\Wauto_prepend_file=(\.*) \S+=|\Wauto_prepend_file=(\.*)$</regex>
+    <order>cef.extensions.auto_prepend_file</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WRange="(\.*)" \S+=|\WRange="(\.*)"$|\WRange=(\.*) \S+=|\WRange=(\.*)$</regex>
+    <order>cef.extensions.Range</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+    <parent>impervainc_cef</parent>
+    <regex>\WREMOTE_ADDR="(\.*)" \S+=|\WREMOTE_ADDR="(\.*)"$|\WREMOTE_ADDR=(\.*) \S+=|\WREMOTE_ADDR=(\.*)$</regex>
+    <order>cef.extensions.REMOTE_ADDR</order>
+</decoder>
+
+
+<!-- Customizied field -->
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>msg=(\.+)  start=</regex>
+	<order>msg</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>cs3=(\.+)\scs3Label=Description</regex>
+	<order>msg</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>responseCode=(\S+)</regex>
+	<order>status</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>User-Agent==(\.+);;;</regex>
+	<order>user_agent</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>Referer==(\.+);;;</regex>
+	<order>referer</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>X-Forwarded-For==(\.+);;;</regex>
+	<order>xff</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">	
+	<parent>impervainc_cef</parent>	
+	<regex>Pragma==(\.+);;;</regex>	
+	<order>Pragma</order>	
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>Cookie==(\.+);;;</regex>
+	<order>cookie</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>Content-Length==(\.+);;;</regex>
+	<order>content_length</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>From==(\.+);;;</regex>
+	<order>from</order>
+</decoder>
+
+
+
+<!-- cs5 -->
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"thr-services"\\="(\S*)"</regex>
+	<order>cef.extensions.thr-services</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"simulation-mode"\\="(\S+)"</regex>
+	<order>cef.extensions.simulation-mode</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"client-type"\\="(\S*)"</regex>
+	<order>cef.extensions.client-type</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"bot-classification"\\="(\S*)"</regex>
+	<order>cef.extensions.bot-classification</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"is-soap"\\="(\S+)"</regex>
+	<order>cef.extensions.is-soap</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"soap-action"\\="(\S*)"</regex>
+	<order>cef.extensions.soap-action</order>
+</decoder>
+<!-- End of cs5 -->
+
+<!--flexString2 -->
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"response-size"\\="(\.*)"</regex>
+	<order>cef.extensions.response-size</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"response-time"\\="(\.*)"</regex>
+	<order>cef.extensions.response-time</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"response-code"\\="(\.*)"</regex>
+	<order>cef.extensions.response-code</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"http-version"\\="(\.*)"</regex>
+	<order>cef.extensions.http-version</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"session-id"\\="(\.*)"</regex>
+	<order>cef.extensions.session-id</order>
+</decoder>
+<!-- End of flexString2 -->
+
+<!-- cs6 -->
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"signature-pattern"\\=(\S*) "part</regex>
+	<order>cef.extensions.signature-pattern</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"simulation-mode"\\="(\.+)"</regex>
+	<order>cef.extensions.simulation-mode</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"part\\=\\\\"(\.+)""</regex>
+	<order>cef.extensions.part</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"pattern-id"\\= "(\.+)"</regex>
+	<order>cef.extensions.pattern-id</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"position"\\= "(\.+)"</regex>
+	<order>cef.extensions.position</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"location"\\= "(\.*)"</regex>
+	<order>cef.extensions.location</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"policy-id"\\= "(\.*)"</regex>
+	<order>cef.extensions.policy-id</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"dictionary-id"\\= "(\.*)"</regex>
+	<order>cef.extensions.dictionary-id</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"matched-text"\\= "(\.*)"</regex>
+	<order>cef.extensions.matched-text</order>
+</decoder>
+<!-- End of cs6 -->
+
+<!-- flexString1 -->
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"ajaxUpdateAreaIds"\\="(\.+)",</regex>
+	<order>cef.extensions.ajaxUpdateAreaIds</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"validationScope"\\="(\.+)"</regex>
+	<order>cef.extensions.validationScope</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"param1"\\="(\.*)"</regex>
+	<order>cef.extensions.param1</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"param2"\\="(\.*)"</regex>
+	<order>cef.extensions.param2</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"param3"\\="(\.*)"</regex>
+	<order>cef.extensions.param3</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"param4"\\="(\.*)"</regex>
+	<order>cef.extensions.param4</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"param5"\\="(\.*)"</regex>
+	<order>cef.extensions.param5</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"xpos"\\="(\.*)"</regex>
+	<order>cef.extensions.xpos</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"ypos"\\="(\.*)"</regex>
+	<order>cef.extensions.ypos</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"__componentstate__"\\="(\.*)"</regex>
+	<order>cef.extensions.componentstate</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"accessToken"\\="(\.*)"</regex>
+	<order>cef.extensions.accessToken</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"__pagevalue__\S+_preferences"\\="(\.*)"</regex>
+	<order>cef.extensions.pagevaluePreferences</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"__pagevalue__\S+_page"\\="(\.*)"</regex>
+	<order>cef.extensions.pagevaluePage</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"screenState"\\="(\S+)</regex>
+	<order>cef.extensions.screenState</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Host"\\="(\S+)"</regex>
+	<order>cef.extensions.host</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Connection"\\="(\S+)"</regex>
+	<order>cef.extensions.connection</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Content-Length"\\="(\S+)"</regex>
+	<order>cef.extensions.contentLength</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Cache-Control"\\="(\.*)"</regex>
+	<order>cef.extensions.cacheControl</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"sec-ch-ua"\\="(\.*)", "sec-ch-ua-mobile"</regex>
+	<order>cef.extensions.sec-ch-ua</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"sec-ch-ua-mobile"\\="(\.*)"</regex>
+	<order>cef.extensions.sec-ch-ua-mobile</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"sec-ch-ua-platform"\\=""(\.*)""</regex>
+	<order>cef.extensions.sec-ch-ua-platform</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Upgrade-Insecure-Requests"\\="(\.*)"</regex>
+	<order>cef.extensions.Upgrade-Insecure-Requests</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Origin"\\="(\.*)"</regex>
+	<order>cef.extensions.origin</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Content-Type"\\="(\.*)"</regex>
+	<order>cef.extensions.contentType</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"User-Agent"\\="(\.*)"</regex>
+	<order>cef.extensions.userAgent</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Accept"\\="(\.*)"</regex>
+	<order>cef.extensions.accept</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Sec-Fetch-Site"\\="(\.*)"</regex>
+	<order>cef.extensions.Sec-Fetch-Site</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Sec-Fetch-Mode"\\="(\.*)"</regex>
+	<order>cef.extensions.Sec-Fetch-Mode</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Sec-Fetch-User"\\="(\.*)"</regex>
+	<order>cef.extensions.Sec-Fetch-User</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Sec-Fetch-Dest"\\="(\.*)"</regex>
+	<order>cef.extensions.Sec-Fetch-Dest</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Referer"\\="(\.*)"</regex>
+	<order>cef.extensions.referer</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Accept-Encoding"\\="(\.*)"</regex>
+	<order>cef.extensions.acceptEncoding</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Accept-Language"\\="(\.*)",</regex>
+	<order>cef.extensions.acceptLanguage</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>"Cookie"\\="(\.*)" requestCookies=</regex>
+	<order>cef.extensions.cookie</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>requestCookies="(\.*)"</regex>
+	<order>cef.extensions.requestCookies</order>
+</decoder>
+<!-- End of flexString1 -->
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>(Imperva)</regex>
+	<order>cef.product</order>
+</decoder>
+
+<decoder name="impervainc_cef_fields">
+	<parent>impervainc_cef</parent>
+	<regex>requestHost=(\S+)</regex>
+	<order>url_domain</order>
+</decoder>

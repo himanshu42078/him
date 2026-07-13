@@ -1,0 +1,226 @@
+
+<decoder name="kasperskylab_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|KasperskyLab\|</prematch>
+</decoder>
+
+<decoder name="kasperskylab_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|KasperskyLab\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="kasperskylab_cef">
+	<prematch>CEF:\s*0\|KasperskyLab\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>msg=(\.+) \S+=</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>rt=(\.+) \S+=</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>rt=(\.+) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs9=(\.+) \S+=</regex>
+    <order>cef.extensions.cs9</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs9Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs9Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>dhost=(\.+) \S+=</regex>
+    <order>cef.extensions.dhost</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>dst=(\.+) \S+=</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>dst=(\.+) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs2=(\.+) \S+=</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs2Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs3=(\.+) \S+=</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs3Label=(\.*) \S+=|cs3Label=(\.*)$</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs10=(\.+) \S+=</regex>
+    <order>cef.extensions.cs10</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs10Label=(\.*) \S+=|cs10Label=(\.*)$</regex>
+    <order>cef.extensions.cs10Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs4=(\.+) \S+=</regex>
+    <order>cef.extensions.cs4</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs4Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs4Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cn2=(\.+) \S+=</regex>
+    <order>cef.extensions.cn2</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cn2Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cn2Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cn1=(\.+) \S+=</regex>
+    <order>cef.extensions.cn1</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cn1Label=(\.*) \S+=|cn1Label=(\.*)$</regex>
+    <order>cef.extensions.cn1Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>fname=(\.+) \S+=</regex>
+    <order>cef.extensions.fname</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>fname=(\.+) \S+=</regex>
+    <order>filename</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>fileType=(\.*) \S+=|fileType=(\.*)$</regex>
+    <order>cef.extensions.fileType</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs5=(\.+) \S+=</regex>
+    <order>cef.extensions.cs5</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs5Label=(\.*) \S+=|cs5Label=(\.*)$</regex>
+    <order>cef.extensions.cs5Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs6=(\.+) \S+=</regex>
+    <order>cef.extensions.cs6</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>cs6Label=(\.*) \S+=|cs6Label=(\.*)$</regex>
+    <order>cef.extensions.cs6Label</order>
+</decoder>
+
+<decoder name="kasperskylab_cef_fields">
+    <parent>kasperskylab_cef</parent>
+    <regex>deviceExternalId=(\.*) \S+=|deviceExternalId=(\.*)$</regex>
+    <order>cef.extensions.deviceExternalId</order>
+</decoder>
+
+<!-- Customized fields -->
+<decoder name="kasperskylab_cef_fields">
+	<parent>kasperskylab_cef</parent>
+	<regex>filePath=(\.+)\s\w+=|filePath=(\.+)\s$</regex>
+	<order>cef.extensions.filePath</order>
+</decoder>
+<decoder name="kasperskylab_cef_fields">
+	<parent>kasperskylab_cef</parent>
+	<regex>duser=(\.+) \w+=|duser=(\.+)\s$</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="kasperskylab_cef_fields">
+	<parent>kasperskylab_cef</parent>
+	<regex>User: (\.+) \(</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="kasperskylab_cef_fields">
+	<parent>kasperskylab_cef</parent>
+	<regex>SHA256:\s(\S+)</regex>
+	<order>cef.extensions.SHA256</order>
+</decoder>
+<decoder name="kasperskylab_cef_fields">
+	<parent>kasperskylab_cef</parent>
+	<regex>MD5:\s(\S+)</regex>
+	<order>cef.extensions.MD5</order>
+</decoder>
+<!-- DEV-5172 -->
+<decoder name="kasperskylab_cef_fields">
+	<parent>kasperskylab_cef</parent>
+	<regex>msg=Result:\s*\S+: (\.+)\\r\\n\S+:</regex>
+	<order>signature</order>
+</decoder>
+<decoder name="kasperskylab_cef_fields">
+	<parent>kasperskylab_cef</parent>
+	<regex>Hash:     (\.+)\\r\\n \S+=</regex>
+	<order>hash</order>
+</decoder>

@@ -1,0 +1,125 @@
+<!-- ####### Opswat - Melco Log start from here ####### -->
+
+<decoder name="opswat_melco">
+	<prematch>CEF:\s*0\|OPSWAT\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>(\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\w)\s+(\S+)</regex>
+	<order>timestamp, hostname</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>CEF:(\d+)\|(OPSWAT)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\d+)\|(\.+)$</regex>
+	<order>cef_version, device_vendor, device_product, device_version, signature_id, subject_name, severity, extension</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSuser=(\.+)\sOMS|OMSuser=(\.+)$</regex>
+	<order>OMSuser</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSworkflow_id=(\.+)\sOMS|OMSworkflow_id=(\.+)$</regex>
+	<order>OMSworkflow_id</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSdataId=(\.+)\sOMS|OMSdataId=(\.+)$</regex>
+	<order>OMSdataId</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSfileName=(\.+)\sOMS|OMSfileName=(\.+)$</regex>
+	<order>OMSfileName</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSfileSize=(\.+)\sOMS|OMSfileSize=(\.+)$</regex>
+	<order>OMSfileSize</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSfileTypeDesc=(\.+)\sOMS|OMSfileTypeDesc=(\.+)$</regex>
+	<order>OMSfileTypeDesc</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSblocked=(\.+)\sOMS|OMSblocked=(\.+)$</regex>
+	<order>OMSblocked</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSoverallResult=(\.+)\sOMS|OMSoverallResult=(\.+)$</regex>
+	<order>OMSoverallResult</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSthreatFoundCount=(\.+)\sOMS|OMSthreatFoundCount=(\.+)$</regex>
+	<order>OMSthreatFoundCount</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSembeddedObjectsWithThreat=(\.+)\sOMS|OMSembeddedObjectsWithThreat=(\.+)$</regex>
+	<order>OMSembeddedObjectsWithThreat</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMStotalResultCount=(\.+)\sOMS|OMStotalResultCount=(\.+)$</regex>
+	<order>OMStotalResultCount</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSruleName=(\.+)\sOMS|OMSruleName=(\.+)$</regex>
+	<order>OMSruleName</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSsource=(\.+)\sOMS|OMSsource=(\.+)$</regex>
+	<order>OMSsource</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSengines-metadata=(\.+)\sOMS|OMSengines-metadata=(\.+)$</regex>
+	<order>OMSengines_metadata</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMStotalProcessingTime=(\.+)\sOMS|OMStotalProcessingTime=(\.+)$</regex>
+	<order>OMStotalProcessingTime</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSmsgid=(\.+)\sOMS|OMSmsgid=(\.+)$</regex>
+	<order>OMSmsgid</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSdata_id=(\.+)\sOMS|OMSdata_id=(\.+)$</regex>
+	<order>OMSdata_id</order>
+</decoder>
+
+<decoder name="opswat-fields">
+    <parent>opswat_melco</parent>
+	<regex>OMSid=(\.+)\sOMS|OMSid=(\.+)$</regex>
+	<order>OMSid</order>
+</decoder>

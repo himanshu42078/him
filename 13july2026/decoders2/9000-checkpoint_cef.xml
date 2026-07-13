@@ -1,0 +1,1215 @@
+
+<decoder name="checkpoint_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Check Point\|</prematch>
+</decoder>
+
+<decoder name="checkpoint_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|Check Point\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="checkpoint_cef">
+	<prematch>CEF:\s*0\|Check Point\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>act=(\.+) \S+=</regex>
+    <order>cef.extensions.act</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>act=(\.+) \S+=</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>deviceDirection=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceDirection</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>rt=(\.+) \S+=</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>rt=(\.+) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>loguid=(\.+) \S+=</regex>
+    <order>cef.extensions.loguid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>origin=(\.+) \S+=</regex>
+    <order>cef.extensions.origin</order>
+</decoder>
+
+<!-- MSS-904100-->
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>originsicname=cn\\=(\.+),</regex>
+    <order>logsource</order>
+</decoder>
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>originsicname=(\.+) \S+=</regex>
+    <order>cef.extensions.originsicname</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>sequencenum=(\.+) \S+=</regex>
+    <order>cef.extensions.sequencenum</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>version=(\.+) \S+=</regex>
+    <order>cef.extensions.version</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>product=(\.*) \S+=|product=(\.*)$</regex>
+    <order>cef.extensions.product</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>spt=(\.+) \S+=</regex>
+    <order>cef.extensions.spt</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>spt=(\.+) \S+=</regex>
+    <order>srcport</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>dpt=(\.+) \S+=</regex>
+    <order>cef.extensions.dpt</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>\sdpt=(\.+)\s\w+=|\sdpt=(\.+)\s|\tservice=(\.+)\t|fservice=(\.+)\t|#011service=(\.+)#011|fservice=(\.+)#011</regex>
+    <order>dstport</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs2Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs2=(\.+) \S+=</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>layer_name=(\.+) \S+=</regex>
+    <order>cef.extensions.layer_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>layer_uuid=(\.+) \S+=</regex>
+    <order>cef.extensions.layer_uuid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>match_id=(\.+) \S+=</regex>
+    <order>cef.extensions.match_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>parent_rule=(\.+) \S+=</regex>
+    <order>cef.extensions.parent_rule</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>rule_action=(\.+) \S+=</regex>
+    <order>cef.extensions.rule_action</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>rule_uid=(\.+) \S+=</regex>
+    <order>cef.extensions.rule_uid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>ifname=(\.+) \S+=</regex>
+    <order>cef.extensions.ifname</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>\Wfname=(\.+) \S+=</regex>
+    <order>cef.extensions.fname</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>logid=(\.+) \S+=</regex>
+    <order>cef.extensions.logid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>dst=(\.+) \S+=</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>dst=(\.+) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>inzone=(\.+) \S+=</regex>
+    <order>cef.extensions.inzone</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>nat_addtnl_rulenum=(\.+) \S+=</regex>
+    <order>cef.extensions.nat_addtnl_rulenum</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>nat_rule_uid=(\.+) \S+=</regex>
+    <order>cef.extensions.nat_rule_uid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>nat_rulenum=(\.+) \S+=</regex>
+    <order>cef.extensions.nat_rulenum</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>outzone=(\.+) \S+=</regex>
+    <order>cef.extensions.outzone</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>proto=(\.+) \S+=</regex>
+    <order>cef.extensions.proto</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>proto=(\.+) \S+=</regex>
+    <order>protocol</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>service_id=(\.+) \S+=</regex>
+    <order>cef.extensions.service_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>src=(\.*) \S+=|src=(\.*)$</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>src=(\.*) \S+=|src=(\.*)$</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cn1Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cn1Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cn1=(\.+) \S+=</regex>
+    <order>cef.extensions.cn1</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>deviceInboundInterface=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceInboundInterface</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>in=(\.+) \S+=</regex>
+    <order>cef.extensions.in</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>out=(\.+) \S+=</regex>
+    <order>cef.extensions.out</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>start=(\.+) \S+=</regex>
+    <order>cef.extensions.start</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>start=(\.+) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>__nsons=(\.+) \S+=</regex>
+    <order>cef.extensions.__nsons</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>__p_dport=(\.+) \S+=</regex>
+    <order>cef.extensions.__p_dport</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>__pos=(\.+) \S+=</regex>
+    <order>cef.extensions.__pos</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>bytes=(\.+) \S+=</regex>
+    <order>cef.extensions.bytes</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>client_inbound_packets=(\.+) \S+=</regex>
+    <order>cef.extensions.client_inbound_packets</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>client_outbound_packets=(\.+) \S+=</regex>
+    <order>cef.extensions.client_outbound_packets</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>context_num=(\.+) \S+=</regex>
+    <order>cef.extensions.context_num</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>packets=(\.+) \S+=</regex>
+    <order>cef.extensions.packets</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>segment_time=(\.+) \S+=</regex>
+    <order>cef.extensions.segment_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>server_inbound_bytes=(\.+) \S+=</regex>
+    <order>cef.extensions.server_inbound_bytes</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>server_inbound_packets=(\.+) \S+=</regex>
+    <order>cef.extensions.server_inbound_packets</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>server_outbound_bytes=(\.+) \S+=</regex>
+    <order>cef.extensions.server_outbound_bytes</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>server_outbound_interface=(\.+) \S+=</regex>
+    <order>cef.extensions.server_outbound_interface</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>server_outbound_packets=(\.*) \S+=|server_outbound_packets=(\.*)$</regex>
+    <order>cef.extensions.server_outbound_packets</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>destinationTranslatedAddress=(\.+) \S+=</regex>
+    <order>cef.extensions.destinationTranslatedAddress</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>destinationTranslatedPort=(\.+) \S+=</regex>
+    <order>cef.extensions.destinationTranslatedPort</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>sourceTranslatedAddress=(\.+) \S+=</regex>
+    <order>cef.extensions.sourceTranslatedAddress</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>sourceTranslatedPort=(\.+) \S+=</regex>
+    <order>cef.extensions.sourceTranslatedPort</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>msg=(\.+) \S+=</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>conn_direction=(\.+) \S+=</regex>
+    <order>cef.extensions.conn_direction</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>log_delay=(\.+) \S+=</regex>
+    <order>cef.extensions.log_delay</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>alert=(\.*) \S+=|alert=(\.*)$</regex>
+    <order>cef.extensions.alert</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>lastupdatetime=(\.+) \S+=</regex>
+    <order>cef.extensions.lastupdatetime</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>deviceOutboundInterface=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceOutboundInterface</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>server_inbound_interface=(\.+) \S+=</regex>
+    <order>cef.extensions.server_inbound_interface</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cn2Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cn2Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cn2=(\.+) \S+=</regex>
+    <order>cef.extensions.cn2</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cn3Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cn3Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cn3=(\.+) \S+=</regex>
+    <order>cef.extensions.cn3</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>icmp=(\.+) \S+=</regex>
+    <order>cef.extensions.icmp</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>hll_key=(\.+) \S+=</regex>
+    <order>cef.extensions.hll_key</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>fw_subproduct=(\.+) \S+=</regex>
+    <order>cef.extensions.fw_subproduct</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>vpn_feature_name=(\.*) \S+=|vpn_feature_name=(\.*)$</regex>
+    <order>cef.extensions.vpn_feature_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs4Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs4Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs4=(\.+) \S+=</regex>
+    <order>cef.extensions.cs4</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>tcp_packet_out_of_state=(\.*) \S+=|tcp_packet_out_of_state=(\.*)$</regex>
+    <order>cef.extensions.tcp_packet_out_of_state</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>aggregated_log_count=(\.+) \S+=</regex>
+    <order>cef.extensions.aggregated_log_count</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>connection_count=(\.+) \S+=</regex>
+    <order>cef.extensions.connection_count</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>creation_time=(\.+) \S+=</regex>
+    <order>cef.extensions.creation_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>duration=(\.+) \S+=</regex>
+    <order>cef.extensions.duration</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>last_hit_time=(\.+) \S+=</regex>
+    <order>cef.extensions.last_hit_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>update_count=(\.*) \S+=|update_count=(\.*)$</regex>
+    <order>cef.extensions.update_count</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>additional_info=(\.+) \S+=</regex>
+    <order>cef.extensions.additional_info</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>administrator=(\.+) \S+=</regex>
+    <order>cef.extensions.administrator</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>machine=(\.+) \S+=</regex>
+    <order>cef.extensions.machine</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>operation=(\.+) \S+=</regex>
+    <order>cef.extensions.operation</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>operation_number=(\.+) \S+=</regex>
+    <order>cef.extensions.operation_number</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>subject=(\.*) \S+=|subject=(\.*)$</regex>
+    <order>cef.extensions.subject</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>expire_time=(\.+) \S+=</regex>
+    <order>cef.extensions.expire_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>tcp_state=(\.*) \S+=|tcp_state=(\.*)$</regex>
+    <order>cef.extensions.tcp_state</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>requestContext=(\.+) \S+=</regex>
+    <order>cef.extensions.requestContext</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>rule=(\.+) \S+=</regex>
+    <order>cef.extensions.rule</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>app=(\.+) \S+=</regex>
+    <order>cef.extensions.app</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>contextnum=(\.+) \S+=</regex>
+    <order>cef.extensions.contextnum</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>sig_id=(\.+) \S+=</regex>
+    <order>cef.extensions.sig_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>reason=(\.+) \S+=</regex>
+    <order>cef.extensions.reason</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cp_severity=(\.+) \S+=</regex>
+    <order>cef.extensions.cp_severity</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs3Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs3=(\.+) \S+=</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>flexNumber1Label=(\.+) \S+=</regex>
+    <order>cef.extensions.flexNumber1Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>flexNumber1=(\.+) \S+=</regex>
+    <order>cef.extensions.flexNumber1</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>flexNumber2Label=(\.+) \S+=</regex>
+    <order>cef.extensions.flexNumber2Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>flexNumber2=(\.+) \S+=</regex>
+    <order>cef.extensions.flexNumber2</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>flexString2Label=(\.+) \S+=</regex>
+    <order>cef.extensions.flexString2Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>flexString2=(\.+) \S+=</regex>
+    <order>cef.extensions.flexString2</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>rule_name=(\.+) \S+=</regex>
+    <order>cef.extensions.rule_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>smartdefense_profile=(\.+) \S+=</regex>
+    <order>cef.extensions.smartdefense_profile</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>sub_policy_name=(\.+) \S+=</regex>
+    <order>cef.extensions.sub_policy_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>sub_policy_uid=(\.*) \S+=|sub_policy_uid=(\.*)$</regex>
+    <order>cef.extensions.sub_policy_uid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>dst_domain_name=(\.+) \S+=</regex>
+    <order>cef.extensions.dst_domain_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs1Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs1Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs5Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs5Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs5=(\.+) \S+=</regex>
+    <order>cef.extensions.cs5</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>c_bytes=(\.+) \S+=</regex>
+    <order>cef.extensions.c_bytes</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cfp1Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cfp1Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cfp1=(\.+) \S+=</regex>
+    <order>cef.extensions.cfp1</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>Signature=(\.+) \S+=</regex>
+    <order>cef.extensions.Signature</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs1=(\.+) \S+=</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>deviceFacility=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceFacility</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>requestClientApplication=(\.+) \S+=</regex>
+    <order>cef.extensions.requestClientApplication</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>shost=(\.+) \S+=</regex>
+    <order>cef.extensions.shost</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>shost=(\.+) \S+=</regex>
+    <order>hostname</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>cef.extensions.suser</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>srcuser</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>action_details=(\.+) \S+=</regex>
+    <order>cef.extensions.action_details</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>am_update_proxy=(\.+) \S+=</regex>
+    <order>cef.extensions.am_update_proxy</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>am_update_source=(\.+) \S+=</regex>
+    <order>cef.extensions.am_update_source</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>client_version=(\.+) \S+=</regex>
+    <order>cef.extensions.client_version</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>engine_ver=(\.+) \S+=</regex>
+    <order>cef.extensions.engine_ver</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>event_type=(\.+) \S+=</regex>
+    <order>cef.extensions.event_type</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>failed_updates=(\.+) \S+=</regex>
+    <order>cef.extensions.failed_updates</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>host_type=(\.+) \S+=</regex>
+    <order>cef.extensions.host_type</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>installed_products=(\.+) \S+=</regex>
+    <order>cef.extensions.installed_products</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>local_time=(\.+) \S+=</regex>
+    <order>cef.extensions.local_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>machine_guid=(\.+) \S+=</regex>
+    <order>cef.extensions.machine_guid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>os_name=(\.+) \S+=</regex>
+    <order>cef.extensions.os_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>os_version=(\.+) \S+=</regex>
+    <order>cef.extensions.os_version</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>policy_date=(\.+) \S+=</regex>
+    <order>cef.extensions.policy_date</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>policy_name=(\.+) \S+=</regex>
+    <order>cef.extensions.policy_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>policy_number=(\.+) \S+=</regex>
+    <order>cef.extensions.policy_number</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>result=(\.+) \S+=</regex>
+    <order>cef.extensions.result</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>sig_ver=(\.+) \S+=</regex>
+    <order>cef.extensions.sig_ver</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>tenant_id=(\.+) \S+=</regex>
+    <order>cef.extensions.tenant_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>user_name=(\.+) \S+=</regex>
+    <order>cef.extensions.user_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>user_sid=(\.*) \S+=|user_sid=(\.*)$</regex>
+    <order>cef.extensions.user_sid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>virtual_groups=(\.*) \S+=|virtual_groups=(\.*)$</regex>
+    <order>cef.extensions.virtual_groups</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cp_app_risk=(\.+) \S+=</regex>
+    <order>cef.extensions.cp_app_risk</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs6Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs6Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cs6=(\.+) \S+=</regex>
+    <order>cef.extensions.cs6</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>flexString1Label=(\.+) \S+=</regex>
+    <order>cef.extensions.flexString1Label</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>flexString1=(\.+) \S+=</regex>
+    <order>cef.extensions.flexString1</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>app_category=(\.+) \S+=</regex>
+    <order>cef.extensions.app_category</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>app_id=(\.+) \S+=</regex>
+    <order>cef.extensions.app_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>app_properties=(\.+) \S+=</regex>
+    <order>cef.extensions.app_properties</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>requestMethod=(\.+) \S+=</regex>
+    <order>cef.extensions.requestMethod</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>request=(\.+) \S+=</regex>
+    <order>cef.extensions.request</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>browse_time=(\.+) \S+=</regex>
+    <order>cef.extensions.browse_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>app_desc=(\.+) \S+=</regex>
+    <order>cef.extensions.app_desc</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>reject_category=(\.+) \S+=</regex>
+    <order>cef.extensions.reject_category</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>community=(\.+) \S+=</regex>
+    <order>cef.extensions.community</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cookiei=(\.+) \S+=</regex>
+    <order>cef.extensions.cookiei</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>cookier=(\.+) \S+=</regex>
+    <order>cef.extensions.cookier</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>dstkeyid=(\.+) \S+=</regex>
+    <order>cef.extensions.dstkeyid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>msgid=(\.+) \S+=</regex>
+    <order>cef.extensions.msgid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>srckeyid=(\.+) \S+=</regex>
+    <order>cef.extensions.srckeyid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>calc_desc=(\.+) \S+=</regex>
+    <order>cef.extensions.calc_desc</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>sendtotrackerasadvancedauditlog=(\.*) \S+=|sendtotrackerasadvancedauditlog=(\.*)$</regex>
+    <order>cef.extensions.sendtotrackerasadvancedauditlog</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>duser=(\.+) \S+=</regex>
+    <order>cef.extensions.duser</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>duser=(\.+) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>snid=(\.+) \S+=</regex>
+    <order>cef.extensions.snid</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>needs_browse_time=(\.+) \S+=</regex>
+    <order>cef.extensions.needs_browse_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>description_url=(\.+) \S+=</regex>
+    <order>cef.extensions.description_url</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>log_id=(\.+) \S+=</regex>
+    <order>cef.extensions.log_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>packet_capture_name=(\.+) \S+=</regex>
+    <order>cef.extensions.packet_capture_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>packet_capture_time=(\.+) \S+=</regex>
+    <order>cef.extensions.packet_capture_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>packet_capture_unique_id=(\.+) \S+=</regex>
+    <order>cef.extensions.packet_capture_unique_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>policy=(\.+) \S+=</regex>
+    <order>cef.extensions.policy</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>policy_time=(\.+) \S+=</regex>
+    <order>cef.extensions.policy_time</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>session_id=(\.+) \S+=</regex>
+    <order>cef.extensions.session_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>src_uo_icon=(\.+) \S+=</regex>
+    <order>cef.extensions.src_uo_icon</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>src_uo_name=(\.*) \S+=|src_uo_name=(\.*)$</regex>
+    <order>cef.extensions.src_uo_name</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>ep_rule_id=(\.+) \S+=</regex>
+    <order>cef.extensions.ep_rule_id</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>new_status=(\.+) \S+=</regex>
+    <order>cef.extensions.new_status</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>old_status=(\.+) \S+=</regex>
+    <order>cef.extensions.old_status</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>fileHash=\s+fileHash=(\.+) \S+=|\WfileHash=(\.+) \S+=</regex>
+    <order>cef.extensions.fileHash</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>log_sys_message=(\.*) \S+=|log_sys_message=(\.*)$</regex>
+    <order>cef.extensions.log_sys_message</order>
+</decoder>
+
+<decoder name="checkpoint_cef_fields">
+	<parent>checkpoint_cef</parent>
+	<regex>\sdeviceFacility=(\.+)\s\w+=|\sdeviceFacility=(\.+)\s|\tproduct_family=(\.+)\t|#011product_family=(\.+)#011</regex>
+	<order>cef.extensions.product_family</order>
+</decoder>
+
+<!-- DEV-5745 -->
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>is_scanned=(\.+) \S+=</regex>
+    <order>cef.extensions.is_scanned</order>
+</decoder>
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>media_description=(\.+) \S+=</regex>
+    <order>cef.extensions.media_description</order>
+</decoder>
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>media_encrypted=(\.+) \S+=</regex>
+    <order>cef.extensions.media_encrypted</order>
+</decoder>
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>media_manufacturer=(\.+) \S+=</regex>
+    <order>cef.extensions.media_manufacturer</order>
+</decoder>
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>media_type=(\.+) \S+=</regex>
+    <order>cef.extensions.media_type</order>
+</decoder>
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>reading_data_access=(\.+) \S+=</regex>
+    <order>cef.extensions.reading_data_access</order>
+</decoder>
+<decoder name="checkpoint_cef_fields">
+    <parent>checkpoint_cef</parent>
+    <regex>writing_data_access=(\.+) \S+=|writing_data_access=(\S+)$</regex>
+    <order>cef.extensions.writing_data_access</order>
+</decoder>

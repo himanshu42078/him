@@ -1,0 +1,427 @@
+<decoder name="forcepoint_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Forcepoint\|</prematch>
+</decoder>
+
+<decoder name="forcepoint_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|Forcepoint\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="forcepoint_cef">
+	<prematch>CEF:\s*0\|Forcepoint\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>act=(\.*) \S+=</regex>
+    <order>cef.extensions.act</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>act=(\.*) \S+=</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>app=(\.*) \S+=</regex>
+    <order>cef.extensions.app</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>dvc=(\.*) \S+=</regex>
+    <order>cef.extensions.dvc</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>dst=(\.*) \S+=</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>dst=(\.*) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>dhost=(\.*) \S+=</regex>
+    <order>cef.extensions.dhost</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>dpt=(\.*) \S+=</regex>
+    <order>cef.extensions.dpt</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>dpt=(\.*) \S+=</regex>
+    <order>dstport</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>src=(\.*) \S+=</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>src=(\.*) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>spt=(\.*) \S+=</regex>
+    <order>cef.extensions.spt</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>spt=(\.*) \S+=</regex>
+    <order>srcport</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>suser=(\.*) \S+=</regex>
+    <order>cef.extensions.suser</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>suser=(\.*) \S+=</regex>
+    <order>srcuser</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>loginID=(\.*) \S+=</regex>
+    <order>cef.extensions.loginID</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>destinationTranslatedPort=(\.*) \S+=</regex>
+    <order>cef.extensions.destinationTranslatedPort</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>rt=(\.*) \S+=</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>rt=(\.*) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>in=(\.*) \S+=</regex>
+    <order>cef.extensions.in</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>out=(\.*) \S+=</regex>
+    <order>cef.extensions.out</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>requestMethod=(\.*) \S+=</regex>
+    <order>cef.extensions.requestMethod</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>requestClientApplication=(\.*) \S+=</regex>
+    <order>cef.extensions.requestClientApplication</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>reason=(\.*) \S+=</regex>
+    <order>cef.extensions.reason</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cs1Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs1Label</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cs1=(\.*) \S+=</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cs2Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cs2=(\.*) \S+=</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cs3Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cs3=(\.*) \S+=</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cn1Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cn1Label</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cn1=(\.*) \S+=</regex>
+    <order>cef.extensions.cn1</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cn2Label=(\.*) \S+=</regex>
+    <order>cef.extensions.cn2Label</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cn2=(\.*) \S+=</regex>
+    <order>cef.extensions.cn2</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>request=(\.*) \S+=</regex>
+    <order>cef.extensions.request</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>logRecordSource=(\.*) \S+=|logRecordSource=(\.*)$</regex>
+    <order>cef.extensions.logRecordSource</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>duser=(\.*) \S+=</regex>
+    <order>cef.extensions.duser</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>duser=(\.*) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>fname=(\.*) \S+=</regex>
+    <order>cef.extensions.fname</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>fname=(\.*) \S+=</regex>
+    <order>filename</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>msg=(\.*) \S+=</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cat=(\.*) \S+=</regex>
+    <order>cef.extensions.cat</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>sourceServiceName=(\.*) \S+=</regex>
+    <order>cef.extensions.sourceServiceName</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>analyzedBy=(\.*) \S+=</regex>
+    <order>cef.extensions.analyzedBy</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>loginName=(\.*) \S+=</regex>
+    <order>cef.extensions.loginName</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>sourceIp=(\.*) \S+=</regex>
+    <order>cef.extensions.sourceIp</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>severityType=(\.*) \S+=</regex>
+    <order>cef.extensions.severityType</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>sourceHost=(\.*) \S+=</regex>
+    <order>cef.extensions.sourceHost</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>productVersion=(\.*) \S+=</regex>
+    <order>cef.extensions.productVersion</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>maxMatches=(\.*) \S+=</regex>
+    <order>cef.extensions.maxMatches</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>timeStamp=(\.*) \S+=</regex>
+    <order>cef.extensions.timeStamp</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>destinationHosts=(\.*) \S+=</regex>
+    <order>cef.extensions.destinationHosts</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>eventId=(\.*) \S+=|eventId=(\.*)$</regex>
+    <order>cef.extensions.eventId</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>dvchost=(\.*) \S+=</regex>
+    <order>cef.extensions.dvchost</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>messageId=(\.*) \S+=</regex>
+    <order>cef.extensions.messageId</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>from=(\.*) \S+=</regex>
+    <order>cef.extensions.from</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>replyTo=(\.*) \S+=</regex>
+    <order>cef.extensions.replyTo</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>to=(\.*) \S+=</regex>
+    <order>cef.extensions.to</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>cc=(\.*) \S+=</regex>
+    <order>cef.extensions.cc</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>deviceDirection=(\.*) \S+=</regex>
+    <order>cef.extensions.deviceDirection</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>deviceFacility=(\.*) \S+=</regex>
+    <order>cef.extensions.deviceFacility</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>deviceProcessName=(\.*) \S+=</regex>
+    <order>cef.extensions.deviceProcessName</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>url=(\.*) \S+=</regex>
+    <order>cef.extensions.url</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>fnameAndfileHash=(\.*) \S+=</regex>
+    <order>cef.extensions.fnameAndfileHash</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>exceptionReason=(\.*) \S+=</regex>
+    <order>cef.extensions.exceptionReason</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>hybridSpamScore=(\.*) \S+=</regex>
+    <order>cef.extensions.hybridSpamScore</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>localSpamScore=(\.*) \S+=</regex>
+    <order>cef.extensions.localSpamScore</order>
+</decoder>
+
+<decoder name="forcepoint_cef_fields">
+    <parent>forcepoint_cef</parent>
+    <regex>trueSrc=(\.*) \S+=|trueSrc=(\.*)$</regex>
+    <order>cef.extensions.trueSrc</order>
+</decoder>

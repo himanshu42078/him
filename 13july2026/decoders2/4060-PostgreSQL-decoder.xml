@@ -1,0 +1,24 @@
+<!-- DEV-5584 -->
+<!--
+2023-10-31 09:40:54.061 HKT,"repladmin","postgres",43883,"192.168.50.94:65253",65405b26.ab6b,2,"authentication",2023-10-31 09:40:54 HKT,2/8,0,FATAL,28P01,"password authentication failed for user ""repladmin""","Password does not match for user ""repladmin"".
+2023-10-31 09:40:16.563 HKT,"repladmin","postgres",43882,"192.168.50.94:65225",65405b00.ab6a,2,"authentication",2023-10-31 09:40:16 HKT,2/1,0,LOG,00000,"connection authorized: user=repladmin database=postgres",,,,,,,,,""
+-->
+<decoder name="PostgreSQL">
+	<prematch>^\d+-\d+-\d+ \d+:\d+:\d+.\d* \S+,"\S+","\S+",\d+,"\S+",\S+,\d+,"\S+",\d+-\d+-\d+ \d+:\d+:\d+ \S+,\S+,\d+,\S+,\S+,</prematch>
+</decoder>
+
+<decoder name="PostgreSQL-fields">
+	<parent>PostgreSQL</parent>
+	<regex>\d+-\d+-\d+ \d+:\d+:\d+.\d* \S+,"\S+","\S+",\d+,"(\d+.\d+.\d+.\d+):(\d+)",\S+,\d+,"\S+",\d+-\d+-\d+ \d+:\d+:\d+ \S+,\S+,\d+,\S+,\S+,"(\.+)"</regex>
+	<order>srcip,srcport,msg</order>
+</decoder>
+<decoder name="PostgreSQL-fields">
+	<parent>PostgreSQL</parent>
+	<regex>password authentication failed for user ""(\.+)""</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="PostgreSQL-fields">
+	<parent>PostgreSQL</parent>
+	<regex>connection authorized: user=(\S+) database=(\S+)</regex>
+	<order>dstuser,database</order>
+</decoder>

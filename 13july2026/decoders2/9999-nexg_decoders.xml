@@ -1,0 +1,356 @@
+<!-- Modify it at your will. -->
+<decoder name="nexg">
+        <program_name>session</program_name>
+        <prematch>Proto:\d+, Policy:\S+, Rule:\d+, Type:\S+, Src:\S+, Dst:\S+, Spt_c:\d+, Dpt_t:\d+, Bytes:\d+, Packets:\d+, Repl_Src:\S+, Repl_Dst:\S+, Repl_Spt_c:\d+, Repl_Dpt_t:\d+, Repl_Bytes:\d+, Repl_Packets:\d+, Count:\d+, Start_Time:\.+, End_Time:\.+</prematch>
+</decoder>
+
+<decoder name="nexg">
+        <program_name>ipsec</program_name>
+        <prematch>SA_Type:\S+, Local_IP:\S+, Local_ID:\S+, Remote_IP:\S+, Remote_ID:\S+, Virtual_IP:\S+, Negotiation:\S+, SA_Flags:\S+, Auth_Type:\S+, Encryption:\S+, Hash:\S+, Lifetime:\d+s, Local_TS:\S+, Remote_TS:\S+</prematch>
+</decoder>
+
+<decoder name="nexg">
+        <program_name>iked</program_name>
+        <prematch>\d+\p\w\w\w\p</prematch>
+</decoder>
+
+<!-- System/Audit Log -->
+<!-- <15> Jun 10 13:42:40 STAT: message [%ld seconds delayed] -->
+<decoder name="nexg-stat">	
+    <parent>nexg</parent>
+    <prematch offset="after_parent">STAT:\s*\.+ [%</prematch>
+	<regex>(STAT):\s*(\.+) [%</regex>
+	<order>nexg.logType, nexg.msg</order>
+</decoder>
+
+<!-- Common Fields -->
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>\p\d+\p\s*\S+\s*\d+ \d+:\d+:\d+ (\S+):</regex>
+	<order>nexg.logType</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Proto:(\S+),</regex>
+	<order>protocol</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Policy:(\S+),</regex>
+	<order>nexg.policy</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Rule:(\S+),</regex>
+	<order>nexg.rule</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>\s+Type:(\S+),</regex>
+	<order>nexg.type</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Src:(\S+),</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Dst:(\S+),</regex>
+	<order>dstip</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Spt_c:(\S+),</regex>
+	<order>nexg.spt_c</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Dpt_t:(\S+),</regex>
+	<order>nexg.dpt_t</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Count:(\S+),|Count:(\S+) </regex>
+	<order>nexg.count</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Group:(\S+),</regex>
+	<order>nexg.group</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Class:(\S+),|Class:(\S+) ,</regex>
+	<order>nexg.class</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Msg:(\.+) [%|Msg:(\.+)</regex>
+	<order>nexg.msg</order>
+</decoder>
+
+<!-- Session Log -->
+<!-- <142>Jun  9 15:52:32 session: Proto:6, Policy:drop, Rule:600, Type:n/a, Src:58.103.139.2, Dst:210.112.110.67, Spt_c:58251, Dpt_t:5004, Bytes:0, Packets:0, Repl_Src:0.0.0.0, Repl_Dst:0.0.0.0, Repl_Spt_c:0, Repl_Dpt_t:0, Repl_Bytes:0, Repl_Packets:0, Count:3 [%ld seconds delayed] -->
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Bytes:(\S+),</regex>
+	<order>nexg.bytes</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Packets:(\S+),</regex>
+	<order>nexg.packets</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Repl_Src:(\S+),</regex>
+	<order>nexg.repl_src</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Repl_Dst:(\S+),</regex>
+	<order>nexg.repl_dst</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Repl_Spt_c:(\S+),</regex>
+	<order>nexg.repl_spt_c</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Repl_Dpt_t:(\S+),</regex>
+	<order>nexg.repl_dpt_t</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Repl_Bytes:(\S+),</regex>
+	<order>nexg.repl_bytes</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Repl_Packets:(\S+),</regex>
+	<order>nexg.repl_packets</order>
+</decoder>
+
+<!-- IPS Log -->
+<!-- <134>Jun 9 15:52:32 ips: Src:1.1.1.1, Dst:2.2.2.2, Spt_c:22, Dpt_t:323, Policy:alert, Sid:2100019208, Count:1, Severity:high, Group:virus-exploit, Class:BUFFER-OVERFLOW , Msg:VIRUS Exploit.Win32.PDF-URI.v [%ld seconds delayed] -->
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Sid:(\S+),</regex>
+	<order>nexg.sid</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Severity:(\S+),</regex>
+	<order>nexg.severity</order>
+</decoder>
+
+<!-- appgw mail -->
+<!-- <158> Jun 10 13:42:40 appgw_mail: Src:1.1.1.1, Dst:2.2.2.2, Action:pass, Name:APPGW_MAIL, MailFrom:src@a.net, Rcpto:dst@a.net, Subject:title, SpamScore:12, Spamrule:rule [%ld seconds delayed] -->
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Action:(\S+),</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Name:(\S+),</regex>
+	<order>nexg.name</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>MailFrom:(\S+),</regex>
+	<order>nexg.mailFrom</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Rcpto:(\S+),</regex>
+	<order>nexg.rcpto</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Subject:(\S+),</regex>
+	<order>nexg.subject</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>SpamScore:(\S+),</regex>
+	<order>nexg.spamScore</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Spamrule:(\S+)</regex>
+	<order>nexg.spamrule</order>
+</decoder>
+
+<!-- appgw http -->
+<!-- <158> Jun 10 13:42:40 appgw_http: Src:1.1.1.1, Dst:1.1.1.2, Action:pass, Name:APPGW_HTTP, Rule:100, Host:www.buyking.com, Path:/Portlets/editors_pick/imagelink201006101442277 [%ld seconds delayed] -->
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Host:(\S+),</regex>
+	<order>nexg.host</order>
+</decoder>
+
+<decoder name="nexg-field">
+	<parent>nexg</parent>
+	<regex>Path:(\S+)</regex>
+	<order>nexg.path</order>
+</decoder>
+
+<!-- appgw ftp -->
+<!-- <158> Jun 10 13:42:40 appgw_ftp: Src:1.1.1.1, Dst:2.2.2.2, Action:pass, Name:APPGW_FTP, Command:download, Filename:a.txt [%ld seconds delayed] -->
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Command:(\S+),</regex> 
+	<order>nexg.command</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Filename:(\S+)</regex> 
+	<order>nexg.filename</order> 
+</decoder> 
+
+<!-- appgw im -->
+<!-- <158> Jun 10 13:42:40 appgw_im: Src:1.1.1.1, Dst:2.2.2.2, Action:pass, Name:APPGW_IM, Rule:2, Service:MSN, Sender:sender@hotmail.com, Recipient:reci@hotmail.com, Msg:hi~hello [%ld seconds delayed] -->
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Service:(\S+),</regex> 
+	<order>nexg.service</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Sender:(\S+),</regex> 
+	<order>nexg.sender</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Recipient:(\S+),</regex> 
+	<order>nexg.recipient</order> 
+</decoder> 
+
+<!-- IPsec -->
+<!-- <158> Jun 10 13:42:40 ipsec: SA_Type:IKEv2, Local_IP:121.166.113.150, Local_ID:eix-br1.nexg.net_(fqdn), Remote_IP:122.199.255.23, Remote_ID:122.199.255.23_(ipv4), Virtual_IP:-, Negotiation:done, SA_Flags:initiator;, Auth_Type:Pre-shared_key, Encryption:aes128-cbc, Hash:hmac-sha1-96, Lifetime:60_seconds, Local_TS:-, Remote_TS:- [%ld seconds delayed] -->
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>SA_Type:(\S+),</regex> 
+	<order>nexg.sa_type</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Local_IP:(\S+),</regex> 
+	<order>nexg.local_ip</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Local_ID:(\S+),</regex> 
+	<order>nexg.local_id</order> 
+</decoder>
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Remote_IP:(\S+),</regex> 
+	<order>nexg.remote_ip</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Remote_ID:(\S+),</regex> 
+	<order>nexg.remote_id</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Virtual_IP:(\S+),</regex> 
+	<order>nexg.virtual_ip</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Negotiation:(\S+),</regex> 
+	<order>nexg.negotiation</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>SA_Flags:(\S+),</regex> 
+	<order>nexg.sa_flags</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Auth_Type:(\S+),</regex> 
+	<order>nexg.auth_type</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Encryption:(\S+),</regex> 
+	<order>nexg.encryption</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Hash:(\S+),</regex> 
+	<order>nexg.hash</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Lifetime:(\S+),</regex> 
+	<order>nexg.lifetime</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Local_TS:(\S+),</regex> 
+	<order>nexg.local_ts</order> 
+</decoder> 
+
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Remote_TS:(\S+)</regex> 
+	<order>nexg.remote_ts</order> 
+</decoder> 
+
+<!-- l7filter -->
+<!-- <134> Jun 10 13:42:40 l7filter: Src:1.1.1.1, Dst:2.2.2.2, Proto:22, Spt_c:10, Dpt_t:21, Policy:alert, Aid:2100019208, Count:1, Group:virus-exploit, Class:BUFFER-OVERFLOW, Msg:Virus exploit  -->
+<decoder name="nexg-field"> 
+	<parent>nexg</parent> 
+	<regex>Aid:(\S+),</regex> 
+	<order>nexg.aid</order> 
+</decoder> 
+
+
+

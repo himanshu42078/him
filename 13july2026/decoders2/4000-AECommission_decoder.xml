@@ -1,0 +1,19 @@
+<!-- DEV-5032 -->
+<!--
+"66596","28","UserLogon","JZhong","2023-08-25 16:53:03.730000000",""
+"66595","25","UserLogout","AdminGTong","2023-08-25 14:48:46.030000000",""
+66595,13,UserLogon,AdminGTong,2023-08-25 14:48:46.030000000,,66674,13,UserLogon
+-->
+<decoder name="AECommission">
+    <prematch>^"\d+","\d+","\.+","\.+","\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+","\.*"$|^\d+,\d+,\S+,\S+,\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+,\.*,\d*,\d*,\S*$</prematch>
+</decoder>
+<decoder name="AECommission-fields">
+    <parent>AECommission</parent>
+    <regex>^"(\d+)","(\d+)","(\.+)","(\.+)","(\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+)","(\.*)"$</regex>
+    <order>ae_pk,ae_us_pk,ae_EventKey,ae_Description,ae_Timestamp,ae_Data</order>
+</decoder>
+<decoder name="AECommission-fields">
+    <parent>AECommission</parent>
+    <regex>^(\d+),(\d+),(\S+),(\S+),(\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+),(\.*),</regex>
+    <order>ae_pk,ae_us_pk,ae_EventKey,ae_Description,ae_Timestamp,ae_Data</order>
+</decoder>

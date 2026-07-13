@@ -1,0 +1,561 @@
+<!-- DEV-5785 -->
+<!--
+Dec  5 10:15:09 10.212.5.4  {"queryEndTime" : "2023-11-28T08:59:59Z", "clicksPermitted" : [], "clicksBlocked" : [{"url":"https://lfdkemrh.page.link/XoBmbXdixXNgAqb58","classification":"phish","clickTime":"2023-11-28T08:26:45.000Z","threatTime":"2023-11-24T10:44:25.000Z","userAgent":"Mozilla/4.0 (Windows; MSIE 7.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)","campaignId":"","id":"0443a403-998c-48c1-ab48-8431442891fd","clickIP":"216.163.176.191","sender":"info@auroisoleil.com","recipient":"daniele.dal.colle@johnsonelectric.com","senderIP":"178.176.218.175","GUID":"YDBCiimHwh1unELJqiJB2ia4OCxC4E2M","threatID":"3c86945deded4e5bc1f01e73073cdbcaf735469bc75e6165f4f5743a1b2b2f91","threatURL":"https://threatinsight.proofpoint.com/8b32d548-fd32-95e1-865c-7de52b25010a/threat/email/3c86945deded4e5bc1f01e73073cdbcaf735469bc75e6165f4f5743a1b2b2f91","threatStatus":"active","messageID":"<50AA81D7B1624FF3D02A12EF5C4AE22B@auroisoleil.com>"},{"url":"https://lfdkemrh.page.link/XoBmbXdixXNgAqb58","classification":"phish","clickTime":"2023-11-28T08:37:21.000Z","threatTime":"2023-11-24T10:44:25.000Z","userAgent":"Mozilla/4.0 (Windows; MSIE 7.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)","campaignId":"","id":"6cfbd1d2-690f-4be8-ba7c-a06a9a0e04f6","clickIP":"216.163.176.191","sender":"info@auroisoleil.com","recipient":"daniele.dal.colle@johnsonelectric.com","senderIP":"178.176.218.175","GUID":"YDBCiimHwh1unELJqiJB2ia4OCxC4E2M","threatID":"3c86945deded4e5bc1f01e73073cdbcaf735469bc75e6165f4f5743a1b2b2f91","threatURL":"https://threatinsight.proofpoint.com/8b32d548-fd32-95e1-865c-7de52b25010a/threat/email/3c86945deded4e5bc1f01e73073cdbcaf735469bc75e6165f4f5743a1b2b2f91","threatStatus":"active","messageID":"<50AA81D7B1624FF3D02A12EF5C4AE22B@auroisoleil.com>"}], "messagesDelivered" : [], "messagesBlocked" : []}
+Dec  5 10:15:09 10.212.5.4  {"queryEndTime" : "2023-12-05T02:15:00Z", "clicksPermitted" : [], "clicksBlocked" : [], "messagesDelivered" : [], "messagesBlocked" : [{"spamScore":100,"phishScore":100,"threatsInfoMap":[{"threatID":"bf0acf4c817bf426d","threatStatus":"active","classification":"phish","threatUrl":"htt98d","threatTime":"2023-12-04T09:32:26.000Z","threat":"pub-6e1816","campaignID":null,"threatType":"url"}],"messageTime":"2023-12-05T01:49:57.000Z","impostorScore":0.0,"malwareScore":0,"cluster":"johnsonelectric_hosted","subject":"Verify Your Email Account","quarantineFolder":"Phish","quarantineRule":"inbound_phish","policyRoutes":["default_inbound"],"modulesRun":["access","av","dkimv","spf","spam","dmarc","pdr","urldefense"],"messageSize":4978,"headerFrom":"stackpole.com Security <postmaster@ipromenko.ru>","headerReplyTo":null,"fromAddress":["postmaster@ipromenko.ru"],"ccAddresses":[],"replyToAddress":[],"toAddresses":["azhao@stackpole.com"],"xmailer":null,"messageParts":[{"disposition":"inline","sha256":"582a72bd3a5eed3b","md5":"354a8c0f7df8a4968b00d36281707157","filename":"text.html","sandboxStatus":null,"oContentType":"text/html","contentType":"text/html"}],"completelyRewritten":false,"id":"8530806e-46ee-422a-dd50-a50b498f56e1","QID":"3ush5u93jx-1","GUID":"Kr_LltzFmkP2tOL","sender":"postmaster@ipromenko.ru","recipient":["azhao@stackpole.com"],"senderIP":"80.87.203.9","messageID":"<20231204174955.56CF17AC7EE6AEDA@ipromenko.ru>"},{"spamScore":0,"phishScore":100,"threatsInfoMap":[{"threatID":"68a6f01ee19f","threatStatus":"active","classification":"phish","threatUrl":"httf8cf","threatTime":"2023-12-05T02:04:09.000Z","threat":"httpcom","campaignID":null,"threatType":"url"}],"messageTime":"2023-12-05T02:01:57.000Z","impostorScore":0.0,"malwareScore":0,"cluster":"johnsonelectric_hosted","subject":"Complete: darwi23 03:01:48","quarantineFolder":"Phish","quarantineRule":"inbound_phish","policyRoutes":["default_inbound"],"modulesRun":["access","av","spf","spam","dmarc","pdr","urldefense"],"messageSize":24056,"headerFrom":"\"darwin.thankaswamy DocsOnline johnsonelectric\" <tama113@tg.commufa.jp>","headerReplyTo":null,"fromAddress":["tama113@tg.commufa.jp"],"ccAddresses":[],"replyToAddress":[],"toAddresses":["darwin.thankaswamy@johnsonelectric.com"],"xmailer":null,"messageParts":[{"disposition":"attached","sha256":"cc418a413a3c14991c","md5":"6a78b0944a1da4f3892d0f4a0163da25","filename":"31cda727a176b8640f93ecdb173eb95b.png","sandboxStatus":null,"oContentType":"image/png","contentType":"image/png"},{"disposition":"attached","sha256":"0a8fe17ae735a89","md5":"f45cee39379bb","filename":"74e8333ad11685ff3bdae589c8f6e34d.png","sandboxStatus":null,"oContentType":"image/png","contentType":"image/png"},{"disposition":"inline","sha256":"01e4d9fd15ef","md5":"2446c702adcd8840a7368ec54da41da2","filename":"text.html","sandboxStatus":null,"oContentType":"text/html","contentType":"text/html"},{"disposition":"attached","sha256":"a2561ffed","md5":"7d46f290820b751b085dbbe86fddbca0","filename":"2d3885788e54d08b48eccdc8a9460591.png","sandboxStatus":null,"oContentType":"image/png","contentType":"image/png"}],"completelyRewritten":false,"id":"6a20e545-9fa9-a6ca-dccb-659946824f21","QID":"3usbuj256e-1","GUID":"KrWF0Q1ey","sender":"tama113@tg.commufa.jp","recipient":["darwin.thankaswam.com"],"senderIP":"219.117.46.81","messageID":"<d51mufa.jp>"}]}
+-->
+<decoder name="Proofpoint_TAP">
+  <prematch>{"queryEndTime" : "\S+", "clicksPermitted" :</prematch>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"queryEndTime" : "(\S+)",</regex>
+    <order>queryEndTime</order>
+</decoder>
+
+<!-- clicksPermitted -->
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"url":"(\S+)",</regex>
+    <order>clicksPermitted.url</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"classification":"(\S+)",</regex>
+    <order>clicksPermitted.classification</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"clickTime":"(\S+)",</regex>
+    <order>clicksPermitted.clickTime</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"threatTime":"(\S+)",</regex>
+    <order>clicksPermitted.threatTime</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"userAgent":"(\.+)",</regex>
+    <order>clicksPermitted.userAgent</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"campaignId":"(\.*)",</regex>
+    <order>messagesBlocked.clicksPermitted.campaignId</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"id":"(\S+)",</regex>
+    <order>clicksPermitted.id</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"clickIP":"(\S+)",</regex>
+    <order>clicksPermitted.clickIP</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"sender":"(\S+)",</regex>
+    <order>clicksPermitted.sender</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"recipient":"(\S+)",</regex>
+    <order>clicksPermitted.recipient</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"senderIP":"(\S+)",</regex>
+    <order>clicksPermitted.senderIP</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"GUID":"(\S+)",</regex>
+    <order>clicksPermitted.GUID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"threatID":"(\S+)",</regex>
+    <order>clicksPermitted.threatID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"threatURL":"(\S+)",</regex>
+    <order>clicksPermitted.threatURL</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"threatStatus":"(\S+)",</regex>
+    <order>clicksPermitted.threatStatus</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksPermitted" : [{\.*"messageID":"(\S+)"</regex>
+    <order>clicksPermitted.messageID</order>
+</decoder>
+
+<!-- clicksBlocked -->
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"url":"(\S+)",</regex>
+    <order>clicksBlocked.url</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"classification":"(\S+)",</regex>
+    <order>clicksBlocked.classification</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"clickTime":"(\S+)",</regex>
+    <order>clicksBlocked.clickTime</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"threatTime":"(\S+)",</regex>
+    <order>clicksBlocked.threatTime</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"userAgent":"(\.+)",</regex>
+    <order>clicksBlocked.userAgent</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"campaignId":"(\.*)",</regex>
+    <order>messagesBlocked.clicksBlocked.campaignId</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"id":"(\S+)",</regex>
+    <order>clicksBlocked.id</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"clickIP":"(\S+)",</regex>
+    <order>clicksBlocked.clickIP</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"sender":"(\S+)",</regex>
+    <order>clicksBlocked.sender</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"recipient":"(\S+)",</regex>
+    <order>clicksBlocked.recipient</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"senderIP":"(\S+)",</regex>
+    <order>clicksBlocked.senderIP</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"GUID":"(\S+)",</regex>
+    <order>clicksBlocked.GUID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"threatID":"(\S+)",</regex>
+    <order>clicksBlocked.threatID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"threatURL":"(\S+)",</regex>
+    <order>clicksBlocked.threatURL</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"threatStatus":"(\S+)",</regex>
+    <order>clicksBlocked.threatStatus</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"clicksBlocked" : [{\.*"messageID":"(\S+)"</regex>
+    <order>clicksBlocked.messageID</order>
+</decoder>
+
+<!-- messagesDelivered -->
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"spamScore":(\d+),</regex>
+    <order>messagesDelivered.spamScore</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"phishScore":(\d+),</regex>
+    <order>messagesDelivered.phishScore</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"threatsInfoMap":[{\.*"threatID":"(\S+)",</regex>
+    <order>messagesDelivered.threatsInfoMap.threatID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"threatsInfoMap":[{\.*"threatStatus":"(\S+)",</regex>
+    <order>messagesDelivered.threatsInfoMap.threatStatus</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"threatsInfoMap":[{\.*"classification":"(\S+)",</regex>
+    <order>messagesDelivered.threatsInfoMap.classification</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"threatsInfoMap":[{\.*"threatUrl":"(\S+)",</regex>
+    <order>messagesDelivered.threatsInfoMap.threatUrl</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"threatsInfoMap":[{\.*"threatTime":"(\S+)",</regex>
+    <order>messagesDelivered.threatsInfoMap.threatTime</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"threatsInfoMap":[{\.*"threat":"(\S+)",</regex>
+    <order>messagesDelivered.threatsInfoMap.threat</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"threatsInfoMap":[{\.*"campaignID":(\S+),</regex>
+    <order>messagesDelivered.threatsInfoMap.campaignID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"threatsInfoMap":[{\.*"threatType":"(\S+)"</regex>
+    <order>messagesDelivered.threatsInfoMap.threatType</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"messageTime":"(\S+)",</regex>
+    <order>messagesDelivered.messageTime</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"impostorScore":(\d+),</regex>
+    <order>messagesDelivered.impostorScore</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"malwareScore":(\d+),</regex>
+    <order>messagesDelivered.malwareScore</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"cluster":"(\S+)",</regex>
+    <order>messagesDelivered.cluster</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"subject":"(\S+)",</regex>
+    <order>messagesDelivered.subject</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"quarantineFolder":"(\S+)",</regex>
+    <order>messagesDelivered.quarantineFolder</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"quarantineRule":"(\S+)",</regex>
+    <order>messagesDelivered.quarantineRule</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"quarantineFolder":"(\S+)",</regex>
+    <order>messagesDelivered.quarantineFolder</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"policyRoutes":["(\S+)"],</regex>
+    <order>messagesDelivered.policyRoutes</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"modulesRun":[(\S+)],</regex>
+    <order>messagesDelivered.modulesRun</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"messageSize":(\d+),</regex>
+    <order>messagesDelivered.messageSize</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"headerFrom":"(\S+)",</regex>
+    <order>messagesDelivered.headerFrom</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"headerReplyTo":(\S+),</regex>
+    <order>messagesDelivered.headerReplyTo</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"fromAddress":["(\S+)"],</regex>
+    <order>messagesDelivered.fromAddress</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"toAddresses":["(\S+)"],</regex>
+    <order>messagesDelivered.toAddresses</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"messageParts":[{\.*"disposition":"(\S+)",</regex>
+    <order>messagesDelivered.messageParts.disposition</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"messageParts":[{\.*"sha256":"(\S+)",</regex>
+    <order>messagesDelivered.messageParts.sha256</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"messageParts":[{\.*"md5":"(\S+)",</regex>
+    <order>messagesDelivered.messageParts.md5</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"messageParts":[{\.*"filename":"(\S+)",</regex>
+    <order>messagesDelivered.messageParts.filename</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"messageParts":[{\.*"sandboxStatus":(\S+),</regex>
+    <order>messagesDelivered.messageParts.sandboxStatus</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"completelyRewritten":(\S+),</regex>
+    <order>messagesDelivered.completelyRewritten</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"id":"(\S+)",</regex>
+    <order>messagesDelivered.id</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"QID":"(\S+)",</regex>
+    <order>messagesDelivered.QID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"GUID":"(\S+)",</regex>
+    <order>messagesDelivered.GUID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"sender":"(\S+)",</regex>
+    <order>messagesDelivered.sender</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"recipient":["(\S+)"],</regex>
+    <order>messagesDelivered.recipient</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"senderIP":"(\S+)",</regex>
+    <order>messagesDelivered.senderIP</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesDelivered" : [{\.*"messageID":"(\S+)"</regex>
+    <order>messagesDelivered.messageID</order>
+</decoder>
+
+<!-- messagesBlocked -->
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"spamScore":(\d+),</regex>
+    <order>messagesBlocked.spamScore</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"phishScore":(\d+),</regex>
+    <order>messagesBlocked.phishScore</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"threatsInfoMap":[{\.*"threatID":"(\S+)",</regex>
+    <order>messagesBlocked.threatsInfoMap.threatID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"threatsInfoMap":[{\.*"threatStatus":"(\S+)",</regex>
+    <order>messagesBlocked.threatsInfoMap.threatStatus</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"threatsInfoMap":[{\.*"classification":"(\S+)",</regex>
+    <order>messagesBlocked.threatsInfoMap.classification</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"threatsInfoMap":[{\.*"threatUrl":"(\S+)",</regex>
+    <order>messagesBlocked.threatsInfoMap.threatUrl</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"threatsInfoMap":[{\.*"threatTime":"(\S+)",</regex>
+    <order>messagesBlocked.threatsInfoMap.threatTime</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"threatsInfoMap":[{\.*"threat":"(\S+)",</regex>
+    <order>messagesBlocked.threatsInfoMap.threat</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"threatsInfoMap":[{\.*"campaignID":(\S+),</regex>
+    <order>messagesBlocked.threatsInfoMap.campaignID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"threatsInfoMap":[{\.*"threatType":"(\S+)"</regex>
+    <order>messagesBlocked.threatsInfoMap.threatType</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"messageTime":"(\S+)",</regex>
+    <order>messagesBlocked.messageTime</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"impostorScore":(\d+),</regex>
+    <order>messagesBlocked.impostorScore</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"malwareScore":(\d+),</regex>
+    <order>messagesBlocked.malwareScore</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"cluster":"(\S+)",</regex>
+    <order>messagesBlocked.cluster</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"subject":"(\S+)",</regex>
+    <order>messagesBlocked.subject</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"quarantineFolder":"(\S+)",</regex>
+    <order>messagesBlocked.quarantineFolder</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"quarantineRule":"(\S+)",</regex>
+    <order>messagesBlocked.quarantineRule</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"quarantineFolder":"(\S+)",</regex>
+    <order>messagesBlocked.quarantineFolder</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"policyRoutes":["(\S+)"],</regex>
+    <order>messagesBlocked.policyRoutes</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"modulesRun":[(\S+)],</regex>
+    <order>messagesBlocked.modulesRun</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"messageSize":(\d+),</regex>
+    <order>messagesBlocked.messageSize</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"headerFrom":"(\S+)",</regex>
+    <order>messagesBlocked.headerFrom</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"headerReplyTo":(\S+),</regex>
+    <order>messagesBlocked.headerReplyTo</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"fromAddress":["(\S+)"],</regex>
+    <order>messagesBlocked.fromAddress</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"toAddresses":["(\S+)"],</regex>
+    <order>messagesBlocked.toAddresses</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"messageParts":[{\.*"disposition":"(\S+)",</regex>
+    <order>messagesBlocked.messageParts.disposition</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"messageParts":[{\.*"sha256":"(\S+)",</regex>
+    <order>messagesBlocked.messageParts.sha256</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"messageParts":[{\.*"md5":"(\S+)",</regex>
+    <order>messagesBlocked.messageParts.md5</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"messageParts":[{\.*"filename":"(\S+)",</regex>
+    <order>messagesBlocked.messageParts.filename</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"messageParts":[{\.*"sandboxStatus":(\S+),</regex>
+    <order>messagesBlocked.messageParts.sandboxStatus</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"completelyRewritten":(\S+),</regex>
+    <order>messagesBlocked.completelyRewritten</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"id":"(\S+)",</regex>
+    <order>messagesBlocked.id</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"QID":"(\S+)",</regex>
+    <order>messagesBlocked.QID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"GUID":"(\S+)",</regex>
+    <order>messagesBlocked.GUID</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"sender":"(\S+)",</regex>
+    <order>messagesBlocked.sender</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"recipient":["(\S+)"],</regex>
+    <order>messagesBlocked.recipient</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"senderIP":"(\S+)",</regex>
+    <order>messagesBlocked.senderIP</order>
+</decoder>
+<decoder name="Proofpoint_TAP_fields">
+    <parent>Proofpoint_TAP</parent>
+    <regex>"messagesBlocked" : [{\.*"messageID":"(\S+)"</regex>
+    <order>messagesBlocked.messageID</order>
+</decoder>

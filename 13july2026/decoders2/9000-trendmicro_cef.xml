@@ -1,0 +1,469 @@
+<decoder name="trendmicro_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Trend Micro\|</prematch>
+</decoder>
+
+<decoder name="trendmicro_cef">
+    <program_name></program_name>
+    <prematch>CEF:\s*0\|Trend Micro\|</prematch>
+</decoder>
+
+<decoder name="trendmicro_cef">
+    <prematch>CEF:\s*0\|Trend Micro\|</prematch>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>src=(\.+) \S+=</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>src=(\.+) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>cef.extensions.suser</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>suser=(\.+) \S+=</regex>
+    <order>srcuser</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>msg=(\.+) \S+=</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>TrendMicroDsTenant=(\.+) \S+=</regex>
+    <order>cef.extensions.TrendMicroDsTenant</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>TrendMicroDsTenantId=(\.*) \S+=|TrendMicroDsTenantId=(\.*)$</regex>
+    <order>cef.extensions.TrendMicroDsTenantId</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cn1=(\.+) \S+=</regex>
+    <order>cef.extensions.cn1</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cn1Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cn1Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dvchost=(\.+) \S+=</regex>
+    <order>cef.extensions.dvchost</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dmac=(\.+) \S+=</regex>
+    <order>cef.extensions.dmac</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>smac=(\.+) \S+=</regex>
+    <order>cef.extensions.smac</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>TrendMicroDsFrameType=(\.+) \S+=</regex>
+    <order>cef.extensions.TrendMicroDsFrameType</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dst=(\.+) \S+=</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dst=(\.+) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>in=(\.+) \S+=</regex>
+    <order>cef.extensions.in</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs3=(\.+) \S+=</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs3Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>proto=(\.+) \S+=</regex>
+    <order>cef.extensions.proto</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>proto=(\.+) \S+=</regex>
+    <order>protocol</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>spt=(\.+) \S+=</regex>
+    <order>cef.extensions.spt</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>spt=(\.+) \S+=</regex>
+    <order>srcport</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dpt=(\.+) \S+=</regex>
+    <order>cef.extensions.dpt</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dpt=(\.+) \S+=</regex>
+    <order>dstport</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs2=(\.+) \S+=</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs2Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cnt=(\.*) \S+=|cnt=(\.*)$</regex>
+    <order>cef.extensions.cnt</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>act=(\.+) \S+=</regex>
+    <order>cef.extensions.act</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>act=(\.+) \S+=</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cn3=(\.+) \S+=</regex>
+    <order>cef.extensions.cn3</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cn3Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cn3Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs5=(\.+) \S+=</regex>
+    <order>cef.extensions.cs5</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs5Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs5Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs1=(\.+) \S+=</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs1Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs1Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs6=(\.+) \S+=</regex>
+    <order>cef.extensions.cs6</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs6Label=(\.*) \S+=|cs6Label=(\.*)$</regex>
+    <order>cef.extensions.cs6Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>deviceExternalId=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceExternalId</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>rt=(\.+) \S+=</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>rt=(\.+) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dhost=(\.+) \S+=</regex>
+    <order>cef.extensions.dhost</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cn2Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cn2Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cn2=(\.*) \S+=|cn2=(\.*)$</regex>
+    <order>cef.extensions.cn2</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs4Label=(\.+) \S+=</regex>
+    <order>cef.extensions.cs4Label</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cs4=(\.+) \S+=</regex>
+    <order>cef.extensions.cs4</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>cat=(\.+) \S+=</regex>
+    <order>cef.extensions.cat</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>fname=(\.+) \S+=</regex>
+    <order>cef.extensions.fname</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>fname=(\.+) \S+=</regex>
+    <order>filename</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>filePath=(\.+) \S+=</regex>
+    <order>cef.extensions.filePath</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>fileHash=(\.+) \S+=</regex>
+    <order>cef.extensions.fileHash</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>deviceFacility=(\.*) \S+=|deviceFacility=(\.*)$</regex>
+    <order>cef.extensions.deviceFacility</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>target=(\.+) \S+=</regex>
+    <order>cef.extensions.target</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>devicePayloadId=(\.+) \S+=</regex>
+    <order>cef.extensions.devicePayloadId</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>app=(\.+) \S+=</regex>
+    <order>cef.extensions.app</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>TMCMLogDetectedIP=(\.+) \S+=</regex>
+    <order>cef.extensions.TMCMLogDetectedIP</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>deviceDirection=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceDirection</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>request=(\.+) \S+=</regex>
+    <order>cef.extensions.request</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>duser=(\.+) \S+=</regex>
+    <order>cef.extensions.duser</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>duser=(\.+) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>ApexCentralHost=(\.*) \S+=|ApexCentralHost=(\.*)$</regex>
+    <order>cef.extensions.ApexCentralHost</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>TMCMLogSeverity=(\.+) \S+=</regex>
+    <order>cef.extensions.TMCMLogSeverity</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>TMCMLogSubject=(\.+) \S+=</regex>
+    <order>cef.extensions.TMCMLogSubject</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>shost=(\.+) \S+=</regex>
+    <order>cef.extensions.shost</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>TMCMdevicePlatform=(\.*) \S+=|TMCMdevicePlatform=(\.*)$</regex>
+    <order>cef.extensions.TMCMdevicePlatform</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>deviceProcessName=(\.*) \S+=|deviceProcessName=(\.*)$</regex>
+    <order>cef.extensions.deviceProcessName</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dvc=(\.+) \S+=</regex>
+    <order>cef.extensions.dvc</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>externalId=(\.+) \S+=</regex>
+    <order>cef.extensions.externalId</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>sourceServiceName=(\.*) \S+=|sourceServiceName=(\.*)$</regex>
+    <order>cef.extensions.sourceServiceName</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>sproc=(\.+) \S+=</regex>
+    <order>cef.extensions.sproc</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>deviceNtDomain=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceNtDomain</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+    <parent>trendmicro_cef</parent>
+    <regex>dntdom=(\.*) \S+=|dntdom=(\.*)$</regex>
+    <order>cef.extensions.dntdom</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+	<parent>trendmicro_cef</parent>
+	<regex>TrendMicroDsFileMD5=(\.*) \S+=</regex>
+	<order>cef.extensions.TrendMicroDsFileMD5</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+	<parent>trendmicro_cef</parent>
+	<regex>TrendMicroDsFileSHA1=(\.*) \S+=</regex>
+	<order>cef.extensions.TrendMicroDsFileSHA1</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+	<parent>trendmicro_cef</parent>
+	<regex>TrendMicroDsFileSHA256=(\.*) \S+=</regex>
+	<order>cef.extensions.TrendMicroDsFileSHA256</order>
+</decoder>
+
+<decoder name="trendmicro_cef_fields">
+	<parent>trendmicro_cef</parent>
+	<regex>cs3Label="Link" cs3="(\S+)"</regex>
+	<order>url</order>
+</decoder>

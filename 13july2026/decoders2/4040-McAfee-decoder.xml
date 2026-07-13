@@ -1,0 +1,13 @@
+<!-- DEV-5238 -->
+<!--
+victor.keung,Logon Attempt,Successful,9/27/23 4:08:04 PM CST,9/27/23 4:08:04 PM CST,Low,"Successful Logon for user ""Victor Keung (victor.keung)"" from IP address: 192.168.50.63"
+victor.keung,Logon Attempt,Failed,9/26/23 3:57:46 PM CST,9/26/23 3:57:46 PM CST,High,"Failed Logon for user ""victor.keung"" from IP address: 192.168.50.63 due to incorrect password"
+-->
+<decoder name="McAfee">
+	<prematch>^\S+,\.+,\S+,\d+/\d+/\d+ \d+:\d+:\d+ \S+ \S+,\d+/\d+/\d+ \d+:\d+:\d+ \S+ \S+,\S+,</prematch>
+</decoder>
+<decoder name="McAfee-fields">
+	<parent>McAfee</parent>
+	<regex>^(\S+),(\.+),(\S+),(\d+/\d+/\d+ \d+:\d+:\d+ \S+ \S+),(\d+/\d+/\d+ \d+:\d+:\d+ \S+ \S+),(\S+),(\.+)$</regex>
+	<order>dstuser,action,status,start_time,end_time,priority,detail</order>
+</decoder>

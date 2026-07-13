@@ -1,0 +1,264 @@
+<!-- DEV-642 -->
+<!-- General CarbonBlack Decoder in CEF Format -->
+<!-- 
+VMWare Carbon Black Protection v8.1
+Odd version of VMWare Carbon Black App Control
+-->
+<!--
+Reference:
+https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+-->
+<decoder name="carbonblack_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Carbon Black\|</prematch>
+</decoder>
+
+<decoder name="carbonblack_cef">
+    <program_name></program_name>
+    <prematch>CEF:\s*0\|Carbon Black\|</prematch>
+</decoder>
+
+<decoder name="carbonblack_cef">
+    <prematch>CEF:\s*0\|Carbon Black\|</prematch>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WexternalId="(\.*)" \S+=|\WexternalId="(\.*)"$|\WexternalId=(\.*) \S+=|\WexternalId=(\.*)$</regex>
+    <order>cef.extensions.externalId</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcat="(\.*)" \S+=|\Wcat="(\.*)"$|\Wcat=(\.*) \S+=|\Wcat=(\.*)$</regex>
+    <order>cef.extensions.cat</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wstart="(\.*)" \S+=|\Wstart="(\.*)"$|\Wstart=(\.*) \S+=|\Wstart=(\.*)$</regex>
+    <order>cef.extensions.start</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wstart="(\.*)" \S+=|\Wstart="(\.*)"$|\Wstart=(\.*) \S+=|\Wstart=(\.*)$</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wrt="(\.*)" \S+=|\Wrt="(\.*)"$|\Wrt=(\.*) \S+=|\Wrt=(\.*)$</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wrt="(\.*)" \S+=|\Wrt="(\.*)"$|\Wrt=(\.*) \S+=|\Wrt=(\.*)$</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WfilePath="(\.*)" \S+=|\WfilePath="(\.*)"$|\WfilePath=(\.*) \S+=|\WfilePath=(\.*)$</regex>
+    <order>cef.extensions.filePath</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wfname="(\.*)" \S+=|\Wfname="(\.*)"$|\Wfname=(\.*) \S+=|\Wfname=(\.*)$</regex>
+    <order>cef.extensions.fname</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wfname="(\.*)" \S+=|\Wfname="(\.*)"$|\Wfname=(\.*) \S+=|\Wfname=(\.*)$</regex>
+    <order>filename</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WfileHash="(\.*)" \S+=|\WfileHash="(\.*)"$|\WfileHash=(\.*) \S+=|\WfileHash=(\.*)$</regex>
+    <order>cef.extensions.fileHash</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WfileId="(\.*)" \S+=|\WfileId="(\.*)"$|\WfileId=(\.*) \S+=|\WfileId=(\.*)$</regex>
+    <order>cef.extensions.fileId</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WdeviceProcessName="(\.*)" \S+=|\WdeviceProcessName="(\.*)"$|\WdeviceProcessName=(\.*) \S+=|\WdeviceProcessName=(\.*)$</regex>
+    <order>cef.extensions.deviceProcessName</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wdst="(\.*)" \S+=|\Wdst="(\.*)"$|\Wdst=(\.*) \S+=|\Wdst=(\.*)$</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wdst="(\.*)" \S+=|\Wdst="(\.*)"$|\Wdst=(\.*) \S+=|\Wdst=(\.*)$</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wdhost="(\.*)" \S+=|\Wdhost="(\.*)"$|\Wdhost=(\.*) \S+=|\Wdhost=(\.*)$</regex>
+    <order>cef.extensions.dhost</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wduser="(\.*)" \S+=|\Wduser="(\.*)"$|\Wduser=(\.*) \S+=|\Wduser=(\.*)$</regex>
+    <order>cef.extensions.duser</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wduser="(\.*)" \S+=|\Wduser="(\.*)"$|\Wduser=(\.*) \S+=|\Wduser=(\.*)$</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wdvchost="(\.*)" \S+=|\Wdvchost="(\.*)"$|\Wdvchost=(\.*) \S+=|\Wdvchost=(\.*)$</regex>
+    <order>cef.extensions.dvchost</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wmsg="(\.*)" \S+=|\Wmsg="(\.*)"$|\Wmsg=(\.*) \S+=|\Wmsg=(\.*)$</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wsproc="(\.*)" \S+=|\Wsproc="(\.*)"$|\Wsproc=(\.*) \S+=|\Wsproc=(\.*)$</regex>
+    <order>cef.extensions.sproc</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wprevalence="(\.*)" \S+=|\Wprevalence="(\.*)"$|\Wprevalence=(\.*) \S+=|\Wprevalence=(\.*)$</regex>
+    <order>cef.extensions.prevalence</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcs1Label="(\.*)" \S+=|\Wcs1Label="(\.*)"$|\Wcs1Label=(\.*) \S+=|\Wcs1Label=(\.*)$</regex>
+    <order>cef.extensions.cs1Label</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcs1="(\.*)" \S+=|\Wcs1="(\.*)"$|\Wcs1=(\.*) \S+=|\Wcs1=(\.*)$</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcs2Label="(\.*)" \S+=|\Wcs2Label="(\.*)"$|\Wcs2Label=(\.*) \S+=|\Wcs2Label=(\.*)$</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcs2="(\.*)" \S+=|\Wcs2="(\.*)"$|\Wcs2=(\.*) \S+=|\Wcs2=(\.*)$</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcs3Label="(\.*)" \S+=|\Wcs3Label="(\.*)"$|\Wcs3Label=(\.*) \S+=|\Wcs3Label=(\.*)$</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcs3="(\.*)" \S+=|\Wcs3="(\.*)"$|\Wcs3=(\.*) \S+=|\Wcs3=(\.*)$</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcs5Label="(\.*)" \S+=|\Wcs5Label="(\.*)"$|\Wcs5Label=(\.*) \S+=|\Wcs5Label=(\.*)$</regex>
+    <order>cef.extensions.cs5Label</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcs5="(\.*)" \S+=|\Wcs5="(\.*)"$|\Wcs5=(\.*) \S+=|\Wcs5=(\.*)$</regex>
+    <order>cef.extensions.cs5</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcfp1Label="(\.*)" \S+=|\Wcfp1Label="(\.*)"$|\Wcfp1Label=(\.*) \S+=|\Wcfp1Label=(\.*)$</regex>
+    <order>cef.extensions.cfp1Label</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcfp1="(\.*)" \S+=|\Wcfp1="(\.*)"$|\Wcfp1=(\.*) \S+=|\Wcfp1=(\.*)$</regex>
+    <order>cef.extensions.cfp1</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WflexString1Label="(\.*)" \S+=|\WflexString1Label="(\.*)"$|\WflexString1Label=(\.*) \S+=|\WflexString1Label=(\.*)$</regex>
+    <order>cef.extensions.flexString1Label</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WflexString1="(\.*)" \S+=|\WflexString1="(\.*)"$|\WflexString1=(\.*) \S+=|\WflexString1=(\.*)$</regex>
+    <order>cef.extensions.flexString1</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcfp2Label="(\.*)" \S+=|\Wcfp2Label="(\.*)"$|\Wcfp2Label=(\.*) \S+=|\Wcfp2Label=(\.*)$</regex>
+    <order>cef.extensions.cfp2Label</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wcfp2="(\.*)" \S+=|\Wcfp2="(\.*)"$|\Wcfp2=(\.*) \S+=|\Wcfp2=(\.*)$</regex>
+    <order>cef.extensions.cfp2</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WflexString2Label="(\.*)" \S+=|\WflexString2Label="(\.*)"$|\WflexString2Label=(\.*) \S+=|\WflexString2Label=(\.*)$</regex>
+    <order>cef.extensions.flexString2Label</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\WflexString2="(\.*)" \S+=|\WflexString2="(\.*)"$|\WflexString2=(\.*) \S+=|\WflexString2=(\.*)$</regex>
+    <order>cef.extensions.flexString2</order>
+</decoder>
+
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>\Wglobal_state="(\.*)" \S+=|\Wglobal_state="(\.*)"$|\Wglobal_state=(\.*) \S+=|\Wglobal_state=(\.*)$</regex>
+    <order>cef.extensions.global_state</order>
+</decoder>
+
+<!-- DEV-5427 -->
+<decoder name="carbonblack_cef_fields">
+    <parent>carbonblack_cef</parent>
+    <regex>msg=md5:(\.+)\s*desc:(\.+)\s*company_name:(\.+)\s*product_name:(\.+)\s*product_version:(\.+)\s*file_version:(\.+)\s*signed:(\S+)</regex>
+    <order>md5,description,company_name,product_name,product_version,file_version,signed</order>
+</decoder>

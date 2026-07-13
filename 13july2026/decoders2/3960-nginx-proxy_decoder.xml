@@ -1,0 +1,13 @@
+<!-- DEV-4864 -->
+<!--
+Aug 14 16:05:03 prdproxy01.ctfe.com nginx_proxy01: 10.38.32.114  forwarded for - - - [14/Aug/2023:16:05:03 +0800]  "GET /idbs/getequityinstrumentlist/PJ000201 HTTP/1.1" 200 600 "https://idbs1.ctfe.com/equity-instrument-details?agile.1001=EI000276" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+-->
+<decoder name="nginx_proxy">
+    <program_name>nginx_proxy01</program_name>
+    <prematch>^\d+.\d+.\d+.\d+\s+forwarded for \S+ \S+ \S+ \p\S+/\S+/\S+:\d\d:\d\d:\d\d \S+\p</prematch>
+</decoder>
+<decoder name="nginx_proxy-fields">
+    <parent>nginx_proxy</parent>
+    <regex>^(\d+.\d+.\d+.\d+)\s+forwarded for \S+ \S+ \S+ \p\S+/\S+/\S+:\d\d:\d\d:\d\d \S+\p\s+"(\S+) \S+ \S+" (\S+) \S+ "(\.*)" "(\.*)"</regex>
+    <order>srcip,protocol,id,url,user_agent</order>
+</decoder>

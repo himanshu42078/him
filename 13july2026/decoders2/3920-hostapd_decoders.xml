@@ -1,0 +1,11 @@
+<!-- DEV-4090 -->
+<decoder name="hostapd">
+    <program_name>hostapd</program_name>
+    <prematch>^ath\d+: STA \S+:\S+:\S+:\S+:\S+:\S+ RADIUS:|^ath\d+: STA \S+:\S+:\S+:\S+:\S+:\S+ WPA:|^ath\d+: STA \S+:\S+:\S+:\S+:\S+:\S+ IEEE 802.11:</prematch>
+</decoder>
+
+<decoder name="hostapd-fields">
+    <parent>hostapd</parent>
+    <regex>^ath\d+: STA (\S+:\S+:\S+:\S+:\S+:\S+) RADIUS: (\.*)$|^ath\d+: STA (\S+:\S+:\S+:\S+:\S+:\S+) WPA: (\.*)$|^ath\d+: STA (\S+:\S+:\S+:\S+:\S+:\S+) IEEE 802.11: (\.*)$</regex>
+    <order>MACAddress, massage</order>
+</decoder>

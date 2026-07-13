@@ -1,0 +1,91 @@
+<decoder name="fidessa_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Fidessa\|</prematch>
+</decoder>
+
+<decoder name="fidessa_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|Fidessa\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="fidessa_cef">
+	<prematch>CEF:\s*0\|Fidessa\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>LOGON_AUDIT_DATETIME=(\.+) \S+=</regex>
+    <order>cef.extensions.LOGON_AUDIT_DATETIME</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>LOGON_AUDIT_DATETIME=(\.+) \S+=</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>CLIENT_PEER_ADDR=(\.+) \S+=</regex>
+    <order>cef.extensions.CLIENT_PEER_ADDR</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>CLIENT_PEER_ADDR=(\d\.\d\.\d\.\d+):(\d+) \S+=</regex>
+    <order>srcip, srcport</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>CLIENT_NAME=(\.+) \S+=</regex>
+    <order>cef.extensions.CLIENT_NAME</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>LOGON_EVENT=(\.+) \S+=</regex>
+    <order>cef.extensions.LOGON_EVENT</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>LOGON_EVENT=(\.+) \S+=</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>LOGON_TEXT=(\.+) \S+=</regex>
+    <order>cef.extensions.LOGON_TEXT</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>USER_NAME=(\.+) \S+=</regex>
+    <order>cef.extensions.USER_NAME</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>USER_NAME=(\.+) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>APPLICATION=(\.+) \S+=</regex>
+    <order>cef.extensions.APPLICATION</order>
+</decoder>
+
+<decoder name="fidessa_cef_fields">
+    <parent>fidessa_cef</parent>
+    <regex>LOCATION=(\.*) \S+=|LOCATION=(\.*)$</regex>
+    <order>cef.extensions.LOCATION</order>
+</decoder>

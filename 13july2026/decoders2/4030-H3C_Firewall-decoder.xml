@@ -1,0 +1,138 @@
+<!-- DEV-5199 -->
+<!--
+Sep 20 16:25:34 2023 FW %%10FILTER/6/ZONE_DP_FLT_EXECUTION_TCP_LOG(l): -DEV_TYPE=SECPATH-PN=210235A0F7B138000182-VirDev(1000)=Root; srcZoneName(1034)=Untrust;destZoneName(1035)=Trust;rule_ID(1070)=0;policyActType(1071)=permitted;protType(1001)=TCP(6);srcIPAddr(1017)=10.10.80.193;destIPAddr(1019)=10.10.21.28;srcPortNum(1018)=62279;destPortNum(1020)=389;beginTime_e(1013)=09202023162530;endTime_e(1014)=09202023162533;
+-->
+<decoder name="H3C-Firewall">
+	<prematch>^FW %%10FILTER/6/ZONE_DP_FLT_EXECUTION|^CDE-FW %%10FILTER/6/FILTER_ZONE_IPV4_EXECUTION</prematch>
+</decoder>
+
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>^(\S+) %%10FILTER</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>DEV_TYPE=(\S+);</regex>
+	<order>DEV_TYPE</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>srcZoneName\(\d+\)=(\S+);</regex>
+	<order>srcZoneName</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>destZoneName\(\d+\)=(\S+);</regex>
+	<order>destZoneName</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>rule_ID\(\d+\)=(\d+);</regex>
+	<order>rule_ID</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>policyActType\(\d+\)=(\.+);</regex>
+	<order>policyActType</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>protType\(\d+\)=(\S+)\(\d+\);</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>srcIPAddr\(\d+\)=(\d+.\d+.\d+.\d+);</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>destIPAddr\(\d+\)=(\d+.\d+.\d+.\d+);</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>srcPortNum\(\d+\)=(\d+);</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>destPortNum\(\d+\)=(\d+);</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>beginTime_e\(\d+\)=(\d+);</regex>
+	<order>beginTime_e</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>endTime_e\(\d+\)=(\d+);</regex>
+	<order>endTime_e</order>
+</decoder>
+
+<!-- DEV-5354 -->
+<!--
+Oct 19 12:22:13 2023 CDE-FW %%10FILTER/6/FILTER_ZONE_IPV4_EXECUTION: SrcZoneName(1025)=Untrust;DstZoneName(1035)=Trust;Type(1067)=ACL;SecurityPolicy(1072)=access-Opera App server;RuleID(1078)=4;Protocol(1001)=TCP;Application(1002)=https;SrcIPAddr(1003)=10.10.22.77;SrcPort(1004)=57382;SrcMacAddr(1021)=0cda-41b5-a715;DstIPAddr(1007)=10.10.21.11;DstPort(1008)=443;MatchCount(1069)=1;Event(1048)=Permit;
+-->
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>DstZoneName\(\d+\)=(\S+);</regex>
+	<order>dstZoneName</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>Type\(\d+\)=(\S+);</regex>
+	<order>type</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>SecurityPolicy\(\d+\)=(\S+);</regex>
+	<order>securityPolicy</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>RuleID\(\d+\)=(\S+);</regex>
+	<order>ruleID</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>Protocol\(\d+\)=(\S+);</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>Application\(\d+\)=(\S+);</regex>
+	<order>application</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>SrcPort\(\d+\)=(\S+);</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>SrcMacAddr\(\d+\)=(\S+);</regex>
+	<order>srcMacAddr</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>DstIPAddr\(\d+\)=(\S+);</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>DstPort\(\d+\)=(\S+);</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>MatchCount\(\d+\)=(\S+);</regex>
+	<order>matchCount</order>
+</decoder>
+<decoder name="H3C-Firewall-fields">
+	<parent>H3C-Firewall</parent>
+	<regex>Event\(\d+\)=(\S+);</regex>
+	<order>event</order>
+</decoder>

@@ -1,0 +1,136 @@
+<!--
+Feb  6 16:12:14 10.30.1.6 PwC-Log-Collector: CEF:0|Cisco|C100V Secure Email Gateway Virtual|14.3.0-032|ESA_CONSOLIDATED_LOG_EVENT|Consolidated Log Event|5|deviceExternalId=4229C881FE749F7F271C-0199C2B1AD8C ESAMID=1505881 ESAICID=2426416 ESADCID=952664 ESAAMPVerdict=UNKNOWN ESAASVerdict=NEGATIVE ESAAVVerdict=NEGATIVE ESACFVerdict=NO_MATCH endTime=Mon Feb  6 16:12:11 2023 ESADKIMVerdict=pass ESADLPVerdict=NOT_EVALUATED ESADMARCVerdict=pass dvc=139.138.42.38 ESAAttachmentDetails={'atl-generated-3cdfd406-988e-4d18-a816-d243980271cc': {'AMP': {'Verdict': 'FILE UNKNOWN', 'fileHash': 'b757c10d129aa9bea1a2422bb84a38c9bb6304a7b977cd4324b18db42cf3eedc'}, 'BodyScanner': {}}} ESAFriendlyFrom="Panchabhai, Suraj (Cognizant) (Jira)" <jira@acsapmo.atlassian.net> ESAGMVerdict=NEGATIVE startTime=Mon Feb  6 16:12:08 2023 deviceInboundInterface=MailFlow deviceDirection=0 ESAMailFlowPolicy=ACCEPT suser=jira@mail-us.atlassian.net cs1Label=MailPolicy cs1=Forward_All_Inbound_Email cs2Label=SenderCountry cs2=United States ESAMFVerdict=MATCH act=DELIVERED cs4Label=ExternalMsgID cs4='<b05051a9-a63f-4903-aa6a-3dc255e15a31@acsapmo.atlassian.net>' ESAMsgSize=36349 ESAOFVerdict=NEGATIVE duser=leslie.kwliu1@aeon.com.hk ESAHeloDomain=mta-81-104.sparkpostmail.com ESAHeloIP=192.174.81.104 ESAReplyTo=jira@acsapmo.atlassian.net cfp1Label=SBRSScore cfp1=3.4 ESASDRDomainAge=30 days (or greater) cs3Label=SDRThreatCategory cs3=N/A cs6Label=SDRRepScore cs6=Neutral ESASPFVerdict={'mailfrom': {'result': 'Pass', 'sender': 'jira@mail-us.atlassian.net'}} sourceHostName=mta-81-104.sparkpostmail.com ESASenderGroup=UNKNOWNLIST sourceAddress=192.174.81.104 msg='[JIRA] Panchabhai, Suraj (Cognizant) mentioned you on PIIUC-1398' ESATLSInCipher=ECDHE-RSA-AES256-GCM-SHA384 ESATLSInConnStatus=Success ESATLSInProtocol=TLSv1.2
+-->
+<decoder name="cisco_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Cisco\|</prematch>
+</decoder>
+
+<decoder name="cisco_cef">
+    <program_name></program_name>
+    <prematch>CEF:\s*0\|Cisco\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="cisco_cef">
+    <prematch>CEF:\s*0\|Cisco\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>deviceExternalId=(\.+) \S+=</regex>
+    <order>cef.extensions.deviceExternalId</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESAMID=(\.+) \S+=</regex>
+    <order>cef.extensions.ESAMID</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESADCID=(\.+) \S+=</regex>
+    <order>cef.extensions.ESADCID</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESATLSOutCipher=(\.+) \S+=</regex>
+    <order>cef.extensions.ESATLSOutCipher</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESATLSOutConnStatus=(\.+) \S+=</regex>
+    <order>cef.extensions.ESATLSOutConnStatus</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESATLSOutProtocol=(\.+) \S+=</regex>
+    <order>cef.extensions.ESATLSOutProtocol</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESAStatus=(\.*) \S+=|ESAStatus=(\.*)$</regex>
+    <order>cef.extensions.ESAStatus</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESAICID=(\.+) \S+=</regex>
+    <order>cef.extensions.ESAICID</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESAAMPVerdict=(\.+) \S+=</regex>
+    <order>cef.extensions.ESAAMPVerdict</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESAASVerdict=(\.+) \S+=</regex>
+    <order>cef.extensions.ESAASVerdict</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESAAVVerdict=(\.+) \S+=</regex>
+    <order>cef.extensions.ESAAVVerdict</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESACFVerdict=(\.+) \S+=</regex>
+    <order>cef.extensions.ESACFVerdict</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>endTime=(\.+) \S+=</regex>
+    <order>cef.extensions.endTime</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESADKIMVerdict=(\.+) \S+=</regex>
+    <order>cef.extensions.ESADKIMVerdict</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESADLPVerdict=(\.+) \S+=</regex>
+    <order>cef.extensions.ESADLPVerdict</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESADMARCVerdict=(\.+) \S+=</regex>
+    <order>cef.extensions.ESADMARCVerdict</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>dvc=(\.+) \S+=</regex>
+    <order>cef.extensions.dvc</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESAAttachmentDetails=(\.+) \S+=</regex>
+    <order>cef.extensions.ESAAttachmentDetails</order>
+</decoder>
+
+<decoder name="cisco_cef_fields">
+    <parent>cisco_cef</parent>
+    <regex>ESAFriendlyFrom="(\.*)" \S+=|ESAFriendlyFrom="(\.*)"$</regex>
+    <order>cef.extensions.ESAFriendlyFrom</order>
+</decoder>

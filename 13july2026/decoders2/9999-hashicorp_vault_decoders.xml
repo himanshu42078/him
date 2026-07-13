@@ -1,0 +1,163 @@
+<!--
+Aug 28 14:25:04 ip-172-18-131-215 vault[915]: {"time":"2023-08-28T06:25:04.219274928Z","type":"response","auth":{"client_token":"hmac-sha256:5839b200cd1f6b99e5481f0611427b27842c01fc9a4f2d0863d264a83f8a82f3","accessor":"hmac-sha256:ac743ce1993dc50a7775be8983812e3c702d4969b4c8ef59959bbb0afde348e7","display_name":"wlab-prod-app-auth-cluster05-prod2-system-account-pro","policies":["cluster05-kubernetes-kv-reader-cia","default","pg-db-reader-account-pro-rds","transit-exporter-bank-client-e2e-key","transit-reader-bank-client-e2e-key"],"token_policies":["cluster05-kubernetes-kv-reader-cia","default","pg-db-reader-account-pro-rds","transit-exporter-bank-client-e2e-key","transit-reader-bank-client-e2e-key"],"metadata":{"role":"account-pro","service_account_name":"account-pro","service_account_namespace":"prod2-system","service_account_secret_name":"","service_account_uid":"1c925b38-79ad-4115-bc06-d5013dff1eb6"},"entity_id":"8df630a1-8099-1b94-70e9-695fbaad0ace","token_type":"service","token_ttl":300,"token_issue_time":"2023-08-28T10:09:01+08:00"},"request":{"id":"3d68408a-e8cf-0e4c-119a-954d8c25aeb0","operation":"read","mount_type":"transit","client_token":"hmac-sha256:5839b200cd1f6b99e5481f0611427b27842c01fc9a4f2d0863d264a83f8a82f3","client_token_accessor":"hmac-sha256:ac743ce1993dc50a7775be8983812e3c702d4969b4c8ef59959bbb0afde348e7","namespace":{"id":"E3Qgi","path":"wlab/prod/app/"},"path":"transit/export/encryption-key/bank-client-e2e-key","remote_address":"172.18.131.212"},"response":{"mount_type":"transit","data":{"keys":{"1":"hmac-sha256:8470cd315834c1ae9bc15c4aa2eadfd06c0145f0c8175f9145f4c9068b803b86"},"name":"hmac-sha256:4175b934d2a3bd036c1beb10de61268d3f41e3472df1c178d496a59440c9c418","type":"hmac-sha256:82254169915800b5e0c69a738d6e9c14bf2d36104bd0841e4835ecd5f48b2a2e"}}}
+-->
+<decoder name="hashicorp-vault">
+	<program_name>^vault$</program_name>
+	<prematch>{"time":"\S+","type":</prematch>
+</decoder>
+<decoder name="hashicorp-consul">
+	<program_name>consul</program_name>
+</decoder>
+
+<!--
+<decoder name="hashicorp-vault-fields">
+	<parent>hashicorp-vault</parent>
+	<program_name>^vault$</program_name>
+	<prematch>{"time":"\S+","type":</prematch>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"time":"(\.+)"</regex>
+    <order>time</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"type":"(\.+)"</regex>
+    <order>type</order>
+</decoder>
+
+<!-- auth -->
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"client_token":"(\.*)"</regex>
+    <order>auth.client_token</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"accessor":"(\.*)"</regex>
+    <order>auth.accessor</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"display_name":"(\.*)"</regex>
+    <order>auth.display_name</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"policies":[(\.*)]</regex>
+    <order>auth.policies</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"token_policies":[(\.*)]</regex>
+    <order>auth.token_policies</order>
+</decoder>
+
+<!-- metadata -->
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"metadata":{\.*"role":"(\.*)"</regex>
+    <order>auth.metadata.role</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"metadata":{\.*"service_account_name":"(\.*)"</regex>
+    <order>auth.metadata.service_account_name</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"metadata":{\.*"service_account_namespace":"(\.*)"</regex>
+    <order>auth.metadata.service_account_namespace</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"metadata":{\.*"service_account_secret_name":"(\.*)"</regex>
+    <order>auth.metadata.service_account_secret_name</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"metadata":{\.*"service_account_uid":"(\.*)"</regex>
+    <order>auth.metadata.service_account_uid</order>
+</decoder>
+
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"entity_id":"(\.*)"</regex>
+    <order>auth.entity_id</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"token_type":"(\.*)"</regex>
+    <order>auth.token_type</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"token_ttl":(\d*),</regex>
+    <order>auth.token_ttl</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"auth":{\.*"token_issue_time":"(\.*)"</regex>
+    <order>auth.token_issue_time</order>
+</decoder>
+
+<!-- request -->
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"request":{\.*"id":"(\.*)"</regex>
+    <order>request.id</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"request":{\.*"operation":"(\.*)"</regex>
+    <order>request.operation</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"request":{\.*"mount_type":"(\.*)"</regex>
+    <order>request.mount_type</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"request":{\.*"client_token":"(\.*)"</regex>
+    <order>request.client_token</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"request":{\.*"client_token_accessor":"(\.*)"</regex>
+    <order>request.client_token_accessor</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"request":{\.*"remote_address":"(\.*)"</regex>
+    <order>request.remote_address</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"request":{\.*"path":"(\.*)"</regex>
+    <order>request.path</order>
+</decoder>
+
+<!-- response -->
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"response":{\.*"mount_type":"(\.*)"</regex>
+    <order>response.mount_type</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"response":{\.*"name":"(\.*)"</regex>
+    <order>response.name</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"response":{\.*"type":"(\.*)"</regex>
+    <order>response.type</order>
+</decoder>
+<decoder name="hashicorp-vault-fields">
+    <parent>hashicorp-vault</parent>
+    <regex>"response":{\.*"data":{\.*"error":"(\.*)"</regex>
+    <order>response.data.error</order>
+</decoder>

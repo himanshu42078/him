@@ -1,0 +1,453 @@
+
+<decoder name="crowdstrike_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|CrowdStrike\|</prematch>
+</decoder>
+
+<decoder name="crowdstrike_cef">
+    <program_name></program_name>
+    <prematch>CEF:\s*0\|CrowdStrike\|</prematch>
+</decoder>
+
+<decoder name="crowdstrike_cef">
+    <prematch>CEF:\s*0\|CrowdStrike\|</prematch>
+</decoder>
+
+<!-- Customized fields -->
+<decoder name="crowdstrike_cef_fields">
+	<parent>crowdstrike_cef</parent>
+	<regex>\d+\|(\.+)\|\.+\|\.+\|\.+\|\.+\|\d+\|</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="crowdstrike_cef_fields">
+	<parent>crowdstrike_cef</parent>
+	<regex>dhost=(\S+)</regex>
+	<order>hostname</order>
+</decoder>
+<!-- Customized fields -->
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WexternalId="(\.*)" \S+=|\WexternalId="(\.*)"$|\WexternalId=(\.*) \S+=|\WexternalId=(\.*)$</regex>
+    <order>cef.extensions.externalId</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcn2Label="(\.*)" \S+=|\Wcn2Label="(\.*)"$|\Wcn2Label=(\.*) \S+=|\Wcn2Label=(\.*)$</regex>
+    <order>cef.extensions.cn2Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcn2="(\.*)" \S+=|\Wcn2="(\.*)"$|\Wcn2=(\.*) \S+=|\Wcn2=(\.*)$</regex>
+    <order>cef.extensions.cn2</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wdhost="(\.*)" \S+=|\Wdhost="(\.*)"$|\Wdhost=(\.*) \S+=|\Wdhost=(\.*)$</regex>
+    <order>cef.extensions.dhost</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wduser="(\.*)" \S+=|\Wduser="(\.*)"$|\Wduser=(\.*) \S+=|\Wduser=(\.*)$</regex>
+    <order>cef.extensions.duser</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wduser="(\.*)" \S+=|\Wduser="(\.*)"$|\Wduser=(\.*) \S+=|\Wduser=(\.*)$</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wfname="(\.*)" \S+=|\Wfname="(\.*)"$|\Wfname=(\.*) \S+=|\Wfname=(\.*)$</regex>
+    <order>cef.extensions.fname</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wfname="(\.*)" \S+=|\Wfname="(\.*)"$|\Wfname=(\.*) \S+=|\Wfname=(\.*)$</regex>
+    <order>filename</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs5Label="(\.*)" \S+=|\Wcs5Label="(\.*)"$|\Wcs5Label=(\.*) \S+=|\Wcs5Label=(\.*)$</regex>
+    <order>cef.extensions.cs5Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs5="(\.*)" \S+=|\Wcs5="(\.*)"$|\Wcs5=(\.*) \S+=|\Wcs5=(\.*)$</regex>
+    <order>cef.extensions.cs5</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wdntdom="(\.*)" \S+=|\Wdntdom="(\.*)"$|\Wdntdom=(\.*) \S+=|\Wdntdom=(\.*)$</regex>
+    <order>cef.extensions.dntdom</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wsrc="(\.*)" \S+=|\Wsrc="(\.*)"$|\Wsrc=(\.*) \S+=|\Wsrc=(\.*)$</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wsrc="(\.*)" \S+=|\Wsrc="(\.*)"$|\Wsrc=(\.*) \S+=|\Wsrc=(\.*)$</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wc6a3="(\.*)" \S+=|\Wc6a3="(\.*)"$|\Wc6a3=(\.*) \S+=|\Wc6a3=(\.*)$</regex>
+    <order>cef.extensions.c6a3</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wspt="(\.*)" \S+=|\Wspt="(\.*)"$|\Wspt=(\.*) \S+=|\Wspt=(\.*)$</regex>
+    <order>cef.extensions.spt</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wspt="(\.*)" \S+=|\Wspt="(\.*)"$|\Wspt=(\.*) \S+=|\Wspt=(\.*)$</regex>
+    <order>srcport</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wdpt="(\.*)" \S+=|\Wdpt="(\.*)"$|\Wdpt=(\.*) \S+=|\Wdpt=(\.*)$</regex>
+    <order>cef.extensions.dpt</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wdpt="(\.*)" \S+=|\Wdpt="(\.*)"$|\Wdpt=(\.*) \S+=|\Wdpt=(\.*)$</regex>
+    <order>dstport</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs6Label="(\.*)" \S+=|\Wcs6Label="(\.*)"$|\Wcs6Label=(\.*) \S+=|\Wcs6Label=(\.*)$</regex>
+    <order>cef.extensions.cs6Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs6="(\.*)" \S+=|\Wcs6="(\.*)"$|\Wcs6=(\.*) \S+=|\Wcs6=(\.*)$</regex>
+    <order>cef.extensions.cs6</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcn3Label="(\.*)" \S+=|\Wcn3Label="(\.*)"$|\Wcn3Label=(\.*) \S+=|\Wcn3Label=(\.*)$</regex>
+    <order>cef.extensions.cn3Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcn3="(\.*)" \S+=|\Wcn3="(\.*)"$|\Wcn3=(\.*) \S+=|\Wcn3=(\.*)$</regex>
+    <order>cef.extensions.cn3</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WdeviceCustomDate1Label="(\.*)" \S+=|\WdeviceCustomDate1Label="(\.*)"$|\WdeviceCustomDate1Label=(\.*) \S+=|\WdeviceCustomDate1Label=(\.*)$</regex>
+    <order>cef.extensions.deviceCustomDate1Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WdeviceCustomDate1="(\.*)" \S+=|\WdeviceCustomDate1="(\.*)"$|\WdeviceCustomDate1=(\.*) \S+=|\WdeviceCustomDate1=(\.*)$</regex>
+    <order>cef.extensions.deviceCustomDate1</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wrt="(\.*)" \S+=|\Wrt="(\.*)"$|\Wrt=(\.*) \S+=|\Wrt=(\.*)$</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wrt="(\.*)" \S+=|\Wrt="(\.*)"$|\Wrt=(\.*) \S+=|\Wrt=(\.*)$</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wtactic="(\.*)" \S+=|\Wtactic="(\.*)"$|\Wtactic=(\.*) \S+=|\Wtactic=(\.*)$</regex>
+    <order>cef.extensions.tactic</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wtechnique="(\.*)" \S+=|\Wtechnique="(\.*)"$|\Wtechnique=(\.*) \S+=|\Wtechnique=(\.*)$</regex>
+    <order>cef.extensions.technique</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wobjective="(\.*)" \S+=|\Wobjective="(\.*)"$|\Wobjective=(\.*) \S+=|\Wobjective=(\.*)$</regex>
+    <order>cef.extensions.objective</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WpatternDisposition="(\.*)" \S+=|\WpatternDisposition="(\.*)"$|\WpatternDisposition=(\.*) \S+=|\WpatternDisposition=(\.*)$</regex>
+    <order>cef.extensions.patternDisposition</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Woutcome="(\.*)" \S+=|\Woutcome="(\.*)"$|\Woutcome=(\.*) \S+=|\Woutcome=(\.*)$</regex>
+    <order>cef.extensions.outcome</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcat="(\.*)" \S+=|\Wcat="(\.*)"$|\Wcat=(\.*) \S+=|\Wcat=(\.*)$</regex>
+    <order>cef.extensions.cat</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs2Label="(\.*)" \S+=|\Wcs2Label="(\.*)"$|\Wcs2Label=(\.*) \S+=|\Wcs2Label=(\.*)$</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs2="(\.*)" \S+=|\Wcs2="(\.*)"$|\Wcs2=(\.*) \S+=|\Wcs2=(\.*)$</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs3Label="(\.*)" \S+=|\Wcs3Label="(\.*)"$|\Wcs3Label=(\.*) \S+=|\Wcs3Label=(\.*)$</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs3="(\.*)" \S+=|\Wcs3="(\.*)"$|\Wcs3=(\.*) \S+=|\Wcs3=(\.*)$</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcn1Label="(\.*)" \S+=|\Wcn1Label="(\.*)"$|\Wcn1Label=(\.*) \S+=|\Wcn1Label=(\.*)$</regex>
+    <order>cef.extensions.cn1Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcn1="(\.*)" \S+=|\Wcn1="(\.*)"$|\Wcn1=(\.*) \S+=|\Wcn1=(\.*)$</regex>
+    <order>cef.extensions.cn1</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wmsg="(\.*)" \S+=|\Wmsg="(\.*)"$|\Wmsg=(\.*) \S+=|\Wmsg=(\.*)$</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WdestinationTranslatedAddress="(\.*)" \S+=|\WdestinationTranslatedAddress="(\.*)"$|\WdestinationTranslatedAddress=(\.*) \S+=|\WdestinationTranslatedAddress=(\.*)$</regex>
+    <order>cef.extensions.destinationTranslatedAddress</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WdeviceProcessName="(\.*)" \S+=|\WdeviceProcessName="(\.*)"$|\WdeviceProcessName=(\.*) \S+=|\WdeviceProcessName=(\.*)$</regex>
+    <order>cef.extensions.deviceProcessName</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WfilePath="(\.*)" \S+=|\WfilePath="(\.*)"$|\WfilePath=(\.*) \S+=|\WfilePath=(\.*)$</regex>
+    <order>cef.extensions.filePath</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WuserUUIDLabel="(\.*)" \S+=|\WuserUUIDLabel="(\.*)"$|\WuserUUIDLabel=(\.*) \S+=|\WuserUUIDLabel=(\.*)$</regex>
+    <order>cef.extensions.userUUIDLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WuserUUID="(\.*)" \S+=|\WuserUUID="(\.*)"$|\WuserUUID=(\.*) \S+=|\WuserUUID=(\.*)$</regex>
+    <order>cef.extensions.userUUID</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WuserIDLabel="(\.*)" \S+=|\WuserIDLabel="(\.*)"$|\WuserIDLabel=(\.*) \S+=|\WuserIDLabel=(\.*)$</regex>
+    <order>cef.extensions.userIDLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WuserID="(\.*)" \S+=|\WuserID="(\.*)"$|\WuserID=(\.*) \S+=|\WuserID=(\.*)$</regex>
+    <order>cef.extensions.userID</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WexecutionIDLabel="(\.*)" \S+=|\WexecutionIDLabel="(\.*)"$|\WexecutionIDLabel=(\.*) \S+=|\WexecutionIDLabel=(\.*)$</regex>
+    <order>cef.extensions.executionIDLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WexecutionID="(\.*)" \S+=|\WexecutionID="(\.*)"$|\WexecutionID=(\.*) \S+=|\WexecutionID=(\.*)$</regex>
+    <order>cef.extensions.executionID</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WreportIDLabel="(\.*)" \S+=|\WreportIDLabel="(\.*)"$|\WreportIDLabel=(\.*) \S+=|\WreportIDLabel=(\.*)$</regex>
+    <order>cef.extensions.reportIDLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WreportID="(\.*)" \S+=|\WreportID="(\.*)"$|\WreportID=(\.*) \S+=|\WreportID=(\.*)$</regex>
+    <order>cef.extensions.reportID</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WreportNameLabel="(\.*)" \S+=|\WreportNameLabel="(\.*)"$|\WreportNameLabel=(\.*) \S+=|\WreportNameLabel=(\.*)$</regex>
+    <order>cef.extensions.reportNameLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WreportName="(\.*)" \S+=|\WreportName="(\.*)"$|\WreportName=(\.*) \S+=|\WreportName=(\.*)$</regex>
+    <order>cef.extensions.reportName</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WreportTypeLabel="(\.*)" \S+=|\WreportTypeLabel="(\.*)"$|\WreportTypeLabel=(\.*) \S+=|\WreportTypeLabel=(\.*)$</regex>
+    <order>cef.extensions.reportTypeLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WreportType="(\.*)" \S+=|\WreportType="(\.*)"$|\WreportType=(\.*) \S+=|\WreportType=(\.*)$</regex>
+    <order>cef.extensions.reportType</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WreportFileReferenceLabel="(\.*)" \S+=|\WreportFileReferenceLabel="(\.*)"$|\WreportFileReferenceLabel=(\.*) \S+=|\WreportFileReferenceLabel=(\.*)$</regex>
+    <order>cef.extensions.reportFileReferenceLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WreportFileReference="(\.*)" \S+=|\WreportFileReference="(\.*)"$|\WreportFileReference=(\.*) \S+=|\WreportFileReference=(\.*)$</regex>
+    <order>cef.extensions.reportFileReference</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WstatusLabel="(\.*)" \S+=|\WstatusLabel="(\.*)"$|\WstatusLabel=(\.*) \S+=|\WstatusLabel=(\.*)$</regex>
+    <order>cef.extensions.statusLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wstatus="(\.*)" \S+=|\Wstatus="(\.*)"$|\Wstatus=(\.*) \S+=|\Wstatus=(\.*)$</regex>
+    <order>cef.extensions.status</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WstatusMessageLabel="(\.*)" \S+=|\WstatusMessageLabel="(\.*)"$|\WstatusMessageLabel=(\.*) \S+=|\WstatusMessageLabel=(\.*)$</regex>
+    <order>cef.extensions.statusMessageLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WexecutionMetadataLabel="(\.*)" \S+=|\WexecutionMetadataLabel="(\.*)"$|\WexecutionMetadataLabel=(\.*) \S+=|\WexecutionMetadataLabel=(\.*)$</regex>
+    <order>cef.extensions.executionMetadataLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WfileHash="(\.*)" \S+=|\WfileHash="(\.*)"$|\WfileHash=(\.*) \S+=|\WfileHash=(\.*)$</regex>
+    <order>cef.extensions.fileHash</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs1Label="(\.*)" \S+=|\Wcs1Label="(\.*)"$|\Wcs1Label=(\.*) \S+=|\Wcs1Label=(\.*)$</regex>
+    <order>cef.extensions.cs1Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wcs1="(\.*)" \S+=|\Wcs1="(\.*)"$|\Wcs1=(\.*) \S+=|\Wcs1=(\.*)$</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WdeviceCustomDate2Label="(\.*)" \S+=|\WdeviceCustomDate2Label="(\.*)"$|\WdeviceCustomDate2Label=(\.*) \S+=|\WdeviceCustomDate2Label=(\.*)$</regex>
+    <order>cef.extensions.deviceCustomDate2Label</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WdeviceCustomDate2="(\.*)" \S+=|\WdeviceCustomDate2="(\.*)"$|\WdeviceCustomDate2=(\.*) \S+=|\WdeviceCustomDate2=(\.*)$</regex>
+    <order>cef.extensions.deviceCustomDate2</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wc6a2="(\.*)" \S+=|\Wc6a2="(\.*)"$|\Wc6a2=(\.*) \S+=|\Wc6a2=(\.*)$</regex>
+    <order>cef.extensions.c6a2</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wdst="(\.*)" \S+=|\Wdst="(\.*)"$|\Wdst=(\.*) \S+=|\Wdst=(\.*)$</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\Wdst="(\.*)" \S+=|\Wdst="(\.*)"$|\Wdst=(\.*) \S+=|\Wdst=(\.*)$</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WsessionStartTimestampLabel="(\.*)" \S+=|\WsessionStartTimestampLabel="(\.*)"$|\WsessionStartTimestampLabel=(\.*) \S+=|\WsessionStartTimestampLabel=(\.*)$</regex>
+    <order>cef.extensions.sessionStartTimestampLabel</order>
+</decoder>
+
+<decoder name="crowdstrike_cef_fields">
+    <parent>crowdstrike_cef</parent>
+    <regex>\WsessionStartTimestamp="(\.*)" \S+=|\WsessionStartTimestamp="(\.*)"$|\WsessionStartTimestamp=(\.*) \S+=|\WsessionStartTimestamp=(\.*)$</regex>
+    <order>cef.extensions.sessionStartTimestamp</order>
+</decoder>

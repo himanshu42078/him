@@ -1,0 +1,13 @@
+<!-- DEV-5018 -->
+<!--
+"501191","MHUNG","2023-03-17 18:44:44.523000000","Yes","","Logon System Successfully","2023-03-17 18:44:44.523000000","VMTT08022","LOGON","MHUNG"
+"501410","SATSOI","2023-03-20 10:27:46.230000000","No ","Wrong Password","Try To Logon With Invalid Password 1 Time","2023-03-20 10:27:46.230000000","VMTT08032","LOGON","SATSOI"
+-->
+<decoder name="OctO">
+    <prematch>^"\d+","\.+","\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+","\.+","\.*","\.+","\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+","\.+","\.+","\.+"$</prematch>
+</decoder>
+<decoder name="OctO-fields">
+    <parent>OctO</parent>
+    <regex>^"(\d+)","(\.+)","(\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+)","(\.+)","(\.*)","(\.+)","(\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+)","(\.+)","(\.+)","(\.+)"$</regex>
+    <order>SeqNo,dstuser,LogonDateTime,LogonResult,FailReason,Remarks,RecordDateTime,LogonMachine,status,ByUserID</order>
+</decoder>

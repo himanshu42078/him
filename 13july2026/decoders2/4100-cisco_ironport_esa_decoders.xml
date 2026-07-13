@@ -1,0 +1,12 @@
+<!-- DEV-5868 -->
+<!--
+Dec 13 16:53:09 Original Address=192.168.100.28 Dec 13 16:51:40 syslog_audit_11Dec2023: Info: Appliance: relay01.gtjas.com.hk, Interaction Mode: GUI, User: gsadmin5, Source IP: 192.168.50.65, Destination IP: 210.176.53.82, Event: Successful login
+-->
+<decoder name="cisco-ironport-esa">
+  <prematch>^Address=\d+.\d+.\d+.\d+ \S+ \d+ \d+:\d+:\d+ syslog_audit_</prematch>
+</decoder>
+<decoder name="cisco-ironport-esa-fields">
+    <parent>cisco-ironport-esa</parent>
+    <regex>Address=\d+.\d+.\d+.\d+ \S+ \d+ \d+:\d+:\d+ syslog_audit_\S+: \S+: Appliance: (\S+), Interaction Mode: (\S+), User: (\S+), Source IP: (\d+.\d+.\d+.\d+), Destination IP: (\d+.\d+.\d+.\d+), Event: (\.+)$</regex>
+    <order>Appliance,Interaction_Mode,dstuser,srcip,dstip,event</order>
+</decoder>

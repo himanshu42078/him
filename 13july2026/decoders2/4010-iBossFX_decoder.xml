@@ -1,0 +1,14 @@
+<!-- DEV-5035 -->
+<!--
+"590311","2023-08-24 00:00:00","Nlee","2023-08-25 16:01:58.330000000","","Logout","L","User Nlee logout succeeded from 172.16.8.3.","2022-03-09 18:17:05.223000000"
+"590317","2023-08-24 00:00:00","adminnlee","2023-08-25 16:03:23.777000000","","Login","L","User adminnlee login attempt failed from 172.16.8.3, client version 1.2.154.0, client built 2019.07.30 15:58.","2023-08-25 16:03:23.767000000"
+"590314","2023-08-24 00:00:00","adminNLee","2023-08-25 16:03:01.783000000","","Logout","L","User adminNLee logout succeeded from 172.16.8.3.","2023-08-25 16:03:23.76700000"
+-->
+<decoder name="iBossFX">
+    <prematch>^"\d+","\d+-\d+-\d+ \d\d:\d\d:\d\d","\.+","\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+","\.*","\.+","\.+","\.+","\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+"$</prematch>
+</decoder>
+<decoder name="iBossFX-fields">
+    <parent>iBossFX</parent>
+    <regex>^"(\d+)","(\d+-\d+-\d+ \d\d:\d\d:\d\d)","(\.+)","(\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+)","(\.*)","(\.+)","(\.+)","(\.+)","(\d+-\d+-\d+ \d\d:\d\d:\d\d.\d+)"$</regex>
+    <order>log_id,sys_date,dstuser,log_time,proc_id,event_category,event_type,event_text,last_lock_time</order>
+</decoder>

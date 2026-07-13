@@ -1,0 +1,13 @@
+<!-- DEV-4998 -->
+<!--
+"524903","2023-08-21 17:26:46","1970-01-01 08:00:00","JZHONG","1","Login Successful!","","0"
+"524904","2023-08-21 17:27:00","1970-01-01 08:00:00","JZHONG","1","No Such User ID or Wrong Password!","","-1"
+-->
+<decoder name="SharpPoint">
+    <prematch>^"\d+","\d+-\d+-\d+ \d\d:\d\d:\d\d","\d+-\d+-\d+ \d\d:\d\d:\d\d","\.*","\d+","\.+","\.*","\.+"$</prematch>
+</decoder>
+<decoder name="SharpPoint-fields">
+    <parent>SharpPoint</parent>
+    <regex>^"(\d+)","(\.+)","(\.+)","(\.*)","(\d+)","(\.+)","(\.*)","(\.+)"$</regex>
+    <order>log_no,log_time,bus_date,dstuser,action_id,log_message,new_message,error_no</order>
+</decoder>

@@ -1,0 +1,2036 @@
+
+<decoder name="claroty_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Claroty\|</prematch>
+</decoder>
+
+<decoder name="claroty_cef">
+    <program_name></program_name>
+    <prematch>CEF:\s*0\|Claroty\|</prematch>
+</decoder>
+
+<decoder name="claroty_cef">
+    <prematch>CEF:\s*0\|Claroty\|</prematch>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wrt="(\.*)" \S+=|\Wrt="(\.*)"$|\Wrt=(\.*) \S+=|\Wrt=(\.*)$</regex>
+    <order>cef.extensions.rt</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wrt="(\.*)" \S+=|\Wrt="(\.*)"$|\Wrt=(\.*) \S+=|\Wrt=(\.*)$</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wstart="(\.*)" \S+=|\Wstart="(\.*)"$|\Wstart=(\.*) \S+=|\Wstart=(\.*)$</regex>
+    <order>cef.extensions.start</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wstart="(\.*)" \S+=|\Wstart="(\.*)"$|\Wstart=(\.*) \S+=|\Wstart=(\.*)$</regex>
+    <order>event_time</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs1Label="(\.*)" \S+=|\Wcs1Label="(\.*)"$|\Wcs1Label=(\.*) \S+=|\Wcs1Label=(\.*)$</regex>
+    <order>cef.extensions.cs1Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs1="(\.*)" \S+=|\Wcs1="(\.*)"$|\Wcs1=(\.*) \S+=|\Wcs1=(\.*)$</regex>
+    <order>cef.extensions.cs1</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs2Label="(\.*)" \S+=|\Wcs2Label="(\.*)"$|\Wcs2Label=(\.*) \S+=|\Wcs2Label=(\.*)$</regex>
+    <order>cef.extensions.cs2Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs2="(\.*)" \S+=|\Wcs2="(\.*)"$|\Wcs2=(\.*) \S+=|\Wcs2=(\.*)$</regex>
+    <order>cef.extensions.cs2</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs3Label="(\.*)" \S+=|\Wcs3Label="(\.*)"$|\Wcs3Label=(\.*) \S+=|\Wcs3Label=(\.*)$</regex>
+    <order>cef.extensions.cs3Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs3="(\.*)" \S+=|\Wcs3="(\.*)"$|\Wcs3=(\.*) \S+=|\Wcs3=(\.*)$</regex>
+    <order>cef.extensions.cs3</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs4Label="(\.*)" \S+=|\Wcs4Label="(\.*)"$|\Wcs4Label=(\.*) \S+=|\Wcs4Label=(\.*)$</regex>
+    <order>cef.extensions.cs4Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs4="(\.*)" \S+=|\Wcs4="(\.*)"$|\Wcs4=(\.*) \S+=|\Wcs4=(\.*)$</regex>
+    <order>cef.extensions.cs4</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs5Label="(\.*)" \S+=|\Wcs5Label="(\.*)"$|\Wcs5Label=(\.*) \S+=|\Wcs5Label=(\.*)$</regex>
+    <order>cef.extensions.cs5Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs5="(\.*)" \S+=|\Wcs5="(\.*)"$|\Wcs5=(\.*) \S+=|\Wcs5=(\.*)$</regex>
+    <order>cef.extensions.cs5</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs6Label="(\.*)" \S+=|\Wcs6Label="(\.*)"$|\Wcs6Label=(\.*) \S+=|\Wcs6Label=(\.*)$</regex>
+    <order>cef.extensions.cs6Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs6="(\.*)" \S+=|\Wcs6="(\.*)"$|\Wcs6=(\.*) \S+=|\Wcs6=(\.*)$</regex>
+    <order>cef.extensions.cs6</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs7Label="(\.*)" \S+=|\Wcs7Label="(\.*)"$|\Wcs7Label=(\.*) \S+=|\Wcs7Label=(\.*)$</regex>
+    <order>cef.extensions.cs7Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs7="(\.*)" \S+=|\Wcs7="(\.*)"$|\Wcs7=(\.*) \S+=|\Wcs7=(\.*)$</regex>
+    <order>cef.extensions.cs7</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs8Label="(\.*)" \S+=|\Wcs8Label="(\.*)"$|\Wcs8Label=(\.*) \S+=|\Wcs8Label=(\.*)$</regex>
+    <order>cef.extensions.cs8Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs8="(\.*)" \S+=|\Wcs8="(\.*)"$|\Wcs8=(\.*) \S+=|\Wcs8=(\.*)$</regex>
+    <order>cef.extensions.cs8</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs9Label="(\.*)" \S+=|\Wcs9Label="(\.*)"$|\Wcs9Label=(\.*) \S+=|\Wcs9Label=(\.*)$</regex>
+    <order>cef.extensions.cs9Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs9="(\.*)" \S+=|\Wcs9="(\.*)"$|\Wcs9=(\.*) \S+=|\Wcs9=(\.*)$</regex>
+    <order>cef.extensions.cs9</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs10Label="(\.*)" \S+=|\Wcs10Label="(\.*)"$|\Wcs10Label=(\.*) \S+=|\Wcs10Label=(\.*)$</regex>
+    <order>cef.extensions.cs10Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs10="(\.*)" \S+=|\Wcs10="(\.*)"$|\Wcs10=(\.*) \S+=|\Wcs10=(\.*)$</regex>
+    <order>cef.extensions.cs10</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs11Label="(\.*)" \S+=|\Wcs11Label="(\.*)"$|\Wcs11Label=(\.*) \S+=|\Wcs11Label=(\.*)$</regex>
+    <order>cef.extensions.cs11Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs11="(\.*)" \S+=|\Wcs11="(\.*)"$|\Wcs11=(\.*) \S+=|\Wcs11=(\.*)$</regex>
+    <order>cef.extensions.cs11</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs12Label="(\.*)" \S+=|\Wcs12Label="(\.*)"$|\Wcs12Label=(\.*) \S+=|\Wcs12Label=(\.*)$</regex>
+    <order>cef.extensions.cs12Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs12="(\.*)" \S+=|\Wcs12="(\.*)"$|\Wcs12=(\.*) \S+=|\Wcs12=(\.*)$</regex>
+    <order>cef.extensions.cs12</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs13Label="(\.*)" \S+=|\Wcs13Label="(\.*)"$|\Wcs13Label=(\.*) \S+=|\Wcs13Label=(\.*)$</regex>
+    <order>cef.extensions.cs13Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs13="(\.*)" \S+=|\Wcs13="(\.*)"$|\Wcs13=(\.*) \S+=|\Wcs13=(\.*)$</regex>
+    <order>cef.extensions.cs13</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs14Label="(\.*)" \S+=|\Wcs14Label="(\.*)"$|\Wcs14Label=(\.*) \S+=|\Wcs14Label=(\.*)$</regex>
+    <order>cef.extensions.cs14Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs14="(\.*)" \S+=|\Wcs14="(\.*)"$|\Wcs14=(\.*) \S+=|\Wcs14=(\.*)$</regex>
+    <order>cef.extensions.cs14</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs15Label="(\.*)" \S+=|\Wcs15Label="(\.*)"$|\Wcs15Label=(\.*) \S+=|\Wcs15Label=(\.*)$</regex>
+    <order>cef.extensions.cs15Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs15="(\.*)" \S+=|\Wcs15="(\.*)"$|\Wcs15=(\.*) \S+=|\Wcs15=(\.*)$</regex>
+    <order>cef.extensions.cs15</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs16Label="(\.*)" \S+=|\Wcs16Label="(\.*)"$|\Wcs16Label=(\.*) \S+=|\Wcs16Label=(\.*)$</regex>
+    <order>cef.extensions.cs16Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs16="(\.*)" \S+=|\Wcs16="(\.*)"$|\Wcs16=(\.*) \S+=|\Wcs16=(\.*)$</regex>
+    <order>cef.extensions.cs16</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs17Label="(\.*)" \S+=|\Wcs17Label="(\.*)"$|\Wcs17Label=(\.*) \S+=|\Wcs17Label=(\.*)$</regex>
+    <order>cef.extensions.cs17Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs17="(\.*)" \S+=|\Wcs17="(\.*)"$|\Wcs17=(\.*) \S+=|\Wcs17=(\.*)$</regex>
+    <order>cef.extensions.cs17</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs18Label="(\.*)" \S+=|\Wcs18Label="(\.*)"$|\Wcs18Label=(\.*) \S+=|\Wcs18Label=(\.*)$</regex>
+    <order>cef.extensions.cs18Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs18="(\.*)" \S+=|\Wcs18="(\.*)"$|\Wcs18=(\.*) \S+=|\Wcs18=(\.*)$</regex>
+    <order>cef.extensions.cs18</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs19Label="(\.*)" \S+=|\Wcs19Label="(\.*)"$|\Wcs19Label=(\.*) \S+=|\Wcs19Label=(\.*)$</regex>
+    <order>cef.extensions.cs19Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs19="(\.*)" \S+=|\Wcs19="(\.*)"$|\Wcs19=(\.*) \S+=|\Wcs19=(\.*)$</regex>
+    <order>cef.extensions.cs19</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs20Label="(\.*)" \S+=|\Wcs20Label="(\.*)"$|\Wcs20Label=(\.*) \S+=|\Wcs20Label=(\.*)$</regex>
+    <order>cef.extensions.cs20Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs20="(\.*)" \S+=|\Wcs20="(\.*)"$|\Wcs20=(\.*) \S+=|\Wcs20=(\.*)$</regex>
+    <order>cef.extensions.cs20</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs21Label="(\.*)" \S+=|\Wcs21Label="(\.*)"$|\Wcs21Label=(\.*) \S+=|\Wcs21Label=(\.*)$</regex>
+    <order>cef.extensions.cs21Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs21="(\.*)" \S+=|\Wcs21="(\.*)"$|\Wcs21=(\.*) \S+=|\Wcs21=(\.*)$</regex>
+    <order>cef.extensions.cs21</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs22Label="(\.*)" \S+=|\Wcs22Label="(\.*)"$|\Wcs22Label=(\.*) \S+=|\Wcs22Label=(\.*)$</regex>
+    <order>cef.extensions.cs22Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs22="(\.*)" \S+=|\Wcs22="(\.*)"$|\Wcs22=(\.*) \S+=|\Wcs22=(\.*)$</regex>
+    <order>cef.extensions.cs22</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs23Label="(\.*)" \S+=|\Wcs23Label="(\.*)"$|\Wcs23Label=(\.*) \S+=|\Wcs23Label=(\.*)$</regex>
+    <order>cef.extensions.cs23Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs23="(\.*)" \S+=|\Wcs23="(\.*)"$|\Wcs23=(\.*) \S+=|\Wcs23=(\.*)$</regex>
+    <order>cef.extensions.cs23</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs24Label="(\.*)" \S+=|\Wcs24Label="(\.*)"$|\Wcs24Label=(\.*) \S+=|\Wcs24Label=(\.*)$</regex>
+    <order>cef.extensions.cs24Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs24="(\.*)" \S+=|\Wcs24="(\.*)"$|\Wcs24=(\.*) \S+=|\Wcs24=(\.*)$</regex>
+    <order>cef.extensions.cs24</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs25Label="(\.*)" \S+=|\Wcs25Label="(\.*)"$|\Wcs25Label=(\.*) \S+=|\Wcs25Label=(\.*)$</regex>
+    <order>cef.extensions.cs25Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs25="(\.*)" \S+=|\Wcs25="(\.*)"$|\Wcs25=(\.*) \S+=|\Wcs25=(\.*)$</regex>
+    <order>cef.extensions.cs25</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs26Label="(\.*)" \S+=|\Wcs26Label="(\.*)"$|\Wcs26Label=(\.*) \S+=|\Wcs26Label=(\.*)$</regex>
+    <order>cef.extensions.cs26Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs26="(\.*)" \S+=|\Wcs26="(\.*)"$|\Wcs26=(\.*) \S+=|\Wcs26=(\.*)$</regex>
+    <order>cef.extensions.cs26</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs27Label="(\.*)" \S+=|\Wcs27Label="(\.*)"$|\Wcs27Label=(\.*) \S+=|\Wcs27Label=(\.*)$</regex>
+    <order>cef.extensions.cs27Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs27="(\.*)" \S+=|\Wcs27="(\.*)"$|\Wcs27=(\.*) \S+=|\Wcs27=(\.*)$</regex>
+    <order>cef.extensions.cs27</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs28Label="(\.*)" \S+=|\Wcs28Label="(\.*)"$|\Wcs28Label=(\.*) \S+=|\Wcs28Label=(\.*)$</regex>
+    <order>cef.extensions.cs28Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs28="(\.*)" \S+=|\Wcs28="(\.*)"$|\Wcs28=(\.*) \S+=|\Wcs28=(\.*)$</regex>
+    <order>cef.extensions.cs28</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs29Label="(\.*)" \S+=|\Wcs29Label="(\.*)"$|\Wcs29Label=(\.*) \S+=|\Wcs29Label=(\.*)$</regex>
+    <order>cef.extensions.cs29Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs29="(\.*)" \S+=|\Wcs29="(\.*)"$|\Wcs29=(\.*) \S+=|\Wcs29=(\.*)$</regex>
+    <order>cef.extensions.cs29</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs30Label="(\.*)" \S+=|\Wcs30Label="(\.*)"$|\Wcs30Label=(\.*) \S+=|\Wcs30Label=(\.*)$</regex>
+    <order>cef.extensions.cs30Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs30="(\.*)" \S+=|\Wcs30="(\.*)"$|\Wcs30=(\.*) \S+=|\Wcs30=(\.*)$</regex>
+    <order>cef.extensions.cs30</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs31Label="(\.*)" \S+=|\Wcs31Label="(\.*)"$|\Wcs31Label=(\.*) \S+=|\Wcs31Label=(\.*)$</regex>
+    <order>cef.extensions.cs31Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs31="(\.*)" \S+=|\Wcs31="(\.*)"$|\Wcs31=(\.*) \S+=|\Wcs31=(\.*)$</regex>
+    <order>cef.extensions.cs31</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs32Label="(\.*)" \S+=|\Wcs32Label="(\.*)"$|\Wcs32Label=(\.*) \S+=|\Wcs32Label=(\.*)$</regex>
+    <order>cef.extensions.cs32Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs32="(\.*)" \S+=|\Wcs32="(\.*)"$|\Wcs32=(\.*) \S+=|\Wcs32=(\.*)$</regex>
+    <order>cef.extensions.cs32</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs33Label="(\.*)" \S+=|\Wcs33Label="(\.*)"$|\Wcs33Label=(\.*) \S+=|\Wcs33Label=(\.*)$</regex>
+    <order>cef.extensions.cs33Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs33="(\.*)" \S+=|\Wcs33="(\.*)"$|\Wcs33=(\.*) \S+=|\Wcs33=(\.*)$</regex>
+    <order>cef.extensions.cs33</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs34Label="(\.*)" \S+=|\Wcs34Label="(\.*)"$|\Wcs34Label=(\.*) \S+=|\Wcs34Label=(\.*)$</regex>
+    <order>cef.extensions.cs34Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs34="(\.*)" \S+=|\Wcs34="(\.*)"$|\Wcs34=(\.*) \S+=|\Wcs34=(\.*)$</regex>
+    <order>cef.extensions.cs34</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs35Label="(\.*)" \S+=|\Wcs35Label="(\.*)"$|\Wcs35Label=(\.*) \S+=|\Wcs35Label=(\.*)$</regex>
+    <order>cef.extensions.cs35Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs35="(\.*)" \S+=|\Wcs35="(\.*)"$|\Wcs35=(\.*) \S+=|\Wcs35=(\.*)$</regex>
+    <order>cef.extensions.cs35</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs36Label="(\.*)" \S+=|\Wcs36Label="(\.*)"$|\Wcs36Label=(\.*) \S+=|\Wcs36Label=(\.*)$</regex>
+    <order>cef.extensions.cs36Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs36="(\.*)" \S+=|\Wcs36="(\.*)"$|\Wcs36=(\.*) \S+=|\Wcs36=(\.*)$</regex>
+    <order>cef.extensions.cs36</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs37Label="(\.*)" \S+=|\Wcs37Label="(\.*)"$|\Wcs37Label=(\.*) \S+=|\Wcs37Label=(\.*)$</regex>
+    <order>cef.extensions.cs37Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs37="(\.*)" \S+=|\Wcs37="(\.*)"$|\Wcs37=(\.*) \S+=|\Wcs37=(\.*)$</regex>
+    <order>cef.extensions.cs37</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs38Label="(\.*)" \S+=|\Wcs38Label="(\.*)"$|\Wcs38Label=(\.*) \S+=|\Wcs38Label=(\.*)$</regex>
+    <order>cef.extensions.cs38Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs38="(\.*)" \S+=|\Wcs38="(\.*)"$|\Wcs38=(\.*) \S+=|\Wcs38=(\.*)$</regex>
+    <order>cef.extensions.cs38</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs39Label="(\.*)" \S+=|\Wcs39Label="(\.*)"$|\Wcs39Label=(\.*) \S+=|\Wcs39Label=(\.*)$</regex>
+    <order>cef.extensions.cs39Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs39="(\.*)" \S+=|\Wcs39="(\.*)"$|\Wcs39=(\.*) \S+=|\Wcs39=(\.*)$</regex>
+    <order>cef.extensions.cs39</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs40Label="(\.*)" \S+=|\Wcs40Label="(\.*)"$|\Wcs40Label=(\.*) \S+=|\Wcs40Label=(\.*)$</regex>
+    <order>cef.extensions.cs40Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs40="(\.*)" \S+=|\Wcs40="(\.*)"$|\Wcs40=(\.*) \S+=|\Wcs40=(\.*)$</regex>
+    <order>cef.extensions.cs40</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs41Label="(\.*)" \S+=|\Wcs41Label="(\.*)"$|\Wcs41Label=(\.*) \S+=|\Wcs41Label=(\.*)$</regex>
+    <order>cef.extensions.cs41Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs41="(\.*)" \S+=|\Wcs41="(\.*)"$|\Wcs41=(\.*) \S+=|\Wcs41=(\.*)$</regex>
+    <order>cef.extensions.cs41</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs42Label="(\.*)" \S+=|\Wcs42Label="(\.*)"$|\Wcs42Label=(\.*) \S+=|\Wcs42Label=(\.*)$</regex>
+    <order>cef.extensions.cs42Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs42="(\.*)" \S+=|\Wcs42="(\.*)"$|\Wcs42=(\.*) \S+=|\Wcs42=(\.*)$</regex>
+    <order>cef.extensions.cs42</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs43Label="(\.*)" \S+=|\Wcs43Label="(\.*)"$|\Wcs43Label=(\.*) \S+=|\Wcs43Label=(\.*)$</regex>
+    <order>cef.extensions.cs43Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs43="(\.*)" \S+=|\Wcs43="(\.*)"$|\Wcs43=(\.*) \S+=|\Wcs43=(\.*)$</regex>
+    <order>cef.extensions.cs43</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs44Label="(\.*)" \S+=|\Wcs44Label="(\.*)"$|\Wcs44Label=(\.*) \S+=|\Wcs44Label=(\.*)$</regex>
+    <order>cef.extensions.cs44Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs44="(\.*)" \S+=|\Wcs44="(\.*)"$|\Wcs44=(\.*) \S+=|\Wcs44=(\.*)$</regex>
+    <order>cef.extensions.cs44</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs45Label="(\.*)" \S+=|\Wcs45Label="(\.*)"$|\Wcs45Label=(\.*) \S+=|\Wcs45Label=(\.*)$</regex>
+    <order>cef.extensions.cs45Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs45="(\.*)" \S+=|\Wcs45="(\.*)"$|\Wcs45=(\.*) \S+=|\Wcs45=(\.*)$</regex>
+    <order>cef.extensions.cs45</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs46Label="(\.*)" \S+=|\Wcs46Label="(\.*)"$|\Wcs46Label=(\.*) \S+=|\Wcs46Label=(\.*)$</regex>
+    <order>cef.extensions.cs46Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs46="(\.*)" \S+=|\Wcs46="(\.*)"$|\Wcs46=(\.*) \S+=|\Wcs46=(\.*)$</regex>
+    <order>cef.extensions.cs46</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs47Label="(\.*)" \S+=|\Wcs47Label="(\.*)"$|\Wcs47Label=(\.*) \S+=|\Wcs47Label=(\.*)$</regex>
+    <order>cef.extensions.cs47Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs47="(\.*)" \S+=|\Wcs47="(\.*)"$|\Wcs47=(\.*) \S+=|\Wcs47=(\.*)$</regex>
+    <order>cef.extensions.cs47</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs48Label="(\.*)" \S+=|\Wcs48Label="(\.*)"$|\Wcs48Label=(\.*) \S+=|\Wcs48Label=(\.*)$</regex>
+    <order>cef.extensions.cs48Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs48="(\.*)" \S+=|\Wcs48="(\.*)"$|\Wcs48=(\.*) \S+=|\Wcs48=(\.*)$</regex>
+    <order>cef.extensions.cs48</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs49Label="(\.*)" \S+=|\Wcs49Label="(\.*)"$|\Wcs49Label=(\.*) \S+=|\Wcs49Label=(\.*)$</regex>
+    <order>cef.extensions.cs49Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs49="(\.*)" \S+=|\Wcs49="(\.*)"$|\Wcs49=(\.*) \S+=|\Wcs49=(\.*)$</regex>
+    <order>cef.extensions.cs49</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs50Label="(\.*)" \S+=|\Wcs50Label="(\.*)"$|\Wcs50Label=(\.*) \S+=|\Wcs50Label=(\.*)$</regex>
+    <order>cef.extensions.cs50Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs50="(\.*)" \S+=|\Wcs50="(\.*)"$|\Wcs50=(\.*) \S+=|\Wcs50=(\.*)$</regex>
+    <order>cef.extensions.cs50</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs51Label="(\.*)" \S+=|\Wcs51Label="(\.*)"$|\Wcs51Label=(\.*) \S+=|\Wcs51Label=(\.*)$</regex>
+    <order>cef.extensions.cs51Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs51="(\.*)" \S+=|\Wcs51="(\.*)"$|\Wcs51=(\.*) \S+=|\Wcs51=(\.*)$</regex>
+    <order>cef.extensions.cs51</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs52Label="(\.*)" \S+=|\Wcs52Label="(\.*)"$|\Wcs52Label=(\.*) \S+=|\Wcs52Label=(\.*)$</regex>
+    <order>cef.extensions.cs52Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs52="(\.*)" \S+=|\Wcs52="(\.*)"$|\Wcs52=(\.*) \S+=|\Wcs52=(\.*)$</regex>
+    <order>cef.extensions.cs52</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs53Label="(\.*)" \S+=|\Wcs53Label="(\.*)"$|\Wcs53Label=(\.*) \S+=|\Wcs53Label=(\.*)$</regex>
+    <order>cef.extensions.cs53Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs53="(\.*)" \S+=|\Wcs53="(\.*)"$|\Wcs53=(\.*) \S+=|\Wcs53=(\.*)$</regex>
+    <order>cef.extensions.cs53</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs54Label="(\.*)" \S+=|\Wcs54Label="(\.*)"$|\Wcs54Label=(\.*) \S+=|\Wcs54Label=(\.*)$</regex>
+    <order>cef.extensions.cs54Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs54="(\.*)" \S+=|\Wcs54="(\.*)"$|\Wcs54=(\.*) \S+=|\Wcs54=(\.*)$</regex>
+    <order>cef.extensions.cs54</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs55Label="(\.*)" \S+=|\Wcs55Label="(\.*)"$|\Wcs55Label=(\.*) \S+=|\Wcs55Label=(\.*)$</regex>
+    <order>cef.extensions.cs55Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs55="(\.*)" \S+=|\Wcs55="(\.*)"$|\Wcs55=(\.*) \S+=|\Wcs55=(\.*)$</regex>
+    <order>cef.extensions.cs55</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs56Label="(\.*)" \S+=|\Wcs56Label="(\.*)"$|\Wcs56Label=(\.*) \S+=|\Wcs56Label=(\.*)$</regex>
+    <order>cef.extensions.cs56Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs56="(\.*)" \S+=|\Wcs56="(\.*)"$|\Wcs56=(\.*) \S+=|\Wcs56=(\.*)$</regex>
+    <order>cef.extensions.cs56</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs57Label="(\.*)" \S+=|\Wcs57Label="(\.*)"$|\Wcs57Label=(\.*) \S+=|\Wcs57Label=(\.*)$</regex>
+    <order>cef.extensions.cs57Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs57="(\.*)" \S+=|\Wcs57="(\.*)"$|\Wcs57=(\.*) \S+=|\Wcs57=(\.*)$</regex>
+    <order>cef.extensions.cs57</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs58Label="(\.*)" \S+=|\Wcs58Label="(\.*)"$|\Wcs58Label=(\.*) \S+=|\Wcs58Label=(\.*)$</regex>
+    <order>cef.extensions.cs58Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs58="(\.*)" \S+=|\Wcs58="(\.*)"$|\Wcs58=(\.*) \S+=|\Wcs58=(\.*)$</regex>
+    <order>cef.extensions.cs58</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs59Label="(\.*)" \S+=|\Wcs59Label="(\.*)"$|\Wcs59Label=(\.*) \S+=|\Wcs59Label=(\.*)$</regex>
+    <order>cef.extensions.cs59Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs59="(\.*)" \S+=|\Wcs59="(\.*)"$|\Wcs59=(\.*) \S+=|\Wcs59=(\.*)$</regex>
+    <order>cef.extensions.cs59</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs60Label="(\.*)" \S+=|\Wcs60Label="(\.*)"$|\Wcs60Label=(\.*) \S+=|\Wcs60Label=(\.*)$</regex>
+    <order>cef.extensions.cs60Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs60="(\.*)" \S+=|\Wcs60="(\.*)"$|\Wcs60=(\.*) \S+=|\Wcs60=(\.*)$</regex>
+    <order>cef.extensions.cs60</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs61Label="(\.*)" \S+=|\Wcs61Label="(\.*)"$|\Wcs61Label=(\.*) \S+=|\Wcs61Label=(\.*)$</regex>
+    <order>cef.extensions.cs61Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs61="(\.*)" \S+=|\Wcs61="(\.*)"$|\Wcs61=(\.*) \S+=|\Wcs61=(\.*)$</regex>
+    <order>cef.extensions.cs61</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs62Label="(\.*)" \S+=|\Wcs62Label="(\.*)"$|\Wcs62Label=(\.*) \S+=|\Wcs62Label=(\.*)$</regex>
+    <order>cef.extensions.cs62Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs62="(\.*)" \S+=|\Wcs62="(\.*)"$|\Wcs62=(\.*) \S+=|\Wcs62=(\.*)$</regex>
+    <order>cef.extensions.cs62</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs63Label="(\.*)" \S+=|\Wcs63Label="(\.*)"$|\Wcs63Label=(\.*) \S+=|\Wcs63Label=(\.*)$</regex>
+    <order>cef.extensions.cs63Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs63="(\.*)" \S+=|\Wcs63="(\.*)"$|\Wcs63=(\.*) \S+=|\Wcs63=(\.*)$</regex>
+    <order>cef.extensions.cs63</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs64Label="(\.*)" \S+=|\Wcs64Label="(\.*)"$|\Wcs64Label=(\.*) \S+=|\Wcs64Label=(\.*)$</regex>
+    <order>cef.extensions.cs64Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs64="(\.*)" \S+=|\Wcs64="(\.*)"$|\Wcs64=(\.*) \S+=|\Wcs64=(\.*)$</regex>
+    <order>cef.extensions.cs64</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs65Label="(\.*)" \S+=|\Wcs65Label="(\.*)"$|\Wcs65Label=(\.*) \S+=|\Wcs65Label=(\.*)$</regex>
+    <order>cef.extensions.cs65Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs65="(\.*)" \S+=|\Wcs65="(\.*)"$|\Wcs65=(\.*) \S+=|\Wcs65=(\.*)$</regex>
+    <order>cef.extensions.cs65</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs66Label="(\.*)" \S+=|\Wcs66Label="(\.*)"$|\Wcs66Label=(\.*) \S+=|\Wcs66Label=(\.*)$</regex>
+    <order>cef.extensions.cs66Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs66="(\.*)" \S+=|\Wcs66="(\.*)"$|\Wcs66=(\.*) \S+=|\Wcs66=(\.*)$</regex>
+    <order>cef.extensions.cs66</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs67Label="(\.*)" \S+=|\Wcs67Label="(\.*)"$|\Wcs67Label=(\.*) \S+=|\Wcs67Label=(\.*)$</regex>
+    <order>cef.extensions.cs67Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs67="(\.*)" \S+=|\Wcs67="(\.*)"$|\Wcs67=(\.*) \S+=|\Wcs67=(\.*)$</regex>
+    <order>cef.extensions.cs67</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs68Label="(\.*)" \S+=|\Wcs68Label="(\.*)"$|\Wcs68Label=(\.*) \S+=|\Wcs68Label=(\.*)$</regex>
+    <order>cef.extensions.cs68Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs68="(\.*)" \S+=|\Wcs68="(\.*)"$|\Wcs68=(\.*) \S+=|\Wcs68=(\.*)$</regex>
+    <order>cef.extensions.cs68</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs69Label="(\.*)" \S+=|\Wcs69Label="(\.*)"$|\Wcs69Label=(\.*) \S+=|\Wcs69Label=(\.*)$</regex>
+    <order>cef.extensions.cs69Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs69="(\.*)" \S+=|\Wcs69="(\.*)"$|\Wcs69=(\.*) \S+=|\Wcs69=(\.*)$</regex>
+    <order>cef.extensions.cs69</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs70Label="(\.*)" \S+=|\Wcs70Label="(\.*)"$|\Wcs70Label=(\.*) \S+=|\Wcs70Label=(\.*)$</regex>
+    <order>cef.extensions.cs70Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs70="(\.*)" \S+=|\Wcs70="(\.*)"$|\Wcs70=(\.*) \S+=|\Wcs70=(\.*)$</regex>
+    <order>cef.extensions.cs70</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs71Label="(\.*)" \S+=|\Wcs71Label="(\.*)"$|\Wcs71Label=(\.*) \S+=|\Wcs71Label=(\.*)$</regex>
+    <order>cef.extensions.cs71Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs71="(\.*)" \S+=|\Wcs71="(\.*)"$|\Wcs71=(\.*) \S+=|\Wcs71=(\.*)$</regex>
+    <order>cef.extensions.cs71</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs72Label="(\.*)" \S+=|\Wcs72Label="(\.*)"$|\Wcs72Label=(\.*) \S+=|\Wcs72Label=(\.*)$</regex>
+    <order>cef.extensions.cs72Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs72="(\.*)" \S+=|\Wcs72="(\.*)"$|\Wcs72=(\.*) \S+=|\Wcs72=(\.*)$</regex>
+    <order>cef.extensions.cs72</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs73Label="(\.*)" \S+=|\Wcs73Label="(\.*)"$|\Wcs73Label=(\.*) \S+=|\Wcs73Label=(\.*)$</regex>
+    <order>cef.extensions.cs73Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs73="(\.*)" \S+=|\Wcs73="(\.*)"$|\Wcs73=(\.*) \S+=|\Wcs73=(\.*)$</regex>
+    <order>cef.extensions.cs73</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs74Label="(\.*)" \S+=|\Wcs74Label="(\.*)"$|\Wcs74Label=(\.*) \S+=|\Wcs74Label=(\.*)$</regex>
+    <order>cef.extensions.cs74Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs74="(\.*)" \S+=|\Wcs74="(\.*)"$|\Wcs74=(\.*) \S+=|\Wcs74=(\.*)$</regex>
+    <order>cef.extensions.cs74</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs75Label="(\.*)" \S+=|\Wcs75Label="(\.*)"$|\Wcs75Label=(\.*) \S+=|\Wcs75Label=(\.*)$</regex>
+    <order>cef.extensions.cs75Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs75="(\.*)" \S+=|\Wcs75="(\.*)"$|\Wcs75=(\.*) \S+=|\Wcs75=(\.*)$</regex>
+    <order>cef.extensions.cs75</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs76Label="(\.*)" \S+=|\Wcs76Label="(\.*)"$|\Wcs76Label=(\.*) \S+=|\Wcs76Label=(\.*)$</regex>
+    <order>cef.extensions.cs76Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs76="(\.*)" \S+=|\Wcs76="(\.*)"$|\Wcs76=(\.*) \S+=|\Wcs76=(\.*)$</regex>
+    <order>cef.extensions.cs76</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs77Label="(\.*)" \S+=|\Wcs77Label="(\.*)"$|\Wcs77Label=(\.*) \S+=|\Wcs77Label=(\.*)$</regex>
+    <order>cef.extensions.cs77Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs77="(\.*)" \S+=|\Wcs77="(\.*)"$|\Wcs77=(\.*) \S+=|\Wcs77=(\.*)$</regex>
+    <order>cef.extensions.cs77</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs78Label="(\.*)" \S+=|\Wcs78Label="(\.*)"$|\Wcs78Label=(\.*) \S+=|\Wcs78Label=(\.*)$</regex>
+    <order>cef.extensions.cs78Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs78="(\.*)" \S+=|\Wcs78="(\.*)"$|\Wcs78=(\.*) \S+=|\Wcs78=(\.*)$</regex>
+    <order>cef.extensions.cs78</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs79Label="(\.*)" \S+=|\Wcs79Label="(\.*)"$|\Wcs79Label=(\.*) \S+=|\Wcs79Label=(\.*)$</regex>
+    <order>cef.extensions.cs79Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs79="(\.*)" \S+=|\Wcs79="(\.*)"$|\Wcs79=(\.*) \S+=|\Wcs79=(\.*)$</regex>
+    <order>cef.extensions.cs79</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs80Label="(\.*)" \S+=|\Wcs80Label="(\.*)"$|\Wcs80Label=(\.*) \S+=|\Wcs80Label=(\.*)$</regex>
+    <order>cef.extensions.cs80Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs80="(\.*)" \S+=|\Wcs80="(\.*)"$|\Wcs80=(\.*) \S+=|\Wcs80=(\.*)$</regex>
+    <order>cef.extensions.cs80</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs81Label="(\.*)" \S+=|\Wcs81Label="(\.*)"$|\Wcs81Label=(\.*) \S+=|\Wcs81Label=(\.*)$</regex>
+    <order>cef.extensions.cs81Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs81="(\.*)" \S+=|\Wcs81="(\.*)"$|\Wcs81=(\.*) \S+=|\Wcs81=(\.*)$</regex>
+    <order>cef.extensions.cs81</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs82Label="(\.*)" \S+=|\Wcs82Label="(\.*)"$|\Wcs82Label=(\.*) \S+=|\Wcs82Label=(\.*)$</regex>
+    <order>cef.extensions.cs82Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs82="(\.*)" \S+=|\Wcs82="(\.*)"$|\Wcs82=(\.*) \S+=|\Wcs82=(\.*)$</regex>
+    <order>cef.extensions.cs82</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs83Label="(\.*)" \S+=|\Wcs83Label="(\.*)"$|\Wcs83Label=(\.*) \S+=|\Wcs83Label=(\.*)$</regex>
+    <order>cef.extensions.cs83Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs83="(\.*)" \S+=|\Wcs83="(\.*)"$|\Wcs83=(\.*) \S+=|\Wcs83=(\.*)$</regex>
+    <order>cef.extensions.cs83</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs84Label="(\.*)" \S+=|\Wcs84Label="(\.*)"$|\Wcs84Label=(\.*) \S+=|\Wcs84Label=(\.*)$</regex>
+    <order>cef.extensions.cs84Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs84="(\.*)" \S+=|\Wcs84="(\.*)"$|\Wcs84=(\.*) \S+=|\Wcs84=(\.*)$</regex>
+    <order>cef.extensions.cs84</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs85Label="(\.*)" \S+=|\Wcs85Label="(\.*)"$|\Wcs85Label=(\.*) \S+=|\Wcs85Label=(\.*)$</regex>
+    <order>cef.extensions.cs85Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs85="(\.*)" \S+=|\Wcs85="(\.*)"$|\Wcs85=(\.*) \S+=|\Wcs85=(\.*)$</regex>
+    <order>cef.extensions.cs85</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs86Label="(\.*)" \S+=|\Wcs86Label="(\.*)"$|\Wcs86Label=(\.*) \S+=|\Wcs86Label=(\.*)$</regex>
+    <order>cef.extensions.cs86Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs86="(\.*)" \S+=|\Wcs86="(\.*)"$|\Wcs86=(\.*) \S+=|\Wcs86=(\.*)$</regex>
+    <order>cef.extensions.cs86</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs87Label="(\.*)" \S+=|\Wcs87Label="(\.*)"$|\Wcs87Label=(\.*) \S+=|\Wcs87Label=(\.*)$</regex>
+    <order>cef.extensions.cs87Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs87="(\.*)" \S+=|\Wcs87="(\.*)"$|\Wcs87=(\.*) \S+=|\Wcs87=(\.*)$</regex>
+    <order>cef.extensions.cs87</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs88Label="(\.*)" \S+=|\Wcs88Label="(\.*)"$|\Wcs88Label=(\.*) \S+=|\Wcs88Label=(\.*)$</regex>
+    <order>cef.extensions.cs88Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs88="(\.*)" \S+=|\Wcs88="(\.*)"$|\Wcs88=(\.*) \S+=|\Wcs88=(\.*)$</regex>
+    <order>cef.extensions.cs88</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs89Label="(\.*)" \S+=|\Wcs89Label="(\.*)"$|\Wcs89Label=(\.*) \S+=|\Wcs89Label=(\.*)$</regex>
+    <order>cef.extensions.cs89Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs89="(\.*)" \S+=|\Wcs89="(\.*)"$|\Wcs89=(\.*) \S+=|\Wcs89=(\.*)$</regex>
+    <order>cef.extensions.cs89</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs90Label="(\.*)" \S+=|\Wcs90Label="(\.*)"$|\Wcs90Label=(\.*) \S+=|\Wcs90Label=(\.*)$</regex>
+    <order>cef.extensions.cs90Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs90="(\.*)" \S+=|\Wcs90="(\.*)"$|\Wcs90=(\.*) \S+=|\Wcs90=(\.*)$</regex>
+    <order>cef.extensions.cs90</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs91Label="(\.*)" \S+=|\Wcs91Label="(\.*)"$|\Wcs91Label=(\.*) \S+=|\Wcs91Label=(\.*)$</regex>
+    <order>cef.extensions.cs91Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs91="(\.*)" \S+=|\Wcs91="(\.*)"$|\Wcs91=(\.*) \S+=|\Wcs91=(\.*)$</regex>
+    <order>cef.extensions.cs91</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs92Label="(\.*)" \S+=|\Wcs92Label="(\.*)"$|\Wcs92Label=(\.*) \S+=|\Wcs92Label=(\.*)$</regex>
+    <order>cef.extensions.cs92Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs92="(\.*)" \S+=|\Wcs92="(\.*)"$|\Wcs92=(\.*) \S+=|\Wcs92=(\.*)$</regex>
+    <order>cef.extensions.cs92</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs93Label="(\.*)" \S+=|\Wcs93Label="(\.*)"$|\Wcs93Label=(\.*) \S+=|\Wcs93Label=(\.*)$</regex>
+    <order>cef.extensions.cs93Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs93="(\.*)" \S+=|\Wcs93="(\.*)"$|\Wcs93=(\.*) \S+=|\Wcs93=(\.*)$</regex>
+    <order>cef.extensions.cs93</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs94Label="(\.*)" \S+=|\Wcs94Label="(\.*)"$|\Wcs94Label=(\.*) \S+=|\Wcs94Label=(\.*)$</regex>
+    <order>cef.extensions.cs94Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs94="(\.*)" \S+=|\Wcs94="(\.*)"$|\Wcs94=(\.*) \S+=|\Wcs94=(\.*)$</regex>
+    <order>cef.extensions.cs94</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs95Label="(\.*)" \S+=|\Wcs95Label="(\.*)"$|\Wcs95Label=(\.*) \S+=|\Wcs95Label=(\.*)$</regex>
+    <order>cef.extensions.cs95Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs95="(\.*)" \S+=|\Wcs95="(\.*)"$|\Wcs95=(\.*) \S+=|\Wcs95=(\.*)$</regex>
+    <order>cef.extensions.cs95</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs96Label="(\.*)" \S+=|\Wcs96Label="(\.*)"$|\Wcs96Label=(\.*) \S+=|\Wcs96Label=(\.*)$</regex>
+    <order>cef.extensions.cs96Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs96="(\.*)" \S+=|\Wcs96="(\.*)"$|\Wcs96=(\.*) \S+=|\Wcs96=(\.*)$</regex>
+    <order>cef.extensions.cs96</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs97Label="(\.*)" \S+=|\Wcs97Label="(\.*)"$|\Wcs97Label=(\.*) \S+=|\Wcs97Label=(\.*)$</regex>
+    <order>cef.extensions.cs97Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs97="(\.*)" \S+=|\Wcs97="(\.*)"$|\Wcs97=(\.*) \S+=|\Wcs97=(\.*)$</regex>
+    <order>cef.extensions.cs97</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs98Label="(\.*)" \S+=|\Wcs98Label="(\.*)"$|\Wcs98Label=(\.*) \S+=|\Wcs98Label=(\.*)$</regex>
+    <order>cef.extensions.cs98Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs98="(\.*)" \S+=|\Wcs98="(\.*)"$|\Wcs98=(\.*) \S+=|\Wcs98=(\.*)$</regex>
+    <order>cef.extensions.cs98</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs99Label="(\.*)" \S+=|\Wcs99Label="(\.*)"$|\Wcs99Label=(\.*) \S+=|\Wcs99Label=(\.*)$</regex>
+    <order>cef.extensions.cs99Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs99="(\.*)" \S+=|\Wcs99="(\.*)"$|\Wcs99=(\.*) \S+=|\Wcs99=(\.*)$</regex>
+    <order>cef.extensions.cs99</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs100Label="(\.*)" \S+=|\Wcs100Label="(\.*)"$|\Wcs100Label=(\.*) \S+=|\Wcs100Label=(\.*)$</regex>
+    <order>cef.extensions.cs100Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs100="(\.*)" \S+=|\Wcs100="(\.*)"$|\Wcs100=(\.*) \S+=|\Wcs100=(\.*)$</regex>
+    <order>cef.extensions.cs100</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs101Label="(\.*)" \S+=|\Wcs101Label="(\.*)"$|\Wcs101Label=(\.*) \S+=|\Wcs101Label=(\.*)$</regex>
+    <order>cef.extensions.cs101Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs101="(\.*)" \S+=|\Wcs101="(\.*)"$|\Wcs101=(\.*) \S+=|\Wcs101=(\.*)$</regex>
+    <order>cef.extensions.cs101</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs102Label="(\.*)" \S+=|\Wcs102Label="(\.*)"$|\Wcs102Label=(\.*) \S+=|\Wcs102Label=(\.*)$</regex>
+    <order>cef.extensions.cs102Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs102="(\.*)" \S+=|\Wcs102="(\.*)"$|\Wcs102=(\.*) \S+=|\Wcs102=(\.*)$</regex>
+    <order>cef.extensions.cs102</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs103Label="(\.*)" \S+=|\Wcs103Label="(\.*)"$|\Wcs103Label=(\.*) \S+=|\Wcs103Label=(\.*)$</regex>
+    <order>cef.extensions.cs103Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs103="(\.*)" \S+=|\Wcs103="(\.*)"$|\Wcs103=(\.*) \S+=|\Wcs103=(\.*)$</regex>
+    <order>cef.extensions.cs103</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs104Label="(\.*)" \S+=|\Wcs104Label="(\.*)"$|\Wcs104Label=(\.*) \S+=|\Wcs104Label=(\.*)$</regex>
+    <order>cef.extensions.cs104Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs104="(\.*)" \S+=|\Wcs104="(\.*)"$|\Wcs104=(\.*) \S+=|\Wcs104=(\.*)$</regex>
+    <order>cef.extensions.cs104</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs105Label="(\.*)" \S+=|\Wcs105Label="(\.*)"$|\Wcs105Label=(\.*) \S+=|\Wcs105Label=(\.*)$</regex>
+    <order>cef.extensions.cs105Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs105="(\.*)" \S+=|\Wcs105="(\.*)"$|\Wcs105=(\.*) \S+=|\Wcs105=(\.*)$</regex>
+    <order>cef.extensions.cs105</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs106Label="(\.*)" \S+=|\Wcs106Label="(\.*)"$|\Wcs106Label=(\.*) \S+=|\Wcs106Label=(\.*)$</regex>
+    <order>cef.extensions.cs106Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs106="(\.*)" \S+=|\Wcs106="(\.*)"$|\Wcs106=(\.*) \S+=|\Wcs106=(\.*)$</regex>
+    <order>cef.extensions.cs106</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs107Label="(\.*)" \S+=|\Wcs107Label="(\.*)"$|\Wcs107Label=(\.*) \S+=|\Wcs107Label=(\.*)$</regex>
+    <order>cef.extensions.cs107Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs107="(\.*)" \S+=|\Wcs107="(\.*)"$|\Wcs107=(\.*) \S+=|\Wcs107=(\.*)$</regex>
+    <order>cef.extensions.cs107</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs108Label="(\.*)" \S+=|\Wcs108Label="(\.*)"$|\Wcs108Label=(\.*) \S+=|\Wcs108Label=(\.*)$</regex>
+    <order>cef.extensions.cs108Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs108="(\.*)" \S+=|\Wcs108="(\.*)"$|\Wcs108=(\.*) \S+=|\Wcs108=(\.*)$</regex>
+    <order>cef.extensions.cs108</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs109Label="(\.*)" \S+=|\Wcs109Label="(\.*)"$|\Wcs109Label=(\.*) \S+=|\Wcs109Label=(\.*)$</regex>
+    <order>cef.extensions.cs109Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs109="(\.*)" \S+=|\Wcs109="(\.*)"$|\Wcs109=(\.*) \S+=|\Wcs109=(\.*)$</regex>
+    <order>cef.extensions.cs109</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs110Label="(\.*)" \S+=|\Wcs110Label="(\.*)"$|\Wcs110Label=(\.*) \S+=|\Wcs110Label=(\.*)$</regex>
+    <order>cef.extensions.cs110Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs110="(\.*)" \S+=|\Wcs110="(\.*)"$|\Wcs110=(\.*) \S+=|\Wcs110=(\.*)$</regex>
+    <order>cef.extensions.cs110</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs111Label="(\.*)" \S+=|\Wcs111Label="(\.*)"$|\Wcs111Label=(\.*) \S+=|\Wcs111Label=(\.*)$</regex>
+    <order>cef.extensions.cs111Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs111="(\.*)" \S+=|\Wcs111="(\.*)"$|\Wcs111=(\.*) \S+=|\Wcs111=(\.*)$</regex>
+    <order>cef.extensions.cs111</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs112Label="(\.*)" \S+=|\Wcs112Label="(\.*)"$|\Wcs112Label=(\.*) \S+=|\Wcs112Label=(\.*)$</regex>
+    <order>cef.extensions.cs112Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs112="(\.*)" \S+=|\Wcs112="(\.*)"$|\Wcs112=(\.*) \S+=|\Wcs112=(\.*)$</regex>
+    <order>cef.extensions.cs112</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs113Label="(\.*)" \S+=|\Wcs113Label="(\.*)"$|\Wcs113Label=(\.*) \S+=|\Wcs113Label=(\.*)$</regex>
+    <order>cef.extensions.cs113Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs113="(\.*)" \S+=|\Wcs113="(\.*)"$|\Wcs113=(\.*) \S+=|\Wcs113=(\.*)$</regex>
+    <order>cef.extensions.cs113</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs114Label="(\.*)" \S+=|\Wcs114Label="(\.*)"$|\Wcs114Label=(\.*) \S+=|\Wcs114Label=(\.*)$</regex>
+    <order>cef.extensions.cs114Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs114="(\.*)" \S+=|\Wcs114="(\.*)"$|\Wcs114=(\.*) \S+=|\Wcs114=(\.*)$</regex>
+    <order>cef.extensions.cs114</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs115Label="(\.*)" \S+=|\Wcs115Label="(\.*)"$|\Wcs115Label=(\.*) \S+=|\Wcs115Label=(\.*)$</regex>
+    <order>cef.extensions.cs115Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs115="(\.*)" \S+=|\Wcs115="(\.*)"$|\Wcs115=(\.*) \S+=|\Wcs115=(\.*)$</regex>
+    <order>cef.extensions.cs115</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs116Label="(\.*)" \S+=|\Wcs116Label="(\.*)"$|\Wcs116Label=(\.*) \S+=|\Wcs116Label=(\.*)$</regex>
+    <order>cef.extensions.cs116Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs116="(\.*)" \S+=|\Wcs116="(\.*)"$|\Wcs116=(\.*) \S+=|\Wcs116=(\.*)$</regex>
+    <order>cef.extensions.cs116</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs117Label="(\.*)" \S+=|\Wcs117Label="(\.*)"$|\Wcs117Label=(\.*) \S+=|\Wcs117Label=(\.*)$</regex>
+    <order>cef.extensions.cs117Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs117="(\.*)" \S+=|\Wcs117="(\.*)"$|\Wcs117=(\.*) \S+=|\Wcs117=(\.*)$</regex>
+    <order>cef.extensions.cs117</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs118Label="(\.*)" \S+=|\Wcs118Label="(\.*)"$|\Wcs118Label=(\.*) \S+=|\Wcs118Label=(\.*)$</regex>
+    <order>cef.extensions.cs118Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs118="(\.*)" \S+=|\Wcs118="(\.*)"$|\Wcs118=(\.*) \S+=|\Wcs118=(\.*)$</regex>
+    <order>cef.extensions.cs118</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs119Label="(\.*)" \S+=|\Wcs119Label="(\.*)"$|\Wcs119Label=(\.*) \S+=|\Wcs119Label=(\.*)$</regex>
+    <order>cef.extensions.cs119Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs119="(\.*)" \S+=|\Wcs119="(\.*)"$|\Wcs119=(\.*) \S+=|\Wcs119=(\.*)$</regex>
+    <order>cef.extensions.cs119</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs120Label="(\.*)" \S+=|\Wcs120Label="(\.*)"$|\Wcs120Label=(\.*) \S+=|\Wcs120Label=(\.*)$</regex>
+    <order>cef.extensions.cs120Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs120="(\.*)" \S+=|\Wcs120="(\.*)"$|\Wcs120=(\.*) \S+=|\Wcs120=(\.*)$</regex>
+    <order>cef.extensions.cs120</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs121Label="(\.*)" \S+=|\Wcs121Label="(\.*)"$|\Wcs121Label=(\.*) \S+=|\Wcs121Label=(\.*)$</regex>
+    <order>cef.extensions.cs121Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs121="(\.*)" \S+=|\Wcs121="(\.*)"$|\Wcs121=(\.*) \S+=|\Wcs121=(\.*)$</regex>
+    <order>cef.extensions.cs121</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs122Label="(\.*)" \S+=|\Wcs122Label="(\.*)"$|\Wcs122Label=(\.*) \S+=|\Wcs122Label=(\.*)$</regex>
+    <order>cef.extensions.cs122Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs122="(\.*)" \S+=|\Wcs122="(\.*)"$|\Wcs122=(\.*) \S+=|\Wcs122=(\.*)$</regex>
+    <order>cef.extensions.cs122</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs123Label="(\.*)" \S+=|\Wcs123Label="(\.*)"$|\Wcs123Label=(\.*) \S+=|\Wcs123Label=(\.*)$</regex>
+    <order>cef.extensions.cs123Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs123="(\.*)" \S+=|\Wcs123="(\.*)"$|\Wcs123=(\.*) \S+=|\Wcs123=(\.*)$</regex>
+    <order>cef.extensions.cs123</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs124Label="(\.*)" \S+=|\Wcs124Label="(\.*)"$|\Wcs124Label=(\.*) \S+=|\Wcs124Label=(\.*)$</regex>
+    <order>cef.extensions.cs124Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs124="(\.*)" \S+=|\Wcs124="(\.*)"$|\Wcs124=(\.*) \S+=|\Wcs124=(\.*)$</regex>
+    <order>cef.extensions.cs124</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs125Label="(\.*)" \S+=|\Wcs125Label="(\.*)"$|\Wcs125Label=(\.*) \S+=|\Wcs125Label=(\.*)$</regex>
+    <order>cef.extensions.cs125Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs125="(\.*)" \S+=|\Wcs125="(\.*)"$|\Wcs125=(\.*) \S+=|\Wcs125=(\.*)$</regex>
+    <order>cef.extensions.cs125</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs126Label="(\.*)" \S+=|\Wcs126Label="(\.*)"$|\Wcs126Label=(\.*) \S+=|\Wcs126Label=(\.*)$</regex>
+    <order>cef.extensions.cs126Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs126="(\.*)" \S+=|\Wcs126="(\.*)"$|\Wcs126=(\.*) \S+=|\Wcs126=(\.*)$</regex>
+    <order>cef.extensions.cs126</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs127Label="(\.*)" \S+=|\Wcs127Label="(\.*)"$|\Wcs127Label=(\.*) \S+=|\Wcs127Label=(\.*)$</regex>
+    <order>cef.extensions.cs127Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs127="(\.*)" \S+=|\Wcs127="(\.*)"$|\Wcs127=(\.*) \S+=|\Wcs127=(\.*)$</regex>
+    <order>cef.extensions.cs127</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs128Label="(\.*)" \S+=|\Wcs128Label="(\.*)"$|\Wcs128Label=(\.*) \S+=|\Wcs128Label=(\.*)$</regex>
+    <order>cef.extensions.cs128Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs128="(\.*)" \S+=|\Wcs128="(\.*)"$|\Wcs128=(\.*) \S+=|\Wcs128=(\.*)$</regex>
+    <order>cef.extensions.cs128</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs129Label="(\.*)" \S+=|\Wcs129Label="(\.*)"$|\Wcs129Label=(\.*) \S+=|\Wcs129Label=(\.*)$</regex>
+    <order>cef.extensions.cs129Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs129="(\.*)" \S+=|\Wcs129="(\.*)"$|\Wcs129=(\.*) \S+=|\Wcs129=(\.*)$</regex>
+    <order>cef.extensions.cs129</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs130Label="(\.*)" \S+=|\Wcs130Label="(\.*)"$|\Wcs130Label=(\.*) \S+=|\Wcs130Label=(\.*)$</regex>
+    <order>cef.extensions.cs130Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs130="(\.*)" \S+=|\Wcs130="(\.*)"$|\Wcs130=(\.*) \S+=|\Wcs130=(\.*)$</regex>
+    <order>cef.extensions.cs130</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs131Label="(\.*)" \S+=|\Wcs131Label="(\.*)"$|\Wcs131Label=(\.*) \S+=|\Wcs131Label=(\.*)$</regex>
+    <order>cef.extensions.cs131Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs131="(\.*)" \S+=|\Wcs131="(\.*)"$|\Wcs131=(\.*) \S+=|\Wcs131=(\.*)$</regex>
+    <order>cef.extensions.cs131</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs132Label="(\.*)" \S+=|\Wcs132Label="(\.*)"$|\Wcs132Label=(\.*) \S+=|\Wcs132Label=(\.*)$</regex>
+    <order>cef.extensions.cs132Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs132="(\.*)" \S+=|\Wcs132="(\.*)"$|\Wcs132=(\.*) \S+=|\Wcs132=(\.*)$</regex>
+    <order>cef.extensions.cs132</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs133Label="(\.*)" \S+=|\Wcs133Label="(\.*)"$|\Wcs133Label=(\.*) \S+=|\Wcs133Label=(\.*)$</regex>
+    <order>cef.extensions.cs133Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs133="(\.*)" \S+=|\Wcs133="(\.*)"$|\Wcs133=(\.*) \S+=|\Wcs133=(\.*)$</regex>
+    <order>cef.extensions.cs133</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs134Label="(\.*)" \S+=|\Wcs134Label="(\.*)"$|\Wcs134Label=(\.*) \S+=|\Wcs134Label=(\.*)$</regex>
+    <order>cef.extensions.cs134Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs134="(\.*)" \S+=|\Wcs134="(\.*)"$|\Wcs134=(\.*) \S+=|\Wcs134=(\.*)$</regex>
+    <order>cef.extensions.cs134</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs135Label="(\.*)" \S+=|\Wcs135Label="(\.*)"$|\Wcs135Label=(\.*) \S+=|\Wcs135Label=(\.*)$</regex>
+    <order>cef.extensions.cs135Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs135="(\.*)" \S+=|\Wcs135="(\.*)"$|\Wcs135=(\.*) \S+=|\Wcs135=(\.*)$</regex>
+    <order>cef.extensions.cs135</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs136Label="(\.*)" \S+=|\Wcs136Label="(\.*)"$|\Wcs136Label=(\.*) \S+=|\Wcs136Label=(\.*)$</regex>
+    <order>cef.extensions.cs136Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs136="(\.*)" \S+=|\Wcs136="(\.*)"$|\Wcs136=(\.*) \S+=|\Wcs136=(\.*)$</regex>
+    <order>cef.extensions.cs136</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs137Label="(\.*)" \S+=|\Wcs137Label="(\.*)"$|\Wcs137Label=(\.*) \S+=|\Wcs137Label=(\.*)$</regex>
+    <order>cef.extensions.cs137Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs137="(\.*)" \S+=|\Wcs137="(\.*)"$|\Wcs137=(\.*) \S+=|\Wcs137=(\.*)$</regex>
+    <order>cef.extensions.cs137</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs138Label="(\.*)" \S+=|\Wcs138Label="(\.*)"$|\Wcs138Label=(\.*) \S+=|\Wcs138Label=(\.*)$</regex>
+    <order>cef.extensions.cs138Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs138="(\.*)" \S+=|\Wcs138="(\.*)"$|\Wcs138=(\.*) \S+=|\Wcs138=(\.*)$</regex>
+    <order>cef.extensions.cs138</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs139Label="(\.*)" \S+=|\Wcs139Label="(\.*)"$|\Wcs139Label=(\.*) \S+=|\Wcs139Label=(\.*)$</regex>
+    <order>cef.extensions.cs139Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs139="(\.*)" \S+=|\Wcs139="(\.*)"$|\Wcs139=(\.*) \S+=|\Wcs139=(\.*)$</regex>
+    <order>cef.extensions.cs139</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs140Label="(\.*)" \S+=|\Wcs140Label="(\.*)"$|\Wcs140Label=(\.*) \S+=|\Wcs140Label=(\.*)$</regex>
+    <order>cef.extensions.cs140Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs140="(\.*)" \S+=|\Wcs140="(\.*)"$|\Wcs140=(\.*) \S+=|\Wcs140=(\.*)$</regex>
+    <order>cef.extensions.cs140</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs141Label="(\.*)" \S+=|\Wcs141Label="(\.*)"$|\Wcs141Label=(\.*) \S+=|\Wcs141Label=(\.*)$</regex>
+    <order>cef.extensions.cs141Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs141="(\.*)" \S+=|\Wcs141="(\.*)"$|\Wcs141=(\.*) \S+=|\Wcs141=(\.*)$</regex>
+    <order>cef.extensions.cs141</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs142Label="(\.*)" \S+=|\Wcs142Label="(\.*)"$|\Wcs142Label=(\.*) \S+=|\Wcs142Label=(\.*)$</regex>
+    <order>cef.extensions.cs142Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs142="(\.*)" \S+=|\Wcs142="(\.*)"$|\Wcs142=(\.*) \S+=|\Wcs142=(\.*)$</regex>
+    <order>cef.extensions.cs142</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs143Label="(\.*)" \S+=|\Wcs143Label="(\.*)"$|\Wcs143Label=(\.*) \S+=|\Wcs143Label=(\.*)$</regex>
+    <order>cef.extensions.cs143Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs143="(\.*)" \S+=|\Wcs143="(\.*)"$|\Wcs143=(\.*) \S+=|\Wcs143=(\.*)$</regex>
+    <order>cef.extensions.cs143</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs144Label="(\.*)" \S+=|\Wcs144Label="(\.*)"$|\Wcs144Label=(\.*) \S+=|\Wcs144Label=(\.*)$</regex>
+    <order>cef.extensions.cs144Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs144="(\.*)" \S+=|\Wcs144="(\.*)"$|\Wcs144=(\.*) \S+=|\Wcs144=(\.*)$</regex>
+    <order>cef.extensions.cs144</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs145Label="(\.*)" \S+=|\Wcs145Label="(\.*)"$|\Wcs145Label=(\.*) \S+=|\Wcs145Label=(\.*)$</regex>
+    <order>cef.extensions.cs145Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs145="(\.*)" \S+=|\Wcs145="(\.*)"$|\Wcs145=(\.*) \S+=|\Wcs145=(\.*)$</regex>
+    <order>cef.extensions.cs145</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs146Label="(\.*)" \S+=|\Wcs146Label="(\.*)"$|\Wcs146Label=(\.*) \S+=|\Wcs146Label=(\.*)$</regex>
+    <order>cef.extensions.cs146Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs146="(\.*)" \S+=|\Wcs146="(\.*)"$|\Wcs146=(\.*) \S+=|\Wcs146=(\.*)$</regex>
+    <order>cef.extensions.cs146</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs147Label="(\.*)" \S+=|\Wcs147Label="(\.*)"$|\Wcs147Label=(\.*) \S+=|\Wcs147Label=(\.*)$</regex>
+    <order>cef.extensions.cs147Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs147="(\.*)" \S+=|\Wcs147="(\.*)"$|\Wcs147=(\.*) \S+=|\Wcs147=(\.*)$</regex>
+    <order>cef.extensions.cs147</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs148Label="(\.*)" \S+=|\Wcs148Label="(\.*)"$|\Wcs148Label=(\.*) \S+=|\Wcs148Label=(\.*)$</regex>
+    <order>cef.extensions.cs148Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs148="(\.*)" \S+=|\Wcs148="(\.*)"$|\Wcs148=(\.*) \S+=|\Wcs148=(\.*)$</regex>
+    <order>cef.extensions.cs148</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs149Label="(\.*)" \S+=|\Wcs149Label="(\.*)"$|\Wcs149Label=(\.*) \S+=|\Wcs149Label=(\.*)$</regex>
+    <order>cef.extensions.cs149Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs149="(\.*)" \S+=|\Wcs149="(\.*)"$|\Wcs149=(\.*) \S+=|\Wcs149=(\.*)$</regex>
+    <order>cef.extensions.cs149</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs150Label="(\.*)" \S+=|\Wcs150Label="(\.*)"$|\Wcs150Label=(\.*) \S+=|\Wcs150Label=(\.*)$</regex>
+    <order>cef.extensions.cs150Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs150="(\.*)" \S+=|\Wcs150="(\.*)"$|\Wcs150=(\.*) \S+=|\Wcs150=(\.*)$</regex>
+    <order>cef.extensions.cs150</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs151Label="(\.*)" \S+=|\Wcs151Label="(\.*)"$|\Wcs151Label=(\.*) \S+=|\Wcs151Label=(\.*)$</regex>
+    <order>cef.extensions.cs151Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs151="(\.*)" \S+=|\Wcs151="(\.*)"$|\Wcs151=(\.*) \S+=|\Wcs151=(\.*)$</regex>
+    <order>cef.extensions.cs151</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs152Label="(\.*)" \S+=|\Wcs152Label="(\.*)"$|\Wcs152Label=(\.*) \S+=|\Wcs152Label=(\.*)$</regex>
+    <order>cef.extensions.cs152Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs152="(\.*)" \S+=|\Wcs152="(\.*)"$|\Wcs152=(\.*) \S+=|\Wcs152=(\.*)$</regex>
+    <order>cef.extensions.cs152</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs153Label="(\.*)" \S+=|\Wcs153Label="(\.*)"$|\Wcs153Label=(\.*) \S+=|\Wcs153Label=(\.*)$</regex>
+    <order>cef.extensions.cs153Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs153="(\.*)" \S+=|\Wcs153="(\.*)"$|\Wcs153=(\.*) \S+=|\Wcs153=(\.*)$</regex>
+    <order>cef.extensions.cs153</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcs154Label="(\.*)" \S+=|\Wcs154Label="(\.*)"$|\Wcs154Label=(\.*) \S+=|\Wcs154Label=(\.*)$</regex>
+    <order>cef.extensions.cs154Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\WMacaumsg="(\.*)" \S+=|\WMacaumsg="(\.*)"$|\WMacaumsg=(\.*) \S+=|\WMacaumsg=(\.*)$</regex>
+    <order>cef.extensions.Macaumsg</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcn1Label="(\.*)" \S+=|\Wcn1Label="(\.*)"$|\Wcn1Label=(\.*) \S+=|\Wcn1Label=(\.*)$</regex>
+    <order>cef.extensions.cn1Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcn1="(\.*)" \S+=|\Wcn1="(\.*)"$|\Wcn1=(\.*) \S+=|\Wcn1=(\.*)$</regex>
+    <order>cef.extensions.cn1</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Woutcome="(\.*)" \S+=|\Woutcome="(\.*)"$|\Woutcome=(\.*) \S+=|\Woutcome=(\.*)$</regex>
+    <order>cef.extensions.outcome</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wrequest="(\.*)" \S+=|\Wrequest="(\.*)"$|\Wrequest=(\.*) \S+=|\Wrequest=(\.*)$</regex>
+    <order>cef.extensions.request</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcn2Label="(\.*)" \S+=|\Wcn2Label="(\.*)"$|\Wcn2Label=(\.*) \S+=|\Wcn2Label=(\.*)$</regex>
+    <order>cef.extensions.cn2Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcn2="(\.*)" \S+=|\Wcn2="(\.*)"$|\Wcn2=(\.*) \S+=|\Wcn2=(\.*)$</regex>
+    <order>cef.extensions.cn2</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcn3Label="(\.*)" \S+=|\Wcn3Label="(\.*)"$|\Wcn3Label=(\.*) \S+=|\Wcn3Label=(\.*)$</regex>
+    <order>cef.extensions.cn3Label</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcn3="(\.*)" \S+=|\Wcn3="(\.*)"$|\Wcn3=(\.*) \S+=|\Wcn3=(\.*)$</regex>
+    <order>cef.extensions.cn3</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wsrc="(\.*)" \S+=|\Wsrc="(\.*)"$|\Wsrc=(\.*) \S+=|\Wsrc=(\.*)$</regex>
+    <order>cef.extensions.src</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wsrc="(\.*)" \S+=|\Wsrc="(\.*)"$|\Wsrc=(\.*) \S+=|\Wsrc=(\.*)$</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wsmac="(\.*)" \S+=|\Wsmac="(\.*)"$|\Wsmac=(\.*) \S+=|\Wsmac=(\.*)$</regex>
+    <order>cef.extensions.smac</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wshost="(\.*)" \S+=|\Wshost="(\.*)"$|\Wshost=(\.*) \S+=|\Wshost=(\.*)$</regex>
+    <order>cef.extensions.shost</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wdst="(\.*)" \S+=|\Wdst="(\.*)"$|\Wdst=(\.*) \S+=|\Wdst=(\.*)$</regex>
+    <order>cef.extensions.dst</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wdst="(\.*)" \S+=|\Wdst="(\.*)"$|\Wdst=(\.*) \S+=|\Wdst=(\.*)$</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wdmac="(\.*)" \S+=|\Wdmac="(\.*)"$|\Wdmac=(\.*) \S+=|\Wdmac=(\.*)$</regex>
+    <order>cef.extensions.dmac</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wdhost="(\.*)" \S+=|\Wdhost="(\.*)"$|\Wdhost=(\.*) \S+=|\Wdhost=(\.*)$</regex>
+    <order>cef.extensions.dhost</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\WexternalId="(\.*)" \S+=|\WexternalId="(\.*)"$|\WexternalId=(\.*) \S+=|\WexternalId=(\.*)$</regex>
+    <order>cef.extensions.externalId</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wcat="(\.*)" \S+=|\Wcat="(\.*)"$|\Wcat=(\.*) \S+=|\Wcat=(\.*)$</regex>
+    <order>cef.extensions.cat</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wmsg="(\.*)" \S+=|\Wmsg="(\.*)"$|\Wmsg=(\.*) \S+=|\Wmsg=(\.*)$</regex>
+    <order>cef.extensions.msg</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\WManilamsg="(\.*)" \S+=|\WManilamsg="(\.*)"$|\WManilamsg=(\.*) \S+=|\WManilamsg=(\.*)$</regex>
+    <order>cef.extensions.Manilamsg</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\WCitymsg="(\.*)" \S+=|\WCitymsg="(\.*)"$|\WCitymsg=(\.*) \S+=|\WCitymsg=(\.*)$</regex>
+    <order>cef.extensions.Citymsg</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wduser="(\.*)" \S+=|\Wduser="(\.*)"$|\Wduser=(\.*) \S+=|\Wduser=(\.*)$</regex>
+    <order>cef.extensions.duser</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\Wduser="(\.*)" \S+=|\Wduser="(\.*)"$|\Wduser=(\.*) \S+=|\Wduser=(\.*)$</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="claroty_cef_fields">
+    <parent>claroty_cef</parent>
+    <regex>\WdestinationServiceName="(\.*)" \S+=|\WdestinationServiceName="(\.*)"$|\WdestinationServiceName=(\.*) \S+=|\WdestinationServiceName=(\.*)$</regex>
+    <order>cef.extensions.destinationServiceName</order>
+</decoder>

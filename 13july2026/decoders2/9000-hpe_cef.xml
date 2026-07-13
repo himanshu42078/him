@@ -1,0 +1,155 @@
+<!--
+Feb  6 15:48:16 172.16.10.133 CEF: 0|AAA|Core|5.0|101|User was successfully logged on|7|chain_name=Card&ADpass ep=ACSBRLCKINS1 ep_addr=192.168.36.141 event=Windows<space>logon method_name=LDAP_PASSWORD:1 session_id=msvwIJ6ffACmrYOARzDlBpMu5Yul3IK6 template_owner=AEONclara.flcheung tenant_name=TOP user_name=AEONclara.flcheung p=24364\
+Feb  6 15:47:56 172.16.10.133 CEF: 0|AAA|Core|5.0|103|User was switched to different method|2| ep=ACSAHKLT0034 ep_addr=172.17.4.56 new_method_name=TOTP:1 old_method_name=LDAP_PASSWORD:1 session_id=ypcBuHVKng9AP1xn1GwNBepOWngv7Qdm tenant_name=TOP user_name=AEONali.kwchan p=24621
+-->
+<decoder name="hpe_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|AAA\|</prematch>
+</decoder>
+
+<decoder name="hpe_cef">
+    <program_name></program_name>
+	<prematch>CEF:\s*0\|AAA\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="hpe_cef">
+	<prematch>CEF:\s*0\|AAA\|\.+\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>cef.vendor, cef.product, cef.version, cef.event_class_id, cef.description, cef.severity</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>ep_addr=(\.+) \S+=</regex>
+    <order>cef.extensions.ep_addr</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>ep_id=(\.+) \S+=</regex>
+    <order>cef.extensions.ep_id</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>ep_name=(\.+) \S+=</regex>
+    <order>cef.extensions.ep_name</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>tenant_name=(\.+) \S+=</regex>
+    <order>cef.extensions.tenant_name</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>p=(\.*) \S+=|p=(\.*)$</regex>
+    <order>cef.extensions.p</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>ep=(\.+) \S+=</regex>
+    <order>cef.extensions.ep</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>event=(\.+) \S+=</regex>
+    <order>cef.extensions.event</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>method_name=(\.+) \S+=</regex>
+    <order>cef.extensions.method_name</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>session_id=(\.+) \S+=</regex>
+    <order>cef.extensions.session_id</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>user_name=(\.+) \S+=</regex>
+    <order>cef.extensions.user_name</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>new_method_name=(\.+) \S+=</regex>
+    <order>cef.extensions.new_method_name</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>old_method_name=(\.+) \S+=</regex>
+    <order>cef.extensions.old_method_name</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>chain_name=(\.+) \S+=</regex>
+    <order>cef.extensions.chain_name</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>template_owner=(\.+) \S+=</regex>
+    <order>cef.extensions.template_owner</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>data_id=(\.+) \S+=</regex>
+    <order>cef.extensions.data_id</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>record_id=(\.+) \S+=</regex>
+    <order>cef.extensions.record_id</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>unit_id=(\.+) \S+=</regex>
+    <order>cef.extensions.unit_id</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>component_id=(\.+) \S+=</regex>
+    <order>cef.extensions.component_id</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>scope=(\.+) \S+=</regex>
+    <order>cef.extensions.scope</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>logon_time=(\.+) \S+=</regex>
+    <order>cef.extensions.logon_time</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>ap_name=(\.+) \S+=</regex>
+    <order>cef.extensions.ap_name</order>
+</decoder>
+
+<decoder name="hpe_cef_fields">
+    <parent>hpe_cef</parent>
+    <regex>target_user_name=(\.+) \S+=</regex>
+    <order>cef.extensions.target_user_name</order>
+</decoder>
