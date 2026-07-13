@@ -1,0 +1,33 @@
+<!-- cloudflare Decoder -->
+<decoder name="cloudflare-json">
+	<prematch>{"cloudflare":</prematch>
+</decoder>
+<decoder name="cloudflare-fields">
+	<parent>cloudflare-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="cloudflare-fields">
+	<parent>cloudflare-json</parent>
+	<regex>"ClientIP":\s*"(\d+.\d+.\d+.\d+)",</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="cloudflare-fields">
+	<parent>cloudflare-json</parent>
+	<regex>"EdgeResponseBytes":\s(\d*),</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="cloudflare-fields">
+	<parent>cloudflare-json</parent>
+	<regex>"ClientRequestHost":\s*"(\.*)",</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="cloudflare-fields">
+	<parent>cloudflare-json</parent>
+	<regex>"EdgeResponseStatus":\s(\d*),</regex>
+	<order>status</order>
+</decoder>
+<decoder name="cloudflare-fields">
+	<parent>cloudflare-json</parent>
+	<regex>"ClientRequestURI":\s"(\.*)",</regex>
+	<order>url</order>
+</decoder>

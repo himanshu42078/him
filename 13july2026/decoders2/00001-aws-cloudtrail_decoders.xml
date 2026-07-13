@@ -1,0 +1,236 @@
+<!-- aws Decoder The purpose of this decoder is to obtain standardized field-->
+<decoder name="aws-cloudtrail">
+	<prematch>{"integration": "aws", "aws":\.+"source": "cloudtrail"</prematch>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"integration": "(\.+)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"source": "(\.+)"</regex>
+	<order>aws.source</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"awsRegion": "(\.+)"</regex>
+	<order>aws.awsRegion</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"eventName": "(\.+)"</regex>
+	<order>aws.eventName</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"errorCode": "(\.+)"</regex>
+	<order>aws.errorCode</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"errorMessage": "(\.+)"</regex>
+	<order>aws.errorMessage</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"sourceIPAddress":\s*"(\S+)"</regex>
+	<order>aws.sourceIPAddress</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"sourceIPAddress":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"source_ip_address":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"userAgent": "(\.*)"</regex>
+	<order>aws.userAgent</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"eventTime": "(\.*)"</regex>
+	<order>aws.eventTime</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"eventTime": "(\.*)"</regex>
+	<order>eventTime</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"eventSource": "(\.*)"</regex>
+	<order>aws.eventSource</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestID": "(\.*)"</regex>
+	<order>aws.requestID</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"eventID": "(\.*)"</regex>
+	<order>aws.eventID</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"readOnly": (\.+),</regex>
+	<order>aws.readOnly</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"eventType": "(\.*)"</regex>
+	<order>aws.eventType</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"recipientAccountId": "(\.*)"</regex>
+	<order>aws.recipientAccountId</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"eventCategory": "(\.*)"</regex>
+	<order>aws.eventCategory</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"userName": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+
+<!-- log_info -->
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"s3bucket": "(\.+)"</regex>
+	<order>aws.log_info.s3bucket</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"s3bucket": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"log_file": "(\.*)"</regex>
+	<order>aws.log_info.log_file</order>
+</decoder>
+
+<!-- requestParameters -->
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"userName": "(\.*)"</regex>
+	<order>aws.requestParameters.userName</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"groupName": "(\.*)"</regex>
+	<order>aws.requestParameters.groupName</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"roleName": "(\.*)"</regex>
+	<order>aws.requestParameters.roleName</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"policyArn": "(\.*)"</regex>
+	<order>aws.requestParameters.policyArn</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"policyDocument": "{(\.*)}"</regex>
+	<order>aws.requestParameters.policyDocument</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"status": "(\.*)"</regex>
+	<order>aws.requestParameters.status</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"functionName": "(\.*)"</regex>
+	<order>aws.requestParameters.functionName</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"groupId": "(\.*)"</regex>
+	<order>aws.requestParameters.groupId</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"requestParameters": {\.*"ipRanges": {"items": [{"cidrIp": "(\.*)"</regex>
+	<order>aws.requestParameters.ipPermissions.items.ipRanges.items.cidrIp</order>
+</decoder>
+
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"ipPermissions": {"items": {"ipProtocol": "(\.*)", "fromPort": (\.*), "toPort": (\.*),</regex>
+	<order>aws.requestParameters.ipPermissions.items.ipProtocol,aws.requestParameters.ipPermissions.items.fromPort,aws.requestParameters.ipPermissions.items.toPort</order>
+</decoder>
+
+<!-- responseElements -->
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"ConsoleLogin": "(\.+)"</regex>
+	<order>aws.responseElements.ConsoleLogin</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"responseElements": {"user": {"userId": "(\.*)"</regex>
+	<order>aws.responseElements.user.userId</order>
+</decoder>
+
+<!-- additionalEventData -->
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"MFAUsed": "(\.*)"</regex>
+	<order>aws.additionalEventData.MFAUsed</order>
+</decoder>
+
+<!-- assumedRoleUser -->
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"assumedRoleUser": {"assumedRoleId": "(\.*)", "arn": "(\.*)"</regex>
+	<order>aws.assumedRoleUser.assumedRoleId,aws.assumedRoleUser.arn</order>
+</decoder>
+
+<!-- resources -->
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"resources": {"accountId": "(\.*)", "type": "(\.*)", "ARN": "(\.*)"</regex>
+	<order>aws.resources.accountId,aws.resources.type,aws.resources.ARN</order>
+</decoder>
+
+<!-- userIdentity -->
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"userIdentity": {\.*"type": "(\.*)"</regex>
+	<order>aws.userIdentity.type</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"userIdentity": {\.*"principalId": "(\.*)"</regex>
+	<order>aws.userIdentity.principalId</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"userIdentity": {\.*"arn": "(\.*)"</regex>
+	<order>aws.userIdentity.arn</order>
+</decoder>
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"userIdentity": {\.*"accountId": "(\.*)"</regex>
+	<order>aws.userIdentity.accountId</order>
+</decoder>
+
+<decoder name="aws-cloudtrail-fields">
+	<parent>aws-cloudtrail</parent>
+	<regex>"sessionContext": {"sessionIssuer": {\.+"mfaAuthenticated": "(\.*)"</regex>
+	<order>aws.userIdentity.sessionContext.attributes.mfaAuthenticated</order>
+</decoder>
+

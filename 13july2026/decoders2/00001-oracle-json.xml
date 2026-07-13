@@ -1,0 +1,502 @@
+<!-- Modify it at your will. -->
+<decoder name="oracle-json">
+	<prematch>{"integration": "Wazuh-OCI",</prematch>
+</decoder>
+<!--
+<decoder name="oracle-fields">
+	<parent>oracle-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+
+<!-- oci-audit -->
+<!-- 
+{"integration": "Wazuh-OCI", "oci-audit": {"cloud_events_version": "0.1", "content_type": "application/json", "data": {"additional_details": {"X-Real-Port": 56778}, "availability_domain": "AD1", "compartment_id": "ocid1.tenancy.oc1.a", "compartment_name": "lftoci", "event_grouping_id": "csiddb0974034161b31d31365d8a1787/94fc0378c362465293be60fb858599e7", "event_name": "ListAnnouncements", "identity": {"auth_type": "natv", "console_session_id": "csiddb0974034161b31d31365d8a1787", "credentials": "ST$w", "ip_address": "61.92.239.236", "principal_id": "ocid1.user.oc1.q", "principal_name": "Chan Chun Wo", "tenant_id": "ocid1.tenancy.oc1..aaaaaaaaq44i77h6doehzt43cdyurrty7zeofeij2ciqxtdlqr4g3zhq2jaa", "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"}, "request": {"action": "GET", "headers": {"Accept": ["*/*"], "Accept-Encoding": ["gzip, deflate, br"], "Accept-Language": ["zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7"], "Authorization": ["Signature keyId=\"ST$JcAw\",version=\"1\",algorithm=\"rsa-sha256\",headers=\"(request-target) host x-date\",signature=\"**\""], "Connection": ["keep-alive"], "Origin": ["https://cloud.oracle.com"], "Referer": ["https://cloud.oracle.com/"], "Sec-Fetch-Dest": ["empty"], "Sec-Fetch-Mode": ["cors"], "Sec-Fetch-Site": ["cross-site"], "User-Agent": ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"], "opc-request-id": ["c9e7"], "sec-ch-ua": ["\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""], "sec-ch-ua-mobile": ["?0"], "sec-ch-ua-platform": ["\"Windows\""], "x-date": ["Tue, 25 Apr 2023 15:35:07 GMT"]}, "id": "csiF", "parameters": {"compartmentId": ["ocid1.tenancy.oc1.q2jaa"], "isBanner": ["true"], "limit": ["100"]}, "path": "/20180904/announcements"}, "resource_name": "", "response": {"headers": {"Access-Control-Allow-Credentials": ["true"], "Access-Control-Allow-Origin": ["https://cloud.oracle.com"], "Access-Control-Expose-Headers": ["opc-previous-page,opc-next-page,opc-client-info,ETag,opc-work-request-id,opc-total-items,opc-request-id,Location"], "Content-Length": ["111"], "Content-Type": ["application/json"], "Date": ["Tue, 25 Apr 2023 15:35:07 GMT"], "Timing-Allow-Origin": ["https://cloud.oracle.com"], "Vary": ["Origin"], "X-Content-Type-Options": ["nosniff"], "X-Frame-Options": ["SAMEORIGIN"], "opc-request-id": ["csid"]}, "message": "ListAnnouncements failed with response 'NotAuthorizedOrNotFound'", "payload": {}, "response_time": "2023-04-25T15:35:07.842000+00:00", "status": "404"}, "state_change": {}}, "event_id": "8635e3dc-f9b1-4d81-b0fc-e01d3a43cdd2", "event_time": "2023-04-25T15:35:07.842000+00:00", "event_type": "com.oraclecloud.Announcements.ListAnnouncements", "event_type_version": "2.0", "source": "Announcements"}, "logsource": "oci-audit"}
+-->
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<prematch>{"integration": "Wazuh-OCI", "oci-audit":</prematch>
+	<regex>{"integration": "Wazuh-OCI", "(\.+)":</regex>	
+  <order>logsource</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"cloud_events_version": "(\.+)",</regex>
+	<order>oci-audit.cloud_events_version</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"content_type": "(\.+)",</regex>
+	<order>oci-audit.content_type</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"availability_domain": "(\.+)",</regex>
+	<order>oci-audit.availability_domain</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"compartment_id": "(\.+)",</regex>
+	<order>oci-audit.compartment_id</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"compartment_name": "(\.+)",</regex>
+	<order>oci-audit.compartment_name</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"event_grouping_id": "(\.+)",</regex>
+	<order>oci-audit.event_grouping_id</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"event_name": "(\.+)",</regex>
+	<order>oci-audit.event_name</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"auth_type": "(\.+)",</regex>
+	<order>oci-audit.auth_type</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"console_session_id": "(\.+)",</regex>
+	<order>oci-audit.console_session_id</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"credentials": "(\.+)",</regex>
+	<order>oci-audit.credentials</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"ip_address": "(\.+)",</regex>
+	<order>oci-audit.ip_address</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"principal_id": "(\.+)",</regex>
+	<order>oci-audit.principal_id</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"principal_name": "(\.+)",</regex>
+	<order>oci-audit.principal_name</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"tenant_id": "(\.+)"</regex>
+	<order>oci-audit.tenant_id</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"user_agent": "(\.+)"},</regex>
+	<order>oci-audit.user_agent</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"action": "(\.+)",</regex>
+	<order>oci-audit.action</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Authorization": ["Signature keyId=\\"(\.+)\\",version=\\"(\.+)\\",algorithm=\\"(\.+)\\",headers=\\"(\.+)\\",signature=\\"\.+\\""],</regex>
+	<order>oci-audit.Signature_keyId,oci-audit.version,oci-audit.algorithm,oci-audit.headers</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Connection": ["(\.+)"],</regex>
+	<order>oci-audit.Connection</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Origin": ["(\.+)"],</regex>
+	<order>oci-audit.Origin</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Referer": ["(\.+)"],</regex>
+	<order>oci-audit.Referer</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Sec-Fetch-Dest": ["(\.+)"],</regex>
+	<order>oci-audit.Sec-Fetch-Dest</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Sec-Fetch-Mode": ["(\.+)"],</regex>
+	<order>oci-audit.Sec-Fetch-Mode</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Sec-Fetch-Site": ["(\.+)"],</regex>
+	<order>oci-audit.Sec-Fetch-Site</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"opc-request-id": ["(\.+)"]</regex>
+	<order>oci-audit.opc-request-id</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"id": "(\.+)",</regex>
+	<order>oci-audit.id</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"id": ["(\.+)"],</regex>
+	<order>oci-audit.compartmentId</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"isBanner": ["(\.+)"],</regex>
+	<order>oci-audit.isBanner</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"limit": ["(\.+)"]</regex>
+	<order>oci-audit.limit</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"path": "(\.+)"</regex>
+	<order>oci-audit.path</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"resource_name": "(\.*)",</regex>
+	<order>oci-audit.resource_name</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Access-Control-Allow-Credentials": ["(\.+)"],</regex>
+	<order>oci-audit.Access-Control-Allow-Credentials</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Access-Control-Allow-Origin": ["(\.+)"],</regex>
+	<order>oci-audit.Access-Control-Allow-Origin</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Access-Control-Expose-Headers": ["(\.+)"],</regex>
+	<order>oci-audit.Access-Control-Expose-Headers</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Content-Length": ["(\d+)"],</regex>
+	<order>oci-audit.Content-Length</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"Content-Type": ["(\.+)"],</regex>
+	<order>oci-audit.Content-Type</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"message": "(\.+)",</regex>
+	<order>oci-audit.message</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"payload": {(\.*)},</regex>
+	<order>oci-audit.payload</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"response_time": "(\.+)",</regex>
+	<order>oci-audit.response_time</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"status": "(\.+)"</regex>
+	<order>oci-audit.status</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"event_id": "(\.+)",</regex>
+	<order>oci-audit.eventId</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"event_time": "(\.+)",</regex>
+	<order>oci-audit.event_time</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"event_type": "(\.+)",</regex>
+	<order>oci-audit.event_type</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"event_type_version": "(\.+)",</regex>
+	<order>oci-audit.event_type_version</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"source": "(\.+)"</regex>
+	<order>oci-audit.source</order>
+</decoder>
+
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"clientIp": "(\.+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"actorName": "(\.+)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="oci-audit-fields">
+	<parent>oracle-json</parent>
+	<regex>"userAgent": "(\.+)"</regex>
+	<order>userAgent</order>
+</decoder>
+
+<!-- oracle-cloud -->
+<!-- 
+{"integration": "Wazuh-OCI", "oracle-cloud": {"data": {"datetime": 1682480708767, "logContent": {"data": {"additionalDetails": {"X-Real-Port": 54391}, "availabilityDomain": "AD1", "compartmentId": "ocid1.compartment.oc1..aaaaaaaavoqninrpunfkwraecpbixunj7rpnosvb5fvlwsbevmrx7lcumidq", "compartmentName": "app-dwh-cmp", "eventGroupingId": "3CA29A8F94344DF999B7A730C7CE8C1D/68F50DB1925D881FAEB88030E1DEB619", "eventName": "ListProblems", "identity": {"authType": "natv", "credentials": "ocid1.tenancy.oc1..aaaaaaaaq44i77h6doehzt43cdyurrty7zeofeij2ciqxtdlqr4g3zhq2jaa/ocid1.user.oc1..aaaaaaaao6fqr7tjtw2prml4xjelpfincnlfixol6vu7eqk4jtq6mbrn3leq/b7:d3:67:60:b0:56:f9:04:6b:34:ce:37:da:19:9f:6b", "ipAddress": "125.215.181.209", "principalId": "ocid1.user.oc1..aaaaaaaao6fqr7tjtw2prml4xjelpfincnlfixol6vu7eqk4jtq6mbrn3leq", "principalName": "pwc-log-collection", "tenantId": "ocid1.tenancy.oc1..aaaaaaaaq44i77h6doehzt43cdyurrty7zeofeij2ciqxtdlqr4g3zhq2jaa", "userAgent": "Oracle-PythonSDK/2.88.0 (python 3.6.8; x86_64-Linux)"}, "message": "ListProblems succeeded", "request": {"action": "GET", "headers": {}, "id": "3CA29A8F94344DF999B7A730C7CE8C1D/68F50DB1925D881FAEB88030E1DEB619/909C8D3642825FF117896C7AC1BF0CCC", "parameters": {}, "path": "/20200131/problems"}, "response": {"headers": {}, "payload": {}, "responseTime": "2023-04-26T03:45:08.767Z", "status": "200"}, "stateChange": {}}, "dataschema": "2.0", "id": "5777a02a-9ce0-47fb-8612-9a76462efd6e", "oracle": {"compartmentid": "ocid1.compartment.oc1..aaaaaaaavoqninrpunfkwraecpbixunj7rpnosvb5fvlwsbevmrx7lcumidq", "ingestedtime": "2023-04-26T03:45:11.843Z", "loggroupid": "_Audit", "tenantid": "ocid1.tenancy.oc1..aaaaaaaaq44i77h6doehzt43cdyurrty7zeofeij2ciqxtdlqr4g3zhq2jaa"}, "source": "", "specversion": "1.0", "time": "2023-04-26T03:45:08.767Z", "type": "com.oraclecloud.cloudGuard.ListProblems"}}}, "logsource": "oracle-cloud"}
+-->
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<prematch>{"integration": "Wazuh-OCI", "oracle-cloud":</prematch>
+	<regex>{"integration": "Wazuh-OCI", "(\.+)":</regex>
+  <order>logsource</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"availabilityDomain": "(\.+)",</regex>
+	<order>oracle-cloud.availabilityDomain</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"compartmentId": "(\.+)",</regex>
+	<order>oracle-cloud.compartmentId</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"compartmentName": "(\.+)",</regex>
+	<order>oracle-cloud.compartmentName</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"eventGroupingId": "(\.+)",</regex>
+	<order>oracle-cloud.eventGroupingId</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"eventName": "(\.+)",</regex>
+	<order>oracle-cloud.eventName</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"authType": "(\.+)",</regex>
+	<order>oracle-cloud.authType</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"credentials": "(\.+)",</regex>
+	<order>oracle-cloud.credentials</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"ipAddress": "(\.+)",</regex>
+	<order>oracle-cloud.ipAddress</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"principalId": "(\.+)",</regex>
+	<order>oracle-cloud.principalId</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"principalName": "(\.+)",</regex>
+	<order>oracle-cloud.principalName</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"tenantId": "(\.+)",</regex>
+	<order>oracle-cloud.tenantId</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"userAgent": "(\.+)"</regex>
+	<order>oracle-cloud.userAgent</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"message": "(\.+)",</regex>
+	<order>oracle-cloud.message</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"action": "(\.+)",</regex>
+	<order>oracle-cloud.action</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"path": "(\.+)"</regex>
+	<order>oracle-cloud.path</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"response_time": "(\.+)",</regex>
+	<order>oracle-cloud.response_time</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"status": "(\.+)"</regex>
+	<order>oracle-cloud.status</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"compartmentid": "(\.+)",</regex>
+	<order>oracle-cloud.compartmentid</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"ingestedtime": "(\.+)",</regex>
+	<order>oracle-cloud.ingestedtime</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"loggroupid": "(\.+)",</regex>
+	<order>oracle-cloud.loggroupid</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"tenantid": "(\.+)"</regex>
+	<order>oracle-cloud.tenantid</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"type": "(\.+)"</regex>
+	<order>oracle-cloud.type</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"eventId": "(\.+)"</regex>
+	<order>oracle-cloud.eventId</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"clientIp": "(\.+)"</regex>
+	<order>oracle-cloud.clientIp</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"event_type": "(\.+)"</regex>
+	<order>oracle-cloud.event_type</order>
+</decoder>
+
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"clientIp": "(\.+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"actorName": "(\.+)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="oracle-cloud-fields">
+	<parent>oracle-json</parent>
+	<regex>"userAgent": "(\.+)"</regex>
+	<order>userAgent</order>
+</decoder>
+
+
+<!-- oci-cloudguard -->
+<!-- 
+{"integration": "Wazuh-OCI", "oci-cloudguard": {"compartment_id": "ocid1.compartment.oc1..aaaaaaaaebzklp264cxrm2wnzy4rcjtpg3slnsudaox3gs7yuqviil7ybtcq", "detector_id": "IAAS_CONFIGURATION_DETECTOR", "detector_rule_id": "VCN_HAS_INTERNET_GATEWAY_ATTACHED", "id": "ocid1.cloudguardproblem.oc1.ap-singapore-1.amaaaaaalzx4aacqetdmubytplclx2ya3dj6zdqtjqcvgwdoyt7mlbfunv5q", "labels": ["Network"], "lifecycle_detail": "OPEN", "lifecycle_state": "ACTIVE", "region": "ap-singapore-1", "regions": ["ap-singapore-1"], "resource_id": "ocid1.vcn.oc1.ap-singapore-1.amaaaaaalzx4aaaant7jl7r3zmckadw2masut5twwktwwyaclrjr5eqiyc2q", "resource_name": "vcn_tsit-net-sin-pd", "resource_type": "VCN", "risk_level": "LOW", "target_id": "ocid1.cloudguardtarget.oc1.ap-singapore-1.amaaaaaalzx4aaaa32dr64yzepeddkknlnowj5upso3yoao4rajulecwkwrq", "time_first_detected": "2023-02-09T02:26:25.256000+00:00", "time_last_detected": "2023-04-26T03:14:46.616000+00:00"}, "logsource": "oci-cloudguard"}
+-->
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<prematch>{"integration": "Wazuh-OCI", "oci-cloudguard":</prematch>
+	<regex>{"integration": "Wazuh-OCI", "(\.+)":</regex>
+  <order>logsource</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"compartment_id": "(\.+)",</regex>
+	<order>oci-cloudguard.compartment_id</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"detector_id": "(\.+)",</regex>
+	<order>oci-cloudguard.detector_id</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"detector_rule_id": "(\.+)",</regex>
+	<order>oci-cloudguard.detector_rule_id</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"id": "(\.+)",</regex>
+	<order>oci-cloudguard.id</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"labels": ["(\.+)"],</regex>
+	<order>oci-cloudguard.labels</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"lifecycle_detail": "(\.+)",</regex>
+	<order>oci-cloudguard.lifecycle_detail</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"lifecycle_state": "(\.+)",</regex>
+	<order>oci-cloudguard.lifecycle_state</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"region": "(\.+)",</regex>
+	<order>oci-cloudguard.region</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"resource_id": "(\.+)",</regex>
+	<order>oci-cloudguard.resource_id</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"resource_name": "(\.+)",</regex>
+	<order>oci-cloudguard.resource_name</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"resource_type": "(\.+)",</regex>
+	<order>oci-cloudguard.resource_type</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"risk_level": "(\.+)",</regex>
+	<order>oci-cloudguard.risk_level</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"target_id": "(\.+)",</regex>
+	<order>oci-cloudguard.target_id</order>
+</decoder>
+
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"clientIp": "(\.+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"actorName": "(\.+)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="oci-cloudguard-fields">
+	<parent>oracle-json</parent>
+	<regex>"userAgent": "(\.+)"</regex>
+	<order>userAgent</order>
+</decoder>

@@ -1,0 +1,13 @@
+<decoder name="juniper_system_event">
+	<program_name>mgd|checklogin</program_name>
+</decoder>
+<decoder name="juniper_system_event_fields">
+    <parent>juniper_system_event</parent>
+    <regex>^Authenticated httpd client with username (\.+) from (\S+)$|^Unable to authenticate httpd client with username (\.+) from (\S+)$</regex>
+    <order>dstuser,srcip</order>
+</decoder>
+<decoder name="juniper_system_event_fields">
+    <parent>juniper_system_event</parent>
+    <regex>^User '(\.+)' (\.+)$</regex>
+    <order>dstuser,msg</order>
+</decoder>

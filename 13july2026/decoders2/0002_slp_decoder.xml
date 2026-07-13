@@ -1,0 +1,24 @@
+<!-- Modify it at your will. -->
+<decoder name="slp">
+  <prematch>[\.+] \S+  \S+ auditLogger - </prematch>
+</decoder>
+<decoder name="slp-field">
+  <parent>slp</parent>
+  <regex>src_ip=\S+</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="slp-field">
+  <parent>slp</parent>
+  <regex>operation_result=(\.+), server_ip</regex>
+  <order>result</order>
+</decoder>
+<decoder name="slp-field">
+  <parent>slp</parent>
+  <regex>operation_time=(\.+), operation_user</regex>
+  <order>time</order>
+</decoder>
+<decoder name="slp-field">
+  <parent>slp</parent>
+  <regex>operation_user=(\.+), operation_type</regex>
+  <order>dstuser</order>
+</decoder>

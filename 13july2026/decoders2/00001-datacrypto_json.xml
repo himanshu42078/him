@@ -1,0 +1,50 @@
+<!-- Modify it at your will. -->
+<decoder name="datacrypto-json">
+	<program_name>DATACrypto</program_name>
+</decoder>
+<!--
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<regex>"userIp":"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<regex>"userId":"(\.+)"</regex>
+	<order>user</order>
+</decoder>
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<regex>"t":"(\.+)"</regex>
+	<order>eventTime</order>
+</decoder>
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<regex>"kind":"(\.+)"</regex>
+	<order>kind</order>
+</decoder>
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<regex>"hostAddress":"(\.+)"</regex>
+	<order>hostAddress</order>
+</decoder>
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<regex>"operation":"(\.+)"</regex>
+	<order>act</order>
+</decoder>
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<regex>"process":"(\.+)"</regex>
+	<order>process_name</order>
+</decoder>
+<decoder name="datacrypto-json-fields">
+	<parent>datacrypto-json</parent>
+	<regex>"path":"(\.+)"</regex>
+	<order>filename</order>
+</decoder>

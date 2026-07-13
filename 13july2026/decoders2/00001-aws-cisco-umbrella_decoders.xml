@@ -1,0 +1,160 @@
+<!-- cisco_umbrella -->
+<!--
+{"integration": "aws", "aws": {"log_info": {"aws_account_alias": "", "log_file": "2340751_1428d0ab512f0d9a896a68194d72919cea269f30/dnslogs/2023-05-19/2023-05-19-04-10-ade8.csv.gz", "s3bucket": "cisco-managed-us-west-1"}, "timestamp": "2023-05-19 04:19:56", "most_granular_identity": "CTF-HK-KC-1-WAN-HKT-50M", "identities": "CTF-HK-KC-1-WAN-HKT-50M,CTF-HK-KC-Site", "internal_ip": "10.154.24.40", "external_ip": "203.198.63.84", "action": "Allowed", "query_type": "1 (A)", "response_code": "NOERROR", "domain": "aruba.brightcloud.com.", "categories": "Software/Technology,Computer Security,Application", "most_granular_identity_type": "Networks", "identity_types": "Networks,Sites", "blocked_categories": "", "source": "cisco_umbrella"}}
+-->
+<decoder name="aws-cisco-umbrella">
+	<prematch>{"integration": "aws", "aws":\.+"source": "cisco_umbrella"</prematch>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"integration": "(\.+)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"source": "(\.+)"</regex>
+	<order>aws.source</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"timestamp": "(\.+)"</regex>
+	<order>aws.timestamp</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"most_granular_identity": "(\.+)"</regex>
+	<order>aws.most_granular_identity</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"identities": "(\.+)"</regex>
+	<order>aws.identities</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"internal_ip": "(\.+)"</regex>
+	<order>aws.internal_ip</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"external_ip": "(\.+)"</regex>
+	<order>aws.external_ip</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"action": "(\.+)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"query_type": "(\.+)"</regex>
+	<order>aws.query_type</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"response_code": "(\.+)"</regex>
+	<order>aws.response_code</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"domain": "(\.+)"</regex>
+	<order>aws.domain</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"categories": "(\.*)"</regex>
+	<order>aws.categories</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"most_granular_identity_type": "(\.+)"</regex>
+	<order>aws.most_granular_identity_type</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"identity_types": "(\.+)"</regex>
+	<order>aws.identity_types</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"blocked_categories": "(\.*)"</regex>
+	<order>aws.blocked_categories</order>
+</decoder>
+
+<!-- log_info -->
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"s3bucket": "(\.+)"</regex>
+	<order>aws.log_info.s3bucket</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"s3bucket": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"log_file": "(\.*)"</regex>
+	<order>aws.log_info.log_file</order>
+</decoder>
+
+<!--
+For OpenDNS - iplogs Aws
+{"integration": "aws", "aws": {"log_info": {"aws_account_alias": "", "log_file": "iplogs/2021-04-01/2021-04-01-08-20-fc87.csv.gz", "s3bucket": "lf-infra-opendns-log"}, "timestamp": "2021-04-01 08:26:42", "identity": "VNMLFL200005", "source_ip": "113.161.180.48", "source_port": "50498", "destination_ip": "49.51.20.85", "destination_port": "8080", "categories": "", "null": "Roaming Computers", "source": "cisco_umbrella"}}
+-->
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"source_ip": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"source_port": "(\d+)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"destination_ip": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"destination_port": "(\d+)"</regex>
+	<order>dstport</order>
+</decoder>
+
+<!--
+For OpenDNS - iplogs Aws
+{"integration": "aws", "aws": {"log_info": {"aws_account_alias": "", "log_file": "dnslogs/2021-04-01/2021-04-01-08-30-fc87.csv.gz", "s3bucket": "lf-infra-opendns-log"}, "timestamp": "2021-04-01 08:39:48", "most_granular_identity": "TWN-HD 60.250.43.196/30", "identities": "TWN-HD 60.250.43.196/30", "internal_ip": "60.250.43.197", "external_ip": "60.250.43.197", "action": "Allowed", "query_type": "1 (A)", "response_code": "NOERROR", "domain": "skypedataprdcolwus08.cloudapp.net.", "categories": "Software/Technology,Business Services", "most_granular_identity_type": "Networks", "identity_types": "Networks", "blocked_categories": "", "source": "cisco_umbrella"}}
+-->
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"domain": "\.*.(\w+.\w+).",|"domain": "(\w+.\w+).",</regex>
+	<order>url_sld</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"domain": "(\.*).",</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"internal_ip": "(\d+.\d+.\d+.\d+)",</regex>
+	<order>srcip</order>
+</decoder>
+<!-- For hkstp xdp logs-->
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"op_user_id":"(\w+)",</regex>
+	<order>op_user_id</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"user_id":"(\w+)"</regex>
+	<order>user_id</order>
+</decoder>
+<decoder name="aws-cisco-umbrella-fields">
+	<parent>aws-cisco-umbrella</parent>
+	<regex>"init_upload":{"name":"(\w+)"</regex>
+	<order>xdp_upload_file</order>
+</decoder>

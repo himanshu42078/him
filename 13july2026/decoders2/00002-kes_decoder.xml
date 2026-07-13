@@ -1,0 +1,146 @@
+<!-- DEV-689 -->
+
+<!-- <decoder name="kes">
+	<program_name>^kes$</program_name>
+</decoder>
+ -->
+<decoder name="kes">
+	<prematch>KES\|\d+.\d+.\d+.\d+</prematch>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>(KES)\|(\d+.\d+.\d+.\d+)</regex>
+        <order>logsource,version</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Event type:\s+(\S\.*)\\r\\n|Event type:\s+(\S\.*) Name:|Event type:\s+(\S\.*) Result description:|Event type:\s+(\S\.*) Application\\Name:|Event type:\s+(\S\.*)$</regex>
+        <order>event_type</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Result description:\s+(\S\.*)\\r\\n|Result description:\s+(\S\.*) Object type:|Result\Wdescription:\s+(\S\.*) Result\WType:|Result description:\s+(\S\.*)$</regex>
+        <order>description</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Error:\s+(\S\.*)\\r\\n|Error:\s+(\S\.*)$</regex>
+        <order>error</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Object type:\s+(\S\.*)\\r\\n|Object type: (\.*) Object name:|Object type:\s+(\S\.*)$</regex>
+        <order>object_type</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Object name:\s+(\S\.*)\\r\\n|Object name:\s+(\S\.*)$</regex>
+        <order>object_name</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Object name:\s+TCP from (\d+.\d+.\d+.\d+) at (\d+.\d+.\d+.\d+):(\d+)\\r\\n|Object name:\s+TCP from (\d+.\d+.\d+.\d+) at (\d+.\d+.\d+.\d+):(\d+)$</regex>
+        <order>srcip,dstip,dstport</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>User:\s+(\S\.*)\\r\\n|User:\s+(\.*) \S+:|User:\s+(\S\.*)</regex>
+        <order>dstuser</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Release date:\s+(\S\.*)\\r\\n|Release date:\s+(\S\.*)$</regex>
+        <order>release_date</order>
+</decoder>
+
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>\\nName:\s+(\S\.*)\\r\\n|\\nName:\s+(\S\.*)$|Name: (\.*) Application path:</regex>
+        <order>name</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>\\nName:\s+(\S\.*)\\r\\nApplication path:\s+(\S\.*)\\r\\n|Name: (\.*) Application path: (\.*) User:</regex>
+        <order>application_name, application_path</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Process ID:\s+(\d+)</regex>
+        <order>process_id</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Protocol:\s+(\S\.*)\\r\\n|Protocol:\s+(\S\.*)$</regex>
+        <order>protocol</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Result:\s+(\S\.*)\\r\\n|Result:\s+(\S\.*)$</regex>
+        <order>result</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Component:\s+(\S\.*)\\r\\n|Component:\s+(\S\.+) Result\Wdescription:|Component:\s+(\S\.*)$</regex>
+        <order>component</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Path to object:\s+(\S\.*)\\r\\n|Path to object:\s+(\S\.*)$</regex>
+        <order>path_to_object</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Reason:\s+(\S\.*)\\r\\n|Reason:\s+(\S\.*) Database release date:|Reason:\s+(\S\.*)$</regex>
+        <order>reason</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>\\r\\nobject:\s+(\S\.*)\\r\\n</regex>
+        <order>object</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>\\r\\ntype:\s+(\S\.*)\\r\\n</regex>
+        <order>type</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>\\r\\nName:\s+(\S\.*)\\r\\n</regex>
+        <order>name</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>\\r\\nThreat level:\s+(\S\.*)\\r\\n</regex>
+        <order>threat_level</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Precision:\s+(\S+)</regex>
+        <order>precision</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>SHA256:\s+(\S\.*)\\r\\n|SHA256:\s+(\S\.*)$</regex>
+        <order>SHA256</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>MD5:\s+(\S\.*)\\r\\n|MD5:\s+(\S\.*)$</regex>
+        <order>MD5</order>
+</decoder>
+
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Application\\Path:\s+(\S\.*)\\r\\n|Application\\Path:\s+(\.*) \S+:|Application\\Path:\s+(\S\.*)</regex>
+        <order>ApplicationPath</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Application\\Name:\s+(\S\.*)\\r\\n|Application\\Name:\s+(\.*) \S+:|Application\\Name:\s+(\S\.*)</regex>
+        <order>ApplicationName</order>
+</decoder>
+<decoder name="kes_fields">
+        <parent>kes</parent>
+        <regex>Application:\s+(\S\.*)\\r\\n|Application:\s+(\.*) \S+:|Application:\s+(\S\.*)</regex>
+        <order>Application</order>
+</decoder>

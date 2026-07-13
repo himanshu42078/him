@@ -1,0 +1,135 @@
+<!-- ####### FCS Log WEB Table start from here ####### -->
+
+
+<decoder name="FCSGatewayTable">
+    <prematch>"FCS_Gateway": {</prematch>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"description":\s"(\.*)",</regex>
+    <order>description</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"eventType":\s"(\.*)",</regex>
+    <order>eventType</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"module":\s"(\.*)",</regex>
+    <order>module</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"propertyID":\s"(\.*)",</regex>
+    <order>propertyID</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\d+),</regex>
+    <order>seqNo</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"severity":\s"(\.*)",</regex>
+    <order>severity</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"srcIP":\s"(\.*)",</regex>
+    <order>srcIP</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"sysID":\s"(\.*)",</regex>
+    <order>sysID</order>
+</decoder>
+
+<decoder name="FCSGatewayTable-fields">
+    <parent>FCSGatewayTable</parent>
+    <regex offset="after_parent">"usrID":\s"(\.*)"</regex>
+    <order>usrID</order>
+</decoder>
+
+
+<!-- ####### FCS Log UWI Table start from here ####### -->
+
+
+<decoder name="FCSVoice">
+    <prematch>"FCS_Voice": {</prematch>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"description":\s"(\.*)",</regex>
+    <order>description</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"eventType":\s"(\.*)",</regex>
+    <order>eventType</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"module":\s"(\.*)",</regex>
+    <order>module</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"propertyID":\s"(\.*)",</regex>
+    <order>propertyID</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"seqNo":\s(\d+),</regex>
+    <order>seqNo</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"severity":\s"(\.*)",</regex>
+    <order>severity</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"srcIP":\s"(\.*)",</regex>
+    <order>srcIP</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"sysID":\s"(\.*)",</regex>
+    <order>sysID</order>
+</decoder>
+
+<decoder name="FCSVoice-fields">
+    <parent>FCSVoice</parent>
+    <regex offset="after_parent">"usrID":\s"(\.*)"</regex>
+    <order>usrID</order>
+</decoder>
+

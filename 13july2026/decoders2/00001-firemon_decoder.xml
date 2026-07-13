@@ -1,0 +1,53 @@
+<decoder name="firemon">
+    <prematch>\.*\pFireMon\p\sEvent\sLog</prematch>
+    <program_name>secmgrd</program_name>
+</decoder>
+
+<decoder name="firemonFields">
+    <parent>firemon</parent>
+    <regex>Date:(\.*)\s</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="firemonFields">
+    <parent>firemon</parent>
+    <regex>Event Name:\s+(\.*)\sUser:</regex>
+    <order>eventName</order>
+</decoder>
+
+<decoder name="firemonFields">
+    <parent>firemon</parent>
+    <regex>User:\s+(\.*)\sDetail:</regex>
+    <order>srcuser</order>
+</decoder>
+
+<decoder name="firemonFields">
+    <parent>firemon</parent>
+    <regex>Detail:\s\p"after":\p"object":\.*,"id":(\d),</regex>
+    <order>detail.after.id</order>
+</decoder>
+
+<decoder name="firemonFields">
+    <parent>firemon</parent>
+    <regex>Detail:\s\p"after":\p"object":\.*,"domainId":(\d),</regex>
+    <order>detail.after.domainId</order>
+</decoder>
+
+<decoder name="firemonFields">
+    <parent>firemon</parent>
+    <regex>Detail:\s\p"after":\p"object":\.*,"name":"(\.*)",</regex>
+    <order>detail.after.name</order>
+</decoder>
+
+<decoder name="firemonFields">
+    <parent>firemon</parent>
+    <regex>Detail:\s\p"after":\p"object":\.*,"username":"(\.*)"</regex>
+    <order>detail.after.uesrname</order>
+</decoder>
+
+<decoder name="firemonFields">
+    <parent>firemon</parent>
+    <regex>Detail:\s\p"after":\p"object":\.*,"objectType":"(\.*)"</regex>
+    <order>detail.after.objectType</order>
+</decoder>
+

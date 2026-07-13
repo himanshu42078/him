@@ -1,0 +1,39 @@
+<!-- 
+{"integration": "Wazuh-Google-Reports", "reports": {"kind": "admin#reports#activity", "id": {"time": "2023-05-16T08:35:06.410Z", "uniqueQualifier": "-2123343365859366804", "applicationName": "drive", "customerId": "C04cf61ka"}, "etag": "\"XaXOmLqfGbdzQN419XrvAe2RZ3Piq6XDTVzEvVrOLN0/gMEvNYDMdXt4YTgbLFZH6eJFTuA\"", "actor": {"email": "viann.tam@esfcentre.edu.hk", "profileId": "107119244705512584264"}, "ipAddress": "175.45.31.206", "events": {"type": "acl_change", "name": "change_user_access", "parameters": [{"name": "primary_event", "boolValue": false}, {"name": "billable", "boolValue": true}, {"name": "visibility_change", "value": "none"}, {"name": "target_user", "value": "viann.tam@esfcentre.edu.hk"}, {"name": "old_value", "multiValue": ["none"]}, {"name": "new_value", "multiValue": ["owner"]}, {"name": "old_visibility", "value": "unknown"}, {"name": "owner_is_shared_drive", "boolValue": false}, {"name": "owner", "value": "viann.tam@esfcentre.edu.hk"}, {"name": "doc_id", "value": "1GNiU9zxF7JDBNDLG4TVgm4yWpsEBW6Yx"}, {"name": "doc_type", "value": "folder"}, {"name": "is_encrypted", "boolValue": false}, {"name": "doc_title", "value": "RFQ"}, {"name": "visibility", "value": "shared_internally"}, {"name": "originating_app_id", "value": "947318989803"}, {"name": "actor_is_collaborator_account", "boolValue": false}, {"name": "owner_is_team_drive", "boolValue": false}]}}}
+-->
+<!-- DEV-3179 -->
+<!-- 
+{"integration": "google-reports-api", "google-reports-api": {"kind": "admin#reports#activity", "id": {"time": "2023-05-16T08:36:17.581Z", "uniqueQualifier": "5060299624347846617", "applicationName": "drive", "customerId": "C03k62r7s"}, "etag": "\"XaXOmLqfGbdzQN419XrvAe2RZ3Piq6XDTVzEvVrOLN0/scLPg52fFRHqY7d8WTw2wNhtaRM\"", "actor": {"email": "dashboard@esfc.edu.hk", "profileId": "108194864486772493284"}, "ipAddress": "203.198.170.76", "events": {"type": "access", "name": "edit", "parameters": [{"name": "primary_event", "boolValue": true}, {"name": "billable", "boolValue": true}, {"name": "owner_is_shared_drive", "boolValue": false}, {"name": "owner", "value": "dashboard@esfc.edu.hk"}, {"name": "doc_id", "value": "1ukhNR8_gd187UwGOQmpaz38jNRoR78p2jTfD9REs1wc"}, {"name": "doc_type", "value": "spreadsheet"}, {"name": "is_encrypted", "boolValue": false}, {"name": "doc_title", "value": "ESFReliefGrant-Master"}, {"name": "visibility", "value": "shared_externally"}, {"name": "actor_is_collaborator_account", "boolValue": false}, {"name": "owner_is_team_drive", "boolValue": false}]}}}
+-->
+<decoder name="google-api-json">
+	<prematch>{"integration": "Wazuh-Google-|{"integration": "google-\.+-api"</prematch>
+</decoder>
+<decoder name="google-api-fields">
+	<parent>google-api-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="google-api-fields">
+	<parent>google-api-json</parent>
+	<regex>"customerId": "(\S+)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="google-api-fields">
+	<parent>google-api-json</parent>
+	<regex>"ipAddress": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="google-api-fields">
+	<parent>google-api-json</parent>
+    <regex>{"name": "doc_title", "value": "(\.+)"}</regex>
+	<order>doc_title</order>
+</decoder>
+<decoder name="google-api-fields">
+	<parent>google-api-json</parent>
+    <regex>{"name": "doc_id", "value": "(\.+)"}</regex>
+	<order>doc_id</order>
+</decoder>
+<decoder name="google-api-fields">
+	<parent>google-api-json</parent>
+	<regex>{"detectorName": "(\.+)"}</regex>
+	<order>detectorName</order>
+</decoder>

@@ -1,0 +1,33 @@
+<!-- Modify it at your will. -->
+<decoder name="kafka-paob-symantec-json">
+	<prematch>"topic":"paob-symantec"</prematch>
+</decoder>
+<decoder name="kafka-paob-symantec-fields">
+	<parent>kafka-paob-symantec-json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="kafka-paob-symantec-fields">
+	<parent>kafka-paob-symantec-json</parent>
+	<regex>"message_json":{\.*"LOCAL_HOST_IP":"Host: (\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="kafka-paob-symantec-fields">
+	<parent>kafka-paob-symantec-json</parent>
+	<regex>"message_json":{\.*"LOCAL_PORT":"Port: (\d+)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="kafka-paob-symantec-fields">
+	<parent>kafka-paob-symantec-json</parent>
+	<regex>"message_json":{\.*"REMOTE_HOST_IP":"Host IP: (\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="kafka-paob-symantec-fields">
+	<parent>kafka-paob-symantec-json</parent>
+	<regex>"message_json":{\.*"REMOTE_PORT":"Port: (\d+)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="kafka-paob-symantec-fields">
+	<parent>kafka-paob-symantec-json</parent>
+	<regex>"message_json":{\.*"USER_NAME":"(\.+)"</regex>
+	<order>dstuser</order>
+</decoder>

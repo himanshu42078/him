@@ -1,0 +1,14 @@
+<!-- Modify it at your will. -->
+<decoder name="alm">
+  <prematch>[http-nio-\d+-exec-\d+] \S+ com.vprisk.vpframe.sys.web.controller.IsLoginController</prematch>
+</decoder>
+<decoder name="alm-field">
+  <parent>alm</parent>
+  <regex>User [(\S+)] (login failure with invalid password)</regex>
+  <order>user, result</order>
+</decoder>
+<decoder name="alm-field">
+  <parent>alm</parent>
+  <regex>User [(\S+)] (login successfully)</regex>
+  <order>user, result</order>
+</decoder>

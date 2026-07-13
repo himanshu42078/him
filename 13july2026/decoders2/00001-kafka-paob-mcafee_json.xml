@@ -1,0 +1,28 @@
+<!-- Modify it at your will. -->
+<decoder name="kafka-paob-mcafee-json">
+	<prematch>"topic":"paob-mcafee"</prematch>
+</decoder>
+<decoder name="kafka-paob-mcafee-fields">
+	<parent>kafka-paob-mcafee-json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="kafka-paob-mcafee-fields">
+	<parent>kafka-paob-mcafee-json</parent>
+	<regex>"message_json":{\.*"source":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="kafka-paob-mcafee-fields">
+	<parent>kafka-paob-mcafee-json</parent>
+	<regex>"message_json":{\.*"destination":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="kafka-paob-mcafee-fields">
+	<parent>kafka-paob-mcafee-json</parent>
+	<regex>"message_json":{\.*"user_name":"(\.+)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="kafka-paob-mcafee-fields">
+	<parent>kafka-paob-mcafee-json</parent>
+	<regex>"message_json":{\.*"username":"(\.+)"</regex>
+	<order>dstuser</order>
+</decoder>

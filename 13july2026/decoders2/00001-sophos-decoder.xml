@@ -1,0 +1,28 @@
+<!-- Sophos Decoder -->
+<decoder name="sophos">
+	<prematch>{"sophos"</prematch>
+</decoder>
+<decoder name="sophos-fields">
+	<parent>sophos</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="sophos-fields">
+	<parent>sophos</parent>
+	<regex>"source_info":\s{"ip":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="sophos-fields">
+	<parent>sophos</parent>
+	<regex>"UserId":\s*"(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="sophos-fields">
+	<parent>sophos</parent>
+	<regex>"id":\s*"(\.*)"</regex>
+	<order>id</order>
+</decoder>
+<decoder name="sophos-fields">
+	<parent>sophos</parent>
+	<regex>"when":\s*"(\.*)"</regex>
+	<order>timestamp</order>
+</decoder>

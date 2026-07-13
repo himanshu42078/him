@@ -1,0 +1,125 @@
+<!-- DEV-708 -->
+<decoder name="cisco_ftd">
+	<prematch>%FTD-1-430002</prematch>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>DeviceUUID: (\S+),</regex>
+	<order>DeviceUUID</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>AccessControlRuleAction: (\S+),</regex>
+	<order>AccessControlRuleAction</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>AccessControlRuleAction: (\S+),</regex>
+	<order>action</order>
+</decoder>
+<!-- DEV-2532 -->
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>SrcIP: (\S+),</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>DstIP: (\S+),</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>SrcPort: (\S+),</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>DstPort: (\S+),</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>Protocol: (\S+),</regex>
+	<order>proto</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>IngressInterface: (\S+),</regex>
+	<order>IngressInterface</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>EgressInterface: (\S+),</regex>
+	<order>EgressInterface</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>IngressZone: (\S+),</regex>
+	<order>IngressZone</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>EgressZone: (\S+),</regex>
+	<order>EgressZone</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>ACPolicy: (\.+), AccessControlRuleName</regex>
+	<order>ACPolicy</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>AccessControlRuleName: (\.+), Prefilter Policy</regex>
+	<order>AccessControlRuleName</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>User: (\.+), Client</regex>
+	<order>user</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>Client: (\.+), ApplicationProtocol</regex>
+	<order>Client</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>ApplicationProtocol: (\.+), WebApplication</regex>
+	<order>ApplicationProtocol</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>WebApplication: (\.+), InitiatorPackets</regex>
+	<order>WebApplication</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>InitiatorPackets: (\d+)</regex>
+	<order>InitiatorPackets</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>ResponderPackets: (\d+)</regex>
+	<order>ResponderPackets</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>InitiatorBytes: (\d+)</regex>
+	<order>InitiatorBytes</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>ResponderBytes: (\d+)</regex>
+	<order>ResponderBytes</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>NAPPolicy: (\.+), URL</regex>
+	<order>NAPPolicy</order>
+</decoder>
+<decoder name="cisco_ftd_fields">
+	<parent>cisco_ftd</parent>
+	<regex>URL: (\S+)</regex>
+	<order>url</order>
+</decoder>

@@ -1,0 +1,331 @@
+<!-- Azure Graph API Decoder -->
+<decoder name="AzureGraphAPI-json">
+	<prematch>{"azure"</prematch>
+</decoder>
+<!--
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"azure": {"id": "(\.*)",</regex>
+	<order>azure.id</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"userAgent":\s*"(\.*)",</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"OperationName":\s"(\.*)"</regex>
+	<order>azure.operationName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"logsource": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"azure_tag":\s"(\.*)"</regex>
+	<order>azure.azure_tag</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"azure_aad_tag":\s"(\.*)"</regex>
+	<order>azure.azure_aad_tag</order>
+</decoder>
+
+<!-- audit log -->
+<!--
+{"azure": {"id": "Directory_adf67304-7c55-4523-ba07-2eaa030a0488_BNQH0_87211161", "category": "GroupManagement", "correlationId": "adf67304-7c55-4523-ba07-2eaa030a0488", "result": "success", "resultReason": "", "activityDisplayName": "Update group", "activityDateTime": "2023-05-23T02:13:13.8481373Z", "loggedByService": "Core Directory", "operationType": "Update", "initiatedBy": {"app": null, "user": {"id": "61817134-54e4-4b59-8093-17b309215c82", "displayName": null, "userPrincipalName": "Sync_P-AAD-SVR01_ad7c0cecb0a6@aeoncredithk.onmicrosoft.com", "ipAddress": "", "userType": null, "homeTenantId": null, "homeTenantName": null}}, "targetResources": [{"id": "2272b72b-a04f-40bd-894a-675bd2317564", "displayName": "GP-APP-Prd-NMAPortal-BranchAISStaff", "type": "Group", "userPrincipalName": null, "groupType": "unknownFutureValue", "modifiedProperties": [{"displayName": "LastDirSyncTime", "oldValue": "[\"2023-05-23T01:43:08Z\"]", "newValue": "[\"2023-05-23T02:13:13Z\"]"}, {"displayName": "Included Updated Properties", "oldValue": null, "newValue": "\"LastDirSyncTime\""}, {"displayName": "Action Client Name", "oldValue": null, "newValue": "\"DirectorySync\""}, {"displayName": "TargetId.GroupType", "oldValue": null, "newValue": "\"\""}]}], "additionalDetails": [{"key": "GroupType", "value": ""}], "azure_tag": "azure-ad-graph", "azure_aad_tag": "audit"}}
+
+{"azure": {"id": "Directory_da6a09b9-1570-441a-b81f-bb09d2bd7a31_B6N4Q_218883923", "category": "GroupManagement", "correlationId": "da6a09b9-1570-441a-b81f-bb09d2bd7a31", "result": "success", "resultReason": "", "activityDisplayName": "Add member to group", "activityDateTime": "2023-05-23T03:17:50.6640753Z", "loggedByService": "Core Directory", "operationType": "Assign", "initiatedBy": {"user": null, "app": {"appId": null, "displayName": "Microsoft Approval Management", "servicePrincipalId": "dfeb501a-91fb-4411-9820-2eed27a5da1b", "servicePrincipalName": null}}, "targetResources": [{"id": "1d805b9a-9314-46fe-8eed-eb4150de7b74", "displayName": "DESKTOP-PVJDPHH", "type": "Device", "userPrincipalName": null, "groupType": null, "modifiedProperties": [{"displayName": "Group.ObjectID", "oldValue": null, "newValue": "\"6f28c9f1-fd9e-46a4-8eca-1b4f77eae199\""}, {"displayName": "Group.DisplayName", "oldValue": null, "newValue": "\"All Managed Windows 11\""}, {"displayName": "Group.WellKnownObjectName", "oldValue": null, "newValue": null}]}, {"id": "6f28c9f1-fd9e-46a4-8eca-1b4f77eae199", "displayName": null, "type": "Group", "userPrincipalName": null, "groupType": "unknownFutureValue", "modifiedProperties": []}], "additionalDetails": [], "azure_tag": "azure-ad-graph", "azure_aad_tag": "audit"}}
+-->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"category":\s"(\.*)"</regex>
+	<order>azure.category</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"correlationId":\s"(\.*)"</regex>
+	<order>azure.correlationId</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"result":\s"(\.*)"</regex>
+	<order>azure.result</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"resultReason":\s"(\.*)"</regex>
+	<order>azure.resultReason</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"activityDisplayName":\s"(\.*)"</regex>
+	<order>azure.activityDisplayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"activityDisplayName":\s"(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"activityDateTime":\s"(\.*)"</regex>
+	<order>azure.activityDateTime</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"activityDateTime":\s"(\.*)"</regex>
+	<order>eventTime</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"loggedByService":\s"(\.*)"</regex>
+	<order>azure.loggedByService</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"operationType":\s"(\.*)"</regex>
+	<order>azure.operationType</order>
+</decoder>
+<!-- initiatedBy -->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"app": null, "user": {\.*"id": (\S*),</regex>
+	<order>azure.initiatedBy.user.id</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"app": null, "user": {\.*"displayName": (\.*),</regex>
+	<order>azure.initiatedBy.user.displayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"app": null, "user": {\.*"userPrincipalName": "(\.*)",</regex>
+	<order>azure.initiatedBy.user.userPrincipalName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"app": null, "user": {\.*"ipAddress": "(\S*)",</regex>
+	<order>azure.initiatedBy.user.ipAddress</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"app": null, "user": {\.*"userType": (\.*),</regex>
+	<order>azure.initiatedBy.user.userType</order>
+</decoder>
+
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"user": null, "app": {\.*"appId": (\S*),</regex>
+	<order>azure.initiatedBy.app.appId</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"user": null, "app": {\.*"displayName": (\.*),</regex>
+	<order>azure.initiatedBy.app.displayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"user": null, "app": {\.*"servicePrincipalId": (\.*),</regex>
+	<order>azure.initiatedBy.app.servicePrincipalId</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"initiatedBy": {"user": null, "app": {\.*"servicePrincipalName": (\.*)}},</regex>
+	<order>azure.initiatedBy.app.servicePrincipalName</order>
+</decoder>
+
+<!-- targetResources -->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"targetResources": [{\.*"id": "(\S+)", "displayName": "(\.*)", "type": "ServicePrincipal",</regex>
+	<order>azure.targetResources.servicePrincipal.id, azure.targetResources.servicePrincipal.displayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"targetResources": [{\.*"id": "(\S+)", "displayName": "(\.*)", "type": "Role",</regex>
+	<order>azure.targetResources.Role.id, azure.targetResources.Role.displayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"targetResources": [{\.*"id": "\S+", "displayName": "(\.*)", "type": "Role",</regex>
+	<order>roleName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"targetResources": [{\.*"id": "(\S+)", "displayName": "(\.*)", "type": "Policy",</regex>
+	<order>azure.targetResources.Policy.id, azure.targetResources.Policy.displayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"targetResources": [{\.*"id": "(\S+)", "displayName": "\.*", "type": "User", "userPrincipalName": "(\.*)",|"targetResources": [{\.*"id": "(\S+)", "displayName": null, "type": "User", "userPrincipalName": "(\.*)",</regex>
+	<order>azure.targetResources.User.id, azure.targetResources.User.userPrincipalName</order>
+</decoder>
+<!--
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"targetResources": [{"id": "(\.*)", "displayName": (\.*), "type": "(\.*)", "userPrincipalName": (\S*), "groupType"</regex>
+	<order>azure.targetResources.id,azure.targetResources.displayName,azure.targetResources.type,azure.targetResources.userPrincipalName</order>
+</decoder>
+-->
+
+<!-- modifiedProperties -->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"displayName": "Group.DisplayName", "oldValue": (\.*), "newValue": "\\"(\.*)\\""}</regex>
+	<order>azure.groupdisplayName.oldValue,azure.groupdisplayName.newValue</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"displayName": "Role.DisplayName", "oldValue": (\.*), "newValue": "\\"(\.*)\\""}</regex>
+	<order>azure.roledisplayName.oldValue,azure.roledisplayName.newValue</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"displayName": "Role.DisplayName", "oldValue": \.*, "newValue": "\\"(\.*)\\""}</regex>
+	<order>roleName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"displayName": "Role.TemplateId", "oldValue": \.*, "newValue": "\\"(\.*)\\""}</regex>
+	<order>templateId</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"displayName": "Role.WellKnownObjectName", "oldValue": (\.*), "newValue": "\\"(\.*)\\""}</regex>
+	<order>azure.rolewellknownobjectName.oldValue,azure.rolewellknownobjectName.newValue</order>
+</decoder>
+
+<!-- additionalDetails -->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"additionalDetails": [\.*{"key": "TemplateId", "value": "(\.+)"}</regex>
+	<order>templateId</order>
+</decoder>
+
+<!-- signin log -->
+<!--
+{"azure": {"id": "cc434091-fb1d-408e-a917-25da789b0400", "createdDateTime": "2023-05-23T02:05:49Z", "userDisplayName": "Li Chen", "userPrincipalName": "li.chen@hkbnjos.com", "userId": "233fbaed-38a4-45be-8cb7-a01ad040333a", "appId": "89bee1f7-5e6e-4d8a-9f3d-ecd601259da7", "appDisplayName": "Office365 Shell WCSS-Client", "ipAddress": "180.167.171.148", "clientAppUsed": "Browser", "correlationId": "0e0b2c85-4e56-4b7a-a7db-2e93e05c7d5f", "conditionalAccessStatus": "success", "isInteractive": true, "riskDetail": "none", "riskLevelAggregated": "none", "riskLevelDuringSignIn": "none", "riskState": "none", "riskEventTypes": [], "riskEventTypes_v2": [], "resourceDisplayName": "Microsoft Graph", "resourceId": "00000003-0000-0000-c000-000000000000", "status": {"errorCode": 0, "failureReason": "Other.", "additionalDetails": "MFA requirement satisfied by claim in the token"}, "deviceDetail": {"deviceId": "", "displayName": "", "operatingSystem": "Windows 10", "browser": "Chrome 113.0.0", "isCompliant": false, "isManaged": false, "trustType": ""}, "location": {"city": "Shanghai", "state": "Shanghai Shi", "countryOrRegion": "CN", "geoCoordinates": {"altitude": null, "latitude": 31.22847, "longitude": 121.4702}}, "appliedConditionalAccessPolicies": [], "azure_tag": "azure-ad-graph", "azure_aad_tag": "signin"}}
+-->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"createdDateTime":\s"(\.*)"</regex>
+	<order>azure.createdDateTime</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"userDisplayName":\s"(\.*)"</regex>
+	<order>azure.userDisplayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"userPrincipalName": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"userPrincipalName":\s"(\.*)"</regex>
+	<order>azure.userPrincipalName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"userId":\s"(\.*)"</regex>
+	<order>azure.userId</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"appId":\s"(\.*)"</regex>
+	<order>azure.appId</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"appDisplayName":\s"(\.*)"</regex>
+	<order>azure.appDisplayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"ipAddress":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"clientAppUsed":\s"(\.*)"</regex>
+	<order>azure.clientAppUsed</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"correlationId":\s"(\.*)"</regex>
+	<order>azure.correlationId</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"conditionalAccessStatus":\s"(\.*)"</regex>
+	<order>azure.conditionalAccessStatus</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"isInteractive":\s(\S*),</regex>
+	<order>azure.isInteractive</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"riskDetail":\s"(\.*)"</regex>
+	<order>azure.riskDetail</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"riskLevelAggregated":\s"(\.*)"</regex>
+	<order>azure.riskLevelAggregated</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"riskLevelDuringSignIn":\s"(\.*)"</regex>
+	<order>azure.riskLevelDuringSignIn</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"riskState":\s"(\.*)"</regex>
+	<order>azure.riskState</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"riskEventTypes": [(\.*)],</regex>
+	<order>azure.riskEventTypes</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"resourceDisplayName":\s"(\.*)"</regex>
+	<order>azure.resourceDisplayName</order>
+</decoder>
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"resourceId":\s"(\.*)"</regex>
+	<order>azure.resourceId</order>
+</decoder>
+<!-- status -->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"status": {"errorCode": (\.*), "failureReason": "(\.*)", "additionalDetails": (null)},|"status": {"errorCode": (\.*), "failureReason": "(\.*)", "additionalDetails": "(\.*)"},</regex>
+	<order>azure.status.errorCode,azure.status.failureReason,azure.status.additionalDetails</order>
+</decoder>
+<!-- deviceDetail -->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"deviceDetail": {"deviceId": "(\.*)", "displayName": "(\.*)", "operatingSystem": "(\.*)", "browser": "(\.*)", "isCompliant": (\S*), "isManaged": (\S*), "trustType": "(\.*)"},</regex>
+	<order>azure.deviceDetail.deviceId,azure.deviceDetail.displayName,azure.deviceDetail.operatingSystem,azure.deviceDetail.browser,azure.deviceDetail.isCompliant,azure.deviceDetail.isManaged,azure.deviceDetail.trustType</order>
+</decoder>
+<!-- location -->
+<decoder name="AzureGraphAPI-fields">
+	<parent>AzureGraphAPI-json</parent>
+	<regex>"location": {"city": "(\.*)", "state": "(\.*)", "countryOrRegion": "(\.*)",</regex>
+	<order>azure.location.city,azure.location.state,azure.location.countryOrRegion</order>
+</decoder>
+

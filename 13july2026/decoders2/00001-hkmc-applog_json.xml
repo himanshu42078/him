@@ -1,0 +1,13 @@
+<!-- Modify it at your will. -->
+<decoder name="hkmc-applog-json">
+	<prematch>{"integration": "Wazuh-HKMC-Applog",</prematch>
+</decoder>
+<decoder name="hkmc-applog-fields">
+	<parent>hkmc-applog-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="hkmc-applog-fields">
+	<parent>hkmc-applog-json</parent>
+	<regex>"USER_ID": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>

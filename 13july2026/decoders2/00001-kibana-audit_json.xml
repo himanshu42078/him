@@ -1,0 +1,64 @@
+<!-- Modify it at your will. -->
+<decoder name="kibana-audit-json">
+	<prematch>{"event":{\.*},"kibana":{</prematch>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"action":"(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"category":[(\.*)]</regex>
+	<order>category</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"type":[(\.*)]</regex>
+	<order>type</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"outcome":"(\.*)"</regex>
+	<order>outcome</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"space_id":"(\.*)"</regex>
+	<order>kibana.space_id</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"saved_object":{"type":"(\.*)","id":"(\.*)"}}</regex>
+	<order>kibana.saved_object.type,kibana.saved_object.id</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"trace":{"id":"(\.*)"}}</regex>
+	<order>kibana.trace.id</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"ecs":{"version":"(\.*)"}</regex>
+	<order>kibana.ecs.version</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"@timestamp":"(\.*)"</regex>
+	<order>kibana.timestamp</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"message":"(\.*)"</regex>
+	<order>kibana.message</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"log":{"level":"(\.*)","logger":"(\.*)"}</regex>
+	<order>kibana.log.level,kibana.log.logger</order>
+</decoder>
+<decoder name="kibana-audit-fields">
+	<parent>kibana-audit-json</parent>
+	<regex>"process":{"pid":(\.*)}</regex>
+	<order>kibana.process.pid</order>
+</decoder>

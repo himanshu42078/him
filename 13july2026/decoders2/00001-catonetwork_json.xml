@@ -1,0 +1,45 @@
+<!-- DEV-5654 -->
+<decoder name="cato-network-json">
+	<prematch>{"integration": "Wazuh-CatoNetwork",</prematch>
+</decoder>
+
+<decoder name="cato-network-fields">
+	<parent>cato-network-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<decoder name="cato-network-fields">
+	<parent>cato-network-json</parent>
+	<regex>"action": "(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="cato-network-fields">
+	<parent>cato-network-json</parent>
+	<regex>"dest_ip": "(\.*)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="cato-network-fields">
+	<parent>cato-network-json</parent>
+	<regex>"dest_port": "(\.*)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="cato-network-fields">
+	<parent>cato-network-json</parent>
+	<regex>"src_ip": "(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="cato-network-fields">
+	<parent>cato-network-json</parent>
+	<regex>"ip_protocol": "(\.*)"</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="cato-network-fields">
+	<parent>cato-network-json</parent>
+	<regex>"domain_name": "(\.*)"</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="cato-network-fields">
+	<parent>cato-network-json</parent>
+	<regex>"event_timestamp": "(\.*)"</regex>
+	<order>eventTime</order>
+</decoder>

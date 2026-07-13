@@ -1,0 +1,310 @@
+<!-- DEV-643 -->
+<decoder name="apexCentral">
+	<prematch>\|Apex Central\|</prematch>
+	<program_name>CEF</program_name>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>deviceExternalId=(\.+) \S+=</regex>
+	<order>apexCentral.deviceExternalId</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>rt=(\.+) \S+=</regex>
+	<order>apexCentral.rt</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>deviceFacility=(\.+) \S+=</regex>
+	<order>apexCentral.deviceFacility</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>dvchost=(\S+)</regex>
+	<order>apexCentral.dvchost</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>request=(\S+)</regex>
+	<order>apexCentral.request</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>smac=(\S+)</regex>
+	<order>apexCentral.smac</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>dmac=(\S+)</regex>
+	<order>apexCentral.dmac</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>spt=(\S+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>dpt=(\S+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn2Label=Mode cn2=(\S+)</regex>
+	<order>apexCentral.mode</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>deviceDirection=(\S+)</regex>
+	<order>apexCentral.deviceDirection</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn3Label=Priority cn3=(\S+)</regex>
+	<order>apexCentral.priority</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn4Label=Severity cn4=(\S+)</regex>
+	<order>incidentSeverity</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>proto=(\S+)</regex>
+	<order>apexCentral.proto</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs2Label=Application_Type cs2=(\.+) \S+=</regex>
+	<order>apexCentral.appType</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn1Label=Rule cn1=(\S+)</regex>
+	<order>apexCentral.rule</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs1Label=Reason/Rule cs1=(\.+) \S+=</regex>
+	<order>apexCentral.reason</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>deviceNtDomain=(\S+)</regex>
+	<order>apexCentral.deviceNtDomain</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>dntdom=(\S+)</regex>
+	<order>apexCentral.dntdom</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>duser=(\S+)</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>dvc=(\S+)</regex>
+	<order>apexCentral.dvc</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs3Label="Link"" cs3="(\S+)"</regex>
+	<order>url</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs4Label="Threat_ID" cs4="(\S+)"</regex>
+	<order>apexCentral.threadId</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>deviceProcessName=(\.+) \S+=</regex>
+	<order>apexCentral.deviceprocessname</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>act=(\.+) \S+=</regex>
+	<order>action</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn2Label=(\.+) \S+=</regex>
+	<order>apexCentral.cn2Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn2=(\S+)</regex>
+	<order>apexCentral.cn2</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn3Label=(\S+)</regex>
+	<order>apexCentral.cn3Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn3=(\S+)</regex>
+	<order>apexCentral.cn3</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn4Label=(\S+)</regex>
+	<order>apexCentral.cn4Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn4=(\S+)</regex>
+	<order>apexCentral.cn4</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs2Label=(\S+)</regex>
+	<order>apexCentral.cs2Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs2=(\.+) \S+=</regex>
+	<order>apexCentral.cs2</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs3Label=(\S+)</regex>
+	<order>apexCentral.cs3Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs3=(\.+) \S+=</regex>
+	<order>apexCentral.cs3</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs4Label=(\S+)</regex>
+	<order>apexCentral.cs4Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs4=(\.+) \S+=</regex>
+	<order>apexCentral.cs4</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn1Label=(\.+) \S+=</regex>
+	<order>apexCentral.cn1Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cn1=(\.+) \S+=</regex>
+	<order>apexCentral.cn1</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs1Label=(\.+) \S+=</regex>
+	<order>apexCentral.cs1Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs1=(\.+) \S+=</regex>
+	<order>apexCentral.cs1</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs5Label=(\.+) \S+=</regex>
+	<order>apexCentral.cs5Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs5=(\.+) \S+=</regex>
+	<order>apexCentral.cs5</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs6Label=(\.+) \S+=</regex>
+	<order>apexCentral.cs6Label</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs6=(\.+) \S+=</regex>
+	<order>apexCentral.cs6</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cat=(\S+)</regex>
+	<order>apexCentral.cat</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cnt=(\S+)</regex>
+	<order>apexCentral.cnt</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>dhost=(\S+)</regex>
+	<order>apexCentral.dhost</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>filepath=(\.+) \S+=</regex>
+	<order>apexCentral.filepath</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>fname=(\.+) \S+=</regex>
+	<order>apexCentral.filename</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>cs5Label=VLF_FirstActionResult cs5=(\.+) \S+=</regex>
+	<order>action</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>TMCMLogDetectedHost=(\.+) \S+=</regex>
+	<order>apexCentral.TMCMLogDetectedHost</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>TMCMLogDetectedIP=(\.+) \S+=</regex>
+	<order>apexCentral.TMCMLogDetectedIP</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>fileHash=(\.+) \S+=</regex>
+	<order>apexCentral.fileHash</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>ApexCentralHost=(\.+) \S+=</regex>
+	<order>apexCentral.ApexCentralHost</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>devicePayloadId=(\.+) \S+=</regex>
+	<order>apexCentral.devicePayloadId</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>sproc=(\.+) \S+=</regex>
+	<order>apexCentral.sproc</order>
+</decoder>
+<decoder name="apexCentral_fields">
+	<parent>apexCentral</parent>
+	<regex>shost=(\.+) \S+=</regex>
+	<order>apexCentral.shost</order>
+</decoder>

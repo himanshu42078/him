@@ -1,0 +1,28 @@
+<decoder name="clamav-status-cef">
+	<program_name>clamav|freshclam</program_name>
+</decoder>
+
+
+<decoder name="clamav-status-cef-fields">
+	<parent>clamav-status-cef</parent>
+	<regex offset="after_parent">src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="clamav-status-cef-fields">
+    <parent>clamav-status-cef</parent>
+    <regex offset="after_parent">Infected files:\s*(\d*)</regex>
+    <order>infectedFile</order>
+</decoder>
+
+<decoder name="clamav-status-cef-fields">
+    <parent>clamav-status-cef</parent>
+    <regex offset="after_parent">database is:\s*(\.*)</regex>
+    <order>databaseUpd</order>
+</decoder>
+
+<decoder name="clamav-status-cef-fields">
+    <parent>clamav-status-cef</parent>
+	<regex>(\.*)</regex>
+	<order>msg</order>
+</decoder>

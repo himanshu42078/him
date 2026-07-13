@@ -1,0 +1,135 @@
+<decoder name="PlayTechAzureActivity">
+	<prematch>{"PlayTechAzureActivity":</prematch>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"SourceSystem":\s*"\s*(\.*)"|"SourceSystem":\s*(\.*)\s*</regex>
+	<order>systemName</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"CallerIpAddress":\s*"\s*(\.*)"|"CallerIpAddress":\s*(\.*)\s*</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"CategoryValue":\s*"\s*(\.*)"|"CategoryValue":\s*(\.*)\s*</regex>
+	<order>categoryValue</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"CorrelationId":\s*"\s*(\.*)"|"CorrelationId":\s*(\.*)\s*</regex>
+	<order>correlationID</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"Level":\s*"\s*(\.*)"|"Level":\s*(\.*)\s*</regex>
+	<order>actionlevel</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"Properties":\.+statusCode\pquote\p:\pquote\p(\w+)\pquote\p,</regex>
+	<order>propertiesStatusCode</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"Caller":\s*"\s*(\.*)"|"Caller":\s*(\.*)\s*</regex>
+	<order>srcuser</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"EventDataId":\s*"\s*(\.*)"|"EventDataId":\s*(\.*)\s*</regex>
+	<order>eventID</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"HTTPRequest":\.*clientRequestId\pquote\p:\pquote\p(\.+)\pquote\p,</regex>
+	<order>HTTPclientRequestID</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"HTTPRequest":\.*clientIpAddress\pquote\p:\pquote\p(\.+)\pquote\p,</regex>
+	<order>HTTPclientIpAddress</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"HTTPRequest":\.*method\pquote\p:\pquote\p(\.+)\pquote\p,</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"OperationId":\s*"\s*(\.*)"|"OperationId":\s*(\.*)\s*</regex>
+	<order>operationID</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"ActivityStatusValue":\s*"\s*(\.*)"|"ActivityStatusValue":\s*(\.*)\s*</regex>
+	<order>activityStatusValue</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"ActivitySubstatusValue":\s*"\s*(\.*)"|"ActivitySubstatusValue":\s*(\.*)\s*</regex>
+	<order>activitySubstatusValue</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"TimeGenerated":\s*"\s*(\.*)"|"TimeGenerated":\s*(\.*)\s*</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"OperationName":\s*"\s*(\.*)"|"OperationName":\s*(\.*)\s*</regex>
+	<order>operationName</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"ActivityStatus":\s*"\s*(\.*)"|"ActivityStatus":\s*(\.*)\s*</regex>
+	<order>status</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"ActivitySubstatus":\s*"\s*(\.*)"|"ActivitySubstatus":\s*(\.*)\s*</regex>
+	<order>activitySubstatus</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"Category":\s*"\s*(\.*)"|"Category":\s*(\.*)\s*</regex>
+	<order>category</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"ResourceId":\s*"\s*(\.*)"|"ResourceId":\s*(\.*)\s*</regex>
+	<order>resourceId</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>"ResourceProvider":\s*"\s*(\.*)"|"ResourceProvider":\s*(\.*)\s*</regex>
+	<order>resourceProvider</order>
+</decoder>
+
+<decoder name="PlayTechAzureActivity-fields">
+	<parent>PlayTechAzureActivity</parent>
+	<regex>\s*"Type":\s*"\s*(\.*)"|"Type":\s*(\.*)\s*</regex>
+	<order>logType</order>
+</decoder>

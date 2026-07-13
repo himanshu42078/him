@@ -1,0 +1,10 @@
+<!-- Default Decoder for testing -->
+<!-- Don't change -->
+<decoder name="windows_eventchannel">
+	<type>ossec</type>
+	<prematch>^{\s*\.*"win"</prematch>
+</decoder>
+<decoder name="windows_eventchannel_fields">
+	<parent>windows_eventchannel</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

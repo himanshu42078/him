@@ -1,0 +1,399 @@
+<!-- O365 Decoder -->
+<!--
+{"integration": "Wazuh-Microsoft-Threat-Protection", "incidents": {"incidentId": 91779, "incidentUri": "https://security.microsoft.com/incidents/91779?tid=c4d8a220-a9ec-4572-8c77-ab36a3ecdbae", "redirectIncidentId": null, "incidentName": "Externally shared source code involving one user", "createdTime": "2023-11-16T06:41:57.1133333Z", "lastUpdateTime": "2023-11-16T06:43:43.1033333Z", "assignedTo": null, "classification": "Unknown", "determination": "NotAvailable", "status": "Active", "severity": "Medium", "tags": [], "comments": [], "alerts": [{"alertId": "ca6555b9aeb1585f0cd7d054e1", "providerAlertId": "6555b9aeb1585f0cd7d054e1", "incidentId": 91779, "serviceSource": "MicrosoftCloudAppSecurity", "creationTime": "2023-11-16T06:42:29.7337259Z", "lastUpdatedTime": "2023-11-16T06:43:42.97Z", "resolvedTime": null, "firstActivity": "2023-11-16T06:41:41.278Z", "lastActivity": "2023-11-16T06:41:41.278Z", "title": "Externally shared source code", "description": "File policy 'Externally shared source code' was matched by 'cascades.jar'", "category": "Execution", "status": "New", "severity": "Medium", "investigationId": null, "investigationState": "UnsupportedAlertType", "classification": null, "determination": null, "detectionSource": "MCAS", "detectorId": "MCAS_ALERT_CABINET_EVENT_MATCH_FILE", "assignedTo": null, "actorName": null, "threatFamilyName": null, "mitreTechniques": [], "devices": [], "entities": [{"entityType": "User", "evidenceCreationTime": "2023-11-16T06:42:29.8666667Z", "verdict": "Suspicious", "remediationStatus": "None", "accountName": "vincentwongkc", "userPrincipalName": "vincentwongkc@fung1937.com"}, {"entityType": "File", "evidenceCreationTime": "2023-11-16T06:42:29.8666667Z", "verdict": "Suspicious", "remediationStatus": "None", "fileName": "cascades.jar"}, {"entityType": "CloudApplication", "evidenceCreationTime": "2023-11-16T06:42:29.8666667Z", "verdict": "Suspicious", "remediationStatus": "None", "applicationId": "15600", "applicationName": "Microsoft OneDrive for Business"}]}]}}
+{"integration": "Wazuh-Microsoft-Threat-Protection", "incidents": {"incidentId": 91780, "incidentUri": "https://security.microsoft.com/incidents/91780?tid=c4d8a220-a9ec-4572-8c77-ab36a3ecdbae", "redirectIncidentId": 91779, "incidentName": "Externally shared source code involving one user", "createdTime": "2023-11-16T06:42:03.7Z", "lastUpdateTime": "2023-11-16T06:43:42.8066667Z", "assignedTo": null, "classification": "Unknown", "determination": "NotAvailable", "status": "Redirected", "severity": "Medium", "tags": [], "comments": [], "alerts": []}}
+-->
+<decoder name="m365-defender-json">
+	<prematch>{"integration": "Wazuh-Microsoft-Threat-Protection", "incidents": {</prematch>
+</decoder>
+<!--
+<decoder name="m365-defender-fields">
+	<parent>m365-defender-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="m365-defender-fields">
+	<parent>m365-defender-json</parent>
+	<regex>"devices": [{\s*"mdatpDeviceId": "(\.*)",</regex>
+	<order>device_id</order>
+</decoder>
+
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"integration": "(\.*)"</regex>
+    <order>integration</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"incidentUri": "(\.*)"</regex>
+    <order>incidents.incidentUri</order>
+</decoder>
+
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"incidentId": "(\d*)"|"incidentId": (\d*),</regex>
+    <order>incidents.incidentId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"redirectIncidentId": (\S+),</regex>
+    <order>incidents.redirectIncidentId</order>
+</decoder>
+
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"incidentId": (\d*),\.+"redirectIncidentId": null,|"redirectIncidentId": (\d+),</regex>
+    <order>incidentId</order>
+</decoder>
+
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"incidentName": "(\.*)"</regex>
+    <order>incidents.incidentName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"createdTime": "(\.*)"</regex>
+    <order>incidents.createdTime</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"lastUpdateTime": "(\.*)"</regex>
+    <order>incidents.lastUpdateTime</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"assignedTo": (\S+),</regex>
+    <order>incidents.assignedTo</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"classification": "(\.*)"</regex>
+    <order>incidents.classification</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"determination": "(\.*)"</regex>
+    <order>incidents.determination</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"status": "(\.*)"</regex>
+    <order>incidents.status</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"severity": "(\.*)"</regex>
+    <order>incidents.severity</order>
+</decoder>
+
+<!-- alerts -->
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"alertId": "(\.*)"</regex>
+    <order>incidents.alerts.alertId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"providerAlertId": "(\.*)"</regex>
+    <order>incidents.alerts.providerAlertId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"incidentId": (\d*),</regex>
+    <order>incidents.alerts.incidentId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"serviceSource": "(\.*)"</regex>
+    <order>incidents.alerts.serviceSource</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"creationTime": "(\.*)"</regex>
+    <order>incidents.alerts.creationTime</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"lastUpdatedTime": "(\.*)"</regex>
+    <order>incidents.alerts.lastUpdatedTime</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"resolvedTime": "(\S+)",</regex>
+    <order>incidents.alerts.resolvedTime</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"firstActivity": "(\.*)"</regex>
+    <order>incidents.alerts.firstActivity</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"lastActivity": "(\.*)"</regex>
+    <order>incidents.alerts.lastActivity</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"title": "(\.*)"</regex>
+    <order>incidents.alerts.title</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"description": "(\.*)"</regex>
+    <order>incidents.alerts.description</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"category": "(\.*)"</regex>
+    <order>incidents.alerts.category</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"status": "(\.*)"</regex>
+    <order>incidents.alerts.status</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"severity": "(\.*)"</regex>
+    <order>incidents.alerts.severity</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"investigationId": (\d+),</regex>
+    <order>incidents.alerts.investigationId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"investigationState": "(\.*)"</regex>
+    <order>incidents.alerts.investigationState</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"classification": (\S+),</regex>
+    <order>incidents.alerts.classification</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"determination": (\S+),</regex>
+    <order>incidents.alerts.determination</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"detectionSource": "(\.*)"</regex>
+    <order>incidents.alerts.detectionSource</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"detectorId": "(\.*)"</regex>
+    <order>incidents.alerts.detectorId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"assignedTo": (\S+),</regex>
+    <order>incidents.alerts.assignedTo</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"actorName": (\S+),</regex>
+    <order>incidents.alerts.actorName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"alerts": [{\.*"threatFamilyName": "(\.*)"</regex>
+    <order>incidents.alerts.threatFamilyName</order>
+</decoder>
+
+<!-- devices -->
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"mdatpDeviceId": "(\.*)"</regex>
+    <order>incidents.alerts.devices.mdatpDeviceId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"aadDeviceId": "(\.*)"</regex>
+    <order>incidents.alerts.devices.aadDeviceId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"deviceDnsName": "(\.*)"</regex>
+    <order>incidents.alerts.devices.deviceDnsName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"osPlatform": "(\.*)"</regex>
+    <order>incidents.alerts.devices.osPlatform</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"version": "(\.*)"</regex>
+    <order>incidents.alerts.devices.version</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"osProcessor": "(\.*)"</regex>
+    <order>incidents.alerts.devices.osProcessor</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"osBuild": (\d*),</regex>
+    <order>incidents.alerts.devices.osBuild</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"healthStatus": "(\.*)"</regex>
+    <order>incidents.alerts.devices.healthStatus</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"riskScore": "(\.*)"</regex>
+    <order>incidents.alerts.devices.riskScore</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"rbacGroupName": "(\.*)"</regex>
+    <order>incidents.alerts.devices.rbacGroupName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"firstSeen": "(\.*)"</regex>
+    <order>incidents.alerts.devices.firstSeen</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"defenderAvStatus": "(\.*)"</regex>
+    <order>incidents.alerts.devices.defenderAvStatus</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"onboardingStatus": "(\.*)"</regex>
+    <order>incidents.alerts.devices.onboardingStatus</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"vmMetadata": "(\.*)"</regex>
+    <order>incidents.alerts.devices.vmMetadata</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"devices": [{\.*"vmMetadata": (\S+),</regex>
+    <order>incidents.alerts.devices.vmMetadata</order>
+</decoder>
+
+<!-- entities -->
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"entityType": "(\.*)"</regex>
+    <order>incidents.alerts.entities.entityType</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"evidenceCreationTime": "(\.*)"</regex>
+    <order>incidents.alerts.entities.evidenceCreationTime</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"verdict": "(\.*)"</regex>
+    <order>incidents.alerts.entities.verdict</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"remediationStatus": "(\.*)"</regex>
+    <order>incidents.alerts.entities.remediationStatus</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"sha1": "(\.*)"</regex>
+    <order>incidents.alerts.entities.sha1</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"sha256": "(\.*)"</regex>
+    <order>incidents.alerts.entities.sha256</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"fileName": "(\.*)"</regex>
+    <order>incidents.alerts.entities.fileName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"filePath": "(\.*)"</regex>
+    <order>incidents.alerts.entities.filePath</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"detectionStatus": "(\.*)"</regex>
+    <order>incidents.alerts.entities.detectionStatus</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"deviceId": "(\.*)"</regex>
+    <order>incidents.alerts.entities.deviceId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"accountName": "(\.*)"</regex>
+    <order>incidents.alerts.entities.accountName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"domainName": "(\.*)"</regex>
+    <order>incidents.alerts.entities.domainName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"userSid": "(\.*)"</regex>
+    <order>incidents.alerts.entities.userSid</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"aadUserId": "(\.*)"</regex>
+    <order>incidents.alerts.entities.aadUserId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"userPrincipalName": "(\.*)"</regex>
+    <order>incidents.alerts.entities.userPrincipalName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"url": "(\.*)"</regex>
+    <order>incidents.alerts.entities.url</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"processId": (\d*),</regex>
+    <order>incidents.alerts.entities.processId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"processCommandLine": "(\.*)",</regex>
+    <order>incidents.alerts.entities.processCommandLine</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"processCreationTime": "(\.*)"</regex>
+    <order>incidents.alerts.entities.processCreationTime</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"parentProcessId": (\d*),</regex>
+    <order>incidents.alerts.entities.parentProcessId</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"parentProcessCreationTime": "(\.*)"</regex>
+    <order>incidents.alerts.entities.parentProcessCreationTime</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"parentProcessFileName": "(\.*)"</regex>
+    <order>incidents.alerts.entities.parentProcessFileName</order>
+</decoder>
+<decoder name="m365-defender-fields">
+    <parent>m365-defender-json</parent>
+    <regex>"entities": [{\.*"parentProcessFilePath": "(\.*)"</regex>
+    <order>incidents.alerts.entities.parentProcessFilePath</order>
+</decoder>

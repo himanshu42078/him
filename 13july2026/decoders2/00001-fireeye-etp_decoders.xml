@@ -1,0 +1,7 @@
+<decoder name="fireeye-etp-json">
+  <prematch>{"integration": "Wazuh-Fireeye-ETP", "fireeye": </prematch>
+</decoder>
+<decoder name="fireeye-etp-json-fields">
+  <parent>fireeye-etp-json</parent>
+  <plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>

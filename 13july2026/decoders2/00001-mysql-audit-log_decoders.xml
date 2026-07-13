@@ -1,0 +1,72 @@
+<!-- DEV-5074 -->
+<!--
+{"audit_record":{"name":"Connect","record":"9917_2023-08-30T03:20:15","timestamp":"2023-08-31T10:31:39Z","connection_id":"4991","status":0,"user":"ocap_icrm","priv_user":"ocap_icrm","os_login":"","proxy_user":"","host":"","ip":"192.168.20.39","db":"gtja_icrm_main"}}
+-->
+<decoder name="mysql-audit-log">
+    <prematch>^{"audit_record":{"name":"\S+","record":</prematch>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"name":"(\S+)"</regex>
+    <order>audit_record.name</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"record":"(\S+)"</regex>
+    <order>audit_record.record</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"timestamp":"(\S+)"</regex>
+    <order>audit_record.timestamp</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"connection_id":"(\d+)"</regex>
+    <order>audit_record.connection_id</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"status":(\d+),</regex>
+    <order>audit_record.status</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"user":"(\S+)"</regex>
+    <order>audit_record.user</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"user":"(\S+)"</regex>
+    <order>dstuser</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"priv_user":"(\.*)"</regex>
+    <order>audit_record.priv_user</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"os_login":"(\.*)"</regex>
+    <order>audit_record.os_login</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"proxy_user":"(\.*)"</regex>
+    <order>audit_record.proxy_user</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"host":"(\.*)"</regex>
+    <order>audit_record.host</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"ip":"(\d+.\d+.\d+.\d+)"</regex>
+    <order>audit_record.ip</order>
+</decoder>
+<decoder name="mysql-audit-log-fields">
+    <parent>mysql-audit-log</parent>
+    <regex>"db":"(\S+)"</regex>
+    <order>audit_record.db</order>
+</decoder>

@@ -1,0 +1,143 @@
+<!-- DEV-721 -->
+<!-- Modify it at your will. -->
+<!--^updatemgr|^vmdird|^vmcad|^vpxd-->
+<!--vmon-->
+<decoder name="vmware-vcenter-vmon">
+  <program_name>^vmon</program_name>
+</decoder>
+<decoder name="vmware-vcenter-vmon-fields">
+  <parent>vmware-vcenter-vmon</parent>
+  <regex>(\.+)</regex>
+  <order>msg</order>
+</decoder>
+<!--crond-->
+<!--DEV-3178-->
+<decoder name="crond">
+  <program_name>^crond</program_name>
+</decoder>
+<decoder name="crond-fields">
+  <parent>crond</parent>
+  <regex>(\S+) \S+ (\.+)</regex>
+  <order>user, commandLine</order>
+</decoder>
+<!--updatemgr-->
+<decoder name="vmware-vcenter-updatemgr">
+  <prematch>^updatemgr</prematch>
+</decoder>
+<decoder name="vmware-vcenter-updatemgr-fields">
+  <parent>vmware-vcenter-updatemgr</parent>
+  <regex>\S+ (\S+) (\S+) (\S+)  [(\S+), (\S+)] (\.+)</regex>
+  <order> eventType, eventId, severity, process_name, process_number, msg</order>
+</decoder>
+<!--vmdird-->
+<decoder name="vmware-vcenter-vmdird">
+  <prematch>^vmdird</prematch>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>\S+: MOD (\d+)</regex>
+  <order> MOD</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>vmwLicSvcAssetScopeId: (\.+)</regex>
+  <order>vmwLicSvcAssetScopeId</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>vmwLicSvcAssetPropertiesList: (\.+)</regex>
+  <order>vmwLicSvcAssetPropertiesList</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>vmwLicSvcAssetProductName: (\.+)</regex>
+  <order>vmwLicSvcAssetProductName</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>vmwLicSvcObjectClass: (\.+)</regex>
+  <order>vmwLicSvcObjectClass</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>vmwLicSvcAssetCostUnitUsageList: (\.+)</regex>
+  <order>vmwLicSvcAssetCostUnitUsageList</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>vmwLicSvcAssetScopeId: (\.+)</regex>
+  <order>vmwLicSvcAssetScopeId</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>vmwLicSvcAssetEvalSerialKey: (\.+)</regex>
+  <order>vmwLicSvcAssetEvalSerialKey</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>vmwLicSvcAssetName: (\.+)</regex>
+  <order>vmwLicSvcAssetName</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>CN=\w+,</regex>
+  <order>CN</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>cn=\w+,</regex>
+  <order>cn</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>dc=\w+,</regex>
+  <order>dc</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>from \S+\)</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="vmware-vcenter-vmdird-fields">
+  <parent>vmware-vcenter-vmdird</parent>
+  <regex>by \S+\)</regex>
+  <order>srcuser</order>
+</decoder>
+<!-- VMcad-->
+<decoder name="vmware-vcenter-vmcad">
+  <prematch>^vmcad</prematch>
+</decoder>
+<decoder name="vmware-vcenter-fields">
+  <parent>vmware-vcenter-vmcad</parent>
+  <regex>\S+: VMCACheckAccessKrb:(\.+)</regex>
+  <order>VMCACheckAccessKrb</order>
+</decoder>
+<!--vpxd-->
+<decoder name="vmware-vcenter-vpxd">
+  <program_name>^vpxd</program_name>
+</decoder>
+<decoder name="vmware-vcenter-vpxd-fields">
+  <parent>vmware-vcenter-vpxd</parent>
+  <regex>Event [(\d*)] [\d+-\d+] [(\.*)] [(\.*)] [(\.*)] [(\.*)] [(\.*)] [(\.*)] [(\.*)]</regex>
+  <order>event_number, timestamp, event_name, severity, path, environment, event_number_2, msg</order>
+</decoder>
+<!--DEV-4337-->
+<decoder name="vmware-vcenter-vpxd-fields">
+  <parent>vmware-vcenter-vpxd</parent>
+  <regex>Event [\d*] [\d+-\d+] [\.*] [\.*] [\.*] [\.*] [\.*] [\.*] [User (\S+)@(\d+.\d+.\d+.\d+) \.*]</regex>
+  <order>srcuser, srcip</order>
+</decoder>
+<!--vpxd-svcs-->
+<decoder name="vmware-vcenter-vpxd-svcs">
+  <prematch>^vpxd-svcs</prematch>
+</decoder>
+<decoder name="vmware-vcenter-vpxd-svcs-fields">
+  <parent>vmware-vcenter-vpxd-svcs</parent>
+  <regex>[(\S+)  (\S+)  (\S+)  (\S+)]</regex>
+  <order>event, severity, vmware.logsource, opid </order>
+</decoder>
+<decoder name="vmware-vcenter-vpxd-svcs-fields">
+  <parent>vmware-vcenter-vpxd-svcs</parent>
+  <regex>URL: (\S+)</regex>
+  <order>url</order>
+</decoder>

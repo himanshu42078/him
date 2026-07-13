@@ -1,0 +1,125 @@
+<!-- Modify it at your will. --><!-- Workday Decoder -->
+<decoder name="ramco">
+	<prematch>{"ramco": {</prematch>
+</decoder>
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<!-- Generic fields -->
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>"Audit\sDate":\s*"(\.*)"|"Login\sTime":\s*"(\.*)"|"Audit\sDate":\s*"(\.*)"|"LogDate":\s*"(\.*)"</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*Workstation":\s*"(\.*)"</regex>
+	<order>workstation</order>
+</decoder>
+
+
+<!-- Auth log trail OU -->
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*Audit\sAction":\s*"(\.*)"</regex>
+	<order>actioncode</order>
+</decoder>
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*UserName":\s*"(\.*)"</regex>
+	<order>user</order>
+</decoder>
+<!-- end of trail ou -->
+
+
+
+<!-- Auth log login logout -->
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*Login\sUser":\s*"(\.*)"|\.*User\sAccount":\s*"(\.*)"</regex>
+	<order>user</order>
+</decoder>
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*Client\sIP":\s*"(\.*)"|\.*Host":\s*"(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*login\sOU":\s*"(\.*)"</regex>
+	<order>loginmessage</order>
+</decoder>
+<!-- end of login logout -->
+
+
+<!-- Auth log trail role -->
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*ActivityName":\s*"(\.*)"</regex>
+	<order>activityname</order>
+</decoder>
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*Activity\sDescription":\s*"(\.*)"</regex>
+	<order>activitydescription</order>
+</decoder>
+<!-- end of trail role -->
+
+
+<!-- auth log trail user creation -->
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*UpdateUser\s-\sNew":\s*"(\.*)"</regex>
+	<order>updateuser</order>
+</decoder>
+<!-- end of trail user create end -->
+
+<!-- auth log trail user-role mapping -->
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*UpdUser\s-\sNew":\s*"(\.*)"</regex>
+	<order>newupdateuser</order>
+</decoder>
+
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*UpdUser\s-\sOld":\s*"(\.*)"</regex>
+	<order>oldupdateuser</order>
+</decoder>
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*RoleName":\s*"(\.*)"</regex>
+	<order>rolename</order>
+</decoder>
+<!-- end of trail user-role mapping -->
+
+<!-- auth log of melco db -->
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*ProcessInfo":\s*"(\.*)"</regex>
+	<order>processinfo</order>
+</decoder>
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*Status1":\s*"(\.*)"</regex>
+	<order>loginstatus</order>
+</decoder>
+
+
+<decoder name="ramco-fields">
+	<parent>ramco</parent>
+	<regex>\.*Status2":\s*"(\.*)"</regex>
+	<order>statusinfo</order>
+</decoder>
+<!-- end of melco db -->

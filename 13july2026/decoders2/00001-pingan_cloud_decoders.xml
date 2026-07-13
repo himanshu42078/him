@@ -1,0 +1,52 @@
+<decoder name="pingan-cloud">
+  <prematch>{"pingan_cloud"</prematch>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>{"(pingan_cloud)"</regex>
+  <order>logsource</order>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>"OperationName":\s*"(\.+)"</regex>
+  <order>msg</order>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>"EventName":\s*"(\.+)"</regex>
+  <order>msg</order>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>"UserLoginName":\s*"(\.+)"</regex>
+  <order>user</order>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>"SrcIp":\s*"(\.+)"</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>"EventStatus":\s*"(\.+)"</regex>
+  <order>status</order>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>"LoginName":\s*"(\.+)"</regex>
+  <order>user</order>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>"Status":\s*"(\.+)"</regex>
+  <order>status</order>
+</decoder>
+<decoder name="pingan-cloud-fields">
+  <parent>pingan-cloud</parent>
+  <regex>"ResourceName":\s*"(\.+)"</regex>
+  <order>system_name</order>
+</decoder>

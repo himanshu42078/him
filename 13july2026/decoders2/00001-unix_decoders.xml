@@ -1,0 +1,13 @@
+<decoder name="useradd">
+    <program_name>useradd</program_name>
+</decoder>
+<decoder name="useradd_fields">
+    <parent>useradd</parent>
+    <regex>new group: name=(\S+), GID=(\S+)</regex>
+    <order>user,gid</order>
+</decoder>
+<decoder name="useradd_fields">
+    <parent>useradd</parent>
+    <regex>new user: name=(\S+), UID=(\S+), GID=(\S+), home=(\S+), shell=(\S+)</regex>
+    <order>user,uid,gid,home,shell</order>
+</decoder>

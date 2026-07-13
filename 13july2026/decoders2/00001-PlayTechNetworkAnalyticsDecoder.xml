@@ -1,0 +1,141 @@
+<decoder name="PlayTechNetworkAnalytics">
+	<prematch>{"PlayTechNetworkAnalytics":</prematch>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"SourceSystem":\s*"\s*(\.*)",|"SourceSystem":\s*(\.*)\s*,</regex>
+	<order>systemName</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"TimeGenerated":\s*"\s*(\.*)",|"TimeGenerated":\s*(\.*)\s*,</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"Computer":\s*"\s*(\.*)",|"Computer":\s*(\.*)\s*,</regex>
+	<order>computer</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"DestPublicIPs_s":\s*"\s*(\.*)",|"DestPublicIPs_s":\s*(\.*)\s*,</regex>
+	<order>destPublicIPs</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"FlowLogStorageAccount_s":\s*"\s*(\.*)",|"FlowLogStorageAccount_s":\s*(\.*)\s*,</regex>
+	<order>flowLogStorageAccount_s</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"State_s":\s*"\s*(\.*)",|"State_s":\s*(\.*)\s*,</regex>
+	<order>state</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"FlowStatus_s":\s*"\s*(\.*)",|"FlowStatus_s":\s*(\.*)\s*,</regex>
+	<order>flowStatus</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"NSGRuleType_s":\s*"\s*(\.*)",|"NSGRuleType_s":\s*(\.*)\s*,</regex>
+	<order>NSGRuleType</order>
+</decoder>
+
+<!--<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"PublicIPs_s":\s*"\s*(\.*)",|"PublicIPs_s":\s*(\.*)\s*,</regex>
+	<order>publicIPs</order>
+</decoder>-->
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"PrivateFrontendIPs_s":\s*"\s*(\.*)",|"PrivateFrontendIPs_s":\s*(\.*)\s*,</regex>
+	<order>privateFrontendIPs</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"PublicFrontendIPs_s":\s*"\s*(\.*)",|"PublicFrontendIPs_s":\s*(\.*)\s*,</regex>
+	<order>publicFrontendIPs</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"PrivateFrontendIP_s":\s*"\s*(\.*)",|"PrivateFrontendIP_s":\s*(\.*)\s*,</regex>
+	<order>privateFrontendIP</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"PublicFrontendIP_s":\s*"\s*(\.*)",|"PublicFrontendIP_s":\s*(\.*)\s*,</regex>
+	<order>publicFrontendIP</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"MACAddress_s":\s*"\s*(\.*)",|"MACAddress_s":\s*(\.*)\s*,</regex>
+	<order>MACAddress</order>
+</decoder>
+
+<!--<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"VMIP_s":\s*"\s*(\.*)",|"VMIP_s":\s*(\.*)\s*,</regex>
+	<order>VMIP</order>
+</decoder>-->
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"DestPort_d":\s*"\s*(\.*)",|"DestPort_d":\s*(\.*)\s*,</regex>
+	<order>dstport</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"VM_s":\s*"\s*(\.*)",|"VM_s":\s*(\.*)\s*,</regex>
+	<order>srcuser</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"SrcIP_s":\s*"\s*(\.*)",|"SrcIP_s":\s*(\.*)\s*,</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"DestIP_s":\s*"\s*(\.*)",|"DestIP_s":\s*(\.*)\s*,</regex>
+	<order>dstip</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"Region_s":\s*"\s*(\.*)",|"Region_s":\s*(\.*)\s*,</regex>
+	<order>region</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"Description_s":\s*"\s*(\.*)",|"Description_s":\s*(\.*)\s*,</regex>
+	<order>description</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>"DestinationPortRange_s":\s*"\s*(\.*)",|"DestinationPortRange_s":\s*(\.*)\s*,</regex>
+	<order>destinationPortRange</order>
+</decoder>
+
+<decoder name="PlayTechNetworkAnalytics-fields">
+	<parent>PlayTechNetworkAnalytics</parent>
+	<regex>,\s*"Type":\s*"\s*(\.*)"|"Type":\s*(\.*)\s*</regex>
+	<order>logType</order>
+</decoder>

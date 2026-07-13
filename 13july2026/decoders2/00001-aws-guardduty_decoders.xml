@@ -1,0 +1,121 @@
+<!-- aws Decoder The purpose of this decoder is to obtain standardized field-->
+<decoder name="aws-guardduty">
+	<prematch>{"integration": "aws", "aws":\.+"source": "guardduty"</prematch>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"integration": "(\.+)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"source": "(\.+)"</regex>
+	<order>aws.source</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"region": "(\.+)"</regex>
+	<order>aws.region</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"userName": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"remoteIpDetails": {"ipAddressV4": "(\.+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"actionType": "(\.+)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"title": "(\.+)"</regex>
+	<order>aws.title</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"description": "(\.+)"</regex>
+	<order>aws.description</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"severity": (\d+),</regex>
+	<order>aws.severity</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"eventLastSeen": "(\.*)"</regex>
+	<order>aws.eventTime</order>
+</decoder>
+
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"accountId": "(\.*)"</regex>
+	<order>aws.accountId</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"id": "(\.*)"</regex>
+	<order>aws.id</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"arn": "(\.*)"</regex>
+	<order>aws.arn</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"type": "(\.*)"</regex>
+	<order>aws.type</order>
+</decoder>
+
+<!-- log_info -->
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"s3bucket": "(\.*)"</regex>
+	<order>aws.log_info.s3bucket</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"s3bucket": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"log_file": "(\.*)"</regex>
+	<order>aws.log_info.log_file</order>
+</decoder>
+
+<!-- userIdentity -->
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"userIdentity": {"type": "(\.*)", "principalId": "(\.*)", "arn": "(\.*)", "accountId": "(\.*)"</regex>
+	<order>aws.userIdentity.type,aws.userIdentity.principalId,aws.userIdentity.arn,aws.userIdentity.accountId</order>
+</decoder>
+
+<!-- DEV-4853 -->
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"resource": {\.*"instanceDetails": {\.*"instanceId": "(\.+)",</regex>
+	<order>aws.instanceDetails.instanceId</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"localPortDetails": {"port": (\.+), "portName": "(\.+)"</regex>
+	<order>aws.localPortDetails.port,aws.localPortDetails.portName</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"remoteIpDetails": {\.*"organization": {\.*"org": "(\.+)"</regex>
+	<order>aws.remoteIpDetails.organization.org</order>
+</decoder>
+<decoder name="aws-guardduty-fields">
+	<parent>aws-guardduty</parent>
+	<regex>"additionalInfo": {\.*"threatListName": "(\.+)"</regex>
+	<order>aws.additionalInfo.threatListName</order>
+</decoder>

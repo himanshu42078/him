@@ -1,0 +1,40 @@
+<decoder name="juniper">
+  <prematch>^RT_FLOW session created|^junos-alg MSRPC ALG detected packet from</prematch>
+</decoder>
+<decoder name="juniper">
+	<program_name>RT_FLOW</program_name>
+</decoder>
+<!-- 	Dec 10 14:13:52 PAC01OFW01 RT_FLOW: %-RT_FLOW_SESSION_CREATE: session created 10.34.64.34/50990->10.35.10.28/8080 None 10.34.64.34/50990->
+10.35.10.28/8080 None None 6 INS-DMZ-015 INSIDE DMZ 20219554 N/A(N/A) reth0.0-->
+<!-- DEV-2174 -->
+<!-- 	Dec  9 12:14:43 dr-ifw-srx1500-1 RT_FLOW session created 10.81.193.90/57566->10.60.11.11/443-->
+<!-- 	Dec  9 12:14:42 dr-ifw-srx1500-1 RT_FLOW session created 10.60.120.11/64399->10.81.193.52/6182 0x0-->
+<!-- 	Dec  9 12:44:13 dr-ifw-srx1500-1 junos-alg MSRPC ALG detected packet from 10.80.45.122/35289 which need extra policy config with UUID:e3514235-4b06-11d1-ab04-00c04fc2dcd2 or 'junos-ms-rpc-any' to let it pass-through on ASL session.-->
+<decoder name="juniper_fields">
+	<parent>juniper</parent>
+	<regex offset="after_parent">(\d*.\d*.\d*.\d*)/(\d*)->(\d*.\d*.\d*.\d*)/(\d*)\s(\.*)\s(\d*.\d*.\d*.\d*)/(\d*)->(\d*.\d*.\d*.\d*)/(\d*)</regex>
+	<order>srcip, srcport, dstip, dstport,juniper.application,juniper.snat, juniper.snatport, juniper.dnat, juniper.dnatport</order>
+</decoder>
+<decoder name="juniper_fields">
+	<parent>juniper</parent>
+	<regex offset="after_parent">(\d*.\d*.\d*.\d*)/(\d*)\s</regex>
+	<order>srcip, srcport</order>
+</decoder>
+<decoder name="juniper_fields">
+	<parent>juniper</parent>
+	<regex offset="after_parent">(\d*.\d*.\d*.\d*)/(\d*)->(\d*.\d*.\d*.\d*)/(\d*)</regex>
+	<order>srcip, srcport, dstip, dstport</order>
+</decoder>
+<decoder name="juniper_fields">
+	<parent>juniper</parent>
+	<regex offset="after_parent">(\d*.\d*.\d*.\d*)/(\d*)->(\d*.\d*.\d*.\d*)/(\d*)\s(\S*)</regex>
+	<order>srcip, srcport, dstip, dstport, juniper.application</order>
+</decoder>
+<!-- 	Dec 10 14:13:52 dc-ifw-srx1500-1 RT_FLOW: RT_FLOW_SESSION_CLOSE: session closed TCP FIN: 10.81.128.141/58215->10.81.192.93/5985 0x0 None 10.81.128.141/58215->10.81.192.93/5985 0x0 N/A N/A N/A N/A 6 233 INT-LAN INT-DMZ 1399774 9(7243) 4(352) 3 UNKNOWN UNKNOWN N/A(N/A) reth1.1600 UNKNOWN N/A N/A 1 N/A NA 0 0.0.0.0/0>0.0.0.0/0 NA NA N/A N/A Off root-->
+<!-- 	Mar  7 11:07:54 dc-ifw-srx1500-1 RT_FLOW: RT_FLOW_SESSION_CLOSE: session closed TCP SERVER RST: 10.81.196.60/51869->10.81.193.46/33032 0x0 None 10.81.196.60/51869->10.81.193.46/33032 0x0 N/A N/A N/A N/A 6 06 INT-DMZ INT-DMZ 1792030 6(457) 7(568) 1 UNKNOWN UNKNOWN N/A(N/A) reth1.401 UNKNOWN N/A N/A -1 N/A NA 0 0.0.0.0/0->0.0.0.0/0 NA NA N/A N/A Off root-->
+<!-- DEV-3140 -->
+<decoder name="juniper_fields">
+	<parent>juniper</parent>
+	<regex offset="after_parent">(\d*.\d*.\d*.\d*)/(\d*)->(\d*.\d*.\d*.\d*)/(\d*) \S+ \S+ \S+ \S+ \S+ \d+ (\d+)</regex>
+	<order>srcip, srcport, dstip, dstport, juniper.policy_id</order>
+</decoder>

@@ -1,0 +1,193 @@
+<!--
+Aug 30 15:41:21 203.236.122.148  2023-08-30 16:41:21 203.236.122.148 {"logtype":"DB_USER_COM","u_index":"1693381281717000446","id":"sa","clt_ip":"192.237.23.45","com_name":"","net_id":"","os":"","com_id":"","service_no":"27","policy_no":"1669690947401948003","alert":"","loglevel":"4","gateway":"203.236.122.148","svc_type":"0","group_index":"0","sid":"master","decide_type":"","decide_time":"","decide_mgr_id":"","operating_mode":"0","manual_auth_id":"","manual_auth_name":""}
+
+Aug 30 15:41:30 203.236.122.148  2023-08-30 16:41:30 203.236.122.148 {"logtype":"TELNET_CMD_COM","u_index":"1693380654527200535","c_index":"50","cmd":"mmc.exe - Active Directory 사용자 및 컴퓨터 (2) - <LB>","c_time":"20230830164128","rtn":"=== Windows text dump ===\r\nMMCMainFrame - Active Directory 사용자 및 컴퓨터\r\nMDIClient\r\nMMCChildFrm - Active Directory 사용자 및 컴퓨터 [NS4.hansung.co.kr]\\hansung.co.kr\\IT Admin\\HSMC\\Server\r\nMMCViewWindow\r\nSysListView32\r\nSysHeader32\r\nAfxFrameOrView42u\r\nNativeHWNDHost - ActionsPaneView\r\nDirectUIHWND\r\nCtrlNotifySink\r\nScrollBar\r\nCtrlNotifySink\r\nScrollBar\r\nSysTreeView32\r\nStatic - Server 168 개체\r\nAMCCustomTab\r\nEdit - 0\r\nmsctls_updown32\r\nmsctls_statusbar32\r\nmsctls_progress32\r\nStatic\r\nSizeableRebar\r\nReBarWindow32\r\nToolbarWindow32\r\nToolbarWindow32\r\nAfxWnd42u\r\n\r\n=========================\r\n","r_time":"20230830164128","policy_no":"0","policy_name":"default","denied":"0","alert":"","loglevel":"1","r_index":"","c_offset":"","decide_type":"","decide_time":"","decide_mgr_id":"","manual_auth_id":"","manual_auth_name":"","id":"","ldap_sno":"05143hs21","ldap_name":"","ldap_tel":"","user_ip":"","user_port":"","server_ip":"","server_port":"","service_no":"50"}
+
+Aug 30 15:32:30 203.236.122.148  2023-08-30 16:32:30 203.236.122.148 {"logtype":"DB_QRY_COM","u_index":"1693380747757208183","c_index":"1","query":"SELECT\ndtb.name AS [Name],\ndtb.database_id AS [ID],\nCAST(has_dbaccess(dtb.name) AS bit) AS [IsAccessible]\nFROM\nmaster.sys.databases AS dtb\nORDER BY\n[Name] ASC","query_bind":"","c_time":"20230830163228","rtn":"\\cName\tID\tIsAccessible\t\nmaster\t1\t1\t\nmaxgauge\t8\t1\t\nmodel\t3\t1\t\nmsdb\t4\t1\t\nNEOE\t7\t1\t\nReportServer\t5\t1\t\nReportServerTempDB\t6\t1\t\nSCP\t10\t1\t\ntempdb\t2\t1\t\nucfas\t11\t1\t\n","isformal":"0","r_time":"20230830163228","elapsed":"21","r_size":"176","row_size":"12","policy_no":"0","policy_name":"default","denied":"0","alert":"","loglevel":"0","decide_type":"","decide_time":"","decide_mgr_id":"","formal_hash":"","is_contraction":"0","global_policy":"","result_scan_count":"0","resp_time":"20230830163228","resp_elapsed":"0","manual_auth_id":"","manual_auth_name":"","id":"sa","application":"","ldap_sno":"","ldap_name":"","ldap_tel":"","clt_ip":"192.237.23.45","clt_port":"","server_ip":"","server_port":"","service_no":"27","sid":"master"}
+-->
+<decoder name="pnpsecure-json">
+	<prematch>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d \d+.\d+.\d+.\d+ {"logtype":"\S+","u_index":</prematch>
+</decoder>
+<!--
+<decoder name="pnpsecure-json-fields">
+	<parent>pnpsecure-json</parent>
+	<prematch>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d \d+.\d+.\d+.\d+ </prematch>
+	<plugin_decoder offset="after_prematch">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>{"logtype":"(\.+)"</regex>
+    <order>logtype</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"u_index":"(\d+)"</regex>
+    <order>u_index</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"id":"(\.*)"</regex>
+    <order>id</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"clt_ip":"(\.*)"</regex>
+    <order>clt_ip</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"com_name":"(\.*)"</regex>
+    <order>com_name</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"net_id":"(\.*)"</regex>
+    <order>net_id</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"os":"(\.*)"</regex>
+    <order>os</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"com_id":"(\.*)"</regex>
+    <order>com_id</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"service_no":"(\.*)"</regex>
+    <order>service_no</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"policy_no":"(\.*)"</regex>
+    <order>policy_no</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"alert":"(\.*)"</regex>
+    <order>alert</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"loglevel":"(\.*)"</regex>
+    <order>loglevel</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"gateway":"(\.*)"</regex>
+    <order>gateway</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"svc_type":"(\.*)"</regex>
+    <order>svc_type</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"group_index":"(\.*)"</regex>
+    <order>group_index</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"sid":"(\.*)"</regex>
+    <order>sid</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"decide_type":"(\.*)"</regex>
+    <order>decide_type</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"decide_time":"(\.*)"</regex>
+    <order>decide_time</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"decide_mgr_id":"(\.*)"</regex>
+    <order>decide_mgr_id</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"operating_mode":"(\.*)"</regex>
+    <order>operating_mode</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"manual_auth_id":"(\.*)"</regex>
+    <order>manual_auth_id</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"manual_auth_name":"(\.*)"</regex>
+    <order>manual_auth_name</order>
+</decoder>
+
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"c_index":"(\.*)"</regex>
+    <order>c_index</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"cmd":"(\.*)"</regex>
+    <order>cmd</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"c_time":"(\.*)"</regex>
+    <order>c_time</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"rtn":"(\.*)"</regex>
+    <order>rtn</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"r_time":"(\.*)"</regex>
+    <order>r_time</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"policy_name":"(\.*)"</regex>
+    <order>policy_name</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"denied":"(\.*)"</regex>
+    <order>denied</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"ldap_sno":"(\.*)"</regex>
+    <order>ldap_sno</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"query":"(\.*)"</regex>
+    <order>query</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"elapsed":"(\.*)"</regex>
+    <order>elapsed</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"resp_elapsed":"(\.*)"</regex>
+    <order>resp_elapsed</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"result_scan_count":"(\.*)"</regex>
+    <order>result_scan_count</order>
+</decoder>
+<decoder name="pnpsecure-json-fields">
+    <parent>pnpsecure-json</parent>
+    <regex>"is_contraction":"(\.*)"</regex>
+    <order>is_contraction</order>
+</decoder>

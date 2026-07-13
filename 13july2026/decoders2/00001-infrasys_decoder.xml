@@ -1,0 +1,74 @@
+<!-- Modify it at your will. -->
+
+<!-- Infrasys Decoder -->
+
+<decoder name="infrasys">
+	<prematch>{"infrasys": {</prematch>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<!-- Generic fields -->
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>"Type*":\s*"(\.*)"|\.*Type":\s*"(\.*)"</regex>
+	<order>type</order>
+</decoder>
+
+<!-- Auth log fields -->
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*Date*":\s*"(\.*)"|\.*Date":\s*"(\.*)"</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*Login\sID":\s*"(\.*)"</regex>
+	<order>loginid</order>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*Status":\s*"(\.*)"</regex>
+	<order>status</order>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*Client\sIP\sAddress":\s*"(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*Remark":\s*"(\.*)"</regex>
+	<order>remark</order>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*EmpID*":\s*"(\.*)",</regex>
+	<order>empid</order>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*Name*":\s*"(\.*)",</regex>
+	<order>empname</order>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*ID*":\s*"(\.*)",</regex>
+	<order>id</order>
+</decoder>
+
+<decoder name="infrasys-fields">
+	<parent>infrasys</parent>
+	<regex>\.*Fields":\s*"(\.*)",</regex>
+	<order>fields</order>
+</decoder>

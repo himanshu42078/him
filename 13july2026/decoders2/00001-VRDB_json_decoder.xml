@@ -1,0 +1,57 @@
+<!-- Modify it at your will. -->
+
+<!-- VRDB Decoder -->
+
+<decoder name="VRDB">
+	<prematch>{"VRDB": {</prematch>
+</decoder>
+
+<decoder name="VRDB-fields">
+	<parent>VRDB</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<!-- Malicious email fields -->
+<decoder name="VRDB-fields">
+	<parent>VRDB</parent>
+	<regex>\.*AuditID":\s*(\.*),</regex>
+	<order>auditID</order>
+</decoder>
+
+<decoder name="VRDB-fields">
+	<parent>VRDB</parent>
+	<regex>"CompanyID":\s*(\.*),</regex>
+	<order>companyID</order>
+</decoder>
+
+<decoder name="VRDB-fields">
+	<parent>VRDB</parent>
+	<regex>\.*AddInID":\s*(\.*),</regex>
+	<order>addInID</order>
+</decoder>
+
+
+<decoder name="VRDB-fields">
+	<parent>VRDB</parent>
+	<regex>\.*When":\s*"(\.*)",</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="VRDB-fields">
+	<parent>VRDB</parent>
+	<regex>\.*UserName":\s*"(\.*)",</regex>
+	<order>username</order>
+</decoder>
+
+<decoder name="VRDB-fields">
+	<parent>VRDB</parent>
+	<regex>"XML":\s*"(\.*)",</regex>
+	<order>XML</order>
+</decoder>
+
+<decoder name="VRDB-fields">
+	<parent>VRDB</parent>
+	<regex>\.*Fingerprint":\s*"(\.*)"</regex>
+	<order>fingerprint</order>
+</decoder>
+

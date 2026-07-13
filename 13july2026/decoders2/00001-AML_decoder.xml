@@ -1,0 +1,149 @@
+<!-- ####### AML Log User Logon Table start from here ####### -->
+
+
+<decoder name="AMLUserLogon">
+    <prematch>"AMLUserLogonHistory": {</prematch>
+</decoder>
+
+<decoder name="AMLUserLogon-fields">
+    <parent>AMLUserLogon</parent>
+    <regex offset="after_parent">"authStatus":\s(\.*),</regex>
+    <order>authStatus</order>
+</decoder>
+
+<decoder name="AMLUserLogon-fields">
+    <parent>AMLUserLogon</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="AMLUserLogon-fields">
+    <parent>AMLUserLogon</parent>
+    <regex offset="after_parent">"logonAttempt":\s(\.*),</regex>
+    <order>logonAttempt</order>
+</decoder>
+
+<decoder name="AMLUserLogon-fields">
+    <parent>AMLUserLogon</parent>
+    <regex offset="after_parent">"machineName":\s"(\.*)",</regex>
+    <order>machineName</order>
+</decoder>
+
+<decoder name="AMLUserLogon-fields">
+    <parent>AMLUserLogon</parent>
+    <regex offset="after_parent">"reason":\s"(\.*)",|reason":\s(\.*),</regex>
+    <order>reason</order>
+</decoder>
+
+<decoder name="AMLUserLogon-fields">
+    <parent>AMLUserLogon</parent>
+    <regex offset="after_parent">"userID":\s(\.*),</regex>
+    <order>userID</order>
+</decoder>
+
+<decoder name="AMLUserLogon-fields">
+    <parent>AMLUserLogon</parent>
+    <regex offset="after_parent">"userName":\s"(\.*)"</regex>
+    <order>srcuser</order>
+</decoder>
+
+
+<!-- ####### AML Log Audit Table start from here ####### -->
+
+
+<decoder name="AMLAudit">
+    <prematch>"AMLAuditTable": {</prematch>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"appName":\s"(\.*)",</regex>
+    <order>appName</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"columnName":\s"(\.*)",|"columnName":\s(\.*),</regex>
+    <order>columnName</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"hostname":\s"(\.*)",</regex>
+    <order>hostname</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"oldValue":\s"(\.*)",|"oldValue":\s(\.*),</regex>
+    <order>oldValue</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"operID":\s(\d+),</regex>
+    <order>operID</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"primaryKey1":\s"(\.*)",</regex>
+    <order>primaryKey1</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"primaryObjName1":\s"(\.*)",|"primaryObjName1":\s(\.*),</regex>
+    <order>primaryObjName1</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"primaryObjName2":\s"(\.*)",|"primaryObjName2":\s(\.*),</regex>
+    <order>primaryObjName2</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"primaryObjName3":\s"(\.*)",|"primaryObjName3":\s(\.*),</regex>
+    <order>primaryObjName3</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"primarykey2":\s"(\.*)",|"primarykey2":\s(\.*),</regex>
+    <order>primarykey2</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"primarykey3":\s"(\.*)",|"primarykey3":\s(\.*),</regex>
+    <order>primarykey3</order>
+</decoder>
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"seqNo":\s(\.*),</regex>
+    <order>seqNo</order>
+</decoder>
+
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"tableName":\s"(\.*)",</regex>
+    <order>tableName</order>
+</decoder>
+
+
+<decoder name="AMLAudit-fields">
+    <parent>AMLAudit</parent>
+    <regex offset="after_parent">"userName":\s"(\.*)"</regex>
+    <order>srcuser</order>
+</decoder>
+

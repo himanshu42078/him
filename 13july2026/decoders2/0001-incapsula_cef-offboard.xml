@@ -1,0 +1,251 @@
+<decoder name="incapsula_cef">
+	<program_name>CEF</program_name>
+	<prematch>Incapsula\|SIEMintegration</prematch>
+</decoder>
+<decoder name="incapsula_fields">
+	<parent>incapsula_cef</parent>
+	<regex>SIEMintegration\|\.+\|(\.+)\|(\.+)\|(\d+)</regex>
+	<order>configID, alertSeverity, internalRuleID</order>
+</decoder>
+<decoder name="incapsula_fields">
+	<parent>incapsula_cef</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<!--
+<decoder name="incapsula_fields">
+	<parent>incapsula_cef</parent>
+	<regex>(incapsula)</regex>
+	<order>product</order>
+</decoder>
+-->
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>act=(\.*)\s</regex>
+    <order>incapsula.requestResult</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>act=(\.*)\s</regex>
+    <order>action</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>additionalReqHeaders=(\.*)\s</regex>
+    <order>incapsula.requestHeaders</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>additionalResHeaders=(\.*)\s</regex>
+    <order>incapsula.responseHeaders</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>app=(\.*)\s</regex>
+    <order>protocol</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>ccode=(\.*)\s</regex>
+    <order>incapsula.countryCode</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cicode=(\.*)\scs7=</regex>
+    <order>incapsula.city</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cn1=(\.*)\s</regex>
+    <order>status</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cpt=(\.*)\s</regex>
+    <order>srcport</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs1=(\.*)\s</regex>
+    <order>incapsula.captchaSupport</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs10=(\.*)\s</regex>
+    <order>incapsula.deliveryRuleDetails</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs11=(\.*)\s</regex>
+    <order>incapsula.additionalRuleInfo</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs2=(\.*)\s</regex>
+    <order>incapsula.jSSupport</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs3=(\.*)\s</regex>
+    <order>incapsula.cookiesSupport</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs4=(\.*)\s</regex>
+    <order>incapsula.visitorID</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs5=(\.*)\s</regex>
+    <order>incapsula.debug</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs6=(\.*)\s</regex>
+    <order>incapsula.clientApp</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs7=(\.*)\s</regex>
+    <order>incapsula.latitude</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs8=(\.*)\s</regex>
+    <order>incapsula.longitude</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>cs9=(\.*)\scs9Label=</regex>
+    <order>incapsula.ruleName</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>Customer=(\.*)\sstart=</regex>
+    <order>incapsula.accountName</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>deviceExternalId=(\.*)\s</regex>
+    <order>incapsula.requestID</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>deviceFacility=(\.*)\s</regex>
+    <order>incapsula.poPname</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>dproc=(\.*)\s</regex>
+    <order>incapsula.browserType</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>end=(\.*)\s|end=(\d*)</regex>
+    <order>incapsula.responseEndTime</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>fileId=(\.*)\s</regex>
+    <order>incapsula.id</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>filePermission=(\.*)\s</regex>
+    <order>incapsula.attackID</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>fileType=(\.*)\s</regex>
+    <order>incapsula.attackType</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>in=(\.*)\s</regex>
+    <order>incapsula.contentLength</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>postbody=(\.*)\s</regex>
+    <order>incapsula.postBody</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>qstr=(\.*)\s</regex>
+    <order>incapsula.queryString</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>ref=(\.*)\s</regex>
+    <order>incapsula.referrer</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>request=(\.*)\s</regex>
+    <order>url</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>requestClientApplication=(\.*)\s\S+=</regex>
+    <order>incapsula.userAgent</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>requestMethod=(\.*)\s</regex>
+    <order>incapsula.method</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>sip=(\.*)\s</regex>
+    <order>dstip</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>siteid=(\.*)\s</regex>
+    <order>incapsula.siteID</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>siteTag=(\.*)\s</regex>
+    <order>incapsula.siteReferenceID</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>sourceServiceName=(\.*)\s</regex>
+    <order>incapsula.siteName</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>spt=(\.*)\s</regex>
+    <order>dstport</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>src=(\.*)\s</regex>
+    <order>srcip</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>start=(\.*)\s</regex>
+    <order>incapsula.requestStartTime</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>suid=(\.*)\s</regex>
+    <order>incapsula.accountID</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>tag=(\.*)\s</regex>
+    <order>incapsula.accountReferenceID</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>ver=(\.*)\s</regex>
+    <order>incapsula.protocolversion</order>
+</decoder>
+<decoder name="incapsula_fields">
+    <parent>incapsula_cef</parent>
+    <regex>xff=(\.*)\s</regex>
+    <order>incapsula.xff</order>
+</decoder>

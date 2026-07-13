@@ -1,0 +1,14 @@
+<!-- Modify it at your will. -->
+<decoder name="customer_service">
+  <prematch>[https-jsse-nio-\d+-exec-\d+] \S+ o.n.m.ocss.vb.service.service.impl.UserServiceImpl</prematch>
+</decoder>
+<decoder name="customer_service-field">
+  <parent>customer_service</parent>
+  <regex>User [(\S+)] (login failure with invalid password)</regex>
+  <order>user, result</order>
+</decoder>
+<decoder name="customer_service-field">
+  <parent>customer_service</parent>
+  <regex>User [(\S+)] (login successfully)</regex>
+  <order>user, result</order>
+</decoder>

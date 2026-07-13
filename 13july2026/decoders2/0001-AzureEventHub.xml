@@ -1,0 +1,602 @@
+<!-- EventHub in Azure Graph API -->
+<decoder name="AzureEventHub">
+	<prematch>{"azure": {\.*}, "eventhub": {</prematch>
+</decoder>
+<decoder name="AzureEventHub">
+	<prematch>{"eventhub": {</prematch>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"ProductName": "(\.*)"</regex>
+	<order>eventhub.ProductName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"VendorName": "(\.*)"</regex>
+	<order>eventhub.VendorName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"Severity": "(\.*)"</regex>
+	<order>eventhub.Severity</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"AlertDisplayName": "(\.*)"</regex>
+	<order>eventhub.AlertDisplayName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"category": "(\.*)"</regex>
+	<order>eventhub.category</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"tenantId": "(\.*)"</regex>
+	<order>eventhub.tenantId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"operationName": "(\.*)"</regex>
+	<order>eventhub.operationName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"operationVersion": "(\.*)"</regex>
+	<order>eventhub.operationVersion</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"schemaVersion": "(\.*)"</regex>
+	<order>eventhub.schemaVersion</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"statusCode": "(\.*)"</regex>
+	<order>eventhub.statusCode</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"durationMs": (\d*),</regex>
+	<order>eventhub.durationMs</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"callerIpAddress": "(\.*)"</regex>
+	<order>eventhub.callerIpAddress</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"correlationId": "(\.*)"</regex>
+	<order>eventhub.correlationId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"Level": (\d*),</regex>
+	<order>eventhub.Level</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"location": "(\.*)"</regex>
+	<order>eventhub.location</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"Type": "(\.*)"</regex>
+	<order>eventhub.Type</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"resourceId": "(\.*)"</regex>
+	<order>eventhub.resourceId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"clientIp": "(\.*)"</regex>
+	<order>eventhub.clientIp</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"requestUri": "(\.*)"</regex>
+	<order>eventhub.requestUri</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"ruleGroup": "(\.*)"</regex>
+	<order>eventhub.ruleGroup</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"message": "(\.*)"</regex>
+	<order>eventhub.message</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"hostname": "(\.*)"</regex>
+	<order>eventhub.hostname</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"data": "(\.*)"</regex>
+	<order>eventhub.data</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"action": "(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"time": "(\.*)"</regex>
+	<order>eventhub.eventTime</order>
+</decoder>
+<!-- DEV-3404 -->
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>}, "logsource": "(\S*)"}</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"ipAddress":\s*"(\d+.\d+.\d+.\d+)", "status"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"userPrincipalName": "(\.*)",</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"userPrincipalName": "(\.*)",</regex>
+	<order>eventhub.properties.userPrincipalName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"uri": "(\.*)",</regex>
+	<order>eventhub.uri</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"protocol": "(\.*)",</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"resourceType": "(\.*)",</regex>
+	<order>eventhub.resourceType</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"resultType": "(\.*)",</regex>
+	<order>eventhub.resultType</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"resultDescription": "(\.*)",</regex>
+	<order>eventhub.resultDescription</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"dstuser": "(\.*)"</regex>
+	<order>eventhub.dstuser</order>
+</decoder>
+
+<!-- properties -->
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"id": "(\.+)"</regex>
+	<order>eventhub.properties.id</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"category": "(\.+)"</regex>
+	<order>eventhub.properties.category</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"userDisplayName": "(\.+)"</regex>
+	<order>eventhub.properties.userDisplayName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"userId": "(\.+)"</regex>
+	<order>eventhub.properties.userId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"appId": "(\.+)"</regex>
+	<order>eventhub.properties.appId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"appDisplayName": "(\.+)"</regex>
+	<order>eventhub.properties.appDisplayName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"ipAddress": "(\.+)"</regex>
+	<order>eventhub.properties.ipAddress</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"status": {\.*"errorCode": (\d+),</regex>
+	<order>eventhub.properties.status.errorCode</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"status": {\.*"additionalDetails": "(\.*)"</regex>
+	<order>eventhub.properties.status.additionalDetails</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"status": {\.*"failureReason": "(\.*)"</regex>
+	<order>eventhub.properties.status.failureReason</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"riskDetail": "(\.+)"</regex>
+	<order>eventhub.properties.riskDetail</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"riskLevelAggregated": "(\.+)"</regex>
+	<order>eventhub.properties.riskLevelAggregated</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"riskLevelDuringSignIn": "(\.+)"</regex>
+	<order>eventhub.properties.riskLevelDuringSignIn</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"riskState": "(\.+)"</regex>
+	<order>eventhub.properties.riskState</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"riskEventTypes": [(\.*)],</regex>
+	<order>eventhub.properties.riskEventTypes</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"resourceDisplayName": "(\.+)"</regex>
+	<order>eventhub.properties.resourceDisplayName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"resourceId": "(\.+)"</regex>
+	<order>eventhub.properties.resourceId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"resourceTenantId": "(\.+)"</regex>
+	<order>eventhub.properties.resourceTenantId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"homeTenantId": "(\.+)"</regex>
+	<order>eventhub.properties.homeTenantId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"tenantId": "(\.+)"</regex>
+	<order>eventhub.properties.tenantId</order>
+</decoder>
+
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*request from (\d+.\d+.\d+.\d+):(\d+) to (\d+.\d+.\d+.\d+):(\d+).</regex>
+	<order>srcip, srcport, dstip, dstport</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*Action: (\S+)..</regex>
+	<order>action</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*Policy: (\S+).</regex>
+	<order>eventhub.properties.Policy</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*Rule Collection Group: (\S+).</regex>
+	<order>eventhub.properties.RuleCollectionGroup</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*Rule Collection: (\S+).</regex>
+	<order>eventhub.properties.RuleCollection</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*Rule: (\S+)"}</regex>
+	<order>eventhub.properties.Rule</order>
+</decoder>
+
+<!-- authenticationDetails -->
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"authenticationDetails": [{\.*"authenticationMethod": "(\.+)"</regex>
+	<order>eventhub.properties.authenticationDetails.authenticationMethod</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"authenticationDetails": [{\.*"succeeded": (\.+),</regex>
+	<order>eventhub.properties.authenticationDetails.succeeded</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"authenticationDetails": [{\.*"authenticationStepResultDetail": "(\.+)"</regex>
+	<order>eventhub.properties.authenticationDetails.authenticationStepResultDetail</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"authenticationDetails": [{\.*"authenticationStepRequirement": "(\.+)"</regex>
+	<order>eventhub.properties.authenticationDetails.authenticationStepRequirement</order>
+</decoder>
+
+<!-- authenticationRequirementPolicies -->
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"authenticationRequirementPolicies": [{\.*"requirementProvider": "(\.+)"</regex>
+	<order>eventhub.properties.authenticationRequirementPolicies.requirementProvider</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"authenticationRequirementPolicies": [{\.*"detail": "(\.+)"</regex>
+	<order>eventhub.properties.authenticationRequirementPolicies.detail</order>
+</decoder>
+
+<!-- sessionLifetimePolicies -->
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"sessionLifetimePolicies": [{\.*"expirationRequirement": "(\.+)"</regex>
+	<order>eventhub.properties.sessionLifetimePolicies.expirationRequirement</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"sessionLifetimePolicies": [{\.*"detail": "(\.+)"</regex>
+	<order>eventhub.properties.sessionLifetimePolicies.detail</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"authenticationRequirement": "(\.+)"</regex>
+	<order>eventhub.properties.authenticationRequirement</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"riskLevelDuringSignIn": "(\.*)",</regex>
+	<order>eventhub.properties.riskLevelDuringSignIn</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"result": "(\.*)",</regex>
+	<order>eventhub.properties.result</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"resultReason": "(\.*)",</regex>
+	<order>eventhub.properties.resultReason</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"properties": {\.*"loggedByService": "(\.*)",</regex>
+	<order>eventhub.properties.loggedByService</order>
+</decoder>
+
+<!-- resourceDetails -->
+<!--
+
+{"azure": {"resourceDetails": {"source": "Azure", "id": "/subscriptions/2afdb2f1-396b-483c-a782-72572a4318ad/resourceGroups/rg-tg-tst-cpim-eas-01/providers/Microsoft.Compute/virtualMachines/vm-tg-tst-cpimtstrs1az-eas-01"}, "displayName": "Vulnerabilities in security configuration on your Windows machines should be remediated (powered by Guest Configuration)", "status": {"code": "NotApplicable", "cause": "NoExtension", "description": "Guest Configuration extension is not installed on the machine", "statusChangeDate": "2023-04-13T13:35:42.0208381Z", "firstEvaluationDate": "2023-04-13T13:35:42.0208381Z"}, "additionalData": {"subAssessmentsLink": "/subscriptions/2afdb2f1-396b-483c-a782-72572a4318ad/resourceGroups/rg-tg-tst-cpim-eas-01/providers/Microsoft.Compute/virtualMachines/vm-tg-tst-cpimtstrs1az-eas-01/providers/Microsoft.Security/assessments/8c3d9ad0-3639-4686-9cd2-2b2ab2609bda/subAssessments"}, "metadata": {"displayName": "Vulnerabilities in security configuration on your Windows machines should be remediated (powered by Guest Configuration)", "assessmentType": "BuiltIn", "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/72650e9f-97bc-4b2a-ab5f-9781a9fcecbc", "description": "Remediate vulnerabilities in security configuration on your Windows machines to protect them from attacks.", "remediationDescription": "1. Select any of the findings below.<br>2. On the right pane opened, follow the instructions under 'Remediation' if exist.", "categories": ["Compute"], "preview": true, "severity": "Low", "userImpact": "Moderate", "implementationEffort": "Moderate", "threats": ["DataExfiltration", "DataSpillage", "AccountBreach"]}, "links": {"azurePortal": "portal.azure.com/#blade/Microsoft_Azure_Security/RecommendationsBlade/assessmentKey/8c3d9ad0-3639-4686-9cd2-2b2ab2609bda/resourceId/%2fsubscriptions%2f2afdb2f1-396b-483c-a782-72572a4318ad%2fresourceGroups%2frg-tg-tst-cpim-eas-01%2fproviders%2fMicrosoft.Compute%2fvirtualMachines%2fvm-tg-tst-cpimtstrs1az-eas-01"}}, "eventhub": {"assessmentEventDataEnrichment": {"action": "Insert", "apiVersion": "2019-01-01", "isSnapshot": false}, "securityEventDataEnrichment": {"action": "Insert", "apiVersion": "2019-01-01", "isSnapshot": false}, "tenantId": "b7ecdbc3-afd6-4648-8464-916d5c3554c2", "type": "Microsoft.Security/assessments", "kind": null, "location": null, "id": "/subscriptions/2afdb2f1-396b-483c-a782-72572a4318ad/resourceGroups/rg-tg-tst-cpim-eas-01/providers/Microsoft.Compute/virtualMachines/vm-tg-tst-cpimtstrs1az-eas-01/providers/Microsoft.Security/assessments/8c3d9ad0-3639-4686-9cd2-2b2ab2609bda", "name": "8c3d9ad0-3639-4686-9cd2-2b2ab2609bda", "tags": null}}
+-->
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"resourceDetails": {\.*"source": "(\.*)"</regex>
+    <order>azure.resourceDetails.source</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"resourceDetails": {\.*"id": "(\.*)"</regex>
+    <order>azure.resourceDetails.id</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"id": "/subscriptions/(\S+)/</regex>
+    <order>subscription_id</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"id": "/subscriptions/\S+/resourceGroups/(\S+)/\.*"</regex>
+    <order>resourcegroups_name</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"displayName": "(\.*)"</regex>
+    <order>azure.displayName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"status": {\.*"code": "(\.*)"</regex>
+    <order>azure.status.code</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"status": {\.*"cause": "(\.*)"</regex>
+    <order>azure.status.cause</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"status": {\.*"description": "(\.*)"</regex>
+    <order>azure.status.description</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"status": {\.*"statusChangeDate": "(\.*)"</regex>
+    <order>azure.status.statusChangeDate</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"status": {\.*"firstEvaluationDate": "(\.*)"</regex>
+    <order>azure.status.firstEvaluationDate</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"additionalData": {\.*"subAssessmentsLink": "(\.*)"</regex>
+    <order>azure.additionalData.subAssessmentsLink</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"displayName": "(\.*)"</regex>
+    <order>azure.metadata.displayName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"assessmentType": "(\.*)"</regex>
+    <order>azure.metadata.assessmentType</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"policyDefinitionId": "(\.*)"</regex>
+    <order>azure.metadata.policyDefinitionId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"description": "(\.*)"</regex>
+    <order>azure.metadata.description</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"remediationDescription": "(\.*)"</regex>
+    <order>azure.metadata.remediationDescription</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"severity": "(\.*)"</regex>
+    <order>azure.metadata.severity</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"userImpact": "(\.*)"</regex>
+    <order>azure.metadata.userImpact</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"implementationEffort": "(\.*)"</regex>
+    <order>azure.metadata.implementationEffort</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"metadata": {\.*"threats": [(\.*)]</regex>
+    <order>azure.metadata.threats</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"links": {\.*"azurePortal": "(\.*)"</regex>
+    <order>azure.links.azurePortal</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"assessmentEventDataEnrichment": {\.*"action": "(\.*)"</regex>
+    <order>eventhub.assessmentEventDataEnrichment.action</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"assessmentEventDataEnrichment": {\.*"apiVersion": "(\.*)"</regex>
+    <order>eventhub.assessmentEventDataEnrichment.apiVersion</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"securityEventDataEnrichment": {\.*"action": "(\.*)"</regex>
+    <order>eventhub.securityEventDataEnrichment.action</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"securityEventDataEnrichment": {\.*"apiVersion": "(\.*)"</regex>
+    <order>eventhub.securityEventDataEnrichment.apiVersion</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"tenantId": "(\.*)"</regex>
+    <order>eventhub.tenantId</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"type": "(\.*)"</regex>
+    <order>eventhub.type</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"id": "(\.*)"</regex>
+    <order>eventhub.id</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"name": "(\.*)"</regex>
+    <order>eventhub.name</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"log": "(\.*)"},|"log": "(\.*)",</regex>
+    <order>eventhub.log</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+    <parent>AzureEventHub</parent>
+    <regex>"NumberOfInfectedFiles": (\w*)},|"NumberOfInfectedFiles": (\w*),</regex>
+    <order>eventhub.NumberOfInfectedFiles</order>
+</decoder>
+
+<!--
+{"azure": {"Protocol": "TCP", "SourceIp": "45.95.146.52", "SourcePort": 55221, "DestinationIp": "20.239.192.202", "DestinationPort": 22, "Fqdn": "", "Url": "", "Action": "Alert", "ThreatDescription": "Destination reported by Threat Intelligence", "IsTlsInspected": false}, "eventhub": {"category": "AZFWThreatIntel", "time": "2023-11-29T14:32:36.0096380Z", "resourceId": "/SUBSCRIPTIONS/BC05350D-7E8F-470D-89EB-915D140F602C/RESOURCEGROUPS/HAECO-BI-DEV-RG/PROVIDERS/MICROSOFT.NETWORK/AZUREFIREWALLS/FWHXDATAPLATFORMDEV01"}, "logsource": "log2pwc"}
+-->
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"SourceIp": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"SourcePort": (\d+),</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"DestinationIp": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"DestinationPort": (\d+),</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"msg": "(\.*)"</regex>
+	<order>azure.msg</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"statusCode": (\d*)</regex>
+	<order>eventhub.statusCode</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"accountName": "(\.*)"</regex>
+	<order>azure.accountName</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"callerIpAddress": "(\.*)"</regex>
+	<order>eventhub.callerIpAddress</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"userAgentHeader": "(\.*)",</regex>
+	<order>azure.userAgentHeader</order>
+</decoder>
+<decoder name="AzureEventHub-fields">
+	<parent>AzureEventHub</parent>
+	<regex>"objectKey": "(\.*)"</regex>
+	<order>azure.objectKey</order>
+</decoder>

@@ -1,0 +1,108 @@
+<!-- DEV-3611 -->
+<!--
+Mar 10 16:09:05 hkmcdudb1 Oracle Audit[25536]: [ID 748625 local1.warning] LENGTH: "224" SESSIONID:[9] "153680724" ENTRYID:[1] "1" USERID:[6] "DBSNMP" ACTION:[3] "102" RETURNCODE:[1] "0" LOGOFF$PREAD:[1] "0" LOGOFF$LREAD:[2] "22" LOGOFF$LWRITE:[1] "0" LOGOFF$DEAD:[1] "0" DBID:[9] "334889973" SESSIONCPU:[1] "1"
+Mar 10 16:09:05 hkmcdudb1 Oracle Audit[25536]: [ID 748625 local1.warning] LENGTH: "347" SESSIONID:[9] "153680724" ENTRYID:[1] "1" STATEMENT:[1] "1" USERID:[6] "DBSNMP" USERHOST:[9] "hkmcdudb1" TERMINAL:[7] "unknown" ACTION:[3] "100" RETURNCODE:[1] "0" COMMENT$TEXT:[99] "Authenticated by: DATABASE; Client address: (ADDRESS=(PROTOCOL=tcp)(HOST=192.168.3.39)(PORT=52770))" OS$USERID:[6] "oracle" DBID:[9] "334889973" PRIV$USED:[1] "5"
+Mar 10 16:08:05 hkmcdudb1 Oracle Audit[24566]: [ID 748625 local1.warning] LENGTH: "224" SESSIONID:[9] "153680722" ENTRYID:[1] "1" USERID:[6] "DBSNMP" ACTION:[3] "102" RETURNCODE:[1] "0" LOGOFF$PREAD:[1] "0" LOGOFF$LREAD:[2] "22" LOGOFF$LWRITE:[1] "0" LOGOFF$DEAD:[1] "0" DBID:[9] "334889973" SESSIONCPU:[1] "2"
+-->
+<decoder name="oracle-audit">
+	<prematch>^Oracle Audit\p\d+\p: \pID \d+ \S+.warning\p</prematch>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>LENGTH: "(\d+)" \S+:</regex>
+    <order>length</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>SESSIONID:\p\d+\p "(\d+)" \S+:</regex>
+    <order>sessionid</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>ENTRYID:\p\d+\p "(\d+)" \S+:</regex>
+    <order>entryid</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>STATEMENT:\p\d+\p "(\d+)" \S+:</regex>
+    <order>statement</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>USERID:\p\d+\p "(\S+)" \S+:</regex>
+    <order>userid</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>USERHOST:\p\d+\p "(\S+)" \S+:</regex>
+    <order>userhost</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>TERMINAL:\p\d+\p "(\S+)" \S+:</regex>
+    <order>terminal</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>ACTION:\p\d+\p "(\S+)" \S+:</regex>
+    <order>action</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>RETURNCODE:\p\d+\p "(\d+)" \S+:</regex>
+    <order>returncode</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>COMMENT\STEXT:\p\d+\p "(\.+)" \S+:</regex>
+    <order>message</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>LOGOFF\SPREAD:\p\d+\p "(\d+)" \S+:</regex>
+    <order>logoff_pread</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>LOGOFF\SLREAD:\p\d+\p "(\d+)" \S+:</regex>
+    <order>logoff_lread</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>LOGOFF\SLWRITE:\p\d+\p "(\d+)" \S+:</regex>
+    <order>logoff_lwrite</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>LOGOFF\SDEAD:\p\d+\p "(\d+)" \S+:</regex>
+    <order>logoff_dead</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>OS\SUSERID:\p\d+\p "(\S+)" \S+:</regex>
+    <order>os_userid</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>PRIV\SUSED:\p\d+\p "(\d+)" \S+:|PRIV\SUSED:\p\d+\p "(\d+)"</regex>
+    <order>priv_used</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>Client address: \pADDRESS=\pPROTOCOL=(\S+)\p\pHOST=(\S+)\p\pPORT=(\d+)\p\p</regex>
+    <order>protocol,client_address,client_address_port</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>DBID:\p\d+\p "(\d+)" \S+:</regex>
+    <order>databaseid</order>
+</decoder>
+<decoder name="oracle-audit-fields">
+	<parent>oracle-audit</parent>
+    <regex>SESSIONCPU:\p\d+\p "(\d+)"</regex>
+    <order>sessioncpu</order>
+</decoder>

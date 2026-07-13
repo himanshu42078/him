@@ -1,0 +1,67 @@
+<!-- Workday Decoder -->
+
+<decoder name="workday">
+	<prematch>{"workday": {</prematch>
+</decoder>
+
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<!-- Generic fields -->
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"log_type":\s*"(\.*)"</regex>
+	<order>log_type</order>
+</decoder>
+
+<!-- Auth log fields -->
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"System_Account":\s*"(\.*)"</regex>
+	<order>user</order>
+</decoder>
+
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"Signon_IP_Address":\s*"(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"Sign-on_Time":\s*"(\.*)"</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"Device_Type":\s*"(\.*)"</regex>
+	<order>Device_type</order>
+</decoder>
+
+<!-- Audit trail log fields -->
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"Task":\s*"(\.*)"</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"By_User":\s*"(\.*)"</regex>
+	<order>user</order>
+</decoder>
+
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"Instances_Updated":\s*"(\.*)"</regex>
+	<order>extra_data</order>
+</decoder>
+
+<decoder name="workday-fields">
+	<parent>workday</parent>
+	<regex>"timestamp":\s*"(\.*)"</regex>
+	<order>timestamp</order>
+</decoder>

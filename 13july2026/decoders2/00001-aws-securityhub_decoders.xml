@@ -1,0 +1,169 @@
+<!-- securityhub -->
+<!--
+{"integration": "aws", "aws": {"log_info": {"aws_account_alias": "", "log_file": "870703362183/ap-east-1/2023/05/19/f555313f-6404-4540-7146-eb16a2525d85.json", "s3bucket": "hkg-acsa-log-security-hub-bucket-153523488818"}, "findings": {"ProductArn": "arn:aws:securityhub:ap-east-1::product/aws/securityhub", "Types": ["Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS"], "Description": "This AWS control checks whether users of your AWS account require a multi-factor authentication (MFA) device to sign in with root user credentials.", "Compliance": {"Status": "PASSED", "SecurityControlId": "IAM.9", "RelatedRequirements": ["PCI DSS 8.3.1"], "AssociatedStandards": [{"StandardsId": "standards/pci-dss/v/3.2.1"}]}, "ProductName": "Security Hub", "FirstObservedAt": "2023-04-05T16:23:49.508Z", "CreatedAt": "2023-04-05T16:23:49.508Z", "LastObservedAt": "2023-05-19T04:23:58.320Z", "CompanyName": "AWS", "FindingProviderFields": {"Types": ["Software and Configuration Checks/Industry and Regulatory Standards/PCI-DSS"], "Severity": {"Normalized": 0, "Label": "INFORMATIONAL", "Product": 0, "Original": "INFORMATIONAL"}}, "ProductFields": {"StandardsArn": "arn:aws:securityhub:::standards/pci-dss/v/3.2.1", "StandardsSubscriptionArn": "arn:aws:securityhub:ap-east-1:870703362183:subscription/pci-dss/v/3.2.1", "ControlId": "PCI.IAM.5", "RecommendationUrl": "https://docs.aws.amazon.com/console/securityhub/IAM.9/remediation", "RelatedAWSResources:0/name": "securityhub-root-account-mfa-enabled-a2a6371b", "RelatedAWSResources:0/type": "AWS::Config::ConfigRule", "StandardsControlArn": "arn:aws:securityhub:ap-east-1:870703362183:control/pci-dss/v/3.2.1/PCI.IAM.5", "aws/securityhub/ProductName": "Security Hub", "aws/securityhub/CompanyName": "AWS", "Resources:0/Id": "arn:aws:iam::870703362183:root", "aws/securityhub/FindingId": "arn:aws:securityhub:ap-east-1::product/aws/securityhub/arn:aws:securityhub:ap-east-1:870703362183:subscription/pci-dss/v/3.2.1/PCI.IAM.5/finding/ff66f4ad-4263-45f1-8994-5d90ebc7b10c"}, "Remediation": {"Recommendation": {"Text": "For information on how to correct this issue, consult the AWS Security Hub controls documentation.", "Url": "https://docs.aws.amazon.com/console/securityhub/IAM.9/remediation"}}, "SchemaVersion": "2018-10-08", "GeneratorId": "pci-dss/v/3.2.1/PCI.IAM.5", "RecordState": "ACTIVE", "Title": "PCI.IAM.5 Virtual MFA should be enabled for the root user", "Workflow": {"Status": "RESOLVED"}, "Severity": {"Normalized": 0, "Label": "INFORMATIONAL", "Product": 0, "Original": "INFORMATIONAL"}, "UpdatedAt": "2023-05-19T04:23:55.705Z", "WorkflowState": "NEW", "AwsAccountId": "870703362183", "Region": "ap-east-1", "Id": "arn:aws:securityhub:ap-east-1:870703362183:subscription/pci-dss/v/3.2.1/PCI.IAM.5/finding/ff66f4ad-4263-45f1-8994-5d90ebc7b10c", "Resources": [{"Partition": "aws", "Type": "AwsAccount", "Region": "ap-east-1", "Id": "AWS::::Account:870703362183"}], "ProcessedAt": "2023-05-19T04:24:00.751Z"}, "source": "securityhub"}}
+-->
+<decoder name="aws-securityhub">
+	<prematch>{"integration": "aws", "aws":\.+"source": "securityhub"</prematch>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"integration": "(\.+)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"source": "(\.+)"</regex>
+	<order>aws.source</order>
+</decoder>
+
+<!-- log_info -->
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"s3bucket": "(\.+)"</regex>
+	<order>aws.log_info.s3bucket</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"s3bucket": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"log_file": "(\.*)"</regex>
+	<order>aws.log_info.log_file</order>
+</decoder>
+
+<!-- findings -->
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"ProductArn": "(\.+)"</regex>
+	<order>aws.findings.ProductArn</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Description": "(\.+)"</regex>
+	<order>aws.findings.Description</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"ProductName": "(\.+)"</regex>
+	<order>aws.findings.ProductName</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"FirstObservedAt": "(\.+)"</regex>
+	<order>aws.findings.FirstObservedAt</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"CreatedAt": "(\.+)"</regex>
+	<order>aws.findings.CreatedAt</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"LastObservedAt": "(\.+)"</regex>
+	<order>aws.findings.LastObservedAt</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"CompanyName": "(\.+)"</regex>
+	<order>aws.findings.CompanyName</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"SchemaVersion": "(\.+)"</regex>
+	<order>aws.findings.SchemaVersion</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"GeneratorId": "(\.+)"</regex>
+	<order>aws.findings.GeneratorId</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"RecordState": "(\.+)"</regex>
+	<order>aws.findings.RecordState</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Title": "(\.+)"</regex>
+	<order>aws.findings.Title</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Normalized": (\d*),</regex>
+	<order>aws.findings.Severity.Normalized</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Label": "(\.+)"</regex>
+	<order>aws.findings.Severity.Label</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Product": "(\d*),</regex>
+	<order>aws.findings.Severity.Product</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Original": "(\.+)"</regex>
+	<order>aws.findings.Severity.Original</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"UpdatedAt": "(\.+)"</regex>
+	<order>aws.findings.UpdatedAt</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"WorkflowState": "(\.+)"</regex>
+	<order>aws.findings.WorkflowState</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"AwsAccountId": "(\.+)"</regex>
+	<order>aws.findings.AwsAccountId</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Region": "(\.+)"</regex>
+	<order>aws.findings.Region</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Id": "(\.+)"</regex>
+	<order>aws.findings.Id</order>
+</decoder>
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"ProcessedAt": "(\.+)"</regex>
+	<order>aws.findings.ProcessedAt</order>
+</decoder>
+
+<!-- Compliance -->
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Compliance": {"Status": "(\.*)", "SecurityControlId": "(\.*)", "RelatedRequirements": ["(\.*)"], "AssociatedStandards": [{"StandardsId": "(\.*)"}]},</regex>
+	<order>aws.findings.Compliance.Status,aws.findings.Compliance.SecurityControlId,aws.findings.Compliance.RelatedRequirements,aws.findings.Compliance.AssociatedStandards.StandardsId</order>
+</decoder>
+
+<!-- FindingProviderFields -->
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"FindingProviderFields": {"Types": ["(\.*)"], "Severity": {"Normalized": (\.*), "Label": "(\.*)", "Product": (\.*), "Original": "(\.*)"}},</regex>
+	<order>aws.findings.FindingProviderFields.Types,aws.findings.FindingProviderFields.Severity.Normalized,aws.findings.FindingProviderFields.Severity.Label,aws.findings.FindingProviderFields.Severity.Product,aws.findings.FindingProviderFields.Severity.Original</order>
+</decoder>
+
+<!-- ProductFields -->
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"ProductFields": {"StandardsArn": "(\.*)", "StandardsSubscriptionArn": "(\.*)", "ControlId": "(\.*)", "RecommendationUrl": "(\.*)",</regex>
+	<order>aws.findings.ProductFields.StandardsArn,aws.findings.ProductFields.StandardsSubscriptionArn,aws.findings.ProductFields.ControlId,aws.findings.ProductFields.RecommendationUrl</order>
+</decoder>
+
+<!-- Resources -->
+<decoder name="aws-securityhub-fields">
+	<parent>aws-securityhub</parent>
+	<regex>"Resources": [{"Partition": "(\.*)", "Type": "(\.*)", "Region": "(\.*)", "Id": "(\.*)"}],</regex>
+	<order>aws.findings.Resources.Partition,aws.findings.Resources.Type,aws.findings.Resources.Region,aws.findings.Resources.Id</order>
+</decoder>

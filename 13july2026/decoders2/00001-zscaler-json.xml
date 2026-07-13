@@ -1,0 +1,69 @@
+<!-- Modify it at your will. -->
+<decoder name="zscaler-json">
+	<prematch>{\s*"sourcetype" : "zscalernss</prematch>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"sourcetype" : "(\S+)"</regex>
+	<order>type</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"csip":"(\S+)"|"cip":"(\S+)"|"clt_sip":"(\S+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"csport":"(\d+)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"cdip":"(\S+)"|"sip":"(\S+)"|"srv_dip":"(\S+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"cdport":"(\d+)"|"srv_dport":"(\d+)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"action":"(\.+)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"user":"(\S+)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"proto":"(\S+)"</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"eurl":"(\S+)"</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"dns_req":"(\S+)"</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"outbytes":"(\d+)"</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="zscaler-fields">
+	<parent>zscaler-json</parent>
+	<regex>"inbytes":"(\d+)"</regex>
+	<order>bytes_received</order>
+</decoder>

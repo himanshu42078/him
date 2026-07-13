@@ -1,0 +1,104 @@
+<decoder name="barracuda_waf">
+  <prematch>\|Barracuda\|</prematch>
+  <program_name>CEF</program_name>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>src=(\S+) </regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>dst=(\S+) </regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>dpt=(\S+) </regex>
+  <order>dstport</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>app=(\S+) </regex>
+  <order>barracuda.app</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>request=(\S+) </regex>
+  <order>url</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>in=(\S+) </regex>
+  <order>barracuda.in</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>out=(\S+) </regex>
+  <order>barracuda.out</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>requestMethod=(\S+) </regex>
+  <order>barracuda.requestMethod</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>httpStatus=(\S+) </regex>
+  <order>status</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>host=(\S+) </regex>
+  <order>barracuda.host</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>referer=(\S+) </regex>
+  <order>barracuda.referer</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>rt=(\S+) </regex>
+  <order>barracuda.rt</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>logType=(\S+) </regex>
+  <order>barracuda.logType</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>httpVersion=(\S+) </regex>
+  <order>barracuda.httpVersion</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>timeTaken=(\S+) </regex>
+  <order>barracuda.timeTaken</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>serverTime=(\S+) </regex>
+  <order>barracuda.serverTime</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>userAgent=(\.+)</regex>
+  <order>barracuda.userAgent</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>actionTaken=(\.+) </regex>
+  <order>action</order>
+</decoder>
+<decoder name="barracuda_waf_fields">
+  <parent>barracuda_waf</parent>
+  <regex>proto=(\.+) </regex>
+  <order>protocol</order>
+</decoder>

@@ -1,0 +1,70 @@
+<!-- DEV-4048 -->
+<decoder name="imperva_json">
+	<prematch>{"integration": "Wazuh-Imperva-Cloud", "imperva-cloud":</prematch>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"message": "\.* \((\.+)\)"</regex>
+	<order>srcip</order>
+</decoder>
+<!-- DEV-4048 -->
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"account_id": "(\.+)"</regex>
+	<order>imperva-cloud.account_id</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"context_key": "(\.+)"</regex>
+	<order>imperva-cloud.context_key</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"message": "(\.+)"</regex>
+	<order>imperva-cloud.message</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"resource_type_key": "(\.*)"</regex>
+	<order>imperva-cloud.resource_type_key</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"resource_id": "(\.*)"</regex>
+	<order>imperva-cloud.resource_id</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"time": (\.+),</regex>
+	<order>imperva-cloud.time</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"type_description": "(\.+)"</regex>
+	<order>imperva-cloud.type_description</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"type_key": "(\.+)"</regex>
+	<order>imperva-cloud.type_key</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"user_details": "(\.+)"</regex>
+	<order>imperva-cloud.user_details</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"user_id": "(\.+)"</regex>
+	<order>imperva-cloud.user_id</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"integration": "(\.+)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_json</parent>
+	<regex>"logsource": "(\.+)"</regex>
+	<order>logsource</order>
+</decoder>

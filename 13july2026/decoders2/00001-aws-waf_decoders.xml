@@ -1,0 +1,179 @@
+<!-- aws Decoder The purpose of this decoder is to obtain standardized field-->
+<decoder name="aws-waf">
+	<prematch>{"integration": "aws", "aws":\.+"source": "waf"</prematch>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"integration": "(\.+)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"source": "(\.+)"</regex>
+	<order>aws.source</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"webaclId": "arn:aws:waf\S*:(\S*):(\d*):\.*"</regex>
+	<order>aws.awsRegion,aws.aws_account_id</order>
+</decoder>
+
+<!-- log_info -->
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"s3bucket": "(\.+)"</regex>
+	<order>aws.log_info.s3bucket</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"s3bucket": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"log_file": "(\.*)"</regex>
+	<order>aws.log_info.log_file</order>
+</decoder>
+
+<!-- DEV-3979-->
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"name": "referer", "value": "(\.+)"</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"name": "user-agent", "value": "(\.+)"</regex>
+	<order>user-agent</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"name": "cookie", "value": "(\.+)"</regex>
+	<order>cookie</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"name": "accept", "value": "(\.+)"</regex>
+	<order>accept</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"name": "accept-encoding", "value": "(\.+)"</regex>
+	<order>accept-encoding</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"name": "host", "value": "(\.+)"</regex>
+	<order>host</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"name": "connection", "value": "(\.+)"</regex>
+	<order>connection</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"action": "(\.+)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"clientIp": "(\.+)"</regex>
+	<order>clientIp</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"country": "(\.+)"</regex>
+	<order>country</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"excludedRules": "(\.+)"</regex>
+	<order>excludedRules</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"headers": "(\.+)"</regex>
+	<order>headers</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"httpMethod": "(\.+)"</regex>
+	<order>httpMethod</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"httpRequest": "(\.+)"</regex>
+	<order>httpRequest</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"httpSourceId": "(\.+)"</regex>
+	<order>httpSourceId</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"httpSourceName": "(\.+)"</regex>
+	<order>httpSourceName</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"httpVersion": "(\.+)"</regex>
+	<order>httpVersion</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"nonTerminatingMatchingRules": "(\.+)"</regex>
+	<order>nonTerminatingMatchingRules</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"rateBasedRuleList": "(\.+)"</regex>
+	<order>rateBasedRuleList</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"requestId": "(\.+)"</regex>
+	<order>requestId</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"ruleGroupId": "(\.+)"</regex>
+	<order>ruleGroupId</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"ruleGroupList": "(\.+)"</regex>
+	<order>ruleGroupList</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"terminatingRule": "(\.+)"</regex>
+	<order>terminatingRule</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"terminatingRuleId": "(\.+)"</regex>
+	<order>terminatingRuleId</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"terminatingRuleMatchDetails": "(\.+)"</regex>
+	<order>terminatingRuleMatchDetails</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"terminatingRuleType": "(\.+)"</regex>
+	<order>terminatingRuleType</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"timestamp": "(\.+)"</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="aws-waf-fields">
+	<parent>aws-waf</parent>
+	<regex>"uri": "(\.+)"</regex>
+	<order>uri</order>
+</decoder>
+<!-- DEV-3979-->

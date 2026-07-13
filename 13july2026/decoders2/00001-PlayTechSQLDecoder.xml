@@ -1,0 +1,99 @@
+<decoder name="PlayTechSQL">
+	<prematch>{"PlayTechSQL":</prematch>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"SourceSystem":\s*"\s*(\.*)"|"SourceSystem":\s*(\.*)\s*</regex>
+	<order>systemName</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"TimeGenerated":\s*"\s*(\.*)"|"TimeGenerated":\s*(\.*)\s*</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"Computer":\s*"\s*(\.*)"|"Computer":\s*(\.*)\s*</regex>
+	<order>srcuser</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"ActionId_d":\s*"\s*(\.*)"|"ActionId_d":\s*(\.*)\s*</regex>
+	<order>actionID</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"Succeeded_b":\s*"\s*(\.*)"|"Succeeded_b":\s*(\.*)\s*</regex>
+	<order>isSucceeded</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"SessionId_d":\s*"\s*(\.*)"|"SessionId_d":\s*(\.*)\s*</regex>
+	<order>sessionId</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"DatabasePrincipalId_d":\s*"\s*(\.*)"|"DatabasePrincipalId_d":\s*(\.*)\s*</regex>
+	<order>databasePrincipalId_d</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"DatabasePrincipalId_d":\s*"\s*(\.*)"|"DatabasePrincipalId_d":\s*(\.*)\s*</regex>
+	<order>databasePrincipalId_d</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"ClassType_d":\s*"\s*(\.*)"|"ClassType_d":\s*(\.*)\s*</regex>
+	<order>classType</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"ClientIp_s":\s*"\s*(\.*)"|"ClientIp_s":\s*(\.*)\s*</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"ServerInstanceName_s":\s*"\s*(\.*)"|"ServerInstanceName_s":\s*(\.*)\s*</regex>
+	<order>serverInstanceName</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"DatabaseName_s":\s*"\s*(\.*)"|"DatabaseName_s":\s*(\.*)\s*</regex>
+	<order>databaseName</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"ClassTypeDescription_s":\s*"\s*(\.*)"|"ClassTypeDescription_s":\s*(\.*)\s*</regex>
+	<order>classTypeDescription</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"ActionName_s":\s*"\s*(\.*)"|"ActionName_s":\s*(\.*)\s*</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"ApplicationName_s":\s*"\s*(\.*)"|"ApplicationName_s":\s*(\.*)\s*</regex>
+	<order>applicationName</order>
+</decoder>
+
+<decoder name="PlayTechSQL-fields">
+	<parent>PlayTechSQL</parent>
+	<regex>"Type":\s*"\s*(\.*)"|"Type":\s*(\.*)\s*</regex>
+	<order>logType</order>
+</decoder>

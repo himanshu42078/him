@@ -1,0 +1,149 @@
+<decoder name="cohesity-json">
+	<program_name>cluster_audit</program_name>
+</decoder>
+
+
+<decoder name="cohesity-json-fields">
+	<parent>cohesity-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<decoder name="cohesity-json-fields">
+	<parent>cohesity-json</parent>
+	<regex>"User"\s*:\s*"(\.*)",</regex>
+	<order>usr</order>
+</decoder>
+
+<decoder name="cohesity-json-fields">
+	<parent>cohesity-json</parent>
+	<regex>"Action"\s*:\s*"(\.*)",</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="cohesity-json-fields">
+	<parent>cohesity-json</parent>
+	<regex>logged in from \\"(\.*)\\"|log in from \\"(\.*)\\"</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="cohesity-json-fields">
+	<parent>cohesity-json</parent>
+	<regex>failed with error: (\.*)"</regex>
+	<order>errorMsg</order>
+</decoder>
+
+
+
+<decoder name="cohesity-fss-json">
+	<program_name>filesystem_audit</program_name>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"Timestamp"\s*:\s*"(\.*)",</regex>
+	<order>eventTime</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"RecordID"\s*:\s*"(\.*)",</regex>
+	<order>recordID</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"Protocol"\s*:\s*"(\.*)",</regex>
+	<order>protocol</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"ClientIP"\s*:\s*"(\.*)",</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"UserName"\s*:\s*"(\.*)",</regex>
+	<order>dstuser</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"UserID"\s*:\s(\.*),</regex>
+	<order>userID</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"DomainName"\s*:\s*"(\.*)",</regex>
+	<order>domainName</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"UserSID"\s*:\s*"(\.*)",</regex>
+	<order>userSID</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"ViewName"\s*:\s*"(\.*)",</regex>
+	<order>viewName</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"ViewAliasName"\s*:\s*"(\.*)",</regex>
+	<order>viewAliasName</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"Fsid"\sid*:\s*(\.*),</regex>
+	<order>fsid</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"RequestType"\s*:\s*"(\.*)",</regex>
+	<order>requestType</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"EntityType"\s*:\s*"(\.*)",</regex>
+	<order>entityType</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"EntityPath"\s*:\s*"(\.*)",|"EntityPath"\s*:\s*"(\.*)"}</regex>
+	<order>entityPath</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"EntityInode"\s*:\s*(\.*),</regex>
+	<order>entityInode</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"InodeSizeBytes"\s*:\s*(\.*)|"InodeSizeBytes"\s*:\s*(\.*)}</regex>
+	<order>inodeSizeBytes</order>
+</decoder>
+
+<decoder name="cohesity-fss-json-fields">
+	<parent>cohesity-fss-json</parent>
+	<regex>"EntityType" : "File", "EntityPath" : "(\.*)", </regex>
+	<order>filename</order>
+</decoder>
+
+
+
+
+
+
+
+

@@ -1,0 +1,264 @@
+<!-- #######Operator Log Table start from here####### -->
+
+
+<decoder name="CountROperatorTable">
+	<prematch>"OperatorTable": {</prematch>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+	<regex offset="after_parent">"ErrorDescription":\s"(\.*)",</regex>
+	<order>errorDescription</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"description":\s"(\.*)",</regex>
+    <order>description</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"deviceClassCode":\s(\d+),</regex>
+    <order>deviceClassCode</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"errorCode":\s(\d+),</regex>
+    <order>errorCode</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"errorLevel":\s(\d+),</regex>
+    <order>errorLevel</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"errorSource":\s(\d+),</regex>
+    <order>errorSource</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>timestamp</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"logonStatus":\s(\w+),</regex>
+    <order>logonStatus</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"doorName":\s"(\.*)",</regex>
+    <order>doorName</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"idx":\s(\d+),</regex>
+    <order>idx</order>
+</decoder>
+
+<decoder name="CountROperatorTable-fields">
+	<parent>CountROperatorTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\w+)\.*}</regex>
+    <order>seqNo</order>
+</decoder>
+
+
+<!-- #######Change Log Table start from here####### -->
+
+
+<decoder name="CountRChangeLogTable">
+	<prematch>"ChangeLogTable": {</prematch>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+	<regex offset="after_parent">"ErrorDescription":\s"(\.*)",</regex>
+	<order>errorDescription</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"configKey":\s"(\.*)",</regex>
+    <order>configKey</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"dataType":\s(\d+),</regex>
+    <order>dataType</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"description":\s"(\.*)",</regex>
+    <order>description</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>timestamp</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"newValue":\s"(\.*)",</regex>
+    <order>newValue</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"oldValue":\s"(\.*)",</regex>
+    <order>oldValue</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"operatorID":\s(\d+),</regex>
+    <order>operatorID</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\w+),</regex>
+    <order>seqNo</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"specConfiguration":\s"(\.*)",</regex>
+    <order>specConfiguration</order>
+</decoder>
+
+<decoder name="CountRChangeLogTable-fields">
+	<parent>CountRChangeLogTable</parent>
+    <regex offset="after_parent">"terminalID":\s(\d+)\.+}</regex>
+    <order>terminalID</order>
+</decoder>
+
+
+<!-- #######Access Log Table start from here####### -->
+
+
+<decoder name="CountRAccessLogTable">
+	<prematch>"AccessLogTable": {</prematch>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+	<regex offset="after_parent">"ARTclient":\s"(\.*)",</regex>
+	<order>ARTclient</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+    <regex offset="after_parent">"ErrorDescription":\s"(\.*)",</regex>
+    <order>errorDescription</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+    <regex offset="after_parent">"accessBy":\s(\d+),</regex>
+    <order>accessBy</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+	<regex offset="after_parent">"accessDetails":\s"(\.*)",</regex>
+	<order>accessDetails</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+    <regex offset="after_parent">"accessLocation":\s(\d+),</regex>
+    <order>accessLocation</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+    <regex offset="after_parent">"accessState":\s(\d+),</regex>
+    <order>accessState</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>timestamp</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+    <regex offset="after_parent">"operatorID":\s(\d+),</regex>
+    <order>operatorID</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\d+),</regex>
+    <order>seqNo</order>
+</decoder>
+
+<decoder name="CountRAccessLogTable-fields">
+	<parent>CountRAccessLogTable</parent>
+    <regex offset="after_parent">"terminalID":\s(\d+)\.+}</regex>
+    <order>terminalID</order>
+</decoder>
+
+
+<!-- #######Error Log Table start from here####### -->
+
+
+<decoder name="CountRErrorTable">
+	<prematch>"ErrorTable": {</prematch>
+</decoder>
+
+<decoder name="CountRErrorTable-fields">
+	<parent>CountRErrorTable</parent>
+	<regex offset="after_parent">"ErrorDescription":\s"(\.*)",</regex>
+	<order>errorDescription</order>
+</decoder>
+
+<decoder name="CountRErrorTable-fields">
+	<parent>CountRErrorTable</parent>
+    <regex offset="after_parent">"errorCode":\s(\d+),</regex>
+    <order>errorCode</order>
+</decoder>
+
+<decoder name="CountRErrorTable-fields">
+	<parent>CountRErrorTable</parent>
+    <regex offset="after_parent">"errorType":\s(\d+),</regex>
+    <order>errorType</order>
+</decoder>
+
+<decoder name="CountRErrorTable-fields">
+	<parent>CountRErrorTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>timestamp</order>
+</decoder>
+
+<decoder name="CountRErrorTable-fields">
+	<parent>CountRErrorTable</parent>
+	<regex offset="after_parent">"doorName":\s"(\.*)",</regex>
+	<order>doorName</order>
+</decoder>
+
+<decoder name="CountRErrorTable-fields">
+	<parent>CountRErrorTable</parent>
+    <regex offset="after_parent">"idx":\s(\d+),</regex>
+    <order>idx</order>
+</decoder>
+
+<decoder name="CountRErrorTable-fields">
+	<parent>CountRErrorTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\w+)\.+}</regex>
+    <order>seqNo</order>
+</decoder>

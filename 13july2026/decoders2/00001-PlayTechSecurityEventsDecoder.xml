@@ -1,0 +1,11 @@
+<!-- Modify it at your will. -->
+
+
+<decoder name="PlayTechSecurityEvents">
+	<prematch>{"PlayTechSecurityEvents": {</prematch>
+</decoder>
+
+<decoder name="PlayTechSecurityEvents-fields">
+	<parent>PlayTechSecurityEvents</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>

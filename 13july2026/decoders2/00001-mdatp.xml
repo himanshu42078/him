@@ -1,0 +1,38 @@
+<!-- mdatp Decoder -->
+<decoder name="mdatp">
+	<prematch>{"mdatp"</prematch>
+</decoder>
+<decoder name="mdatp-fields">
+	<parent>mdatp</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="mdatp-fields">
+	<parent>mdatp</parent>
+	<regex>{"(mdatp)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="mdatp-fields">
+	<parent>mdatp</parent>
+	<regex>"IpAddress":\s*"(\d+.\d+.\d+.\d+)",</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="mdatp-fields">
+	<parent>mdatp</parent>
+	<regex>"UserName":\s*"(\.*)",</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="mdatp-fields">
+	<parent>mdatp</parent>
+	<regex>"AlertId":\s*"(\.*)",</regex>
+	<order>id</order>
+</decoder>
+<decoder name="mdatp-fields">
+	<parent>mdatp</parent>
+	<regex>"AlertTime":\s*"(\.*)",</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="mdatp-fields">
+	<parent>mdatp</parent>
+	<regex>"ComputerDnsName":\s*"(\.*)",</regex>
+	<order>system_name</order>
+</decoder>

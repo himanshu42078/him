@@ -1,0 +1,563 @@
+<!-- alicloud Decoder -->
+<decoder name="alicloud-json">
+	<prematch>{"alicloud"</prematch>
+</decoder>
+<!--
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"src_ip":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"dst_ip":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"UserId": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"src_port":\s*"(\d+)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"dst_port":\s*"(\d+)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"Id":\s*"(\S+)"</regex>
+	<order>id</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"ret_code":\s*"(\.*)"</regex>
+	<order>status</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"proto":\s*"(\.*)"</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"user_agent":\s*"(\.*)"</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"uri":\s*"(\.*)"</regex>
+	<order>url</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"rule_result":\s*"(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"loginSourceIp\\":\\"(\.*)\\"</regex>
+	<order>loginSourceIp</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"loginSourceIp\\":\\"(\.*)\\"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"loginDestinationPort\\":(\d*),</regex>
+	<order>loginDestinationPort</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"loginDestinationPort\\":(\d*),</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"loginUser\\":\\"(\.*)\\"</regex>
+	<order>loginUser</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"loginUser\\":\\"(\.*)\\"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"protocol\\":(\d*),</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"protocolName\\":\\"(\.*)\\"</regex>
+	<order>protocolName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"clientIp\\":\\"(\.*)\\"</regex>
+	<order>clientIp</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"loginTimes\\":(\d*),</regex>
+	<order>loginTimes</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"type\\":\\"(\.*)\\"</regex>
+	<order>type</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"displayEventName\\":\\"(\.*)\\"</regex>
+	<order>displayEventName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"status\\":(\d*)</regex>
+	<order>status</order>
+</decoder>
+
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>\\"cmdline\\":\\"(.*)\\",</regex>
+	<order>alicloud.commandline</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>\\"pcmdline\\":\\"(.*)\\",</regex>
+	<order>alicloud.parentCommandline</order>
+</decoder>
+
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"__topic__": "(\.*)"</regex>
+	<order>alicloud.__topic__</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"__source__": "(\.*)"</regex>
+	<order>alicloud.__source__</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"eventName": "(\.+)"</regex>
+	<order>alicloud.eventName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"eventTime": "(\.+)"</regex>
+	<order>alicloud.eventTime</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"eventTime": "(\.+)"</regex>
+	<order>eventTime</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"errorCode": "(\.+)"</regex>
+	<order>alicloud.errorCode</order>
+</decoder>
+
+<!-- userIdentity -->
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"userIdentity": {\.*"accountId": "(\.*)"</regex>
+	<order>alicloud.userIdentity.accountId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"userIdentity": {\.*"principalId": "(\.*)"</regex>
+	<order>alicloud.userIdentity.principalId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"userIdentity": {\.*"type": "(\.*)"</regex>
+	<order>alicloud.userIdentity.type</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"userIdentity": {\.*"userName": "(\.*)"</regex>
+	<order>alicloud.userIdentity.userName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"userIdentity": {\.*"userName": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+
+<!-- requestParameters -->
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"Comment": "(\.*)"</regex>
+	<order>alicloud.requestParameters.Comment</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"UserName": "(\.*)"</regex>
+	<order>alicloud.requestParameters.UserName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"InstanceId": "(\.*)"</regex>
+	<order>alicloud.requestParameters.InstanceId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"SourceUserId": "(\.*)"</regex>
+	<order>alicloud.requestParameters.SourceUserId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"MobileCountryCode": "(\.*)"</regex>
+	<order>alicloud.requestParameters.MobileCountryCode</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"ClientPort": (\d*),</regex>
+	<order>alicloud.requestParameters.ClientPort</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"TwoFactorStatus": "(\.*)"</regex>
+	<order>alicloud.requestParameters.TwoFactorStatus</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"Code": "(\.*)"</regex>
+	<order>alicloud.requestParameters.Code</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"Source": "(\.*)"</regex>
+	<order>alicloud.requestParameters.Source</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"AcsProduct": "(\.*)"</regex>
+	<order>alicloud.requestParameters.AcsProduct</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"DisplayName": "(\.*)"</regex>
+	<order>alicloud.requestParameters.DisplayName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"AcceptLanguage": "(\.*)"</regex>
+	<order>alicloud.requestParameters.AcceptLanguage</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"RegionId": "(\.*)"</regex>
+	<order>alicloud.requestParameters.RegionId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"RoleName": "(\.*)"</regex>
+	<order>alicloud.requestParameters.RoleName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"GroupName": "(\.*)"</regex>
+	<order>alicloud.requestParameters.GroupName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"PolicyName": "(\.*)"</regex>
+	<order>alicloud.requestParameters.PolicyName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"requestParameters": {\.*"PolicyType": "(\.*)"</regex>
+	<order>alicloud.requestParameters.PolicyType</order>
+</decoder>
+
+<!-- responseElements -->
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"responseElements": {\.*"RequestId": "(\.*)"</regex>
+	<order>alicloud.responseElements.RequestId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"responseElements": {\.*"UserId": "(\d*)"</regex>
+	<order>alicloud.responseElements.UserId</order>
+</decoder>
+
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"serviceName": "(\.*)"</regex>
+	<order>alicloud.serviceName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"sourceIpAddress": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"sourceIpAddress": "(\.+)"</regex>
+	<order>alicloud.sourceIpAddress</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"userAgent": "(\.*)"</regex>
+	<order>alicloud.userAgent</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"ip": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"url": "(\.+)"</regex>
+	<order>url</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"in_packet_bytes": "(\.+)"</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"out_packet_bytes": "(\.+)"</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"body_bytes_sent": "(\.+)"</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"domain": "(\.+)"</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"matched_host": "(\.+)"</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"http_user_agent": "(\.*)"</regex>
+	<order>user_agent</order>
+</decoder>
+
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"InstanceId": "(\.*)"</regex>
+	<order>alicloud.InstanceId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"accountId": "(\.*)"</regex>
+	<order>alicloud.accountId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"userName": "(\.*)"</regex>
+	<order>alicloud.userName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"RegionId": "(\.*)"</regex>
+	<order>alicloud.RegionId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"resourceName": "(\.*)"</regex>
+	<order>alicloud.resourceName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"eventType": "(\.*)"</regex>
+	<order>alicloud.eventType</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"principalId": "(\.*)"</regex>
+	<order>alicloud.principalId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>\\"pexe\\": \\"(\.*)\\",</regex>
+	<order>alicloud.pexe</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"risk_name": "(\.*)"</regex>
+	<order>alicloud.risk_name</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"level": "(\.*)"</regex>
+	<order>alicloud.level</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"op": "(\.*)"</regex>
+	<order>alicloud.op</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"alias_name": "(\.*)"</regex>
+	<order>alicloud.alias_name</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"name": "(\.*)"</regex>
+	<order>alicloud.name</order>
+</decoder>
+
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"internet_ip": "(\.*)",</regex>
+	<order>alicloud.internet_ip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"intranet_ip": "(\.*)",</regex>
+	<order>alicloud.intranet_ip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"detail": "{(\.*)}",</regex>
+	<order>alicloud.detail</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"stsTokenPrincipalName": "(\.*)",</regex>
+	<order>alicloud.stsTokenPrincipalName</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"ServiceCode": "(\.*)",</regex>
+	<order>alicloud.ServiceCode</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"accessKeyId": "(\.*)",</regex>
+	<order>alicloud.accessKeyId</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>\\"proc_cmd\\":\\"(\.*)\\",</regex>
+	<order>alicloud.proc_cmd</order>
+</decoder>
+
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"remote_addr": "(\.*)",</regex>
+	<order>alicloud.remote_addr</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"request_method": "(\.*)",</regex>
+	<order>alicloud.request_method</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"request_uri": "(\.*)",</regex>
+	<order>alicloud.request_uri</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"status": "(\.*)",</regex>
+	<order>alicloud.status</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"http_referer": "(\.*)",</regex>
+	<order>alicloud.http_referer</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"http_user_agent": "(\.*)",</regex>
+	<order>alicloud.http_user_agent</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"http_x_forwarded_for": "(\.*)",</regex>
+	<order>alicloud.http_x_forwarded_for</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"upstream_addr": "(\.*)",</regex>
+	<order>alicloud.upstream_addr</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"upstream_response_time": "(\.*)",</regex>
+	<order>alicloud.upstream_response_time</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"upstream_cache_status": "(\.*)",</regex>
+	<order>alicloud.upstream_cache_status</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"scheme": "(\.*)",</regex>
+	<order>alicloud.scheme</order>
+</decoder>
+
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"__tag__:__hostname__": "(\.*)"</regex>
+	<order>alicloud.__tag__:__hostname__</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"__tag__:__path__": "(\.*)"</regex>
+	<order>alicloud.__tag__:__path__</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"__tag__:__pack_id__": "(\.*)"</regex>
+	<order>alicloud.__tag__:__pack_id__</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"columns": {\.*"action": "(\.*)"</regex>
+	<order>alicloud.columns.action</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"columns": {\.*"category": "(\.*)"</regex>
+	<order>alicloud.columns.category</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"columns": {\.*"path": "(\.*)"</regex>
+	<order>alicloud.columns.path</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"columns": {\.*"target_path": "(\.*)"</regex>
+	<order>alicloud.columns.target_path</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"decorations": {\.*"host_uuid": "(\.*)"</regex>
+	<order>alicloud.decorations.host_uuid</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud-json</parent>
+	<regex>"decorations": {\.*"username": "(\.*)"</regex>
+	<order>alicloud.decorations.username</order>
+</decoder>

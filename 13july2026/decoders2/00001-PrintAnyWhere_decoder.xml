@@ -1,0 +1,124 @@
+<decoder name="PrintAnyWhere">
+    <type>ossec</type>
+    <prematch>"printQ":\s{</prematch>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"eventID":\s*"(\d+)",|"eventID":\s*(\d+),</regex>
+    <order>eventID</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"eventTime":\s*"(\.*)",</regex>
+    <order>timestamp</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"docName":\s*"(\.*)",|"docName":\s*(\.*),</regex>
+    <order>documentName</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"usrName":\s*"(\.*)"|"usrName":\s*(\.*)</regex>
+    <order>userName</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"usrID":\s*"(\.*)",|"usrID":\s*(\.*),</regex>
+    <order>userID</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"hostIP":\s*"(\.*)",</regex>
+    <order>hostIP</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"hostName":\s*"(\.*)",|"hostName":\s*(\.*),</regex>
+    <order>hostName</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"location":\s*"(\.*)",</regex>
+    <order>location</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"printStatus":\s*"(\.*)",</regex>
+    <order>printStatus</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"printTime":\s*"(\.*)",</regex>
+    <order>printTime</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"printerIP":\s*"(\.*)",</regex>
+    <order>printerIP</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"printerName":\s*"(\.*)"|"printerName":\s*(\.*),</regex>
+    <order>printerName</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"seqNo":\s(\.*),</regex>
+    <order>seqNo</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"totalPage":\s(\.*),</regex>
+    <order>quantityofTotalPrintedPage</order>
+</decoder>
+
+
+
+<decoder name="PrintAnyWhereFields">
+    <parent>PrintAnyWhere</parent>
+    <regex>"usageType":\s(\.*),</regex>
+    <order>usageType</order>
+</decoder>

@@ -1,0 +1,145 @@
+<!-- Modify it at your will. -->
+<decoder name="gcp-json">
+	<prematch>{"integration": "gcp", "gcp":</prematch>
+</decoder>
+<!--
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"project_id":"(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"insertId":"(\.*)"</regex>
+	<order>gcp.insertId</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"logName":"(\.*)"</regex>
+	<order>gcp.logName</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"severity":"(\.*)"</regex>
+	<order>gcp.severity</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"sourceIP":"(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"receiveTimestamp":"(\.*)"</regex>
+	<order>gcp.receiveTimestamp</order>
+</decoder>
+
+<!-- jsonPayload -->
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"responseCode":"(\.*)"</regex>
+	<order>gcp.jsonPayload.responseCode</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"vmInstanceName":"(\.*)"</regex>
+	<order>gcp.jsonPayload.vmInstanceName</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"message":"(\.*)"</regex>
+	<order>gcp.jsonPayload.message</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"sourceIP":"(\.*)"</regex>
+	<order>gcp.jsonPayload.sourceIP</order>
+</decoder>
+
+<!-- resource -->
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"type":"(\.*)"</regex>
+	<order>gcp.resource.type</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"project_id":"(\.*)"</regex>
+	<order>gcp.resource.labels.project_id</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"location":"(\.*)"</regex>
+	<order>gcp.resource.labels.location</order>
+</decoder>
+
+<!-- protoPayload -->
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"methodName":"(\.*)"</regex>
+	<order>gcp.protoPayload.methodName</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"principalEmail":"(\.*)"</regex>
+	<order>gcp.protoPayload.authenticationInfo.principalEmail</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"permission":"(\.*)"</regex>
+	<order>gcp.protoPayload.authenticationInfo.permission</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"request":{"@type":"(\.*)"</regex>
+	<order>gcp.protoPayload.request.type</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"resource":"(\.*)"</regex>
+	<order>gcp.protoPayload.authenticationInfo.resource</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"resourceName":"(\.*)"</regex>
+	<order>gcp.protoPayload.authenticationInfo.resourceName</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"serviceName":"(\.*)"</regex>
+	<order>gcp.protoPayload.serviceName</order>
+</decoder>
+
+<!-- metadata -->
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"metadata":{\.*"event":[{\.*"eventId":"(\.*)"</regex>
+	<order>gcp.protoPayload.metadata.event.eventId</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"metadata":{\.*"event":[{\.*"eventName":"(\.*)"</regex>
+	<order>gcp.protoPayload.metadata.event.eventName</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"metadata":{\.*"event":[{\.*"eventType":"(\.*)"</regex>
+	<order>gcp.protoPayload.metadata.event.eventType</order>
+</decoder>
+
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"requestMetadata":{\.*"callerIp":"(\.*)"</regex>
+	<order>gcp.protoPayload.requestMetadata.callerIp</order>
+</decoder>
+<decoder name="gcp-fields">
+	<parent>gcp-json</parent>
+	<regex>"requestMetadata":{\.*"callerIp":"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>

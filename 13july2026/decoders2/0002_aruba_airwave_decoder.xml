@@ -1,0 +1,15 @@
+<!-- DEV-729 -->
+<!-- Modify it at your will. -->
+<decoder name="aruba_airwave">
+	<program_name>astri-amp01.astri.local</program_name>
+</decoder>
+<decoder name="aruba_airwave-fields">
+	<parent>aruba_airwave</parent>
+	<regex>^(\.+)\tSystem\tSystem|^(\.+)\tSystem|^(\.+)\tt0eY1Rkry3|^(\.+);</regex>
+	<order>event</order>
+</decoder>
+<decoder name="aruba_airwave-fields">
+	<parent>aruba_airwave</parent>
+	<regex>Device\tID: (\S+)\t(\S+)\t(\.+)</regex>
+	<order>deviceID,srcip,devicename</order>
+</decoder>

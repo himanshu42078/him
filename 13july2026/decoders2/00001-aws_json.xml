@@ -1,0 +1,166 @@
+<!-- aws Decoder The purpose of this decoder is to obtain standardized field-->
+<decoder name="aws-json">
+	<prematch>{"integration": "aws", "aws":</prematch>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"source_ip_address":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"userName": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"arn": "arn:aws:sts::\d+:\S+/(\S+)/(\S+)",</regex>
+	<order>role,dstuser</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"userAgent":\s*"(\.*)"</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"s3bucket":\s*"(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<!--
+For OpenDNS - iplogs Aws
+{"integration": "aws", "aws": {"log_info": {"aws_account_alias": "", "log_file": "iplogs/2021-04-01/2021-04-01-08-20-fc87.csv.gz", "s3bucket": "lf-infra-opendns-log"}, "timestamp": "2021-04-01 08:26:42", "identity": "VNMLFL200005", "source_ip": "113.161.180.48", "source_port": "50498", "destination_ip": "49.51.20.85", "destination_port": "8080", "categories": "", "null": "Roaming Computers", "source": "cisco_umbrella"}}
+	-->
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"source_ip": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"source_port": "(\d+)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"destination_ip": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"destination_port": "(\d+)"</regex>
+	<order>dstport</order>
+</decoder>
+<!--
+For OpenDNS - iplogs Aws
+{"integration": "aws", "aws": {"log_info": {"aws_account_alias": "", "log_file": "dnslogs/2021-04-01/2021-04-01-08-30-fc87.csv.gz", "s3bucket": "lf-infra-opendns-log"}, "timestamp": "2021-04-01 08:39:48", "most_granular_identity": "TWN-HD 60.250.43.196/30", "identities": "TWN-HD 60.250.43.196/30", "internal_ip": "60.250.43.197", "external_ip": "60.250.43.197", "action": "Allowed", "query_type": "1 (A)", "response_code": "NOERROR", "domain": "skypedataprdcolwus08.cloudapp.net.", "categories": "Software/Technology,Business Services", "most_granular_identity_type": "Networks", "identity_types": "Networks", "blocked_categories": "", "source": "cisco_umbrella"}}
+	-->
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"domain": "\.*.(\w+.\w+).",|"domain": "(\w+.\w+).",</regex>
+	<order>url_sld</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"domain": "(\.*).",</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"internal_ip": "(\d+.\d+.\d+.\d+)",</regex>
+	<order>srcip</order>
+</decoder>
+<!-- For hkstp xdp logs-->
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"op_user_id":"(\w+)",</regex>
+	<order>op_user_id</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"user_id":"(\w+)"</regex>
+	<order>user_id</order>
+</decoder>
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>"init_upload":{"name":"(\w+)"</regex>
+	<order>xdp_upload_file</order>
+</decoder>
+
+<!--aws-waf-->
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "Connection", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.connection</order>
+</decoder>
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "Host", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.host</order>
+</decoder>
+
+<!--<decoder name="aws-fields">-->
+<!--	<parent>aws-json</parent>-->
+<!--	<regex>{"name": "Pragma", "value": "(\.+)"}</regex>-->
+<!--	<order>httpRequest.headers.pragma</order>-->
+<!--</decoder>-->
+
+<!--<decoder name="aws-fields">-->
+<!--	<parent>aws-json</parent>-->
+<!--	<regex>{"name": "Cache-Control", "value": "(\.+)"}</regex>-->
+<!--	<order>httpRequest.headers.cacheControl</order>-->
+<!--</decoder>-->
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "User-Agent", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.userAgent</order>
+</decoder>
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "accept", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.accept</order>
+</decoder>
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "accept-language", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.acceptLanguage</order>
+</decoder>
+
+<!--<decoder name="aws-fields">-->
+<!--	<parent>aws-json</parent>-->
+<!--	<regex>{"name": "Accept-Charset", "value": "(\.+)"}</regex>-->
+<!--	<order>httpRequest.headers.acceptCharset</order>-->
+<!--</decoder>-->
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "cookie", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.cookie</order>
+</decoder>
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "Accept-Encoding", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.acceptEncoding</order>
+</decoder>
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "Content-Length", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.contentLength</order>
+</decoder>
+
+<decoder name="aws-fields">
+	<parent>aws-json</parent>
+	<regex>{"name": "Content-Type", "value": "(\.+)"}</regex>
+	<order>httpRequest.headers.contentType</order>
+</decoder>

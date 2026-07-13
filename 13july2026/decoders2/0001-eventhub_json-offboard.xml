@@ -1,0 +1,44 @@
+<!-- eventhub Decoder very important notice. Will stop using this decoder once Ricoh is offboard.-->
+
+<decoder name="eventhub-json">
+	<prematch>{"eventhub"</prematch>
+</decoder>
+<decoder name="eventhub-fields">
+	<parent>eventhub-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="eventhub-fields">
+	<parent>eventhub-json</parent>
+	<regex>"ipAddress":\s*"(\d+.\d+.\d+.\d+)", "status"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="eventhub-fields">
+	<parent>eventhub-json</parent>
+	<regex>"clientIP":\s*"(\d+.\d+.\d+.\d+)",</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="eventhub-fields">
+	<parent>eventhub-json</parent>
+	<regex>"clientPort":\s*"(\d+)",</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="eventhub-fields">
+	<parent>eventhub-json</parent>
+	<regex>"userPrincipalName": "(\.*)",</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="eventhub-fields">
+	<parent>eventhub-json</parent>
+	<regex>"userAgent":\s*"(\.*)",</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="eventhub-fields">
+	<parent>eventhub-json</parent>
+	<regex>"resourceId":\s"(\.*)",</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="eventhub-fields">
+	<parent>eventhub-json</parent>
+	<regex>"targetResources": [{"id": "(\.*)", "displayName": "(\.*)", "type": "ServicePrincipal"</regex>
+	<order>eventhub.aad.targetResources.servicePrincipal.id,eventhub.aad.targetResources.servicePrincipal.displayName</order>
+</decoder>

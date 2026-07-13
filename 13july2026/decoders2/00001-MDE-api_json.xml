@@ -1,0 +1,272 @@
+<!-- Modify it at your will. -->
+<decoder name="mde-api-json">
+	<prematch>{"integration": "Wazuh-MDE", "mde":</prematch>
+</decoder>
+<!--
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"integration": "(\.*)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"id": "(\.*)"</regex>
+	<order>mde.id</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"investigationId": (\d*),</regex>
+	<order>mde.investigationId</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"incidentId": (\d*),</regex>
+	<order>mde.incidentId</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"severity": "(\.*)"</regex>
+	<order>mde.severity</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"status": "(\.*)"</regex>
+	<order>mde.status</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"investigationState": "(\.*)"</regex>
+	<order>mde.investigationState</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"detectionSource": "(\.*)"</regex>
+	<order>mde.detectionSource</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"detectorId": "(\.*)"</regex>
+	<order>mde.detectorId</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"category": "(\.*)"</regex>
+	<order>mde.category</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"threatFamilyName": "(\.*)"</regex>
+	<order>mde.threatFamilyName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"title": "(\.*)"</regex>
+	<order>mde.title</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"description": "(\.*)"</regex>
+	<order>mde.description</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"alertCreationTime": "(\.*)"</regex>
+	<order>mde.alertCreationTime</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"firstEventTime": "(\.*)"</regex>
+	<order>mde.firstEventTime</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"firstEventTime": "(\.*)"</regex>
+	<order>eventTime</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"lastEventTime": "(\.*)"</regex>
+	<order>mde.lastEventTime</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"lastUpdateTime": "(\.*)"</regex>
+	<order>mde.lastUpdateTime</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"machineId": "(\.*)"</regex>
+	<order>mde.machineId</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"computerDnsName": "(\.*)"</regex>
+	<order>mde.computerDnsName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"rbacGroupName": "(\.*)"</regex>
+	<order>mde.rbacGroupName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"aadTenantId": "(\.*)"</regex>
+	<order>mde.aadTenantId</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"mitreTechniques": [(\.*)],</regex>
+	<order>mde.mitreTechniques</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"loggedOnUsers": [{"accountName": "(\.*)"</regex>
+	<order>mde.loggedOnUsers.accountName</order>
+</decoder>
+
+<!-- evidence -->
+<!--
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"evidence": [(\.+)], "domains":</regex>
+	<order>mde.evidence</order>
+</decoder>
+-->
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"entityType": "(\.*)"</regex>
+	<order>mde.evidence.entityType</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"evidenceCreationTime": "(\.*)"</regex>
+	<order>mde.evidence.evidenceCreationTime</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"sha1": "(\.*)"</regex>
+	<order>mde.evidence.sha1</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"sha256": "(\.*)"</regex>
+	<order>mde.evidence.sha256</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"relatedUser": {"userName": "(\.*)"</regex>
+	<order>mde.relatedUser.userName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"fileName": "(\.*)"</regex>
+	<order>mde.evidence.fileName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"filePath": "(\.*)"</regex>
+	<order>mde.evidence.filePath</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"processId": (\d*),</regex>
+	<order>mde.evidence.processId</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"processCommandLine": "(\.*)",</regex>
+	<order>mde.evidence.processCommandLine</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"processCreationTime": "(\.*)"</regex>
+	<order>mde.evidence.processCreationTime</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"parentProcessId": (\d*),</regex>
+	<order>mde.evidence.parentProcessId</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"parentProcessCreationTime": "(\.*)"</regex>
+	<order>mde.evidence.parentProcessCreationTime</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"parentProcessFileName": "(\.*)"</regex>
+	<order>mde.evidence.parentProcessFileName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"parentProcessFilePath": "(\.*)"</regex>
+	<order>mde.evidence.parentProcessFilePath</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"accountName": "(\.*)"</regex>
+	<order>mde.evidence.accountName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"detectionStatus": "(\.*)"</regex>
+	<order>mde.evidence.detectionStatus</order>
+</decoder>
+
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"url": "(\.*)"</regex>
+	<order>mde.evidence.url</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"domainName": "(\.*)"</regex>
+	<order>mde.evidence.domainName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"userSid": "(\.*)"</regex>
+	<order>mde.evidence.userSid</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"aadUserId": "(\.*)"</regex>
+	<order>mde.evidence.aadUserId</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"userPrincipalName": "(\.*)"</regex>
+	<order>mde.evidence.userPrincipalName</order>
+</decoder>
+
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"link": "(\.*)"</regex>
+	<order>mde.link</order>
+</decoder>
+
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"computerDnsName": "(\.*)"</regex>
+	<order>edr_computerName</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"id": "(\.*)"</regex>
+	<order>edr_id</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"mitreTechniques":\.*"(\.*)"</regex>
+	<order>mitre_id</order>
+</decoder>
+<decoder name="mde-api-fields">
+	<parent>mde-api-json</parent>
+	<regex>"userPrincipalName": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>

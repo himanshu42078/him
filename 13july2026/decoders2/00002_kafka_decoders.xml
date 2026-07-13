@@ -1,0 +1,7 @@
+<decoder name="kafka">
+  <prematch>{"logcloud_archive"</prematch>
+</decoder>
+<decoder name="kafka_fields">
+  <parent>kafka</parent>
+  <plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>

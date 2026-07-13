@@ -1,0 +1,22 @@
+<!-- Modify it at your will. -->
+<decoder name="zscaler-zpa-json">
+	<prematch>{"LogTimestamp":</prematch>
+</decoder>
+<decoder name="zscaler-zpa-json">
+	<prematch>{"ModifiedTime":</prematch>
+</decoder>
+<decoder name="zscaler-zpa-fields">
+	<parent>zscaler-zpa-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<!-- DEV-5897 -->
+<decoder name="zscaler-zpa-fields">
+	<parent>zscaler-zpa-json</parent>
+    <regex>"PublicIP":\s*"(\d+.\d+.\d+.\d+)"</regex>
+    <order>srcip</order>
+</decoder>
+<decoder name="zscaler-zpa-fields">
+	<parent>zscaler-zpa-json</parent>
+    <regex>"Username":\s*"(\.+)"</regex>
+    <order>dstuser</order>
+</decoder>

@@ -1,0 +1,63 @@
+<!-- Modify it at your will. -->
+
+<!-- BirchStreet Decoder -->
+
+<decoder name="birchstreet">
+	<prematch>{"birchstreet": {</prematch>
+</decoder>
+
+
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<!-- Generic fields -->
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<regex>"Company ID":\s*(\.*),</regex>
+	<order>companyid</order>
+</decoder>
+
+<!-- Auth log fields -->
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<regex>"Login Name":\s*"(\.*)",</regex>
+	<order>username</order>
+</decoder>
+
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<regex>"Login Date":\s*"(\.*)",</regex>
+	<order>logintime</order>
+</decoder>
+
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<regex>"Remote Address":\s*"(\.*)",</regex>
+	<order>dstip</order>
+</decoder>
+
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<regex>"Logout Date":\s*"(\.*)",</regex>
+	<order>logouttime</order>
+</decoder>
+
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<regex>"Browser Name":\s*"(\.*)",</regex>
+	<order>broswername</order>
+</decoder>
+
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<regex>"Time Zone Offset":\s*(\d),</regex>
+	<order>timezone</order>
+</decoder>
+
+<decoder name="birchstreet-fields">
+	<parent>birchstreet</parent>
+	<regex>"Shortdate":\s*"(\.*)"</regex>
+	<order>shortdate</order>
+</decoder>

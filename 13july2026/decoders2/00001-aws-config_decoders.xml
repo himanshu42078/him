@@ -1,0 +1,268 @@
+<!-- Config -->
+<!--
+{"integration": "aws", "aws": {"log_info": {"aws_account_alias": "", "log_file": "sta/AWSLogs/823823241779/Config/ap-east-1/2023/5/11/ConfigHistory/823823241779_Config_ap-east-1_ConfigHistory_AWS::IAM::User_20230511T091542Z_20230511T091758Z_1.json.gz", "s3bucket": "wlab-aws-config-logs"}, "relatedEvents": [], "relationships": [], "configuration": {"path": "/", "userName": "sta-ses-smtp-alfresco", "userId": "AIDA37T5RCIZRSHSMWYG7", "arn": "arn:aws:iam::823823241779:user/sta-ses-smtp-alfresco", "createDate": "2023-05-11T09:13:47.000Z", "userPolicyList": {"policyName": "AmazonSesSendingAccess", "policyDocument": "%7B%0A%20%20%22Version%22%3A%20%222012-10-17%22%2C%0A%20%20%22Statement%22%3A%20%5B%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22Effect%22%3A%20%22Allow%22%2C%0A%20%20%20%20%20%20%22Action%22%3A%20%22ses%3ASendRawEmail%22%2C%0A%20%20%20%20%20%20%22Resource%22%3A%20%22%2A%22%0A%20%20%20%20%7D%0A%20%20%5D%0A%7D"}, "groupList": [], "attachedManagedPolicies": [], "tags": {"key": "InvokedBy", "value": "SESConsole"}}, "supplementaryConfiguration": {}, "tags": {"InvokedBy": "SESConsole"}, "configurationItemVersion": "1.3", "configurationItemCaptureTime": "2023-05-11T09:15:42.930Z", "configurationStateId": 1683796542930, "awsAccountId": "823823241779", "configurationItemStatus": "ResourceDiscovered", "resourceType": "AWS::IAM::User", "resourceId": "AIDA37T5RCIZRSHSMWYG7", "resourceName": "sta-ses-smtp-alfresco", "ARN": "arn:aws:iam::823823241779:user/sta-ses-smtp-alfresco", "awsRegion": "global", "availabilityZone": "Not Applicable", "configurationStateMd5Hash": "", "resourceCreationTime": "2023-05-11T09:13:47.000Z", "source": "config", "aws_account_id": "823823241779"}}
+-->
+<decoder name="aws-config">
+	<prematch>{"integration": "aws", "aws":\.+"source": "config"</prematch>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"integration": "(\.+)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"source": "(\.+)"</regex>
+	<order>aws.source</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"awsRegion": "(\.+)"</regex>
+	<order>aws.awsRegion</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"userName": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"configurationItemVersion": "(\.+)"</regex>
+	<order>aws.configurationItemVersion</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"configurationItemCaptureTime": "(\.+)"</regex>
+	<order>aws.configurationItemCaptureTime</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"configurationStateId": "(\.+)"</regex>
+	<order>aws.configurationStateId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"awsAccountId": "(\.+)"</regex>
+	<order>aws.awsAccountId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"configurationItemStatus": "(\.+)"</regex>
+	<order>aws.configurationItemStatus</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"resourceType": "(\.+)"</regex>
+	<order>aws.resourceType</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"resourceId": "(\.+)"</regex>
+	<order>aws.resourceId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"resourceName": "(\.+)"</regex>
+	<order>aws.resourceName</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"ARN": "(\.+)"</regex>
+	<order>aws.ARN</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"availabilityZone": "(\.+)"</regex>
+	<order>aws.availabilityZone</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"configurationStateMd5Hash": "(\.*)"</regex>
+	<order>aws.configurationStateMd5Hash</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"aws_account_id": "(\.+)"</regex>
+	<order>aws.aws_account_id</order>
+</decoder>
+
+<!-- log_info -->
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"s3bucket": "(\.+)"</regex>
+	<order>aws.log_info.s3bucket</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"s3bucket": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"log_file": "(\.*)"</regex>
+	<order>aws.log_info.log_file</order>
+</decoder>
+
+<!-- relationships -->
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"resourceId": "(\.*)"</regex>
+	<order>aws.relationships.resourceId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"resourceName": "(\.*)"</regex>
+	<order>aws.relationships.resourceName</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"resourceType": "(\.*)"</regex>
+	<order>aws.relationships.resourceType</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"name": "(\.*)"</regex>
+	<order>aws.relationships.name</order>
+</decoder>
+
+<!-- configuration -->
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"attachTime": "(\.*)"</regex>
+	<order>aws.configuration.attachment.attachTime</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"attachmentId": "(\.*)"</regex>
+	<order>aws.configuration.attachment.attachmentId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"deleteOnTermination": (\.*),</regex>
+	<order>aws.configuration.attachment.deleteOnTermination</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"deviceIndex": "(\d*)"</regex>
+	<order>aws.configuration.attachment.deviceIndex</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"networkCardIndex": "(\d*)"</regex>
+	<order>aws.configuration.attachment.networkCardIndex</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"instanceId": "(\.*)"</regex>
+	<order>aws.configuration.attachment.instanceId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"instanceOwnerId": "(\.*)"</regex>
+	<order>aws.configuration.attachment.instanceOwnerId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"status": "(\.*)"</regex>
+	<order>aws.configuration.attachment.status</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"availabilityZone": "(\.*)"</regex>
+	<order>aws.configuration.availabilityZone</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"description": "(\.*)"</regex>
+	<order>aws.configuration.description</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"macAddress": "(\.*)"</regex>
+	<order>aws.configuration.macAddress</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"macAddress": "(\.*)"</regex>
+	<order>aws.configuration.macAddress</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"networkInterfaceId": "(\.*)"</regex>
+	<order>aws.configuration.networkInterfaceId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"ownerId": "(\.*)"</regex>
+	<order>aws.configuration.ownerId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"privateDnsName": "(\.*)"</regex>
+	<order>aws.configuration.privateDnsName</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"privateIpAddress": "(\.*)"</regex>
+	<order>aws.configuration.privateIpAddress</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"requesterId": "(\.*)"</regex>
+	<order>aws.configuration.requesterId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"requesterManaged": (\S*),</regex>
+	<order>aws.configuration.requesterManaged</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"sourceDestCheck": (\S*),</regex>
+	<order>aws.configuration.sourceDestCheck</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"status": "(\.*)"</regex>
+	<order>aws.configuration.status</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"subnetId": "(\.*)"</regex>
+	<order>aws.configuration.subnetId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"vpcId": "(\.*)"</regex>
+	<order>aws.configuration.vpcId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"path": "(\.*)"</regex>
+	<order>aws.configuration.path</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"userName": "(\.*)"</regex>
+	<order>aws.configuration.userName</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"userId": "(\.*)"</regex>
+	<order>aws.configuration.userId</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"arn": "(\.*)"</regex>
+	<order>aws.configuration.arn</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"createDate": "(\.*)"</regex>
+	<order>aws.configuration.createDate</order>
+</decoder>
+<decoder name="aws-config-fields">
+	<parent>aws-config</parent>
+	<regex>"userPolicyList": {"policyName": "(\.*)"</regex>
+	<order>aws.configuration.userPolicyList.policyName</order>
+</decoder>

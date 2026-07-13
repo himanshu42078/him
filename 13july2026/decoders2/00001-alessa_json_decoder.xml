@@ -1,0 +1,46 @@
+<!-- Modify it at your will. -->
+
+<!-- alessa Decoder -->
+
+<decoder name="alessa">
+	<prematch>{"alessa": {</prematch>
+</decoder>
+
+<decoder name="alessa-fields">
+	<parent>alessa</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+
+<decoder name="alessa-fields">
+	<parent>alessa</parent>
+	<regex>"AuditDate":\s*"(\.*)",</regex>
+	<order>recordtimestamp</order>
+</decoder>
+
+
+
+<decoder name="alessa-fields">
+	<parent>alessa</parent>
+	<regex>"SystemUserName":\s*"(\.*)",</regex>
+	<order>sysname</order>
+</decoder>
+
+<decoder name="alessa-fields">
+	<parent>alessa</parent>
+	<regex>"PrimaryKey1ObjectName":\s*"(\.*)",</regex>
+	<order>objectname</order>
+</decoder>
+
+<decoder name="alessa-fields">
+	<parent>alessa</parent>
+	<regex>"ColumnName":\s*"(\.*)",</regex>
+	<order>columnname</order>
+</decoder>
+
+<decoder name="alessa-fields">
+	<parent>alessa</parent>
+	<regex>"OldValue":\s*"(\.*)",</regex>
+	<order>oldvalue</order>
+</decoder>
+

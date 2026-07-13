@@ -1,0 +1,63 @@
+<!-- Modify it at your will. -->
+
+<!-- Trustifi Decoder -->
+
+<decoder name="trustifi">
+	<prematch>{"trustifi": {</prematch>
+</decoder>
+
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<!-- Malicious email fields -->
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<regex>\.*senderMailFrom":\s*"(\.*)"</regex>
+	<order>srcuser</order>
+</decoder>
+
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<regex>"mailbox_email":\s*"(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<regex>\.*ipAddresses":\s*"(\.*)",</regex>
+	<order>srcip</order>
+</decoder>
+
+
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<regex>\.*created":\s*"(\.*)",</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<regex>\.*resHead\.*message":\s*"(\.*)",</regex>
+	<order>headmessage</order>
+</decoder>
+
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<regex>\.*resHash\.*message":\s*"(\.*)",</regex>
+	<order>hashmessage</order>
+</decoder>
+
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<regex>"mailbox_email":\s*"(\.*)"</regex>
+	<order>mailbox</order>
+</decoder>
+
+<decoder name="trustifi-fields">
+	<parent>trustifi</parent>
+	<regex>\.*isMalicious":\s*(\.*),</regex>
+	<order>isMalicious</order>
+</decoder>
+

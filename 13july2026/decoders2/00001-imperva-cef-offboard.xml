@@ -1,0 +1,704 @@
+<!-- DEV-364 -->
+<decoder name="imperva_cef">
+	<program_name>CEF</program_name>
+	<prematch>^0\|Imperva Inc</prematch>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>SecureSphere\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>version, eventId, description, severity</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>Attack Analytics\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>version, eventId, description, severity</order>
+</decoder>
+
+<!-- FROM GTJAS SFTP -->
+<decoder name="imperva_cef">
+        <prematch>^CEF:0\|Incapsula\|SIEMintegration\|\d+\|\d+\|\.+\|\d+\|</prematch>
+</decoder>
+<decoder name="imperva_fields">
+        <parent>imperva_cef</parent>
+        <regex>^CEF:0\|Incapsula\|SIEMintegration\|(\d+)\|(\d+)\|(\.+)\|(\d+)\|</regex>
+        <order>version, eventId, description, severity</order>
+</decoder>
+<!-- FROM GTJAS SFTP -->
+
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>msg=(\.+)  start=</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>start=(\S+)</regex>
+	<order>start</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>end=(\S+)</regex>
+	<order>end</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>dhost=(\S+)</regex>
+	<order>dsthost</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>request=(\S+)</regex>
+	<order>imperva.request</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>requestClientApplication=(\S+)</regex>
+	<order>imperva.requestClientApplication</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs1=(\.+) cs1Label=(\S+)</regex>
+	<order>imperva.cs1,imperva.cs1Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs2=(\.+) cs2Label=(\S+)</regex>
+	<order>imperva.cs2,imperva.cs2Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs3=(\.+) cs3Label=(\S+)</regex>
+	<order>imperva.cs3,imperva.cs3Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs4=(\.+) cs4Label=(\S+)</regex>
+	<order>imperva.cs4,imperva.cs4Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs5=(\.+) cs5Label=(\S+)</regex>
+	<order>imperva.cs5,imperva.cs5Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs6=(\.+) cs6Label=(\S+)</regex>
+	<order>imperva.cs6,imperva.cs6Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs7=(\.+) cs7Label=(\S+)</regex>
+	<order>imperva.cs7,imperva.cs7Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs8=(\.+) cs8Label=(\S+)</regex>
+	<order>imperva.cs8,imperva.cs8Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs9=(\.+) cs9Label=(\S+)</regex>
+	<order>imperva.cs9,imperva.cs9Label</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>(Imperva)</regex>
+	<order>product</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>act=(\.*)\s</regex>
+	<order>action</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>act=(\.*)\s</regex>
+	<order>imperva.action</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>app=(\S+)\s</regex>
+	<order>imperva.app</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>dst=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>src=(\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>dpt=(\d+)\s</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>spt=(\d+)\s</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>duser=(\S+)\s</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>suser=(\S+)\s</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>proto=(\S+)\s</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>rt=(\.+)\s\S+=</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cat=(\.+)\s</regex>
+	<order>category</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs1=(\.+)\scs1Label=Policy</regex>
+	<order>policy</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs2=(\.+)\scs2Label=ServerGroup</regex>
+	<order>server_group</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs3=(\.+)\scs3Label=Description</regex>
+	<order>description</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs3=(\.+)\scs3Label=Description</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs4=(\.+)\scs4Label=ServiceName</regex>
+	<order>service_name</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>cs5=(\.+)\scs5Label=ApplicationName</regex>
+	<order>application_name</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>requestMethod=(\S+)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>requestHost=(\S+)</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>url=(\S+)</regex>
+	<order>url</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>responseCode=(\S+)</regex>
+	<order>status</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>User-Agent==(\.+);;;</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>Referer==(\.+);;;</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>X-Forwarded-For==(\.+);;;</regex>
+	<order>xff</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>Cookie==(\.+);;;</regex>
+	<order>cookie</order>
+</decoder>
+<decoder name="imperva_fields">
+	<parent>imperva_cef</parent>
+	<regex>Content-Length==(\.+);;;</regex>
+	<order>content_length</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs1=(\S+)</regex>
+	<order>imperva.cs1</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs1Label=(\S+)</regex>
+	<order>imperva.cs1Label</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs2=(\S+)</regex>
+	<order>imperva.cs2</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs2Label=(\S+)</regex>
+	<order>imperva.cs2Label</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs3=(\.+) cs3Label=(\S+)</regex>
+	<order>imperva.cs3,imperva.cs3Label</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>deviceExternalId=(\S+)</regex>
+	<order>imperva.deviceExternalId</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs4=(\S+)</regex>
+	<order>imperva.cs4</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs4Label=(\S+)</regex>
+	<order>imperva.cs4Label</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs5=(\.+) cs5Label=(\S+)</regex>
+	<order>imperva.cs5,imperva.cs5Label</order>
+</decoder>
+
+<!-- cs5 -->
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"thr-services"\\="(\S*)"</regex>
+	<order>imperva.thr-services</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"simulation-mode"\\="(\S+)"</regex>
+	<order>imperva.simulation-mode</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"client-type"\\="(\S*)"</regex>
+	<order>imperva.client-type</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"bot-classification"\\="(\S*)"</regex>
+	<order>imperva.bot-classification</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"is-soap"\\="(\S+)"</regex>
+	<order>imperva.is-soap</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"soap-action"\\="(\S*)"</regex>
+	<order>imperva.soap-action</order>
+</decoder>
+
+<!-- End of cs5 -->
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>\s+externalId=(\S+)</regex>
+	<order>imperva.externalId</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>reason=(\S+)</regex>
+	<order>imperva.reason</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>requestMethod=(\S+) </regex>
+	<order>imperva.requestMethod</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>flexString2Label=(\S+)</regex>
+	<order>imperva.flexString2Label</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>flexString2=(\S+)</regex>
+	<order>imperva.flexString2</order>
+</decoder>
+
+<!--flexString2 -->
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"response-size"\\="(\.*)"</regex>
+	<order>imperva.response-size</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"response-time"\\="(\.*)"</regex>
+	<order>imperva.response-time</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"response-code"\\="(\.*)"</regex>
+	<order>imperva.response-code</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"http-version"\\="(\.*)"</regex>
+	<order>imperva.http-version</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"session-id"\\="(\.*)"</regex>
+	<order>imperva.session-id</order>
+</decoder>
+
+<!-- End of flexString2 -->
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>cs6Label=(\S+) cs6=(\.+) request=</regex>
+	<order>imperva.cs6Label,imperva.cs6</order>
+</decoder>
+
+<!-- cs6 -->
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"signature-pattern"\\=(\S*) "part</regex>
+	<order>imperva.signature-pattern</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"simulation-mode"\\="(\.+)"</regex>
+	<order>imperva.simulation-mode</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"part\\=\\\\"(\.+)""</regex>
+	<order>imperva.part</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"pattern-id"\\= "(\.+)"</regex>
+	<order>imperva.pattern-id</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"position"\\= "(\.+)"</regex>
+	<order>imperva.position</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"location"\\= "(\.*)"</regex>
+	<order>imperva.location</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"policy-id"\\= "(\.*)"</regex>
+	<order>imperva.policy-id</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"dictionary-id"\\= "(\.*)"</regex>
+	<order>imperva.dictionary-id</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"matched-text"\\= "(\.*)"</regex>
+	<order>imperva.matched-text</order>
+</decoder>
+
+<!-- End of cs6 -->
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>request=(\S+)</regex>
+	<order>imperva.request</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>requestClientApplication=(\.+) flexString1Label=</regex>
+	<order>imperva.requestClientApplication</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>flexString1Label=(\S+)</regex>
+	<order>imperva.flexString1Label</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>flexString1=(\.+)</regex>
+	<order>imperva.flexString1</order>
+</decoder>
+
+<!-- flexString1 -->
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"ajaxUpdateAreaIds"\\="(\.+)",</regex>
+	<order>imperva.ajaxUpdateAreaIds</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"validationScope"\\="(\.+)"</regex>
+	<order>imperva.validationScope</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"param1"\\="(\.*)"</regex>
+	<order>imperva.param1</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"param2"\\="(\.*)"</regex>
+	<order>imperva.param2</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"param3"\\="(\.*)"</regex>
+	<order>imperva.param3</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"param4"\\="(\.*)"</regex>
+	<order>imperva.param4</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"param5"\\="(\.*)"</regex>
+	<order>imperva.param5</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"xpos"\\="(\.*)"</regex>
+	<order>imperva.xpos</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"ypos"\\="(\.*)"</regex>
+	<order>imperva.ypos</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"__componentstate__"\\="(\.*)"</regex>
+	<order>imperva.componentstate</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"accessToken"\\="(\.*)"</regex>
+	<order>imperva.accessToken</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"__pagevalue__\S+_preferences"\\="(\.*)"</regex>
+	<order>imperva.pagevaluePreferences</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"__pagevalue__\S+_page"\\="(\.*)"</regex>
+	<order>imperva.pagevaluePage</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"screenState"\\="(\S+)</regex>
+	<order>imperva.screenState</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Host"\\="(\S+)"</regex>
+	<order>imperva.host</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Connection"\\="(\S+)"</regex>
+	<order>imperva.connection</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Content-Length"\\="(\S+)"</regex>
+	<order>imperva.contentLength</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Cache-Control"\\="(\.*)"</regex>
+	<order>imperva.cacheControl</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"sec-ch-ua"\\="(\.*)", "sec-ch-ua-mobile"</regex>
+	<order>imperva.sec-ch-ua</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"sec-ch-ua-mobile"\\="(\.*)"</regex>
+	<order>imperva.sec-ch-ua-mobile</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"sec-ch-ua-platform"\\=""(\.*)""</regex>
+	<order>imperva.sec-ch-ua-platform</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Upgrade-Insecure-Requests"\\="(\.*)"</regex>
+	<order>imperva.Upgrade-Insecure-Requests</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Origin"\\="(\.*)"</regex>
+	<order>imperva.origin</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Content-Type"\\="(\.*)"</regex>
+	<order>imperva.contentType</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"User-Agent"\\="(\.*)"</regex>
+	<order>imperva.userAgent</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Accept"\\="(\.*)"</regex>
+	<order>imperva.accept</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Sec-Fetch-Site"\\="(\.*)"</regex>
+	<order>imperva.Sec-Fetch-Site</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Sec-Fetch-Mode"\\="(\.*)"</regex>
+	<order>imperva.Sec-Fetch-Mode</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Sec-Fetch-User"\\="(\.*)"</regex>
+	<order>imperva.Sec-Fetch-User</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Sec-Fetch-Dest"\\="(\.*)"</regex>
+	<order>imperva.Sec-Fetch-Dest</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Referer"\\="(\.*)"</regex>
+	<order>imperva.referer</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Accept-Encoding"\\="(\.*)"</regex>
+	<order>imperva.acceptEncoding</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Accept-Language"\\="(\.*)",</regex>
+	<order>imperva.acceptLanguage</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>"Cookie"\\="(\.*)" requestCookies=</regex>
+	<order>imperva.cookie</order>
+</decoder>
+
+<decoder name="imperva-field">
+	<parent>imperva_cef</parent>
+	<regex>requestCookies="(\.*)"</regex>
+	<order>imperva.requestCookies</order>
+</decoder>
+
+<!-- End of flexString1 -->

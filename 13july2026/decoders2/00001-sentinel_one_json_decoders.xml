@@ -1,0 +1,17 @@
+<decoder name="sentinelOne-json">
+	<prematch>{"sentinel_one": {</prematch>
+</decoder>
+<decoder name="sentinelOne-fields">
+	<parent>sentinelOne-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="sentinelOne-fields">
+	<parent>sentinelOne-json</parent>
+	<regex>"threatName": "(\.*)", "updatedAt"</regex>
+	<order>description</order>
+</decoder>
+<decoder name="sentinelOne-fields">
+	<parent>sentinelOne-json</parent>
+	<regex>"id": "(\d+)",</regex>
+	<order>id</order>
+</decoder>

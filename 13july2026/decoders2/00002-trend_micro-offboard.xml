@@ -1,0 +1,415 @@
+
+<decoder name="trendMicro">
+	<prematch>0\|Trend Micro</prematch>
+	<program_name>CEF</program_name>
+</decoder>
+
+<!--
+Oct 13 16:22:25 DDDWGT01 CEF: 0|Trend Micro|Deep Discovery Director|5.0.0.1151|554|Successful log on to MSSQL service|2|dvc=10.116.27.111 dvcmac=E4:43:4B:87:B8:5C dvchost=DDIGDR01 deviceExternalId=65AD3823DFF8-43169E0A-30D0-90F5-0D46 rt=Oct 13 2021 08:19:00 GMT+00:00 app=MSSQL deviceDirection=1 dhost=gdrcoppitnbgs20 dst=10.116.36.104 dpt=55920 dmac=e4:a4:71:80:f0:7f shost=10.116.7.221 src=10.116.7.221 spt=1433 smac=84:b8:02:5a:01:80 fileType=-65536 fsize=0 act=not blocked cn3Label=Threat Type cn3=2 destinationTranslatedAddress=10.116.36.104 sourceTranslatedAddress=10.116.7.221 cnt=4 cat=Authentication cs6Label=pAttackPhase cs6=Asset and Data Discovery flexNumber1Label=vLANId flexNumber1=4095 devicePayloadId=2:5083573:
+-->
+<!--
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>\d+\|(\S+)\|(\S+)\|(\S+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>location, product, version, event,description,severity</order>
+</decoder>
+-->
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cat=(\.+) \S+=</regex>
+	<order>cat</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>reason=(\.+) \S+=</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cs1=(\S+)</regex>
+	<order>cs1</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cs1Label=(\.+) \S+=</regex>
+	<order>cs1Label</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cs2=(\S+)</regex>
+	<order>cs2</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cs2Label=(\.+) \S+=</regex>
+	<order>cs2Label</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>externalId=(\d+)</regex>
+	<order>externalId</order>
+</decoder>
+<!--
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>rt=(\.+) dvc</regex>
+	<order>trendmicro.rt</order>
+</decoder>
+-->
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>rt=(\.+) \S+=</regex>
+	<order>trendmicro.rt</order>
+</decoder>
+<!--
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>deviceFacility=(\.+) src</regex>
+	<order>trendmicro.deviceFacility</order>
+</decoder>
+-->
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>deviceFacility=(\.+) \S+=</regex>
+	<order>trendmicro.deviceFacility</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>dvchost=(\S+)</regex>
+	<order>trendmicro.dvchost</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>smac=(\S+)</regex>
+	<order>smac</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>dmac=(\S+)</regex>
+	<order>dmac</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>spt=(\S+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>dpt=(\S+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cn2Label=Mode cn2=(\S+)</regex>
+	<order>mode</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>deviceDirection=(\S+)</regex>
+	<order>deviceDirection</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cn3Label=Priority cn3=(\S+)</regex>
+	<order>priority</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cn4Label=Severity cn4=(\S+)</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>proto=(\S+)</regex>
+	<order>proto</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cs2Label=Application_Type cs2=(\S+)</regex>
+	<order>appType</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cn1Label=Rule cn1=(\S+)</regex>
+	<order>rule</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cs1Label=Reason/Rule cs1=(\.+) cnt</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>deviceNtDomain=(\S+)</regex>
+	<order>deviceNtDomain</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>dntdom=(\S+)</regex>
+	<order>dntdom</order>
+</decoder>
+
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>duser=(\S+)</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>dvc=(\S+)</regex>
+	<order>trendmicro.dvc</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>dhost=(\S+)</regex>
+	<order>trendmicro.dhost</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>flexString1=(\S+)</regex>
+	<order>flexString1</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>flexString1Label=(\.+) \S+=</regex>
+	<order>flexString1Label</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>c6a1=(\S+)</regex>
+	<order>c6a1</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>c6a1Label=(\.+) \S+=</regex>
+	<order>c6a1Label</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>deviceExternalId=(\S+)</regex>
+	<order>deviceExternalId</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>shost=(\S+)</regex>
+	<order>shost</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>fileHash=(\S+)</regex>
+	<order>fileHash</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>filePath=(\S+)</regex>
+	<order>filePath</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cs3Label="Link"" cs3="(\S+)"</regex>
+	<order>url</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>cs4Label="Threat_ID" cs4="(\S+)"</regex>
+	<order>trendmicro.threadId</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>deviceprocessname=(\S+)</regex>
+	<order>trendmicro.deviceprocessname</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>act=(\S+)</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>suser=(\S+)</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>target=(\S+)</regex>
+	<order>trendMicro.target</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>targetID=(\S+)</regex>
+	<order>trendMicro.targetID</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>targetType=(\S+)</regex>
+	<order>trendMicro.targetType</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>msg=(\.+) \S+=</regex>
+	<order>trendMicro.msg</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsTags=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsTags</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsTenant=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsTenant</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsTenantId=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsTenantId</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsReasonId=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsReasonId</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>filePath=(\.+) \S+=</regex>
+	<order>trendMicro.filePath</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>result=(\S+)</regex>
+	<order>trendMicro.result</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsBehaviorRuleID=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsBehaviorRuleID</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsBehaviorType=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsBehaviorType</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsMalwareTarget=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsMalwareTarget</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsMalwareTargetCount=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsMalwareTargetCount</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsMalwareType=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsMalwareType</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsProcess=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsDsProcess</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsFileMD5=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsFileMD5</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsFileSHA1=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsFileSHA1</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsFileSHA256=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsFileSHA256</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsDetectionConfidence=(\d+)</regex>
+	<order>trendMicro.TrendMicroDsDetectionConfidence</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsRelevantDetectionNames=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsRelevantDetectionNames</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsCommandLine=(\.+) \S+=</regex>
+	<order>trendMicro.TrendMicroDsCommandLine</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsCve=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsCve</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsMitre=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsMitre</order>
+</decoder>
+
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>aggregationType=(\d+)</regex>
+	<order>trendMicro.aggregationType</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>repeatCount=(\d+)</regex>
+	<order>trendMicro.repeatCount</order>
+</decoder>
+
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsFrameType=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsFrameType</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>TrendMicroDsPacketData=(\S+)</regex>
+	<order>trendMicro.TrendMicroDsPacketData</order>
+</decoder>
+
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>sproc=(\.+) \S+=</regex>
+	<order>trendMicro.sproc</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>oldfilePath=(\.+) \S+=</regex>
+	<order>trendMicro.oldfilePath</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>xff=(\S+)</regex>
+	<order>trendMicro.xff</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>in=(\d+)</regex>
+	<order>trendMicro.in</order>
+</decoder>
+<decoder name="trendMicro_fields">
+	<parent>trendMicro</parent>
+	<regex>out=(\d+)</regex>
+	<order>trendMicro.out</order>
+</decoder>

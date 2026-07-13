@@ -1,0 +1,18 @@
+<!-- cortex_mgmt_audit Decoder -->
+<decoder name="cortex_mgmt_audit-json">
+	<prematch>{"cortex_management_audit_log"</prematch>
+</decoder>
+<decoder name="cortex_mgmt_audit-fields">
+	<parent>cortex_mgmt_audit-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="cortex_mgmt_audit-fields">
+	<parent>cortex_mgmt_audit-json</parent>
+	<regex>"AUDIT_OWNER_EMAIL": "(\S+)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="cortex_mgmt_audit-fields">
+	<parent>cortex_mgmt_audit-json</parent>
+	<regex>Source IP: (\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>

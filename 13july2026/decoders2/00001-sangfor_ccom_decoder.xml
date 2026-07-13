@@ -1,0 +1,35 @@
+<!-- Modify it at your will. -->
+<decoder name="sangfor-ccom-json">
+  <prematch>!secevent</prematch>
+  <program_name/>
+</decoder>
+<decoder name="sangfor-ccom-json-fields">
+  <parent>sangfor-ccom-json</parent>
+  <prematch offset="after_parent">\|!\d+.\d+.\d+.\d+\|!</prematch>
+  <plugin_decoder offset="after_prematch">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="sangfor-ccom-json-fields">
+	<parent>sangfor-ccom-json</parent>
+	<regex>"src_ip": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="sangfor-ccom-json-fields">
+	<parent>sangfor-ccom-json</parent>
+	<regex>"src_port": "(\d*)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="sangfor-ccom-json-fields">
+	<parent>sangfor-ccom-json</parent>
+	<regex>"dst_ip": "(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="sangfor-ccom-json-fields">
+	<parent>sangfor-ccom-json</parent>
+	<regex>"dst_port": "(\d*)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="sangfor-ccom-json-fields">
+	<parent>sangfor-ccom-json</parent>
+	<regex>\|!secevent\|!(\.*)\|</regex>
+	<order>logsource</order>
+</decoder>

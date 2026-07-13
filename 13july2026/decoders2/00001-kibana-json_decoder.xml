@@ -1,0 +1,24 @@
+<!-- Modify it at your will. -->
+
+<!-- Kibana Decoder -->
+
+<decoder name="kibanaJson">
+	<prematch>kibanaJson:</prematch>
+	<plugin_decoder offset="after_prematch">JSON_Decoder</plugin_decoder>
+</decoder>
+
+
+<decoder name="kibanaJson">
+	<prematch>kibanaJson:</prematch>
+	<plugin_decoder offset="after_prematch">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<decoder name="elasticAuth">
+	<prematch>\.*\pINFO\s\p+\po\pe\px\ps\pa\pRealmsAuthenticator\p\.*Authentication</prematch>
+</decoder>
+
+<decoder name="elasticAuth-fields">
+	<parent>elasticAuth</parent>
+	<regex>authenticate user\s\p(\.*)\p</regex>
+	<order>user</order>
+</decoder>

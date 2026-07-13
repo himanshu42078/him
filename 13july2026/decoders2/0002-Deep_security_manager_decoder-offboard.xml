@@ -1,0 +1,59 @@
+<!-- DEV-677 -->
+
+<decoder name="deepSecurityManager">
+	<prematch>Deep Security Manager</prematch>
+	<program_name>CEF</program_name>
+</decoder>
+<decoder name="deepSecurityManager">
+	<prematch>CEF:0\|Trend Micro\|Deep Security Manager</prematch>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>suser=(\S+)</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>target=(\S+)</regex>
+	<order>deepSecurityManager.target</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>targetID=(\S+)</regex>
+	<order>deepSecurityManager.target.id</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>targetType=(\S+)</regex>
+	<order>deepSecurityManager.target.type</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>msg=(\.+) TrendMicroDsTenant</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>TrendMicroDsTags=(\.+) TrendMicroDsTenant</regex>
+	<order>deepSecurityManager.tags</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>TrendMicroDsTenant=(\S+)</regex>
+	<order>deepSecurityManager.tenant.name</order>
+</decoder>
+<decoder name="deepSecurityManager_fields">
+	<parent>deepSecurityManager</parent>
+	<regex>TrendMicroDsTenantId=(\S+)</regex>
+	<order>deepSecurityManager.tenant.id</order>
+</decoder>

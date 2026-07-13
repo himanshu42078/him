@@ -1,0 +1,103 @@
+<!-- Modify it at your will. -->
+<decoder name="menlo-json">
+	<prematch>{"integration": "Wazuh-Menlo", "menlo":</prematch>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"x-client-ip":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"src_ip":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"src_port":\s*"(\d+)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"userid": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"uid": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"dst":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"dst_ip":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"dest_ips":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"dst_from_port":\s*"(\d+)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"protocol":\s*"(\.*)"</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"response_code":\s*"(\.*)"</regex>
+	<order>status</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"user-agent":\s*"(\.*)"</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"src_url":\s*"(\.*)"</regex>
+	<order>url</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"url":\s*"(\.*)"</regex>
+	<order>url</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"event_id":\s*"(\.*)"</regex>
+	<order>id</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"request_type":\s*"(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"audit_actions":\s*"(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"http_method":\s*"(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="menlo-fields">
+	<parent>menlo-json</parent>
+	<regex>"domain":\s*"(\.*)"</regex>
+	<order>url_domain</order>
+</decoder>

@@ -1,0 +1,23 @@
+<!-- Modify it at your will. -->
+<decoder name="snowflake-json">
+	<prematch>{"snowflake_json":{</prematch>
+</decoder>
+<decoder name="snowflake-json-fields">
+	<parent>snowflake-json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="snowflake-json-fields">
+	<parent>snowflake-json</parent>
+	<regex>"CLIENT_IP": "(\.+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="snowflake-json-fields">
+	<parent>snowflake-json</parent>
+	<regex>"USER_NAME": "(\.+)"</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="snowflake-json-fields">
+	<parent>snowflake-json</parent>
+	<regex>"EVENT_TYPE": "(\.+)"</regex>
+	<order>action</order>
+</decoder>

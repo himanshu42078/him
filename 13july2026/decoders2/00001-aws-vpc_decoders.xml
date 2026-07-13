@@ -1,0 +1,104 @@
+<!-- VPC -->
+<!--
+{"integration": "aws", "aws": {"log_info": {"aws_account_alias": "", "log_file": "hkg-acsa-log-vpc-flow-log-bucket-153523488818/2023-05-19-04-20-34-72E0A4A9BDC625FE", "s3bucket": "hkg-acsa-log-server-access-log-bucket-153523488818"}, "version": "aa7e84a0677f7862b33eba543caa511eead13b88ca48cd925feb7e804fe90684", "account_id": "hkg-acsa-log-vpc-flow-log-bucket-153523488818", "interface_id": "[19/May/2023:03:24:13", "srcaddr": "+0000]", "dstaddr": "-", "srcport": "svc:delivery.logs.amazonaws.com", "dstport": "1TYASF0KXN4VYF2E", "protocol": "REST.PUT.OBJECT", "packets": "AWSLogs/019198000957/vpcflowlogs/ap-east-1/2023/05/19/019198000957_vpcflowlogs_ap-east-1_fl-066a11e9abc356323_20230519T0320Z_4f8cd397.log.gz", "bytes": "PUT /AWSLogs/019198000957/vpcflowlogs/ap-east-1/2023/05/19/019198000957_vpcflowlogs_ap-east-1_fl-066a11e9abc356323_20230519T0320Z_4f8cd397.log.gz HTTP/1.1", "start": "200", "end": "-", "action": "-", "log_status": "29443", "null": ["62", "25", "-", "-", "-", "2FEAVM7cxJGM8c3FDq8dF/pB5YcRdU83Ve1Qbm7RV2UZvnGhmiglahyQzbOkhzoWIn17miPg1hY=", "SigV4", "ECDHE-RSA-AES128-GCM-SHA256", "AuthHeader", "hkg-acsa-log-vpc-flow-log-bucket-153523488818.s3.ap-east-1.amazonaws.com", "TLSv1.2", "-", "-"], "source": "vpc"}}
+-->
+<decoder name="aws-vpc">
+	<prematch>{"integration": "aws", "aws":\.+"source": "vpc"</prematch>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"integration": "(\.+)"</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"source": "(\.+)"</regex>
+	<order>aws.source</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"version": "(\.+)"</regex>
+	<order>aws.version</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"account_id": "(\.+)"</regex>
+	<order>aws.account_id</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"interface_id": "(\.+)"</regex>
+	<order>aws.interface_id</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"srcaddr": "(\.+)"</regex>
+	<order>aws.srcaddr</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"dstaddr": "(\.+)"</regex>
+	<order>aws.dstaddr</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"srcport": "(\.+)"</regex>
+	<order>aws.srcport</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"dstport": "(\.+)"</regex>
+	<order>aws.dstport</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"protocol": "(\.+)"</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"packets": "(\.+)"</regex>
+	<order>aws.packets</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"bytes": "(\.+)"</regex>
+	<order>aws.bytes</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"start": "(\.+)"</regex>
+	<order>aws.start</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"end": "(\.+)"</regex>
+	<order>aws.end</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"action": "(\.+)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"log_status": "(\.+)"</regex>
+	<order>aws.log_status</order>
+</decoder>
+
+<!-- log_info -->
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"s3bucket": "(\.+)"</regex>
+	<order>aws.log_info.s3bucket</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"s3bucket": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="aws-vpc-fields">
+	<parent>aws-vpc</parent>
+	<regex>"log_file": "(\.*)"</regex>
+	<order>aws.log_info.log_file</order>
+</decoder>

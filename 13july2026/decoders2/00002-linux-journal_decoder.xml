@@ -1,0 +1,18 @@
+<decoder name="linux-journal">
+    <program_name>journal</program_name>
+</decoder>
+<decoder name="linux-journal-fields">
+    <parent>linux-journal</parent>
+    <regex>Domain id=(\d+)</regex>
+    <order>domain_id</order>
+</decoder>
+<decoder name="linux-journal-fields">
+    <parent>linux-journal</parent>
+    <regex>name='(\.+)'</regex>
+    <order>hostname</order>
+</decoder>
+<decoder name="linux-journal-fields">
+    <parent>linux-journal</parent>
+    <regex>uuid=(\S+)</regex>
+    <order>uuid</order>
+</decoder>

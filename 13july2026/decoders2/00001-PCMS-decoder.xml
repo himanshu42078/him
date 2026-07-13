@@ -1,0 +1,194 @@
+<!-- #######User Log Table start from here####### -->
+
+
+<decoder name="PCMSUserLogTable">
+	<prematch>"PCMS_USER_LOG": {</prematch>
+</decoder>
+
+<decoder name="PCMSUserLogTable-fields">
+	<parent>PCMSUserLogTable</parent>
+	<regex offset="after_parent">"UserLogStatus":\s"(\.*)",</regex>
+	<order>UserLogStatus</order>
+</decoder>
+
+<decoder name="PCMSUserLogTable-fields">
+	<parent>PCMSUserLogTable</parent>
+    <regex offset="after_parent">"errorCode":\s(\.*),</regex>
+    <order>errorCode</order>
+</decoder>
+
+<decoder name="PCMSUserLogTable-fields">
+	<parent>PCMSUserLogTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="PCMSUserLogTable-fields">
+	<parent>PCMSUserLogTable</parent>
+    <regex offset="after_parent">"hostname":\s"(\.*)",</regex>
+    <order>hostname</order>
+</decoder>
+
+<decoder name="PCMSUserLogTable-fields">
+	<parent>PCMSUserLogTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\w+),</regex>
+    <order>seqNo</order>
+</decoder>
+
+<decoder name="PCMSUserLogTable-fields">
+	<parent>PCMSUserLogTable</parent>
+    <regex offset="after_parent">"userID":\s"(\.*)"</regex>
+    <order>userID</order>
+</decoder>
+
+
+
+<!-- #######User Group Table start from here####### -->
+
+
+<decoder name="PCMSUserGroupTable">
+	<prematch>"PCMS_USER_GROUP_HISTORY": {</prematch>
+</decoder>
+
+<decoder name="PCMSUserGroupTable-fields">
+	<parent>PCMSUserGroupTable</parent>
+	<regex offset="after_parent">"action":\s"(\.*)",</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="PCMSUserGroupTable-fields">
+	<parent>PCMSUserGroupTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="PCMSUserGroupTable-fields">
+	<parent>PCMSUserGroupTable</parent>
+    <regex offset="after_parent">"groupCode":\s"(\.*)",</regex>
+    <order>groupCode</order>
+</decoder>
+
+<decoder name="PCMSUserGroupTable-fields">
+	<parent>PCMSUserGroupTable</parent>
+    <regex offset="after_parent">"groupName":\s"(\.*)",</regex>
+    <order>groupName</order>
+</decoder>
+
+<decoder name="PCMSUserGroupTable-fields">
+	<parent>PCMSUserGroupTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\w+)</regex>
+    <order>seqNo</order>
+</decoder>
+
+
+
+<!-- #######GROUP Access Table start from here####### -->
+
+
+<decoder name="PCMSGroupAccessTable">
+	<prematch>"PCMS_GROUP_ACCESS_HISTORY": {</prematch>
+</decoder>
+
+<decoder name="PCMSGroupAccessTable-fields">
+	<parent>PCMSGroupAccessTable</parent>
+	<regex offset="after_parent">"action":\s"(\.*)",</regex>
+	<order>action</order>
+</decoder>
+
+<decoder name="PCMSGroupAccessTable-fields">
+	<parent>PCMSGroupAccessTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="PCMSGroupAccessTable-fields">
+	<parent>PCMSGroupAccessTable</parent>
+    <regex offset="after_parent">"functionID":\s"(\.*)",</regex>
+    <order>functionID</order>
+</decoder>
+
+<decoder name="PCMSGroupAccessTable-fields">
+	<parent>PCMSGroupAccessTable</parent>
+	<regex offset="after_parent">"groupCode":\s"(\.*)",</regex>
+	<order>groupCode</order>
+</decoder>
+
+<decoder name="PCMSGroupAccessTable-fields">
+	<parent>PCMSGroupAccessTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\w+)</regex>
+    <order>seqNo</order>
+</decoder>
+
+
+<!-- #######Parm Table start from here####### -->
+
+
+<decoder name="PCMSParmTable">
+	<prematch>"PCMS_PARM_HISTORY": {</prematch>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+	<regex offset="after_parent">"actionType":\s"(\.*)",</regex>
+	<order>actionType</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"code":\s(\d+),</regex>
+    <order>code</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"codeDesc":\s"(\.*)",</regex>
+    <order>codeDesc</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"codeDescC":\s"(\.*)",</regex>
+    <order>codeDescC</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"eventTime":\s"(\.*)",</regex>
+    <order>eventTime</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"segment":\s"(\.*)",</regex>
+    <order>segment</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"seqNo":\s(\w+),</regex>
+    <order>seqNo</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"value1":\s"(\.*)",</regex>
+    <order>value1</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"value2":\s"(\.*)",</regex>
+    <order>value2</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"value3":\s"(\.*)",</regex>
+    <order>value3</order>
+</decoder>
+
+<decoder name="PCMSParmTable-fields">
+	<parent>PCMSParmTable</parent>
+    <regex offset="after_parent">"value4":\s"(\.*)"</regex>
+    <order>value4</order>
+</decoder>

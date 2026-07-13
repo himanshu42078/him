@@ -1,0 +1,156 @@
+<decoder name="prisma-cloud">
+  <prematch>{"integration": "Wazuh-PrismaCloudCSPM", "prisma_cloud": </prematch>
+</decoder>
+<decoder name="prisma-cloud">
+  <prematch>{"prisma_cloud": {</prematch>
+</decoder>
+<!--
+<decoder name="prisma-cloud-fields">
+  <parent>prisma-cloud</parent>
+  <plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"integration": "(\.*)",</regex>
+	<order>integration</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"integration": "Wazuh-PrismaCloudCSPM", "prisma_cloud": {"id": "(\.*)",</regex>
+	<order>prisma_cloud.id</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"status": "(\.*)",</regex>
+	<order>prisma_cloud.status</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"reason": "(\.*)",</regex>
+	<order>prisma_cloud.reason</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"firstSeen": (\d*),</regex>
+	<order>prisma_cloud.firstSeen</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"lastSeen": (\d*),</regex>
+	<order>prisma_cloud.lastSeen</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"alertTime": (\d*),</regex>
+	<order>prisma_cloud.alertTime</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"lastUpdated": (\d*),</regex>
+	<order>prisma_cloud.lastUpdated</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"alertTimeString": "(\.*)"</regex>
+	<order>prisma_cloud.alertTimeString</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"firstSeenString": "(\.*)"</regex>
+	<order>prisma_cloud.firstSeenString</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"lastSeenString": "(\.*)"</regex>
+	<order>prisma_cloud.lastSeenString</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"lastUpdatedString": "(\.*)"</regex>
+	<order>prisma_cloud.lastUpdatedString</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"logsource": "(\.*)"</regex>
+	<order>logsource</order>
+</decoder>
+
+<!-- policy -->
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"policy": {\.*"policyId": "(\.*)",</regex>
+	<order>prisma_cloud.policy.policyId</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"policy": {\.*"name": "(\.*)",</regex>
+	<order>prisma_cloud.policy.name</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"policy": {\.*"policyType": "(\.*)",</regex>
+	<order>prisma_cloud.policy.policyType</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"policy": {\.*"description": "(\.*)",</regex>
+	<order>prisma_cloud.policy.description</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"policy": {\.*"severity": "(\.*)",</regex>
+	<order>prisma_cloud.policy.severity</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"policy": {\.*"recommendation": "(\.*)",</regex>
+	<order>prisma_cloud.policy.recommendation</order>
+</decoder>
+
+<!-- resource -->
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"id": "(\.*)",</regex>
+	<order>prisma_cloud.resource.id</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"name": "(\.*)",</regex>
+	<order>prisma_cloud.resource.name</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"account": "(\.*)",</regex>
+	<order>prisma_cloud.resource.account</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"accountId": "(\.*)",</regex>
+	<order>prisma_cloud.resource.accountId</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"region": "(\.*)",</regex>
+	<order>prisma_cloud.resource.region</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"regionId": "(\.*)",</regex>
+	<order>prisma_cloud.resource.regionId</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"resourceType": "(\.*)",</regex>
+	<order>prisma_cloud.resource.resourceType</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"cloudServiceName": "(\.*)",</regex>
+	<order>prisma_cloud.resource.cloudServiceName</order>
+</decoder>
+<decoder name="prisma-cloud-fields">
+	<parent>prisma-cloud</parent>
+	<regex>"resource": {\.*"cloudType": "(\.*)",</regex>
+	<order>prisma_cloud.resource.cloudType</order>
+</decoder>

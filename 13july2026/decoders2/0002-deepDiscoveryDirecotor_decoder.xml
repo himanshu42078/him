@@ -1,0 +1,160 @@
+<!-- Modify it at your will. -->
+<decoder name="deepDiscoveryDirector">
+	<prematch>Deep Discovery Director</prematch>
+	<program_name>CEF</program_name>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>suser=(\S+)</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>dvc=(\S+)</regex>
+	<order>dvc</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>dvcmac=(\S+)</regex>
+	<order>dvcmac</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>dvcmac=(\S+)</regex>
+	<order>dvcmac</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>dvchost=(\S+)</regex>
+	<order>dvchost</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>deviceExternalId=(\S+)</regex>
+	<order>deviceExternalId</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>rt=(\.+) app=</regex>
+	<order>rt</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>deviceDirection=(\S+)</regex>
+	<order>deviceDirection</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>dhost=(\S+)</regex>
+	<order>dhost</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>dpt=(\S+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>dmac=(\S+)</regex>
+	<order>dmac</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>shost=(\S+)</regex>
+	<order>shost</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>spt=(\S+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>smac=(\S+)</regex>
+	<order>smac</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>fileType=(\S+)</regex>
+	<order>fileType</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>fsize=(\S+)</regex>
+	<order>fsize</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>act=(\.+) cn3Label</regex>
+	<order>act</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>cn3Label=(\.+) cn3</regex>
+	<order>cn3Label</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>destinationTranslatedAddress=(\S+)</regex>
+	<order>destinationTranslatedAddress</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>sourceTranslatedAddress=(\S+)</regex>
+	<order>sourceTranslatedAddress</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>suid=(\S+)</regex>
+	<order>suid</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>cnt=(\S+)</regex>
+	<order>cnt</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>cat=(\S+)</regex>
+	<order>cat</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>cs6Label=(\S+)</regex>
+	<order>cs6Label</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>cs6=(\.+) flexNumber1Label</regex>
+	<order>cs6</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>flexNumber1=(\S+)</regex>
+	<order>flexNumber1</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>devicePayloadId=(\.+)</regex>
+	<order>devicePayloadId</order>
+</decoder>
+<decoder name="deepDiscoveryDirector_fields">
+	<parent>deepDiscoveryDirector</parent>
+	<regex>msg=(\.+) TrendMicroDsTenant</regex>
+	<order>msg</order>
+</decoder>

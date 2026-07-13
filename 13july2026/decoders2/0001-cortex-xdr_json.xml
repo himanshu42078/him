@@ -1,0 +1,49 @@
+<!-- cortex Decoder The purpose of this decoder is to obtain standardized field-->
+<decoder name="cortex-xdr-json">
+	<prematch>{"cortex_xdr": {</prematch>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+	<json_null_field>discard</json_null_field>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<regex>"host_ip":\s*["(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<regex>"action_remote_ip":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<regex>"action_local_port":\s*"(\d+)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<regex>"action_remote_port":\s*"(\d+)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<regex>"alert_id":\s*"(\d+)"</regex>
+	<order>id</order>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<regex>"action_pretty":\s*"(\d+)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<regex>"user_name": "(\.*)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="cortex-xdr-fields">
+	<parent>cortex-xdr-json</parent>
+	<regex>"actor_process_image_md5": "(\.*)",</regex>
+	<order>hash</order>
+</decoder>

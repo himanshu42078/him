@@ -1,0 +1,465 @@
+<!-- DEV-707 -->
+<!--
+Feb 23 07:03:11 HKMC-FTD-DR SFIMS: Protocol: TCP, SrcIP: 192.168.112.13, OriginalClientIP: ::, DstIP: 192.168.40.70, SrcPort: 61314, DstPort: 443, TCPFlags: 0x0, IngressZone: VLAN_40_In, EgressZone: VLAN_40_Out, DE: Primary Detection Engine (63e7d636-bb03-11e7-94a7-8170f9e67dbc), Policy: HKMC-FTD-DR, ConnectType: End, AccessControlRuleName: Default_Allow, AccessControlRuleAction: Allow, Prefilter Policy: Default Prefilter Policy, UserName: No Authentication Required, Client: SSL client, ApplicationProtocol: HTTPS, InitiatorPackets: 3, ResponderPackets: 3, InitiatorBytes: 495, ResponderBytes: 194, NAPPolicy: Balanced Security and Connectivity, DNSResponseType: No Error, Sinkhole: Unknown, URLCategory: Unknown, URLReputation: Risk unknown
+Feb 23 04:01:12 HKMC-FTD-DR SFIMS: Protocol: ICMP, SrcIP: 192.168.40.19, OriginalClientIP: ::, DstIP: 198.35.26.96, ICMPType: Echo Request, ICMPCode: No Code, TCPFlags: 0x0, IngressZone: VLAN_40_Out, EgressZone: VLAN_40_In, DE: Primary Detection Engine (63e7d636-bb03-11e7-94a7-8170f9e67dbc), Policy: HKMC-FTD-DR, ConnectType: End, AccessControlRuleName: Default_Allow, AccessControlRuleAction: Allow, Prefilter Policy: Default Prefilter Policy, UserName: No Authentication Required, Client: ICMP client, ApplicationProtocol: ICMP, InitiatorPackets: 1, ResponderPackets: 0, InitiatorBytes: 66, ResponderBytes: 0, NAPPolicy: Balanced Security and Connectivity, DNSResponseType: No Error, Sinkhole: Unknown, URLCategory: Unknown, URLReputation: Risk unknown
+-->
+
+<decoder name="SFIMS">
+  <program_name>SFIMS</program_name>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Protocol: (\S+),</regex>
+  <order>protocol</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SrcIP: (\S+),</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>OriginalClientIP: (\S+),</regex>
+  <order>OriginalClientIP</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>DstIP: (\S+),</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>ICMPType: (\.+),</regex>
+  <order>ICMPType</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>ICMPCode: (\.+),</regex>
+  <order>ICMPCode</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SrcPort: (\d+),</regex>
+  <order>srcport</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>DstPort: (\d+),</regex>
+  <order>dstport</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>TCPFlags: (\S+),</regex>
+  <order>TCPFlags</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>IngressZone: (\S+),</regex>
+  <order>IngressZone</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>EgressZone: (\S+),</regex>
+  <order>EgressZone</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>DE: (\.+),</regex>
+  <order>DE</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Policy: (\S+),</regex>
+  <order>Policy</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>ConnectType: (\S+),</regex>
+  <order>ConnectType</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>AccessControlRuleName: (\S+),</regex>
+  <order>AccessControlRuleName</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>AccessControlRuleAction: (\S+),</regex>
+  <order>AccessControlRuleAction</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>AccessControlRuleAction: (\S+),</regex>
+  <order>action</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Prefilter Policy: (\.+),</regex>
+  <order>PrefilterPolicy</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>UserName: (\.+),</regex>
+  <order>dstuser</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Client: (\.+),</regex>
+  <order>Client</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>ApplicationProtocol: (\S+),</regex>
+  <order>ApplicationProtocol</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>InitiatorPackets: (\d+),</regex>
+  <order>InitiatorPackets</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>ResponderPackets: (\d+),</regex>
+  <order>ResponderPackets</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>InitiatorBytes: (\d+),</regex>
+  <order>InitiatorBytes</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>ResponderBytes: (\d+),</regex>
+  <order>ResponderBytes</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>NAPPolicy: (\.+),</regex>
+  <order>NAPPolicy</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>DNSResponseType: (\.+),</regex>
+  <order>DNSResponseType</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Sinkhole: (\S+),</regex>
+  <order>Sinkhole</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>URLCategory: (\S+),</regex>
+  <order>URLCategory</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>URLReputation: (\.+),|URLReputation: (\.+)$</regex>
+  <order>URLReputation</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>URL: (\S+)</regex>
+  <order>URL</order>
+</decoder>
+
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>[(\S+)] "(\.+)" [Impact: (\.+)] From "(\.+)" at (\.+) </regex>
+  <order>SFIMS.num, msg, SFIMS.impact, from, timeStamp</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>[Classification: (\.+)] [Priority: (\S+)]</regex>
+  <order>SFIMS.Classification, SFIMS.priority</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>{(\.+)} (\S+):(\S+) \((\.+)\)->(\S+):(\S+) \((\.+)\)</regex>
+  <order>proto, srcip, srcport, srcip.location, dstip,dstport, dstip.location</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>[(\.+) \((\S+)\)]</regex>
+  <order>info1,info2</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>[(\S+) - (\S+) - (\S+)]</regex>
+  <order>info3,info4,info5</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Connection Type: (\S+),</regex>
+  <order>connectionType</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>User: (\S+),</regex>
+  <order>user</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>User: (\S+),</regex>
+  <order>user</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Client: (\.+), Application Protocol</regex>
+  <order>client</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Application Protocol: (\.+), Web App</regex>
+  <order>applicationProtocol</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Access Control Rule Name: (\.+), Access Control Rule Action</regex>
+  <order>accessControlRuleName</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Access Control Rule Action: (\.+), Access Control Rule Reasons</regex>
+  <order>accessControlRuleAction</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Access Control Rule Reasons: (\.+), URL Category</regex>
+  <order>accessControlRulereasons</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>URL Category: (\.+), URL Reputation</regex>
+  <order>urlCategory</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>URL Reputation: (\.+), URL</regex>
+  <order>urlReputation</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>URL: (\S+), </regex>
+  <order>url</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>HTTP Referer: (\.+), User Agent</regex>
+  <order>httpReferer</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>User Agent: (\.+), Referenced Host</regex>
+  <order>userAgent</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Referenced Host: (\.+), Interface Ingress</regex>
+  <order>referedHost</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Interface Ingress: (\.+), Interface Egress</regex>
+  <order>interfaceIngress</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Interface Egress: (\.+), Security Zone Ingress</regex>
+  <order>interfaceEgress</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Security Zone Ingress: (\.+), Security Zone Egress</regex>
+  <order>securityZoneIngress</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Security Zone Egress: (\.+), Security Intelligence Matching IP</regex>
+  <order>securityZoneEgress</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Security Intelligence Matching IP: (\.+), Security Intelligence Category</regex>
+  <order>securityIntelligenceMatchingIp</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Security Intelligence Category: (\.+), Client Version</regex>
+  <order>securityIntelligenceCategory</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Client Version: (\.+), Number of File Events</regex>
+  <order>clientVersion</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Client Version: (\.+), Number of File Events</regex>
+  <order>clientVersion</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Number of File Events: (\.+), Number of IPS Events</regex>
+  <order>numberOfFileEvents</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Number of IPS Events: (\.+), TCP Flags</regex>
+  <order>numberOfFileEvents</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>TCP Flags: (\.+), NetBIOS Domain</regex>
+  <order>TCPFlags</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>NetBIOS Domain: (\.+), Initiator Packets</regex>
+  <order>netbiosDomain</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Initiator Packets: (\.+), Responder Packets</regex>
+  <order>initiatorPackets</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Responder Packets: (\.+), Initiator Bytes</regex>
+  <order>responderPackets</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Initiator Bytes: (\.+), Responder Bytes</regex>
+  <order>initiatorBytes</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Responder Bytes: (\.+), Context</regex>
+  <order>resoinderBytes</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>Context: (\.+), SSL Rule Name</regex>
+  <order>context</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Rule Name: (\.+),  SSL Flow Status</regex>
+  <order>sslRuleName</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Flow Status: (\.+),  SSL Cipher Suite</regex>
+  <order>sslFlowStatus</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Flow Status: (\.+),  SSL Cipher Suite</regex>
+  <order>sslFlowStatus</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Cipher Suite: (\.+), SSL Certificate</regex>
+  <order>sslCipherSuite</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Certificate: (\.+), SSL Subject CN</regex>
+  <order>sslCertificate</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Subject CN: (\.+), SSL Subject Country</regex>
+  <order>sslSubject</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Subject Country: (\.+), SSL Subject OU</regex>
+  <order>sslSubject</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Subject OU: (\.+), SSL Subject Org</regex>
+  <order>sslSubjectOu</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Subject Org: (\.+), SSL Issuer CN</regex>
+  <order>sslSubjectOU</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Issuer CN: (\.+), SSL Issuer Country</regex>
+  <order>sslIssuerCN</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Issuer Country: (\.+), SSL Issuer OU</regex>
+  <order>sslIssuerCountry</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Issuer OU: (\.+), SSL Issuer Org</regex>
+  <order>sslIssuerOU</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Issuer Org: (\.+), SSL Valid Start Date</regex>
+  <order>sslIssuerOrg</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Valid Start Date: (\.+), SSL Valid End Date</regex>
+  <order>sslValidStartDate</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Valid End Date: (\.+), SSL Version</regex>
+  <order>sslValidEndDate</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Version: (\.+), SSL Server Certificate Status</regex>
+  <order>sslVersion</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Server Certificate Status: (\.+), SSL Actual Action</regex>
+  <order>sslServerCertificateStatus</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Actual Action: (\.+), SSL Expected Action</regex>
+  <order>sslActualAction</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Expected Action: (\.+), SSL Server Name</regex>
+  <order>sslExpectedAction</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Server Name: (\.+), SSL URL Category</regex>
+  <order>sslServerName</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL URL Category: (\.+), SSL Session ID</regex>
+  <order>sslUrlCategory</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL Session ID: (\.+), SSL Ticket Id</regex>
+  <order>sslSessionId</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>SSL TIcket ID: (\S+)</regex>
+  <order>sslTicketId</order>
+</decoder>
+<decoder name="SFIMS_fields">
+  <parent>SFIMS</parent>
+  <regex>{(\S+)} (\S+):(\S+) -> (\S+):(\S+)</regex>
+  <order>protocol,srcip,srcport,dstip,dstport</order>
+</decoder>

@@ -1,0 +1,57 @@
+<decoder name="threatmatrix">
+	<prematch>^{"threatmatrix":</prematch>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"event_datetime":"(\.*)",</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"input_ip_address":"(\.*)",</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"input_ip_geo":"(\.*)",</regex>
+	<order>srcgeoip</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"event_type":"(\.*)",</regex>
+	<order>action</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"customer_event_type":"(\.*)",</regex>
+	<order>status</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"jb_root":"(\.*)",</regex>
+	<order>jb_root</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"session_id":"(\.*)",</regex>
+	<order>session_id</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"js_browser_string":"(\.*),"</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"device_id":"(\.*)",</regex>
+	<order>device_id</order>
+</decoder>
+<decoder name="threatmatrix-fields">
+	<parent>threatmatrix</parent>
+	<regex>"account_login":"(\.*)",</regex>
+	<order>user</order>
+</decoder>

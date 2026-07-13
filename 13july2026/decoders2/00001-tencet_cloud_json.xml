@@ -1,0 +1,28 @@
+<!-- Modify it at your will. -->
+<decoder name="tencent-cloud-json">
+	<prematch>{"integration": "Wazuh-Tencent", "tencent-cloud": </prematch>
+</decoder>
+<decoder name="tencent-cloud-json-fields">
+	<parent>tencent-cloud-json</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="tencent-cloud-json-fields">
+	<parent>tencent-cloud-json</parent>
+	<regex>"sourceIPAddress": "(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="tencent-cloud-json-fields">
+	<parent>tencent-cloud-json</parent>
+	<regex>"__FILENAME__": "(\.*)"</regex>
+	<order>filename</order>
+</decoder>
+<decoder name="tencent-cloud-json-fields">
+	<parent>tencent-cloud-json</parent>
+	<regex>"actionType": "(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="tencent-cloud-json-fields">
+	<parent>tencent-cloud-json</parent>
+  <regex>"mfa\.*": (\d+),\.+"mfaExpireTime\.*":</regex>
+  <order>mfa</order>
+</decoder>

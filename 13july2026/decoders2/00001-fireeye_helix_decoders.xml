@@ -1,0 +1,67 @@
+<decoder name="fireeye-helix">
+  <prematch>{"fireeye_helix"</prematch>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>{"(fireeye_helix)"</regex>
+  <order>logsource</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"username":\s*"(\.+)"</regex>
+  <order>user</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"filename":\s*"(\.+)"</regex>
+  <order>filename</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"sha1":\s*"(\.+)"</regex>
+  <order>filehash</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"processpath":\s*"(\.+)"</regex>
+  <order>filepath</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"agenthostname":\s*"(\.+)"</regex>
+  <order>system_name</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"process":\s*"(\.+)"</regex>
+  <order>filename</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"result":\s*"(\.+)"</regex>
+  <order>action</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"agentip":\s*"(\d+.\d+.\d+.\d+)"</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>alert_type_details\.+"destination":\s*"(\d+.\d+.\d+.\d+)"</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>"severity":\s*"(\.+)"</regex>
+  <order>severity</order>
+</decoder>
+<decoder name="fireeye-helix-fields">
+  <parent>fireeye-helix</parent>
+  <regex>"primary_id":\s*"(\.+)"</regex>
+  <order>id</order>
+</decoder>
