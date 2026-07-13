@@ -1,0 +1,13 @@
+
+<group name="pwc_caas,">
+	<rule id="127000" level="3">
+		<if_sid>60003</if_sid>
+		<field name="win.system.eventID">^18453$|^18454$|^18455$</field>
+		<description>Logged in successfully to MSSQL</description>
+	</rule>
+	<rule id="127001" level="3">
+		<if_sid>60003</if_sid>
+		<field name="win.system.eventID">^18456$</field>
+		<description>Login failed to MSSQL</description>
+	</rule>    
+</group>

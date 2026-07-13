@@ -1,0 +1,8 @@
+<group name="pwc_caas,hp,hp5500,">
+    <rule id="81702" level="5" overwrite="yes">
+        <if_sid>81700</if_sid>
+        <id>1</id>
+        <description>HP 5500 EI - Alert event</description>
+        <group>hp-alert,</group>
+    </rule>
+</group>

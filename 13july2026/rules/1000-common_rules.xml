@@ -1,0 +1,245 @@
+<group name="network_traffic,">
+	<rule id="100050" level="1">
+		<if_sid>106250,64220,4700,14200,82400,64000,9700,20100,20101,82000,5100,12100,80100,4500,51500,2507,4300,81900,80500,20102,6100,4806,87700,81603,4100,137500,138500,143000,146000,278002</if_sid>
+		<description>Network Device</description>
+	</rule>
+	<!-- Local to Local -->
+	<rule id="100051" level="1">
+		<if_sid>100050</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/private-ip</list>
+		<list field="dstip" lookup="address_match_key">etc/lists/private-ip</list>
+		<description>Local to Local</description>
+		<group>L2L,</group>
+	</rule>
+	<!-- Local to Remote -->
+	<rule id="100052" level="1">
+		<if_sid>100050</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/private-ip</list>
+		<list field="dstip" lookup="not_address_match_key">etc/lists/private-ip</list>
+		<description>Local to Remote</description>
+		<group>L2R,</group>
+	</rule>
+	<!-- Remote to Local -->
+	<rule id="100053" level="1">
+		<if_sid>100050</if_sid>
+		<list field="srcip" lookup="not_address_match_key">etc/lists/private-ip</list>
+		<list field="dstip" lookup="address_match_key">etc/lists/private-ip</list>
+		<description>Remote to Local</description>
+		<group>R2L,</group>
+	</rule>
+	<!-- Remote to Remote -->
+	<rule id="100054" level="1">
+		<if_sid>100050</if_sid>
+		<list field="srcip" lookup="not_address_match_key">etc/lists/private-ip</list>
+		<list field="dstip" lookup="not_address_match_key">etc/lists/private-ip</list>
+		<description>Remote to Remote</description>
+		<group>R2R,</group>
+	</rule>
+	<!-- Secondary check for Internal IPs-->
+	<rule id="100055" level="0">
+		<if_sid>100052,100054</if_sid>
+		<dstip>10.0.0.0/8</dstip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100056" level="0">
+		<if_sid>100052,100054</if_sid>
+		<dstip>172.16.0.0/12</dstip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100057" level="0">
+		<if_sid>100052,100054</if_sid>
+		<dstip>192.168.0.0/16</dstip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100058" level="0">
+		<if_sid>100052,100054</if_sid>
+		<dstip>169.254.0.0/16</dstip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100059" level="0">
+		<if_sid>100052,100054</if_sid>
+		<dstip>100.64.0.0/10</dstip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100060" level="0">
+		<if_sid>100053,100054</if_sid>
+		<srcip>10.0.0.0/8</srcip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100061" level="0">
+		<if_sid>100053,100054</if_sid>
+		<srcip>172.16.0.0/12</srcip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100062" level="0">
+		<if_sid>100053,100054</if_sid>
+		<srcip>192.168.0.0/16</srcip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100063" level="0">
+		<if_sid>100053,100054</if_sid>
+		<srcip>169.254.0.0/16</srcip>
+		<description>External DstIP</description>
+	</rule>
+	<rule id="100064" level="0">
+		<if_sid>100053,100054</if_sid>
+		<srcip>100.64.0.0/10</srcip>
+		<description>External DstIP</description>
+	</rule>
+</group>
+<group name="sysmon,">
+	<rule id="100071" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^1$</id>
+		<description>Sysmon - Event 1</description>
+		<group>sysmon_event1,</group>
+	</rule>
+	<rule id="100072" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^2$</id>
+		<description>Sysmon - Event 2</description>
+		<group>sysmon_event2,</group>
+	</rule>
+	<rule id="100073" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^3$</id>
+		<description>Sysmon - Event 3</description>
+		<group>sysmon_event3,</group>
+	</rule>
+	<rule id="100074" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^4$</id>
+		<description>Sysmon - Event 4</description>
+		<group>sysmon_event4,</group>
+	</rule>
+	<rule id="100075" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^5$</id>
+		<description>Sysmon - Event 5</description>
+		<group>sysmon_event5,</group>
+	</rule>
+	<rule id="100076" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^6$</id>
+		<description>Sysmon - Event 6</description>
+		<group>sysmon_event6,</group>
+	</rule>
+	<rule id="100077" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^7$</id>
+		<description>Sysmon - Event 7</description>
+		<group>sysmon_event7,</group>
+	</rule>
+	<rule id="100078" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^8$</id>
+		<description>Sysmon - Event 8</description>
+		<group>sysmon_event8,</group>
+	</rule>
+	<rule id="100079" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^9$</id>
+		<description>Sysmon - Event 9</description>
+		<group>sysmon_event9,</group>
+	</rule>
+	<rule id="100080" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^10$</id>
+		<description>Sysmon - Event 10</description>
+		<group>sysmon_event_10,</group>
+	</rule>
+	<rule id="100081" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^11$</id>
+		<description>Sysmon - Event 11</description>
+		<group>sysmon_event_11,</group>
+	</rule>
+	<rule id="100082" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^12$</id>
+		<description>Sysmon - Event 12</description>
+		<group>sysmon_event_12,</group>
+	</rule>
+	<rule id="100083" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^13$</id>
+		<description>Sysmon - Event 13</description>
+		<group>sysmon_event_13,</group>
+	</rule>
+	<rule id="100084" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^14$</id>
+		<description>Sysmon - Event 14</description>
+		<group>sysmon_event_14,</group>
+	</rule>
+	<rule id="100085" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^15$</id>
+		<description>Sysmon - Event 15</description>
+		<group>sysmon_event_15,</group>
+	</rule>
+	<rule id="100086" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^16$</id>
+		<description>Sysmon - Event 16</description>
+		<group>sysmon_event_16,</group>
+	</rule>
+	<rule id="100087" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^17$</id>
+		<description>Sysmon - Event 17</description>
+		<group>sysmon_event_17,</group>
+	</rule>
+	<rule id="100088" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^18$</id>
+		<description>Sysmon - Event 18</description>
+		<group>sysmon_event_18,</group>
+	</rule>
+	<rule id="100089" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^19$</id>
+		<description>Sysmon - Event 19</description>
+		<group>sysmon_event_19,</group>
+	</rule>
+	<rule id="100090" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^20$</id>
+		<description>Sysmon - Event 20</description>
+		<group>sysmon_event_20,</group>
+	</rule>
+	<rule id="100091" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-Sysmon/Operational</match>
+		<id>^21$</id>
+		<description>Sysmon - Event 21</description>
+		<group>sysmon_event_21,</group>
+	</rule>
+</group>
+<group name="pwc_caas,whitelist_default_rule,">
+	<rule id="100232" level="0">
+		<if_group>postfix</if_group>
+		<description>[Whitelsit] suppress all postfix alerts</description>
+		<!-- DEV-4974 -->
+	</rule>	
+</group>

@@ -1,0 +1,1614 @@
+
+<group name="pwc_caas,OS,windows,all_client,windows_eventchannel,">
+  <rule id="60602" level="5" overwrite="yes">
+    <if_sid>60003</if_sid>
+    <field name="win.system.severityValue">^ERROR$</field>
+    <description>Windows Application error event</description>
+    <options>no_full_log</options>
+    <group>system_error,gpg13_4.3,gdpr_IV_35.7.d,</group>
+  </rule>
+  <rule id="61061" level="5" frequency="8" timeframe="240" overwrite="yes">
+    <if_matched_sid>60602</if_matched_sid>
+    <description>Multiple Windows error Application events</description>
+    <options>no_full_log</options>
+  </rule>
+	<!-- Detected a Malicious Access to lsass Process -->
+	<rule id="107001" level="12">
+		<if_group>sysmon_event_10</if_group>
+		<field name="win.eventdata.targetImage">lsass.exe</field>
+		<field name="win.eventdata.grantedAccess">^0x1010$|^0x1410$|^0x143A$</field>
+		<description>Detected a Malicious Access to lsass Process</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Dumping,</group>
+		<group>pci_dss_10.6.1,pci_dss_11.4,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_SI.4,groupid_107001,</group>
+	</rule>
+	<!-- Legitmate lsass Process - Built-in Windows Processes -->
+	<rule id="107002" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Windows\\\\System32\\\\svchost.exe|C:\\\\Windows\\\\System32\\\\taskmgr.exe|C:\\\\Windows\\\\System32\\\\perfmon.exe|C:\\\\Program Files\\\\Windows Defender\\\\MsMpEng.exe|C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Platform\.+MsMpEng.exe|C:\\\\Windows\\\\System32\\\\wbem\\\\wmiprvse.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\program files\\\\windows defender\\\\mprtp.dll\p\.+|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Windows\\\\system32\\\\taskmgr.exe\p\.+|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Windows\\\\System32\\\\wdc.dll\p\.+|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Definition Updates\\\\{\w+}\\\\mpengine.dll\p\.+|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wbem\\\\cimwin32.dll\p\.+</field>
+		<description>Legitmate lsass Process - Built-in Windows Processes</description>
+	</rule>
+	<!-- Legitmate lsass Process - Google Update -->
+	<rule id="107003" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files \(x86\)\\\\Google\.+GoogleUpdate.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Program Files \(x86\)\\\\Google\.+goopdate.dll</field>
+		<description>Legitmate lsass Process - Google Update</description>
+	</rule>
+	<!-- Legitmate lsass Process - Symantec Endpoint Protection -->
+	<rule id="107004" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files \(x86\)\\\\Symantec\\\\Symantec Endpoint Protection\.+Bin\\\\ccSvcHst.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files \(x86\)\\\\Symantec\\\\Symantec Endpoint Protection\.+bin\\\\ccLib.dll\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - Symantec Endpoint Protection</description>
+	</rule>
+	<!-- Legitmate lsass Process - Kaspersky Endpoint Security -->
+	<rule id="107005" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files\\\\Kaspersky Lab\\\\Kaspersky Endpoint Security for Windows\\\\avp.exe|C:\\\\Program Files \(x86\)\\\\Kaspersky Lab\\\\Kaspersky Endpoint Security for Windows\\\\avp.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\FLTLIB.dll\p\.+\||C:\\\\Program Files \(x86\)\\\\Kaspersky Lab\\\\Kaspersky Endpoint Security for Windows\\\\system_interceptors.dll\p\.+\|\.*|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\ProgramData\\\\Kaspersky Lab\\\\KES\\\\Bases\\\\Cache\\\\kavsys.kdl.\w+\p\.+\|\.*|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\ProgramData\\\\Kaspersky Lab\\\\KES\\\\Bases\\\\Cache\\\\klavasyswatch.dll.\w+\p\.+\|\.*|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files \(x86\)\\\\Kaspersky Lab\\\\Kaspersky Endpoint Security for Windows\\\\processmonitor.dll\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - Kaspersky Endpoint Security</description>
+	</rule>
+	<!-- Legitmate lsass Process - Microsoft Office Update -->
+	<rule id="107006" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files\\\\Common Files\\\\Microsoft Shared\\\\ClickToRun\\\\Updates\.+OfficeClickToRun.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files\\\\Common Files\\\\Microsoft Shared\\\\ClickToRun\\\\Updates\.+OfficeClickToRun.exe\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - Microsoft Office Update</description>
+	</rule>
+	<!-- Legitmate lsass Process - Adobe Reader -->
+	<rule id="107007" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files \(x86\)\\\\Common Files\\\\Adobe\\\\ARM\.+AdobeARMHelper.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files \(x86\)\\\\Common Files\\\\Adobe\\\\ARM\.+AdobeARMHelper.exe\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - Adobe Reader</description>
+	</rule>
+	<!-- Legitmate lsass Process - Adobe Systems -->
+	<rule id="107008" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files \(x86\)\\\\Common Files\\\\Adobe\\\\AdobeGCClient\\\\AGMService.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files \(x86\)\\\\Common Files\\\\Adobe\\\\AdobeGCClient\\\\AGMService.exe\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - Adobe Systems</description>
+	</rule>
+	<!-- Legitmate lsass Process - HP Agentless Management Service -->
+	<rule id="107009" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files\\\\OEM\\\\AMS\\\\service\\\\ams.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files\\\\OEM\\\\AMS\\\\service\\\\ams.exe\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - HP Agentless Management Service</description>
+	</rule>
+	<!-- Legitmate lsass Process - Dropbox Update -->
+	<rule id="107010" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files \(x86\)\\\\Dropbox\\\\Update\\\\DropboxUpdate.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files \(x86\)\\\\Dropbox\\\\Update\.+goopdate.dll\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - Dropbox Update</description>
+	</rule>
+	<!-- Legitmate lsass Process - CollectGuestLogs.exe -->
+	<rule id="107011" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\WindowsAzure\\\\GuestAgent_\.+\\\\CollectGuestLogs.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\windows\\\\System32\\\\KERNELBASE.dll\p\.+\|C:\\\\windows\\\\assembly\\\\NativeImages_v\.+\\\\System\\\\\w+\\\\System.ni.dll\p\.+\|C:\\\\windows\\\\assembly\\\\NativeImages_v\.+\\\\System\\\\\w+\\\\System.ni.dll\p\.+\|C:\\\\windows\\\\assembly\\\\NativeImages_v\.+\\\\System\\\\\w+\\\\System.ni.dll\p\.+\|C:\\\\windows\\\\assembly\\\\NativeImages_v\.+\\\\System\\\\\w+\\\\System.ni.dll\p\.+\|C:\\\\windows\\\\assembly\\\\NativeImages_v\.+\\\\System\\\\\w+\\\\System.ni.dll\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - CollectGuestLogs.exe</description>
+	</rule>
+	<!-- Legitmate lsass Process - ossec-agent.exe -->
+	<rule id="107012" level="0">
+		<if_sid>107001</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files \(x86\)\\\\ossec-agent\\\\ossec-agent.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64cpu.dll\p\.+\|C:\\\\Windows\\\\system32\\\\wow64.dll\p\.+\|C:\\\\Windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files \(x86\)\\\\ossec-agent\\\\ossec-agent.exe\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - ossec-agent.exe</description>
+	</rule>
+	<!-- Legitmate lsass Process - vmtoolsd.exe -->
+	<rule id="107013" level="0">
+		<if_sid>107001</if_sid>
+		<field name="sysmon.sourceImage">C:\\\\Program Files\\\\VMware\\\\VMware Tools\\\\vmtoolsd.exe</field>
+		<field name="sysmon.callTrace">C:\\\\windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\windows\\\\System32\\\\KERNELBASE.dll\p\.+\|C:\\\\Program Files\\\\VMware\\\\VMware Tools\\\\vmtools.dll\p\.+\|\.*</field>
+		<description>Legitmate lsass Process - vmtoolsd.exe</description>
+	</rule>
+	<!-- Detected a Malicious Access to lsass Process from Unknown Call Trace -->
+	<rule id="107015" level="12">
+		<if_group>sysmon_event_10</if_group>
+		<field name="win.eventdata.targetImage">lsass.exe</field>
+		<field name="win.eventdata.grantedAccess">^0x1010$|^0x1410$|^0x143A$|^0x1400$|^0x147a$|^0x143a$</field>
+		<field name="win.eventdata.callTrace">\\\\Windows\\\\system32\\\\KERNELBASE.dll\p\.+\|UNKNOWN</field>
+		<description>Detected a Malicious Access to lsass Process from Unknown Call Trace</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Dumping,</group>
+		<group>pci_dss_10.6.1,pci_dss_11.4,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_SI.4,groupid_107015,</group>
+	</rule>
+	<!-- Legetimate Azure Service -->
+	<rule id="107016" level="0">
+		<if_sid>107015</if_sid>
+		<field name="win.eventdata.sourceImage">WindowsAzureTelemetryService.exe|Microsoft.Identity.Health.AadSync.MonitoringAgent.Startup.exe</field>
+		<field name="win.eventdata.callTrace">C:\\\\windows\\\\SYSTEM32\\\\ntdll.dll\p\.+\|C:\\\\windows\\\\System32\\\\KERNELBASE.dll\p\.+\|C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v\.+\\\\CorperfmonExt.dll\.+\|\.*</field>
+		<description>Legetimate Azure Service - Detected a Malicious Access to lsass Process from Unknown Call Trace</description>
+	</rule>
+	<!-- sysmon event 1 - Detected a Registry Dump For SAM or System Key -->
+	<rule id="107021" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.image">reg.exe</field>
+		<field name="win.eventdata.commandLine">reg\s*save\s*HKLM\\\\SAM\.*|reg\s*save\s*HKLM\\\\SYSTEM\.*|reg.exe\s*save\s*HKLM\\\\SAM\.*|reg.exe\s*save\s*HKLM\\\\SYSTEM\.*</field>
+		<description>Detected a Registry Dump For SAM or System Key</description>
+		<group>attack_stage_Collection,attack_category_Data_Collection,groupid_107021,</group>
+	</rule>
+	<!-- Windows event 4688 - Detected a Registry Dump For SAM or System Key -->
+	<rule id="107022" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.processName">reg.exe</field>
+		<field name="win.eventdata.commandLine">reg\s*save\s*HKLM\\\\SAM\.*|reg\s*save\s*HKLM\\\\SYSTEM\.*|reg.exe\s*save\s*HKLM\\\\SAM\.*|reg.exe\s*save\s*HKLM\\\\SYSTEM\.*</field>
+		<description>Detected a Registry Dump For SAM or System Key</description>
+		<group>attack_stage_Collection,attack_category_Data_Collection,groupid_107022,</group>
+	</rule>
+	<!-- Created a Thread into lsass Process on events -->
+	<rule id="107023" level="12">
+		<if_group>sysmon_event8</if_group>
+		<field name="win.eventdata.targetImage">lsass.exe</field>
+		<description>Created a Thread into lsass Process on events</description>
+		<group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+		<group>pci_dss_10.6.1,pci_dss_11.4,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_SI.4,groupid_107023,</group>
+	</rule>
+	<!-- Legitimate Thread into lsass Process on events-->
+	<rule id="107024" level="0">
+		<if_sid>107023</if_sid>
+		<field name="win.eventdata.startFunction">EtwpNotificationThread</field>
+		<field name="win.eventdata.startModule">C:\\\\Windows\\\\system32\\\\ntdll.dll</field>
+		<description>Legitimate Thread into lsass Process on events</description>
+	</rule>
+	<!-- Legitimate Thread into lsass Process on events -->
+	<rule id="107025" level="0">
+		<if_sid>107023</if_sid>
+		<field name="win.eventdata.startFunction">CtrlRoutine|GetCommandLineW</field>
+		<field name="win.eventdata.sourceImage">C:\\\\Windows\\\\System32\\\\csrss.exe|C:\\\\Program Files\\\\VMware\\\\VMware Tools\\\\vmtoolsd.exe</field>
+		<field name="win.eventdata.startModule">C:\\\\Windows\\\\System32\\\\KERNELBASE.dll|C:\\\\Windows\\\\system32\\\\kernel32.dll</field>
+		<description>Legitimate Thread into lsass Process on events</description>
+	</rule>
+	<!-- SAM Registry key Has Been Accessed - using regedit -->
+	<rule id="107026" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4663$</field>
+		<field name="win.eventdata.processName">regedit.exe</field>
+		<field name="win.eventdata.objectName">\\\\REGISTRY\\\\MACHINE\\\\SAM</field>
+		<description>SAM Registry key Has Been Accessed - using regedit</description>
+		<group>attack_stage_Collection,attack_category_Data_Collection,groupid_107026,</group>
+	</rule>
+	<!-- SAM Registry key - Enumerate sub-keys (users) -->
+	<rule id="107027" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4663$</field>
+		<field name="win.eventdata.processName">lsass.exe</field>
+		<field name="win.eventdata.objectName">\\\\REGISTRY\\\\MACHINE\\\\SAM\\\\SAM\\\\DOMAINS\\\\Account\\\\Users</field>
+		<field name="win.eventdata.accessList">%%4419</field>
+		<description>SAM Registry key - Enumerate sub-keys (users)</description>
+		<group>attack_stage_Collection,attack_category_Data_Collection,groupid_107027,</group>
+	</rule>
+	<!-- Detected Mimikatz Based on IMP Hash -->
+	<rule id="107028" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.hashes">IMPHASH=1B0369A1E06271833F78FFA70FFB4EAF|214CCCFFB2136A0559FF0C2324B226BA</field>
+		<description>Detected Mimikatz Based on IMP Hash</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Dumping,groupid_107028,</group>
+	</rule>
+	<!-- Detected a Remoting Service Connected to Lsass Pipe -->
+	<rule id="107029" level="12">
+		<if_group>sysmon_event_18</if_group>
+		<field name="win.eventdata.image">psexesvc.exe|wsmprovhost.exe|wmiprvse.exe</field>
+		<field name="win.eventdata.pipeName">lsass</field>
+		<description>Detected a Remoting Service Connected to Lsass Pipe</description>
+		<group>attack_stage_Initial_Access,attack_category_Remote_Services_Misuse,groupid_107029,</group>
+	</rule>
+	<!-- Lsass Process Connected to a Pipe -->
+	<rule id="107030" level="12">
+		<if_group>sysmon_event_18</if_group>
+		<field name="win.eventdata.image">lsass</field>
+		<description>Lsass Process Connected to a Pipe</description>
+		<group>attack_stage_Initial_Access,attack_category_Remote_Services_Misuse,groupid_107030,</group>
+	</rule>
+	<!-- Unsigned Executable Loaded Into lsass.exe -->
+	<rule id="107031" level="12">
+		<if_group>sysmon_event7</if_group>
+		<field name="win.eventdata.image">lsass</field>
+		<field name="win.eventdata.signed">false</field>
+		<description>Unsigned Executable Loaded Into lsass.exe</description>
+		<group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,groupid_107031,</group>
+	</rule>
+	<!-- Repeated same Windows user locked out -->
+	<!--<rule frequency="6" id="107038" level="10" timeframe="86400">-->
+    <rule frequency="6" id="107038" level="10" timeframe="7200">
+		<if_matched_sid>60115</if_matched_sid>
+		<same_field>win.eventdata.targetUserName</same_field>
+		<description>Repeated same Windows user locked out</description>
+		<group>attack_stage_Lateral_Movement,attack_category_Account_Lockout,</group>
+		<group>authentication_failures,pci_dss_8.1.6,pci_dss_11.4,gpg13_7.5,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_AC.7,nist_800_53_SI.4,groupid_107038,</group>
+	</rule>
+	<!-- [Windows] Suspected Lateral Movement -->
+	<rule id="107039" level="3">
+		<if_sid>18107</if_sid>
+		<field name="source_ip">\.+</field>
+		<description>[Windows] Logon with source IP</description>
+		<group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+		<options>no_log</options>
+	</rule>
+	<rule id="107040" level="0">
+		<if_sid>107039</if_sid>
+		<field name="win.eventdata.targetUserName">ANONYMOUS LOGON|ANONYMOUS|pwcsoc</field>
+		<description>[Windows] Legitmate Logon</description>
+		<options>no_log</options>
+	</rule>
+	<rule id="107041" level="0">
+		<if_sid>107039</if_sid>
+		<field name="win.eventdata.processName">WinCollect.exe</field>
+		<description>[Windows] Legitmate Process Logon</description>
+		<options>no_log</options>
+	</rule>
+	<rule frequency="10" id="107042" level="3" timeframe="600">
+		<if_matched_sid>107039</if_matched_sid>
+		<same_field>win.eventdata.targetDomainName</same_field>
+		<same_field>win.eventdata.targetUserName</same_field>
+		<not_same_field>source_ip</not_same_field>
+		<!-- <dstip>!wincollect_ip</dstip>
+																																																																																																																																																																																																																																																															 -->
+		<description>[Windows] Suspected Lateral Movement</description>
+		<group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+	</rule>
+	<!-- sysmon event 1 - psexec lateral movement -->
+	<rule id="107043" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">PSEXEC.exe</field>
+		<description>psexec lateral movement</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107043,</group>
+	</rule>
+	<!-- Windows event 4688 - psexec lateral movement -->
+	<rule id="107044" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">PSEXEC.exe</field>
+		<description>psexec lateral movement</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107044,</group>
+	</rule>
+	<!-- Windows event 7045 - psexec lateral movement , only for SYSTEM logs -->
+	<rule id="107045" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^7045$</field>
+		<field name="win.eventdata.serviceName">PSEXECSVC</field>
+		<description>psexec lateral movement</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107045,</group>
+	</rule>
+	<!-- sysmon event 1 - PSRemoting lateral movement -->
+	<rule id="107047" level="5">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.parentProcessName">wsmprovhost.exe</field>
+		<description>PSRemoting lateral movement</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,demo_rules,DEV-4527,</group>
+		<!-- DEV-4527 -->
+	</rule>
+	<!-- Windows event 4688 - PSRemoting lateral movement -->
+	<rule id="107048" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">wsmprovhost.exe</field>
+		<field name="win.eventdata.commandLine">\.+</field>
+		<description>PSRemoting lateral movement</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,group_by_data.win.eventdata.subjectUserName,</group>
+		<!-- DEV-4527 -->
+		<!-- DEV-5128 -->
+	</rule>
+
+	<rule id="107057" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">Enter-PSSession|Invoke-Command</field>
+		<description>PSRemoting lateral movement</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,demo_rules,DEV-4527,</group>
+		<!-- DEV-4527 -->
+	</rule>
+	<rule id="107058" level="12">
+		<if_sid>60009</if_sid>
+		<field name="win.system.eventID">^4103$</field>
+		<field name="win.system.message">Enter-PSSession</field>
+		<description>PSRemoting lateral movement by PowerShell Execution</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+		<!-- DEV-4527 -->
+	</rule>
+
+	<!-- Potential Windows Service Persistence -->
+	<rule id="107050" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4697$|^7045$</field>
+		<description>Potential Windows Service Persistence</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<!-- Legitmate Service -->
+	<rule id="107051" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">C:\\\\Windows\\\\veeamvsssupport\\\\veeamguesthelper.exe|C:\\\\Windows\\\\VeeamVssSupport\\\\VeeamGuestHelper.exe|c:\\\\windows\\\\system32\\\\drivers\\\\iqvw64e.sys|C:\\\\Windows\\\\system32\\\\drivers\\\\CrowdStrike\\\\CSBoot.sys|C:\\\\Program Files\\\\CrowdStrike\\\\CSFalconService.exe|C:\\\\Windows\\\\system32\\\\drivers\\\\CrowdStrike\\\\csagent.sys|%SystemRoot%\\\\system32\\\\Drivers\\\\Crowdstrike\\\\\d+-CsInstallerService.exe|C:\\\\Program Files \(x86\)\\\\Common Files\\\\Adobe\\\\AdobeGCClient\\\\AGSService.exe|C:\\\\Windows\\\\system32\\\\svchost.exe -k UnistackSvcGroup|C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Definition Updates\.*MpKslDrv.sys|C:\\\\Packages\\\\Plugins\\\\Microsoft.EnterpriseCloud.Monitoring.MicrosoftMonitoringAgent\\\\\.*\\\\MMAExtensionHeartbeatService.exe|system32\\\\DRIVERS\\\\MbamChameleon.sys|C:\\\\Windows\\\\system32\\\\MpEngineStore\\\\MpKslDrv.sys|C:\\\\windows\\\\system32\\\\drivers\\\\depagent.sys|C:\\\\Program Files\\\\Microsoft Dependency Agent\\\\bin\\\\agentwrap.exe|Microsoft\\\\EdgeUpdate\\\\MicrosoftEdgeUpdate.exe|C:\\\\WINDOWS\\\\system32\\\\CredentialEnrollmentManager.exe</field>
+		<description>Legit Windows Service Persistence</description>
+	</rule>
+	<rule id="107905" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">C:\\\\Program Files \(x86\)\\\\Sophos|C:\\\\Program Files\\\\Sophos|system32\\\\DRIVERS\\\\Sophos</field>
+		<description>Legit Windows Service Persistence</description>
+	</rule>
+	<rule id="107910" level="12">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">Temp|Users|Tmp|Recycle|ProgramData|Perflogs|Windows\.+Fonts|\\\\Admin\$\\\\\w\w\w\w\w\w\w.exe|.ps1|.dll|.bat|cmd.exe|powershell.exe|cscript.exe|rundll32.exe|regsvr32.exe|regsvc.exe|regasm.exe|wmic.exe|psexec</field>
+		<description>Potentially Suspicious Service Creation</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="107911" level="8">
+		<if_sid>107050</if_sid>
+		<!-- negate="Yes" Cannot use at Wazuh v3-->
+		<!-- <field name="win.eventdata.serviceFileName" negate="yes">C:\\\\Program Files\\\\|C:\\\\Program Files \(x86\)\\\\|%systemroot%\\\\system32</field> -->
+		<description>Uncommon Service Creation</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="107912" level="0">
+		<if_sid>107911</if_sid>
+		<field name="win.eventdata.serviceFileName">c:\\\\windows\\\\system32|^system32|C:\\\\Program Files|C:\\\\Program Files \(x86\)|%systemroot%\\\\system32|\\\\SystemRoot\\\\system32</field>
+		<description>Whitelist Uncommon Service Creation</description>
+	</rule>
+	<rule id="107913" level="0">
+		<if_sid>107910</if_sid>
+		<field name="win.eventdata.serviceFileName">C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Definition Updates</field>
+		<description>Whitelist Potentially Suspicious Service Creation</description>
+		<!-- DEV-3836 -->
+	</rule>	
+	<!-- Legit svchost.exe Service-->
+	<rule id="107904" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">Windows\\\\system32\\\\svchost.exe -k</field>
+		<field name="win.eventdata.serviceName">UserSvc_|svc_|Service_</field>
+		<field name="win.eventdata.serviceAccount">LocalSystem</field>
+		<field name="win.eventdata.subjectUserName">\$</field>
+		<description>Legit Windows Service Persistence - svchost</description>
+	</rule>
+	<!-- Edge Update-->
+	<rule id="107907" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">MicrosoftEdgeUpdate.exe</field>
+		<field name="win.eventdata.serviceName">edgeupdate</field>
+		<field name="win.eventdata.serviceAccount">LocalSystem</field>
+		<field name="win.eventdata.subjectUserName">\$</field>
+		<description>Legit Windows Service Persistence - EdgeUpdate</description>
+	</rule>
+	<rule id="107908" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">elevation_service.exe</field>
+		<field name="win.eventdata.serviceName">MicrosoftEdgeElevationService</field>
+		<field name="win.eventdata.serviceAccount">LocalSystem</field>
+		<field name="win.eventdata.subjectUserName">\$</field>
+		<description>Legit Windows Service Persistence - ElevationService</description>
+	</rule>
+	<!-- Windows Driver Foundation Update-->
+	<rule id="107909" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">WUDFRd</field>
+		<field name="win.eventdata.serviceName">WUDFWpdMtp</field>
+		<field name="win.eventdata.serviceAccount">WudfRd</field>
+		<field name="win.eventdata.subjectUserName">\$</field>
+		<description>Legit Windows Service Persistence - Windows Driver Foundation</description>
+	</rule>
+	<!-- PrepDriver-->
+	<rule id="107915" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">DRIVERS\\\\prepdrv.sys</field>
+		<field name="win.eventdata.serviceName">prepdrv</field>
+		<field name="win.eventdata.serviceAccount">LocalSystem</field>
+		<field name="win.eventdata.subjectUserName">\$</field>
+		<description>Legit Windows Service Persistence - PrepDriver</description>
+	</rule>
+	<!-- Symantec install component-->
+	<rule id="107916" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">closeui.exe</field>
+		<field name="win.eventdata.serviceName">SymCloseUI</field>
+		<field name="win.eventdata.serviceAccount">LocalSystem</field>
+		<field name="win.eventdata.subjectUserName">\$</field>
+		<description>Legit Windows Service Persistence - Symantec install component</description>
+	</rule>
+	<!-- DEV 738-->
+	<rule id="132844" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">C:\\\\Windows\\\\AltirisAgentInstSvc.exe\\"</field>
+		<description>Altiris Agent installation service </description>
+	</rule>
+	<!-- DEV 3190-->
+	<rule id="132845" level="0">
+		<if_sid>107050</if_sid>
+		<field name="win.eventdata.serviceFileName">C:\\\\Windows\\\\system32\\\\dllhost.exe /Processid</field>
+		<description>Azure VM backup service </description>
+	</rule>
+	<!-- sysmon event 1 - Suspicious use of powershell -->
+	<rule id="107052" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.image">Powershell</field>
+		<field name="win.eventdata.commandLine">-nop|-w |downloadfile|downloadstring|wget|-enc|-noni|\siex|-c |Start-Process|ShellExecute|Invoke-WebRequest|BitsTransfer|Net.Sockets|TCPClient|\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.</field>
+		<description>Suspicious use of powershell</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107052,</group>
+	</rule>
+	<!-- Windows event 4688 - Suspicious use of powershell -->
+	<rule id="107053" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">Powershell</field>
+		<field name="win.eventdata.commandLine">-nop|-w |downloadfile|downloadstring|wget|-enc|-noni|\siex|-c |Start-Process|ShellExecute|Invoke-WebRequest|BitsTransfer|Net.Sockets|TCPClient|\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.</field>
+		<description>Suspicious use of powershell</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																																																											  Legitimate files using powershell
+																																																																																																											  981792616E29B07CA33749E4F3DA9769A850C61CED86F71716E0AF475BBD2DF1(Veeam Agent File)
+																																																																																																											  9A85ED863E653DE667D0C34EF83D28213B752254BFEA3A05ADFF219657E8AC5F(Sysmon64.exe)
+																																																																																																											-->
+	<rule id="107054" level="0">
+		<if_sid>107052</if_sid>
+		<field name="win.eventdata.hashes">981792616E29B07CA33749E4F3DA9769A850C61CED86F71716E0AF475BBD2DF1|9A85ED863E653DE667D0C34EF83D28213B752254BFEA3A05ADFF219657E8AC5F</field>
+		<description>Legitimate files using powershell</description>
+	</rule>
+	<rule id="107800" level="0">
+		<if_sid>107052</if_sid>
+		<field name="win.eventdata.parentImage">C:\\\\Program Files\\\\Veeam\\\\Backup and Replication\\\\Backup\\\\Veeam.Backup.Manager.exe</field>
+		<description>Legitimate use of PowerShell</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="107801" level="0">
+		<if_sid>107053</if_sid>
+		<field name="win.eventdata.parentProcessName">C:\\\\Program Files\\\\Veeam\\\\Backup and Replication\\\\Backup\\\\Veeam.Backup.Manager.exe</field>
+		<description>Legitimate use of PowerShell</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- ignore DisableUnusedSmb1 -->
+	<rule id="107055" level="0">
+		<if_sid>107052</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\Modules\\\\SmbShare\\\\DisableUnusedSmb1.ps1</field>
+		<description>Legitimate process using powershell</description>
+	</rule>
+	<!-- ignore DoScheduledTelemetryRun -->
+	<rule id="107056" level="0">
+		<if_sid>107052</if_sid>
+		<field name="sysmon.parentCommandLine">C:\\\\WINDOWS\\\\system32\\\\CompatTelRunner.exe -m:appraiser.dll -f:DoScheduledTelemetryRun</field>
+		<description>Windows telemetry process</description>
+	</rule>
+	<!-- sysmon event 1 - Detect Powerup Execution -->
+	<rule id="107059" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">Invoke-AllChecks|Get-ModifiableService|Get-ModifiableServiceFile|Get-ServiceUnquoted|Invoke-ServiceAbuse|Install-ServiceBinary|Set-ServiceBinPath|Find-PathDLLHijack|Write-HijackDll|Get-RegistryAlwaysInstallElevated|Get-RegistryAutoLogon|Get-ModifiableRegistryAutoRun|Get-UnattendedInstallFile|Get-Webconfig|Get-ProcessTokenPrivilege|Get-SiteListPassword|Get-CurrentUserTokenGroupSid|Invoke-EventVwrBypass</field>
+		<description>Detect Powerup Execution</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect Powerup Execution -->
+	<rule id="107060" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">Invoke-AllChecks|Get-ModifiableService|Get-ModifiableServiceFile|Get-ServiceUnquoted|Invoke-ServiceAbuse|Install-ServiceBinary|Set-ServiceBinPath|Find-PathDLLHijack|Write-HijackDll|Get-RegistryAlwaysInstallElevated|Get-RegistryAutoLogon|Get-ModifiableRegistryAutoRun|Get-UnattendedInstallFile|Get-Webconfig|Get-ProcessTokenPrivilege|Get-SiteListPassword|Get-CurrentUserTokenGroupSid|Invoke-EventVwrBypass</field>
+		<description>Detect Powerup Execution</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107060,</group>
+	</rule>
+	<!-- sysmon event 1 - Detect Powerview Execution -->
+	<rule id="107061" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">Get-NetDomain|Get-NetForest|Get-NetForestDomain|Get-NetDomainController|Get-NetUser|Add-NetUser|Get-NetComputer|Get-NetPrinter|Get-NetOU|Get-NetSite|Get-NetSubnet|Get-NetGroup|Get-NetGroupMember|Get-NetLocalGroup|Add-NetGroupUser|Get-NetFileServer|Get-DFSshare|Get-NetShare|Get-NetLoggedon|Get-NetSession|Get-NetRDPSession|Get-NetProcess|Get-UserEvent|Get-ADObject|Set-ADObject</field>
+		<description>Detect Powerview Execution</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107061,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect Powerview Execution -->
+	<rule id="107062" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">Get-NetDomain|Get-NetForest|Get-NetForestDomain|Get-NetDomainController|Get-NetUser|Add-NetUser|Get-NetComputer|Get-NetPrinter|Get-NetOU|Get-NetSite|Get-NetSubnet|Get-NetGroup|Get-NetGroupMember|Get-NetLocalGroup|Add-NetGroupUser|Get-NetFileServer|Get-DFSshare|Get-NetShare|Get-NetLoggedon|Get-NetSession|Get-NetRDPSession|Get-NetProcess|Get-UserEvent|Get-ADObject|Set-ADObject</field>
+		<description>Detect Powerview Execution</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107062,</group>
+	</rule>
+	<!-- sysmon event 1 - Detect Powersploit Execution -->
+	<rule id="107063" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">Invoke-ReflectivePEInjection|Invoke-Shellcode|Invoke-WmiCommand|Invoke-Mimikatz|Get-TimedScreenshot|Get-Keystrokes|Get-GPPPassword|Invoke-NinjaCopy</field>
+		<description>Detect Powersploit Execution</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107063,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect Powersploit Execution -->
+	<rule id="107064" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">Invoke-ReflectivePEInjection|Invoke-Shellcode|Invoke-WmiCommand|Invoke-Mimikatz|Get-TimedScreenshot|Get-Keystrokes|Get-GPPPassword|Invoke-NinjaCopy</field>
+		<description>Detect Powersploit Execution</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107064,</group>
+	</rule>
+	<!-- sysmon event 1 - Detect command line run by wmic -->
+	<rule id="107065" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">wmic</field>
+		<description>Detect command line run by wmic</description>
+		<group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,groupid_107065,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect command line run by wmic -->
+	<rule id="107066" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">wmic</field>
+		<description>Detect command line run by wmic</description>
+		<group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,</group>
+	</rule>
+	<!-- sysmon event 1 - Detect binary execution using MSBuild -->
+	<rule id="107067" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">MSBuild\.+.c\s</field>
+		<description>Detect binary execution using MSBuild</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107067,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect binary execution using MSBuild -->
+	<rule id="107068" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">MSBuild\.+.c\s</field>
+		<description>Detect binary execution using MSBuild</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107068,</group>
+	</rule>
+	<!--Whitelist-->
+	<!-- PwC Caas: Dcsync -->
+	<rule id="107069" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4662$</field>
+		<field name="win.eventdata.properties">1131f6ad-9c07-11d1-f79f-00c04fc2dcd2|9923a32a-3607-11d2-b9be-0000f87a36b2|1131f6ac-9c07-11d1-f79f-00c04fc2dcd2</field>
+		<description>Detect Potential Dcsync</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,groupid_107069,</group>
+		<!-- DEV-2002 -->
+	</rule>
+	<!-- RDP lateral movement -->
+	<rule id="107070" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^21$|^25$|^261$|^4624$|^4648$|^7036$</field>
+		<description>RDP lateral movement</description>
+	</rule>
+	<rule frequency="5" id="107071" level="5" timeframe="60">
+		<if_matched_sid>107070</if_matched_sid>
+		<same_source_ip/>
+		<same_field>win.eventdata.targetUserName</same_field>
+		<description>RDP lateral movement</description>
+		<group>attack_stage_Lateral_Movement,attack_category_Exploit_Remote_Services_/_Applications,</group>
+	</rule>
+	<!-- DEV-4700 -->
+	<!--
+	<rule id="107073" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^addinprocess\W|^addinprocess32\W|^bash\W|^dbghost\W|^dbgsvc\W|^dnx\W|^kd\W|^ntkd\W|^lxssmanager.dll\W|^mshta\W|^ntsd\W|^system.management.automation.dll\W|^windbg\W|^certutil\W|^hh\W|^addinprocess$|^addinprocess32$|^bash$|^dbghost$|^dbgsvc$|^dnx$|^kd$|^ntkd$|^lxssmanager.dll$|^mshta$|^ntsd$|^system.management.automation.dll$|^windbg$|^wmic$|^certutil$|^hh$|\Waddinprocess\W|\Waddinprocess32\W|\Wbash\W|\Wdbghost\W|\Wdbgsvc\W|\Wdnx\W|\Wkd\W|\Wntkd\W|\Wlxssmanager.dll\W|\Wmshta\W|\Wntsd\W|\Wsystem.management.automation.dll\W|\Wwindbg\W|\Wcertutil\W|\Whh\W|\Waddinprocess$|\Waddinprocess32$|\Wbash$|\Wdbghost$|\Wdbgsvc$|\Wdnx$|\Wkd$|\Wntkd$|\Wlxssmanager.dll$|\Wmshta$|\Wntsd$|\Wsystem.management.automation.dll$|\Wwindbg$|\Wcertutil$|\Whh$</field>
+		<description>Detect suspicious Windows commands</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	-->
+	<!-- DEV-4800 -->
+	<!-- Remove \Whh\W, \Wdnx\W, \Wkd\W from original rule -->
+	<rule id="107073" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^addinprocess\W|^addinprocess32\W|^bash\W|^dbghost\W|^dbgsvc\W|^dnx\W|^kd\W|^ntkd\W|^lxssmanager.dll\W|^mshta\W|^ntsd\W|^system.management.automation.dll\W|^windbg\W|^certutil\W|^hh\W|^addinprocess$|^addinprocess32$|^bash$|^dbghost$|^dbgsvc$|^dnx$|^kd$|^ntkd$|^lxssmanager.dll$|^mshta$|^ntsd$|^system.management.automation.dll$|^windbg$|^wmic$|^certutil$|^hh$|\Waddinprocess\W|\Waddinprocess32\W|\Wbash\W|\Wdbghost\W|\Wdbgsvc\W|\Wntkd\W|\Wlxssmanager.dll\W|\Wmshta\W|\Wntsd\W|\Wsystem.management.automation.dll\W|\Wwindbg\W|\Wcertutil\W|\Waddinprocess$|\Waddinprocess32$|\Wbash$|\Wdbghost$|\Wdbgsvc$|\Wdnx$|\Wkd$|\Wntkd$|\Wlxssmanager.dll$|\Wmshta$|\Wntsd$|\Wsystem.management.automation.dll$|\Wwindbg$|\Wcertutil$|\Whh$</field>
+		<description>Detect suspicious Windows commands</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107073,</group>
+	</rule>
+	<rule id="107075" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">^bginfo.exe\W|^bginfo.exe$|\Wbginfo.exe\W|\Wbginfo.exe$|^cdb.exe\W|^cdb.exe$|\Wcdb.exe\W|\Wcdb.exe$|^csi.exe\W|^csi.exe$|\Wcsi.exe\W|\Wcsi.exe$|^rcsi.exe\W|^rcsi.exe$|\Wrcsi.exe\W|\Wrcsi.exe$</field>
+		<description>Detect suspicious Windows commands</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-4700 -->
+		<!-- DEV-5846 - Move MSBuild to 107595 -->
+	</rule>
+	<rule id="107076" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">fsscript</field>
+		<description>Detect suspicious Windows commands (fsscript)</description>
+		<!-- DEV-4700 -->
+	</rule>
+	<rule id="107077" level="12">
+		<if_sid>107076</if_sid>
+		<field name="win.eventdata.commandLine">^fsi\W|\Wfsi$|\Wfsi\W|^fsi$|^fsiAnyCpu\W|\WfsiAnyCpu$|\WfsiAnyCpu\W|^fsiAnyCpu$</field>
+		<description>Detect suspicious Windows commands</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-4700 -->
+	</rule>
+	<rule id="107078" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^addinutil\W|\Waddinutil$|\Waddinutil\W|^addinutil$</field>
+		<description>Detect suspicious Windows commands</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-4700 -->
+	</rule>
+	<rule id="107079" level="0">
+		<if_sid>107078</if_sid>
+		<field name="win.eventdata.commandLine">PipelineRoot:\\"c:\\\\Program Files \(x86\)\\\\Common Files\\\\Microsoft Shared\\\\VSTA\\\\Pipeline.v10.0|AddInRoot:\\"C:\\\\Program Files \(x86\)\\\\Common Files\\\\Microsoft Shared\\\\VSTA\\\\AppInfoDocument</field>
+		<description>[Whitelist] Detect suspicious Windows commands</description>
+		<!-- DEV-4700 -->
+	</rule>
+	<!-- sysmon event 1 - Detect suspicious long command -->
+	<!-- <rule id="107074" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.</field>
+		<description>Detect suspicious long command</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+																																																																																																														 -->
+	<!-- Windows event 4688 - Detect suspicious long command -->
+	<!-- <rule id="107075" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.</field>
+		<description>Detect suspicious long command</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+																																																																																																														 -->
+	<!-- sysmon event 1 - Detect suspicious BITS command -->
+	<rule id="107080" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">bitadmins|bitstransfer</field>
+		<description>Detect suspicious BITS command</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107080,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect suspicious BITS command -->
+	<rule id="107081" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">bitadmins|bitstransfer</field>
+		<description>Detect suspicious BITS command</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107081,</group>
+	</rule>
+	<!-- sysmon event 1 - Detect suspicious BITS command -->
+	<rule id="107082" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">bitadmins|bitstransfer</field>
+		<description>Detect suspicious BITS command</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- Disabled until thorough review -->
+	<!-- sysmon event 1 - WMI lateral movement
+																																																							<rule id="107090" level="0">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">wmiprvse.exe</field>
+		<description>WMI lateral movement</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+																																																						 -->
+	<rule id="107090" level="0">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.parentImage">wmiprvse</field>
+		<description>WMI lateral movement</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<!-- Disabled until thorough review -->
+	<!-- Windows event 4688 - WMI lateral movement
+																																																							<rule id="107091" level="0">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">wmiprvse.exe</field>
+		<description>WMI lateral movement</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+																																																						 -->
+	<rule id="107091" level="0">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">wmiprvse</field>
+		<description>WMI lateral movement</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<!-- Whitelist Windows Defender -->
+	<rule id="107092" level="0">
+		<if_sid>107090</if_sid>
+		<field name="win.eventdata.parentCommandLine">C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\platform\.+MsMpEng.exe</field>
+		<description>Legitimate - WMI lateral movement</description>
+	</rule>
+
+	<rule id="107093" level="0">
+		<if_sid>107073</if_sid>
+		<field name="win.eventdata.commandLine">certutil.exe\s+-store Root|-addstore\s+Root|-addstore \\"Root\\"|Symantec\\\\Symantec Endpoint Protection Manager\\\\bin\\\\Xdelta64\\\\xdelta3.exe|C:\\\\Program Files\\\\Windows Defender Advanced Threat Protection\\\\SenseNdr.exe</field>
+		<description>[Whitelist] Detect suspicious Windows commands</description>
+		<!-- DEV-4543 -->
+		<!-- DEV-4726 -->
+	</rule>
+
+	<!-- sysmon event 1 - Detect dll run by regsvr32 -->
+	<rule id="107100" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">regsvr32.exe\.+.dll</field>
+		<description>Detect dll run by regsvr32 - $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107100,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect dll run by regsvr32 -->
+	<!-- change made by Raymond -->
+	<rule id="107101" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">regsvr32.exe\.+.dll</field>
+		<description>Detect dll run by regsvr32 - $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- Leguitimate Microsoft Teams Update -->
+	<rule id="107102" level="0">
+		<if_sid>107100</if_sid>
+		<field name="win.eventdata.parentCommandLine">\\\\Microsoft\\\\Teams\\\\update.exe --update \.+\\\\Microsoft\\\\Teams\\\\DownloadedUpdate</field>
+		<description>Legitimate Microsoft Teams Update - Detect dll run by regsvr32</description>
+	</rule>
+	<!-- Leguitimate Squirrel Windows software for update -->
+	<rule id="107103" level="0">
+		<if_sid>107100</if_sid>
+		<field name="win.eventdata.parentImage">\\\\SquirrelTemp\\\\Update.exe</field>
+		<description>Legitimate Squirrel Windows software - Detect dll run by regsvr32</description>
+	</rule>
+	<rule id="107920" level="0">
+		<if_sid>107101</if_sid>
+		<field name="win.eventdata.parentProcessName">SquirrelTemp\\\\Update.exe</field>
+		<field name="win.eventdata.commandLine">Microsoft.Teams.AddinLoader.dll</field>
+		<description>Legitimate Squirrel Windows software - Detect dll run by regsvr32</description>
+	</rule>
+	<rule id="107921" level="0">
+		<if_sid>107101</if_sid>
+		<field name="win.eventdata.parentProcessName">Update.exe</field>
+		<field name="win.eventdata.commandLine">Microsoft.Teams.AddinLoader.dll</field>
+		<description>Legitimate Teams addinloader.dll - Detect dll run by regsvr32</description>
+	</rule>
+	<!-- DEV-583-->
+	<rule id="107922" level="0">
+		<if_sid>107101</if_sid>
+		<field name="win.eventdata.commandLine">Trend Micro\\\\OfficeScan Client\\\\CCSF\\\\module\\\\BES</field>
+		<field name="win.eventdata.commandLine">TmBpIe64.dll</field>
+		<description>Legitimate TrendMicro.dll</description>
+	</rule>
+	<!--
+																																																																																																																							      Leguitimate Alibaba TradeManager
+																																																																																																																							      Printconfig.dll
+																																																																																																																							   -->
+	<rule id="107104" level="0">
+		<if_sid>107100</if_sid>
+		<field name="win.eventdata.commandLine">AliIMX_64.dll|C:\\\\WINDOWS\\\\system32\\\\spool\\\\drivers\\\\x64\\\\3\\\\PrintConfig.dll|C:\\\\WINDOWS\\\\SysWOW64\\\\PrintConfig.dll</field>
+		<description>Leguitimate - Detect dll run by regsvr32</description>
+	</rule>
+	<rule id="107105" level="0">
+		<if_sid>107101</if_sid>
+		<field name="win.eventdata.commandLine">AliIMX_64.dll|C:\\\\WINDOWS\\\\system32\\\\spool\\\\drivers\\\\x64\\\\3\\\\PrintConfig.dll|C:\\\\WINDOWS\\\\SysWOW64\\\\PrintConfig.dll</field>
+		<description>Leguitimate - Detect dll run by regsvr32</description>
+	</rule>
+	<!-- Leguitimate Firefox Process -->
+	<rule id="107106" level="0">
+		<if_sid>107100</if_sid>
+		<field name="win.eventdata.commandLine">Mozilla Firefox\\\\AccessibleMarshal.dll|Mozilla Firefox\\\\AccessibleHandler.dll</field>
+		<description>Leguitimate Alibaba TradeManager - Detect dll run by regsvr32</description>
+	</rule>
+	<rule id="107107" level="0">
+		<if_sid>107101</if_sid>
+		<field name="win.eventdata.commandLine">Mozilla Firefox\\\\AccessibleMarshal.dll|Mozilla Firefox\\\\AccessibleHandler.dll</field>
+		<description>Leguitimate Firefox Process - Detect dll run by regsvr32</description>
+	</rule>
+	<!-- Leguitimate Intel Driver -->
+	<rule id="107108" level="0">
+		<if_sid>107100</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Intel\\\\GfxCPLBatchFiles</field>
+		<description>Leguitimate Intel Driver - Detect dll run by regsvr32</description>
+	</rule>
+	<rule id="107109" level="0">
+		<if_sid>107101</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Intel\\\\GfxCPLBatchFiles</field>
+		<description>Leguitimate Intel Driver - Detect dll run by regsvr32</description>
+	</rule>
+	<!-- Sophos Update -->
+	<rule id="107110" level="0">
+		<if_sid>107100</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files \(x86\)\\\\Sophos|C:\\\\Program Files\\\\Sophos</field>
+		<description>Sophos Update - Detect dll run by regsvr32</description>
+	</rule>
+	<rule id="107111" level="0">
+		<if_sid>107101</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files \(x86\)\\\\Sophos|C:\\\\Program Files\\\\Sophos</field>
+		<description>Sophos Update - Detect dll run by regsvr32</description>
+	</rule>
+	<rule id="107112" level="0">
+		<if_sid>107100,107101</if_sid>
+		<field name="win.eventdata.commandLine">\\\\CheckPoint\\\\Endpoint Security\\\\EFR</field>
+		<description>Checkpoint Endpoint Security Update - Detect dll run by regsvr32</description>
+	</rule>
+
+	<!-- Windows event 15281,15457 - Detect suspicious MSSQL xp_cmdshell usage -->
+	<rule id="107250" level="12">
+		<if_sid>60003</if_sid>
+		<field name="win.system.eventID">^15281$|^15457$</field>
+		<field name="win.system.message">xp_cmdshell</field>
+		<description>Detect suspicious MSSQL xp_cmdshell usage</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,groupid_107250,</group>
+	</rule>
+	<!-- Process Loaded Executable from Temp Directory -->
+	<rule id="107300" level="12">
+		<if_group>sysmon_event7</if_group>
+		<field name="win.eventdata.imageLoaded">AppData\\\\Local\\\\Temp|Windows\\\\Temp</field>
+		<description>Process Loaded Executable from Temp Directory - $(win.eventdata.imageLoaded)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107300,</group>
+	</rule>
+	<!-- Legitmate Process Loaded Executable from Temp Directory  -->
+	<rule id="107301" level="0">
+		<if_sid>107300</if_sid>
+		<field name="win.eventdata.signature">Kaspersky Lab|Microsoft Windows|Microsoft Corporation|Google LLC</field>
+		<description>Legitmate Process Loaded Executable from Temp Directory</description>
+	</rule>
+	<!--
+																																																																																															  Legitmate Firefox executable
+																																																																																															  Common Files\microsoft shared\VSTO\10.0\VSTOInstaller.exe
+																																																																																															-->
+	<rule id="107302" level="0">
+		<if_sid>107300</if_sid>
+		<field name="win.eventdata.image">\\\\Mozilla Firefox\\\\uninstall\\\\helper.exe|\\\\Common Files\\\\microsoft shared\\\\VSTO\.*VSTOInstaller.exe</field>
+		<description>Legitmate Process Loaded Executable from Temp Directory</description>
+	</rule>
+	<!-- HPSupportSolutionsFrameworkService -->
+	<rule id="107303" level="0">
+		<if_sid>107300</if_sid>
+		<field name="win.eventdata.imageLoaded">PatchInstaller.exe</field>
+		<field name="win.eventdata.company">HP Inc</field>
+		<field name="win.eventdata.signatureStatus">Valid</field>
+		<description>Legitmate HPSupportSolutionsFrameworkService - From Temp Directory</description>
+	</rule>
+	<!-- Process Launched From Temp Directory -->
+	<rule id="107350" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.image">AppData\\\\Local\\\\Temp|Windows\\\\Temp</field>
+		<description>Process Launched From Temp Directory - $(win.eventdata.image)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107350,</group>
+	</rule>
+	<!--
+																																																																																																																		      Legitmate Parent Command Line From Temp Directory
+																																																																																																																		      WindowsAutomating Disk Cleanup Tool
+																																																																																																																				DisableUnusedSmb1.ps1
+																																																																																																									                    C:\Windows\SoftwareDistribution\Download\Install\updateplatform.exe
+																																																																																																																		  -->
+	<rule id="107351" level="0">
+		<if_sid>107350</if_sid>
+		<field name="win.eventdata.parentCommandLine">C:\\\\Windows\\\\system32\\\\cleanmgr.exe /autoclean|C:\\\\Windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\Modules\\\\SmbShare\\\\DisableUnusedSmb1.ps1|C:\\\\Windows\\\\system32\\\\CompatTelRunner.exe -m:appraiser.dll -f:DoScheduledTelemetryRun|C:\\\\Windows\\\\system32\\\\CompatTelRunner.exe  -m:generaltel.dll -f:DoCensusRun|C:\\\\Windows\\\\SoftwareDistribution\\\\Download\\\\Install\\\\updateplatform.exe|C:\\\\Windows\\\\SERVIC~2\\\\NETWOR~1\\\\AppData\\\\Local\\\\Temp\\\\mpam|C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\platform\.*MpCmdRun.exe</field>
+		<description>Legitimate - Process Launched From Temp Directory</description>
+	</rule>
+	<!--
+																																																																																																																				Legitmate File Hash From Temp Directory
+																																																																																																																				489663A32CE72A60FB45D6F88A391EF17EB1AA97554A3FD7867C8F6DECB35BC7(Windows update process MpSigStub.exe hash)
+																																																																																																																				5E4C34856DDDBD3E730EA92A15DC4663C8B1FD3F7AEE2B6ADF970457854E2C4D(google update setup.exe)
+																																																																																																																			-->
+	<rule id="107352" level="0">
+		<if_sid>107350</if_sid>
+		<field name="win.eventdata.hashes">489663A32CE72A60FB45D6F88A391EF17EB1AA97554A3FD7867C8F6DECB35BC7|5E4C34856DDDBD3E730EA92A15DC4663C8B1FD3F7AEE2B6ADF970457854E2C4D</field>
+		<description>Legitmate File Hash From Temp Directory</description>
+	</rule>
+	<!-- Google Chrome Installer -->
+	<rule id="107353" level="0">
+		<if_sid>107350</if_sid>
+		<field name="win.eventdata.commandLine">--url=https://clients2.google.com/cr/report|CHROME_PATCH.PACKED.7Z</field>
+		<field name="win.eventdata.description">Google Chrome Installer</field>
+		<description>Legitmate File Hash From Temp Directory</description>
+	</rule>
+	<!-- HPSupportSolutionsFrameworkService -->
+	<rule id="107354" level="0">
+		<if_sid>107350</if_sid>
+		<field name="win.eventdata.parentImage">HP Support Solutions\\\\Modules\\\\HPSSFUpdater.exe</field>
+		<field name="win.eventdata.company">HP Inc</field>
+		<description>Legitmate HPSupportSolutionsFrameworkService - From Temp Directory</description>
+	</rule>
+	<!-- Veeam Backup -->
+	<rule id="107355" level="0">
+		<if_sid>107350</if_sid>
+		<field name="win.eventdata.parentCommandLine">Veeam\\\\Endpoint\\\\Workstation_backup_Job</field>
+		<description>Legitmate Veeam Backup - From Temp Directory</description>
+	</rule>
+	<rule id="107356" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.company">CrowdStrike\.*|Dropbox\.*|Google LLC|Lenovo Group Limited|Logitech\.*|LogMeIn, Inc|Veeam Software.*|Zoom.*</field>
+		<description>Legitmate Company Signed Process Loaded - From Temp Directory</description>
+	</rule>
+	<rule id="107357" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.image">C:\\\\Windows\\\\TEMP\.*dismhost.exe|C:\\\\Program Files \(x86\)\\\\Dropbox\\\\Update\\\\Install\\\\|C:\\\\Program Files\\\\Common Files\\\\Logitech\\\\|C:\\\\Program Files \(x86\)\\\\TeamViewer\\\\Update\\\\update.exe|C:\\\\Program Files \(x86\)\\\\Common Files\\\\microsoft shared\\\\VSTO\\\\100.00\\\\VSTOInstaller.exe</field>
+		<description>Legitmate Images- From Temp Directory</description>
+	</rule>
+	<rule id="107358" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.hashes">A7D45C8D77E32BB83439EE896100E4294159DA1126312283D2EEE8F003178744B7|562287AA75E16792D70B9F64FCC9EB67F0A66507927F5415C96C99693A6A185D|F6E4CDAA9CAAA631B1F29886C1F82734C87FFF98E54D2DF995570079546DD683F|D0772BFB0687E068D4D21749C90DBAC7FB7F71F74F3A8CAF6D69CAC483A1C17F|B993B79F34D346B23A47B10E8DFADF92DA40BC598439EFFDBA9626DC83DA7456</field>
+		<description>Legitmate hashes - From Temp Directory</description>
+	</rule>
+	<rule id="107359" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files \(x86\)\\\\TeamViewer\\\\Update\\\\update.exe</field>
+		<description>Legitmate Source Image From Temp Directory</description>
+	</rule>
+	<rule id="107360" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.parentImage">C:\\\\Windows\\\\System32\\\\Dism.exe|C:\\\\Program Files\\\\Logitech\\\\|C:\\\\Users\\\\\.*\\\\AppData\\\\Local\\\\GoToMeeting\\\\\d+\\\\g2mupdate.exe|C:\\\\Program Files \(x86\)\\\\Microsoft\\\\Skype for Desktop\\\\Skype.exe|C:\\\\Windows\\\\SoftwareDistribution\\\\Download\\\\Install\\\\updateplatform.exe|C:\\\\Windows\\\\SoftwareDistribution\\\\Download\\\\Install\\\\updateplatform.exe</field>
+		<description>Legitmate Parent Image - From Temp Directory</description>
+	</rule>
+	<rule id="107361" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.parentCommandLine">C:\\\\Program Files\\\\Logitech\\\\|C:\\\\Users\\\\\.*\\\\AppData\\\\Local\\\\GoToMeeting\\\\\d+\\\\g2mupdate.exe|C:\\\\WINDOWS\\\\Veeam\\\\Backup\\\\|C:\\\\Program Files\\\\Veeam\\\\Endpoint Backup\\\\|C:\\\\windows\\\\SoftwareDistribution\\\\Download\\\\Install\\\\updateplatform.exe</field>
+		<description>Legitmate Parent Command Line - From Temp Directory</description>
+	</rule>
+	<rule id="107362" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.signature">LogMeIn, Inc.</field>
+		<description>Legitmate Signature - From Temp Directory</description>
+	</rule>
+	<rule id="107363" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.targetFileName">C:\\\\Program Files \(x86\)\\\\Google\\\\Chrome\\\\|C:\\\\ProgramData\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Google Chrome.lnk|C:\\\\Users\\\\Public\\\\Desktop\\\\Google Chrome.lnk</field>
+		<description>Legitmate Signature - From Temp Directory</description>
+	</rule>
+	<rule id="107364" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.hashes">A46BFE229D0B7459C4A939EDF0F91E9AC341A4A56F3FA61FAA030D0C7552421B</field>
+		<field name="win.eventdata.signature">Adobe Inc.</field>
+		<description>Legitmate Adobe Processes (1) - From Temp Directory</description>
+	</rule>
+	<rule id="107365" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.hashes">A46BFE229D0B7459C4A939EDF0F91E9AC341A4A56F3FA61FAA030D0C7552421B</field>
+		<field name="win.eventdata.parentImage">C:\\\\Program Files \(x86\)\\\\Common Files\\\\Adobe\\\\\.*</field>
+		<description>Legitmate Adobe Processes (2) - From Temp Directory</description>
+	</rule>
+	<rule id="107366" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.hashes">562287AA75E16792D70B9F64FCC9EB67F0A66507927F5415C96C99693A6A185D</field>
+		<field name="win.eventdata.parentImage">C:\\\\Program Files \(x86\)\\\\TeamViewer\\\\Update\\\\update.exe</field>
+		<description>Legitmate Teamviewer Processes - From Temp Directory</description>
+	</rule>
+	<rule id="107367" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.company">Telegram FZ-LLC</field>
+		<field name="win.eventdata.image">\\\\Temp\.*Telegram\\\\Telegram.exe</field>
+		<description>Legitmate Telegram Processes - From Temp Directory</description>
+	</rule>
+	<!-- Whitelist Legitimate Signal -->
+	<rule id="107368" level="0">
+		<if_sid>107300</if_sid>
+		<field name="win.eventdata.image">signal-desktop\\\\Signal.exe</field>
+		<field name="win.eventdata.imageLoaded">.tmp.node</field>
+		<description>Whitelist Signal Install</description>
+	</rule>
+	<rule id="107074" level="0">
+		<if_sid>107065</if_sid>
+		<field name="win.eventdata.parentImage">\\\\signal-desktop\\\\Signal.exe</field>
+		<field name="win.eventdata.commandLine">wmic os get locale|wmic\.exe os get locale</field>
+		<field name="win.eventdata.currentDirectory">\\\\signal-desktop</field>
+		<description>Whitelist Signal WMIC Call</description>
+	</rule>
+	<!--Whitelist Teamviewer Company-->
+	<rule id="107369" level="0">
+		<if_sid>107001,107300,107350</if_sid>
+		<field name="win.eventdata.company">TeamViewer</field>
+		<description>Legitimate Teamviewer Company</description>
+	</rule>
+	<!--Whitelist 7Zip-->
+	<rule id="107370" level="3">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.company">Igor Pavlov</field>
+		<field name="win.eventdata.hashes">66B2F36274DDFEEF35B1D6AE6E5755F834446E5D78A719063347543793987161</field>
+		<field name="win.eventdata.originalFileName">nsis7z.exe</field>
+		<description>Legitimate 7Zip Process</description>
+	</rule>
+	<!--Whitelist Oracle-->
+	<rule id="107371" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.company">Oracle Corporation</field>
+		<description>Whitelist legitimate Oracle Applications</description>
+	</rule>
+	<!--Whitelist TeamViewer from Temp-->
+	<rule id="107372" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.image">\\\\TeamViewer\\\\TeamViewer.exe|\\\\TeamViewer\\\\TeamViewer_.exe|\\\\Desktop\\\\TeamViewerQS.exe</field>
+		<description>Legitimate TeamViewer Process 3</description>
+	</rule>
+	<!--Whitelist Signal-->
+	<rule id="107373" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.company">Open Whisper Systems</field>
+		<description>Whitelist Signal Company</description>
+	</rule>
+	<rule id="107374" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.image">signal-desktop-win-\.*.exe</field>
+		<description>Whitelist Signal Desktop</description>
+	</rule>
+	<!--Whitelist Legitimate Bloomberg-->
+	<rule id="107375" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.image">C:\\\\ProgramData\\\\\.*.tmp\\\\bxlain.exe</field>
+		<description>Whitelist Bloomberg Terminal</description>
+	</rule>
+	<!--Whitelist Legitimate Cisco Webex-->
+	<rule id="107376" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.company">Cisco|Webex</field>
+		<description>Whitelist Cisco Webex</description>
+	</rule>
+	<!--Whitelist Lenovo Update-->
+	<rule id="107377" level="0">
+		<if_sid>107300,107350</if_sid>
+		<field name="win.eventdata.image">C:\\\\Windows\\\\TempInst</field>
+		<description>Whitelist Lenovo Update</description>
+	</rule>
+	<!-- DEV-428 Whitelist Whatsapp app for wmic command -->
+	<rule id="107378" level="0">
+		<if_sid>107065</if_sid>
+		<field name="win.eventdata.currentDirectory">AppData\\\\Local\\\\WhatsApp\\\\\.+</field>
+		<description>Whitelist Whatsapp app for wmic command</description>
+	</rule>
+	<!--Whitelist Edge Update-->
+	<rule id="107379" level="0">
+		<if_sid>103300,103350</if_sid>
+		<field name="win.eventdata.image">C:\\\\Windows\\\\Temp\\\\EDGEMITMP_\.+\\\\setup.exe</field>
+		<description>Whitelist Edge Update</description>
+	</rule>
+	<!-- sysmon event 1 - Detect suspicious Windows commands - Set 2 -->
+	<!--
+	<rule id="107400" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">whoami|hostname|reg.exe\.+add|systeminfo|tasklist|netstat|net.exe\.+start|net.exe\.+time|qprocess|net.exe\.+user|nmap|whoami.exe /all|whoami.exe /priv|net group "Domain Admins" /do|net group "Enterprise Admins" /do|net start|netstat -ano|route print|arp -a|sc config|netsh advfirewall|netsh wlan|netsh interface ip|tftp|cmd /c powershell.exe|findstr|req query</field>
+		<description>Detect suspicious Windows commands - Set 2</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	-->
+	<rule id="107400" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">\Wnmap.exe|\Wnmap\W|net.exe\.+time|qprocess|whoami.exe /all|whoami.exe /priv|net group "Domain Admins" /do|net group "Enterprise Admins" /do|sc config|netsh wlan| tftp |cmd /c powershell.exe</field>
+		<description>Detect suspicious Windows commands - Set 2</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107400,</group>
+	</rule>
+	<rule id="107500" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">whoami\.+/priv|whoami\.+/all|\Wnet.exe\.+ user|route print|netsh add helper.*\.dll|findstr\.+password|findstr\.+pwd|net\s+user\.*add|net\s+user\.*delete</field>
+		<field name="win.eventdata.parentProcessName" negate="yes">Veritas\\\\NetBackup|Amazon\\\\SSM</field>
+		<description>Detect suspicious Windows commands - Set 3</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,auto_escalate_disabled,groupid_107500,</group>
+	</rule>
+
+	<!-- Windows event 4688 - Detect suspicious Windows commands - Set 2 -->
+	<!-- DEV-4442
+	<rule id="107401" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">whoami|hostname|reg.exe\.+add|systeminfo|tasklist|netstat|net.exe\.+start|net.exe\.+time|qprocess|net.exe\.+user|nmap|whoami.exe /all|whoami.exe /priv|net group "Domain Admins" /do|net group "Enterprise Admins" /do|net start|netstat -ano|route print|arp -a|sc config|netsh advfirewall|netsh wlan|netsh interface ip|tftp|cmd /c powershell.exe|findstr|req query</field>
+		<description>Detect suspicious Windows commands - Set 2</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,demo_rules,</group>
+	</rule>
+	-->
+	<rule id="107401" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\Wnmap.exe|\Wnmap\W|net.exe\.+time|qprocess|whoami.exe /all|whoami.exe /priv|net group "Domain Admins" /do|net group "Enterprise Admins" /do|sc config|netsh wlan| tftp |cmd /c powershell.exe</field>
+		<description>Detect suspicious Windows commands - Set 2</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107401,</group>
+		<!-- DEV-5038 - Remove "arp -a" -->
+		<!-- DEV-5132 -->
+	</rule>
+	<rule id="107501" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">whoami\.+/priv|whoami\.+/all|\Wnet.exe\.+ user|route print|netsh add helper.*\.dll|findstr\.+password|findstr\.+pwd|net\s+user\.*add|net\s+user\.*delete</field>
+		<field name="win.eventdata.parentProcessName" negate="yes">Veritas\\\\NetBackup|Amazon\\\\SSM</field>
+		<description>Detect suspicious Windows commands - Set 3</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,auto_escalate_disabled,groupid_107501,</group>
+		<!-- Template rule separate from odd 107401 which need further checking -->
+		<!-- DEV-4935 -->
+		<!-- DEV-5038 - Remove "net start" and "net.exe\.+start" -->
+		<!-- DEV-5133 -->
+	</rule>
+	<rule id="107502" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">reg.exe\.+add</field>
+		<description>Detect suspicious Windows commands - reg.exe add</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5129 -->
+	</rule>	
+	<!--Whitelist Suspicious Command Webex-->
+	<rule id="107404" level="0">
+		<if_sid>107400</if_sid>
+		<field name="win.eventdata.parentImage">C:\\\\Users\\\\administrator.INT\\\\AppData\\\\Local\\\\WebEx</field>
+		<description>Whitelist WebEx Suspicious Command</description>
+	</rule>
+	<!--Whitelist Suspicious Command Veeam-->
+	<rule id="107405" level="0">
+		<if_sid>107400</if_sid>
+		<field name="win.eventdata.parentImage">C:\\\\Program Files \(x86\)\\\\Veeam</field>
+		<field name="win.eventdata.parentCommandLine">C:\\\\Program Files \(x86\)\\\\Veeam</field>
+		<description>Whitelist Veeam Suspicious Command</description>
+	</rule>
+	<!--Whitelist Suspicious Command FortiClient -->
+	<rule id="107406" level="0">
+		<if_sid>107400</if_sid>
+		<field name="win.eventdata.parentImage">C:\\\\Program Files\\\\Fortinet\\\\FortiClient\\\\FortiSSLVPNdaemon.exe</field>
+		<description>Whitelist FortiClient Suspicious Command</description>
+	</rule>
+	<!--Whitelist Suspicious Command Lenovo -->
+	<rule id="107407" level="0">
+		<if_sid>107400</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\WINDOWS\\\\System32\\\\reg.exe add hklm\\\\SOFTWARE\\\\Lenovo\\\\SystemUpdatePlugin\\\\scheduler</field>
+		<description>Whitelist Lenovo Scheduled Update Suspicious Command</description>
+	</rule>
+	<!-- HPSupportSolutionsFrameworkService -->
+	<rule id="107402" level="0">
+		<if_sid>107400</if_sid>
+		<field name="win.eventdata.commandLine">HPSupportSolutionsFrameworkService</field>
+		<description>Legitmate HPSupportSolutionsFrameworkService - Detect malicious Windows command execution</description>
+	</rule>
+	<rule id="107403" level="0">
+		<if_sid>107401</if_sid>
+		<field name="win.eventdata.commandLine">HPSupportSolutionsFrameworkService</field>
+		<description>Legitmate HPSupportSolutionsFrameworkService - Detect malicious Windows command execution</description>
+	</rule>
+	<!-- New Solarigate Rules-->
+	<rule id="107450" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">ADFSDump|ADFSpoof</field>
+		<description>Solarigate Technique: Dumping of ADFS Certificate using ADFSDump/ADFSpoof</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107450,</group>
+	</rule>
+	<rule id="107451" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">AzureADConnectAuthenticationAgentService</field>
+		<field name="win.eventdata.commandLine">dll</field>
+		<description>Solarigate Technique: Pass-thru-authentication backdoor</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107451,</group>
+	</rule>
+	<rule id="107452" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">ntdsutil|dcsync|dsinternals|mimikatz</field>
+		<field name="win.eventdata.commandLine">AZUREADSSOACC</field>
+		<description>Solarigate Technique: Desktop SSO </description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107452,</group>
+	</rule>
+	<rule id="107453" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^1007$</field>
+		<field name="win.eventdata.providerName">Microsoft-Windows-CertificateServicesClient-Lifecycle-System</field>
+		<description>Solarigate Technique: Dumping of ADFS Certificate - Certifcate exported </description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107453,</group>
+	</rule>
+	<rule id="107454" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^510$</field>
+		<field name="win.eventdata.providerName">AD FS Auditing</field>
+		<match>IssuanceAuthority</match>
+		<description>Solarigate Technique: Malicious ADFS Trust Modification</description>
+		<group>attack_stage_Persistence,groupid_107454,</group>
+	</rule>
+	<rule id="107455" level="12">
+		<if_group>sysmon_event_18</if_group>
+		<field name="win.eventdata.pipeName">\\microsoft##wid\\tsql\\query</field>
+		<description>Solarigate Technique: Dumping of ADFS Certificate - Name pipe suspicious access</description>
+		<group>attack_stage_Persistence,groupid_107455,</group>
+	</rule>
+	<!--DEV 554-->
+	<rule id="107456" level="0">
+		<if_sid>107101</if_sid>
+		<field name="win.eventdata.commandLine">\\\\Microsoft.Teams.AddinLoader.dll</field>
+		<description>Leguitimate Teams Driver - Detect dll run by regsvr32</description>
+	</rule>
+
+	<rule id="107520" level="0">
+		<if_sid>60106</if_sid>
+		<field name="win.system.eventID">^4624$</field>
+		<field name="win.eventdata.logonType">^3$</field>
+		<description>[WHITELIST]General Exclude logontype 3 4624</description>
+	</rule>
+
+	<rule id="107550" level="12">
+		<if_sid>60009</if_sid>
+		<field name="win.system.eventID">^4103$</field>
+		<field name="win.system.message">SharpHound.ps1|dpapi::masterkey|eo.oe.kiwi|event::clear|event::drop|gentilkiwi.com|kerberos::golden|kerberos::ptc|kerberos::ptt|kerberos::tgt|Kiwi Legit Printer|lsadump|mimidrv.sys|mimilib.dll|misc::printnightmare|misc::shadowcopies|misc::skeleton|privilege::backup|privilege::debug|privilege::driver|sekurlsa|logonpasswords</field>
+		<description>Detect Suspicious Event for PS Channel</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,demo_rules,DEV-4480,</group>
+		<!-- DEV-4480 -->
+	</rule>
+
+	<rule id="107551" level="12">
+		<if_sid>60010</if_sid>
+		<field name="win.system.eventID">^4104$</field>
+		<field name="win.eventdata.scriptBlockText">EnableScriptBlockLogging\.+0</field>
+		<description>Detect Disable ScriptBlockLogging Activity</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-4784 -->
+	</rule>
+
+	<rule id="107552" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">RustDesk.exe</field>
+		<description>RustDesk usage detected</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-4985 -->
+	</rule>
+
+	<rule id="107553" level="0">
+		<if_sid>107551</if_sid>
+		<field name="win.eventdata.path">C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat Protection\\\\DataCollection\\\\\.+\\\\a391f42c-7e1a-4611-8494-1817d2420e09.ps1</field>
+		<description>[Whitelist] Detect Disable ScriptBlockLogging Activity</description>
+		<!-- DEV-5005 -->
+	</rule>
+
+	<rule id="107554" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">fleetdeck-agent.exe -silent|fleetdeck-agent.exe -msi</field>
+		<field name="win.eventdata.newProcessName">fleetdeck-agent.exe|fleetdeck-agent.msi</field>
+		<description>Potential FleetDeck usage detected</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-4986 -->
+	</rule>
+
+	<rule id="107555" level="0">
+		<if_sid>107401</if_sid>
+		<field name="win.eventdata.subjectUserName">\$$</field>
+		<field name="win.eventdata.parentProcessName">C:\\\\Program Files\\\\Windows Defender Advanced Threat Protection\\\\MsSense.exe|C:\\\\Program Files\\\\Windows Defender Advanced Threat Protection\\\\SenseNdr.exe</field>
+		<field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Windows Defender Advanced Threat Protection\\\\SenseNdr.exe</field>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files\\\\Windows Defender Advanced Threat Protection\\\\SenseNdr.exe</field>
+		<description>[whitelist] Detect suspicious Windows commands - Set 2</description>
+		<!-- DEV-5045 -->
+	</rule>
+
+	<rule id="107558" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentImage">\\\\winrar.exe|\\\\rar.exe</field>
+		<field name="win.eventdata.image">\\\\cmd.exe|\\\\powershell.exe|\\\\pwsh.exe|\\\\wscript.exe|\\\\cscript.exe|\\\\schtasks.exe|\\\\scrcons.exe|\\\\regsvr32.exe|\\\\hh.exe|\\\\wmic.exe|\\\\mshta.exe|\\\\msiexec.exe|\\\\forfiles.exe|\\\\AppData\\\\\.+</field>
+		<description>Detect WinRAR suspicious execution</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5061 -->
+	</rule>
+
+	<rule id="107559" level="0">
+		<if_sid>107065</if_sid>
+		<field name="win.eventdata.parentImage">C:\\\\Program Files \(x86\)\\\\ManageEngine\\\\UEMS_Agent\\\\bin\\\\dcpatchscan.exe</field>
+		<description>[Whitelist] Detect command line run by wmic</description>
+		<!-- DEV-4807 -->
+	</rule>
+
+	<!-- DEV-5387 -->
+	<!--
+	<rule id="107578" level="3">
+		<if_sid>60122,60204</if_sid>
+   		<field name="win.system.eventID">4625</field>
+   		<field name="win.eventdata.subStatus">0xc000006a|0xc000006d</field>
+		<description>Potential Password Spraying Detected (Invalid Credential).</description>	
+	</rule>
+	<rule id="107579" level="3">
+		<if_sid>60122,60204</if_sid>
+   		<field name="win.system.eventID">4625</field>
+   		<field name="win.eventdata.subStatus">0xc0000072</field>
+		<description>Potential Password Spraying Detected (Account disabled). </description>
+	</rule>
+	<rule id="107580" level="3">
+		<if_sid>60104,60205</if_sid>
+   		<field name="win.system.eventID">4771</field>
+   		<field name="win.eventdata.status">0x12</field>
+		<description>Potential Password Spraying Detected (KDC_ERR_CLIENT_REVOKED). </description>
+	</rule>
+	<rule id="107581" level="3">
+		<if_sid>60104,60205</if_sid>
+   		<field name="win.system.eventID">4771</field>
+   		<field name="win.eventdata.status">0x18</field>
+		<description>Potential Password Spraying Detected (KDC_ERR_PREAUTH_FAILED). </description>
+	</rule>
+	<rule id="107582" level="5" frequency="50" timeframe="60">
+		<if_matched_sid>107578</if_matched_sid>
+		<same_field>win.eventdata.ipAddress</same_field>
+		<different_field>win.system.computer</different_field>
+		<description>Potential Password Spraying Detected (Invalid Credential) in short period of time. </description>
+		<group>attack_stage_Collection,attack_category_Data_Collection,demo_rules,DEV-5387,</group>
+	</rule>
+	<rule id="107583" level="5" frequency="50" timeframe="60">
+		<if_matched_sid>107579</if_matched_sid>
+		<same_field>win.eventdata.ipAddress</same_field>
+		<different_field>win.system.computer</different_field>
+		<description>Potential Password Spraying Detected (Account disabled) in short period of time. </description>
+		<group>attack_stage_Collection,attack_category_Data_Collection,demo_rules,DEV-5387,</group>
+	</rule>
+	<rule id="107584" level="5" frequency="50" timeframe="60">
+		<if_matched_sid>107580</if_matched_sid>
+		<same_field>win.eventdata.ipAddress</same_field>
+		<different_field>win.system.computer</different_field>
+		<description>Potential Password Spraying Detected (KDC_ERR_CLIENT_REVOKED) in short period of time. </description>
+		<group>attack_stage_Collection,attack_category_Data_Collection,demo_rules,DEV-5387,</group>
+	</rule>
+	<rule id="107585" level="5" frequency="50" timeframe="60">
+		<if_matched_sid>107581</if_matched_sid>
+		<same_field>win.eventdata.ipAddress</same_field>
+		<different_field>win.system.computer</different_field>
+		<description>Potential Password Spraying Detected (KDC_ERR_PREAUTH_FAILED) in short period of time. </description>
+		<group>attack_stage_Collection,attack_category_Data_Collection,demo_rules,DEV-5387,</group>
+	</rule>
+	-->
+
+	<rule id="107586" level="12">
+		<if_sid>107048</if_sid>
+		<field name="win.eventdata.parentProcessName">C:\\\\Windows\\\\system32\\\\wsmprovhost.exe</field>
+		<field name="win.eventdata.newProcessName">lsass.exe</field>
+		<description>Potential Mimikatz execution via WinRM</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,group_by_data.win.eventdata.subjectUserName,</group>
+		<!-- DEV-5414 -->
+	</rule>
+	<rule id="107587" level="5">
+		<if_sid>107048</if_sid>
+		<field name="win.eventdata.parentProcessName">wsmprovhost.exe</field>
+		<field name="win.eventdata.commandLine">\Wcmd.exe|\Wsh.exe|\Wbash.exe|\Wpwsh.exe|\Wschtasks.exe|\Wcertutil.exe|\Wwhoami.exe|\Wbitsadmin.exe|\Wscp.exe</field>
+		<description>Suspicious Execution from Remote Session</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,group_by_data.win.eventdata.subjectUserName,demo_rules,DEV-5413,</group>
+		<!-- DEV-5413 -->
+	</rule>
+
+	<rule id="107588" level="3">
+		<if_sid>60103,138000</if_sid>
+		<field name="win.system.eventID">^4104$|^4103$|^600$|^800$</field>
+		<field name="win.eventdata.message">GetStream</field>
+		<description>Potential Reverse Shell detected</description>
+		<!-- DEV-4984 -->
+	</rule>
+	<rule id="107589" level="3">
+		<if_sid>107588</if_sid>
+		<field name="win.eventdata.message">Net.Sockets.TCPClient</field>
+		<description>Potential Reverse Shell detected</description>
+		<!-- DEV-4984 -->
+	</rule>
+	<rule id="107590" level="5">
+		<if_sid>107589</if_sid>
+		<field name="win.eventdata.message">.Write</field>
+		<description>Potential Reverse Shell detected</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,demo_rules,DEV-4984,</group>
+		<!-- DEV-4984 -->
+	</rule>
+	<rule id="107591" level="0">
+		<if_sid>107401</if_sid>
+		<field name="win.eventdata.newProcessName">D:\\\\ManageEngine\\\\EventLog Analyzer\\\\jre\\\\bin\\\\java.exe</field>
+		<field name="win.eventdata.parentProcessName">D:\\\\ManageEngine\\\\EventLog Analyzer\\\\bin\\\\wrapper.exe</field>
+		<description>[whitelist] Detect suspicious Windows commands - Set 2</description>
+		<!-- DEV-5442 -->
+	</rule>	
+
+	<!-- Suppress Default Rule 61110 -->
+	<rule id="107592" level="5">
+		<if_sid>61110</if_sid>
+		<description>Multiple System error events</description>
+	</rule>
+
+	<rule id="107593" level="0">
+		<if_sid>107073</if_sid>
+		<field name="win.eventdata.parentProcessName">C:\\\\Program Files\\\\Qualys\\\\QualysAgent\\\\QualysAgent.exe</field>
+		<description>[whitelist] Detect suspicious Windows commands</description>
+		<!-- DEV-5806 -->
+	</rule>
+
+	<rule id="107594" level="0">
+		<if_sid>107502</if_sid>
+		<field name="win.eventdata.commandLine">add HKLM\\\\Software\\\\Policies\\\\Microsoft\\\\Windows\\\\Powershell\\\\ScriptBlockLogging /v EnableScriptBlockLogging /t REG_DWORD|add HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Policies\\\\System\\\\Audit /f /t REG_SZ /v ProcessCreationIncludeCmdLine_Enabled = 1|add HKLM\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Policies\\\\System\\\\Audit\\\\ /v ProcessCreationIncludeCmdLine_Enabled /t REG_DWORD /d 1 /f</field>
+		<description>[Whitelist] Detect suspicious Windows commands - reg.exe add</description>
+		<!-- DEV-5839 -->
+	</rule>	
+
+	<rule id="107595" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">msbuild.exe\.*.xml</field>
+		<field name="win.eventdata.newProcessName">\Wmsbuild.exe</field>
+		<description>MSBuild execute suspicious XML file</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,demo_rules,DEV-5846,</group>
+		<!-- DEV-5846 -->
+	</rule>
+</group>
+<group name="pwc_caas,OS,windows,windows_eventchannel,">
+	<!-- General 4728 4732 4746 4756 rules-->
+	<rule id="107503" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4728$|^4732$|^4746$|^4756$</field>
+		<field name="win.eventdata.targetUserName">Administrators</field>
+		<description>Member Added to Administrators Group</description>
+		<group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+		<group>group_changed,win_group_changed,pci_dss_8.1.2,pci_dss_10.2.5,gpg13_7.10,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,hipaa_164.312.b,nist_800_53_AC.2,nist_800_53_IA.4,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="107505" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4728$|^4732$|^4746$|^4756$</field>
+		<field name="win.eventdata.targetUserName">Domain Admins</field>
+		<description>Member Added to Domain Admins Group</description>
+		<group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+		<group>group_changed,win_group_changed,pci_dss_8.1.2,pci_dss_10.2.5,gpg13_7.10,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,hipaa_164.312.b,nist_800_53_AC.2,nist_800_53_IA.4,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<!--MSS-178885 whitelist local computer group added privilege group -->
+	<rule id="132829" level="0">
+		<if_sid>107503</if_sid>
+		<field name="win.eventdata.subjectUserName">\$$</field>
+		<description>local computer to local administrators group </description>
+	</rule>
+	<!-- Exclude Legit user for Dcsync -->
+	<rule id="107504" level="0">
+		<if_sid>107069</if_sid>
+		<field name="win.eventdata.subjectUserName">^MSOL_|\$$</field>
+		<description>Exclude Legit user for Dcsync</description>
+	</rule>
+</group>
+<group name="windows,windows_application,pwc_caas,windows_eventchannel,">
+	<rule id="107600" level="0">
+		<if_sid>18100</if_sid>
+		<match>Microsoft-Windows-WMI</match>
+		<description>Group of WMI events</description>
+		<options>no_full_log</options>
+	</rule>
+	<!-- Persistence with WMI -->
+	<rule id="107601" level="12">
+		<if_sid>107600</if_sid>
+		<field name="win.system.eventID">^5861$</field>
+		<description>Persistence with WMI</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,groupid_107601,</group>
+	</rule>
+	<rule id="107650" level="0">
+		<if_sid>18100</if_sid>
+		<field name="win.system.providerName">^Microsoft-Windows-Bits-Client$</field>
+		<description>Group of Bits Client events</description>
+		<options>no_full_log</options>
+	</rule>
+	<rule id="107651" level="12">
+		<if_sid>107650</if_sid>
+		<field name="win.system.eventID">^59$|^60$</field>
+		<field name="win.eventdata.url">http</field>
+		<description>External Access by BITS</description>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,groupid_107651,</group>
+	</rule>
+	<rule id="107652" level="0">
+		<if_sid>107651</if_sid>
+		<field name="win.eventdata.name">Chrome Component Updater</field>
+		<description>Legitmate Chrome Update - External Access by BITS</description>
+	</rule>
+	<rule id="107653" level="12">
+		<if_sid>60103,60104</if_sid>
+		<field name="win.system.eventID">^4624$|^4625$</field>
+		<list field="srcip" lookup="not_address_match_key">etc/lists/private-ip</list>
+		<description>Suspicious Login from External IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+		<!-- DEV-3744 -->
+	</rule>		
+</group>
+<group name="pwc_caas,OS,windows,all_client,cve_2020_1472,windows_eventchannel,">
+	<rule id="107700" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^5827$|^5828$</field>
+		<group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,groupid_107700,</group>
+		<description>Detected Potential CVE-2020-1472 Netlogon Denied Connection</description>
+	</rule>
+	<rule id="107710" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^5829$</field>
+		<group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,groupid_107710,</group>
+		<description>Detected Potential CVE-2020-1472 Netlogon Denied Connection</description>
+	</rule>
+</group>
+<group name="pwc_caas,OS,windows,all_client,cve_2021_1675,windows_eventchannel,">
+	<rule id="107720" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^5145$</field>
+		<field name="win.eventdata.shareName">\\\\\\\\*\\\\IPC\$</field>
+		<field name="win.eventdata.relativeTargetName">spoolss</field>
+		<field name="win.eventdata.accessMask">0x3</field>
+		<field name="win.eventdata.objectType">File</field>
+		<group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+		<description>Detected CVE 2021-1675 Windows Print Spooler RCE Vulnerability</description>
+	</rule>
+</group>
+<!-- Whitelist for default wazuh rules -->
+<group name="windows,pwc_caas,windows_eventchannel,">
+	<!-- Legitimate process for audit policy change - windows update -->
+	<rule id="107900" level="0">
+		<if_sid>60112</if_sid>
+		<field name="win.system.eventID">^4907$</field>
+		<field name="win.eventdata.processName">C:\\\\\$WINDOWS.~BT\\\\|C:\\\\Windows\\\\System32\\\\poqexec.exe|C:\\\\Windows\\\\WinSxS\\\\amd64_microsoft-windows-servicingstack_\.+\\\\TiWorker.exe</field>
+		<description>Legitimate Windows Update - Windows Audit Policy changed.</description>
+	</rule>
+	<rule id="107901" level="0">
+		<if_sid>60112</if_sid>
+		<field name="win.system.eventID">^4719$</field>
+		<field name="win.eventdata.subjectUserSid">NT AUTHORITY\\\\SYSTEM</field>
+		<description>Legitimate - Windows Audit Policy changed.</description>
+	</rule>
+	<rule id="107902" level="0">
+		<if_sid>60117</if_sid>
+		<field name="win.system.providerName">AD FS Auditing</field>
+		<description>AD FS 1102 event - Not real log cleared</description>
+	</rule>
+</group>
+<group name="pwc_caas,OS,windows,all_client,windows_eventchannel,">
+	<rule id="107903" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Don't Expire Password' - Enabled</field>
+		<description>Changing an Account Password Attribute to Never Expire</description>
+		<!-- DEV-4000 -->
+	</rule>
+
+	<rule id="107804" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Normal Account' - Disabled</field>
+		<description>Changing an Account to Disable Normal Account</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107805" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Password Not Required' - Enabled</field>
+		<description>Changing an Account Password Attribute to Not Required</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107806" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Encrypted Text Password Allowed' - Enabled</field>
+		<description>Changing an Account Password Attribute to Encrypt Text Password</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107807" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Server Trust Account' - Enabled</field>
+		<description>Changing an Account to Enable Server Trust Account</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107808" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Trusted For Delegation' - Enabled</field>
+		<description>Changing an Account to Enable Trusted For Delegation</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107809" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Trusted For Delegation' - Disabled</field>
+		<description>Changing an Account to Disable Trusted For Delegation</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107810" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Trusted To Authenticate For Delegation' - Enabled</field>
+		<description>Changing an Account to Enable Trusted To Authenticate For Delegation</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107811" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Trusted To Authenticate For Delegation' - Disabled</field>
+		<description>Changing an Account to Disable Trusted To Authenticate For Delegation</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107812" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Not Delegated' - Enabled</field>
+		<description>Changing an Account to Enable Not Delegated</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107813" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Use DES Key Only' - Enabled</field>
+		<description>Changing an Account to Enable Use DES Key Only</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107814" level="12">
+		<if_sid>60110</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.system.message">'Don't Require Preauth' - Enabled</field>
+		<description>Changing an Account to Enable Don't Require Preauth</description>
+		<!-- DEV-4000 -->
+	</rule>
+	<rule id="107815" level="13">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4624$</field>
+		<list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<description>Successful Windows Login from Tor-IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>	
+		<!-- DEV-4292 -->	
+	</rule>	
+</group>

@@ -1,0 +1,7 @@
+
+<group name="pwc_caas,juniper,">
+	<rule id="137500" level="0">
+		<decoded_as>juniper</decoded_as>
+		<description>Group of Juniper logs</description>
+	</rule>
+</group>

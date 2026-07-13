@@ -1,0 +1,39 @@
+
+<!-- Modify it at your will. -->
+<group name="pwc_caas,cortex_mgmt,">
+    <rule id="234000" level="3">
+        <decoded_as>cortex_mgmt_audit-json</decoded_as>
+        <description>Group of Cortex Management Audit logs.</description>
+        <options>no_counter</options>
+    </rule>
+    <rule id="234001" level="5">
+		<if_sid>234000</if_sid>
+		<field name="cortex_management_audit_log.AUDIT_ENTITY_SUBTYPE">Login|Authentication</field>
+		<field name="cortex_management_audit_log.AUDIT_RESULT">SUCCESS</field>
+		<description>Cortex Audit: Login Successful</description>
+		<group>authentication_success</group>
+	</rule>
+	<rule id="234002" level="12">
+		<if_sid>234000</if_sid>
+		<field name="cortex_management_audit_log.AUDIT_SEVERITY">SEV_040_HIGH</field>
+		<description>Cortex Audit: High Severity Event detected on user - $(dstuser)</description>
+	</rule>
+	<rule id="234003" level="12">
+		<if_sid>234000</if_sid>
+		<field name="cortex_management_audit_log.AUDIT_SEVERITY">SEV_090_UNKNOWN</field>
+		<description>Cortex Audit: Unknown Severity Event detected on user - $(dstuser)</description>
+	</rule>
+	<rule id="234004" level="12">
+		<if_sid>234000</if_sid>
+		<field name="cortex_management_audit_log.AUDIT_ENTITY_SUBTYPE">Login|Authentication</field>
+		<field name="cortex_management_audit_log.AUDIT_RESULT">Fail</field>
+		<description>Cortex Audit: Login or Authentication Failure</description>
+		<group>authentication_failed</group>
+	</rule>
+	<rule id="234005" level="12">
+		<if_sid>234000</if_sid>
+		<field name="cortex_management_audit_log.AUDIT_ENTITY_SUBTYPE">Role Created</field>
+		<field name="cortex_management_audit_log.AUDIT_RESULT">Fail</field>
+		<description>Cortex Audit: New Role created in console by user - $(dstuser)</description>
+	</rule>
+</group>

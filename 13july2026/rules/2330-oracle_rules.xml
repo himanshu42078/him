@@ -1,0 +1,209 @@
+
+<!-- Modify it at your will. -->
+<group name="pwc_caas,oracle,cloud,">
+  <rule id="233000" level="3">
+    <decoded_as>oracle-json</decoded_as>
+    <description>Group of Oracle Cloud events</description>
+  </rule>
+  <rule id="233001" level="3">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">sso.authentication.failure</field>
+    <description>User Logins Failure</description>
+  </rule>
+  <rule id="233002" level="12" frequency="5" timeframe="60">
+    <if_matched_sid>233001</if_matched_sid>
+    <same_field>oracle-cloud.clientIp</same_field>
+    <description>User Logins Multiple Failure within short period</description>
+    <group>groupid_135018,</group>
+  </rule>
+  <rule id="233003" level="12">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">sso.session.create.success</field>
+    <list field="oracle-cloud.clientIp" lookup="address_match_key">etc/lists/malware-ip</list>
+    <description>User Logins From Malicious IP</description>
+  </rule>
+  <rule id="233004" level="8">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">admin.user.create.success</field>
+    <field name="oracle-cloud.message">CreateUser succeeded</field>
+    <description>New User Account Is Created</description>
+    <group>groupid_135015,</group>
+    <!-- DEV-5324 -->
+  </rule>
+  <rule id="233005" level="8">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.type">com.oraclecloud.computeApi.LaunchInstance.begin</field>
+    <description>Create Virtual Machine</description>
+  </rule>
+  <rule id="233006" level="8">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.type">com.oraclecloud.computeApi.TerminateInstance.begin</field>
+    <description>Terminate Virtual Machine</description>
+  </rule>  
+
+  <rule id="233027" level="3">
+    <if_sid>233000</if_sid>
+    <field name="oci-cloudguard.risk_level">MINOR</field>
+    <description>Oracle Cloud Guard $(oci-cloudguard.risk_level) Alert - $(oci-cloudguard.detector_rule_id)</description>
+  </rule>
+  <rule id="233028" level="3">
+    <if_sid>233000</if_sid>
+    <field name="oci-cloudguard.risk_level">LOW</field>
+    <description>Oracle Cloud Guard $(oci-cloudguard.risk_level) Alert - $(oci-cloudguard.detector_rule_id)</description>
+    <group>groupid_135101,</group>
+  </rule>
+  <rule id="233007" level="8">
+    <if_sid>233000</if_sid>
+    <field name="oci-cloudguard.risk_level">MEDIUM</field>
+    <description>Oracle Cloud Guard $(oci-cloudguard.risk_level) Alert - $(oci-cloudguard.detector_rule_id)</description>
+    <group>auto_escalate_disabled,groupid_135102,</group>
+  </rule>  
+  <rule id="233008" level="8">
+    <if_sid>233000</if_sid>
+    <field name="oci-cloudguard.risk_level">HIGH</field>
+    <description>Oracle Cloud Guard $(oci-cloudguard.risk_level) Alert - $(oci-cloudguard.detector_rule_id)</description>
+    <group>auto_escalate_disabled,groupid_135103,</group>    
+  </rule>    
+  <rule id="233009" level="8">
+    <if_sid>233000</if_sid>
+    <field name="oci-cloudguard.risk_level">CRITICAL</field>
+    <description>Oracle Cloud Guard $(oci-cloudguard.risk_level) Alert - $(oci-cloudguard.detector_rule_id)</description>
+    <group>auto_escalate_disabled,</group>    
+  </rule>  
+
+  <rule id="233010" level="0">
+    <if_sid>233007,233008,233009</if_sid>
+    <field name="oci-cloudguard.detector_rule_id">SECURITY_LISTS_OPEN_PORTS|VCN_NSG_INGRESS_RULE_PORTS_CHECK|BLOCK_VOLUME_NOT_ATTACHED|DATA_SAFE_DB_NOT_REGISTERED|POLICY_GIVES_MANY_PRIVILEGES|POLICY_TENANCY_ADMIN_GROUP_PRIVILEGES|PASSWORD_TOO_OLD|INSTANCE_TERMINATED|INSTANCE_WITH_PUBLIC_IP|NO_MFA_ENABLED_FOR_USER|AUTH_TOKEN_TOO_OLD|DATABASE_PATCH_NOT_APPLIED|API_KEY_TOO_OLD|SECRET_KEY_TOO_OLD|LB_CERTIFICATE_EXPIRING_SOON</field>
+    <description>Whitelist Oracle Cloud Guard Alert</description>
+    <!-- DEV-2977 -->
+  </rule>    
+
+  <rule id="233011" level="0">
+    <if_sid>233007,233008,233009</if_sid>
+    <field name="oci-cloudguard.resource_name">coriolis cloudbase|coriolis-user@hk.pwc.com|s-Ken TY Lee|s-Raymond Ho|s-Alex Wong|s-Louis Ho|s-Owen Wong</field>
+    <description>Whitelist Oracle Cloud Guard Alert</description>
+    <!-- DEV-2977 -->
+  </rule>    
+
+  <rule id="233012" level="3">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">^admin.user.authentication.failure$</field>
+    <description>Admin User Logins Failure</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233013" level="12" frequency="5" timeframe="60">
+    <if_matched_sid>233012</if_matched_sid>
+    <same_field>oracle-cloud.clientIp</same_field>
+    <description>Admin User Logins Multiple Failure within short period</description>
+    <group>groupid_135018,</group>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233014" level="12">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.type">^com.oraclecloud.identityControlPlane.CreatePolicy$</field>
+    <regex>Allow group \.+ to manage all-resources</regex>
+    <description>Oracle Create Managed Policy with Excessive Permission</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233015" level="12">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.type">^com.oraclecloud.identityControlPlane.UpdatePolicy$</field>
+    <regex>Allow group \.+ to manage all-resources</regex>
+    <description>Oracle Update Managed Policy with Excessive Permission</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233016" level="8">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.type">^com.oraclecloud.virtualnetwork.updatenetworksecuritygroup$</field>
+    <description>Oracle Update Network Security Groups</description>
+    <group>groupid_135004,</group>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233017" level="8">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.type">^com.oraclecloud.virtualnetwork.deletenetworksecuritygroup$</field>
+    <description>Oracle Deleted Network Security Groups</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233018" level="3">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.message">RelatedResourceNotAuthorizedOrNotFound</field>
+    <description>Oracle $(oracle-cloud.message)</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233019" level="12" frequency="5" timeframe="60">
+    <if_matched_sid>233018</if_matched_sid>
+    <same_field>oracle-cloud.eventName</same_field>
+    <same_field>oracle-cloud.ipAddress</same_field>
+    <description>Oracle Multiple $(oracle-cloud.message) within short period</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233020" level="3">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.type">com.oraclecloud.identityControlPlane.CreateOrResetPassword</field>
+    <field name="oracle-cloud.eventId">admin.user.password.reset.success</field>
+    <description>Oracle $(oracle-cloud.eventName) success</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233021" level="5">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.type">com.oraclecloud.identityControlPlane.CreateOrResetPassword</field>
+    <field name="oracle-cloud.eventId">admin.user.password.reset.failure</field>
+    <description>Oracle $(oracle-cloud.eventName) failure</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233022" level="4">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventName">ListUsers|ListGroups|ListPolicies</field>
+    <description>Oracle Potential Recon Activities (Not an alert)</description>
+    <!-- DEV-3993 -->
+  </rule>
+  <rule id="233023" level="12">
+    <if_sid>233022</if_sid>
+    <field name="oracle-cloud.message">NotAuthorizedOrNotFound</field>
+    <description>Oracle $(oracle-cloud.eventName) NotAuthorizedOrNotFound</description>
+    <!-- DEV-3993 -->
+  </rule>
+
+  <!-- Newly Created Rules 07/08/2023 -->
+  <rule id="233024" level="3">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">sso.session.create.success</field>
+    <description>Oracle Successful Login</description>
+    <!-- DEV-4902 -->
+  </rule>
+  <rule id="233025" level="12" frequency="5" timeframe="60">
+    <if_matched_sid>233001</if_matched_sid>
+    <same_field>dstuser</same_field>
+    <description>User Logins Multiple Failure from same user</description>
+    <group>groupid_135023,</group>
+    <!-- DEV-4902 -->
+  </rule>
+  <rule id="233026" level="13">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">sso.session.create.success</field>
+    <list field="oracle-cloud.clientIp" lookup="address_match_key">etc/lists/tor-ip</list>
+    <description>User Logins From Tor IP</description>
+    <group>groupid_135221,</group>
+    <!-- DEV-4902 -->
+  </rule>
+  <rule id="233029" level="12">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">admin.user.delete.success</field>
+    <description>Deletion of User</description>
+    <!-- DEV-4902 -->
+  </rule>
+  <rule id="233030" level="10">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">admin.group.add.member.success</field>
+    <description>Add New User to the Group</description>
+    <!-- DEV-4902 -->
+  </rule>
+  <rule id="233031" level="5">
+    <if_sid>233000</if_sid>
+    <field name="oracle-cloud.eventId">admin.group.remove.member.success</field>
+    <description>Remove User from the Group</description>
+    <!-- DEV-4902 -->
+  </rule>
+
+</group>

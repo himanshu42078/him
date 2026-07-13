@@ -1,0 +1,18 @@
+
+<group name="pwc_caas, hashicorp_vault,">
+	<rule id="106001" level="0">
+		<decoded_as>hashicorp-vault</decoded_as>
+		<description>Hashicorp Vault event</description>
+	</rule>
+	<rule id="106002" level="5">
+		<if_sid>106001</if_sid>
+		<field name="response.data.error">Invalid username or password</field>
+		<description>Hashicorp Vault - failed login attempt</description>
+	</rule>
+	<rule frequency="5" id="106003" level="10" timeframe="300">
+		<if_matched_sid>106002</if_matched_sid>
+		<same_field>request.path</same_field>
+		<same_field>request.remote_address</same_field>
+		<description>Hashicorp Vault - Multiple failed login attempts</description>
+	</rule>
+</group>

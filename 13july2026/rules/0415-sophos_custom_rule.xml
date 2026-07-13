@@ -1,0 +1,83 @@
+
+<!--
+	Sophos rules
+	1310xx~1319xx
+-->
+<group name="sophos,pwc_caas,antivirus,">
+	<rule id="131000" level="0">
+		<decoded_as>sophos</decoded_as>
+		<description>Sophos grouping.</description>
+	</rule>
+	<rule id="131001" level="12">
+		<if_sid>131000</if_sid>
+		<list field="sophos.type">etc/lists/sophos_malware_type</list>
+		<description>Sophos Malware Alert Detected</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.sophos.dhost,realert_1h,</group>
+		<!-- DEV-5256 -->
+	</rule>
+	<rule id="131002" level="3">
+		<if_sid>131000</if_sid>
+		<list field="sophos.type">etc/lists/sophos_pua_type</list>
+		<description>Sophos PUA Alert Detected</description>
+		<group>attack_stage_Execution,attack_category_Potential_Unwanted_Application(PUA),group_by_data.sophos.dhost,</group>
+		<!-- DEV-5256 -->
+	</rule>
+	<!-- As per requested, temporarily lowered the level.
+													-->
+	<rule id="131003" level="3">
+		<if_sid>131000</if_sid>
+		<list field="sophos.type">etc/lists/sophos_web_type</list>
+		<description>Sophos Web Alert Detected</description>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.sophos.dhost,</group>
+		<!-- DEV-5256 -->
+	</rule>
+	<rule id="131004" level="12">
+		<if_sid>131000</if_sid>
+		<field name="sophos.datastream">alert</field>
+		<field name="sophos.severity">critical</field>
+		<description>Sophos Critical Alert Detected: $(sophos.type)</description>
+		<group>group_by_data.sophos.dhost,severity_high,</group>
+	</rule>
+	<rule id="131005" level="12">
+		<if_sid>131000</if_sid>
+		<list field="sophos.type">etc/lists/sophos_update_failure_type</list>
+		<description>Sophos Update Failure Alert Detected</description>
+		<group>group_by_rule.id,realert_24h,org_empty,</group>
+		<!-- DEV-5256 -->
+	</rule>
+	<rule id="131006" level="12">
+		<if_sid>131000</if_sid>
+		<field name="sophos.datastream">alert</field>
+		<field name="sophos.type">Event::Endpoint::HmpaCryptoGuard</field>
+		<description>Sophos CryptoGuard alert</description>
+		<group>group_by_data.sophos.dhost,</group>
+		<!-- DEV-5256 -->
+	</rule>
+	<!-- Suppress Reboot required alerts.-->
+	<rule id="131007" level="3">
+		<if_sid>131005</if_sid>
+		<field name="sophos.type">Event::Endpoint::UpdateRebootRequired</field>
+		<description>Sophos Reboot Required Update Alerts - For Reporting Purpose</description>
+	</rule>
+	<!-- Suppress NonCompliant alerts-->
+	<rule id="131008" level="3">
+		<if_sid>131005</if_sid>
+		<field name="sophos.type">Event::Endpoint::NonCompliant</field>
+		<description>Sophos NonCompliant Alerts - For Reporting Purpose</description>
+	</rule>
+
+
+	<rule id="131009" level="12">
+		<if_sid>131000</if_sid>
+		<field name="sophos.datastream">alert</field>
+		<field name="sophos.severity">high</field>
+		<description>Sophos high Alert Detected: $(sophos.type)</description>
+		<group>group_by_data.sophos.dhost,severity_high,</group>
+	</rule>
+
+	<rule id="131010" level="0">
+		<if_sid>131001</if_sid>
+		<field name="sophos.name">marked as resolved</field>
+		<description>[Whitelist] Sophos Malware Alert Detected</description>
+	</rule>
+</group>

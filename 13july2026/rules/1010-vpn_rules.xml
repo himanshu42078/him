@@ -1,0 +1,72 @@
+
+<!-- Modify it at your will. -->
+<group name="pwc_caas,vpn,">
+	<rule id="101008" level="12">
+		<if_group>vpn_login_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/public-vpn</list>
+		<description>Successful VPN login from public VPN IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+		<!-- DEV-4879 -->
+	</rule>	
+	
+	<rule id="101000" level="13">
+		<if_group>vpn_login_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<description>Successful VPN Login from Tor-IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+	</rule>
+	<rule id="101001" level="7">
+		<if_group>vpn_login_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/aws_ip_range</list>
+		<description>Successful VPN Login from AWS</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+	</rule>
+	<!-- 
+	<rule id="101002" level="7">
+		<if_group>vpn_login_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/aws_ip_range</list>
+		<description>Successful VPN Login from Azure</description>
+	</rule>
+	-->	
+<!--
+This alert will be further analyzed by ElastAlert
+-->
+<!--
+DEV-4879, this rule will be disable and only turn on for customer on request base
+-->
+	<rule id="101003" level="3">
+		<if_group>vpn_login_success</if_group>
+		<time>9 pm - 7 am</time>
+		<description>Non-office hour successful VPN login</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,auto_escalate_disabled,</group>
+	</rule>
+	<!-- 
+	<rule id="101004" level="7">
+		<if_group>vpn_login_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/aws_ip_range</list>
+		<description>Successful VPN Login from OVH</description>
+	</rule>
+	-->
+	<rule id="101005" level="7">
+		<if_group>vpn_login_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/aliyun_ip_range</list>
+		<description>Successful VPN Login from Aliyun</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+	</rule>
+
+	<rule id="101006" level="7" frequency="10" timeframe="300">
+		<if_matched_group>vpn_login_failure</if_matched_group>
+		<!-- <same_field>hostname</same_field> -->
+		<same_source_ip />
+		<description>VPN Multiple Login Failure with same IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+	</rule>
+
+	<rule id="101007" level="7" frequency="10" timeframe="300">
+		<if_matched_group>vpn_login_failure</if_matched_group>
+		<!-- <same_field>hostname</same_field> -->
+		<same_user/>
+		<description>VPN Multiple Login Failure with same user</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+	</rule>
+</group>

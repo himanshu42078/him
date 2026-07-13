@@ -1,0 +1,64 @@
+
+<group name="pulse-secure,pwc_caas,">
+	<rule id="147000" level="1">
+		<decoded_as>pulse-secure</decoded_as>
+		<description>Grouping of pulse-secure logs.</description>
+		<options>no_counter</options>
+	</rule>
+
+	<rule id="147001" level="1">
+		<if_sid>147000</if_sid>
+		<match>login succeeded</match>
+		<description>Successful login from Pulse-secure</description>
+		<group>R2L,authentication_success,vpn,vpn_login_success,</group>
+	</rule>
+
+	<rule id="147002" level="1">
+		<if_sid>147000</if_sid>
+		<match>login failed</match>
+		<description>Login failure from Pulse-secure</description>
+		<group>R2L,authentication_success,vpn,vpn_login_failure,</group>
+	</rule>
+
+	<rule id="147003" level="5">
+		<if_sid>147000</if_sid>
+		<url>dana</url>
+		<description>Possible Pulse Connect Secure RCE Vulnerability Exploitation 2021 (Partial)</description>
+		<!-- DEV-2926 -->
+	</rule>	
+	<rule id="147004" level="12">
+		<if_sid>147003</if_sid>
+		<url>meeting</url>
+		<description>Possible Pulse Connect Secure RCE Vulnerability Exploitation 2021</description>
+		<!-- url ~ dana AND url ~ meeting -->
+		<!-- DEV-2926 -->
+	</rule>	
+
+	<rule id="147005" level="5">
+		<if_sid>147003</if_sid>
+		<url>fb</url>
+		<description>Possible Pulse Connect Secure RCE Vulnerability Exploitation 2021 (Partial)</description>
+		<!-- DEV-2926 -->
+	</rule>	
+	<rule id="147006" level="12">
+		<if_sid>147005</if_sid>
+		<url>smb</url>
+		<description>Possible Pulse Connect Secure RCE Vulnerability Exploitation 2021</description>
+		<!-- url ~ dana AND url ~ fb AND url ~ smb -->
+		<!-- DEV-2926 -->
+	</rule>	
+
+	<rule id="147007" level="5">
+		<if_sid>147000</if_sid>
+		<url>dana-ws</url>
+		<description>Possible Pulse Connect Secure RCE Vulnerability Exploitation 2021 (Partial)</description>
+		<!-- DEV-2926 -->
+	</rule>	
+	<rule id="147008" level="12">
+		<if_sid>147007</if_sid>
+		<url>metric|namedusers</url>
+		<description>Possible Pulse Connect Secure RCE Vulnerability Exploitation 2021</description>
+		<!-- url ~ dana-ws AND (url ~ metric OR url ~ namedusers) -->
+		<!-- DEV-2926 -->
+	</rule>		
+</group>

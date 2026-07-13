@@ -1,0 +1,242 @@
+
+<group name="pwc_caas,Cloud,Azure,all_client,Initial_Access,cloud,">
+	<!-- Azure Messages -->
+	<!-- Aligned AzureEventhub logs with the same decoder as AzureGraphAPI-json. Eventhub-json is obsolete(after ricoh). -->
+	<!--
+	<rule id="105000" level="3">
+		<decoded_as>AzureGraphAPI-json</decoded_as>
+		<description>Azure Messages</description>
+	</rule>
+	-->
+	<rule id="105001" level="0">
+		<decoded_as>json</decoded_as>
+		<field name="tags">\.*azureeh\.*</field>
+		<field name="properties.appDisplayName">\.+</field>
+		<description>Azure Messages</description>
+	</rule>
+	<!-- Intune Device Ownership Change -->
+	<rule id="105002" level="13">
+		<if_sid>105001</if_sid>
+		<field name="operationName">patch ManagedDevice</field>
+		<field name="modifiedProperties">ManagedDeviceOwnerType</field>
+		<description>Intune Device Ownership Change</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Tampering_of_MDM_/_BYOD_Device,</group>
+	</rule>
+	<!-- Intune Device Passcode/Password Disabled -->
+	<rule id="105003" level="13">
+		<if_sid>105001</if_sid>
+		<field name="operationName">patch DeviceCompliance Policy Update</field>
+		<field name="PasscodeRequired">false</field>
+		<description>Intune Device Passcode/Password Disabled</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Tampering_of_MDM_/_BYOD_Device,</group>
+	</rule>
+	<!-- Intune Data Encryption Disabled -->
+	<rule id="105004" level="13">
+		<if_sid>105001</if_sid>
+		<field name="operationName">create DeviceCompliancePolicy</field>
+		<field name="DataEncryption">false</field>
+		<description>Intune Data Encryption Disabled</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Tampering_of_MDM_/_BYOD_Device,</group>
+	</rule>
+	<!-- PwC CaaS: Azure Custom Role Update -->
+	<rule id="105005" level="13">
+		<if_sid>105001</if_sid>
+		<field name="operationName">add role definition</field>
+		<description>Azure Custom Role Update</description>
+		<group>attack_stage_Persistence,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+	</rule>
+	<!-- Azure Policy Update at an unusual time -->
+	<rule id="105006" level="13">
+		<if_sid>105001</if_sid>
+		<field name="operationName">^add policy$|^delete policy$|^update policy$</field>
+		<time>01:00-08:00</time>
+		<description>Azure Policy Update at an unusual time</description>
+		<group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+	</rule>
+	<!-- Azure MFA Policy Disable< -->
+		<rule id="105007" level="13">
+			<if_sid>105001</if_sid>
+			<field name="operationName">disable strong authentication</field>
+			<description>Azure MFA Policy Disable</description>
+			<group>attack_stage_Defense_Evasion,attack_category_Tampering_of_MDM_/_BYOD_Device,</group>
+		</rule>
+		<!-- Azure Security/Access Policy by unauthorised user-->
+		<rule id="105008" level="13">
+			<if_sid>105001</if_sid>
+			<field name="operationName">Update policy|Add Policy</field>
+			<field name="PolicyType">SecurityRiskPolicy|ConditionalAccessPolicy</field>
+			<match>!"UserName":"adminfpc@firstpacific.com|pwc@firstpacific.com</match>
+			<description>Azure Security/Access Policy by unauthorised user</description>
+			<group>attack_stage_Impact,attack_category_Malicious_Tampering_of_System,</group>
+		</rule>
+		<!-- Azure Admins Role Assign -->
+		<rule id="105009" level="13">
+			<if_sid>105001</if_sid>
+			<field name="operationName">Add member to role|Remove member from role</field>
+			<field name="identity">administrator</field>
+			<description>Azure Admins Role Assign</description>
+			<group>attack_stage_Persistence,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+		</rule>
+		<!-- Azure Invite External User -->
+		<rule id="105010" level="13">
+			<if_sid>105001</if_sid>
+			<field name="operationName">Invite External user</field>
+			<description>Azure Invite External User</description>
+			<group>attack_stage_Persistence,attack_category_Suspicious_Account_Creation,</group>
+		</rule>
+		<!-- Azure Access Blocked Due to Internal Policy -->
+		<rule id="105012" level="13">
+			<if_sid>105001</if_sid>
+			<field name="operationName">sign-in activity</field>
+			<field name="resultDescription">Access has been blocked due to conditional access policies</field>
+			<description>Azure Access Blocked Due to Internal Policy</description>
+			<group>attack_stage_Lateral_Movement,attack_category_Account_Lockout,</group>
+		</rule>
+		<!-- Azure MFA Challenge Failure -->
+		<rule id="105013" level="13">
+			<if_sid>105001</if_sid>
+			<field name="operationName">sign-in activity</field>
+			<field name="resultType">50074</field>
+			<field name="resultDescription">User did not pass the MFA challenge</field>
+			<field name="status.additionalDetails">MFA denied</field>
+			<match>!"status":{"additionalDetails":"MFA denied; authentication in progress"</match>
+			<description>Azure MFA Challenge Failure</description>
+			<group>attack_stage_Initial_Access,attack_category_Brute-Forcing,</group>
+		</rule>
+		<!-- Azure AD Risk Events -->
+		<rule id="105014" level="13">
+			<if_sid>105001</if_sid>
+			<field name="operationName">sign-in activity</field>
+			<field name="resultType">50031</field>
+			<field name="properties.status.failureReason">TypeunlikelyTravel|anonymizedIPAddress|maliciousIPAddress|unfamiliarFeatures|malwareInfectedIPAddress|suspiciousIPAddress|leakedCredentials|investigationsThreatIntelligence|genericadminConfirmedUserCompromised|mcasImpossibleTravel|mcasSuspiciousInboxManipulationRules|investigationsThreatIntelligenceSigninLinked|maliciousIPAddressValidCredentialsBlockedIP</field>
+			<description>Azure AD Risk Events</description>
+			<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+		</rule>
+		<!-- Intune Device Registered -->
+		<rule id="105015" level="10">
+			<if_matched_sid>105001</if_matched_sid>
+			<field name="operationName">Add registered users to device</field>
+			<description>Intune Device Registered</description>
+		</rule>
+		<!-- Intune Device Enrolled -->
+		<rule id="105016" level="3">
+			<if_sid>105001</if_sid>
+			<field name="operationName">Update Device</field>
+			<field name="identity">Device Registration Service</field>
+			<description>Intune Device Enrolled</description>
+		</rule>
+		<!-- Intune Device No Longer Managed -->
+		<rule id="105017" level="13">
+			<if_sid>105001</if_sid>
+			<field name="operationName">Device no longer managed</field>
+			<field name="PasscodeRequired">false</field>
+			<description>Intune Device No Longer Managed</description>
+			<group>attack_stage_Defense_Evasion,attack_category_Tampering_of_MDM_/_BYOD_Device,</group>
+		</rule>
+
+				<!-- Security Center alerts-->
+		<!-- 20230616, duplicated with 105080-105083
+		<rule id="105019" level="0">
+			<decoded_as>AzureEventHub</decoded_as>
+			<description>AzureEventHub Messages</description>
+		</rule>				
+		<rule id="105020" level="13">
+			<if_sid>105019</if_sid>
+			<field name="eventhub.ProductName">Microsoft Defender for Cloud</field>
+			<field name="eventhub.VendorName">Microsoft</field>
+			<field name="eventhub.Severity">High</field>
+			<description>Microsoft Defender for Cloud High Severity Alerts: $(eventhub.AlertDisplayName)</description>
+		</rule>
+		<rule id="105021" level="13">
+			<if_sid>105019</if_sid>
+			<field name="eventhub.ProductName">Microsoft Defender for Cloud</field>
+			<field name="eventhub.VendorName">Microsoft</field>
+			<field name="eventhub.Severity">Medium</field>
+			<description>Microsoft Defender for Cloud Medium Severity Alerts: $(eventhub.AlertDisplayName)</description>
+		</rule>
+		<rule id="105022" level="13">
+			<if_sid>105019</if_sid>
+			<field name="eventhub.ProductName">Microsoft Defender for Cloud</field>
+			<field name="eventhub.VendorName">Microsoft</field>
+			<field name="eventhub.Severity">Low</field>
+			<description>Microsoft Defender for Cloud Low Severity Alerts: $(eventhub.AlertDisplayName)</description>
+		</rule>
+		<rule id="105023" level="13">
+			<if_sid>105019</if_sid>
+			<field name="eventhub.ProductName">Microsoft Defender for Cloud</field>
+			<field name="eventhub.VendorName">Microsoft</field>
+			<field name="eventhub.Severity">Informational</field>
+			<description>Microsoft Defender for Cloud Informational Severity Alerts: $(eventhub.AlertDisplayName)</description>
+		</rule>
+		-->
+		<!-- Intune Device un-register and enroll multiple devices under same username -->
+		<!-- <rule frequency="2" id="105018" level="12" timeframe="900">
+																																																															 -->
+			<!-- Follow up -->
+			<!-- <if_matched_sid>105017</if_matched_sid>
+			<same_user/>
+			<description>Intune Device un-register and enroll multiple devices under same username</description>
+		</rule>
+																																										 -->
+		<!-- Intune Device dis-arm and re-arm for a same device in a very short period -->
+		<!-- <rule frequency="2" id="105019" level="12" timeframe="3600">
+																																																															 -->
+			<!-- Follow up -->
+			<!-- <if_matched_sid>105016</if_matched_sid>
+			<same_user/>
+			<description>Intune Device dis-arm and re-arm for a same device in a very short period</description>
+		</rule>
+																																								 -->
+		<!-- There's some issue with the numbering, but 105000 is the new Graph API json logs105000-->
+		<!-- Set at level 5 for checking-->
+		<!-- Suspicious OAuthApp O365 Attack Toolkit detected.	-->
+		<!-- Disable since same rule as 87885	-->
+		<!--
+		<rule id="105500" level="5">
+			<if_sid>87872</if_sid>
+			<field name="azure.azure_tag">azure-ad-graph</field>
+			<field name="azure.azure_aad_tag">audit</field>
+			<field name="azure.loggedByService">Core Directory</field>
+			<field name="azure.category">ApplicationManagement</field>
+			<field name="azure.activityDisplayName">Consent to Application</field>
+			<match>mailboxsettings</match>
+			<match>contacts.read</match>
+			<match>user.read</match>
+			<match>mail.read</match>
+			<match>notes.read.all</match>
+			<match>mailboxsettings.readwrite</match>
+			<match>Files.ReadWrite.All</match>
+			<match>!5523c0ac-586d-491e-bc73-fc18f9ed2c28|!3190d40e-82d9-44ee-af78-4ce2aafd4f15|!0771c6f9-71c7-46d4-87a9-3b57443ee250|!a644e37f-d354-440f-843a-1e1ee7dfc4ef|!21fbe0e7-6e83-4fb0-a56f-92a67c64e37a|!30966914-6789-4d1c-9e2b-76a81a5e2a54|!2a6082d8-9f0a-455c-a26b-7fce81edefb8|!adc8d359-f3ef-4e0a-b170-2bcf5a022728</match>
+			<match>!AllPrincipals</match>
+			<description>Suspicious OAuthApp O365 Attack Toolkit detected.</description>
+		</rule>
+		-->
+
+		<!--
+																																				<rule id="105090" level="13">
+			<decoded_as>json</decoded_as>
+			<field name="azure.eventCategory">Security</field>
+			<field name="azure.eventProperties.severity">High</field>
+			<field name="Severity">High</field>
+			<description>Azure Security Center High Severity Alerts: $(azure.eventName)</description>
+		</rule>
+		<rule id="105091" level="13">
+			<decoded_as>json</decoded_as>
+			<field name="azure.eventCategory">Security</field>
+			<field name="azure.eventProperties.severity">Medium</field>
+			<description>Azure Security Center Medium Severity Alerts: $(azure.eventName)</description>
+		</rule>
+		<rule id="415005" level="13">
+			<decoded_as>json</decoded_as>
+			<field name="azure.eventCategory">Security</field>
+			<field name="azure.eventProperties.severity">Low</field>
+			<description>Azure Security Center Low Severity Alerts: $(azure.eventName)</description>
+		</rule>
+		<rule id="105093" level="13">
+			<decoded_as>json</decoded_as>
+			<field name="azure.eventCategory">Security</field>
+			<field name="azure.eventProperties.severity">Informational</field>
+			<description>Azure Security Center Informational Severity Alerts: $(azure.eventName)</description>
+		</rule>
+-->
+	</group>

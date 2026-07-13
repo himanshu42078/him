@@ -1,0 +1,20 @@
+<group name="pwc_caas,LoL_Rule,">
+    <rule id="169000" level="0">
+		<if_sid>108108</if_sid>
+		<field name="sysmon.commandLine">C:\\Program Files\\Windows Mail\\wab.exe</field>
+		<description>[Whitelist] Detect Suspicious LoL commands - Potential dll executed by wab.exe</description>
+		<!-- DEV-5701 -->
+	</rule>
+    <rule id="169001" level="0">
+		<if_sid>108109</if_sid>
+		<field name="processCommandLine">C:\\Program Files\\Windows Mail\\wab.exe</field>
+		<description>[Whitelist] Detect Suspicious LoL commands - Potential dll executed by wab.exe</description>
+		<!-- DEV-5701 -->
+	</rule>
+    <rule id="169002" level="0">
+		<if_sid>109108,109109</if_sid>
+		<field name="win.eventdata.commandLine">C:\\Program Files\\Windows Mail\\wab.exe</field>
+		<description>[Whitelist] Detect Suspicious LoL commands - Potential dll executed by wab.exe</description>
+		<!-- DEV-5701 -->
+	</rule>
+</group>

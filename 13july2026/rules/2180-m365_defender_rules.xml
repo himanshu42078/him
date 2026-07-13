@@ -1,0 +1,95 @@
+<!--
+DEV-5146
+Rules created refer 1750-MDATP_rules.xml
+-->
+<group name="pwc_caas,">
+	<rule id="218000" level="3">
+		<decoded_as>m365-defender-json</decoded_as>
+		<description>Group of M365 Defender events</description>
+	</rule>
+	<rule id="218001" level="3">
+		<if_sid>218000</if_sid>
+		<field name="incidents.severity">Informational</field>
+		<description>M365 Defender Informational Severity Alerts: $(incidents.incidentName)</description>
+		<group>severity_low,</group>
+	</rule>
+	<rule id="218002" level="3">
+		<if_sid>218000</if_sid>
+		<field name="incidents.severity">Low</field>
+		<description>M365 Defender Low Severity Alerts: $(incidents.incidentName)</description>
+		<group>severity_low,</group>
+	</rule>
+    <rule id="218003" level="12">
+		<if_sid>218000</if_sid>
+		<field name="incidents.severity">Medium</field>
+		<description>M365 Defender Medium Severity Alerts: $(incidents.incidentName)</description>
+		<group>group_by_data.incidentId,severity_medium,</group>
+		<!-- DEV-5664 -->
+	</rule>
+    <rule id="218004" level="12">
+		<if_sid>218000</if_sid>
+		<field name="incidents.severity">High</field>
+		<description>M365 Defender High Severity Alerts: $(incidents.incidentName)</description>
+		<group>group_by_data.incidentId,severity_high,</group>
+		<!-- DEV-5664 -->
+	</rule>
+	<rule id="218005" level="0">
+		<if_sid>218001,218002</if_sid>
+		<field name="incidents.alerts.title">prevented|block</field>
+		<description>Whitelist M365 Blocked</description>
+	</rule>
+	<rule id="218006" level="0">
+		<if_sid>218001,218002</if_sid>
+		<field name="incidents.alerts.category">unwanted</field>
+		<description>Whitelist PUA</description>
+	</rule>
+	<rule id="218007" level="0">
+		<if_sid>218001,218002</if_sid>
+		<field name="incidents.alerts.entities.url">pianistrefutationgoose.com|venetrigni.com|d24ak3f2b.top</field>
+		<description>Whitelist Blocked Domains</description>
+	</rule>
+	<rule id="218008" level="0">
+		<if_sid>218001,218002,218003,218004</if_sid>
+		<field name="incidents.alerts.entities.accountName">srvibmslsvcrm01|srvibmalsvcrm01</field>
+		<description>Whitelist IBM accounts</description>
+	</rule>
+	<rule id="218009" level="0">
+		<if_sid>218001,218002</if_sid>
+		<field name="incidents.alerts.description">Cloud App Security</field>
+		<description>Whitelist CAS alerts in MDATP</description>
+	</rule>
+<!--
+	<rule id="218010" level="3">
+		<if_sid>218001,218002,218003,218004</if_sid>
+		<field name="incidents.alerts.category">DefenseEvasion</field>
+		<description>Temporary Suppression for Troubleshooting</description>
+	</rule>
+-->
+	<rule id="218011" level="0">
+		<if_sid>218001,218002,218003,218004</if_sid>
+		<field name="incidents.alerts.entities.sha1">d01a22720918b781338b5bbf9202b241a5f99ee4</field>
+		<description>Whitelist legitimate hash</description>
+	</rule>	
+
+	<rule id="218012" level="12">
+		<if_sid>218003</if_sid>
+		<field name="device_id">\.+</field>
+		<description>M365 Defender Medium Severity Alerts: $(incidents.incidentName)</description>
+		<group>group_by_data.device_id,realert_15m,severity_medium,</group>
+	</rule>
+    <rule id="218013" level="12">
+		<if_sid>218004</if_sid>
+		<field name="device_id">\.+</field>
+		<description>M365 Defender High Severity Alerts: $(incidents.incidentName)</description>
+		<group>group_by_data.device_id,realert_15m,severity_high,</group>
+	</rule>
+
+	<rule id="218014" level="0">
+		<if_sid>218004</if_sid>
+		<field name="incidents.incidentName">System alert: Policy configuration error</field>
+		<field name="incidents.alerts.description">automatically disable</field>
+		<description>[Whitelist] System alert: Policy configuration error</description>
+		<!-- DEV-5753 -->
+	</rule>
+
+</group>

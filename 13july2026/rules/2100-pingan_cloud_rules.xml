@@ -1,0 +1,91 @@
+
+<group name="pwc_caas,pingan_cloud,cloud,">
+	<rule id="143500" level="2">
+		<decoded_as>pingan-cloud</decoded_as>
+		<description>Group of Pingan Cloud events</description>
+	</rule>
+	<rule id="143501" level="3">
+		<if_sid>143500</if_sid>
+		<field name="msg">Login</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Logon success</description>
+		<group>authentication_success</group>
+	</rule>
+	<rule id="143502" level="3">
+		<if_sid>143500</if_sid>
+		<field name="msg">Login</field>
+		<status>Fail</status>
+		<description>Pingan Cloud - Logon failure</description>
+		<group>authentication_failed</group>
+	</rule>
+	<rule id="143503" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">CreateAccessKey</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Create new access key successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="143504" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">CreateInstance|RunInstancesByStep</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Create new instance $(pingan_cloud.EventAudience) successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="143505" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">StartInstance</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Start instance $(pingan_cloud.EventAudience) successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="143506" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">StopInstance</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Stop instance $(pingan_cloud.EventAudience) successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="143507" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">DestroyInstance</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Delete instance $(pingan_cloud.EventAudience) successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="143508" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">CreateSecurityGroup</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Create security group $(pingan_cloud.EventAudience) successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="143509" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">DeleteSecurityGroup|RemoveSecurityGroup</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Delete security group $(pingan_cloud.EventAudience) successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="143510" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">AddSecurityGroupRule</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Add security group rule $(pingan_cloud.EventAudience) successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="143511" level="7">
+		<if_sid>143500</if_sid>
+		<field name="msg">DeleteSecurityGroup|RemoveSecurityGroupRule</field>
+		<status>Success|Finished</status>
+		<description>Pingan Cloud - Delete security group rule $(pingan_cloud.EventAudience) successfully</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+      <rule id="143512" level="7">
+    <if_sid>143500</if_sid>
+    <field name="msg">ChangePassword</field>
+    <status>Success|Finished</status>
+    <description>Pingan Cloud - $(user) Change Password successfully</description>
+    <group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+  </rule>
+</group>

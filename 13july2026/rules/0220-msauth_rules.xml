@@ -1,0 +1,18 @@
+<group name="windows,pwc_caas,">
+  <rule id="18118" level="9" overwrite="yes">
+    <if_sid>18104</if_sid>
+    <id>^517$|^1102$</id>
+    <description>Windows audit log was cleared.</description>
+    <mitre>
+      <id>T1070</id>
+      <id>T1107</id>
+    </mitre>
+    <group>logs_cleared,pci_dss_10.6.1,gpg13_10.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,</group>
+  </rule>
+  <rule id="18129" level="8" overwrite="yes">
+    <if_sid>18103</if_sid>
+    <id>^13570$</id>
+    <description>Windows file system full.</description>
+    <group>low_diskspace,pci_dss_10.6.1,gpg13_4.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,</group>
+  </rule>
+</group>

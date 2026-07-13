@@ -1,0 +1,202 @@
+
+<!--
+General Attack Scenario Eventchannel
+The rule ID Range will be 11xxxx.
+-->
+<!--
+<rule id="xxx" level="12">
+	<if_group>sysmon_event1</if_group>
+	<field name="win.eventdata.commandLine">xxx</field>
+	<description>Detect suspicious XXX </description>
+	<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+</rule>
+Windows event 4688 - Detect suspicious long command
+<rule id="yyy" level="12">
+	<if_sid>60103</if_sid>
+	<field name="win.system.eventID">^4688$</field>
+	<field name="win.eventdata.commandLine">yyy</field>
+	<description>Detect suspicious YYY</description>
+	<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+</rule>
+-->
+<group name="pwc_caas,General_Attack_Scenario_Eventchannel,">
+	<!--Detection for Kerberoasting is not effective. Enable with caution.-->
+	<rule id="120000" level="5">
+		<if_sid>60106</if_sid>
+		<field name="win.system.eventID">^4769$</field>
+		<field name="win.eventdata.ticketEncryptionType">0x17</field>
+		<field name="win.eventdata.status">0x0</field>
+		<description>Detected Potential Kerberoasting Attack</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Dumping,</group>
+	</rule>
+	<rule id="120001" level="0">
+		<if_sid>120000</if_sid>
+		<field name="win.eventdata.serviceName">krbtgt</field>
+		<description>False positive condition for Kerberoasting</description>
+	</rule>
+	<rule id="120002" level="0">
+		<if_sid>120000</if_sid>
+		<field name="win.eventdata.serviceName">\.*\$</field>
+		<description>False positive condition for Kerberoasting</description>
+	</rule>
+	<rule id="120003" level="0">
+		<if_sid>120000</if_sid>
+		<field name="win.eventdata.targetUserName">\.*\$@\.*</field>
+		<description>False positive condition for Kerberoasting</description>
+	</rule>
+	<!--
+								For whitelisting XP previous versions endpoints.
+							-->
+	<rule id="120200" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">\sinterface\s|\sinterfac\s|\sinterfa\s|\sinterf\s|\sinter\s|\sinte\s|\sint\s|\sin\s|\si\s</field>
+		<field name="win.eventdata.commandLine">\sportproxy\s|\sportprox\s|\sportpro\s|\sportpr\s|\sportp\s|\sport\s|\spor\s|\spo\s|\sp\s</field>
+		<field name="win.eventdata.commandLine">\sadd\s|\sad\s|\sa\s</field>
+		<field name="win.eventdata.commandLine">\sv\s|\sv4\s|\sv4t\s|\sv4to\s|\sv4tov\s|\sv4tov6\s|\sv4tov4\s|\sv6\s|\sv6t\s|\sv6to\s|\sv6tov\s|\sv6tov4\s|\sv6tov6\s</field>
+		<field name="win.eventdata.image">^netsh\W|\Wnetsh$|^netsh$|\Wnetsh\W</field>
+		<description>Detect Suspicious Netsh Portproxy commands: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120201" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\sinterface\s|\sinterfac\s|\sinterfa\s|\sinterf\s|\sinter\s|\sinte\s|\sint\s|\sin\s|\si\s</field>
+		<field name="win.eventdata.commandLine">\sportproxy\s|\sportprox\s|\sportpro\s|\sportpr\s|\sportp\s|\sport\s|\spor\s|\spo\s|\sp\s</field>
+		<field name="win.eventdata.commandLine">\sadd\s|\sad\s|\sa\s</field>
+		<field name="win.eventdata.commandLine">\sv\s|\sv4\s|\sv4t\s|\sv4to\s|\sv4tov\s|\sv4tov6\s|\sv4tov4\s|\sv6\s|\sv6t\s|\sv6to\s|\sv6tov\s|\sv6tov4\s|\sv6tov6\s</field>
+		<field name="win.eventdata.newProcessName">^netsh\W|\Wnetsh$|^netsh$|\Wnetsh\W</field>
+		<description>Detect Suspicious Netsh Portproxy commands: $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120202" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">\sad\s|\sadv\s|\sadvf\s|\sadvfi\s|\sadvfir\s|\sadvfire\s|\sadvfirew\s|\sadvfirewa\s|\sadvfirewal\s|\sadvfirewall\s</field>
+		<field name="win.eventdata.commandLine">\sf\s|\sfi\s|\sfir\s|\sfire\s|\sfirew\s|\sfirewa\s|\sfirewal\s|\sfirewall\s</field>
+		<field name="win.eventdata.commandLine">\sadd\s|\sad\s|\sa\s</field>
+		<field name="win.eventdata.commandLine">\sr\s|\sru\s|\srul\s|\srule\s</field>
+		<field name="win.eventdata.image">^netsh\W|\Wnetsh$|^netsh$|\Wnetsh\W</field>
+		<description>Detect Suspicious Netsh commands - New firewall rule:"$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120203" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\sad\s|\sadv\s|\sadvf\s|\sadvfi\s|\sadvfir\s|\sadvfire\s|\sadvfirew\s|\sadvfirewa\s|\sadvfirewal\s|\sadvfirewall\s</field>
+		<field name="win.eventdata.commandLine">\sf\s|\sfi\s|\sfir\s|\sfire\s|\sfirew\s|\sfirewa\s|\sfirewal\s|\sfirewall\s</field>
+		<field name="win.eventdata.commandLine">\sadd\s|\sad\s|\sa\s</field>
+		<field name="win.eventdata.commandLine">\sr\s|\sru\s|\srul\s|\srule\s</field>
+		<field name="win.eventdata.newProcessName">^netsh\W|\Wnetsh$|^netsh$|\Wnetsh\W</field>
+		<description>Detect Suspicious Netsh commands - New firewall rule: $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,auto_escalate_disabled,</group>
+	</rule>
+	<rule id="120204" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^smbexec.py\W|\Wsmbexec.py$|^smbexec.py$|\Wsmbexec.py\W</field>
+		<description>Detect Smbexec.py commands: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120205" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^smbexec.py\W|\Wsmbexec.py$|^smbexec.py$|\Wsmbexec.py\W</field>
+		<description>Detect Smbexec.py commands: $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120206" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4697$</field>
+		<field name="win.eventdata.serviceName">BTOBTO</field>
+		<description>Detected Smbexec.py spawned services: BTOBTO</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120207" level="12">
+		<if_sid>61138</if_sid>
+		<!-- meaning event id 7045-->
+		<field name="win.eventdata.serviceName">BTOBTO</field>
+		<description>Detected Smbexec.py spawned services: BTOBTO</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120208" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4697$</field>
+		<field name="win.eventdata.serviceFileName">%COMSPEC% /Q /c</field>
+		<description>Detected Smbexec.py spawned service</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120209" level="12">
+		<if_sid>61138</if_sid>
+		<!-- meaning event id 7045-->
+		<field name="win.eventdata.serviceFileName">%COMSPEC% /Q /c</field>
+		<description>Detected Smbexec.py spawned service</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120210" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^ping\W|\Wping$|^ping$|\Wping\W</field>
+		<field name="win.eventdata.commandLine">-n 1\s|-n 1$</field>
+		<description>Detected Suspicious "Ping -n 1" command: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="120211" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^ping\W|\Wping$|^ping$|\Wping\W</field>
+		<field name="win.eventdata.commandLine">-n 1\s|-n 1$</field>
+		<description>Detected Suspicious "Ping -n 1" command: $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+
+	<rule id="120212" level="0">
+		<if_sid>120211</if_sid>
+		<field name="win.eventdata.commandLine">^127.0.0.1\W|\W127.0.0.1$|^127.0.0.1$|\W127.0.0.1\W</field>
+		<description>[Whitelist] 127.0.0.1 for Local Ping -n 1 command</description>
+	</rule>
+	<!-- DEV-2443 -->
+
+	<rule id="120213" level="0">
+		<if_sid>120203</if_sid>
+		<field name="win.eventdata.parentProcessName">Program Files\\\\Veritas\\\\Backup Exec|Program Files\\\\Symantec\\\\Backup Exec</field>
+		<description>[Whitelist] Detect Suspicious Netsh commands</description>
+		<!-- DEV-5371 -->
+		<!-- DEV-5560 -->
+	</rule>
+	<rule id="120214" level="0">
+		<if_sid>120203</if_sid>
+		<field name="win.eventdata.commandLine">Program Files\\\\Veritas\\\\Backup Exec|Program Files\\\\Symantec\\\\Backup Exec</field>
+		<description>[Whitelist] Detect Suspicious Netsh commands</description>
+		<!-- DEV-1113 -->
+	</rule>	
+
+	<!-- Source: Sentinel HAFNIUMUmServiceSuspiciousFile.yaml -->
+	<rule id="120300" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4663$</field>
+		<field name="win.eventdata.objectName">.php$|.jsp$|.js$|.aspx$|.asmx$|.asax$|.cfm$|.shtml$</field>
+		<field name="win.eventdata.newProcessName">umworkerprocess|UMService</field>
+		<field name="win.eventdata.accessMask">0x2|0x100|0x10|0x4</field>
+		<description>Exchange Zero Day Vulnerability - HAFNIUM UM Service writing suspicious file</description>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,</group>
+	</rule>
+	<!-- Source: HAFNIUM Suspicious UM Service Error-->
+	<rule id="120301" level="12">
+		<if_sid>60602</if_sid>
+		<field name="win.system.providerName">^MSExchange</field>
+		<field name="win.system.message">^Watson report</field>
+		<field name="win.system.message">umworkerprocess</field>
+		<field name="win.system.message">TextFormattingRunProperties</field>
+		<description>Exchange Zero Day Vulnerability - HAFNIUM Suspicious UM Service Error (1)</description>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,</group>
+	</rule>
+	<rule id="120302" level="12">
+		<if_sid>60602</if_sid>
+		<field name="win.system.providerName">^MSExchange</field>
+		<field name="win.system.message">^An unhandled exception occurred in a UM worker process|^The Microsoft Exchange Unified Messaging service</field>
+		<description>Exchange Zero Day Vulnerability - HAFNIUM Suspicious UM Service Error (2)</description>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,</group>
+	</rule>
+	<rule id="120303" level="0">
+		<if_sid>120301,120302</if_sid>
+		<field name="win.system.message">System.OutOfMemoryException</field>
+		<description>Whitelist HAFNIUM UM Service Error Exception</description>
+	</rule>
+</group>

@@ -1,0 +1,60 @@
+
+<!-- Modify it at your will. -->
+<group name="pwc_caas,antivirus,">
+	<rule id="241000" level="0">
+		<decoded_as>thycoticsoftware_cef</decoded_as>
+		<description>thycotic messages grouped.</description>
+	</rule>
+	<rule id="241001" level="1">
+	    <if_sid>241000</if_sid>
+	    <field name="cef.event_class_id">18</field>
+	    <description>Logon Failure by $(srcuser)</description>
+    </rule>
+	<rule id="241002" level="10" frequency="10" timeframe="3600">
+	    <if_matched_sid>241001</if_matched_sid>
+	    <same_field>srcuser</same_field>
+	    <description>Continuous Logon Failure by $(srcuser)</description>
+    </rule>
+    <rule id="241003" level="8">
+        <if_sid>241000</if_sid>
+        <field name="cef.event_class_id">10046|10047</field>
+        <description>Password Requirements Changed</description>
+    </rule>
+
+	<!-- DEV-3958 -->
+	<rule id="241004" level="1">
+	    <if_sid>241000</if_sid>
+	    <field name="cef.event_class_id">10007</field>
+	    <description>Heartbeat Failure</description>
+    </rule>
+	<rule id="241005" level="10" frequency="10" timeframe="600">
+	    <if_matched_sid>241004</if_matched_sid>
+	    <same_field>filename</same_field>
+	    <description>Large Number of Heartbeat Failures</description>
+    </rule>
+    <rule id="241006" level="0">
+	    <if_sid>241005</if_sid>
+	    <field name="filename">pamthy</field>
+	    <description>[Whitelist] Large Number of Heartbeat Failures</description>
+    </rule>
+    <rule id="241007" level="0">
+	    <if_sid>241005</if_sid>
+	    <match>CHECKCONTAINS|96258</match>
+	    <description>[Whitelist] Large Number of Heartbeat Failures</description>
+    </rule>
+	<rule id="241008" level="12">
+        <if_sid>241000</if_sid>
+        <field name="cef.event_class_id">10027|10029|10030</field>
+        <description>PowerShell Used in PAM</description>
+    </rule>
+	<rule id="241009" level="1">
+	    <if_sid>241000</if_sid>
+	    <field name="cef.event_class_id">10045</field>
+	    <description>Denied Access</description>
+    </rule>
+	<rule id="241010" level="10" frequency="10" timeframe="3600">
+	    <if_matched_sid>241009</if_matched_sid>
+	    <same_field>cef.extensions.fileId</same_field>
+	    <description>Repeated Denied Access</description>
+    </rule>
+</group>

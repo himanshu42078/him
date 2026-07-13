@@ -1,0 +1,157 @@
+
+<group name="pwc_caas,checkpoint-syslog,">
+	<rule id="138500" level="2">
+		<decoded_as>checkpoint_cef</decoded_as>
+		<description>Group of Checkpoint(Syslog) logs</description>
+	</rule>
+	<rule id="138501" level="4">
+		<if_sid>138500</if_sid>
+		<field name="cef.extensions.product_family">Endpoint</field>
+		<description>Group of Checkpoint Endpoint logs</description>
+	</rule>
+	<rule id="138502" level="0">
+		<if_sid>138500</if_sid>
+		<field name="cef.event_class_id">Log</field>
+		<description>Whitelist Log Type in Checkpoint Alert</description>
+		<!-- DEV-4704 -->
+	</rule>	
+	<rule id="138507" level="12">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.cp_severity">^Low$</field>
+		<description>Checkpoint $(cef.extensions.product) Low Severity Alert.</description>
+		<group>severity_low,</group>
+	</rule>
+	<rule id="138508" level="12">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.cp_severity">^Medium$</field>
+		<description>Checkpoint $(cef.extensions.product) Medium Severity Alert.</description>
+		<group>severity_medium,</group>
+	</rule>
+	<rule id="138509" level="12">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.cp_severity">^High$</field>
+		<description>Checkpoint $(cef.extensions.product) High Severity Alert.</description>
+		<group>severity_high,</group>
+	</rule>
+	<rule id="138510" level="12">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.cp_severity">^Very-high$</field>
+		<description>Checkpoint $(cef.extensions.product) Very-High Severity Alert.</description>
+		<group>severity_high,</group>
+	</rule>
+	<rule id="138511" level="0">
+		<if_sid>138510</if_sid>
+		<field name="cef.product">Anti-Malware</field>
+		<field name="cef.extensions.action_details">Canceled</field>
+		<field name="cef.extensions.event_type">Scan</field>
+		<description>Whitelist Canceled scan very-high alert.</description>
+	</rule>
+	<rule id="138512" level="0">
+		<if_sid>138510</if_sid>
+		<field name="cef.product">Anti-Malware</field>
+		<field name="cef.extensions.event_type">Update</field>
+		<description>Whitelist Update scan very-high alert.</description>
+	</rule>
+
+	<rule id="138513" level="12">
+		<if_sid>138501,138510</if_sid>
+		<field name="cef.extensions.flexNumber1">High</field>
+		<field name="cef.extensions.product">Forensics|Anti-Malware|Behavioral Guard</field>
+		<field name="cef.extensions.cs3">Web Monitor|File Monitor|Protection|HTTP Emulation</field>
+		<description>Checkpoint High Confidence Alert.</description>
+		<group>severity_high,</group>
+		<!-- DEV-4641 -->
+	</rule>
+	<rule id="138514" level="0">
+		<if_sid>138513</if_sid>
+		<field name="cef.extensions.msg">Bitlocker is a windows data encryption utility which may be used maliciously by threat actors to encrypt the users machine. Attack status: Dormant|sogouinput|sgrepairbackup|acad.lsp|The detection was not found in the Forensics DB. The Forensics report was not generated</field>
+		<description>[Whitelist] Checkpoint High Confidence Alert.</description>
+		<!-- DEV-4641 -->
+	</rule>
+	<rule id="138515" level="0">
+		<if_sid>138513</if_sid>
+		<field name="cef.extensions.cs1Label">Connectivity State</field>
+		<description>[Whitelist] Checkpoint High Confidence Alert.</description>
+		<!-- DEV-4641 -->
+	</rule>
+
+	<rule id="138516" level="12">
+		<if_sid>138501,138510</if_sid>
+		<field name="cef.extensions.product">Threat Emulation|Forensics</field>
+		<field name="cef.description">Unknown</field>
+		<field name="cef.extensions.cs3">Offline Reputation|File System Emulation</field>
+		<description>Checkpoint Threat Emulation Alert.</description>
+		<group>severity_high,</group>
+		<!-- DEV-4642 -->
+	</rule>
+	<rule id="138517" level="12">
+		<if_sid>138501,138510</if_sid>
+		<field name="cef.extensions.product">Threat Emulation|Forensics</field>
+		<field name="cef.extensions.cs4">Unknown</field>
+		<field name="cef.extensions.cs3">Offline Reputation|File System Emulation</field>
+		<description>Checkpoint Threat Emulation Alert.</description>
+		<group>severity_high,</group>
+		<!-- DEV-4642 -->
+	</rule>
+	<rule id="138518" level="0">
+		<if_sid>138516,138517</if_sid>
+		<field name="cef.extensions.request">c:\\users\\jimmy_yeung\\appdata\\local\\uclient\\downloads\\\.+\\nclogin65.jar</field>
+		<description>[Whitelist] Checkpoint High Confidence Alert.</description>
+		<!-- DEV-4642 -->
+	</rule>
+
+	<rule id="138520" level="0">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.product">URL Filtering</field>
+		<description>[Whitelist] Checkpoint Alert.</description>
+		<!-- DEV-4704 -->
+	</rule>
+	<rule id="138521" level="0">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.product">Zero Phishing</field>
+		<description>[Whitelist] Checkpoint Alert.</description>
+		<!-- DEV-4704 -->
+	</rule>
+	<rule id="138522" level="0">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.product">Anti-Ransomware</field>
+		<field name="cef.extensions.cp_severity">Medium|Low</field>
+		<description>[Whitelist] Checkpoint Alert.</description>
+		<!-- DEV-4704 -->
+	</rule>
+	<rule id="138523" level="0">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.product">Threat Extraction</field>
+		<field name="cef.extensions.cp_severity">Low</field>
+		<description>[Whitelist] Checkpoint Alert.</description>
+		<!-- DEV-4704 -->
+	</rule>
+	<rule id="138524" level="0">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.product">Threat Emulation</field>
+		<field name="cef.extensions.cs4">benign</field>
+		<description>[Whitelist] Checkpoint Alert.</description>
+		<!-- DEV-4704 -->
+	</rule>
+	<rule id="138525" level="0">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.product">Forensics</field>
+		<field name="cef.extensions.cs4">gen.win.processhollowing.c|ransomware.win.bitlockerransom.b|Gen.Win.AM.Process</field>
+		<description>[Whitelist] Checkpoint Alert.</description>
+		<!-- DEV-4704 -->
+	</rule>
+	<rule id="138526" level="0">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.product">Behavioral Guard</field>
+		<field name="cef.extensions.cp_severity">Low</field>
+		<description>[Whitelist] Checkpoint Alert.</description>
+		<!-- DEV-4704 -->
+	</rule>
+	<rule id="138527" level="0">
+		<if_sid>138501</if_sid>
+		<field name="cef.extensions.product">Anti-Malware</field>
+		<field name="cef.extensions.cp_severity">Low</field>
+		<description>[Whitelist] Checkpoint Alert.</description>
+		<!-- DEV-4704 -->
+	</rule>
+</group>

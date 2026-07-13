@@ -1,0 +1,462 @@
+
+<!-- Modify it at your will. -->
+<!-- AWS Json Rules
+Rule Number: 135000 ~ 135999
+-->
+<group name="amazon,aws,aws_cloudtrail,pwc_caas,all_client,cloud,">
+	<rule id="135000" level="3">
+		<decoded_as>aws-cloudtrail</decoded_as>
+		<field name="integration">aws</field>
+		<description>Group of AWS CloudTrail events</description>
+	</rule>
+	<rule id="135230" level="3">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">StartInstances|RunInstances</field>
+		<description>AWS Start or Run Instance</description>
+	</rule>
+	<rule id="135001" level="12">
+		<if_sid>135230</if_sid>
+		<field name="aws.eventName">RunInstances</field>
+		<field name="aws.errorCode">Client.UnauthorizedOperation</field>
+		<description>AWS Run a new instance without permission</description>
+	</rule>
+	<rule id="135002" level="12">
+		<if_sid>135230</if_sid>
+		<field name="aws.eventName">StartInstances</field>
+		<field name="aws.errorCode">Client.UnauthorizedOperation</field>
+		<description>AWS Start instances in EC2 without permission</description>
+	</rule>
+	<rule id="135003" level="5">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">StopInstances</field>
+		<description>AWS Stop instances in EC2</description>
+	</rule>
+	<rule id="135004" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DeleteSecurityGroup</field>
+		<description>AWS Deleted Security Groups in EC2</description>
+		<group>groupid_135004,</group>
+	</rule>
+	<rule id="135005" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">AuthorizeSecurityGroupEgress</field>
+		<description>AWS An egress rule has been added to a security group</description>
+		<!-- DEV-5395 -->
+	</rule>
+	<rule id="135006" level="5">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">AuthorizeSecurityGroupIngress</field>
+		<description>AWS An ingress rule has been added to a security group</description>
+	</rule>
+	<rule id="135007" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">ModifySecurityGroupEgressRule</field>
+		<description>AWS An egress rule has been modified in a security group</description>
+		<!-- DEV-5395 -->
+	</rule>
+	<rule id="135008" level="13">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">RevokeSecurityGroupEgress</field>
+		<description>AWS An egress rule has been removed from a security group</description>
+	</rule>
+	<rule id="135009" level="13">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">RevokeSecurityGroupIngress</field>
+		<description>AWS An ingress rule has been removed from a security group</description>
+	</rule>
+	<rule id="135010" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">AllocateAddress</field>
+		<description>AWS Allocate a new Elastic IP address</description>
+		<group>groupid_135010,</group>
+	</rule>
+	<rule id="135011" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">AssociateAddress</field>
+		<description>AWS Associate a new Elastic IP address</description>
+		<group>groupid_135011,</group>
+	</rule>
+	<rule id="135012" level="3">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">ConsoleLogin</field>
+		<field name="aws.responseElements.ConsoleLogin">Success</field>
+		<description>AWS: Successful Logon</description>
+		<group>authentication_success,</group>
+	</rule>
+	<rule id="135013" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DeleteNetworkAcl</field>
+		<description>AWS Network Access Control List has been deleted</description>
+	</rule>
+	<rule id="135014" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DeleteNatGateway</field>
+		<description>AWS Network Gateway being deleted</description>
+	</rule>
+	<rule id="135015" level="8">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">CreateUser</field>
+		<description>AWS Create user account</description>
+		<group>groupid_135015,</group>
+	</rule>
+	<rule id="135016" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">CreateUser</field>
+		<field name="aws.errorCode">Client.UnauthorizedOperation</field>
+		<description>AWS Create user account without permissions</description>
+		<group>groupid_135016,</group>
+	</rule>
+	<rule id="135017" level="5">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">ConsoleLogin</field>
+		<field name="aws.errorMessage">Failed authentication</field>
+		<description>AWS User login failed</description>
+	</rule>
+	<rule frequency="3" id="135023" level="12" timeframe="300">
+		<if_matched_sid>135017</if_matched_sid>
+		<same_user/>
+		<description>AWS Same User Login Failed Multiple times: $(dstuser)</description>
+		<group>groupid_135023,</group>
+	</rule>
+	<rule frequency="4" id="135018" level="12" timeframe="300">
+		<if_matched_sid>135017</if_matched_sid>
+		<same_source_ip/>
+		<description>AWS Possible break-in attempt from IP $(srcip)</description>
+		<group>groupid_135018,</group>
+	</rule>
+	<rule id="135019" level="5">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DeleteObjects</field>
+		<description>AWS CloudTrail: Objects being deleted.</description>
+	</rule>
+	<rule frequency="5" id="135020" level="12" timeframe="300">
+		<if_matched_sid>135019</if_matched_sid>
+		<same_field>aws.userIdentity.userName</same_field>
+		<description>AWS CloudTrail: Multiple Objects being deleted by the same user.</description>
+	</rule>
+	<rule id="135021" level="12">
+		<if_matched_sid>135000</if_matched_sid>
+		<field name="aws.eventName">StopLogging</field>
+		<description>AWS CloudTrail stopped logging</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Audit_Log_Tampering,</group>
+	</rule>
+	<rule id="135022" level="0">
+		<if_sid>135005,135006,135008,135009</if_sid>
+		<field name="aws.userIdentity.sessionContext.sessionIssuer.userName">LFTAltimetrikOperator</field>
+		<description>Whitelist Egress/Ingress Developers</description>
+	</rule>
+	<!-- Newly designed AWS rules -->
+	<rule id="135200" level="5">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">UpdateAssumeRolePolicy</field>
+		<field name="aws.requestParameters.policyDocument">"AWS": "*"</field>
+		<description>AWS Assume Role Policy Updated without scope limitation</description>
+	</rule>
+	<rule id="135201" level="3">
+		<if_sid>135200</if_sid>
+		<field name="aws.requestParameters.policyDocument">"Condition":</field>
+		<description>AWS AssumeRole Policy updated with Condition</description>
+	</rule>
+	<rule id="135203" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">ConsoleLogin</field>
+		<field name="aws.additionalEventData.MFAUsed">No</field>
+		<field name="aws.userIdentity.type">root</field>
+		<field name="aws.responseElements.ConsoleLogin">Success</field>
+		<description>AWS Root Account Successful Login without MFA</description>
+	</rule>
+	<rule id="135204" level="4">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">ListUsers|ListGroups|ListPolicies</field>
+		<description>AWS Potential Recon Activities (Not an alert)</description>
+	</rule>
+	<rule id="135205" level="12">
+		<if_sid>135204</if_sid>
+		<field name="aws.userAgent">aws-cli</field>
+		<description>AWS Potential Recon Activities via Command Line</description>
+	</rule>
+	<rule id="135206" level="12">
+		<if_sid>135204,135205</if_sid>
+		<field name="aws.errorCode">AccessDenied</field>
+		<description>AWS Suspicious Recon Activities with Permission denied</description>
+	</rule>
+	<!-- testing threshold-->
+	<rule frequency="5" id="135207" level="5" timeframe="300">
+		<if_matched_sid>135204</if_matched_sid>
+		<same_field>aws.userIdentity.arn</same_field>
+		<description>AWS Multiple Recon activities observed in short period of time</description>
+	</rule>
+	<rule id="135208" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">CreateFunction</field>
+		<description>AWS New Lambda Function Created - Function name: $(aws.requestParameters.functionName)</description>
+	</rule>
+	<rule id="135209" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">CreatePolicy</field>
+		<field name="aws.requestParameters.policyDocument">Action:"*"</field>
+		<description>AWS Create/Update Managed Policy with Excessive Permission</description>
+	</rule>
+	<!-- Observe first-->
+	<rule id="135210" level="5">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">UpdateLoginProfile</field>
+		<description>AWS Login Profile details updated</description>
+	  </rule>
+	<rule id="135211" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">CreateUser</field>
+		<field name="aws.requestParameters.userName">admin</field>
+		<description>AWS Creation of New Admin users</description>
+		<group>groupid_135211,</group>
+	</rule>
+	<rule id="135212" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">CreateRole</field>
+		<field name="aws.requestParameters.roleName">admin</field>
+		<description>AWS Creation of New Admin roles</description>
+	</rule>
+	<rule id="135213" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">UpdateAccessKey</field>
+		<field name="aws.requestParameters.status">Inactive</field>
+		<description>AWS Access Key Enabled. Username: $(aws.requestParameters.userName)</description>
+	</rule>
+	<rule id="135214" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">UpdateAccessKey</field>
+		<field name="aws.requestParameters.status">Active</field>
+		<description>AWS Access Key Disabled. Username: $(aws.requestParameters.userName)</description>
+	</rule>
+	<rule id="135215" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">CreateAccessKey</field>
+		<field name="aws.requestParameters.status">Active</field>
+		<description>AWS Access Key Created. Username: ($aws.requestParameters.userName)</description>
+	</rule>
+	<rule id="135216" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DeleteAccessKey</field>
+		<description>AWS Access Key Deleted. Username: ($aws.requestParameters.userName)</description>
+	</rule>
+	<rule id="135217" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">AttachUserPolicy|AttachRolePolicy</field>
+		<field name="aws.requestParameters.policyArn">arn:aws:iam::aws:policy/AdministratorAccess</field>
+		<description>AWS Attached Adminstrator Access Policy to User/Role</description>
+	</rule>
+	<rule id="135218" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">PutUserPolicy</field>
+		<field name="aws.requestParameters.policyArn">admin</field>
+		<description>AWS Attached Adminstrator Access Policy to Non-admin user</description>
+	</rule>
+	<rule id="135219" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DeleteFlowLogs</field>
+		<description>AWS Disabled VPC Flow logs</description>
+	</rule>
+	<rule id="135220" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">ModifyLoadBalancerAttributes</field>
+		<match>"key": "access_logs.s3.enabled", "value": "false"</match>
+		<description>AWS Disabled ELB access log</description>
+	</rule>
+	<rule id="135221" level="13">
+		<if_sid>135012</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<description>Successful AWS Login from Tor-IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,groupid_135221,</group>
+		<!-- DEV-4292 -->
+	</rule>
+	<!-- Newly Created Rule 20230804 -->
+	<!-- DEV-4892 -->
+	<rule id="135222" level="12">
+		<if_sid>135012</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+		<description>Successful AWS Login from malware-IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+	</rule>
+	<rule id="135223" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DeleteUser</field>
+		<field name="aws.requestParameters.userName">admin</field>
+		<description>AWS Deletion of Admin users</description>
+	</rule>
+	<rule id="135224" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DeleteRole</field>
+		<field name="aws.requestParameters.roleName">admin</field>
+		<description>AWS Deletion of Admin roles</description>
+	</rule>
+	<rule id="135225" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">DetachRolePolicy|DetachUserPolicy</field>
+		<field name="aws.requestParameters.policyArn">arn:aws:iam::aws:policy/AdministratorAccess</field>
+		<description>AWS Detached Adminstrator Access Policy to User/Role</description>
+	</rule>
+	<rule id="135226" level="12">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">AddUserToGroup</field>
+		<field name="aws.userIdentity.arn">admin</field>
+		<description>AWS Add New Admin member to Group</description>
+	</rule>
+	<rule id="135227" level="5">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">RemoveUserFromGroup</field>
+		<field name="aws.userIdentity.arn">admin</field>
+		<description>AWS Remove Admin member from Group</description>
+	</rule>
+	<rule id="135228" level="3">
+		<if_sid>135000</if_sid>
+		<field name="aws.eventName">ChangePassword</field>
+		<description>AWS Reset password</description>
+	</rule>
+	<rule id="135229" level="5">
+		<if_sid>135228</if_sid>
+		<field name="aws.errorCode">\.+</field>
+		<description>AWS Reset password failure</description>
+	</rule>
+
+
+	<rule id="135240" level="0">
+		<if_sid>135206</if_sid>
+		<field name="aws.userIdentity.arn">PrismaCloudRole\.+/redlock</field>
+		<field name="aws.eventType">AwsApiCall</field>
+		<description>[Whitelist] AWS Suspicious Recon Activities with Permission denied</description>
+		<!-- DEV-4920 -->
+	</rule>
+
+	<!-- Whitelisting normal AWS workload events, need to update if_sid rules -->
+	<rule id="135499" level="0">
+		<if_sid>135200,135201,135208,135209,135211,135212,135217,135218</if_sid>
+		<field name="aws.userAgent">lambda.amazonaws.com|cloudformation.amazonaws.com|config.amazonaws.com|autoscaling.amazonaws.com</field>
+		<description>AWS Legitimate userAgents</description>
+	</rule>
+	<!--
+		Temporarily merged into same rule
+		<rule id="135603" level="5">
+		<if_sid>423002</if_sid>
+		<field name="aws.msg">"type":"DELETE_DATASET"</field>
+		<description>HKSTP XDP: Delete dataset activity detected.</description>
+	</rule>
+	<rule id="135604" level="5">
+		<if_sid>423002</if_sid>
+		<field name="aws.msg">"type":"DELETE_PROJECT"</field>
+		<description>HKSTP XDP: Delete project activity detected.</description>
+	</rule>
+		-->
+
+	<!-- Move from 1000-common_rules.xml -->
+	<rule id="1011" level="0">
+		<if_sid>1007</if_sid>
+		<field name="aws.source">cloudtrail</field>
+		<description>Whitelisting AWS FPs</description>
+	</rule>
+
+</group>
+<group name="amazon,aws,cisco_umbrella,pwc_caas,all_client,cloud,">
+	<rule id="135050" level="3">
+		<decoded_as>aws-cisco-umbrella</decoded_as>
+		<field name="integration">aws</field>
+		<field name="aws.source">cisco_umbrella</field>
+		<description>Group of AWS Cisco Umbrella events</description>
+	</rule>
+	<rule id="135051" level="1">
+		<if_sid>135050</if_sid>
+		<field name="aws.log_info.log_file">iplogs</field>
+		<description>Group of AWS Cisco Umbrella IP Logs events</description>
+		<group>L2R,</group>
+	</rule>
+	<rule id="135052" level="1">
+		<if_sid>135050</if_sid>
+		<field name="aws.log_info.log_file">dnslogs</field>
+		<description>Group of AWS Cisco Umbrella DNS Logs events</description>
+	</rule>
+	<rule id="135053" level="1">
+		<if_sid>135050</if_sid>
+		<field name="aws.log_info.log_file">proxylogs</field>
+		<description>Group of AWS Cisco Umbrella Proxy Logs events</description>
+	</rule>
+	<!-- IP Logs-->
+	<!-- DNS Logs-->
+	<rule id="135070" level="1">
+		<if_sid>135052</if_sid>
+		<action>Allowed</action>
+		<description>Group of AWS Cisco Umbrella DNS Logs events</description>
+		<group>L2R,</group>
+	</rule>
+	<rule id="135071" level="5">
+		<if_sid>135070</if_sid>
+		<field name="aws.categories">Malware|Command and Control|Hacking</field>
+		<description>Allowed DNS Request to Suspicious Web Category: $(aws.categories)</description>
+	</rule>
+	<!-- Proxy Logs to do-->
+	<!--
+											<rule id="135080" level="2">
+		<if_sid>135053</if_sid>
+		<field name="aws.action">Allowed</field>
+		<description>Group of AWS Cisco Umbrella IP Logs events</description>
+	</rule>
+										-->	
+</group>
+<group name="amazon,aws,pwc_caas,aws_guardduty,cloud,">
+	<!-- Guard duty Rules Notification-->
+	<rule id="135100" level="3">
+		<decoded_as>aws-guardduty</decoded_as>
+		<field name="integration">aws</field>
+		<field name="aws.source">guardduty</field>
+		<description>Group of AWS Guardduty events</description>
+	</rule>
+	<rule id="135101" level="8">
+		<if_sid>135100</if_sid>
+		<field name="aws.severity">^1|^2|^3</field>
+		<description>AWS GuardDuty Low Severity Alerts: $(aws.title)</description>
+		<group>groupid_135101,severity_low,</group>
+	</rule>
+	<rule id="135102" level="12">
+		<if_sid>135100</if_sid>
+		<field name="aws.severity">^4|^5|^6</field>
+		<description>AWS GuardDuty Medium Severity Alerts: $(aws.title)</description>
+		<group>groupid_135102,severity_medium,</group>
+	</rule>
+	<rule id="135103" level="12">
+		<if_sid>135100</if_sid>
+		<field name="aws.severity">^7|^8|^9</field>
+		<description>AWS GuardDuty High Severity Alerts: $(aws.title)</description>
+		<group>groupid_135103,severity_high,</group>
+	</rule>
+</group>
+<group name="amazon,aws,pwc_caas,aws_config,cloud,">
+	<rule id="135500" level="3">
+		<decoded_as>aws-config</decoded_as>
+		<field name="integration">aws</field>
+		<description>Group of AWS Config events</description>
+	</rule>
+	<rule id="135501" level="12">
+		<if_sid>135500</if_sid>
+		<field name="aws.additionalEventData.configRuleName"></field>
+		<description>AWS Config Managed Rules - $(aws.additionalEventData.configRuleName)</description>
+	</rule>		
+</group>
+<group name="amazon,aws,pwc_caas,aws_waf,cloud,">
+	<rule id="135300" level="3">
+		<decoded_as>aws-waf</decoded_as>
+		<field name="integration">aws</field>
+		<description>Group of AWS WAF events</description>
+	</rule>
+</group>
+<group name="amazon,aws,pwc_caas,aws_securityhub,cloud,">
+	<rule id="135350" level="3">
+		<decoded_as>aws-securityhub</decoded_as>
+		<field name="integration">aws</field>
+		<description>Group of AWS Securityhub events</description>
+	</rule>
+</group>
+<group name="amazon,aws,pwc_caas,aws_vpc,cloud,">
+	<rule id="135400" level="3">
+		<decoded_as>aws-vpc</decoded_as>
+		<field name="integration">aws</field>
+		<description>Group of AWS VPC events</description>
+	</rule>
+</group>

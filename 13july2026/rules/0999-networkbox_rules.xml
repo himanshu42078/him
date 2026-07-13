@@ -1,0 +1,23 @@
+
+<!-- Modify it at your will. -->
+<!--
+Oct 13 13:59:26 ctfhk1 nbsyslog[441] webclient res_body_ms_rx=1 local_n_family=4 req_head_ms_rx=1 application_productivity=3 res_body_ms_scan=8 res_head_ms_rx=1 application_risk=1 remote_n_family=4 severity=0 remote_country=hk req_method=get res_code=206 bytes_tx=289 urlprefix=http result=audit res_body_size=15724 bytes_rx=16038 start_timestamp_usec=111179 local_protocol=HTTP/1.1 remote_protocol=HTTP/1.1 network_input=x_WCL_LAN application=www.adobe remote_latitude=22.291000 start_timestamp_sec=1634104766 local_n=10.64.1.80 remote_longitude=114.150000 application_category="Web Services" remote_n=219.76.10.25 remote_city="Central District" res_contenttype=application/x-msi req_useragent="Microsoft BITS/7.8" res_category="computing & internet" urlhost=ardownload.adobe.com application_chain=net.tcp,www.http,www.adobe recordid=b89a69f8-2bea-11ec-ba2b-00900b3136e0 application_tags=adobe,http,net,net.tcp,tcp,www,www.adobe,www.http urlpath=/pub/adobe/reader/win/acrobatdc/2100720099/acrordrdcupd2100720099.msi summary="HTTP 206 GET ardownload.adobe.com/pub/adobe/reader/win/acrobatdc/2100720099/acrordrdcupd2100720099.msi"
+-->
+<group name="networkbox,">
+  <rule id="203900" level="0">
+    <decoded_as>NetworkBox</decoded_as>
+    <description>Group of Networkbox messages</description>
+    <group>network_device,</group>
+  </rule>
+  <rule id="203901" level="0">
+    <if_sid>203900</if_sid>
+    <match>webclient</match>
+    <description>Group of Networkbox-webclient messages</description>
+    <group>network_device,</group>
+  </rule>
+  <rule id="203902" level="3">
+    <if_sid>203900</if_sid>
+    <field name="NetworkBox.summary">Cobalt Strike Beacon</field>
+    <description>Networkbox AV malware detection</description>
+  </rule>
+</group>

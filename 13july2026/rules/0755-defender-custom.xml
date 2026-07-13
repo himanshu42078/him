@@ -1,0 +1,90 @@
+<group name="pwc_caas,defender,all_client,cloud,">
+  <rule id="100200" level="3">
+    <match>{"office_defender"</match>
+    <description>MDE Messages.</description>
+  </rule>
+  <rule id="100201" level="3">
+    <if_sid>100200</if_sid>
+    <field name="query">alerts</field>
+    <description>List Alerts.</description>
+  </rule>
+  <rule id="100202" level="3">
+    <if_sid>100201</if_sid>
+    <field name="office_defender.severity">Informational</field>
+    <description>MDE alert from $(office_defender.computerDnsName) : $(office_defender.severity) Alert: $(office_defender.title).</description>
+    <options>no_full_log</options>
+    <group>alert,</group>
+  </rule>
+  <rule id="100203" level="6">
+    <if_sid>100201</if_sid>
+    <field name="office_defender.severity">Low</field>
+    <description>MDE alert from $(office_defender.computerDnsName) : $(office_defender.severity) Alert: $(office_defender.title).</description>
+    <options>no_full_log</options>
+    <group>alert,</group>
+  </rule>
+  <rule id="100204" level="9">
+    <if_sid>100201</if_sid>
+    <field name="office_defender.severity">Medium</field>
+    <description>MDE alert from $(office_defender.computerDnsName) : $(office_defender.severity) Alert: $(office_defender.title).</description>
+    <options>no_full_log</options>
+    <group>alert,</group>
+  </rule>
+  <rule id="100205" level="12">
+    <if_sid>100201</if_sid>
+    <field name="office_defender.severity">High</field>
+    <description>MDE alert from $(office_defender.computerDnsName) : $(office_defender.severity) Alert: $(office_defender.title).</description>
+    <options>no_full_log</options>
+    <group>alert,</group>
+  </rule>
+  
+  <rule id="100210" level="12">
+    <if_sid>100200</if_sid>
+    <field name="query">indicators</field>
+    <description>List Indicators.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100211" level="3">
+    <if_sid>100200</if_sid>
+    <field name="query">machines</field>
+    <description>$(microsoft_defender.computerDnsName) Health Status $(microsoft_defender.healthStatus).</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100212" level="3">
+    <if_sid>100200</if_sid>
+    <field name="query">domain</field>
+    <description>List Domain.</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100213" level="3">
+    <if_sid>100200</if_sid>
+    <field name="query">recommendations</field>
+    <description>$(microsoft_defender.recommendationName).</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100214" level="3">
+    <if_sid>100200</if_sid>
+    <field name="query">exposurescore</field>
+    <description>Domain Exposure Score: $(microsoft_defender.score).</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100215" level="3">
+    <if_sid>100200</if_sid>
+    <field name="query">software</field>
+    <description>$(microsoft_defender.name).</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100216" level="3">
+    <if_sid>100200</if_sid>
+    <field name="query">vulnerabilities</field>
+    <description>$(microsoft_defender.severity) Vulnerability: $(microsoft_defender.productName).</description>
+    <options>no_full_log</options>
+  </rule>
+  <rule id="100220" level="12" frequency="30" timeframe="60" ignore="120">
+    <!--<hostname>^safeguards-logcollector_m365_2$</hostname>-->
+    <if_matched_sid>91537</if_matched_sid>
+    <field name="office365.Operation">FileRecycled</field>
+    <same_field>office365.UserId</same_field>
+    <description>User $(office365.UserId) mass DELETING files</description>
+    <group>ossec,</group>
+  </rule>
+</group>

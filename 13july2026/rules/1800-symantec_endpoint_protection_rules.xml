@@ -1,0 +1,114 @@
+
+<group name="pwc_caas,sep,antivirus,">
+	<rule id="134506" level="0">
+		<decoded_as>symantec-endpoint-protection</decoded_as>
+		<description>Group of Symantec Endpoing Protection Event</description>
+	</rule>
+	<rule id="134507" level="0">
+		<decoded_as>sepm-activity</decoded_as>
+		<description>Group of Symantec Endpoing Protection Activity Logs</description>
+	</rule>
+	<rule id="134508" level="0">
+		<decoded_as>sepm-scan</decoded_as>
+		<description>Group of Symantec Endpoing Protection Scan Logs</description>
+	</rule>
+	<rule id="134509" level="0">
+		<decoded_as>sepm-traffic</decoded_as>
+		<description>Group of Symantec Endpoing Protection Traffic Logs</description>
+	</rule>
+	<rule id="134510" level="0">
+		<decoded_as>sepm-security</decoded_as>
+		<description>Group of Symantec Endpoing Protection Security Logs</description>
+	</rule>
+	<rule id="134511" level="0">
+		<decoded_as>sepm-risk</decoded_as>
+		<description>Group of Symantec Endpoing Protection Risk Logs</description>
+	</rule>	
+	<rule id="134512" level="0">
+		<decoded_as>sepm-behavior</decoded_as>
+		<description>Group of Symantec Endpoing Protection Behavior Logs</description>
+	</rule>	
+	<rule id="134500" level="0">
+		<if_sid>134506,134507,134508,134509,134510,134511,134512</if_sid>
+		<description>Group of Symantec Endpoing Protection Event</description>
+	</rule>
+	<!-- Later when the new rule active, move this rule to the back-->
+	<rule id="134501" level="12">
+		<if_sid>134500</if_sid>
+		<field name="symantecServer.payload">detected|quarantined|Trojan.Gen.MBT|deletion|Heur.AdvML.B|Trojan|Port: 3389\D|\WRDP\W</field>
+		<description>Symantec Alert: Suspicious event</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection,auto_escalate_disabled,</group>
+	</rule>
+	<rule id="134502" level="0">
+		<if_sid>134501</if_sid>
+		<field name="actual_action">quarantined</field>
+		<description>ignore qurantined action</description>
+	</rule>
+	<rule id="134503" level="0">
+		<if_sid>134501</if_sid>
+		<field name="symantecServer.actual_action">quarantined</field>
+		<description>ignore qurantined action</description>
+	</rule>	
+	<rule id="134504" level="0">
+		<if_sid>134501</if_sid>
+		<action>Blocked</action>
+		<description>ignore Blocked action</description>
+		<!-- DEV-3507 -->
+	</rule>		
+	<rule id="134515" level="0">
+		<if_sid>134501</if_sid>
+		<field name="symantecServer.payload">Unsolicited</field>
+		<description>Unsolicited packet Alerts, low severity</description>
+	</rule>
+
+	<rule id="134600" level="5">
+		<if_sid>134500</if_sid>
+		<field name="symantecServer.payload">Potential Risk Found</field>
+		<description>Symantec Potential Risk Alert</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+
+
+    <rule id="134601" level="5">
+		<if_sid>134500</if_sid>
+		<field name="symantecServer.description">Security risk found</field>
+        <field name="symantecServer.category_set">malware</field>
+		<description>Symantec Security Risk Alert - Malware type</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+    <rule id="134602" level="5">
+		<if_sid>134500</if_sid>
+		<field name="symantecServer.description">Security risk found</field>
+        <field name="symantecServer.category_set">ransom</field>
+		<description>Symantec Security Risk Alert - Ransom type</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+
+    <rule id="134603" level="5">
+		<if_sid>134500</if_sid>
+		<field name="symantecServer.payload">Audit</field>
+        <field name="symantecServer.payload">detected but not blocked</field>
+		<description>Symantec Audit Event Detected but not blocked - $(CIDS_signature_string)</description>
+
+	</rule>    
+    <rule id="134604" level="5">
+		<if_sid>134500</if_sid>
+		<field name="symantecServer.payload">Malicious Site</field>
+        <field name="symantecServer.payload">detected but not blocked</field>
+		<description>Symantec Malicious Site Event Detected but not blocked - $(CIDS_signature_string)</description>
+	</rule> 
+
+    <rule id="134605" level="5">
+		<if_sid>134500</if_sid>
+		<field name="symantecServer.payload">Web Attack</field>
+        <field name="symantecServer.payload">detected but not blocked</field>
+		<description>Symantec Web Attack Event Detected but not blocked - $(CIDS_signature_string)</description>
+	</rule> 
+
+    <rule id="134606" level="12">
+		<if_sid>134501</if_sid>
+        <field name="symantecServer.event_description">\.</field>
+		<description>Symantec Alert: $(symantecServer.event_description)</description>
+	</rule> 
+	
+</group>

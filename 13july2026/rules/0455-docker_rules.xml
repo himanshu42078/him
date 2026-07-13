@@ -1,0 +1,16 @@
+<group name="pwc_caas,">
+    <!-- Move from 1000-common_rules.xml -->
+	<!-- Need to overwrite docker rules-->
+	<rule id="86005" level="12" overwrite="yes">
+		<if_sid>86003</if_sid>
+		<match>unauthorized</match>
+		<description>Docker: Error - unauthorized action</description>
+		<group>docker-error,gdpr_IV_35.7.d,</group>
+	</rule>
+	<rule id="86006" level="12" overwrite="yes">
+		<if_sid>86003</if_sid>
+		<match>denied: User</match>
+		<description>Docker: Error - denied action</description>
+		<group>docker-error,gdpr_IV_35.7.d,gdpr_IV_32.2,</group>
+	</rule>
+</group>

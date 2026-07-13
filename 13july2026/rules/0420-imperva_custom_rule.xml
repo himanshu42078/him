@@ -1,0 +1,77 @@
+
+<!-- imperva detection rules -->
+<group name="pwc_caas,imperva,">
+  <rule id="134000" level="0">
+    <decoded_as>impervainc_cef</decoded_as>
+    <description>Group of Imperva</description>
+    <group>network_device,</group>
+  </rule>
+  <rule id="134001" level="3">
+    <if_sid>134000</if_sid>
+    <field name="cef.severity">Low</field>
+    <description>Imperva $(cef.severity) Alert - $(cef.description)</description>
+    <group>severity_low,</group>
+  </rule>
+  <rule id="134002" level="3">
+    <if_sid>134000</if_sid>
+    <field name="cef.severity">Medium</field>
+    <description>Imperva $(cef.severity) Alert - $(cef.description)</description>
+    <group>severity_medium,</group>
+  </rule>
+  <rule id="134003" level="12">
+    <if_sid>134000</if_sid>
+    <field name="cef.severity">High</field>
+    <description>Imperva $(cef.severity) Alert - $(cef.description)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+  </rule>
+  <rule id="134004" level="0">
+    <if_sid>134003</if_sid>
+    <field name="cef.extensions.act">Block</field>
+    <description>Imperva $(cef.severity) Alert - $(cef.description) - blocked</description>
+  </rule>
+  <rule id="134006" level="12">
+    <if_sid>134003</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+    <description>Imperva $(cef.severity) Alert with OSINT - $(cef.description)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+  </rule>
+  <rule id="134007" level="12">
+    <if_sid>134003</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/pwc-ti-ip</list>
+    <description>Imperva $(cef.severity) Alert with PwC TI IP - $(cef.description)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+  </rule>
+  <rule id="134008" level="12">
+    <if_sid>134003</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/cyberthreatcoalition-ip</list>
+    <description>Imperva $(cef.severity) Alert with COVID-19 Cyber Threat Coalition - $(cef.description)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+  </rule>
+  <rule id="134009" level="12">
+    <if_sid>134006,134007,134008</if_sid>
+    <description>Detect Bad Reputation Source in SOC TI - Imperva $(cef.severity) Alert - $(cef.description)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+  </rule>
+  <rule id="134010" level="12" frequency="10" timeframe="86400">
+    <if_matched_sid>134009</if_matched_sid>
+    <same_source_ip/>
+    <description>Detect Bad Reputation Source in SOC TI - Multiple Imperva $(cef.severity) Alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_rule.id,realert_24h,org_empty,severity_high,</group>
+  </rule>
+  <!-- This rule did not move to COMA due to historical reasons.-->
+  <rule id="134012" level="1">
+    <if_sid>134002,134003</if_sid>
+    <location>coma</location>
+    <description>HW Event - Imperva $(cef.severity) Alert - $(cef.description)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,</group>
+  </rule>
+
+  <!-- Prevent group this rule by srcip -->
+  <rule id="134013" level="12">
+    <if_sid>134003</if_sid>
+    <field name="cef.description">Slow HTTPS Attack From Multiple Sources</field>
+    <description>Imperva $(cef.severity) Alert - $(cef.description)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,severity_high,</group>
+  </rule>
+
+</group>

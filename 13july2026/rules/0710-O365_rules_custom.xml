@@ -1,0 +1,398 @@
+
+<group name="pwc_caas,O365,all_client,cloud,">
+	<!-- O365 Messages -->
+	<rule id="104001" level="3">
+		<match>{"office_365"</match>
+		<!--field name="properties.appDisplayName">
+																						SharePoint Online Web Client Extensibility|O365 Suite UX|Office365 Shell WCSS-Client|Office 365 Exchange Online|Skype Web Experience On Office 365</field-->
+		<description>O365 Messages.</description>
+	</rule>
+	<!-- Whitelisting Frequency Rules
+	<!- O365 - File Download ->
+	<rule id="104002" level="3">
+		<if_sid>104001</if_sid>
+		<field name="Operation">FileSyncDownloadedPartial|FileDownloaded</field>
+		<match>!"SourceFileName":"-"|"SourceFileName":"N\/A"|"UserId":"pwc@firstpacific.com"</match>
+		<description>O365 - File Download</description>
+	</rule>
+	<!- O365 - Excessive File Downloads Events From the Same Source IP ->
+	<rule frequency="300" id="104003" level="13" timeframe="300">
+		<if_matched_sid>104002</if_matched_sid>
+		<not_same_field>office_365.SourceFileName</not_same_field>
+		<same_source_ip/>
+		<description>O365 - Excessive File Downloads Events From the Same Source IP</description>
+		<group>attack_stage_Collection,attack_category_Large_Volume_Data_Transfer,</group>
+	</rule>
+	<!-Sample Log
+						{"CreationTime":"2019-11-29T04:05:28","Id":"ee88c806-8c5c-45d2-3e1d-08d774815efa","Operation":"FileDownloaded","OrganizationId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","RecordType":6,"UserKey":"i:0h.f|membership|100300008c46cfba@live.com","UserType":0,"Version":1,"Workload":"OneDrive","ClientIP":"203.186.95.67","ObjectId":"https://hkbnhk-my.sharepoint.com/personal/dallas_chang_hkbn_com_hk/Documents/Dallas/Desktop/Daily Sales Report/2017/January/cp+v1/è¤‡æœ¬ CP +V1  03-01-2017.xls","UserId":"dallas.chang@hkbn.com.hk","CorrelationId":"2a781c9f-3024-a000-c9cb-117461d518ae","DoNotDistributeEvent":true,"EventSource":"SharePoint","ItemType":"File","ListId":"cacda8c8-14da-43df-bbdd-ec4f5ac3e981","ListItemUniqueId":"e320ea0c-aef5-4297-bc7c-9a9b0912dd2e","Site":"e15037b2-9e20-4de9-bebe-8ff74745698a","UserAgent":"OneDriveMpc-Transform_Zip/1.0","WebId":"8070ac36-dd63-4355-b5dc-508cc715124a","SourceFileExtension":"xls","SiteUrl":"https://hkbnhk-my.sharepoint.com/personal/dallas_chang_hkbn_com_hk/","SourceFileName":"è¤‡æœ¬ CP +V1  03-01-2017.xls","SourceRelativeUrl":"Documents/Dallas/Desktop/Daily Sales Report/2017/January/cp+v1"}
+						->
+	<!- 365 - Excessive File Downloads Events From the Same Username ->
+	<rule frequency="300" id="104004" level="13" timeframe="300">
+		<if_matched_sid>104002</if_matched_sid>
+		<not_same_field>office_365.SourceFileName</not_same_field>
+		<same_field>UserId</same_field>
+		<description>O365 - Excessive File Downloads Events From the Same Username</description>
+		<group>attack_stage_Collection,attack_category_Large_Volume_Data_Transfer,</group>
+	</rule>
+	<!-Sample Log
+						{"CreationTime":"2019-11-29T04:05:28","Id":"ee88c806-8c5c-45d2-3e1d-08d774815efa","Operation":"FileDownloaded","OrganizationId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","RecordType":6,"UserKey":"i:0h.f|membership|100300008c46cfba@live.com","UserType":0,"Version":1,"Workload":"OneDrive","ClientIP":"203.186.95.67","ObjectId":"https://hkbnhk-my.sharepoint.com/personal/dallas_chang_hkbn_com_hk/Documents/Dallas/Desktop/Daily Sales Report/2017/January/cp+v1/è¤‡æœ¬ CP +V1  03-01-2017.xls","UserId":"dallas.chang@hkbn.com.hk","CorrelationId":"2a781c9f-3024-a000-c9cb-117461d518ae","DoNotDistributeEvent":true,"EventSource":"SharePoint","ItemType":"File","ListId":"cacda8c8-14da-43df-bbdd-ec4f5ac3e981","ListItemUniqueId":"e320ea0c-aef5-4297-bc7c-9a9b0912dd2e","Site":"e15037b2-9e20-4de9-bebe-8ff74745698a","UserAgent":"OneDriveMpc-Transform_Zip/1.0","WebId":"8070ac36-dd63-4355-b5dc-508cc715124a","SourceFileExtension":"xls","SiteUrl":"https://hkbnhk-my.sharepoint.com/personal/dallas_chang_hkbn_com_hk/","SourceFileName":"è¤‡æœ¬ CP +V1  03-01-2017.xls","SourceRelativeUrl":"Documents/Dallas/Desktop/Daily Sales Report/2017/January/cp+v1"}
+						->sindex
+	<!- O365 - Detect password spraying attacker followed by Login Success ->
+	<rule id="104005" level="3">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">UserLoginFailed</field>
+		<field name="office_365.LogonError">IdsLocked</field>
+		<description>O365 - User Login Failed with LogonError IdsLocked</description>
+	</rule>
+	<rule frequency="60" id="104006" level="5" timeframe="3600">
+		<if_matched_sid>104005</if_matched_sid>
+		<not_same_field>srcuser</not_same_field>
+		<description>O365 - Detect password spraying attacker</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	-->
+	<!--Sample Log
+						{"CreationTime":"2019-12-03T12:03:40","Id":"eb5b5602-0cae-418e-a86f-6ed284075ba2","Operation":"UserLoginFailed","OrganizationId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","RecordType":15,"ResultStatus":"Failed","UserKey":"Not Available","UserType":0,"Version":1,"Workload":"AzureActiveDirectory","ClientIP":"24.51.115.185","ObjectId":"Unknown","UserId":"clp@col.com.hk","AzureActiveDirectoryEventType":1,"ExtendedProperties":[{"Name":"UserAgent","Value":"CBAInPROD"},{"Name":"RequestType","Value":"OrgIdWsTrust2:process"},{"Name":"ResultStatusDetail","Value":"UserError"}],"ModifiedProperties":[],"Actor":[{"ID":"Unknown","Type":0},{"ID":"clp@col.com.hk","Type":5}],"ActorContextId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","ActorIpAddress":"24.51.115.185","InterSystemsId":"5497e3b1-88a4-4942-bbc9-113582961635","IntraSystemId":"a6c24401-3adb-4202-9e08-beeb75046e01","SupportTicketId":"","Target":[{"ID":"Unknown","Type":0}],"TargetContextId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","ApplicationId":"00000002-0000-0ff1-ce00-000000000000","LogonError":"IdsLocked"}
+						-->
+	<!-- [FPC]O365 User Logged In succeeded with mutiple User Agent -->
+	<rule id="104007" level="3">
+		<if_sid>104001</if_sid>
+		<action>UserLoggedIn</action>
+		<field name="office_365.ResultStatus">Succeeded</field>
+		<description>O365 User Logged In succeeded</description>
+	</rule>
+	<!-- <rule frequency="4" id="104008" level="8" timeframe="43200">
+		<if_matched_sid>104007</if_matched_sid>
+		<not_same_field>srcip</not_same_field>
+		<not_same_field>ua</not_same_field>
+		<description>[FPC]O365 User Logged In succeeded with mutiple User Agent</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	-->
+	<!-- sample log
+						{"CreationTime":"2019-12-17T07:40:17","Id":"09b8587b-3b36-4ee4-bc39-d884dc9f98f5","Operation":"UserLoggedIn","OrganizationId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","RecordType":15,"ResultStatus":"Succeeded","UserKey":"100320004AAE6391@hkbn.com.hk","UserType":0,"Version":1,"Workload":"AzureActiveDirectory","ClientIP":"59.152.252.217","ObjectId":"00000002-0000-0ff1-ce00-000000000000","UserId":"franky.sf.ling@hkbn.com.hk","AzureActiveDirectoryEventType":1,"ExtendedProperties":[{"Name":"UserAgent","Value":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36"},{"Name":"UserAuthenticationMethod","Value":"73"},{"Name":"RequestType","Value":"OAuth2:Authorize"},{"Name":"ResultStatusDetail","Value":"Success"},{"Name":"KeepMeSignedIn","Value":"True"}],"ModifiedProperties":[],"Actor":[{"ID":"014a4218-1d12-4e6f-a6a3-c1379732549f","Type":0},{"ID":"franky.sf.ling@hkbn.com.hk","Type":5},{"ID":"100320004AAE6391","Type":3}],"ActorContextId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","ActorIpAddress":"59.152.252.217","InterSystemsId":"199950d6-c1dc-473d-a355-66b5f1ea9b54","IntraSystemId":"65e5933c-be2f-40b3-b438-d07945b28f00","SupportTicketId":"","Target":[{"ID":"00000002-0000-0ff1-ce00-000000000000","Type":0}],"TargetContextId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","ApplicationId":"00000002-0000-0ff1-ce00-000000000000"}
+						-->
+	<!-- O365 User logged in at Multiple Source Location
+	<rule id="104009" level="3">
+		<if_matched_sid>104001</if_matched_sid>
+		<field name="office_365.Operation">UserLoggedIn|MailboxLogin</field>
+		<field name="office_365.ResultStatus">Succeeded</field>
+		<description>O365 User logged</description>
+	</rule>
+	<rule frequency="3" id="104010" level="14" timeframe="43200">
+		<if_matched_sid>104001</if_matched_sid>
+		<!-location>
+	/var/log/logstash/o365.json</location->
+	<different_srcgeoip/>
+	<same_field>office_365.UserId</same_field>
+	<description>O365 User logged in at Multiple Source Location</description>
+	<group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+	</rule>
+	-->
+	<!--Sample Log
+						{"CreationTime":"2019-12-05T04:15:17","Id":"5ca096dc-b186-4ad7-8ae0-563841760669","Operation":"UserLoggedIn","OrganizationId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","RecordType":15,"ResultStatus":"Succeeded","UserKey":"1003BFFD86659B1C@cs.hkbn.com.hk","UserType":0,"Version":1,"Workload":"AzureActiveDirectory","ClientIP":"211.21.48.222","ObjectId":"90a2e5d2-fd7a-4a2e-bc90-3dc50ae8e3ee","UserId":"PAT.CHENG@cs.hkbn.com.hk","AzureActiveDirectoryEventType":1,"ExtendedProperties":[{"Name":"UserAgent","Value":"Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"},{"Name":"UserAuthenticationMethod","Value":"75"},{"Name":"RequestType","Value":"OAuth2:Authorize"},{"Name":"ResultStatusDetail","Value":"Redirect"},{"Name":"KeepMeSignedIn","Value":"True"}],"ModifiedProperties":[],"Actor":[{"ID":"5a2d8058-10f6-4182-b86d-f71fcbc07351","Type":0},{"ID":"PAT.CHENG@cs.hkbn.com.hk","Type":5},{"ID":"1003BFFD86659B1C","Type":3}],"ActorContextId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","ActorIpAddress":"211.21.48.222","InterSystemsId":"35f649f3-1acb-4fb4-9167-e017818fd36f","IntraSystemId":"bc1e61b6-6be9-458e-9e5e-da88aaaeff01","SupportTicketId":"","Target":[{"ID":"90a2e5d2-fd7a-4a2e-bc90-3dc50ae8e3ee","Type":0}],"TargetContextId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","ApplicationId":"29d9ed98-a469-4536-ade2-f981bc1d605e"}
+						-->
+	<!-- [FPC] Detect if a user has added auto-forwarding rules -->
+	<!-- Sample log
+						{"CreationTime":"2019-08-07T09:53:21","Id":"f8362b02-c796-493c-8b3c-08d71b1d150e","Operation":"Update-Inbox-Rule","OrganizationId":"8f5beda4-6112-4456-ae22-012e5b59454b","RecordType":1,"ResultStatus":"True","UserKey":"10032000573FB22A","UserType":2,"Version":1,"Workload":"Exchange","ClientIP":"202.85.109.4:43261","ObjectId":"Angelica","UserId":"Angelica@freesoc.onmicrosoft.com","AppId":"","ClientAppId":"","ExternalAccess":false,"OrganizationName":"freesoc.onmicrosoft.com","OriginatingServer":"PS1PR01MB3435 (15.20.2136.000)","Parameters":[{"Name":"Identity","Value":"APCPR01A005.PROD.OUTLOOK.COM/Microsoft Exchange Hosted Organizations/freesoc.onmicrosoft.com/Angelica"},{"Name":"ForwardingSmtpAddress","Value":"smtp:cwptesting9@gmail.com"},{"Name":"DeliverToMailboxAndForward","Value":"True"}],"SessionId":"2ee4249a-f559-4cc7-b76d-27990df32f06"}
+						-->
+	<!-- Detect if a rule has been set on OneDrive to share information outside (NOT WORKING)
+	<rule id="104012" level="13">
+	<if_sid>104001</if_sid>
+	<field name="office_365.Operation">AddedToSecureLink</field>
+	<field name="office_365.TargetUserOrGroupName">\.+</field>
+	<match>!@freesoc.onmicrosoft.com</match>
+	<description>Detect if a rule has been set on OneDrive to share information outside</description>
+	<group>attack_stage_Collection,attack_category_Sensitive_Data_Disclosure,</group>
+	</rule>
+	-->
+	<!--Sample Log																																																	{"CreationTime":"2019-12-13T02:29:58","Id":"d5179355-903e-4d50-573b-08d77f745930","Operation":"AddedToSecureLink","OrganizationId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","RecordType":14,"UserKey":"i:0h.f|membership|1003bffd8b738d93@live.com","UserType":0,"Version":1,"Workload":"OneDrive","ClientIP":"103.246.38.76","ObjectId":"https://hkbnhk-my.sharepoint.com/personal/winnie_choy_hkbn_com_hk/Documents/NDCE Project Status FY20 re-selected site_191127.xls","UserId":"winnie.choy@hkbn.com.hk","CorrelationId":"43f4209f-205c-a000-c9cb-19cb1ab83bb7","EventSource":"SharePoint","ItemType":"File","ListId":"72c03394-ec79-4440-96f8-ccab3d71a876","ListItemUniqueId":"3762b5f0-b669-4f14-95cb-e7cfc8fefb9d","Site":"f3eebcf8-b613-40c3-a82d-fb01be51bc15","UserAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko","WebId":"ed3e196f-a3c6-4c4f-871f-74c6ac1200a0","EventData":"<Type>View</Type>
+						","SourceFileExtension":"xls","TargetUserOrGroupType":"Member","UniqueSharingId":"e0f28b93-5d6d-4e90-8a57-b95b01f596da","SiteUrl":"https://hkbnhk-my.sharepoint.com/personal/winnie_choy_hkbn_com_hk","SourceFileName":"NDCE Project Status FY20 re-selected site_191127.xls","SourceRelativeUrl":"Documents/NDCE Project Status FY20 re-selected site_191127.xls","TargetUserOrGroupName":"sammy.chan@hkbn.com.hk"}
+						-->
+	<!-- Detect if an existing user account has been locked -->
+	<rule id="104013" level="0">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">UserLoginFailed</field>
+		<field name="office_365.LogonError">IdsLocked</field>
+		<field name="office_365.UserId">\.+</field>
+		<field name="office_365.ExtendedProperties">\.+UserAuthenticationMethod\.+</field>
+		<match>!"Actor":[{"ID":"Unknown</match>
+		<description>Detect if an existing user account has been locked</description>
+		<group>attack_stage_Lateral_Movement,attack_category_Account_Lockout,</group>
+	</rule>
+	<!-- Sample Log
+						{"CreationTime":"2019-12-16T05:14:30","Id":"f50c7018-6b64-4d12-b1b1-95c5a51c3118","Operation":"UserLoginFailed","OrganizationId":"e29e0208-be36-4f24-9be8-6ca80c389279","RecordType":15,"ResultStatus":"Failed","UserKey":"10032000363C3C80@firstpacific.com","UserType":0,"Version":1,"Workload":"AzureActiveDirectory","ClientIP":"124.41.211.78","ObjectId":"Unknown","UserId":"nancyli@firstpacific.com","AzureActiveDirectoryEventType":1,"ExtendedProperties":[{"Name":"UserAgent","Value":"CBAInPROD"},{"Name":"RequestType","Value":"OrgIdWsTrust2:process"},{"Name":"ResultStatusDetail","Value":"UserError"}],"ModifiedProperties":[],"Actor":[{"ID":"cf62564a-2c62-430d-ad9b-68f9e86e86b7","Type":0},{"ID":"nancyli@firstpacific.com","Type":5},{"ID":"10032000363C3C80","Type":3}],"ActorContextId":"e29e0208-be36-4f24-9be8-6ca80c389279","ActorIpAddress":"124.41.211.78","InterSystemsId":"78d85fcc-b474-4f7a-ae12-2965f71ef788","IntraSystemId":"f5c1ab89-b2a4-4b29-93b8-b8a9f1681e00","SupportTicketId":"","Target":[{"ID":"Unknown","Type":0}],"TargetContextId":"e29e0208-be36-4f24-9be8-6ca80c389279","ApplicationId":"00000002-0000-0ff1-ce00-000000000000","LogonError":"IdsLocked"}
+						-->
+	<!-- Sensitive File Disclosure on Sharepoint Changed to level 5 permanently -->
+	<rule id="104014" level="5">
+		<if_sid>104001</if_sid>
+		<field name="office_365.EventSource">\.*SharePoint\.*</field>
+		<field name="office_365.SourceFileName">password|passwd|pwd</field>
+		<match>!"SourceFileName":"Password Management.one|Password Complexity Standard and Protection Guideline.pdf|VPN Accounts by Division_July2020_V1_Password-QA.xlsx</match>
+		<description>Sensitive File Disclosure on Sharepoint</description>
+		<group>attack_stage_Credential_Access,attack_category_Password_Storage,group_by_rule.id,realert_24h,org_empty</group>
+	</rule>
+	<!--Sample Log
+						{"UserAgent":"OfficeWordCA","ClientIP":"40.108.245.151","Operation":"FilePreviewed","CorrelationId":"f53e669f-d07c-0000-522e-a4b5c4db7468","ItemType":"File","SourceFileName":"Android Setup Appendix - Setting up Password PIN on Android Device.docx","UserKey":"i:0h.f|membership|10032000363c3c80@live.com","@version":"1","RecordType":6,"agent":{"id":"b8db90d6-776c-47b2-8b16-18fd0132daef","version":"1.4.3","ephemeral_id":"9fb504c6-2f67-40c7-b82f-79a5f95ff7bd","hostname":"fpclogstash","type":"o365beat"},"@timestamp":"2020-07-15T09:16:08.000Z","SourceFileExtension":"doc","tags":["o365log","beats_input_raw_event"],"Id":"1e9a6343-2985-4033-8a6d-08d8289fb566","OrganizationId":"e29e0208-be36-4f24-9be8-6ca80c389279","SiteUrl":"https://2842firstpacific4388-my.sharepoint.com/personal/nancyli_firstpacific_com/","EventSource":"SharePoint","ecs":{"version":"1.1.0"},"ObjectId":"https://2842firstpacific4388-my.sharepoint.com/personal/nancyli_firstpacific_com/Documents/Nancy/FPC-2020 AGM and SGM/7-2020 SGM/Introduction FPC SGM 17-07-2020 (sc).doc","host":{"containerized":false,"os":{"platform":"ubuntu","family":"debian","kernel":"4.15.0-88-generic","codename":"bionic","version":"18.04.3 LTS (Bionic Beaver)","name":"Ubuntu"},"architecture":"x86_64","id":"c3bd953bc81c4bac94c1971a61bde331","hostname":"fpclogstash","name":"fpclogstash"},"WebId":"57ebd25e-7439-4cb7-96ec-e4c9cf9e5d59","ListItemUniqueId":"92e8c16c-8a48-4dbd-9bfc-23570a3298f4","ListId":"a55ac09d-34c3-4d41-99b8-d390bdd97822","Site":"1a8c19ba-4dbd-4713-b4f3-4ca88af3000c","CreationTime":"2020-07-15T09:16:08","UserType":0,"SourceRelativeUrl":"Documents/Nancy/FPC-2020 AGM and SGM/Android Setup Appendix - Setting up Password PIN on Android Device.docx","Workload":"OneDrive","DoNotDistributeEvent":true,"UserId":"nancyli@firstpacific.com","Version":1}
+						-->
+	<!--Whitelist Sensitive File key terms-->
+	<rule id="104021" level="0">
+		<if_sid>104014</if_sid>
+		<field name="office_365.SourceFileName">policy|change|reset|guideline|guide|HKBN_PWDB.kdbx|passwordless|rule|standard|template|.jpg$</field>
+		<description>Whitelist Sensitive File FP</description>
+	</rule>
+	<!-- Use of legacy login mechanism - DynamicIPs ;  Use of legacy login mechanism - ScanningIPs -->
+	<rule id="104015" level="3">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">UserLoggedIn</field>
+		<field name="office_365.ResultStatus">Succeeded|True|Success</field>
+		<description>O365 Successful Login</description>
+	</rule>
+	<rule id="104016" level="3">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">UserLoginFailed</field>
+		<description>O365 Login Failure</description>
+	</rule>
+	<rule id="104017" level="5">
+		<if_sid>104016</if_sid>
+		<field name="office_365.LogonError">InvalidUserNameOrPassword</field>
+		<field name="office_365.RequestType">Login:login</field>
+		<description>O365 Login Failure</description>
+	</rule>
+	<!--
+	20230609, the cdblist is no longer exist, diable the rules first
+	<rule id="104016" level="10">
+		<if_sid>104015</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/XForce_Premium_DynamicIPs</list>
+		<match>!"Value":"OAuth2:Authorize"</match>
+		<description>Use of legacy login mechanism - DynamicIPs</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Disclosure,</group>
+	</rule>
+	<rule id="104017" level="10">
+	<if_sid>104015</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/XForce_Premium_ScanningIPs</list>
+		<match>!"Value":"OAuth2:Authorize"</match>
+		<description>Use of legacy login mechanism - ScanningIPs</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Disclosure,</group>
+	</rule>
+	-->
+	<!-- Detect if a user has started a eDiscovery which can result in viewing sensitive data -->
+	<rule id="104018" level="10">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">AlertTriggered</field>
+		<field name="office_365.Category">ThreatManagement</field>
+		<field name="office_365.Name">eDiscovery search started or exported</field>
+		<description>Detect if a user has started a eDiscovery which can result in viewing sensitive data</description>
+		<group>attack_stage_Collection,attack_category_Sensitive_Data_Disclosure,group_by_data.office_365.Data,</group>
+	</rule>
+	<!-- Sample Log
+						{"CreationTime":"2019-11-21T08:04:00","Id":"b4f3660e-2b7c-4b73-e89b-08d76e599747","Operation":"AlertTriggered","OrganizationId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","RecordType":40,"ResultStatus":"Succeeded","UserKey":"SecurityComplianceAlerts","UserType":4,"Version":1,"Workload":"SecurityComplianceCenter","ObjectId":"de579d31-7590-3084-9800-08d76e595dbc","UserId":"SecurityComplianceAlerts","AlertId":"de579d31-7590-3084-9800-08d76e595dbc","AlertLinks":[{"AlertLinkHref":""}],"AlertType":"System","Category":"ThreatManagement","Comments":"New alert","Data":"{\"f3u\":\"cahugomycheung@hkbn.com.hk\",\"ts\":\"2019-11-21T08:03:00.0000000Z\",\"te\":\"2019-11-21T08:04:00.0000000Z\",\"op\":\"eDiscoverySearchStartedOrExported\",\"wl\":\"SecurityComplianceCenter\",\"tid\":\"b098cc1a-aaa5-436a-8fc1-33a51cef2d55\",\"tdc\":\"1\",\"reid\":\"cfb34390-6da1-4041-5565-08d76e5953f5\",\"rid\":\"3e7635d9-5093-4295-8649-72472ac025e7\",\"cid\":\"6fdc5710-3998-47f0-afbb-57cefd7378ae\",\"ad\":\"The alert is triggered when users start content searches or eDiscovery searches or when search results are downloaded or exported -V1.0.0.0\",\"lon\":\"eDiscoverySearchStartedOrExported\",\"an\":\"eDiscovery search started or exported\",\"sev\":\"Medium\"}","Name":"eDiscovery search started or exported","PolicyId":"6fdc5710-3998-47f0-afbb-57cefd7378ae","Severity":"Medium","Source":"Office 365 Security & Compliance","Status":"Active"}
+						-->
+	<!-- [FPC] Detected a eDiscovery Admin not on the whitelist -->
+	<rule id="104019" level="10">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">CaseAdminUpdated</field>
+		<match>!pwc@firstpacific.com</match>
+		<description>Detected a eDiscovery admin action</description>
+		<group>attack_stage_Privilege_ Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+	</rule>
+	<!-- Disable Rule:  Detect if mailbox items are deleted by a user other than the owner -->
+	<rule id="104020" level="0">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">SoftDelete|HardDelete</field>
+		<field name="office_365.MailboxOwnerUPN">srcuser</field>
+		<description>Detect if mailbox items are deleted by a user other than the owner.</description>
+	</rule>
+	<!-- Whitelist app@sharepoint user-->
+	<rule id="104040" level="0">
+		<if_sid>104014</if_sid>
+		<user>app@sharepoint</user>
+		<description>[Whitelist] Exclude app@sharepoint for sensitive file detection</description>
+	</rule>
+	<!--Sample Log
+						{"CreationTime":"2019-05-04T16:01:52","Id":"2749efc0-74a4-4122-19ab-08d6d0a9d2d1","Operation":"SoftDelete","OrganizationId":"b098cc1a-aaa5-436a-8fc1-33a51cef2d55","RecordType":3,"ResultStatus":"Succeeded","UserKey":"10033FFF86632540","UserType":0,"Version":1,"Workload":"Exchange","ClientIP":"[61.244.77.42]:62737","UserId":"paul.law@cs.hkbn.com.hk","ClientIPAddress":"[61.244.77.42]:62737","ClientInfoString":"Client=MSExchangeRPC","ClientProcessName":"OUTLOOK.EXE","ClientVersion":"16.0.9126.2275","ExternalAccess":false,"InternalLogonType":0,"LogonType":0,"LogonUserSid":"S-1-5-21-645394708-710397331-2902943591-1907523","MailboxGuid":"73505c8a-b8d2-4a75-bfdf-b008c612e807","MailboxOwnerSid":"S-1-5-21-645394708-710397331-2902943591-1907523","MailboxOwnerUPN":"paul.law@cs.hkbn.com.hk","OrganizationName":"hkbnhk.onmicrosoft.com","OriginatingServer":"HK2PR01MB3249 (15.20.1856.000)\r\n","SessionId":"a12cc873-3136-45a9-9185-66bb43e10023","AffectedItems":[{"Attachments":"45537_2019050500.csv (7570b)","Id":"RgAAAAAFLyr7Y8OGSJD79ACtzu+NBwCywU7q7BZIRYY2Ol05mWpfAAAAAAENAACywU7q7BZIRYY2Ol05mWpfAAVpUBwWAAAA","InternetMessageId":"<201905041606.x44G6noZ012345@datawarehouse.hk.newworldtel.com>
+														","ParentFolder":{"Id":"LgAAAAAFLyr7Y8OGSJD79ACtzu+NAQCywU7q7BZIRYY2Ol05mWpfAAAAAAENAAAB","Path":"\\},"Subject":"Technical Complaint SLA Report - Full list"}],"CrossMailboxOperation":false,"Folder":{"Id":"LgAAAAAFLyr7Y8OGSJD79ACtzu+NAQCywU7q7BZIRYY2Ol05mWpfAAAAAAENAAAB","Path":"\\}}		
+														-->
+
+	<rule id="104024" level="0">
+		<if_sid>40104</if_sid>
+		<decoded_as>office-365</decoded_as>
+		<description>Disable checking buffer overflow for O365 logs</description>
+	</rule>
+	<!-- Solarigate Techniques on On-prem adfs/ adconnect server-->
+	<rule id="104050" level="5">
+		<if_sid>104001</if_sid>
+		<action>Set-AcceptedDomain</action>
+		<field name="office_365.Workload">Exchange</field>
+		<description>Solarigate Technique: Set-AcceptedDomain detected on $(office_365.DomainName)</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="104051" level="5">
+		<if_sid>104001</if_sid>
+		<action>Set-MsolDomainFederationSettings</action>
+		<field name="office_365.Workload">Exchange</field>
+		<description>Solarigate Technique: Set-MsolDomainFederationSettings detected</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="104052" level="5">
+		<if_sid>104001</if_sid>
+		<action>Add-FederatedDomain</action>
+		<field name="office_365.Workload">Exchange</field>
+		<description>Solarigate Technique: Add-FederatedDomain detected on $(office_365.DomainName)</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="104053" level="5">
+		<if_sid>104001</if_sid>
+		<action>New-AcceptedDomain</action>
+		<field name="office_365.Workload">Exchange</field>
+		<description>Solarigate Technique: New-AcceptedDomain detected on $(office_365.DomainName)</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="104054" level="5">
+		<if_sid>104001</if_sid>
+		<action>Remove-AcceptedDomain</action>
+		<field name="office_365.Workload">Exchange</field>
+		<description>Solarigate Technique: Remove-AcceptedDomain detected on $(office_365.DomainName)</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="104055" level="5">
+		<if_sid>104001</if_sid>
+		<action>Remove-FederatedDomain</action>
+		<field name="office_365.Workload">Exchange</field>
+		<description>Solarigate Technique: Remove-FederatedDomain detected on $(office_365.DomainName)</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	
+
+	<!-- Newly Created Rule 20230808 -->
+	<rule id="104070" level="3">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">Add user</field>
+		<field name="office_365.ResultStatus">Success</field>
+		<description>O365 New User Created</description>
+		<group>groupid_135015,</group>
+		<!-- DEV-4905 -->
+	</rule>
+	<rule id="104071" level="5">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">Add user</field>
+		<field name="office_365.ResultStatus">Failure</field>
+		<description>O365 Unsuccessful user creation due to permissions denied</description>
+		<group>demo_rules,DEV-4905,groupid_135016,</group>
+		<!-- DEV-4905 -->
+	</rule>
+	<rule id="104072" level="0">
+		<if_sid>104071</if_sid>
+		<field name="office_365.MethodExecutionResult">Microsoft.Online.DirectoryServices.DirectoryUniquenessException|Microsoft.Online.Workflows.ValidationException</field>
+		<description>[whitelist] O365 Unsuccessful user creation due to permissions denied</description>
+		<!-- DEV-4905 -->
+	</rule>
+
+	<rule id="104073" level="10">
+		<if_sid>104001</if_sid>
+		<time>6 pm - 8:30 am</time>
+		<action>Add member to role</action>
+		<field name="templateId">9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3|c4e39bd9-1100-46d3-8c65-fb160da0071f|158c047a-c907-4556-b7ef-446551a6b5f7|d29b2b05-8046-44ba-8758-1e26182fcf32|9360feb5-f418-4baa-8175-e2a00bac4301|29232cdf-9323-42fd-ade2-1d097af3e4de|62e90394-69f5-4237-9190-012177145e10|729827e3-9c14-49f7-bb1b-9608f156bbb8|966707d0-3269-4727-9be2-8c3a10f19b9d|7be44c8a-adaf-4e2a-84d6-ab2649e08a13|f28a1f50-f6e7-4571-818b-6a12f2af6b6c|fe930be7-5e62-47db-91af-98c3a49a38b1|e8611ab8-c189-46e8-94e1-60213ab1f814</field>
+		<description>O365 add member to Administrative Role in non-office hour</description>
+		<group>demo_rules,group_by_data.dstuser,DEV-4905,</group>
+		<!-- DEV-4905 -->
+	</rule>
+	<rule id="104074" level="10">
+		<if_sid>104001</if_sid>
+		<action>Add member to role</action>
+		<field name="templateId">9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3|c4e39bd9-1100-46d3-8c65-fb160da0071f|158c047a-c907-4556-b7ef-446551a6b5f7|d29b2b05-8046-44ba-8758-1e26182fcf32|9360feb5-f418-4baa-8175-e2a00bac4301|29232cdf-9323-42fd-ade2-1d097af3e4de|62e90394-69f5-4237-9190-012177145e10|729827e3-9c14-49f7-bb1b-9608f156bbb8|966707d0-3269-4727-9be2-8c3a10f19b9d|7be44c8a-adaf-4e2a-84d6-ab2649e08a13|f28a1f50-f6e7-4571-818b-6a12f2af6b6c|fe930be7-5e62-47db-91af-98c3a49a38b1|e8611ab8-c189-46e8-94e1-60213ab1f814</field>
+		<description>O365 New Administrative Role Assigned to member (Active Assignment)</description>
+		<group>demo_rules,group_by_data.dstuser,DEV-4905,</group>
+		<!-- DEV-4905 -->
+	</rule>
+	<rule id="104075" level="10">
+		<if_sid>104001</if_sid>
+		<action>Add eligible member to role</action>
+		<field name="templateId">9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3|c4e39bd9-1100-46d3-8c65-fb160da0071f|158c047a-c907-4556-b7ef-446551a6b5f7|d29b2b05-8046-44ba-8758-1e26182fcf32|9360feb5-f418-4baa-8175-e2a00bac4301|29232cdf-9323-42fd-ade2-1d097af3e4de|62e90394-69f5-4237-9190-012177145e10|729827e3-9c14-49f7-bb1b-9608f156bbb8|966707d0-3269-4727-9be2-8c3a10f19b9d|7be44c8a-adaf-4e2a-84d6-ab2649e08a13|f28a1f50-f6e7-4571-818b-6a12f2af6b6c|fe930be7-5e62-47db-91af-98c3a49a38b1|e8611ab8-c189-46e8-94e1-60213ab1f814</field>
+		<description>O365 New Administrative Role Assigned to member (Eligible Assignment)</description>
+		<group>demo_rules,group_by_data.dstuser,DEV-4905,</group>
+		<!-- DEV-4905 -->
+	</rule>
+
+	<rule id="104076" level="5">
+		<if_sid>104001</if_sid>
+		<action>Remove member from role|Remove eligible member from role</action>
+		<match>UserAccountAdmins|PrivilegedRoleAdmins|TenantAdmins|Application Administrator|Authentication Administrator|Cloud Application Administrator|Directory Synchronization Accounts|Directory Writers|Exchange Administrator|Global Administrator|Helpdesk Administrator|Password Administrator|Privileged Authentication Administrator|SharePoint Administrator|User Administrator</match>
+		<description>O365 Remove Administrative Role from member</description>
+		<!-- DEV-4905 -->
+	</rule>
+
+	<rule id="104077" level="3">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">Self-service password reset|Reset password|Reset user password</field>
+		<description>O365 Reset password</description>
+		<!-- DEV-4905 -->
+	</rule>
+	<rule id="104078" level="5">
+		<if_sid>104077</if_sid>
+		<field name="office_365.ResultStatus">failure</field>
+		<description>O365 Reset password failure</description>
+		<!-- DEV-4905 -->
+	</rule>
+	<rule id="104079" level="3">
+		<if_sid>104077</if_sid>
+		<field name="office_365.ResultStatus">success</field>
+		<description>O365 Reset password success</description>
+		<!-- DEV-4905 -->
+	</rule>
+
+	<rule frequency="10" id="104080" level="10" timeframe="120">
+		<if_matched_sid>104017</if_matched_sid>
+		<same_user/>
+		<description>Azure/O365 Same User Login Failed Multiple times: $(dstuser)</description>
+		<group>demo_rules,group_by_data.dstuser,DEV-4905,groupid_135023,</group>
+		<!-- DEV-4905 -->
+	</rule>
+	<rule frequency="10" id="104081" level="10" timeframe="120">
+		<if_matched_sid>104017</if_matched_sid>
+		<same_source_ip/>
+		<description>Azure/O365 Possible break-in attempt from IP $(srcip)</description>
+		<group>group_by_data.srcip,groupid_135018,</group>
+		<!-- DEV-4905 -->
+	</rule>
+	<rule id="104056" level="13">
+		<if_sid>87852,104015</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<description>Successful Azure/O365 login from Tor-IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,group_by_data.srcip,groupid_135221,</group>
+		<!-- DEV-4292 -->
+		<!-- DEV-5365 -->
+		<!-- DEV-4868 -->
+	</rule>
+	<rule id="104057" level="12">
+		<if_sid>87852,104015</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+		<description>Successful Azure/O365 Login from malware-IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,group_by_data.srcip,</group>
+		<!-- DEV-4905 -->
+		<!-- DEV-4868 -->
+	</rule>
+
+	<!-- DEV-412 hitting o365 log wrongly-->
+	<rule id="100223" level="0">
+		<if_sid>2502</if_sid>
+		<decoded_as>office-365</decoded_as>
+		<description>Ignore o365 log for the syslog pattern</description>
+	</rule>
+
+	<rule id="100224" level="13">
+		<if_sid>104001</if_sid>
+		<field name="office_365.Operation">Set-Mailbox|Update-Inbox-Rule</field>
+		<field name="office_365.forwardingSmtpAddress">\.+</field>
+		<description>Detect if a user has added auto-forwarding rules</description>
+		<!-- DEV-5331 -->
+	</rule>	
+
+	<rule id="100225" level="12">
+		<if_sid>104015</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/aitm-ip</list>
+		<description>Successful O365 Login from AiTM Persistent IOCs</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,group_by_data.srcip,</group>
+		<!-- DEV-5393 -->
+	</rule>		
+</group>

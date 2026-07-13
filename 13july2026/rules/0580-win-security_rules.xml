@@ -1,0 +1,103 @@
+<var name="MS_FREQ">8</var>
+
+<group name="pwc_caas,windows,windows_security,windows_eventchannel,">
+	<!-- Overwrite and Suppress Default Rules from alert index -->
+	<!-- DEV-5514 -->
+	<rule id="60109" level="5" overwrite="yes">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^624$|^626$|^4720$|^4722$</field>
+		<description>User account enabled or created</description>
+		<mitre>
+		  <id>T1098</id>
+		</mitre>
+		<options>no_full_log</options>
+		<group>adduser,account_changed,</group>
+		<group>pci_dss_8.1.2,pci_dss_10.2.5,gpg13_7.10,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,hipaa_164.312.b,nist_800_53_AC.2,nist_800_53_IA.4,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="60110" level="5" overwrite="yes">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^628$|^642$|^685$|^4738$|^4781$</field>
+		<description>User account changed</description>
+		<mitre>
+		  <id>T1098</id>
+		</mitre>
+		<options>no_full_log</options>
+		<group>account_changed,</group>
+		<group>pci_dss_8.1.2,pci_dss_10.2.5,gpg13_7.10,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,hipaa_164.312.b,nist_800_53_AC.2,nist_800_53_IA.4,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="60111" level="5" overwrite="yes">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^630$|^629$|^4725$|^4726$</field>
+		<description>User account disabled or deleted</description>
+		<mitre>
+		  <id>T1098</id>
+		  <id>T1531</id>
+		</mitre>
+		<options>no_full_log</options>
+		<group>adduser,account_changed,pci_dss_8.1.2,pci_dss_10.2.5,gpg13_7.10,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,hipaa_164.312.b,nist_800_53_AC.2,nist_800_53_IA.4,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="60112" level="5" overwrite="yes">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^612$|^643$|^4719$|^4907$|^4912$|^4719$</field>
+		<description>Windows Audit Policy changed</description>
+		<options>no_full_log</options>
+		<group>policy_changed,pci_dss_10.6.1,gpg13_10.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="60115" level="5" overwrite="yes">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^644$|^4740$</field>
+		<description>User account locked out (multiple login errors)</description>
+		<mitre>
+		  <id>T1110</id>
+		  <id>T1531</id>
+		</mitre>
+		<options>no_full_log</options>
+		<group>authentication_failures,pci_dss_8.1.6,pci_dss_11.4,gpg13_7.5,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_AC.7,nist_800_53_SI.4,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="60117" level="9" overwrite="yes">
+		<if_sid>60100</if_sid>
+		<field name="win.system.eventID">^1102$</field>
+		<description>Windows audit log was cleared</description>
+		<options>no_full_log</options>
+		<mitre>
+		<id>T1070</id>
+		<id>T1107</id>
+		</mitre>
+		<group>logs_cleared,pci_dss_10.6.1,gpg13_10.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="60204" level="5" frequency="$MS_FREQ" timeframe="240" overwrite="yes">
+		<if_matched_group>authentication_failed</if_matched_group>
+		<same_field>win.eventdata.ipAddress</same_field>
+		<description>Multiple Windows Logon Failures</description>
+		<mitre>
+		  <id>T1110</id>
+		</mitre>
+		<options>no_full_log</options>
+		<group>authentication_failures,pci_dss_10.2.4,pci_dss_10.2.5,pci_dss_11.4,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_SI.4,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="60205" level="5" frequency="$MS_FREQ" timeframe="240" overwrite="yes">
+		<if_matched_sid>60104</if_matched_sid>
+		<same_field>win.eventdata.ipAddress</same_field>
+		<description>Multiple Windows audit failure events</description>
+		<options>no_full_log</options>
+		<group>pci_dss_10.6.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+</group>
+
+<group name="pwc_caas,windows,windows_security,ipsec,">
+
+  <rule id="60209" level="5" overwrite="yes">
+    <if_sid>60104</if_sid>
+    <field name="win.system.eventID">^4652$|^4653$</field>
+    <description>An IPsec Main Mode negotiation failed</description>
+    <options>no_full_log</options>
+  </rule>
+
+</group>

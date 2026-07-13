@@ -1,0 +1,38 @@
+<group name="network_traffic,">
+	<!-- Local to Local -->
+	<rule id="441881" level="1">
+		<if_sid>106250,64220,4700,14200,82400,64000,9700,20100,20101,82000,5100,12100,80100,4500,51500,2507,4300,81900,80500,20102,6100,4806,87700,81603,4100,137500,138500,143000,146000</if_sid>
+		<location>towngas</location>
+        <list field="srcip" lookup="address_match_key">etc/lists/private-ip-towngas</list>
+		<list field="dstip" lookup="address_match_key">etc/lists/private-ip-towngas</list>
+		<description>Local to Local</description>
+		<group>L2L,</group>
+	</rule>
+	<!-- Local to Remote -->
+	<rule id="441882" level="1">
+		<if_sid>106250,64220,4700,14200,82400,64000,9700,20100,20101,82000,5100,12100,80100,4500,51500,2507,4300,81900,80500,20102,6100,4806,87700,81603,4100,137500,138500,143000,146000</if_sid>
+		<location>towngas</location>
+        <list field="srcip" lookup="address_match_key">etc/lists/private-ip-towngas</list>
+		<list field="dstip" lookup="not_address_match_key">etc/lists/private-ip-towngas</list>
+		<description>Local to Remote</description>
+		<group>L2R,</group>
+	</rule>
+	<!-- Remote to Local -->
+	<rule id="441883" level="1">
+		<if_sid>106250,64220,4700,14200,82400,64000,9700,20100,20101,82000,5100,12100,80100,4500,51500,2507,4300,81900,80500,20102,6100,4806,87700,81603,4100,137500,138500,143000,146000</if_sid>
+		<location>towngas</location>
+        <list field="srcip" lookup="not_address_match_key">etc/lists/private-ip-towngas</list>
+		<list field="dstip" lookup="address_match_key">etc/lists/private-ip-towngas</list>
+		<description>Remote to Local</description>
+		<group>R2L,</group>
+	</rule>
+	<!-- Remote to Remote -->
+	<rule id="441884" level="1">
+		<if_sid>106250,64220,4700,14200,82400,64000,9700,20100,20101,82000,5100,12100,80100,4500,51500,2507,4300,81900,80500,20102,6100,4806,87700,81603,4100,137500,138500,143000,146000</if_sid>
+		<location>towngas</location>
+        <list field="srcip" lookup="not_address_match_key">etc/lists/private-ip-towngas</list>
+		<list field="dstip" lookup="not_address_match_key">etc/lists/private-ip-towngas</list>
+		<description>Remote to Remote</description>
+		<group>R2R,</group>
+	</rule>
+</group>

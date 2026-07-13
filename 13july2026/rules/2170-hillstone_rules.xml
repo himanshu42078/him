@@ -1,0 +1,20 @@
+<!-- Modify it at your will... -->
+<group name="pwc_caas,firewall,">
+     <rule id="217000" level="0">
+        <decoded_as>hillstone</decoded_as>
+        <description>Group of Hillstone log</description>
+    </rule>
+    
+     <rule id="217001" level="0">
+        <if_sid>217000</if_sid>
+        <field name="hillstone.type">Threat</field>
+        <description>Group of Hillstone Threat log</description>
+    </rule>    
+    
+     <rule id="217002" level="8">
+        <if_sid>217001</if_sid>
+        <field name="hillstone.severity">\.</field>
+        <description>Hillstone $(hillstone.severity) Alert - $(hillstone.message)</description>
+    </rule>        
+    
+</group>

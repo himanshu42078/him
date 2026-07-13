@@ -1,0 +1,21 @@
+
+<group name="pwc_caas,sophos_utm,">
+	<rule id="142000" level="2">
+		<decoded_as>sophos-utm</decoded_as>
+		<description>Group of Sophos UTM events</description>
+	</rule>
+	<rule id="142001" level="12">
+		<if_sid>142000</if_sid>
+		<action>pass</action>
+		<field name="severity">high</field>
+		<description>High Severity Sophos UTM Alert: $(profile)</description>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+	</rule>
+	<rule id="142002" level="12">
+		<if_sid>142000</if_sid>
+		<action>pass</action>
+		<field name="severity">critical</field>
+		<description>Critical Severity Sophos UTM Alert: $(profile)</description>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+	</rule>
+</group>

@@ -1,0 +1,48 @@
+<group name="pwc_caas,zscaler,">
+	<rule id="278000" level="3">
+		<decoded_as>zscaler-json</decoded_as>
+		<description>Group of Zscaler ZIA</description>
+	</rule>
+	<rule id="278001" level="12">
+		<if_sid>278000</if_sid>
+		<field name="type">zscalernss-web</field>
+		<field name="event.urlcat">Botnet|Malware|Ransomware</field>
+		<description>Zscaler Suspicious Category Detection</description>
+		<group>DEV-5759,</group>
+		<!-- DEV-5759 -->
+	</rule>	
+	<rule id="278002" level="1">
+		<if_sid>278000</if_sid>
+		<field name="type">zscalernss-fw</field>
+		<description>Zscaler Firewall Logs</description>
+		<group>zscalernss-fw,</group>
+	</rule>
+	<rule id="278003" level="1">
+		<if_sid>278000</if_sid>
+		<field name="type">zscalernss-web</field>
+		<description>Zscaler Web Logs</description>
+		<group>DEV-5964,zscalernss-web,</group>
+		<!-- DEV-5964 -->
+	</rule>
+	<rule id="278004" level="1">
+		<if_sid>278000</if_sid>
+		<field name="type">zscalernss-dns</field>
+		<description>Zscaler DNS Logs</description>
+		<group>DEV-5964,zscalernss-dns,</group>
+		<!-- DEV-5964 -->
+	</rule>	
+	<rule id="278005" level="12">
+		<if_group>zscalernss-web|zscalernss-dns</if_group>
+		<list field="url_domain" lookup="match_key">etc/lists/misp-ti-domain</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,demo_rules,</group>
+		<description>MISP TI: Connection Attempt TO Malicious domain(s)</description>
+		<!-- DEV-5964 -->
+	</rule>
+	<rule id="278006" level="12">
+		<if_group>zscalernss-web|zscalernss-dns</if_group>
+		<list field="url_domain" lookup="match_key">etc/lists/pwc-ti-domain</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,demo_rules,</group>
+		<description>PwC TI: Connection Attempt TO Malicious domain(s)</description>
+		<!-- DEV-5964 -->
+	</rule>	
+</group>

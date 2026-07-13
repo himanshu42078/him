@@ -1,0 +1,73 @@
+<group name="pwc_caas,ossec,">
+    <!-- Move from 1000-common_rules.xml -->
+	<!-- Move to DEMO rules, 20230825 meeting -->
+	<!-- DEV-5021 -->
+	<rule id="531" ignore="7200" level="5" overwrite="yes">
+		<if_sid>530</if_sid>
+		<match>ossec: output: 'df -P': /dev/</match>
+		<regex>100%</regex>
+		<description>Partition usage reached 100% (disk space monitor).</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+		<group>demo_rules,low_diskspace,pci_dss_10.6.1,gpg13_10.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>	
+	<rule id="100103" ignore="3600" level="5">
+		<if_sid>530</if_sid>
+		<match>ossec: output: 'df -P': /dev/</match>
+		<regex>9\d%</regex>
+		<description>Partition usage high (disk space monitor).</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,auto_escalate_disabled,</group>
+		<group>demo_rules,low_diskspace,pci_dss_10.6.1,gpg13_10.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,DEV-5021,</group>
+	</rule>	
+	<!-- DEV-4668 -->
+	<!--
+	<rule id="100104" level="0">
+		<if_sid>531,100103</if_sid>
+		<location negate="yes">.int.darklab.hk</location>
+		<description>[Whitelist] Partition usage high (disk space monitor).</description>
+	</rule>
+	-->
+
+	<rule id="504" level="12" overwrite="yes">
+		<if_sid>500</if_sid>
+		<match>Agent disconnected</match>
+		<description>Ossec agent disconnected.</description>
+		<group>attack_stage_Impact,attack_category_Unexpected_System_Outage,service_availability,</group>
+		<!--<group>pci_dss_10.6.1,pci_dss_10.2.6,gpg13_10.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_AU.14,nist_800_53_AU.5,</group> -->
+	</rule>
+
+	<rule id="510" level="5" overwrite="yes">
+		<if_sid>509</if_sid>
+		<description>Host-based anomaly detection event (rootcheck).</description>
+		<group>rootcheck,gdpr_IV_35.7.d,</group>
+		<!-- <if_fts />  -->
+	</rule>
+
+	<rule id="533" level="5" overwrite="yes">
+		<if_sid>530</if_sid>
+		<match>ossec: output: 'netstat listening ports</match>
+		<check_diff />
+		<description>Listened ports status (netstat) changed (new port opened or closed).</description>
+		<group>pci_dss_10.2.7,pci_dss_10.6.1,gpg13_10.1,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AU.6,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="550" level="5" overwrite="yes">
+		<category>ossec</category>
+		<decoded_as>syscheck_integrity_changed</decoded_as>
+		<description>Integrity checksum changed.</description>
+		<mitre>
+		  <id>T1492</id>
+		</mitre>
+		<group>syscheck,syscheck_entry_modified,syscheck_file,pci_dss_11.5,gpg13_4.11,gdpr_II_5.1.f,hipaa_164.312.c.1,hipaa_164.312.c.2,nist_800_53_SI.7,tsc_PI1.4,tsc_PI1.5,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+
+	<rule id="553" level="5" overwrite="yes">
+		<category>ossec</category>
+		<decoded_as>syscheck_deleted</decoded_as>
+		<description>File deleted.</description>
+		<mitre>
+		  <id>T1107</id>
+		  <id>T1485</id>
+		</mitre>
+    <group>syscheck,syscheck_entry_deleted,syscheck_file,pci_dss_11.5,gpg13_4.11,gdpr_II_5.1.f,hipaa_164.312.c.1,hipaa_164.312.c.2,nist_800_53_SI.7,tsc_PI1.4,tsc_PI1.5,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+	</rule>
+</group>

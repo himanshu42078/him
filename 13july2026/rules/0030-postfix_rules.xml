@@ -1,0 +1,62 @@
+
+<var name="POSTFIX_FREQ">8</var>
+
+<group name="pwc_caas,syslog,postfix,">
+
+  <rule id="3353" level="10" frequency="$POSTFIX_FREQ" timeframe="120" overwrite="yes">
+    <if_matched_sid>3303</if_matched_sid>
+    <same_source_ip />
+    <description>Postfix: Multiple attempts to send e-mail from </description>
+    <description>invalid/unknown sender domain.</description>
+    <mitre>
+      <id>T1114</id>
+      <id>T1499</id>
+    </mitre>
+    <group>multiple_spam,pci_dss_10.6.1,pci_dss_11.4,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_SI.4,tsc_CC7.2,tsc_CC7.3,tsc_CC6.1,tsc_CC6.8,</group>
+  </rule>
+
+  <rule id="3354" level="12" frequency="$POSTFIX_FREQ" timeframe="120" overwrite="yes">
+    <if_matched_sid>3304</if_matched_sid>
+    <same_source_ip />
+    <description>Postfix: Multiple misuse of SMTP service </description>
+    <description>(bad sequence of commands).</description>
+    <mitre>
+      <id>T1114</id>
+    </mitre>
+    <group>multiple_spam,pci_dss_10.6.1,pci_dss_11.4,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_SI.4,tsc_CC7.2,tsc_CC7.3,tsc_CC6.1,tsc_CC6.8,</group>
+  </rule>
+
+  <rule id="3355" level="10" frequency="$POSTFIX_FREQ" timeframe="120" overwrite="yes">
+    <if_matched_sid>3305</if_matched_sid>
+    <same_source_ip />
+    <description>Postfix: Multiple attempts to send e-mail to </description>
+    <description>invalid recipient or from unknown sender domain.</description>
+    <mitre>
+      <id>T1114</id>
+      <id>T1499</id>
+    </mitre>
+    <group>multiple_spam,pci_dss_10.6.1,pci_dss_11.4,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_SI.4,tsc_CC7.2,tsc_CC7.3,tsc_CC6.1,tsc_CC6.8,</group>
+  </rule>
+
+  <rule id="3356" level="10" frequency="$POSTFIX_FREQ" timeframe="120" ignore="30" overwrite="yes">
+    <if_matched_sid>3306</if_matched_sid>
+    <same_source_ip />
+    <description>Postfix: Multiple attempts to send e-mail from </description>
+    <description>black-listed IP address (blocked).</description>
+    <mitre>
+      <id>T1499</id>
+    </mitre>
+    <group>multiple_spam,pci_dss_10.6.1,pci_dss_11.4,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_SI.4,tsc_CC7.2,tsc_CC7.3,tsc_CC6.1,tsc_CC6.8,</group>
+  </rule>
+
+  <rule id="3357" level="10" frequency="8" timeframe="120" ignore="60" overwrite="yes">
+    <if_matched_sid>3332</if_matched_sid>
+    <same_source_ip />
+    <description>Postfix: Multiple SASL authentication failures.</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failures,pci_dss_10.2.4,pci_dss_10.2.5,pci_dss_11.4,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_SI.4,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+  </rule>
+
+</group>

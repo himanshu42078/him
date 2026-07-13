@@ -1,0 +1,375 @@
+
+<!--
+-  SSH rules
+-  Author: Daniel Cid.
+-  Updated by Wazuh, Inc.
+-  Copyright (C) 2015-2020, Wazuh Inc.
+-  Copyright (C) 2009 Trend Micro Inc.
+-  This program is a free software; you can redistribute it and/or modify it under the terms of GPLv2.
+-->
+<group name="pwc_caas,syslog,sshd,">
+	<rule id="5700" level="0" noalert="1">
+		<decoded_as>sshd</decoded_as>
+		<description>SSHD messages grouped.</description>
+	</rule>
+	<rule id="5701" level="8">
+		<if_sid>5700</if_sid>
+		<field name="msg">Bad protocol version identification</field>
+		<description>sshd: Possible attack on the ssh server </description>
+		<description>(or version gathering).</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>recon,pci_dss_11.4,gpg13_4.12,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule id="5702" level="5">
+		<if_sid>5700</if_sid>
+		<field name="msg">reverse mapping</field>
+		<regex>failed - POSSIBLE BREAK</regex>
+		<description>sshd: Reverse lookup error (bad ISP or attack).</description>
+		<group>pci_dss_11.4,gpg13_4.12,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule frequency="6" id="5703" level="10" timeframe="360">
+		<if_matched_sid>5702</if_matched_sid>
+		<same_source_ip/>
+		<description>sshd: Possible breakin attempt </description>
+		<description>(high number of reverse lookup errors).</description>
+		<group>pci_dss_11.4,gpg13_4.12,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule id="5704" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">fatal: Timeout before authentication for</field>
+		<description>sshd: Timeout while logging in.</description>
+	</rule>
+	<rule frequency="6" id="5705" level="10" timeframe="360">
+		<if_matched_sid>5704</if_matched_sid>
+		<description>sshd: Possible scan or breakin attempt </description>
+		<description>(high number of login timeouts).</description>
+		<group>pci_dss_11.4,gpg13_4.12,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule id="5706" level="6">
+		<if_sid>5700</if_sid>
+		<field name="msg">Did not receive identification string from</field>
+		<description>sshd: insecure connection attempt (scan).</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>recon,pci_dss_11.4,gpg13_4.12,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule id="5707" level="14">
+		<if_sid>5700</if_sid>
+		<field name="msg">fatal: buffer_get_string: bad string</field>
+		<description>sshd: OpenSSH challenge-response exploit.</description>
+		<group>exploit_attempt,pci_dss_11.4,pci_dss_6.2,gpg13_4.12,gdpr_IV_35.7.d,nist_800_53_SI.4,nist_800_53_SI.2,</group>
+	</rule>
+	<rule id="5709" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">error: Could not get shadow information for NOUSER|</field>
+		<field name="msg">fatal: Read from socket failed: |error: ssh_msg_send: write|</field>
+		<field name="msg">syslogin_perform_logout: |^pam_succeed_if(sshd:auth): error retrieving information about user|can't verify hostname: getaddrinfo</field>
+		<description>sshd: Useless SSHD message without an user/ip and context.</description>
+	</rule>
+	<rule id="5710" level="5">
+		<if_sid>5700</if_sid>
+		<field name="msg">illegal user|invalid user</field>
+		<description>sshd: Attempt to login using a non-existent user</description>
+		<group>invalid_login,authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,pci_dss_10.6.1,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_AU.6,</group>
+	</rule>
+	<rule id="5711" level="0">
+		<if_sid>5700</if_sid>
+		<match>authentication failure; logname= uid=0 euid=0 tty=ssh|</match>
+		<match>input_userauth_request: invalid user|</match>
+		<match>PAM: User not known to the underlying authentication module for illegal user|</match>
+		<match>error retrieving information about user</match>
+		<description>sshd: Useless/Duplicated SSHD message without a user/ip.</description>
+	</rule>
+	<rule frequency="8" id="5712" ignore="60" level="10" timeframe="120">
+		<if_matched_sid>5710</if_matched_sid>
+		<description>sshd: brute force trying to get access to </description>
+		<description>the system.</description>
+		<same_source_ip/>
+		<group>authentication_failures,pci_dss_11.4,pci_dss_10.2.4,pci_dss_10.2.5,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_SI.4,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="5713" level="6">
+		<if_sid>5700</if_sid>
+		<field name="msg">Corrupted check bytes on</field>
+		<description>sshd: Corrupted bytes on SSHD.</description>
+	</rule>
+	<rule frequency="3" id="5714" level="14" timeframe="120">
+		<if_matched_sid>5713</if_matched_sid>
+		<field name="msg">Local: crc32 compensation attack</field>
+		<description>sshd: SSH CRC-32 Compensation attack</description>
+		<info type="cve">2001-0144</info>
+		<info type="link">http://www.securityfocus.com/bid/2347/info/</info>
+		<group>exploit_attempt,pci_dss_11.4,pci_dss_6.2,gpg13_4.12,gdpr_IV_35.7.d,nist_800_53_SI.4,nist_800_53_SI.2,</group>
+	</rule>
+	<rule id="5715" level="3">
+		<if_sid>5700</if_sid>
+		<field name="msg">Accepted|authenticated.</field>
+		<description>sshd: authentication success.</description>
+		<group>authentication_success,pci_dss_10.2.5,gpg13_7.1,gpg13_7.2,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="5716" level="5">
+		<if_sid>5700</if_sid>
+		<field name="msg">Failed|error: PAM: Authentication</field>
+		<description>sshd: authentication failed.</description>
+		<group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="5717" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">error: Bad prime description in line</field>
+		<description>sshd: configuration error (moduli).</description>
+	</rule>
+	<rule id="5718" level="5">
+		<if_sid>5700</if_sid>
+		<field name="msg">not allowed because</field>
+		<description>sshd: Attempt to login using a denied user.</description>
+		<group>invalid_login,pci_dss_10.2.4,pci_dss_10.2.5,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule frequency="8" id="5719" ignore="60" level="10" timeframe="120">
+		<if_matched_sid>5718</if_matched_sid>
+		<description>sshd: Multiple access attempts using a denied user.</description>
+		<group>invalid_login,pci_dss_10.2.4,pci_dss_10.2.5,pci_dss_11.4,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_SI.4,</group>
+	</rule>
+	<rule frequency="8" id="5720" level="10">
+		<if_matched_sid>5716</if_matched_sid>
+		<same_source_ip/>
+		<description>sshd: Multiple authentication failures.</description>
+		<group>attack_stage_Initial_Access,attack_category_Brute-Forcing,</group>
+		<group>authentication_failures,pci_dss_10.2.4,pci_dss_10.2.5,pci_dss_11.4,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_SI.4,</group>
+	</rule>
+	<rule id="5721" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">Received disconnect from</field>
+		<description>sshd: System disconnected from sshd.</description>
+	</rule>
+	<rule id="5722" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">Connection closed</field>
+		<description>sshd: ssh connection closed.</description>
+		<group>pci_dss_10.2.5,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="5723" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">error: buffer_get_bignum2_ret: negative numbers not supported</field>
+		<info>This maybe a bad key in authorized_keys.</info>
+		<description>sshd: key error.</description>
+		<group>pci_dss_4.1,pci_dss_10.6.1,gpg13_4.3,gdpr_IV_35.7.d,hipaa_164.312.a.2.IV,hipaa_164.312.e.1,hipaa_164.312.e.2.I,hipaa_164.312.e.2.II,hipaa_164.312.b,nist_800_53_SC.8,nist_800_53_AU.6,</group>
+	</rule>
+	<rule id="5724" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">fatal: buffer_get_bignum2: buffer error</field>
+		<info>This error may relate to ssh key handling.</info>
+		<description>sshd: key error.</description>
+		<group>pci_dss_4.1,pci_dss_10.6.1,gpg13_4.3,gdpr_IV_35.7.d,hipaa_164.312.a.2.IV,hipaa_164.312.e.1,hipaa_164.312.e.2.I,hipaa_164.312.e.2.II,hipaa_164.312.b,nist_800_53_SC.8,nist_800_53_AU.6,</group>
+	</rule>
+	<rule id="5725" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">fatal: Write failed: Host is down</field>
+		<description>sshd: Host ungracefully disconnected.</description>
+	</rule>
+	<rule id="5726" level="5">
+		<if_sid>5700</if_sid>
+		<field name="msg">error: PAM: Module is unknown for</field>
+		<description>sshd: Unknown PAM module, PAM misconfiguration.</description>
+	</rule>
+	<rule id="5727" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">failed: Address already in use.</field>
+		<description>sshd: Attempt to start sshd when something already bound to the port.</description>
+		<group>pci_dss_10.6.1,pci_dss_2.2.3,gpg13_4.3,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_CM.1,</group>
+	</rule>
+	<rule id="5728" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">Authentication service cannot retrieve user credentials</field>
+		<info>May be related to PAM module errors.</info>
+		<description>sshd: Authentication services were not able to retrieve user credentials.</description>
+		<group>authentication_failed,pci_dss_10.2.5,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="5729" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">debug1: attempt</field>
+		<description>sshd: Debug message.</description>
+	</rule>
+	<rule id="5730" level="4">
+		<if_sid>5700</if_sid>
+		<regex>error: connect to \S+ port \d+ failed: Connection refused</regex>
+		<description>sshd: SSHD is not accepting connections.</description>
+		<group>pci_dss_10.6.1,gpg13_4.3,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,</group>
+	</rule>
+	<rule id="5731" level="6">
+		<if_sid>5700</if_sid>
+		<field name="msg">AKASSH_Version_Mapper1.</field>
+		<description>sshd: SSH Scanning.</description>
+		<group>recon,pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule id="5732" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">error: connect_to </field>
+		<description>sshd: Possible port forwarding failure.</description>
+	</rule>
+	<rule id="5733" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">Invalid credentials</field>
+		<description>sshd: User entered incorrect password.</description>
+		<group>authentication_failures,pci_dss_10.2.4,pci_dss_10.2.5,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="5734" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">Could not load host key</field>
+		<description>sshd: sshd could not load one or more host keys.</description>
+		<info>This may be related to an upgrade to OpenSSH.</info>
+	</rule>
+	<rule id="5735" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg">Write failed: Broken pipe</field>
+		<description>sshd: Failed write due to one host disappearing.</description>
+	</rule>
+	<rule id="5736" level="0">
+		<if_sid>5700</if_sid>
+		<match>error: setsockopt SO_KEEPALIVE: Connection reset by peer|</match>
+		<match>error: accept: Software caused connection abort</match>
+		<description>sshd: Connection reset or aborted.</description>
+	</rule>
+	<rule id="5737" level="5">
+		<if_sid>5700</if_sid>
+		<field name="msg">fatal: Cannot bind any address.</field>
+		<description>sshd: cannot bind to configured address.</description>
+		<group>pci_dss_10.6.1,gpg13_4.3,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,</group>
+	</rule>
+	<rule id="5738" level="5">
+		<if_sid>5700</if_sid>
+		<field name="msg">set_loginuid failed opening loginuid</field>
+		<description>sshd: pam_loginuid could not open loginuid.</description>
+		<group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,gpg13_7.1,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="5739" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">error: Could not stat AuthorizedKeysCommand</field>
+		<description>sshd: configuration error (AuthorizedKeysCommand)</description>
+	</rule>
+	<rule id="5740" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">Connection reset by peer</field>
+		<description>sshd: connection reset by peer</description>
+	</rule>
+	<rule id="5741" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">Connection refused</field>
+		<description>sshd: connection refused</description>
+	</rule>
+	<rule id="5742" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">Connection timed out</field>
+		<description>sshd: connection timed out</description>
+		<group>pci_dss_8.1.5,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_AC.2,</group>
+	</rule>
+	<rule id="5743" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">No route to host</field>
+		<description>sshd: no route to host</description>
+	</rule>
+	<rule id="5744" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">failure direct-tcpip</field>
+		<description>sshd: port forwarding issue</description>
+	</rule>
+	<rule id="5745" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">Transport endpoint is not connected</field>
+		<description>sshd: transport endpoint is not connected</description>
+	</rule>
+	<rule id="5746" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">get_remote_port failed</field>
+		<description>sshd: get_remote_port failed</description>
+	</rule>
+	<!-- http://www.gossamer-threads.com/lists/openssh/users/47438 -->
+	<rule id="5747" level="6">
+		<if_sid>5700</if_sid>
+		<field name="msg">bad client public DH value</field>
+		<description>sshd: bad client public DH value</description>
+	</rule>
+	<!-- log sample with context:
+																	     Nov 22 19:24:52 server sshd[4045]: Connection from 117.117.198.5 port 60304
+																	     Nov 22 19:24:55 server sshd[4046]: Corrupted MAC on input.
+																	     Nov 22 19:25:15 server sshd[4046]: Connection closed by 117.117.198.5
+																	-->
+	<rule id="5748" level="6">
+		<if_sid>5700</if_sid>
+		<field name="msg">Corrupted MAC on input.</field>
+		<description>sshd: corrupted MAC on input</description>
+		<group>pci_dss_10.6.1,gpg13_4.3,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,</group>
+	</rule>
+	<rule id="5749" level="4">
+		<if_sid>5700</if_sid>
+		<field name="msg">Bad packet length</field>
+		<description>sshd: bad packet length</description>
+	</rule>
+	<rule id="5750" level="0">
+		<decoded_as>sshd</decoded_as>
+		<if_sid>5700</if_sid>
+		<field name="msg">Unable to negotiate with |Unable to negotiate a key|fatal: no matching</field>
+		<description>sshd: could not negotiate with client.</description>
+	</rule>
+	<rule id="5751" level="1">
+		<decoded_as>sshd</decoded_as>
+		<if_sid>5700</if_sid>
+		<field name="msg">no hostkey alg [preauth]</field>
+		<description>sshd: No hostkey alg.</description>
+	</rule>
+	<rule id="5752" level="2">
+		<if_sid>5750</if_sid>
+		<field name="msg">no matching key exchange method found.|Unable to negotiate a key exchange method</field>
+		<description>sshd: Client did not offer an acceptable key exchange method.</description>
+	</rule>
+	<rule id="5753" level="2">
+		<if_sid>5750</if_sid>
+		<field name="msg">no matching cipher found</field>
+		<description>sshd: could not negotiate with client, no matching cipher.</description>
+	</rule>
+	<rule id="5754" level="1">
+		<if_sid>5700</if_sid>
+		<field name="msg">Failed to create session: </field>
+		<description>sshd: failed to create a session.</description>
+	</rule>
+	<rule id="5755" level="3">
+		<if_sid>5700</if_sid>
+		<field name="msg">bad ownership or modes for file</field>
+		<description>sshd: Authentication refused due to owner/permissions of authorized_keys.</description>
+		<group>authentication_failed,gpg13_7.1,</group>
+	</rule>
+	<rule id="5756" level="0">
+		<if_sid>5700</if_sid>
+		<field name="msg"> failed, subsystem not found</field>
+		<description>sshd: subsystem request failed.</description>
+	</rule>
+	<rule id="5757" level="0">
+		<decoded_as>sshd</decoded_as>
+		<field name="msg">but this does not map back to the address - POSSIBLE BREAK-IN ATTEMPT!</field>
+		<description>Bad DNS mapping.</description>
+	</rule>
+	<rule id="5758" level="8">
+		<decoded_as>sshd</decoded_as>
+		<field name="msg">error: maximum authentication attempts exceeded </field>
+		<description>Maximum authentication attempts exceeded.</description>
+		<group>authentication_failed,gpg13_7.1,</group>
+	</rule>
+	<rule id="5759" level="2">
+		<if_sid>5750</if_sid>
+		<field name="msg">no matching mac found</field>
+		<description>sshd: could not negotiate with client, no matching mac.</description>
+	</rule>
+
+	<!-- Move from 1000-common_rules.xml -->
+	<!-- From Qradar all in one to EC-->
+	<rule id="100213" level="0">
+		<if_sid>5701</if_sid>
+		<hostname>hksrvtec|LX00111EC|pwcsoc</hostname>
+		<srcip>172.18.8.11</srcip>
+		<description>From Qradar all in one to EC</description>
+	</rule>
+	<!-- secondary check for qradar -->
+	<!-- <rule id="100219" level="0">
+		<if_sid>100213</if_sid>
+		<srcip>172.18.8.11</srcip>
+		<description>From Qradar all in one to EC</description>
+	</rule>
+-->
+</group>

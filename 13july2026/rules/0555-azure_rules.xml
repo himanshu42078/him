@@ -1,0 +1,310 @@
+
+<!--
+-  Microsoft Azure ruleset
+-  Created by Wazuh, Inc.
+-  Copyright (C) 2015-2020, Wazuh Inc.
+-  This program is a free software; you can redistribute it and/or modify it under the terms of GPLv2.
+STRICTLY FOR AAD GRAPH API ONLY
+ID: 87800-87899
+-->
+	<!-- The decoder name is updated in Jan 2021, new decoder name is called AzureGraphAPI-json. The original one was just 'json'-->
+	<group name="azure,pwc_caas,cloud,">
+		<rule id="87801" level="3">
+			<decoded_as>AzureGraphAPI-json</decoded_as>
+			<field name="azure.azure_tag">azure-log-analytics</field>
+			<description>Azure: Log analytics</description>
+		</rule>
+		<rule id="87802" level="3">
+			<decoded_as>AzureGraphAPI-json</decoded_as>
+			<field name="azure.azure_tag">azure-ad-graph</field>
+			<description>Azure: AD $(activity)</description>
+		</rule>
+		<rule id="87803" level="3">
+			<decoded_as>AzureGraphAPI-json</decoded_as>
+			<field name="azure.azure_tag">azure-storage</field>
+			<description>Azure: Storage</description>
+		</rule>
+		<rule id="87804" level="3">
+			<decoded_as>azure-storage</decoded_as>
+			<description>Azure: Storage</description>
+		</rule>
+		<rule id="87810" level="3">
+			<if_sid>87801</if_sid>
+			<field name="azure.Type">AzureActivity</field>
+			<description>Azure: Log analytics activity</description>
+		</rule>
+		<rule id="87811" level="3">
+			<if_sid>87810</if_sid>
+			<field name="azure.operationName">\.+</field>
+			<description>Azure: Log analytics: $(azure.operationName)</description>
+		</rule>
+		<rule id="87813" level="3">
+			<if_sid>87803</if_sid>
+			<field name="azure.operationName">\.+</field>
+			<description>Azure: Storage: $(azure.operationName)</description>
+		</rule>
+		<rule id="87850" level="3">
+			<if_sid>87802</if_sid>
+			<field name="azure.azure_aad_tag">signin</field>
+			<description>AAD Signin Logs (Graph API)</description>
+		</rule>
+		<rule id="87851" level="3">
+			<if_sid>87802</if_sid>
+			<field name="azure.azure_aad_tag">audit</field>
+			<description>AAD Audit Logs (Graph API)</description>
+		</rule>
+
+		<rule id="87852" level="3">
+			<if_sid>87850</if_sid>
+			<field name="azure.conditionalAccessStatus">success</field>
+			<description>Azure Successful Login</description>
+			<!-- DEV-4868 -->
+		</rule>
+		<rule id="87853" level="5">
+			<if_sid>87850</if_sid>
+			<field name="azure.conditionalAccessStatus">failure|notApplied</field>
+			<field name="azure.status.errorCode">50126</field>
+			<field name="azure.status.failureReason">Error validating credentials due to invalid username or password</field>
+			<description>Azure Login Failure: $(azure.status.failureReason)</description>
+			<!-- DEV-4868 -->
+		</rule>
+		<rule frequency="10" id="87854" level="10" timeframe="120">
+			<if_matched_sid>87853</if_matched_sid>
+			<same_user/>
+			<description>Azure/O365 Same User Login Failed Multiple times: $(dstuser)</description>
+			<group>demo_rules,group_by_data.dstuser,DEV-4868,groupid_135023,</group>
+			<!-- DEV-4868 -->
+		</rule>
+		<rule frequency="10" id="87855" level="10" timeframe="120">
+			<if_matched_sid>87853</if_matched_sid>
+			<same_source_ip/>
+			<description>Azure/O365 Possible break-in attempt from IP $(srcip)</description>
+			<group>group_by_data.srcip,groupid_135018,</group>
+			<!-- DEV-4868 -->
+		</rule>
+		<!-- DEV-4868 combine with 104056,104057
+		<rule id="87856" level="13">
+			<if_sid>87852</if_sid>
+			<list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+			<description>Successful Azure Login from Tor-IP</description>
+			<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+		</rule>
+		<rule id="87857" level="12">
+			<if_sid>87852</if_sid>
+			<list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+			<description>Successful Azure Login from malware-IP</description>
+			<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,group_by_data.srcip,</group>
+		</rule>
+		-->
+		<rule id="87858" level="10">
+			<if_sid>87850</if_sid>
+			<field name="azure.riskEventTypes">TypeunlikelyTravel|maliciousIPAddress|malwareInfectedIPAddress|suspiciousIPAddress|leakedCredentials|investigationsThreatIntelligence|genericadminConfirmedUserCompromised|mcasImpossibleTravel|mcasSuspiciousInboxManipulationRules|investigationsThreatIntelligenceSigninLinked|maliciousIPAddressValidCredentialsBlockedIP</field>
+			<description>Azure AD Risk Events: $(azure.status.failureReason)</description>
+			<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+			<!-- DEV-4868 -->
+		</rule>
+		
+		<rule id="87860" level="12">
+			<if_sid>87850,87852,87853</if_sid>
+			<field name="azure.riskLevelDuringSignIn">high</field>
+            <field name="azure.location.countryOrRegion">NG|BG|BJ</field> <!-- DEV-1083 -->
+			<description>Azure AD Risky Sign-in: $(azure.userDisplayName)</description>
+			<group>groupid_135203,</group>
+		</rule>
+				<rule id="87861" level="0">
+			<if_sid>87860</if_sid>
+			<field name="azure.status.errorCode">50140</field>
+			<description>Excluding Error Code 50140 for High AAD Risky Sign-in</description>
+		</rule>
+		<!-- Solarigate incident -->
+		<rule id="87870" level="10">
+			<if_sid>87851</if_sid>
+			<field name="azure.activityDisplayName">Set domain authentication|Set federation settings on domain|Add unverified domain</field>
+			<description>Azure AD Solarigate Technique: Addition of new federation trusts</description>
+		</rule>
+		<rule id="87871" level="5">
+			<if_sid>87851</if_sid>
+			<field name="azure.activityDisplayName">Add service principal|Add service principal credentials|Add app role assignment to service principal|Add delegated permission grant|Add application|Certificates and secrets management</field>
+			<field name="azure.result">Success</field>
+			<description>Azure AD Solarigate Technique: Backdoor of application with GraphAPI access to emails</description>
+		</rule>
+		<rule id="87872" level="3">
+			<if_sid>87851</if_sid>
+			<field name="azure.activityDisplayName">Consent to application</field>
+			<field name="azure.result">Success</field>
+			<group>aad_consent_to_application</group>
+			<description>AAD Application Consent to Application events</description>
+		</rule>
+		<rule id="87873" level="3">
+			<if_sid>87851</if_sid>
+			<field name="azure.activityDisplayName">Add service principal credentials|Update application - Certificates and secrets management</field>			<field name="azure.result">Success</field>
+			<group>aad_add_sp_credentials</group>
+			<description>Added credentials to Azure AD Application</description>
+		</rule>
+		<rule frequency="2" id="87874" level="5" timeframe="60">
+			<if_group>aad_consent_to_application</if_group>
+			<if_matched_group>aad_add_sp_credentials</if_matched_group>
+			<same_field>azure.targetResources.servicePrincipal.id</same_field>
+			<description>Azure AD Solarigate Technique: Added credentials to Azure AD Application after Admin Consent permissions granted</description>
+		</rule>
+		<rule id="87875" level="4">
+			<if_sid>87851</if_sid>
+			<field name="azure.category">UserManagement</field>
+			<field name="azure.activityDisplayName">Add user</field>
+			<description>AAD New User Created</description>
+			<group>groupid_135015,</group>
+		</rule>
+		<rule id="87876" level="12">
+			<if_sid>87875</if_sid>
+			<field name="azure.result">failure</field>
+			<description>AAD Unsuccessful user creation due to permissions denied</description>
+			<group>groupid_135016,</group>
+		</rule>
+
+		<!-- Below are the admin roles for the templateId -->
+		<!-- UserAccountAdmins|PrivilegedRoleAdmins|TenantAdmins|Application Administrator|Authentication Administrator|Cloud Application Administrator|Directory Synchronization Accounts|Directory Writers|Exchange Administrator|Global Administrator|Helpdesk Administrator|Password Administrator|Privileged Authentication Administrator|SharePoint Administrator|User Administrator -->
+		<rule id="87877" level="10">
+			<if_sid>87851</if_sid>
+			<time>6 pm - 8:30 am</time>
+			<field name="azure.category">^RoleManagement$</field>
+			<field name="azure.loggedByService">^Core Directory$</field>
+			<field name="azure.initiatedBy.app.displayName">MS-PIM</field>
+			<field name="azure.activityDisplayName">^Add member to role$|^Add member to role in PIM requested \(permanent\)$</field>
+			<field name="templateId">9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3|c4e39bd9-1100-46d3-8c65-fb160da0071f|158c047a-c907-4556-b7ef-446551a6b5f7|d29b2b05-8046-44ba-8758-1e26182fcf32|9360feb5-f418-4baa-8175-e2a00bac4301|29232cdf-9323-42fd-ade2-1d097af3e4de|62e90394-69f5-4237-9190-012177145e10|729827e3-9c14-49f7-bb1b-9608f156bbb8|966707d0-3269-4727-9be2-8c3a10f19b9d|7be44c8a-adaf-4e2a-84d6-ab2649e08a13|f28a1f50-f6e7-4571-818b-6a12f2af6b6c|fe930be7-5e62-47db-91af-98c3a49a38b1|e8611ab8-c189-46e8-94e1-60213ab1f814</field>
+			<description>AAD add member to Administrative Role via PIM in non-office hour</description>
+			<group>group_by_data.dstuser,</group>
+			<!-- DEV-4328 -->
+			<!-- DEV-5278 -->
+		</rule>
+		<rule id="87878" level="10">
+			<if_sid>87851</if_sid>
+			<field name="azure.category">RoleManagement</field>
+			<field name="azure.loggedByService">^Core Directory$</field>
+			<field name="azure.activityDisplayName">^Add member to role$|^Add member to role in PIM requested \(permanent\)$</field>
+			<field name="templateId">9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3|c4e39bd9-1100-46d3-8c65-fb160da0071f|158c047a-c907-4556-b7ef-446551a6b5f7|d29b2b05-8046-44ba-8758-1e26182fcf32|9360feb5-f418-4baa-8175-e2a00bac4301|29232cdf-9323-42fd-ade2-1d097af3e4de|62e90394-69f5-4237-9190-012177145e10|729827e3-9c14-49f7-bb1b-9608f156bbb8|966707d0-3269-4727-9be2-8c3a10f19b9d|7be44c8a-adaf-4e2a-84d6-ab2649e08a13|f28a1f50-f6e7-4571-818b-6a12f2af6b6c|fe930be7-5e62-47db-91af-98c3a49a38b1|e8611ab8-c189-46e8-94e1-60213ab1f814</field>
+			<description>AAD New Administrative Role Assigned to member (Active Assignment)</description>
+			<group>group_by_data.dstuser,</group>
+			<!-- DEV-4328 -->
+			<!-- DEV-5278 -->
+		</rule>
+		<rule id="87879" level="10">
+			<if_sid>87851</if_sid>
+			<field name="azure.category">RoleManagement</field>
+			<field name="azure.loggedByService">^Core Directory$</field>
+			<field name="azure.activityDisplayName">^Add eligible member to role$|^Add eligible member to role in PIM completed \(permanent\)$</field>
+			<field name="templateId">9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3|c4e39bd9-1100-46d3-8c65-fb160da0071f|158c047a-c907-4556-b7ef-446551a6b5f7|d29b2b05-8046-44ba-8758-1e26182fcf32|9360feb5-f418-4baa-8175-e2a00bac4301|29232cdf-9323-42fd-ade2-1d097af3e4de|62e90394-69f5-4237-9190-012177145e10|729827e3-9c14-49f7-bb1b-9608f156bbb8|966707d0-3269-4727-9be2-8c3a10f19b9d|7be44c8a-adaf-4e2a-84d6-ab2649e08a13|f28a1f50-f6e7-4571-818b-6a12f2af6b6c|fe930be7-5e62-47db-91af-98c3a49a38b1|e8611ab8-c189-46e8-94e1-60213ab1f814</field>
+			<description>AAD New Administrative Role Assigned to member (Eligible Assignment)</description>
+			<group>group_by_data.dstuser,</group>
+			<!-- DEV-4328 -->
+			<!-- DEV-5278 -->
+		</rule>
+		<rule id="87880" level="0">
+			<if_sid>87878</if_sid>
+			<field name="azure.initiatedBy.app.displayName">MS-PIM</field>
+			<description>[whitelist] AAD New Administrative Role Assigned to member</description>
+			<!-- DEV-4328 -->
+		</rule>
+
+		<rule id="87885" level="12">
+			<if_sid>87851,87872</if_sid>
+			<field name="azure.azure_tag">azure-ad-graph</field>
+			<field name="azure.azure_aad_tag">audit</field>
+			<field name="azure.loggedByService">Core Directory</field>
+			<field name="azure.category">ApplicationManagement</field>
+			<field name="azure.activityDisplayName">Consent to Application</field>
+			<match>mailboxsettings</match>
+			<match>contacts.read</match>
+			<match>user.read</match>
+			<match>mail.read</match>
+			<match>notes.read.all</match>
+			<match>mailboxsettings.readwrite</match>
+			<match>Files.ReadWrite.All</match>
+			<match>!5523c0ac-586d-491e-bc73-fc18f9ed2c28|!3190d40e-82d9-44ee-af78-4ce2aafd4f15|!0771c6f9-71c7-46d4-87a9-3b57443ee250|!a644e37f-d354-440f-843a-1e1ee7dfc4ef|!21fbe0e7-6e83-4fb0-a56f-92a67c64e37a|!30966914-6789-4d1c-9e2b-76a81a5e2a54|!2a6082d8-9f0a-455c-a26b-7fce81edefb8|!adc8d359-f3ef-4e0a-b170-2bcf5a022728</match>
+			<match>!AllPrincipals</match>
+			<description>Suspicious OAuthApp O365 Attack Toolkit detected.</description>
+		</rule>
+		<!-- Whitelisting resultReason = Microsoft.Online.DirectoryServices.DirectoryUniquenessException-->
+		<rule id="87886" level="0">
+			<if_sid>87876</if_sid>
+			<field name="azure.resultReason">Microsoft.Online.DirectoryServices.DirectoryUniquenessException|Microsoft.Online.Workflows.ValidationException</field>
+			<description>AAD Unsuccessful user creation due to permissions denied Whitelist</description>
+		</rule>
+
+		<rule id="87887" level="3">
+			<if_sid>87851</if_sid>
+			<field name="azure.activityDisplayName">Self-service password reset|Reset password|Reset user password</field>
+			<description>Azure Reset password</description>
+			<!-- DEV-4871 -->
+		</rule>
+		<rule id="87888" level="5">
+			<if_sid>87887</if_sid>
+			<field name="azure.result">failure</field>
+			<description>Azure Reset password failure</description>
+			<!-- DEV-4871 -->
+		</rule>
+		<rule id="87889" level="3">
+			<if_sid>87887</if_sid>
+			<field name="azure.result">success</field>
+			<field name="azure.resultReason">Successfully completed reset|User successfully reset password</field>
+			<description>Azure Reset password success</description>
+			<!-- DEV-4871 -->
+		</rule>
+		
+		<!-- 87850 Signin Graph API-->
+		<rule id="87890" level="5">
+			<if_sid>87850,87852,87853</if_sid>
+			<field name="azure.userDisplayName">On-Premises Directory Synchronization Service Account</field>
+			<field name="azure.status.errorCode">0</field>
+			<description>Azure: Abnormal Login IP for On-Prem Service account (Pass-thru-authentication backdoor)</description>
+		</rule>
+
+		<!-- DEV4820-->
+		<rule id="87893" level="5">
+			<if_sid>87851</if_sid>
+			<field name="azure.category">^RoleManagement$</field>
+			<field name="azure.loggedByService">^Core Directory$</field>
+			<field name="azure.initiatedBy.app.displayName">MS-PIM</field>
+			<field name="azure.activityDisplayName">^Remove member from role$|^Remove member from role in PIM requested \(permanent\)$</field>
+			<time>6 pm - 8:30 am</time>
+			<match>UserAccountAdmins|PrivilegedRoleAdmins|TenantAdmins|Application Administrator|Authentication Administrator|Cloud Application Administrator|Directory Synchronization Accounts|Directory Writers|Exchange Administrator|Global Administrator|Helpdesk Administrator|Password Administrator|Privileged Authentication Administrator|SharePoint Administrator|User Administrator</match>
+			<description>AAD Remove member from Administrative Role via PIM in non-office hour</description>
+		</rule>
+		<rule id="87894" level="5">
+			<if_sid>87851</if_sid>
+			<field name="azure.category">RoleManagement</field>
+			<field name="azure.loggedByService">^Core Directory$</field>
+			<field name="azure.activityDisplayName">^Remove member from role$|^Remove member from role in PIM requested \(permanent\)$</field>
+			<match>UserAccountAdmins|PrivilegedRoleAdmins|TenantAdmins|Application Administrator|Authentication Administrator|Cloud Application Administrator|Directory Synchronization Accounts|Directory Writers|Exchange Administrator|Global Administrator|Helpdesk Administrator|Password Administrator|Privileged Authentication Administrator|SharePoint Administrator|User Administrator</match>
+			<description>AAD Remove Administrative Role from member (Active Assignment)</description>
+		</rule>
+		<rule id="87895" level="5">
+			<if_sid>87851</if_sid>
+			<field name="azure.category">RoleManagement</field>
+			<field name="azure.loggedByService">^Core Directory$</field>
+			<field name="azure.activityDisplayName">^Remove eligible member from role$|^Remove eligible member from role in PIM completed \(permanent\)$</field>
+			<match>UserAccountAdmins|PrivilegedRoleAdmins|TenantAdmins|Application Administrator|Authentication Administrator|Cloud Application Administrator|Directory Synchronization Accounts|Directory Writers|Exchange Administrator|Global Administrator|Helpdesk Administrator|Password Administrator|Privileged Authentication Administrator|SharePoint Administrator|User Administrator</match>
+			<description>AAD Remove Administrative Role from member (Eligible Assignment)</description>
+		</rule>
+		<rule id="87896" level="0">
+			<if_sid>87894</if_sid>
+			<field name="azure.initiatedBy.app.displayName">MS-PIM</field>
+			<description>[whitelist] AAD Remove Administrative Role from member</description>
+		</rule>
+
+		<rule id="87898" level="12" frequency="3" timeframe="300">
+			<if_matched_sid>87802</if_matched_sid>
+			<field name="azure.status.failureReason">User blocked due to risk on home tenant</field>
+			<description>AAD Risky user sign and blocked</description>
+			<!-- DEV-2978 -->
+			<!-- DEV-5002 -->
+		</rule>
+
+		<rule id="87899" level="12">
+			<if_sid>87888</if_sid>
+			<field name="azure.activityDisplayName">Blocked from self-service password reset</field>
+			<field name="azure.resultReason">User throttle for attempting challenge: SecurityQuestions too many times</field>
+			<description>Azure Reset password failure: $(azure.resultReason)</description>
+			<!-- DEV-4871 -->
+		</rule>
+
+	</group>

@@ -1,0 +1,126 @@
+
+<group name="pwc_caas,cyberark,auto_escalate_disabled,">
+	<rule id="106501" level="0">
+		<decoded_as>cyberark_cef</decoded_as>
+		<description>CyberArk event</description>
+	</rule>
+	<rule id="106502" level="5">
+		<if_sid>106501</if_sid>
+		<field name="cef.severity">^7$</field>
+		<description>CyberArk Error event - $(cef.description)</description>
+	</rule>
+	<rule id="106503" level="12">
+		<if_sid>106501</if_sid>
+		<field name="cef.severity">^10$</field>
+		<description>CyberArk Critical event - $(cef.description)</description>
+	</rule>
+	<!--
+	https://docs.cyberark.com/Product-Doc/OnlineHelp/PAS/11.2/en/Content/EVD/Action-Codes.htm
+	-->
+	<rule id="106504" level="12">
+		<if_sid>106501</if_sid>
+		<id>^0$|^3$|^4$|^5$|^6$|^9$|^10$|^11$|^12$|^13$|^14$|^15$|^16$|^17$|^18$|^21$|^23$|^25$|^26$|^27$|^28$|^29$|^30$|^34$|^35$|^38$|^40$|^41$|^42$|^43$|^44$|^45$|^46$|^47$|^48$|^49$|^55$|^56$|^57$|^60$|^63$|^65$|^70$|^72$|^74$|^76$|^77$|^78$|^82$|^85$|^87$|^89$|^90$|^92$|^96$|^97$|^100$|^101$|^102$|^103$|^104$|^110$|^113$|^116$|^117$|^130$|^131$|^132$|^133$|^134$|^135$|^137$|^142$|^145$|^146$|^147$|^148$|^149$|^150$|^152$|^153$|^154$|^155$|^156$|^157$|^158$|^159$|^160$|^161$|^162$|^163$|^164$|^165$|^166$|^167$|^168$|^169$|^170$|^171$|^172$|^173$|^174$|^175$|^176$|^177$|^178$|^179$|^186$|^189$|^191$|^193$|^196$|^197$|^198$|^204$|^205$|^206$|^207$|^208$|^214$|^215$|^216$|^221$|^222$|^237$|^238$|^243$|^244$|^248$|^249$|^250$|^253$|^255$|^260$|^261$|^262$|^263$|^269$|^271$|^272$|^280$|^281$|^284$|^297$|^298$|^301$|^303$|^306$|^307$|^309$|^314$|^315$|^320$|^333$|^336$|^338$|^339$|^342$|^345$|^347$|^349$|^350$|^352$|^353$|^360$|^362$|^363$|^365$|^366$|^369$|^371$|^373$|^375$|^377$|^379$|^381$|^386$|^399$|^403$|^404$|^408$|^409$|^413$|^440$|^442$|^444$</id>
+		<description>CyberArk Alert event - $(cef.description)</description>
+	</rule>
+	<rule id="106505" level="12">
+		<if_sid>106501</if_sid>
+		<match>!app=ssh</match>
+		<field name="cef.extensions.reason">^addinprocess.exe|^addinprocess32.exe|^addinutil.exe|^bash.exe|^bginfo.exe|^cdb.exe|^csi.exe|^dbghost.exe|^dbgsvc.exe|^dnx.exe|^fsi.exe|^fsiAnyCpu.exe|^kd.exe|^ntkd.exe|^lxssmanager.dll|^msbuild.exe|^mshta.exe|^ntsd.exe|^rcsi.exe|^system.management.automation.dll|^windbg.exe|^wmic.exe|\Waddinprocess|\Waddinprocess32|\Waddinutil|\Wbash|\Wbginfo|\Wcdb|\Wcsi|\Wdbghost|\Wdbgsvc|\Wdnx|\Wfsi|\WfsiAnyCpu|\Wntkd|\Wlxssmanager.dll|\Wmsbuild|\Wmshta|\Wntsd.exe|\Wrcsi|\Wsystem.management.automation.dll|\Wwindbg|\Wwmic</field>
+		<description>CyberArk Suspicious Windows command - $(cef.extensions.reason)</description>
+		<!-- DEV-5163 change "\Wntsd" to "\Wntsd.exe" -->
+	</rule>
+	<rule id="106506" level="12">
+		<if_sid>106501</if_sid>
+		<field name="cef.extensions.reason">powershell</field>
+		<field name="cef.extensions.reason">downloadfile|downloadstring|wget|-enc|-noni|\siex|-c |Start-Process|ShellExecute|Invoke-WebRequest|BitsTransfer|Net.Sockets|TCPClient</field>
+		<description>CyberArk Powershell command - $(cef.extensions.reason)</description>
+	</rule>
+	<rule id="106507" level="12">
+		<if_sid>106501</if_sid>
+		<field name="cef.extensions.reason">wget</field>
+		<description>CyberArk wget command - $(cef.extensions.reason)</description>
+	</rule>
+	<!--Whitelist CyberArk Config Issues-->
+	<rule id="106508" level="0">
+		<if_sid>106501,106504</if_sid>
+		<field name="cef.extensions.msg">Error in changepass to user|Change password process on remote machine</field>
+		<description>Whitelist CyberArk Changepass Issues</description>
+	</rule>
+	<rule id="106509" level="0">
+		<if_sid>106501</if_sid>
+		<match>The Master was disabled|code: 8042</match>
+		<description>Whitelist CyberArk Master Issues</description>
+	</rule>
+	<rule id="106510" level="0">
+		<if_sid>106504</if_sid>
+		<match>wsupoper|wsupadm|docoper|docadm</match>
+		<description>Whitelist CyberArk Account Issues</description>
+	</rule>
+	<rule id="106511" level="0">
+		<if_sid>106504</if_sid>
+		<field name="cef.description">Failure: Find Files</field>
+		<description>Whitelist CyberArk Alert event - Failure: Find Files</description>
+		<!-- DEV-4175 -->
+	</rule>
+
+	<!-- Move to ElastAlert -->
+	<rule id="106512" level="3">
+		<if_sid>106504</if_sid>
+		<action>CPM Change Password Failed</action>
+		<description>CyberArk Alert event - Failure:[CPM] Password Failed (Move to ElastAlert)</description>
+	</rule>
+	<rule id="106513" level="3">
+		<if_sid>106504</if_sid>
+		<action>CPM Verify Password Failed</action>
+		<description>CyberArk Alert event - Failure:[CPM] Password Failed (Move to ElastAlert)</description>
+	</rule>	
+	<rule id="106514" level="3">
+		<if_sid>106504</if_sid>
+		<action>CPM Disable Password</action>
+		<description>CyberArk Alert event - Failure:[CPM] Password Failed (Move to ElastAlert)</description>
+	</rule>	
+	<rule id="106515" level="3">
+		<if_sid>106504</if_sid>
+		<action>Keystroke logging</action>
+		<description>CyberArk Alert event - Failure:[CPM] Password Failed (Move to ElastAlert)</description>
+	</rule>	
+	<rule id="106516" level="3">
+		<if_sid>106504</if_sid>
+		<action>Undefined User Logon</action>
+		<description>CyberArk Alert event - Failure:[CPM] Password Failed (Move to ElastAlert)</description>
+	</rule>	
+	<rule id="106517" level="3">
+		<if_sid>106504</if_sid>
+		<action>CPM Reconcile Password Failed</action>
+		<description>CyberArk Alert event - Failure:[CPM] Password Failed (Move to ElastAlert)</description>
+	</rule>		
+	<rule id="106518" level="3">
+		<if_sid>106504</if_sid>
+		<action>Disconnect Failed</action>
+		<description>CyberArk Alert event - Failure:[CPM] Password Failed (Move to ElastAlert)</description>
+	</rule>			
+	<rule id="106519" level="3">
+		<if_sid>106504</if_sid>
+		<action>Connect Failed</action>
+		<description>CyberArk Alert event - Failure:[CPM] Password Failed (Move to ElastAlert)</description>
+	</rule>					
+	<rule id="106520" level="3">
+		<if_sid>106504</if_sid>
+		<action>PSM Disconnect Failed</action>
+		<description>CyberArk Alert event - Failure:[PSM] Failed (Move to ElastAlert)</description>
+	</rule>		
+
+	<rule id="106521" level="0">
+		<if_sid>106504</if_sid>
+		<id>^18$</id>
+		<description>CyberArk Alert event - Failure:[Non] impersonation (Move to ElastAlert)</description>
+		<!-- DEV-4127 -->
+	</rule>
+	<rule id="106522" level="0">
+		<if_sid>106504</if_sid>
+		<id>^301$</id>
+		<description>CyberArk Alert event - Failure:[PSM] Failed</description>
+		<!-- DEV-4127 -->
+	</rule>			
+
+</group>

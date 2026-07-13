@@ -1,0 +1,288 @@
+<!-- DEV-5280 - DEV-5289 -->
+<group name="pwc_caas,OS,windows,all_client,windows_eventchannel,">
+    <!-- REF: https://github.com/SigmaHQ/sigma/tree/master/rules/windows/process_creation -->
+	<!-- sysmon event 1 - Detect dll run by Rundll32 -->
+	<rule id="107200" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">Rundll32.exe\.+.dll</field>
+		<description>Detect dll run by Rundll32 - $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107200,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect dll run by Rundll32 -->
+	<rule id="107201" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">Rundll32.exe\.+.dll</field>
+		<description>Detect dll run by Rundll32 - $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- legitimate progcess
+																																																																																																																																													  - SHCreateLocalServerRunDll
+																																																																																																																																													  - AppXDeploymentExtensions.OneCore.dll(Windows Store)
+																																																																																																																																													  - C:\\\\Windows\\\\System32\\\\LogiLDA.dll,LogiFetch(logitech driver)
+																																																																																																																																													-->
+	<rule id="107202" level="0">
+		<if_sid>107200,107201</if_sid>
+		<field name="win.eventdata.commandLine">Rundll32.exe\.+.dll,SHCreateLocalServerRunDll|AppXDeploymentExtensions.OneCore.dll|AppxDeploymentClient.dll|AppxDeploymentServer.dll|C:\\\\Windows\\\\System32\\\\LogiLDA.dll,LogiFetch|davclnt.dll,DavSetCookie FPC-CSA-Flex|davclnt.dll,DavSetCookie 2842firstpacific4388.sharepoint.com|davclnt.dll,DavSetCookie MPIC-FS|davclnt.dll,DavSetCookie 192.8.7.7|davclnt.dll,DavSetCookie zfs01-mau|davclnt.dll,DavSetCookie fs-2k8std|davclnt.dll,DavSetCookie c016-12022|davclnt.dll,DavSetCookie C016-13236|davclnt.dll,DavSetCookie \.*google.com|davclnt.dll,DavSetCookie \.*etnet.com|davclnt.dll,DavSetCookie \.*googlesyndication.com|davclnt.dll,DavSetCookie \.*googleadservices.com|davclnt.dll,DavSetCookie \.*skimresources.com|davclnt.dll,DavSetCookie \.*google-analytics.com</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+
+	<!-- legitimate - default schedule task -->
+	<rule id="107204" level="0">
+		<if_sid>107200</if_sid>
+		<field name="win.eventdata.parentCommandLine">C:\\\\WINDOWS\\\\system32\\\\svchost.exe -k netsvcs</field>
+		<field name="win.eventdata.commandLine">Startupscan.dll,SusRunTask|Windows.Storage.ApplicationData.dll,CleanupTemporaryState|/d acproxy.dll,PerformAutochkOperations|C:\\\\Windows\\\\system32\\\\pla.dll,PlaHost|bfe.dll,BfeOnServiceStartTypeChange|C:\\\\WINDOWS\\\\system32\\\\Windows.StateRepositoryClient.dll,StateRepositoryDoMaintenanceTasks|sysmain.dll,PfSvWsSwapAssessmentTask|dfdts.dll,DfdGetDefaultPolicyAndSMART|PcaSvc.dll,PcaPatchSdbTask</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="107205" level="0">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">Startupscan.dll,SusRunTask|Windows.Storage.ApplicationData.dll,CleanupTemporaryState|/d acproxy.dll,PerformAutochkOperations|C:\\\\Windows\\\\system32\\\\pla.dll,PlaHost|bfe.dll,BfeOnServiceStartTypeChange|C:\\\\WINDOWS\\\\system32\\\\Windows.StateRepositoryClient.dll,StateRepositoryDoMaintenanceTasks|sysmain.dll,PfSvWsSwapAssessmentTask|dfdts.dll,DfdGetDefaultPolicyAndSMART|PcaSvc.dll,PcaPatchSdbTask</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Windows control panel -->
+	<rule id="107206" level="0">
+		<if_sid>107200</if_sid>
+		<field name="win.eventdata.parentCommandLine">C:\\\\Windows\\\\System32\\\\control.exe\.+appwiz.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+bthprops.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+desk.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+FlashPlayerCPLApp.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+hdwwiz.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+inetcpl.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+intl.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+irprops.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+joy.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+main.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+mmsys.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+ncpa.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+powercfg.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+sysdm.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+telephon.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+timedate.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+wscui.cpl</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+
+	<rule id="107207" level="0">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Windows\\\\System32\\\\control.exe\.+appwiz.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+bthprops.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+desk.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+FlashPlayerCPLApp.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+hdwwiz.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+inetcpl.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+intl.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+irprops.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+joy.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+main.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+mmsys.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+ncpa.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+powercfg.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+sysdm.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+telephon.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+timedate.cpl|C:\\\\Windows\\\\System32\\\\control.exe\.+wscui.cpl</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate PCA process -->
+	<rule id="107208" level="0">
+		<if_sid>107200</if_sid>
+		<field name="win.eventdata.parentCommandLine">C:\\\\Windows\\\\system32\\\\svchost.exe -k LocalSystemNetworkRestricted -p -s PcaSvc</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="107209" level="0">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Windows\\\\system32\\\\svchost.exe -k LocalSystemNetworkRestricted -p -s PcaSvc</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Adobe Reader process, printui -->
+	<rule id="107210" level="0">
+		<if_sid>107200,107201</if_sid>
+		<field name="win.eventdata.commandLine">Adobe\\\\Acrobat Reader DC\\\\Esl\\\\AiodLite.dll|printui</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate windows app store update process -->
+	<rule id="107212" level="0">
+		<if_sid>107200</if_sid>
+		<field name="win.eventdata.parentCommandLine">C:\\\\Windows\\\\system32\\\\svchost.exe -k wsappx -p -s AppXSvc</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate NVIDIA Container -->
+	<rule id="107213" level="0">
+		<if_sid>107200</if_sid>
+		<field name="win.eventdata.parentImage">C:\\\\Program Files\\\\NVIDIA Corporation</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Windows update related -->
+	<rule id="107214" level="0">
+		<if_sid>107200,107201</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\$WINDOWS.~BT\\\\Sources\\\\GeneralTel.dll</field>
+		<field name="win.eventdata.parentCommandLine">SetupHost.Exe</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate ymantec Endpoint Protection -->
+	<rule id="107216" level="0">
+		<if_sid>107200,107201</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\ProgramData\\\\Symantec\\\\Symantec Endpoint Protection</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Windows Application Experience CEIP-->
+	<rule id="107218" level="0">
+		<if_sid>107200,107201</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Windows\\\\system32\\\\rundll32.exe aepdu.dll,AePduRunUpdate</field>
+		<field name="win.eventdata.parentCommandLine">C:\\\\Windows\\\\system32\\\\services.exe</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="107220" level="0">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">davclnt.dll,DavSetCookie</field>
+		<description>Detect dll run by Rundll32 - $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5037 -->
+	</rule>
+	<rule id="107221" level="12">
+		<if_sid>107220</if_sid>
+		<field name="win.eventdata.commandLine">davclnt.dll,DavSetCookie \d+.\d+.\d+.\d+ http://\d+.\d+.\d+.\d+</field>
+		<description>Detect dll run by Rundll32 - $(win.eventdata.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5037 -->
+		<!-- DEV-5156 -->
+	</rule>	
+	<rule id="107222" level="0">
+		<if_sid>107221</if_sid>
+		<field name="win.eventdata.commandLine">davclnt.dll,DavSetCookie 10.\d+.\d+.\d+ http://10.\d+.\d+.\d+|davclnt.dll,DavSetCookie 172.16.\d+.\d+ http://172.16.\d+.\d+|davclnt.dll,DavSetCookie 192.168.\d+.\d+ http://192.168.\d+.\d+|davclnt.dll,DavSetCookie 169.254.\d+ http://169.254.\d+.\d+|davclnt.dll,DavSetCookie 127.\d+.\d+.\d+ http://127.\d+.\d+.\d+</field>
+		<description>[Whitelist] Detect DLL run by Rundll32 - Private IP</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5037 -->
+	</rule>
+
+	<!-- Newly Develop Rundll32 Rules -->
+	<rule id="107560" level="12">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">StartNodeRelay| StartW|,StartW|advpack.dll|#12|InstallScreenSaver|keymgr|KRShowKeyMgr|comsvcs|#24|MiniDump|RunDll_ShellExecuteW|RegisterOCX|LaunchINFSection|zipfldr.dll|RouteTheCall|ieframe.dll|OpenURL|shdocvw.dll|syssetup.dll|SetupInfObjectInstallAction|InstallHinfSection|pcwutl.dll|LaunchApplication|dfshim.dll|ShOpenVerbApplication|ShOpenVerbShortcut</field>
+		<description>Rundll32 Alerts - Suspicious function call detected</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5280 -->
+	</rule>
+	<rule id="107561" level="0">
+		<if_sid>107560</if_sid>
+		<field name="win.eventdata.commandLine">keymgr|KRShowKeyMgr</field>
+		<field name="win.eventdata.parentProcessName">C:\\\\Windows\\\\System32\\\\control.exe</field>
+		<description>[Whitelist] Rundll32 Alerts - Suspicious function call detected</description>
+		<!-- DEV-5280 -->
+	</rule>
+
+	<rule id="107562" level="3">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">ShellExec_RunDLL</field>
+		<description>Rundll32 Alerts - Suspicious execution on Shell32 with ShellExec_RunDLL</description>
+		<!-- DEV-5289 -->
+	</rule>
+	<rule id="107563" level="12">
+		<if_sid>107562</if_sid>
+		<field name="win.eventdata.commandLine">regsvr32|msiexec|\\\\Users\\\\Public\\\\|odbcconf|\\\\Desktop\\\\|\\\\Temp\\\\|Invoke-|iex|comspec</field>
+		<description>Rundll32 Alerts - Suspicious execution on Shell32 with ShellExec_RunDLL</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5289 -->
+	</rule>
+
+	<rule id="107564" level="12">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.originalFileName">RUNDLL32.exe</field>
+		<field name="win.eventdata.commandLine">.bmp|.cr2|.eps|.gif|.ico|.jpeg|.jpg|.nef|.orf|.png|.raw|.sr2|.tif|.tiff|.ocx #</field>
+		<description>Rundll32 Alerts - Suspicious extension execution has been detected</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5286 -->
+	</rule>
+
+	<rule id="107565" level="3">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">shell32.dll\.+Control_RunDLL|Control_RunDLL\.+shell32.dll</field>
+		<description>Rundll32 Alerts - Suspicious execution on Shell32 with control_RunDLL</description>
+		<!-- DEV-5288 -->
+	</rule>
+	<rule id="107566" level="12">
+		<if_sid>107565</if_sid>
+		<field name="win.eventdata.commandLine">%AppData%|%LocalAppData%|%Temp%|%tmp%|\\\\AppData\\\\|\\\\Temp\\\\|\\\\Users\\\\Public</field>
+		<description>Rundll32 Alerts - Suspicious execution on Shell32 with control_RunDLL</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5288 -->
+	</rule>
+
+	<rule id="107567" level="12">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">-sta |-localserver </field>
+		<description>Rundll32 Alerts - COM object loading hsa been detected</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5282 -->
+	</rule>
+
+	<rule id="107568" level="12">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.parentProcessName">\\\\explorer.exe$</field>
+		<description>Rundll32 Alerts - Suspicious Explorer.exe has been launched by Rundll32</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5283 -->
+	</rule>
+	<rule id="107569" level="0">
+		<if_sid>107568</if_sid>
+		<field name="win.eventdata.commandLine"> C:\\\\Windows\\\\System32\\\\| -localserver 22d8c27b-47a1-48d1-ad08-7da7abd79617$</field>
+		<description>[Whitelist] Rundll32 Alerts - Suspicious Explorer.exe has been launched by Rundll32</description>
+		<!-- DEV-5283 -->
+	</rule>
+
+	<rule id="107570" level="12">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">:\\\\RECYCLER\\\\|:\\\\SystemVolumeInformation\\\\|C:\\\\Windows\\\\Tasks\\\\|C:\\\\Windows\\\\debug\\\\|C:\\\\Windows\\\\fonts\\\\|C:\\\\Windows\\\\help\\\\|C:\\\\Windows\\\\drivers\\\\|C:\\\\Windows\\\\addins\\\\|C:\\\\Windows\\\\cursors\\\\|C:\\\\Windows\\\\system32\\\\tasks</field>
+		<description>Rundll32 Alerts - Rundll32 execution from suspicious location</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5284 -->
+	</rule>
+
+	<rule id="107571" level="12">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">Execute|RegRead|window.close|javascript|;document.write\(\);GetObject\(\.+script|\\\\..\\\\|mshtml|RunHTMLApplication|mshtml,#135|vbscript</field>
+		<description>Rundll32 Alerts - Potential Script execution has been detected</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5285 -->
+	</rule>
+
+	<rule id="107572" level="3">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">apphelp.dll</field>
+		<description>Rundll32 Alerts - AntiForensics activities has been detecteed - ShimCache removal</description>
+		<!-- DEV-5281 -->
+	</rule>
+	<rule id="107573" level="3">
+		<if_sid>107572</if_sid>
+		<field name="win.eventdata.commandLine">ShimFlushCache</field>
+		<description>Rundll32 Alerts - AntiForensics activities has been detecteed - ShimCache removal</description>
+		<!-- DEV-5281 -->
+	</rule>
+	<rule id="107574" level="12">
+		<if_sid>107573</if_sid>
+		<field name="win.eventdata.commandLine">#250</field>
+		<description>Rundll32 Alerts - AntiForensics activities has been detecteed - ShimCache removal</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5281 -->
+	</rule>
+	<rule id="107575" level="3">
+		<if_sid>107201</if_sid>
+		<field name="win.eventdata.commandLine">kernel32.dll</field>
+		<description>Rundll32 Alerts - AntiForensics activities has been detecteed - ShimCache removal</description>
+		<!-- DEV-5281 -->
+	</rule>
+	<rule id="107576" level="3">
+		<if_sid>107575</if_sid>
+		<field name="win.eventdata.commandLine">BaseFlushAppcompatCache</field>
+		<description>Rundll32 Alerts - AntiForensics activities has been detecteed - ShimCache removal</description>
+		<!-- DEV-5281 -->
+	</rule>
+	<rule id="107577" level="12">
+		<if_sid>107576</if_sid>
+		<field name="win.eventdata.commandLine">#46</field>
+		<description>Rundll32 Alerts - AntiForensics activities has been detecteed - ShimCache removal</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5281 -->
+	</rule>
+
+	<rule id="107470" level="0">
+		<if_sid>107571</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Windows\\\\system32\\\\rundll32.exe\.+srrstr.dll,ExecuteScheduledSPPCreation</field>
+		<description>[Whitelist] Rundll32 Alerts - Potential Script execution has been detected</description>
+		<!-- DEV-5460 -->
+	</rule>
+
+	<rule id="107471" level="0">
+		<if_sid>107568</if_sid>
+		<field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Microsoft Office\\\\root\\\\Client\\\\AppVLP.exe</field>
+		<description>[Whitelist] Rundll32 Alerts - Suspicious Explorer.exe has been launched by Rundll32</description>
+		<!-- DEV-5518 -->
+	</rule>
+
+	<rule id="107472" level="0">
+		<if_sid>107568</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Windows\\\\System32\\\\rundll32.exe\.+dsquery.dll,OpenQueryWindow|C:\\\\Windows\\\\system32\\\\rundll32.exe\.+ndfapi.dll,NdfRunDllDiagnoseWithAnswerFile NetworkDiagnosticsSharing|C:\\\\Windows\\\\System32\\\\rundll32.exe\.+qlco10\d+.dll,QLSaveSystemInfo|C:\\\\Windows\\\\System32\\\\rundll32.exe\.+shwebsvc.dll,AddNetPlaceRunDll|C:\\\\Windows\\\\System32\\\\rundll32.exe\.+user32.dll,LockWorkStation|Control_RunDLL</field>
+		<description>[Whitelist] Rundll32 Alerts - Suspicious Explorer.exe has been launched by Rundll32</description>
+	</rule>
+	<rule id="107473" level="0">
+		<if_sid>107568</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Windows\\\\System32\\\\rundll32.exe\.+C:\\\\Windows\\\\System32\\\\iesetup.dll\.+,IEHardenUser|C:\\\\Windows\\\\System32\\\\rundll32.exe\.+C:\\\\Windows\\\\System32\\\\iesetup.dll\.+,IEHardenAdmin|C:\\\\Windows\\\\System32\\\\rundll32.exe\.+cryptext.dll,CryptExtOpenCER|C:\\\\Windows\\\\System32\\\\rundll32.exe\.+cryptext.dll,CryptExtOpenCAT|C:\\\\Windows\\\\System32\\\\rundll32.exe\.+cryptext.dll,CryptExtAddPFX|C:\\\\Windows\\\\System32\\\\rundll32.exe\.+cryptext.dll,CryptExtAddCER</field>
+		<description>[Whitelist] Rundll32 Alerts - Suspicious Explorer.exe has been launched by Rundll32</description>
+	</rule>
+	<!-- DEV-5521 - DEV-5528 -->
+
+	<rule id="107474" level="0">
+		<if_sid>107568</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files\\\\Windows Photo Viewer\\\\PhotoViewer.dll\.+ImageView_Fullscreen</field>
+		<description>[Whitelist] Rundll32 Alerts - Suspicious Explorer.exe has been launched by Rundll32</description>
+		<!-- DEV-5827 -->
+	</rule>
+</group>

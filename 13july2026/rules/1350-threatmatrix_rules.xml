@@ -1,0 +1,216 @@
+
+<group name="pwc_caas_disabled, threatmatrix,">
+	<rule id="106200" level="0">
+		<decoded_as>threatmatrix</decoded_as>
+		<description>Grouping of ThreatMatrix rules.</description>
+	</rule>
+	<rule id="106201" level="3">
+		<if_sid>106200</if_sid>
+		<action>login</action>
+		<status>login_success</status>
+		<description>ThreatMatrix Login Success Event</description>
+		<group>authentication_success,pci_dss_10.2.5,gpg13_7.1,gpg13_7.2,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,</group>
+	</rule>
+	<rule id="106202" level="3">
+		<if_sid>106200</if_sid>
+		<action>payment</action>
+		<description>ThreatMatrix Transaction Event</description>
+	</rule>
+	<rule id="106203" level="3">
+		<if_sid>106200</if_sid>
+		<action>account_creation</action>
+		<description>ThreatMatrix Account Creation Event</description>
+	</rule>
+	<rule id="106205" level="5">
+		<if_sid>106201</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+		<description>ThreatMatrix Login success FROM Malware IP(s)</description>
+		<group>threatmatrix_login_success_from_bad_ip,attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule id="106207" level="5">
+		<if_sid>106202</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+		<description>ThreatMatrix Transaction FROM Malware IP(s)</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="4" id="106209" level="7" timeframe="3600">
+		<if_matched_group>threatmatrix_login_success_from_bad_ip</if_matched_group>
+		<not_same_source_ip/>
+		<same_field>device_id</same_field>
+		<description>ThreatMatrix Login Success with same device and more than 3 suspicious IPs within 1 hours</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="6" id="106210" level="12" timeframe="3600">
+		<if_matched_group>threatmatrix_login_success_from_bad_ip</if_matched_group>
+		<not_same_source_ip/>
+		<same_field>device_id</same_field>
+		<description>ThreatMatrix Login Success with same device and more than 5 suspicious IPs within 1 hours</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule id="106211" level="12">
+		<if_sid>106201</if_sid>
+		<field name="jb_root">\.+</field>
+		<description>ThreatMatrix Login Success with a Jailbreak or root device</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,</group>
+	</rule>
+	<rule id="106212" level="0">
+		<if_sid>106201</if_sid>
+		<field name="jb_root">0</field>
+		<description>ThreatMatrix Login Success with a Jailbreak or root device - exclude 0</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,</group>
+	</rule>
+	<rule frequency="2" id="106213" level="5" timeframe="3600">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>session_id</same_field>
+		<not_same_field>device_id</not_same_field>
+		<description>ThreatMatrix Login Success with same session id and more than 1 different device within 1 hours</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="4" id="106214" level="5" timeframe="3600">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>session_id</same_field>
+		<not_same_field>device_id</not_same_field>
+		<description>ThreatMatrix Login Success with same session id and more than 3 different device within 1 hours</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="2" id="106215" level="7" timeframe="300">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>session_id</same_field>
+		<not_same_source_ip/>
+		<description>ThreatMatrix Login Success with same session id and more than 1 different source IP within 5 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="4" id="106216" level="12" timeframe="300">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>session_id</same_field>
+		<not_same_source_ip/>
+		<description>ThreatMatrix Login Success with same session id and more than 3 different source IP within 5 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="4" id="106217" level="7" timeframe="300">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>session_id</same_field>
+		<not_same_field>userAgent</not_same_field>
+		<description>ThreatMatrix Login Success with same session id and more than 3 different user agent within 5 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="6" id="106218" level="12" timeframe="300">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>session_id</same_field>
+		<not_same_field>userAgent</not_same_field>
+		<description>ThreatMatrix Login Success with same session id and more than 5 different user agent within 5 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="4" id="106219" level="4" timeframe="600">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>device_id</same_field>
+		<not_same_field>session_id</not_same_field>
+		<description>ThreatMatrix Login Success with same device id and more than 3 different session id within 10 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="6" id="106220" level="7" timeframe="600">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>device_id</same_field>
+		<not_same_field>session_id</not_same_field>
+		<description>ThreatMatrix Login Success with same device id and more than 5 different session id within 10 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="11" id="106221" level="12" timeframe="600">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>device_id</same_field>
+		<not_same_field>session_id</not_same_field>
+		<description>ThreatMatrix Login Success with same device id and more than 10 different session id within 10 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="6" id="106222" level="7" timeframe="300">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>account_login</same_field>
+		<not_same_field>device_id</not_same_field>
+		<description>ThreatMatrix Login Success with same account id and more than 3 different device id within 5 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="11" id="106223" level="12" timeframe="300">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>account_login</same_field>
+		<not_same_field>device_id</not_same_field>
+		<description>ThreatMatrix Login Success with same account id and more than 5 different device id within 5 minutes</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="3" id="106224" level="7" timeframe="3600">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>account_login</same_field>
+		<not_same_field>true_ip_geo</not_same_field>
+		<description>ThreatMatrix Login Success with same account id and more than 2 different geolocation ip within 1 hour</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule frequency="5" id="106225" level="12" timeframe="3600">
+		<if_matched_sid>106201</if_matched_sid>
+		<same_field>account_login</same_field>
+		<not_same_field>true_ip_geo</not_same_field>
+		<description>ThreatMatrix Login Success with same account id and more than 4 different geolocation ip within 1 hour</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<!-- For Report/ Alert purpose, the rule level will be lowered to 5-->
+	<rule id="106226" level="5">
+		<if_sid>106203</if_sid>
+		<field name="true_ip_geo">\.+</field>
+		<match>!""true_ip_geo"":""HK""</match>
+		<description>ThreatMatrix Account Creation outside from Hong Kong</description>
+		<group>attack_stage_Persistence,attack_category_Suspicious_Account_Creation,</group>
+	</rule>
+	<rule id="106227" level="5">
+		<if_sid>106203</if_sid>
+		<field name="jb_root">\.+</field>
+		<description>ThreatMatrix Account Creation with a Jailbreak or root device</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,</group>
+	</rule>
+	<rule id="106228" level="0">
+		<if_sid>106203</if_sid>
+		<field name="jb_root">0</field>
+		<description>ThreatMatrix Account Creation with a Jailbreak or root device - exclude 0</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,</group>
+	</rule>
+	<rule id="106229" level="5">
+		<if_sid>106200</if_sid>
+		<match>Sanctioned List</match>
+		<description>ThreatMatrix Contains reason code Sanctioned List</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,group_by_rule.id,realert_20h,org_empty</group>
+	</rule>
+	<rule id="106230" level="5">
+		<if_sid>106203</if_sid>
+		<match>Possible VPN - Very High</match>
+		<description>ThreatMatrix Account Creation contains reason code Possible VPN - Very High</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,group_by_rule.id,realert_20h,org_empty</group>
+	</rule>
+	<rule id="106231" level="5">
+		<if_sid>106200</if_sid>
+		<match>Global Blacklist</match>
+		<description>ThreatMatrix Contains reason code Global Blacklist</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,group_by_rule.id,realert_20h,org_empty</group>
+	</rule>
+
+	<rule id="106232" level="12">
+		<if_sid>106202</if_sid>
+		<field name="jb_root">\.+</field>
+		<description>ThreatMatrix Payment Success with a Jailbreak or root device</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,</group>
+	</rule>
+	<rule id="106233" level="0">
+		<if_sid>106202</if_sid>
+		<field name="jb_root">0</field>
+		<description>ThreatMatrix Payment Success with a Jailbreak or root device - exclude 0</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,</group>
+	</rule>	
+
+	<rule id="106234" level="12">
+		<if_sid>106203</if_sid>
+		<description>Suspicious Geolocation Onboarding - $(threatmatrix.input_ip_geo)</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,</group>
+	</rule>	
+	<rule id="106235" level="0">
+		<if_sid>106234</if_sid>
+		<field name="threatmatrix.input_ip_geo">HK</field>
+		<description>Suspicious Geolocation Onboarding - exclude HK</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised Device,</group>
+	</rule>	
+</group>

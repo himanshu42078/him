@@ -1,0 +1,43 @@
+
+<!--
+	Carbonblack rules
+	130xxx~130999
+-->
+<!-- 20230426, Cheng Du Team would handle all CB alerts -->
+<group name="pwc_caas,carbonblack,group_by_data.cb.dhost,auto_escalate_disabled,">
+	<rule id="130000" level="0">
+		<decoded_as>CarbonBlack</decoded_as>
+		<description>Group of CarbonBlack (LEEF Format)</description>
+	</rule>
+	<rule id="130001" level="12">
+		<if_sid>130000</if_sid>
+		<field name="cb.report_score">100</field>
+		<field name="cb.type">feed.ingress.hit.binary</field>
+		<description>CarbonBlack $(cb.type) Alert - New Suspicious Binary Detected</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection</group>
+	</rule>
+	<rule id="130002" level="12">
+		<if_sid>130000</if_sid>
+		<field name="cb.report_score">100</field>
+		<field name="cb.report_id">malicioushost</field>
+		<description>CarbonBlack $(cb.type) Alert - Connection attempt to Malicious IP</description>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic</group>
+	</rule>
+	<rule id="130003" level="0">
+		<if_sid>130002</if_sid>
+		<list field="dstip" lookup="not_address_match_key">etc/lists/malware-ip</list>
+		<description>Malicious IP Verification</description>
+	</rule>
+	<!--Malicious Hash Detected-->
+	<rule id="130004" level="12">
+		<if_sid>130000</if_sid>
+		<field name="cb.report_score">100</field>
+		<field name="cb.type">watchlist.hit.feedsearch.binary|watchlist.hit.ingress.process</field>
+		<description>CarbonBlack Alert - Critical IOC Detected</description>
+	</rule>
+	<rule id="130005" level="12">
+		<if_sid>130000</if_sid>
+		<field name="cb.watchlist_name">Newly Executed Applications</field>
+		<description>Newly Executed Applications</description>
+	</rule>
+</group>

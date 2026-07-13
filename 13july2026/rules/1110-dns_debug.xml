@@ -1,0 +1,54 @@
+
+<!-- 111000- 1110xx DNS Debug log-->
+<group name="pwc_caas, network,">
+	<rule id="111000" level="1">
+		<if_sid>1002</if_sid>
+		<decoded_as>dns-debug</decoded_as>
+		<description>DNS Debug Logs</description>
+	</rule>
+	<rule id="111001" level="1">
+		<decoded_as>dns-debug</decoded_as>
+		<description>DNS Debug Logs</description>
+	</rule>
+	<rule id="111002" level="5">
+		<if_sid>111000,111001</if_sid>
+		<field name="dns.direction">Rcv</field>
+		<field name="dns.domain">\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.</field>
+		<description>Suspicious Long DNS Query</description>
+		<group>attack_stage_Command_and_Control,attack_category_Beaconing,</group>
+	</rule>
+	<rule id="111003" level="3">
+		<if_sid>111002</if_sid>
+		<field name="dns.domain">sophosxl\(3\)net|riverbed\(3\)com|e5\(2\)sk|mcafee\(3\)com|oraclecloud\(3\)com|lftrinity\(3\)com|amazonaws\(3\)com|dashnxdomain\(3\)net</field>
+		<description>Exclusion of Suspicious Long DNS Query</description>
+	</rule>
+	<rule id="111004" level="8">
+	    <if_sid>135000</if_sid>
+	    <field name="logsource">lf-infra-opendns-log</field>
+	    <field name="url_domain">\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.\.</field>
+	    <description>Abnormally Long DNS Query (OpenDNS)</description>
+	</rule>
+
+	<rule id="111005" level="5">
+	    <if_sid>111000,111001</if_sid>
+	    <field name="dns.direction">Rcv</field>
+	    <field name="dns.request">Q</field>
+        <field name="dns.domain_extract">\.+</field>
+	    <description>Group of RCV Q DNS requests</description>
+	</rule>
+
+    <rule id="111006" level="0">
+	    <if_sid>111005</if_sid>
+	    <field name="dns.response">R</field>
+	    <description>Exclusion of DNS response wazuh logs</description>
+	</rule>
+
+    <!--<rule id="111007" level="12" frequency="30" timeframe="300">
+        <group>demo_rules,</group>
+	    <if_matched_sid>111005</if_matched_sid>
+        <same_location/>
+	    <same_field>dns.domain_extract</same_field>
+        <same_srcip/>
+	    <description>Multiple requests made against the same secondary-TLD in a short period of time</description>
+	</rule> -->
+</group>

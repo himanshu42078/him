@@ -1,0 +1,8 @@
+
+<!-- Modify it at your will. -->
+<group name="network,pwc_caas,all_client,netgear,">
+	<rule id="143000" level="3">
+		<decoded_as>Netgear</decoded_as>
+		<description>Group of Netgear events</description>
+	</rule>
+</group>

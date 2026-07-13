@@ -1,0 +1,2377 @@
+
+<!-- Modify it at your will.
+LoL draft by Markus.
+The rule ID Range will be109000-109000.
+Cover all LoL attacks.
+By checking sysmon_event1 & Windows event ID 4688.
+For EventChannel received logs.
+-->
+<!-- sysmon event 1 - Detect suspicious long command -->
+<!--
+<rule id="xxx" level="12">
+	<if_group>sysmon_event1</if_group>
+	<field name="win.eventdata.commandLine">xxx</field>
+	<description>Detect suspicious XXX </description>
+	<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+</rule>
+Windows event 4688 - Detect suspicious long command
+<rule id="yyy" level="12">
+	<if_sid>60103</if_sid>
+	<field name="win.system.eventID">^4688$</field>
+	<field name="win.eventdata.commandLine">yyy</field>
+	<description>Detect suspicious YYY</description>
+	<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+</rule>
+-->
+<group name="pwc_caas,LoL_Rule_EventChannel,">
+	<!--
+																																																																													Scheduled Tasks at.exe | schtasks
+																																																																													"\Wat" it may generate a lot of false positives?
+																																																																													-->
+	<rule id="109000" level="0">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^at\W|\Wat$|^at$|\Wat\W|^schtasks\W|\Wschtasks$|^schtasks$|\Wschtasks\W</field>
+		<field name="win.eventdata.image">^at\W|\Wat$|^at$|\Wat\W|^schtasks\W|\Wschtasks$|^schtasks$|\Wschtasks\W</field>
+		<description>Detect Suspicious LoL commands - New Scheduled Tasks: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109001" level="0">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^at\W|\Wat$|^at$|\Wat\W|^schtasks\W|\Wschtasks$|^schtasks$|\Wschtasks\W</field>
+		<field name="win.eventdata.newProcessName">^at\W|\Wat$|^at$|\Wat\W|^schtasks\W|\Wschtasks$|^schtasks$|\Wschtasks\W</field>
+		<description>Detect Suspicious LoL commands - New Scheduled Tasks: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109810" level="0">
+		<if_sid>109000</if_sid>
+		<field name="win.eventdata.commandLine">schtasks.exe\.*"Microsoft\\\\Office\\\\Office</field>
+		<description>Legit New Scheduled tasks</description>
+	</rule>
+	<rule id="109811" level="0">
+		<if_sid>109001</if_sid>
+		<field name="win.eventdata.commandLine">schtasks.exe\.*"Microsoft\\\\Office\\\\Office</field>
+		<description>Legit New Scheduled tasks</description>
+	</rule>
+	<rule id="109824" level="0">
+		<if_sid>109000</if_sid>
+		<field name="win.eventdata.parentImage">Lenovo\\\\ImController\\\\Service\\\\Lenovo.Modern.ImController</field>
+		<description>Legit Parent Command Line New Scheduled Tasks</description>
+	</rule>
+	<rule id="109825" level="0">
+		<if_sid>109001</if_sid>
+		<field name="win.eventdata.parentProcessName">Lenovo\\\\ImController\\\\Service\\\\Lenovo.Modern.ImController</field>
+		<description>Legit Parent Command Line New Scheduled Tasks</description>
+	</rule>
+	<rule id="109830" level="0">
+		<if_sid>109000</if_sid>
+		<field name="win.eventdata.commandLine">schtasks.exe\.*/delete</field>
+		<description>Deletion of Scheduled Tasks</description>
+	</rule>
+	<rule id="109831" level="0">
+		<if_sid>109001</if_sid>
+		<field name="win.eventdata.commandLine">schtasks.exe\.*/delete</field>
+		<description>Deletion of Scheduled Tasks</description>
+	</rule>
+	<rule id="109832" level="0">
+		<if_sid>109000</if_sid>
+		<field name="win.eventdata.parentImage">wsqmcons.exe</field>
+		<field name="win.eventdata.commandLine">/delete /f /TN</field>
+		<field name="win.eventdata.commandLine">Microsoft\\Windows\\Customer Experience Improvement Program\\Uploader</field>
+		<description>Legit disabling Windows Customer Experience Improvement Program</description>
+	</rule>
+	<rule id="109833" level="0">
+		<if_sid>109001</if_sid>
+		<field name="win.eventdata.parentProcessName">wsqmcons.exe</field>
+		<field name="win.eventdata.commandLine">/delete /f /TN</field>
+		<field name="win.eventdata.commandLine">Microsoft\\Windows\\Customer Experience Improvement Program\\Uploader</field>
+		<description>Legit disabling Windows Customer Experience Improvement Program</description>
+	</rule>
+	<!--
+																																																																								ATbroker.exe
+																																																																								-->
+	<rule id="109002" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^atbroker\W|\Watbroker$|^atbroker$|\Watbroker\W</field>
+		<field name="win.eventdata.commandLine">/start</field>
+		<description>Detect Suspicious LoL commands - Start a registered AT: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109003" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^atbroker\W|\Watbroker$|^atbroker$|\Watbroker\W</field>
+		<field name="win.eventdata.commandLine">/start</field>
+		<description>Detect Suspicious LoL commands - Start a registered AT: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109859" level="0">
+		<if_sid>109003</if_sid>
+		<field name="win.eventdata.commandLine">magnifierpane|osk|narrator</field>
+		<description>Normal AT start tasks</description>
+	</rule>
+	<!--
+																																																																								bash.exe -c
+																																																																								Detection:
+																																																																								Child process from bash.exe
+																																																																								Covered in 107071/107072
+																																																																								-->
+	<rule id="109004" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^bash\.+-c\W|\Wbash\.+-c$|^bash\.+-c$|\Wbash\.+-c\W</field>
+		<description>Detect Suspicious LoL commands - Bash command execution: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109005" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^bash\W|\Wbash$|^bash$|\Wbash\W</field>
+		<field name="win.eventdata.commandLine">-c</field>
+		<description>Detect Suspicious LoL commands - Bash command execution: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													bitsadmin
+																																																																													Detection:
+																																																																												    Child process from bitsadmin.exe <== check on this?
+																																																																												    bitsadmin creates new files
+																																																																												    bitsadmin adds data to alternate data stream
+																																																																													-->
+	<rule id="109006" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^bitsadmin\W|\Wbitsadmin$|^bitsadmin$|\Wbitsadmin\W</field>
+		<description>Detect Suspicious LoL commands - bitsadmin: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="109007" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^bitsadmin\W|\Wbitsadmin$|^bitsadmin$|\Wbitsadmin\W</field>
+		<description>Detect Suspicious LoL commands - bitsadmin: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<!--
+																																																																													cmd.exe, only check for ADS
+																																																																													-->
+	<rule id="109008" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^cmd\W|\Wcmd$|^cmd$|\Wcmd\W</field>
+		<field name="win.eventdata.commandLine">\w:\w</field>
+		<description>Detect Suspicious LoL commands - Suspected cmd.exe used to perform ADS</description>
+	</rule>
+	<rule id="109009" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^cmd\W|\Wcmd$|^cmd$|\Wcmd\W</field>
+		<field name="win.eventdata.commandLine">\w:\w</field>
+		<description>Detect Suspicious LoL commands - Suspected cmd.exe used to perform ADS</description>
+	</rule>
+	<rule id="109010" level="0">
+		<if_sid>109008</if_sid>
+		<field name="win.eventdata.commandLine">/reg:64|/reg:32</field>
+		<description>Whitelisted condition for unintended capture.</description>
+	</rule>
+	<rule id="109011" level="0">
+		<if_sid>109009</if_sid>
+		<field name="win.eventdata.commandLine">/reg:64|/reg:32</field>
+		<description>Whitelisted condition for unintended capture.</description>
+	</rule>
+	<!--
+																																																																												  cmdkey /list
+																																																																												  Get credential information from host through command cmdkey /list
+																																																																												  -->
+	<rule id="109012" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^cmdkey\W|\Wcmdkey$|^cmdkey$|\Wcmdkey\W</field>
+		<field name="win.eventdata.commandLine">/list</field>
+		<description>Detect Suspicious LoL commands - Get Credential Info through cmdkey /list: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109013" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^cmdkey\W|\Wcmdkey$|^cmdkey$|\Wcmdkey\W</field>
+		<field name="win.eventdata.commandLine">/list</field>
+		<description>Detect Suspicious LoL commands - Get Credential Info through cmdkey /list: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      CMSTP.exe
+																																																																												      Detect any usage for CMSTP.exe.
+																																																																												      Recommended follow-up action:
+																																																																												      cmstp.exe => check the associated .inf file and check if there is any "UnRegisterOCXSection" and execute malicious command.
+																																																																												  -->
+	<rule id="109014" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^cmstp\W|\Wcmstp$|^cmstp$|\Wcmstp\W</field>
+		<description>Detect Suspicious LoL commands - CMSTP.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109015" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^cmstp\W|\Wcmstp$|^cmstp$|\Wcmstp\W</field>
+		<description>Detect Suspicious LoL commands - CMSTP.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      control.exe
+																																																																												      ADS, reused the detection in cmd.exe
+																																																																												      Control.exe should be a frequently used command. Solely matching 'control.exe' in commandline will result level 3 alert only.
+																																																																												  -->
+	<rule id="109016" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^control\W|\Wcontrol$|^control$|\Wcontrol\W</field>
+		<description>Detect Suspicious LoL commands - control.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109017" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^control\W|\Wcontrol$|^control$|\Wcontrol\W</field>
+		<description>Detect Suspicious LoL commands - control.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      csc.exe
+																																																																												      Normally would not use, highly malicious
+																																																																												      Could be grouped into suspicious windows command.
+																																																																												  -->
+	<rule id="109018" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^csc\W|\Wcsc$|^csc$|\Wcsc\W</field>
+		<description>Detect Suspicious LoL commands - Attacker Code Compilation using csc.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109019" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^csc\W|\Wcsc$|^csc$|\Wcsc\W</field>
+		<description>Detect Suspicious LoL commands - Attacker Code Compilation using csc.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      cscript usage
+																																																																												      check for ADS.
+																																																																												  -->
+	<rule id="109020" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^cscript\W|\Wcscript$|^cscript$|\Wcscript\W</field>
+		<description>Detect Suspicious LoL commands - Usage of cscript: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="109021" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^cscript\W|\Wcscript$|^cscript$|\Wcscript\W</field>
+		<description>Detect Suspicious LoL commands - Usage of cscript: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<!--
+																																																																												      rundll32.exe dfshim.dll
+																																																																												      Use of dfsvc.exe to bypass app whitelisting.
+																																																																												  -->
+	<rule id="109022" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">dfshim.dll</field>
+		<description>Detect Suspicious LoL commands - Use of dfsvc.exe to bypass app whitelisting: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109023" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">dfshim.dll</field>
+		<description>Detect Suspicious LoL commands - Use of dfsvc.exe to bypass app whitelisting</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+									<rule id="109023" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">dfshim.dll</field>
+		<description>Detect Suspicious LoL commands - Use of dfsvc.exe to bypass app whitelisting: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+								-->
+	<!--
+																																																																												      diskshadow.exe
+																																																																												      Use of diskshadow.exe to spawn child process.
+																																																																												      Or reading input from file.
+																																																																												  -->
+	<rule id="109024" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.parentImage">^diskshadow\W|\Wdiskshadow$|^diskshadow$|\Wdiskshadow\W</field>
+		<description>Detect Suspicious LoL commands - Suspcious new process spawned by diskshadow "$(win.eventdata.image)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109025" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">diskshadow.exe</field>
+		<description>Detect Suspicious LoL commands - Suspcious new process spawned by diskshadow "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      dnscmd.exe
+																																																																												      match text at the moment. But need to check if it is from DC.
+																																																																												  -->
+	<rule id="109026" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^dnscmd\W|\Wdnscmd$|^dnscmd$|\Wdnscmd\W</field>
+		<field name="win.eventdata.commandLine">serverlevelplugindll</field>
+		<description>Detect Suspicious LoL commands - Usage of dnscmd: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109027" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^dnscmd\W|\Wdnscmd$|^dnscmd$|\Wdnscmd\W</field>
+		<field name="win.eventdata.commandLine">serverlevelplugindll</field>
+		<description>Detect Suspicious LoL commands - Usage of dnscmd: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      esentutl.exe
+																																																																												      Esentutl mostly check the usage of copying function which is using "/y", also can check for possible ADS
+																																																																												  -->
+	<rule id="109028" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^esentutl\W|\Wesentutl$|^esentutl$|\Wesentutl\W</field>
+		<field name="win.eventdata.commandLine">/y</field>
+		<description>Detect Suspicious LoL commands - Copying files using Esentutl: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109029" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^esentutl\W|\Wesentutl$|^esentutl$|\Wesentutl\W</field>
+		<field name="win.eventdata.commandLine">/y</field>
+		<description>Detect Suspicious LoL commands - Copying files using Esentutl: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      eventvwr.exe
+																																																																												      Eventvwr.exe detect value changes to the registry event.
+																																																																														Also check if eventvwr.exe spawning executables other than mmc.exe
+																																																																												  -->
+	<rule id="109030" level="12">
+		<if_group>sysmon_event_12|sysmon_event_13</if_group>
+		<!--
+																																																																																																																																																											sysmon.targetObject need to change, should not be ec <== fixed already. It is Win.eventdata.targetobject
+																																																																																																																																																										-->
+		<field name="win.eventdata.targetObject">Software\\\\Classes\\\\mscfile\\\\shell\\\\open\\\\command|mscfile\\\\shell\\\\open\\\\command</field>
+		<description>"Detected registry modification/creation for possible eventvwr.exe"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109031" level="12">
+		<if_sid>60103</if_sid>
+		<!--
+																																																																																																																																																											4657? need to be enabled first
+																																																																																																																																																										-->
+		<field name="win.system.eventID">^4657$</field>
+		<field name="win.eventdata.objectName">Software\\\\Classes\\\\mscfile\\\\shell\\\\open\\\\command|mscfile\\\\shell\\\\open\\\\command</field>
+		<description>Detected registry modification/creation for possible eventvwr.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109032" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.parentImage">^eventvwr\W|\Weventvwr$|^eventvwr$|\Weventvwr\W</field>
+		<description>Suspicious UAC Bypass with eventvwr.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109033" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">^eventvwr\W|\Weventvwr$|^eventvwr$|\Weventvwr\W</field>
+		<description>Suspicious UAC Bypass with eventvwr.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109034" level="0">
+		<if_sid>109032</if_sid>
+		<field name="win.eventdata.image">^mmc\W|\Wmmc$|^mmc$|\Wmmc\W</field>
+		<description>Legit mmc.exe process run by eventvwr.exe</description>
+	</rule>
+	<rule id="109035" level="0">
+		<if_sid>109033</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">^mmc\W|\Wmmc$|^mmc$|\Wmmc\W</field>
+		<description>Legit mmc.exe process run by eventvwr.exe</description>
+	</rule>
+	<!--
+																																																																												      Expand.exe
+																																																																												      Expand.exe mostly being used to copy files. Currently just check for its usage since it is not very commonly used.
+																																																																												To improve, we can later
+																																																																												          1. Whitelist certain src/dst IPs, directories.
+																																																																												          2. Check for ADS
+																																																																												  -->
+	<rule id="109036" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^expand\W|\Wexpand$|^expand$|\Wexpand\W</field>
+		<description>Detect Suspicious LoL commands - Copying files using Expand.exe "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109037" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^expand\W|\Wexpand$|^expand$|\Wexpand\W</field>
+		<description>Detect Suspicious LoL commands - Copying files using Expand.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109841" level="0">
+		<if_sid>109037</if_sid>
+		<field name="win.eventdata.commandLine">.cab</field>
+		<description>Normal usage of Expand.exe with cabinet files.</description>
+	</rule>
+	<!--
+																																																																												ExtExport.exe
+																																																																												      Being used to load dll and execute from other folders
+																																																																												      Unsure if the normal usage will also append the same folder path in the first argument. If so will further finetune, such as whitelisting
+																																																																												      C:\Program Files\Internet Explorer\Extexport.exe
+																																																																												      C:\Program Files (x86)\Internet Explorer\Extexport.exe
+																																																																												  -->
+	<rule id="109038" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^extexport\W|\Wextexport$|^extexport$|\Wextexport\W</field>
+		<field name="win.eventdata.commandLine">:\\\\|:/</field>
+		<description>Detect Suspicious LoL commands - DLL Execution using extexport: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109039" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^extexport\W|\Wextexport$|^extexport$|\Wextexport\W</field>
+		<field name="win.eventdata.commandLine">:\\\\|:/</field>
+		<description>Detect Suspicious LoL commands - DLL Execution using extexport: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												Extrac32.exe
+																																																																												      Currently only checks for direct match. Review how much FP it generates and may apply whitelist later.
+																																																																												  -->
+	<rule id="109040" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^extract32\W|\Wextract32$|^extract32$|\Wextract32\W</field>
+		<description>Detect Suspicious LoL commands - Extract32: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109041" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^extract32\W|\Wextract32$|^extract32$|\Wextract32\W</field>
+		<description>Detect Suspicious LoL commands - Extract32: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												Findstr.exe
+																																																																												      Detection:
+																																																																												      findstr.exe should normally not be invoked on a client system
+																																																																												  -->
+	<rule id="109042" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^findstr\W|\Wfindstr$|^findstr$|\Wfindstr\W</field>
+		<description>Detect Suspicious LoL commands - findstr.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109043" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^findstr\W|\Wfindstr$|^findstr$|\Wfindstr\W</field>
+		<description>Detect Suspicious LoL commands - findstr.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      Forfiles.exe
+																																																																														Executing a process
+																																																																															forfiles /p C:\path /m filename /c [processname]
+																																																																															Thus, test for "forfiles.*/c"
+																																																																												  -->
+	<rule id="109044" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^forfiles\W|\Wforfiles$|^forfiles$|\Wforfiles\W</field>
+		<field name="win.eventdata.commandLine">/c</field>
+		<description>Detect Suspicious LoL commands - Forfiles.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109045" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^forfiles\W|\Wforfiles$|^forfiles$|\Wforfiles\W</field>
+		<field name="win.eventdata.commandLine">/c</field>
+		<description>Detect Suspicious LoL commands - Forfiles.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												      FTP.exe
+																																																																														Executing a process
+																																																																															ftp -s:ftpcommand.txt|echo !calc.exe > ftpcommands.txt && ftp -s:ftpcommands.txt
+																																																																														Test for ftp + 		
+																																																																												  -->
+	<rule id="109046" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^ftp\W|\Wftp$|^ftp$|\Wftp\W</field>
+		<field name="win.eventdata.commandLine">-s:</field>
+		<description>Detect Suspicious LoL commands - Execute suspicious command via FTP.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109047" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^ftp\W|\Wftp$|^ftp$|\Wftp\W</field>
+		<field name="win.eventdata.commandLine">-s:</field>
+		<description>Detect Suspicious LoL commands - Execute suspicious command via FTP.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- -->
+	<!--
+																																																																												      GfxDownloadWrapper.exe
+																																																																														GfxDownloadWrapper will attempt to download files from URL to a directory
+																																																																									FP:Usually GfxDownloadWrapper downloads a JSON file from https://gameplayapi.intel.com.
+																																																																												  -->
+	<rule id="109048" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^GfxDownloadWrapper\W|\WGfxDownloadWrapper$|^GfxDownloadWrapper$|\WGfxDownloadWrapper\W</field>
+		<description>Detect Suspicious LoL commands - Download file via GfxDownloadWrapper: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109049" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^GfxDownloadWrapper\W|\WGfxDownloadWrapper$|^GfxDownloadWrapper$|\WGfxDownloadWrapper\W</field>
+		<description>Detect Suspicious LoL commands - Download file via GfxDownloadWrapper: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109814" level="0">
+		<if_sid>109048</if_sid>
+		<field name="win.eventdata.commandLine">https://gameplayapi.intel.com</field>
+		<field name="win.eventdata.commandLine">^json\W|\Wjson$|^json$|\Wjson\W</field>
+		<description>Normal usage of Gfxdownloadwrapper</description>
+	</rule>
+	<rule id="109815" level="0">
+		<if_sid>109049</if_sid>
+		<field name="win.eventdata.commandLine">https://gameplayapi.intel.com</field>
+		<field name="win.eventdata.commandLine">^json\W|\Wjson$|^json$|\Wjson\W</field>
+		<description>Normal usage of Gfxdownloadwrapper</description>
+	</rule>
+	<!--
+																																																																												     	Gpscript.exe
+																																																																														Gpscript /logon or Gpscript /startup match
+																																																																								<rule id="109050" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Gpscript\W|\WGpscript$|^Gpscript$|\WGpscript\W</field>
+		<field name="win.eventdata.commandLine">logon|startup</field>
+		<description>Detect Suspicious LoL commands - Group Policy script with Gpscript: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109051" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Gpscript\W|\WGpscript$|^Gpscript$|\WGpscript\W</field>
+		<field name="win.eventdata.commandLine">logon|startup</field>
+		<description>Detect Suspicious LoL commands - Group Policy script with Gpscript: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+																																																																								-->
+	<!-- 
+	Disabled rule - DEV-1110
+	<rule id="109212" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Gpscript\W|\WGpscript$|^Gpscript$|\WGpscript\W</field>
+		<field name="win.eventdata.commandLine">logon|startup</field>
+		<description>Detect Suspicious LoL commands - Group Policy script with Gpscript: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109213" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Gpscript\W|\WGpscript$|^Gpscript$|\WGpscript\W</field>
+		<field name="win.eventdata.commandLine">logon|startup</field>
+		<description>Detect Suspicious LoL commands - Group Policy script with Gpscript: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	
+	<rule id="109822" level="0">
+		<if_sid>109212</if_sid>
+		<field name="win.eventdata.parentCommandLine">C:\\\\Windows\\\\system32\\\\svchost.exe</field>
+		<field name="win.eventdata.parentCommandLine">-k gpsvcgroup</field>
+		<description>Legit GPScript /start parent process</description>
+	</rule>
+	<rule id="109823" level="0">
+		<if_sid>109213</if_sid>
+		<field name="win.eventdata.parentProcessName">C:\\\\Windows\\\\system32\\\\svchost.exe</field>
+		<description>Legit GPScript /start parent process</description>
+	</rule>
+	-->
+	<rule id="109050" level="12">
+		<if_group>sysmon_event_11</if_group>
+		<field name="win.eventdata.targetFileName">C:\\\\Windows\\\\system32\\\\GroupPolicy\\\\User\\\\Scripts|C:\\\\Windows\\\\system32\\\\GroupPolicy\\\\Machine\\\\Scripts</field>
+		<description>Detect Suspicious LoL commands - Scripts.ini for Group Policy Files was potentially modified</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109051" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4663$</field>
+		<field name="win.eventdata.objectName">C:\\\\Windows\\\\system32\\\\GroupPolicy\\\\User\\\\Scripts|C:\\\\Windows\\\\system32\\\\GroupPolicy\\\\Machine\\\\Scripts</field>
+		<description>Detect Suspicious LoL commands - Scripts.ini for Group Policy Files was potentially modified</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												     	ie4uinit.exe
+																																																																														Use case: ie4uinit.exe -BaseSettings
+																																																																														Did not include BaseSettings right now. May include if it generates FPs.
+																																																																												  -->
+	<rule id="109052" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^ie4uinit\W|\Wie4uinit$|^ie4uinit$|\Wie4uinit\W</field>
+		<field name="win.eventdata.commandLine">^-BaseSettings\W|\W-BaseSettings$|^-BaseSettings$|\W-BaseSettings\W</field>
+		<description>Detect Suspicious LoL commands - Code execution attempt using ie4uinit: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109053" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^ie4uinit\W|\Wie4uinit$|^ie4uinit$|\Wie4uinit\W</field>
+		<field name="win.eventdata.commandLine">^-BaseSettings\W|\W-BaseSettings$|^-BaseSettings$|\W-BaseSettings\W</field>
+		<description>Detect Suspicious LoL commands - Code execution attempt using ie4uinit: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109828" level="0">
+		<if_sid>109052</if_sid>
+		<field name="win.eventdata.image">c:\\\\windows\\\\sysWOW64|c:\\\\windows\\\\System32</field>
+		<description>Legit location of Ie4uinit</description>
+	</rule>
+	<rule id="109829" level="0">
+		<if_sid>109053</if_sid>
+		<field name="win.eventdata.newProcessName">c:\\\\windows\\\\sysWOW64|c:\\\\windows\\\\System32</field>
+		<description>Legit location of Ie4uinit</description>
+	</rule>
+	<!--
+																																																																												     	ieexec.exe
+																																																																														Use case: ieexec.exe [URL application bypass]
+																																																																												  -->
+	<rule id="109054" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^ieexec\W|\Wieexec$|^ieexec$|\Wieexec\W</field>
+		<description>Detect Suspicious LoL commands - AWL Bypass Attempt using ieexec.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109055" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^ieexec\W|\Wieexec$|^ieexec$|\Wieexec\W</field>
+		<description>Detect Suspicious LoL commands - AWL Bypass Attempt using ieexec.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												     	InfDefaultInstall.exe
+																																																																														InfDefaultInstall.exe Infdefaultinstall.inf
+																																																																														Code execution in .inf file
+																																																																												  -->
+	<rule id="109056" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^InfDefaultInstall\W|\WInfDefaultInstall$|^InfDefaultInstall$|\WInfDefaultInstall\W</field>
+		<description>Detect Suspicious LoL commands - Code execution via InfDefaultInstall: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109057" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^InfDefaultInstall\W|\WInfDefaultInstall$|^InfDefaultInstall$|\WInfDefaultInstall\W</field>
+		<description>Detect Suspicious LoL commands - Code execution via InfDefaultInstall: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												     	InstallUtil.exe
+																																																																														InstallUtil.exe /logfile= /LogToConsole=false /U AllTheThings.dll
+																																																																														Code execution/AWL in the "AllTheThings.dll"
+																																																																												  -->
+	<rule id="109058" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^InstallUtil\W|\WInstallUtil$|^InstallUtil$|\WInstallUtil\W</field>
+		<description>Detect Suspicious LoL commands - Code execution/AWL via InstallUtil: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109059" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^InstallUtil\W|\WInstallUtil$|^InstallUtil$|\WInstallUtil\W</field>
+		<description>Detect Suspicious LoL commands - Code execution/AWL via InstallUtil: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109910" level="12">
+		<if_sid>109059</if_sid>
+		<field name="win.eventdata.commandLine">/U|/u|-U|-u</field>
+		<description>Detect Suspicious LoL commands - Code execution/AWL via InstallUtil: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109911" level="8">
+		<if_sid>109059</if_sid>
+		<field name="win.eventdata.commandLine">http|https|ftp</field>
+		<description>Detect Suspicious LoL commands - Download payload via InstallUtil: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109846" level="0">
+		<if_sid>109059</if_sid>
+		<field name="win.eventdata.commandLine">Microsoft.ConfigurationManager.WinRTProvider.dll</field>
+		<description>Legitimate Dll by InstallUtil</description>
+	</rule>
+	<!--MSS 178379-->
+	<rule id="132830" level="0">
+		<if_sid>109059</if_sid>
+		<field name="win.eventdata.commandLine">Microsoft.ConfigurationManager.DefaultAppsProvider.dll</field>
+		<description>Legitimate Dll by InstallUtil</description>
+	</rule>
+	<!--MSS-179315-->
+	<rule id="132831" level="0">
+		<if_sid>109059</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files \(x86\)\\\\Lenovo\\\\System Update\\\\SUService.exe</field>
+		<description>Legitimate lenovo update process</description>
+	</rule>
+	<!--
+																																																																												     	jsc.exe
+																																																																														A complier for js code. Normally it should not be used unless for development.
+																																																																												  -->
+	<rule id="109060" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^jsc\W|\Wjsc$|^jsc$|\Wjsc\W</field>
+		<description>Detect Suspicious LoL commands - jsc comp: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109061" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^jsc\W|\Wjsc$|^jsc$|\Wjsc\W</field>
+		<description>Detect Suspicious LoL commands - jsc comp: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												     	makecab.exe
+																																																																														1.) ADS file modification
+																																																																														2.) Download files
+																																																																												  -->
+	<rule id="109062" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Makecab\W|\WMakecab$|^Makecab$|\WMakecab\W</field>
+		<description>Detect Suspicious LoL commands - makecab.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109063" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Makecab\W|\WMakecab$|^Makecab$|\WMakecab\W</field>
+		<description>Detect Suspicious LoL commands - makecab.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109818" level="0">
+		<if_sid>109062</if_sid>
+		<field name="win.eventdata.commandLine">\s\w:\\\\\w\.*.log\.*\w:\\\\\w\.*.cab|/f NetworkConfiguration.ddf|/F ClnPack.ddf</field>
+		<description>Exclude normal operation of Makecab</description>
+	</rule>
+	<rule id="109819" level="0">
+		<if_sid>109063</if_sid>
+		<field name="win.eventdata.commandLine">\s\w:\\\\\w\.*.log\.*\w:\\\\\w\.*.cab|/f NetworkConfiguration.ddf|/F ClnPack.ddf</field>
+		<description>Exclude normal operation of Makecab</description>
+	</rule>
+	<!--
+																																																																								        Mavinject.exe
+																																																																								    Should not be normally run on workstation unless APP-v is used.
+																																																																										Whitelisted dll: C:\Program Files (x86)\Microsoft Office\root\Client\AppVIsvSubsystems32.dll
+																																																																									-->
+	<rule id="109064" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Mavinject\W|\WMavinject$|^Mavinject$|\WMavinject\W</field>
+		<description>Detect Suspicious LoL commands - Mavinject.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109065" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Mavinject\W|\WMavinject$|^Mavinject$|\WMavinject\W</field>
+		<description>Detect Suspicious LoL commands - Mavinject.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109812" level="0">
+		<if_sid>109064</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files \(x86\)\\\\Microsoft Office\\\\root\\\\Client\\\\AppVIsvSubsystems32.dll</field>
+		<description>Legit DLL by Mavinject</description>
+	</rule>
+	<rule id="109813" level="0">
+		<if_sid>109065</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files \(x86\)\\\\Microsoft Office\\\\root\\\\Client\\\\AppVIsvSubsystems32.dll</field>
+		<description>Legit DLL by Mavinject</description>
+	</rule>
+	<!--
+																																																																												     	Microsoft.Workflow.Compiler.exe
+																																																																														Detection:
+																																																																														Microsoft.Workflow.Compiler.exe would not normally be run on workstations.
+																																																																														The presence of csc.exe or vbc.exe as child processes of Microsoft.Workflow.Compiler.exe
+																																																																														Presence of "
+																																																																												  -->
+	<rule id="109066" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Microsoft.Workflow.Compiler\W|\WMicrosoft.Workflow.Compiler$|^Microsoft.Workflow.Compiler$|\WMicrosoft.Workflow.Compiler\W</field>
+		<description>Detect Suspicious LoL commands - Microsoft.Workflow.Compiler.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109067" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Microsoft.Workflow.Compiler\W|\WMicrosoft.Workflow.Compiler$|^Microsoft.Workflow.Compiler$|\WMicrosoft.Workflow.Compiler\W</field>
+		<description>Detect Suspicious LoL commands - Microsoft.Workflow.Compiler.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109844" level="0">
+		<if_sid>109067</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">ngen.exe</field>
+		<description>Legit usage of Microsoft.Workflow.Compiler.exe</description>
+	</rule>
+	<!--
+																																																																												      mmc.exe
+																																																																														Detect mmc -Embedding [file], to run the file in background.
+																																																																												  -->
+	<rule id="109068" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^mmc\W|\Wmmc$|^mmc$|\Wmmc\W</field>
+		<field name="win.eventdata.commandLine">-Embedding</field>
+		<description>Detect Suspicious LoL commands - Execution of mmc with Embedding option: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109069" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^mmc\W|\Wmmc$|^mmc$|\Wmmc\W</field>
+		<field name="win.eventdata.commandLine">-Embedding</field>
+		<description>Detect Suspicious LoL commands - Execution of mmc with Embedding option: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	msconfig.exe
+																																																																														msconfig.exe -[1-5] will always get into msconfig.exe screen. As such will use a direct match on cmdline.
+																																																																												  -->
+	<rule id="109070" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Msconfig\W|\WMsconfig$|^Msconfig$|\WMsconfig\W</field>
+		<description>Detect Suspicious LoL commands - msconfig.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109071" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Msconfig\W|\WMsconfig$|^Msconfig$|\WMsconfig\W</field>
+		<description>Detect Suspicious LoL commands - msconfig.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	Msdt.exe
+																																																																														Msdt.exe could be used to execute malicious command referenced in XML
+																																																																												  -->
+	<rule id="109072" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Msdt\W|\WMsdt$|^Msdt$|\WMsdt\W</field>
+		<field name="win.eventdata.commandLine">-af</field>
+		<description>Detect Suspicious LoL commands - msdt.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109073" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Msdt\W|\WMsdt$|^Msdt$|\WMsdt\W</field>
+		<field name="win.eventdata.commandLine">-af</field>
+		<description>Detect Suspicious LoL commands - msdt.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	MSIExec.exe
+																																																																														1.)Install target MSI even the file extension is not .msi
+																																																																														2.)Register or un-register DLLs.
+																																																																												  -->
+	<rule id="109074" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^msiexec\W|\Wmsiexec$|^msiexec$|\Wmsiexec\W</field>
+		<field name="win.eventdata.commandLine">^/Y\W|\W/Y$|^/Y$|\W/Y\W|^/z\W|\W/z$|^/z$|\W/z\W|^/i\W|\W/i$|^/i$|\W/i\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of MSIExec.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109075" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^msiexec\W|\Wmsiexec$|^msiexec$|\Wmsiexec\W</field>
+		<field name="win.eventdata.commandLine">^/Y\W|\W/Y$|^/Y$|\W/Y\W|^/z\W|\W/z$|^/z$|\W/z\W|^/i\W|\W/i$|^/i$|\W/i\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of MSIExec.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109826" level="0">
+		<if_sid>109074</if_sid>
+		<field name="win.eventdata.commandLine">Microsoft\\\\DefaultPackMSI\\\\MicrosoftSearchInBing.msi</field>
+		<field name="win.eventdata.parentImage">DefaultPackMSI\\\\MainBootStrap.exe</field>
+		<description>Legit MSIExec.exe usage</description>
+	</rule>
+	<rule id="109827" level="0">
+		<if_sid>109075</if_sid>
+		<field name="win.eventdata.commandLine">Microsoft\\\\DefaultPackMSI\\\\MicrosoftSearchInBing.msi</field>
+		<field name="win.eventdata.parentProcessName">DefaultPackMSI\\\\MainBootStrap.exe</field>
+		<description>Legit MSIExec.exe usage</description>
+	</rule>
+	<rule id="109834" level="0">
+		<if_sid>109074</if_sid>
+		<field name="win.eventdata.commandLine">InstrumentationEngine.Installer.msi</field>
+		<field name="win.eventdata.commandLine">Microsoft.Azure.Diagnostics.IaaSDiagnostics</field>
+		<description>Legit MSIExec.exe usage - Azure Diagnostics IaaSDiagnostics</description>
+	</rule>
+	<rule id="109835" level="0">
+		<if_sid>109075</if_sid>
+		<field name="win.eventdata.commandLine">InstrumentationEngine.Installer.msi</field>
+		<field name="win.eventdata.commandLine">Microsoft.Azure.Diagnostics.IaaSDiagnostics</field>
+		<description>Legit MSIExec.exe usage - Azure Diagnostics IaaSDiagnostics</description>
+	</rule>
+	<rule id="109836" level="0">
+		<if_sid>109074</if_sid>
+		<field name="win.eventdata.parentImage">DiagnosticsPlugin.exe</field>
+		<description>Legit MSIExec.exe usage - Azure Diagnostics IaaSDiagnostics</description>
+	</rule>
+	<rule id="109837" level="0">
+		<if_sid>109075</if_sid>
+		<field name="win.eventdata.parentProcessName">DiagnosticsPlugin.exe</field>
+		<description>Legit MSIExec.exe usage - Azure Diagnostics IaaSDiagnostics</description>
+	</rule>
+	<!--
+																																																																												  	odbcconf.exe
+																																																																														Used in Windows for managing ODBC connections
+																																																																														Should not be frequently used by our clients.
+																																																																												  -->
+	<rule id="109076" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^odbcconf\W|\Wodbcconf$|^odbcconf$|\Wodbcconf\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of odbcconf.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109077" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^odbcconf\W|\Wodbcconf$|^odbcconf$|\Wodbcconf\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of odbcconf.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	pcalua.exe
+																																																																														Program Compatibility Assistant
+																																																																														With "-a" and open DLL or exe files.
+																																																																												  -->
+	<rule id="109078" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^pcalua\W|\Wpcalua$|^pcalua$|\Wpcalua\W</field>
+		<field name="win.eventdata.commandLine">-a</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of pcalua.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109079" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^pcalua\W|\Wpcalua$|^pcalua$|\Wpcalua\W</field>
+		<field name="win.eventdata.commandLine">-a</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of pcalua.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	pcwrun.exe
+																																																																														Program Compatibility Wizard
+																																																																												  -->
+	<rule id="109080" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^pcwrun\W|\Wpcwrun$|^pcwrun$|\Wpcwrun\W</field>
+		<description>Detect Suspicious LoL commands - Proxy execution of binary using pcwrun: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109081" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^pcwrun\W|\Wpcwrun$|^pcwrun$|\Wpcwrun\W</field>
+		<description>Detect Suspicious LoL commands - Proxy execution of binary using pcwrun: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	Presentationhost.exe
+																																																																														Presentationhost.exe Executes the target XAML Browser Application (XBAP) file
+																																																																												  -->
+	<rule id="109082" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Presentationhost\W|\WPresentationhost$|^Presentationhost$|\WPresentationhost\W</field>
+		<field name="win.eventdata.commandLine">xbap</field>
+		<description>Detect Suspicious LoL commands - Executing Browser applications with Presentationhost.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109083" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Presentationhost\W|\WPresentationhost$|^Presentationhost$|\WPresentationhost\W</field>
+		<field name="win.eventdata.commandLine">xbap</field>
+		<description>Detect Suspicious LoL commands - Executing Browser applications with Presentationhost.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	print.exe
+																																																																														1.) ADS
+																																																																														2.) with parameter "/D:" to copy files.
+																																																																														Logic:
+																																																																															print = level 3
+																																																																															if with "/D:" or ADS detection:
+																																																																																escalate to level 12
+																																																																												  -->
+	<rule id="109084" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^print\W|\Wprint$|^print$|\Wprint\W</field>
+		<description>Detected usage of print.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109085" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^print\W|\Wprint$|^print$|\Wprint\W</field>
+		<description>Detected usage of print.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--  Disabling the rule
+								<rule id="109086" level="5">
+		<if_sid>109084</if_sid>
+		<field name="win.eventdata.commandLine">/D:</field>
+		<description>Detect Suspicious LoL commands - Detected potential file copy with Print.exe: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109087" level="5">
+		<if_sid>109085</if_sid>
+		<field name="win.eventdata.commandLine">/D:</field>
+		<description>Detect Suspicious LoL commands - Detected potential file copy with Print.exe: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+							-->
+	<!--
+																																																																												  	regasm.exe
+																																																																														Part of .NET
+																																																																														Since it is mostly using to execute DLL files, will check direct usage of regasm execution.
+																																																																														Example: Micropoor.dll
+																																																																												  -->
+	<rule id="109088" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^regasm\W|\Wregasm$|^regasm$|\Wregasm\W</field>
+		<description>Detect Suspicious LoL commands - Potential AWL Bypass or DLL execution by regasm.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109089" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^regasm\W|\Wregasm$|^regasm$|\Wregasm\W</field>
+		<description>Detect Suspicious LoL commands - Potential AWL Bypass or DLL execution by regasm.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109857" level="0">
+		<if_sid>109089</if_sid>
+		<field name="win.eventdata.commandLine">NetIQ|dolby</field>
+		<description>Legit dll under NetIQ/Dolby folder</description>
+	</rule>
+	<!--
+																																																																												  	regsvcs.exe
+																																																																														Part of .NET
+																																																																														Since it is mostly using to execute DLL files, will check direct usage of regsvcs execution.
+																																																																														Example: Micropoor.dll
+																																																																												  -->
+	<rule id="109090" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^regsvcs\W|\Wregsvcs$|^regsvcs$|\Wregsvcs\W</field>
+		<description>Detect Suspicious LoL commands - Potential AWL Bypass or DLL execution by regsvcs.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109091" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^regsvcs\W|\Wregsvcs$|^regsvcs$|\Wregsvcs\W</field>
+		<description>Detect Suspicious LoL commands - Potential AWL Bypass or DLL execution by regsvcs.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	Regedit.exe
+																																																																														Normally should not be used by end-user. Direct match
+																																																																												  -->
+	<rule id="109092" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Regedit\W|\WRegedit$|^Regedit$|\WRegedit\W</field>
+		<field name="win.eventdata.commandLine">\w:\w</field>
+		<description>Detect Suspicious LoL commands - regedit.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109093" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Regedit\W|\WRegedit$|^Regedit$|\WRegedit\W</field>
+		<field name="win.eventdata.commandLine">\w:\w</field>
+		<description>Detect Suspicious LoL commands - regedit.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109842" level="0">
+		<if_sid>109093</if_sid>
+		<field name="win.eventdata.commandLine">CyberLink\\\\PowerDVD20</field>
+		<field name="win.eventdata.commandLine">DVD.reg|Movie.reg|discProfile.reg|BD.reg|Kanten.reg</field>
+		<description>Legit usage for Regedit - PowerDVD</description>
+	</rule>
+	<!--
+																																																																												  	Register-cimprovide.exe
+																																																																														Used to register new wmi providers
+																																																																														Direct match
+																																																																												  -->
+	<rule id="109094" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Register-cimprovide\W|\WRegister-cimprovide$|^Register-cimprovide$|\WRegister-cimprovide\W</field>
+		<description>Detect Suspicious LoL commands - Register-cimprovide.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109095" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Register-cimprovide\W|\WRegister-cimprovide$|^Register-cimprovide$|\WRegister-cimprovide\W</field>
+		<description>Detect Suspicious LoL commands - Register-cimprovide.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	Replace.exe
+																																																																														relatively less risky command. Mainly used to copy or download files
+																																																																												  -->
+	<rule id="109096" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Replace\W|\WReplace$|^Replace$|\WReplace\W</field>
+		<field name="win.eventdata.image">^Replace\W|\WReplace$|^Replace$|\WReplace\W</field>
+		<description>Detect Suspicious LoL commands - Potential download or copy event by Replace.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109097" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Replace\W|\WReplace$|^Replace$|\WReplace\W</field>
+		<field name="win.eventdata.processName">^Replace\W|\WReplace$|^Replace$|\WReplace\W</field>
+		<description>Detect Suspicious LoL commands - Potential download or copy event by Replace.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	rpcping.exe
+																																																																														Used in testing rpc connections. Normally it should not be frequently used.
+																																																																														Direct match.
+																																																																												  -->
+	<rule id="109098" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^rpcping\W|\Wrpcping$|^rpcping$|\Wrpcping\W</field>
+		<description>Detect Suspicious LoL commands - Rpcping.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109099" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^rpcping\W|\Wrpcping$|^rpcping$|\Wrpcping\W</field>
+		<description>Detect Suspicious LoL commands - Rpcping.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	runscripthelper.exe
+																																																																														'runscripthelper.exe surfacecheck \\\\?\C:\Test\Microsoft\Diagnosis\scripts\test.txt C:\Test'
+																																																																														Currently use direct match.
+																																																																												  -->
+	<rule id="109100" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^runscripthelper\W|\Wrunscripthelper$|^runscripthelper$|\Wrunscripthelper\W</field>
+		<description>Detect Suspicious LoL commands - runscripthelper.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109101" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^runscripthelper\W|\Wrunscripthelper$|^runscripthelper$|\Wrunscripthelper\W</field>
+		<description>Detect Suspicious LoL commands - runscripthelper.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	Scriptrunner.exe
+																																																																														Able to execute .exe files. This should not be run on workstation unless App-v is deployed.
+																																																																														Currently use direct match. May whitelist if App-v is preapproved on certain workstation(per request).
+																																																																												  -->
+	<rule id="109102" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Scriptrunner\W|\WScriptrunner$|^Scriptrunner$|\WScriptrunner\W</field>
+		<description>Detect Suspicious LoL commands - Execute binary by Scriptrunner.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109103" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Scriptrunner\W|\WScriptrunner$|^Scriptrunner$|\WScriptrunner\W</field>
+		<description>Detect Suspicious LoL commands - Execute binary by Scriptrunner.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	tttracer.exe
+																																																																														Able to execute .exe files.
+																																																																												  -->
+	<rule id="109104" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^tttracer\W|\Wtttracer$|^tttracer$|\Wtttracer\W</field>
+		<description>Detect Suspicious LoL commands - Potential binary executed by tttracer.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109105" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^tttracer\W|\Wtttracer$|^tttracer$|\Wtttracer\W</field>
+		<description>Detect Suspicious LoL commands - Potential binary executed by tttracer.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	Verclsid.exe
+																																																																														Used to verify a COM object before it is instantiated by Windows Explorer
+																																																																														Run a com object created in registry to evade defensive counter measures
+																																																													Currently disabled. Further study on it first.
+																																																																												  -->
+	<rule id="109106" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Verclsid\W|\WVerclsid$|^Verclsid$|\WVerclsid\W</field>
+		<description>Detect Suspicious LoL commands - Verclsid.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109107" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Verclsid\W|\WVerclsid$|^Verclsid$|\WVerclsid\W</field>
+		<description>Detect Suspicious LoL commands - Verclsid.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	Wab.exe
+																																																																														Windows address book manager. Simply should never be used normally. It can execute DLL of its choice.
+																																																																														Simple check on all wab.exe
+																																																																												  -->
+	<rule id="109108" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^wab\W|\Wwab$|^wab$|\Wwab\W</field>
+		<field name="win.eventdata.commandLine">.dll</field>
+		<description>Detect Suspicious LoL commands - Potential dll executed by wab.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109109" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^wab\W|\Wwab$|^wab$|\Wwab\W</field>
+		<field name="win.eventdata.commandLine">.dll</field>
+		<description>Detect Suspicious LoL commands - Potential dll executed by wab.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	wscript.exe
+																																																																														LOLBas mainly check for potential ADS usage with wscript.exe. Only escalate to 12 only when ADS usage is detected.
+																																																																												  -->
+	<rule id="109110" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^wscript\W|\Wwscript$|^wscript$|\Wwscript\W</field>
+		<description>Detect Suspicious LoL commands - wscript.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109111" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^wscript\W|\Wwscript$|^wscript$|\Wwscript\W</field>
+		<description>Detect Suspicious LoL commands - wscript.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	wsreset.exe
+																																																																														wsreset.exe launching child process other than mmc.exe
+																																																																														Creation or modification of the registry value HKCU\Software\Classes\AppX82a6gwre4fdg3bt635tn5ctqjf8msdd2\Shell\open\command
+																																																																														Reserved 110~111 for detecting registry change
+																																																																												  -->
+	<!--
+																																																																													<rule id="109110" level="0">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^wsreset\W|\Wwsreset$|^wsreset$|\Wwsreset\W</field>
+		<description>Detect Suspicious LoL commands - wscript.exe: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109111" level="0">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^wsreset\W|\Wwsreset$|^wsreset$|\Wwsreset\W</field>
+		<description>Detect Suspicious LoL commands - wscript.exe: "$(win.eventdata.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+																																																																													-->
+	<rule id="109112" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.parentImage">^wsreset\W|\Wwsreset$|^wsreset$|\Wwsreset\W</field>
+		<description>Suspicious UAC Bypass with wsreset.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109113" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">^wsreset\W|\Wwsreset$|^wsreset$|\Wwsreset\W</field>
+		<description>Suspicious UAC Bypass with wsreset.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																														Can be reused with eventvwr.exe
+																																																																													-->
+	<rule id="109114" level="0">
+		<if_sid>109112</if_sid>
+		<field name="win.eventdata.image">^mmc\W|\Wmmc$|^mmc$|\Wmmc\W</field>
+		<description>Legit mmc.exe process run by wsreset.exe</description>
+	</rule>
+	<rule id="109115" level="0">
+		<if_sid>109113</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">^mmc\W|\Wmmc$|^mmc$|\Wmmc\W</field>
+		<description>Legit mmc.exe process run by wsreset.exe</description>
+	</rule>
+	<!--
+																																																																												  	Xwizard.exe
+																																																																														LOLBas mainly check for potential ADS usage with wscript.exe. Only escalate to 12 only when ADS usage is detected.
+																																																																												  -->
+	<rule id="109116" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Xwizard\W|\WXwizard$|^Xwizard$|\WXwizard\W</field>
+		<description>Detect Suspicious LoL commands - xwizard.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109117" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Xwizard\W|\WXwizard$|^Xwizard$|\WXwizard\W</field>
+		<description>Detect Suspicious LoL commands - xwizard.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																												  	Advpack.dll / Ieadvpack.dll
+																																																																														rundll32 Advpack.dll with the following options:
+																																																																														1. LaunchINFSection
+																																																																														2. RegisterOCX
+																																																																														Could be used to AWL Bypass / execute binaries.
+																																																																														Currently check for both only. If it generates FPs may need to whitelist.
+																																																																												  -->
+	<rule id="109118" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Advpack\W|\WAdvpack$|^Advpack$|\WAdvpack\W|^ieadvpack\W|\Wieadvpack$|^ieadvpack$|\Wieadvpack\W</field>
+		<field name="win.eventdata.commandLine">^LaunchINFSection\W|\WLaunchINFSection$|^LaunchINFSection$|\WLaunchINFSection\W|^RegisterOCX\W|\WRegisterOCX$|^RegisterOCX$|\WRegisterOCX\W</field>
+		<description>Detect Suspicious LoL commands - Potential binary execution by Rundll32 Advpack.dll/ieadvpack.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109119" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Advpack\W|\WAdvpack$|^Advpack$|\WAdvpack\W|^ieadvpack\W|\Wieadvpack$|^ieadvpack$|\Wieadvpack\W</field>
+		<field name="win.eventdata.commandLine">^LaunchINFSection\W|\WLaunchINFSection$|^LaunchINFSection$|\WLaunchINFSection\W|^RegisterOCX\W|\WRegisterOCX$|^RegisterOCX$|\WRegisterOCX\W</field>
+		<description>Detect Suspicious LoL commands - Potential binary execution by Rundll32 Advpack.dll/ieadvpack.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Reserved 118~119 for potential whitelisting
+																																																																												-->
+	<!--
+																																																																													Comsvcs.dll
+																																																																													rundll32 Comsvcs.dll with the following options:
+																																																																													1. Minidump
+																																																																													Could be used to Dump Lsass.exe process memory to retrieve credentials.
+																																																																													If it generates FPs may need to whitelist.
+																																																																												-->
+	<rule id="109120" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Comsvcs\W|\WComsvcs$|^Comsvcs$|\WComsvcs\W</field>
+		<field name="win.eventdata.commandLine">^minidump\W|\Wminidump$|^minidump$|\Wminidump\W</field>
+		<description>Detect Suspicious LoL commands - Potential Credential Dump for comsvcs.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109121" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Comsvcs\W|\WComsvcs$|^Comsvcs$|\WComsvcs\W</field>
+		<field name="win.eventdata.commandLine">^minidump\W|\Wminidump$|^minidump$|\Wminidump\W</field>
+		<description>Detect Suspicious LoL commands - Potential Credential Dump for comsvcs.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Comsvcs.dll
+																																																																													rundll32 Comsvcs.dll with the following options:
+																																																																													1. Minidump
+																																																																													Could be used to Dump Lsass.exe process memory to retrieve credentials.
+																																																																												-->
+	<rule id="109122" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Comsvcs\W|\WComsvcs$|^Comsvcs$|\WComsvcs\W</field>
+		<field name="win.eventdata.commandLine">^minidump\W|\Wminidump$|^minidump$|\Wminidump\W</field>
+		<description>Detect Suspicious LoL commands - Potential Credential Dump for comsvcs.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109123" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Comsvcs\W|\WComsvcs$|^Comsvcs$|\WComsvcs\W</field>
+		<field name="win.eventdata.commandLine">^minidump\W|\Wminidump$|^minidump$|\Wminidump\W</field>
+		<description>Detect Suspicious LoL commands - Potential Credential Dump for comsvcs.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													ieframe.dll, Shdocvw.dll,Url.dll
+																																																																													rundll32 ieframe.dll,OpenURL "C:\test\calc.url"
+																																																																													rundll32.exe shdocvw.dll,OpenURL "C:\test\calc.url"
+																																																																													Launch an executable payload via proxy through a(n) URL (information) file by calling OpenURL.
+																																																																													If it generates FPs may need to whitelist.
+																																																																												-->
+	<rule id="109124" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^ieframe\W|\Wieframe$|^ieframe$|\Wieframe\W|^Shdocvw\W|\WShdocvw$|^Shdocvw$|\WShdocvw\W|^url\W|\Wurl$|^url$|\Wurl\W</field>
+		<field name="win.eventdata.commandLine">^OpenURL\W|\WOpenURL$|^OpenURL$|\WOpenURL\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious URL opened via ieframe.dll/Shdocvw.dll/url.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109125" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^ieframe\W|\Wieframe$|^ieframe$|\Wieframe\W|^Shdocvw\W|\WShdocvw$|^Shdocvw$|\WShdocvw\W|^url\W|\Wurl$|^url$|\Wurl\W</field>
+		<field name="win.eventdata.commandLine">^OpenURL\W|\WOpenURL$|^OpenURL$|\WOpenURL\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious URL opened via ieframe.dll/Shdocvw.dll/url.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Reserved 126 for potential whitelisting
+																																																																												-->
+
+	<!--
+																																																																													Mshtml.dll
+																																																																													rundll32.exe Mshtml.dll,PrintHTML "C:\temp\calc.hta"
+																																																																													Invoke an HTML Application via mshta.exe (Note - Pops a security warning and a print dialogue box).
+																																																																													If it generates FPs may need to whitelist.
+																																																																												-->
+	<rule id="109128" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Mshtml\W|\WMshtml$|^Mshtml$|\WMshtml\W</field>
+		<field name="win.eventdata.commandLine">^PrintHTML\W|\WPrintHTML$|^PrintHTML$|\WPrintHTML\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious HTML application opened via Mshtml.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109129" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Mshtml\W|\WMshtml$|^Mshtml$|\WMshtml\W</field>
+		<field name="win.eventdata.commandLine">^PrintHTML\W|\WPrintHTML$|^PrintHTML$|\WPrintHTML\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious HTML application opened via Mshtml.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Reserved 130-131 for potential whitelisting
+																																																																												-->
+	<!--
+																																																																													pcwutl.dll
+																																																																													rundll32.exe pcwutl.dll,LaunchApplication calc.exe
+																																																																													Launch executable by calling the LaunchApplication function.
+																																																																													If it generates FPs may need to whitelist.
+																																																																												-->
+	<rule id="109132" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Pcwutl\W|\WPcwutl$|^Pcwutl$|\WPcwutl\W</field>
+		<field name="win.eventdata.commandLine">^LaunchApplication\W|\WLaunchApplication$|^LaunchApplication$|\WLaunchApplication\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious HTML application opened via Mshtml.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109133" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Pcwutl\W|\WPcwutl$|^Pcwutl$|\WPcwutl\W</field>
+		<field name="win.eventdata.commandLine">^LaunchApplication\W|\WLaunchApplication$|^LaunchApplication$|\WLaunchApplication\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious HTML application opened via Mshtml.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Reserved 134-135 for potential whitelisting
+																																																																												-->
+	<!--
+																																																																													Setupapi.dll
+																																																																													rundll32.exe setupapi.dll,InstallHinfSection DefaultInstall 128 C:\Tools\shady.inf
+																																																																													Launch executable by calling the LaunchApplication function.
+																																																																													If it generates FPs may need to whitelist.
+																																																																												-->
+	<rule id="109136" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Setupapi\W|\WSetupapi$|^Setupapi$|\WSetupapi\W</field>
+		<field name="win.eventdata.commandLine">^InstallHinfSection\W|\WInstallHinfSection$|^InstallHinfSection$|\WInstallHinfSection\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious Binary executed opened via Setupapi.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109137" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Setupapi\W|\WSetupapi$|^Setupapi$|\WSetupapi\W</field>
+		<field name="win.eventdata.commandLine">^InstallHinfSection\W|\WInstallHinfSection$|^InstallHinfSection$|\WInstallHinfSection\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious Binary executed opened via Setupapi.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Reserved 138-139 for potential whitelisting
+																																																																													-->
+	<!--
+																																																																													Syssetup.dll
+																																																																													rundll32 syssetup.dll,SetupInfObjectInstallAction DefaultInstall 128 c:\temp\something.inf
+																																																																													Launch executable by calling the LaunchApplication function.
+																																																																													If it generates FPs may need to whitelist.
+																																																																													-->
+	<rule id="109140" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^syssetup\W|\Wsyssetup$|^syssetup$|\Wsyssetup\W</field>
+		<field name="win.eventdata.commandLine">^SetupInfObjectInstallAction\W|\WSetupInfObjectInstallAction$|^SetupInfObjectInstallAction$|\WSetupInfObjectInstallAction\W</field>
+		<description>Detect Suspicious LoL commands - Potential Binary Execution by Syssetup.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109141" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^syssetup\W|\Wsyssetup$|^syssetup$|\Wsyssetup\W</field>
+		<field name="win.eventdata.commandLine">^SetupInfObjectInstallAction\W|\WSetupInfObjectInstallAction$|^SetupInfObjectInstallAction$|\WSetupInfObjectInstallAction\W</field>
+		<description>Detect Suspicious LoL commands - Potential Binary Execution by Syssetup.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Reserved 142-143 for potential whitelisting
+																																																																												-->
+	<!--
+																																																																													Zipfldr.dll
+																																																																													rundll32.exe zipfldr.dll,RouteTheCall calc.exe
+																																																																													Launch executable by calling the LaunchApplication function.
+																																																																												-->
+	<rule id="109144" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Zipfldr\W|\WZipfldr$|^Zipfldr$|\WZipfldr\W</field>
+		<field name="win.eventdata.commandLine">^RouteTheCall\W|\WRouteTheCall$|^RouteTheCall$|\WRouteTheCall\W</field>
+		<description>Detect Suspicious LoL commands - Potential Binary Execution by Zipfldr.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109145" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Zipfldr\W|\WZipfldr$|^Zipfldr$|\WZipfldr\W</field>
+		<field name="win.eventdata.commandLine">^RouteTheCall\W|\WRouteTheCall$|^RouteTheCall$|\WRouteTheCall\W</field>
+		<description>Detect Suspicious LoL commands - Potential Binary Execution by Zipfldr.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Bginfo.exe
+																																																																													Background Information Utility included with SysInternals Suite
+																																																																												-->
+	<rule id="109146" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.parentProcessName">^Bginfo\W|\WBginfo$|^Bginfo$|\WBginfo\W</field>
+		<description>Detect Suspicious LoL commands - Potential Binary Execution by Bginfo.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109147" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">^Bginfo\W|\WBginfo$|^Bginfo$|\WBginfo\W</field>
+		<description>Detect Suspicious LoL commands - Potential Binary Execution by Bginfo.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Cdb.exe
+																																																																													Debugging tool included with Windows Debugging Tools.
+																																																																													Local execution of assembly shellcode.
+																																																																													It should not be generating too much FPs. May consider to whitelist on development workstation
+																																																																												-->
+	<rule id="109148" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Cdb\W|\WCdb$|^Cdb$|\WCdb\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of assembly shellcode by Cdb.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+	<rule id="109149" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Cdb\W|\WCdb$|^Cdb$|\WCdb\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of assembly shellcode by Cdb.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	-->
+	<!-- DEV-4862 -->
+	<rule id="109149" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Cdb.exe\W|\WCdb.exe$|^Cdb.exe$|\WCdb.exe\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of assembly shellcode by Cdb.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													csi.exe
+																																																																													Debugging tool included with Windows Debugging Tools.
+																																																																													Local execution of assembly shellcode.
+																																																																													It should not be generating too much FPs. May consider to whitelist on development workstation
+																																																																												-->
+	<rule id="109150" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^csi\W|\Wcsi$|^csi$|\Wcsi\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of unsigned code by csi.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109151" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">^csi\W|\Wcsi$|^csi$|\Wcsi\W</field>
+		<field name="win.eventdata.commandLine">^csi\W|\Wcsi$|^csi$|\Wcsi\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of unsigned code by csi.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													devtoolslauncher.exe
+																																																																													Binary will execute specified binary. Part of VS/VScode installation.
+																																																																													Chcek if DeveloperToolsSvc.exe spawned an unknown process
+																																																																												-->
+	<rule id="109152" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^devtoolslauncher\W|\Wdevtoolslauncher$|^devtoolslauncher$|\Wdevtoolslauncher\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of unsigned binary by devtoolslauncher.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109153" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^devtoolslauncher\W|\Wdevtoolslauncher$|^devtoolslauncher$|\Wdevtoolslauncher\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of unsigned binary by devtoolslauncher.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													dnx.exe
+																																																																													.Net Execution environment file included with .Net.
+																																																																												-->
+	<rule id="109154" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.image">^dnx\W|\Wdnx$|^dnx$|\Wdnx\W</field>
+		<field name="win.eventdata.commandLine">^dnx\W|\Wdnx$|^dnx$|\Wdnx\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of binary by dnx.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- Rule updated condition-->
+	<rule id="109155" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">^dnx\W|\Wdnx$|^dnx$|\Wdnx\W</field>
+		<field name="win.eventdata.commandLine">^dnx\W|\Wdnx$|^dnx$|\Wdnx\W</field>
+		<description>Detect Suspicious LoL commands - Potential execution of binary by dnx.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Dotnet.exe
+																																																																													dotnet.exe comes with .NET Framework
+																																																																													dotnet.exe spawned an unknown process
+																																																																												-->
+	<rule id="109156" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Dotnet\W|\WDotnet$|^Dotnet$|\WDotnet\W</field>
+		<field name="win.eventdata.image">dotnet.exe</field>
+		<description>Detect Suspicious LoL commands - Suspicious execution of binary by Dotnet.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109157" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Dotnet\W|\WDotnet$|^Dotnet$|\WDotnet\W</field>
+		<field name="win.eventdata.newProcessName">dotnet.exe</field>
+		<description>Detect Suspicious LoL commands - Suspicious execution of binary by Dotnet.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109858" level="0">
+		<if_sid>109157</if_sid>
+		<field name="win.eventdata.commandLine">azagent</field>
+		<description>Whitelisting AZagent for dotnet.exe</description>
+	</rule>
+	<!--
+																																																																													Dxcap.exe
+																																																																													DirectX diagnostics/debugger included with Visual Studio.
+																																																																													May whitelist development workstation.
+																																																																												-->
+	<rule id="109158" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Dxcap\W|\WDxcap$|^Dxcap$|\WDxcap\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious execution of binary by Dxcap.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109159" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Dxcap\W|\WDxcap$|^Dxcap$|\WDxcap\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious execution of binary by Dxcap.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Excel.exe/Powerpnt.exe/winword.exe
+																																																																													Excel.exe hxxp://192.168.1.10/TeamsAddinLoader.dll
+																																																																													Goal is to detect any files downloaded with excel
+																																																																													May whitelist
+																																																																													Enforced checking original image
+																																																																													-->
+	<rule id="109160" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.image">^Excel\W|\WExcel$|^Excel$|\WExcel\W|^Powerpnt\W|\WPowerpnt$|^Powerpnt$|\WPowerpnt\W|^winword\W|\Wwinword$|^winword$|\Wwinword\W</field>
+		<field name="win.eventdata.commandLine">^Excel\W|\WExcel$|^Excel$|\WExcel\W|^Powerpnt\W|\WPowerpnt$|^Powerpnt$|\WPowerpnt\W|^winword\W|\Wwinword$|^winword$|\Wwinword\W</field>
+		<field name="win.eventdata.commandLine">^http\W|\Whttp$|^http$|\Whttp\W|^https\W|\Whttps$|^https$|\Whttps\W</field>
+		<description>Detect Suspicious LoL commands - Excel/Powerpoint/Word downloaded suspicious file: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109161" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">^Excel\W|\WExcel$|^Excel$|\WExcel\W|^Powerpnt\W|\WPowerpnt$|^Powerpnt$|\WPowerpnt\W|^winword\W|\Wwinword$|^winword$|\Wwinword\W</field>
+		<field name="win.eventdata.commandLine">^Excel\W|\WExcel$|^Excel$|\WExcel\W|^Powerpnt\W|\WPowerpnt$|^Powerpnt$|\WPowerpnt\W|^winword\W|\Wwinword$|^winword$|\Wwinword\W</field>
+		<field name="win.eventdata.commandLine">^http\W|\Whttp$|^http$|\Whttp\W|^https\W|\Whttps$|^https$|\Whttps\W</field>
+		<description>Detect Suspicious LoL commands - Excel/Powerpoint/Word downloaded suspicious file: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109843" level="0">
+		<if_sid>109161</if_sid>
+		<field name="win.eventdata.commandLine">xls|ppt|doc|pdf|xlt|csv|txt</field>
+		<description>Legit download for normal office files.</description>
+	</rule>
+	<!--
+																																																																													Mftrace.exe
+																																																																													Trace log generation tool for Media Foundation Tools.
+																																																																													Mftrace.exe cmd.exe
+																																																																													If this may generate too much fps, may change the detection to check if parent process = mftrace.exe
+																																																																												-->
+	<rule id="109162" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Mftrace\W|\WMftrace$|^Mftrace$|\WMftrace\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious execution of binary by Mftrace.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109163" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Mftrace\W|\WMftrace$|^Mftrace$|\WMftrace\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious execution of binary by Mftrace.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Msdeploy.exe
+																																																																													msdeploy.exe -verb:sync -source:RunCommand -dest:runCommand="c:\temp\calc.bat"
+																																																																													If this may generate too much fps, may change the detection to check if parent process = mftrace.exe
+																																																																												-->
+	<rule id="109164" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Msdeploy\W|\WMsdeploy$|^Msdeploy$|\WMsdeploy\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious execution of batch file by msdeploy.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109165" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Msdeploy\W|\WMsdeploy$|^Msdeploy$|\WMsdeploy\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious execution of batch file by msdeploy.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													msxsl.exe
+																																																																													Command line utility used to perform XSL transformations.
+																																																																													msxsl.exe customers.xml script.xsl
+																																																																												-->
+	<rule id="109166" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^msxsl\W|\Wmsxsl$|^msxsl$|\Wmsxsl\W</field>
+		<description>Detect Suspicious LoL commands - msxsl.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109167" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^msxsl\W|\Wmsxsl$|^msxsl$|\Wmsxsl\W</field>
+		<description>Detect Suspicious LoL commands - msxsl.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													rcsi.exe
+																																																																													Non-Interactive command line inerface included with Visual Studio.
+																																																																													rcsi.exe bypass.csx
+																																																																												-->
+	<rule id="109168" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^rcsi\W|\Wrcsi$|^rcsi$|\Wrcsi\W</field>
+		<description>Detect Suspicious LoL commands - rcsi.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109169" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^rcsi\W|\Wrcsi$|^rcsi$|\Wrcsi\W</field>
+		<description>Detect Suspicious LoL commands - rcsi.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Sqldumper.exe
+																																																																													Debugging utility included with Microsoft SQL.
+																																																																													Sqldumper.exe bypass.csx
+																																																																												-->
+	<rule id="109170" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^sqldumper\W|\Wsqldumper$|^sqldumper$|\Wsqldumper\W</field>
+		<description>Detect Suspicious LoL commands - Potential file dump by Sqldumper.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109171" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^sqldumper\W|\Wsqldumper$|^sqldumper$|\Wsqldumper\W</field>
+		<description>Detect Suspicious LoL commands - Potential file dump by Sqldumper.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Sqlps.exe / SQLToolsPS.exe
+																																																																													Run a SQL Server PowerShell mini-console without Module and ScriptBlock Logging.
+																																																																													Sqlps.exe -noprofile
+																																																																													SQLToolsPS.exe -noprofile -command Start-Process calc.exe
+																																																																												-->
+	<rule id="109172" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Sqlps\W|\WSqlps$|^Sqlps$|\WSqlps\W|^SQLToolsPS\W|\WSQLToolsPS$|^SQLToolsPS$|\WSQLToolsPS\W</field>
+		<field name="win.eventdata.commandLine">-nop</field>
+		<description>Detect Suspicious LoL commands - SQL server Powershell with NOP detected: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109173" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Sqlps\W|\WSqlps$|^Sqlps$|\WSqlps\W|^SQLToolsPS\W|\WSQLToolsPS$|^SQLToolsPS$|\WSQLToolsPS\W</field>
+		<field name="win.eventdata.commandLine">-nop</field>
+		<description>Detect Suspicious LoL commands - SQL server Powershell with NOP detected: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Squirrel.exe | Update.exe
+																																																																													Binary to update the existing installed Nuget/squirrel package. Part of Microsoft Teams installation.
+																																																																													'squirrel.exe - -update [url to package]'
+																																																																													This binary seems very common in our client's workstation. May need to finetune if it's generating too much FPs
+																																																																												-->
+	<rule id="109174" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.image">Microsoft</field>
+		<field name="win.eventdata.image">Team</field>
+		<field name="win.eventdata.commandLine">^Squirrel\W|\WSquirrel$|^Squirrel$|\WSquirrel\W|^update\W|\Wupdate$|^update$|\Wupdate\W</field>
+		<field name="win.eventdata.image">^Squirrel\W|\WSquirrel$|^Squirrel$|\WSquirrel\W|^update\W|\Wupdate$|^update$|\Wupdate\W</field>
+		<field name="win.eventdata.commandLine">\s--download\s|\s--update\s|\s--updateRollback=|\s--processStart</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of (Teams' update) Squirrel/Update.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109175" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">Microsoft</field>
+		<field name="win.eventdata.newProcessName">Team</field>
+		<field name="win.eventdata.commandLine">^Squirrel\W|\WSquirrel$|^Squirrel$|\WSquirrel\W|^update\W|\Wupdate$|^update$|\Wupdate\W</field>
+		<field name="win.eventdata.newProcessName">^Squirrel\W|\WSquirrel$|^Squirrel$|\WSquirrel\W|^update\W|\Wupdate$|^update$|\Wupdate\W</field>
+		<field name="win.eventdata.commandLine">\s--download\s|\s--update\s|\s--updateRollback=|\s--processStart</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of (Teams' update) Squirrel/Update.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109800" level="0">
+		<if_sid>109174</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files \(x86\)\\\\Google\\\\Update\\\\|\\\\AppData\\\\Local\\\\Google\\\\Update\\\\GoogleUpdate|\\\\Common Files\\\\Microsoft Shared\\\\ClickToRun\\\\Updates\\\\|\\\\Local\\\\WhatsApp\\\\Update|com.squirrel.WhatsApp.WhatsApp|C:\\\\Program Files \(x86\)\\\\Common Files\\\\Java\\\\Java Update|\\\\AppData\\\\Local\\\\Google\\\\Update\.*Google|--update|\\\\Mozilla Maintenance Service\\\\update\\\\|\s/update</field>
+		<description>Normal appearance of Squirrel/Update in command line</description>
+	</rule>
+	<rule id="109801" level="0">
+		<if_sid>109175</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files \(x86\)\\\\Google\\\\Update\\\\|\\\\AppData\\\\Local\\\\Google\\\\Update\\\\GoogleUpdate|\\\\Common Files\\\\Microsoft Shared\\\\ClickToRun\\\\Updates\\\\|\\\\Local\\\\WhatsApp\\\\Update|com.squirrel.WhatsApp.WhatsApp|C:\\\\Program Files \(x86\)\\\\Common Files\\\\Java\\\\Java Update|\\\\AppData\\\\Local\\\\Google\\\\Update\.*Google|--update|\\\\Mozilla Maintenance Service\\\\update\\\\|\s/update</field>
+		<description>Normal appearance of Squirrel/Update in command line</description>
+	</rule>
+	<rule id="109802" level="0">
+		<if_sid>109174</if_sid>
+		<field name="win.eventdata.image">Local\\\\Microsoft\\\\Teams\\\\current\\\\Teams</field>
+		<description>Normal appearance of Squirrel/Update in command line</description>
+	</rule>
+	<rule id="109803" level="0">
+		<if_sid>109175</if_sid>
+		<field name="win.eventdata.processName">Local\\\\Microsoft\\\\Teams\\\\current\\\\Teams</field>
+		<description>Normal appearance of Squirrel/Update in command line</description>
+	</rule>
+	<rule id="109816" level="0">
+		<if_sid>109174</if_sid>
+		<field name="win.eventdata.commandLine">AppData\\\\Local\\\\Microsoft\\\\Teams\\\\Update.exe</field>
+		<field name="win.eventdata.commandLine">--processStart "Teams.exe"</field>
+		<description>Normal appearance of Squirrel/Update in command line</description>
+	</rule>
+	<rule id="109817" level="0">
+		<if_sid>109175</if_sid>
+		<field name="win.eventdata.commandLine">AppData\\\\Local\\\\Microsoft\\\\Teams\\\\Update.exe</field>
+		<field name="win.eventdata.commandLine">--processStart "Teams.exe"</field>
+		<description>Normal appearance of Squirrel/Update in command line</description>
+	</rule>
+	<rule id="109820" level="0">
+		<if_sid>109174</if_sid>
+		<field name="win.eventdata.originalFileName">GoogleUpdate.exe</field>
+		<description>Exclusion of non-"update.exe" files, sysmon only.</description>
+	</rule>
+	<rule id="109821" level="0">
+		<if_sid>109175</if_sid>
+		<field name="win.eventdata.commandLine">"Teams.exe\\" --process-start-args \\"--system-initiated|--processStart \\"Teams.exe\\"</field>
+		<description>Normal update for Teams.exe in command line</description>
+	</rule>
+	<rule id="109840" level="0">
+		<if_sid>109175</if_sid>
+		<field name="win.eventdata.commandLine">yammerdesktop\\\\Update.exe\\" --processStart \\"Yammer.exe\\"</field>
+		<description>Normal update for Yammer.exe in command line</description>
+	</rule>
+	<!--
+																																						Avoid using 109821, since 109820 is sysmon only rules.-->
+	<!--
+																																																																													te.exe
+																																																																													Run COM Scriptlets (e.g. VBScript) by calling a Windows Script Component (WSC) file.
+																																																																													te.exe bypass.wsc
+																																																																												-->
+	<rule id="109176" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.image">te.exe</field>
+		<field name="win.eventdata.commandLine">^te\W|\Wte$|^te$|\Wte\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of te.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109177" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">te.exe</field>
+		<field name="win.eventdata.commandLine">^te\W|\Wte$|^te$|\Wte\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of te.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Tracker.exe
+																																																																													Tool included with Microsoft .Net Framework.
+																																																																													Tracker.exe /d .\calc.dll /c C:\Windows\write.exe
+																																																																												-->
+	<rule id="109178" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.image">Tracker.exe</field>
+		<field name="win.eventdata.commandLine">^Tracker\W|\WTracker$|^Tracker$|\WTracker\W</field>
+		<description>Detect Suspicious LoL commands - Potential Execution of binaries by Tracker.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109179" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">Tracker.exe</field>
+		<field name="win.eventdata.commandLine">^Tracker\W|\WTracker$|^Tracker$|\WTracker\W</field>
+		<description>Detect Suspicious LoL commands - Potential Execution of binaries by Tracker.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													vsjitdebugger.exe
+																																																																													Just-In-Time (JIT) debugger included with Visual Studio
+																																																																													Vsjitdebugger.exe calc.exe
+																																																																													Direct match first. If FP may whitelist. Or change the parent process = vsjitdebugger
+																																																																													-->
+	<rule id="109180" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^vsjitdebugger\W|\Wvsjitdebugger$|^vsjitdebugger$|\Wvsjitdebugger\W</field>
+		<description>Detect Suspicious LoL commands - Potential Execution of binaries by vsjitdebugger.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109181" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^vsjitdebugger\W|\Wvsjitdebugger$|^vsjitdebugger$|\Wvsjitdebugger\W</field>
+		<description>Detect Suspicious LoL commands - Potential Execution of binaries by vsjitdebugger.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Reserved 182-183 for potential whitelisting
+																																																																													-->
+	<!--
+																																																																													Wsl.exe
+																																																																													Windows subsystem for Linux executable
+																																																																													wsl.exe -e /mnt/c/Windows/System32/calc.exe
+																																																																													1. Check parent process if wsl.exe
+																																																																													2. Check command line
+																																																																													-->
+	<rule id="109184" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Wsl\W|\WWsl$|^Wsl$|\WWsl\W</field>
+		<field name="win.eventdata.commandLine">-e</field>
+		<field name="win.eventdata.commandLine">-u root</field>
+		<description>Detect Suspicious LoL commands - wsl.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109185" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Wsl\W|\WWsl$|^Wsl$|\WWsl\W</field>
+		<field name="win.eventdata.commandLine">-e</field>
+		<field name="win.eventdata.commandLine">-u root</field>
+		<description>Detect Suspicious LoL commands - wsl.exe: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109186" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.parentImage">^Wsl\W|\WWsl$|^Wsl$|\WWsl\W</field>
+		<description>Suspicious Child Process under Wsl.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109187" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">^Wsl\W|\WWsl$|^Wsl$|\WWsl\W</field>
+		<description>Suspicious Child Process under Wsl.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- Whitelisting-->
+	<rule id="109851" level="0">
+		<if_sid>109187</if_sid>
+		<field name="win.eventdata.newProcessName">wslhost.exe|conhost.exe|docker-credential</field>
+		<description>Legitimate child spawned under Wsl.exe</description>
+	</rule>
+	<!--DEV-734-->
+	<rule id="132847" level="0">
+		<if_sid>109187</if_sid>
+		<field name="win.eventdata.subjectUserName">REEVE_LAU</field>
+		<description>Legitimate user created a child  under Wsl.exe</description>
+	</rule>
+	<!--
+																																																																													CL_Mutexverifiers.ps1
+																																																																													. C:\\\\Windows\\\\diagnostics\\\\system\\\\AERO\\\\CL_Mutexverifiers.ps1   \nrunAfterCancelProcess calc.ps1
+																																																																													Direct match of the whole ps1.
+																																																																													-->
+	<rule id="109188" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^CL_Mutexverifiers.ps1\W|\WCL_Mutexverifiers.ps1$|^CL_Mutexverifiers.ps1$|\WCL_Mutexverifiers.ps1\W</field>
+		<description>Detect Suspicious LoL commands - CL_Mutexverifiers.ps1: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109189" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^CL_Mutexverifiers.ps1\W|\WCL_Mutexverifiers.ps1$|^CL_Mutexverifiers.ps1$|\WCL_Mutexverifiers.ps1\W</field>
+		<description>Detect Suspicious LoL commands - CL_Mutexverifiers.ps1: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													CL_Mutexverifiers.ps1|CL_Invocation.ps1
+																																																																													. C:\\\\Windows\\\\diagnostics\\\\system\\\\AERO\\\\CL_Mutexverifiers.ps1   \nrunAfterCancelProcess calc.ps1
+																																																																													. C:\\\\Windows\\\\diagnostics\\\\system\\\\AERO\\\\CL_Invocation.ps1   \nSyncInvoke  [args]
+																																																																													Direct match of the whole ps1.
+																																																																												-->
+	<rule id="109190" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^CL_Mutexverifiers.ps1\W|\WCL_Mutexverifiers.ps1$|^CL_Mutexverifiers.ps1$|\WCL_Mutexverifiers.ps1\W|^CL_Invocation.ps1\W|\WCL_Invocation.ps1$|^CL_Invocation.ps1$|\WCL_Invocation.ps1\W</field>
+		<description>Detect Suspicious LoL commands - CL_Mutexverifiers.ps1/CL_Invocation.ps1: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109191" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^CL_Mutexverifiers.ps1\W|\WCL_Mutexverifiers.ps1$|^CL_Mutexverifiers.ps1$|\WCL_Mutexverifiers.ps1\W|^CL_Invocation.ps1\W|\WCL_Invocation.ps1$|^CL_Invocation.ps1$|\WCL_Invocation.ps1\W</field>
+		<description>Detect Suspicious LoL commands - CL_Mutexverifiers.ps1/CL_Invocation.ps1: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													manage-bde.wsf
+																																																																													set comspec=c:\windows\system32\calc.exe & cscript c:\windows\system32\manage-bde.wsf
+																																																																													Manage-bde.wsf should normally not be invoked by a user
+																																																																												-->
+	<rule id="109192" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Manage-bde.wsf\W|\WManage-bde.wsf$|^Manage-bde.wsf$|\WManage-bde.wsf\W</field>
+		<description>Detect Suspicious LoL commands - Manage-bde.wsf: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109193" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Manage-bde.wsf\W|\WManage-bde.wsf$|^Manage-bde.wsf$|\WManage-bde.wsf\W</field>
+		<description>Detect Suspicious LoL commands - Manage-bde.wsf: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Pubprn.vbs|Slmgr.vbs|winrm.vbs
+																																																																													Multiple vbs file mentioned in LoL. combining all into 1 rule first.
+																																																																													-->
+	<rule id="109194" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^Pubprn.vbs\W|\WPubprn.vbs$|^Pubprn.vbs$|\WPubprn.vbs\W|^Slmgr.vbs\W|\WSlmgr.vbs$|^Slmgr.vbs$|\WSlmgr.vbs\W|^winrm.vbs\W|\Wwinrm.vbs$|^winrm.vbs$|\Wwinrm.vbs\W</field>
+		<description>Detect Suspicious LoL commands - Manage-bde.wsf: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109195" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^Pubprn.vbs\W|\WPubprn.vbs$|^Pubprn.vbs$|\WPubprn.vbs\W|^Slmgr.vbs\W|\WSlmgr.vbs$|^Slmgr.vbs$|\WSlmgr.vbs\W|^winrm.vbs\W|\Wwinrm.vbs$|^winrm.vbs$|\Wwinrm.vbs\W</field>
+		<description>Detect Suspicious LoL commands - Manage-bde.wsf: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													pester.bat
+																																																																													Pester.bat [/help|?|-?|/?] "$null; notepad"
+																																																																													Focus on checking the 4th parameter
+																																																																													-->
+	<rule id="109196" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^pester\W|\Wpester$|^pester$|\Wpester\W</field>
+		<description>Detect Suspicious LoL commands - Proxy execution by Pester.bat: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109197" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^pester\W|\Wpester$|^pester$|\Wpester\W</field>
+		<description>Detect Suspicious LoL commands - Proxy execution by Pester.bat: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													Excel.exe/Powerpnt.exe/winword.exe/Acrobat
+																																																																													spawned malicious cmd powershell
+																																																																													-->
+	<rule id="109198" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.parentImage">^Excel\W|\WExcel$|^Excel$|\WExcel\W|^Powerpnt\W|\WPowerpnt$|^Powerpnt$|\WPowerpnt\W|^winword\W|\Wwinword$|^winword$|\Wwinword\W|^acrord32\W|\Wacrord32$|^acrord32$|\Wacrord32\W|^acrobat\W|\Wacrobat$|^acrobat$|\Wacrobat\W</field>
+		<field name="win.eventdata.image">^cmd\W|\Wcmd$|^cmd$|\Wcmd\W|^powershell\W|\Wpowershell$|^powershell$|\Wpowershell\W</field>
+		<description>Detect Suspicious LoL commands - Highly Suspicious Cmd/Powershell spawned as child process: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109199" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">^Excel\W|\WExcel$|^Excel$|\WExcel\W|^Powerpnt\W|\WPowerpnt$|^Powerpnt$|\WPowerpnt\W|^winword\W|\Wwinword$|^winword$|\Wwinword\W|^acrord32\W|\Wacrord32$|^acrord32$|\Wacrord32\W|^acrobat\W|\Wacrobat$|^acrobat$|\Wacrobat\W</field>
+		<field name="win.eventdata.newProcessName">^cmd\W|\Wcmd$|^cmd$|\Wcmd\W|^powershell\W|\Wpowershell$|^powershell$|\Wpowershell\W</field>
+		<description>Detect Suspicious LoL commands - Highly Suspicious Cmd/Powershell spawned as child process: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																														(Rule 10x200~10x201 are moved to the end to avoid parsing problem)	
+																																																																														Rundll32.exe
+																																																																														1.Detect rundll32 + javascript
+																																																																														2. Detect rundll32 + ADS
+																																																																														3. Detect rundll32 + -sta <== single threaded apartment"
+																																																																													-->
+	<rule id="109202" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">javascript</field>
+		<description>Detect Suspicious LoL commands - Rundll32 executing Javascript files: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109203" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">javascript</field>
+		<description>Detect Suspicious LoL commands - Rundll32 executing Javascript files: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109204" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">\w:\w</field>
+		<description>Detect Suspicious LoL commands - Rundll32 executing ADS: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109205" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">\w:\w</field>
+		<description>Detect Suspicious LoL commands - Rundll32 executing ADS: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109206" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">-sta</field>
+		<description>Detect Suspicious LoL commands - Rundll32 load a registered or hijacked COM: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109207" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^rundll32\W|\Wrundll32$|^rundll32$|\Wrundll32\W</field>
+		<field name="win.eventdata.commandLine">\s-sta</field>
+		<description>Detect Suspicious LoL commands - Rundll32 load a registered or hijacked COM: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!-- DEV-5419 -->
+	</rule>
+	<!--
+																																																																													msdtc
+																																																																													-Source https://zhuanlan.zhihu.com/p/28650233
+																																																																													-Provided by Eric Wong
+																																																																													Detection:
+																																																																													1. check if any files created in C:\Windows\System32\oci.dll (File creation)
+																																																																														a. Sysmon Event 11
+																																																																															targetFilename includes \system32\oci.dll
+																																																																                                                  2. check running msdtc
+																																																																												-->
+	<rule id="109208" level="12">
+		<if_group>sysmon_event_11</if_group>
+		<field name="sysmon.targetFileName">^windows\W|\Wwindows$|^windows$|\Wwindows\W</field>
+		<field name="sysmon.targetFileName">^system32\W|\Wsystem32$|^system32$|\Wsystem32\W</field>
+		<field name="sysmon.targetFileName">^oci.dll\W|\Woci.dll$|^oci.dll$|\Woci.dll\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious oci.dll created for msdtc attack</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109209" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4663$</field>
+		<field name="objectName">^windows\W|\Wwindows$|^windows$|\Wwindows\W</field>
+		<field name="objectName">^system32\W|\Wsystem32$|^system32$|\Wsystem32\W</field>
+		<field name="objectName">^oci.dll\W|\Woci.dll$|^oci.dll$|\Woci.dll\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious oci.dll created for msdtc attack</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109210" level="3">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^msdtc\W|\Wmsdtc$|^msdtc$|\Wmsdtc\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious running of msdtc: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109211" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^msdtc\W|\Wmsdtc$|^msdtc$|\Wmsdtc\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious running of msdtc: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule frequency="2" id="109216" level="15" timeframe="360">
+		<if_matched_sid>109208</if_matched_sid>
+		<if_sid>109210</if_sid>
+		<description>Detect Suspicious LoL commands - Malicious usage of msdtc</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule frequency="2" id="109217" level="15" timeframe="360">
+		<if_matched_sid>109209</if_matched_sid>
+		<if_sid>109211</if_sid>
+		<description>Detect Suspicious LoL commands - Malicious usage of msdtc</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																				      Msbuild.exe should not normally be executed on workstations
+																																																																				      1.Build and execute a C# project stored in the target XML/csproj file.
+																																																																				  -->
+	<rule id="109214" level="12">
+		<if_group>sysmon_event_11</if_group>
+		<field name="win.eventdata.newProcessName">^msbuild\\W|\\Wmsbuild$|^msbuild$|\\Wmsbuild\\W</field>
+		<field name="win.eventdata.commandLine">^msbuild\\W|\\Wmsbuild$|^msbuild$|\\Wmsbuild\\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of msbuild: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109215" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">^msbuild\\W|\\Wmsbuild$|^msbuild$|\\Wmsbuild\\W</field>
+		<field name="win.eventdata.commandLine">^msbuild\W|\Wmsbuild$|^msbuild$|\Wmsbuild\W</field>
+		<description>Detect Suspicious LoL commands - Suspicious usage of msbuild: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- Whitelisting msbuild-->
+	<rule id="109853" level="0">
+		<if_sid>109215</if_sid>
+		<field name="win.eventdata.parentProcessName">devenv.exe</field>
+		<description>Legitimate msbuild.exe</description>
+	</rule>
+	<rule id="109854" level="0">
+		<if_sid>109215</if_sid>
+		<field name="win.eventdata.commandLine">AI-Importer.sln|Towngas App Revamp.sln|eService-Libraries.sln|eService-API.sln|eService-BackOffice.sln|eService-FrontEnd.sln|eService</field>
+		<description>Legitimate msbuild.exe</description>
+	</rule>
+	<!--Whitelist Lenovo Controller Expand.exe-->
+	<rule id="109218" level="0">
+		<if_sid>109036</if_sid>
+		<field name="win.eventdata.parentCommandLine">Lenovo\\\\ImController\\\\Service\\\\Lenovo.Modern.ImController.exe</field>
+		<description>Whitelist Lenovo Controller</description>
+	</rule>
+	<!--Whitelist Bloomberg Expand.exe-->
+	<rule id="109219" level="0">
+		<if_sid>109036</if_sid>
+		<field name="sysmon.parentImage">blp\\\\Wintrv\\\\blpwebviewinst.exe</field>
+		<field name="sysmon.parentCommandLine">"blpwebviewinst.exe" -s|blp\\\\Wintrv\\\\blpwebviewinst.exe</field>
+		<description>Whitelist Bloomberg Application</description>
+	</rule>
+	<!--Regsvr32 squiblydoo detection-->
+	<rule id="109220" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="win.eventdata.commandLine">^regsrv32\W|\Wregsrv32$|^regsrv32$|\Wregsrv32\W</field>
+		<field name="win.eventdata.commandLine">sct</field>
+		<field name="win.eventdata.commandLine">scrobj.dll</field>
+		<description>Detect Suspicious LoL commands - Regsvr32 with scrobj.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109221" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">^regsrv32\W|\Wregsrv32$|^regsrv32$|\Wregsrv32\W</field>
+		<field name="win.eventdata.commandLine">sct</field>
+		<field name="win.eventdata.commandLine">scrobj.dll</field>
+		<description>Detect Suspicious LoL commands - Regsvr32 with scrobj.dll: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																													This is to detect any usage of ADS.
+																																																																													Must be at the end because it will verify with the sids.
+																																																																													-->
+	<rule id="109700" level="12">
+		<if_sid>109016,109020,109028,109062,109084,109110</if_sid>
+		<field name="win.eventdata.commandLine">\w:\w</field>
+		<description>Detect Suspicious LoL commands - Potential usage of ADS: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="109701" level="12">
+		<if_sid>109017,109021,109029,109063,109085,109111</if_sid>
+		<field name="win.eventdata.commandLine">\w:\w</field>
+		<description>Detect Suspicious LoL commands - Potential usage of ADS: "$(win.eventdata.newProcessName)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!--
+																																																																														Excluding http:// or http:\\\\ Moved to the end.
+																																																																													-->
+	<rule id="109702" level="0">
+		<if_sid>109700,109204</if_sid>
+		<field name="win.eventdata.commandLine">:/\.*|:\\\\\.*</field>
+		<description>Excluding possible hxxp:// or hxxp:\\\\.</description>
+	</rule>
+	<rule id="109703" level="0">
+		<if_sid>109701,109205</if_sid>
+		<field name="win.eventdata.commandLine">:/\.*|:\\\\\.*</field>
+		<description>Excluding possible hxxp:// or hxxp:\\\\.</description>
+	</rule>
+	<rule id="109705" level="0">
+		<if_sid>109058,109059</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Windows\\\\CCM\\\\Microsoft.ConfigurationManager.AssetProvider.dll</field>
+		<description>Legit process for windows udpate</description>
+	</rule>
+	<!--DEMO-73925-->
+	<rule id="132812" level="0">
+		<if_sid>109059</if_sid>
+		<field name="win.eventdata.commandLine">\\InstallUtil.exe /Uninstall</field>
+		<description>Legitimate process windows uninstaller tool </description>
+	</rule>
+	  <rule id="109861" level="0">
+    <if_sid>109157</if_sid>
+    <field name="win.eventdata.commandLine">RSTC.Web.ContractorAgent.dll|RSTC.Web.CommitteeAgent.dll</field>
+    <description>Whitelisting LoL Dotnet.exe</description>
+  </rule>
+	<!--
+																																																																														When adding new rules, please check for the last rule number by checking previous rules.
+																																																																													-->
+	<rule id="109862" level="0">
+		<if_sid>109137</if_sid>
+		<field name="win.eventdata.commandLine">Program Files\\\\Common Files\\\\VERITAS</field>
+		<description>[Whitelist] Detect Suspicious LoL commands</description>
+		<!--DEV-5370-->
+	</rule>
+
+	<rule id="109863" level="12">
+		<if_sid>109187</if_sid>
+		<field name="win.eventdata.commandLine"> -e | --exec| --system| --shell-type | /mnt/c| --user root| -u root|--debug-shell|powershell.exe|pwsh.exe|cmd.exe|calc.exe</field>
+		<description>Suspicious Child Process under Wsl.exe</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<!--DEV-5760-->
+	</rule>
+</group>
+<group name="pwc_caas,">
+	<rule id="109900" level="0">
+		<if_group>LoL_Rule_EventChannel</if_group>
+		<field name="win.eventdata.commandLine">^pmdtm </field>
+		<description>Excluding legit commands</description>
+	</rule>
+</group>

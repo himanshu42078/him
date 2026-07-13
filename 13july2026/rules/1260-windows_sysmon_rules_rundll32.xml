@@ -1,0 +1,126 @@
+<group name="pwc_caas,OS,windows,all_client,sysmon,">
+    <!-- sysmon event 1 - Detect dll run by Rundll32 -->
+	<rule id="103200" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="sysmon.commandLine">Rundll32.exe\.+.dll</field>
+		<description>Detect dll run by Rundll32 - $(sysmon.commandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,groupid_107200,</group>
+	</rule>
+	<!-- Windows event 4688 - Detect dll run by Rundll32 -->
+	<rule id="103201" level="12">
+		<if_sid>18104</if_sid>
+		<id>^4688$</id>
+		<field name="processCommandLine">Rundll32.exe\.+.dll</field>
+		<description>Detect dll run by Rundll32 - $(processCommandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<!-- legitimate progcess
+																																																																																																						  - SHCreateLocalServerRunDll
+																																																																																																						  - AppXDeploymentExtensions.OneCore.dll(Windows Store)
+																																																																																																						  - C:\\Windows\\System32\\LogiLDA.dll,LogiFetch(logitech driver)
+																																																																																																						-->
+	<rule id="103202" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.commandLine">Rundll32.exe\.+.dll,SHCreateLocalServerRunDll|AppXDeploymentExtensions.OneCore.dll|AppxDeploymentClient.dll|AppxDeploymentServer.dll|C:\\Windows\\System32\\LogiLDA.dll,LogiFetch|davclnt.dll,DavSetCookie FPC-CSA-Flex|davclnt.dll,DavSetCookie 2842firstpacific4388.sharepoint.com|davclnt.dll,DavSetCookie MPIC-FS|davclnt.dll,DavSetCookie 192.8.7.7|davclnt.dll,DavSetCookie zfs01-mau|davclnt.dll,DavSetCookie fs-2k8std|davclnt.dll,DavSetCookie c016-12022|davclnt.dll,DavSetCookie C016-13236|davclnt.dll,DavSetCookie \.*google.com|davclnt.dll,DavSetCookie \.*etnet.com|davclnt.dll,DavSetCookie \.*googlesyndication.com|davclnt.dll,DavSetCookie \.*googleadservices.com|davclnt.dll,DavSetCookie \.*skimresources.com|davclnt.dll,DavSetCookie \.*google-analytics.com</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="103203" level="0">
+		<if_sid>103201</if_sid>
+		<field name="processCommandLine">Rundll32.exe\.+.dll,SHCreateLocalServerRunDll|AppXDeploymentExtensions.OneCore.dll|AppxDeploymentClient.dll|AppxDeploymentServer.dll|C:\\Windows\\System32\\LogiLDA.dll,LogiFetch|davclnt.dll,DavSetCookie FPC-CSA-Flex|davclnt.dll,DavSetCookie 2842firstpacific4388.sharepoint.com|davclnt.dll,DavSetCookie MPIC-FS|davclnt.dll,DavSetCookie 192.8.7.7|davclnt.dll,DavSetCookie zfs01-mau|davclnt.dll,DavSetCookie fs-2k8std|davclnt.dll,DavSetCookie c016-12022|davclnt.dll,DavSetCookie C016-13236|davclnt.dll,DavSetCookie C016-13236|davclnt.dll,DavSetCookie \.*google.com|davclnt.dll,DavSetCookie \.*etnet.com|davclnt.dll,DavSetCookie \.*googlesyndication.com|davclnt.dll,DavSetCookie \.*googleadservices.com|davclnt.dll,DavSetCookie \.*skimresources.com|davclnt.dll,DavSetCookie \.*google-analytics.com</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- legitimate - default schedule task -->
+	<rule id="103204" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.parentCommandLine">C:\\WINDOWS\\system32\\svchost.exe -k netsvcs</field>
+		<field name="sysmon.commandLine">Startupscan.dll,SusRunTask|Windows.Storage.ApplicationData.dll,CleanupTemporaryState|/d acproxy.dll,PerformAutochkOperations|C:\\Windows\\system32\\pla.dll,PlaHost|bfe.dll,BfeOnServiceStartTypeChange|C:\\WINDOWS\\system32\\Windows.StateRepositoryClient.dll,StateRepositoryDoMaintenanceTasks|sysmain.dll,PfSvWsSwapAssessmentTask|dfdts.dll,DfdGetDefaultPolicyAndSMART|PcaSvc.dll,PcaPatchSdbTask</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="103205" level="0">
+		<if_sid>103201</if_sid>
+		<field name="processCommandLine">Startupscan.dll,SusRunTask|Windows.Storage.ApplicationData.dll,CleanupTemporaryState|/d acproxy.dll,PerformAutochkOperations|C:\\Windows\\system32\\pla.dll,PlaHost|bfe.dll,BfeOnServiceStartTypeChange|C:\\WINDOWS\\system32\\Windows.StateRepositoryClient.dll,StateRepositoryDoMaintenanceTasks|sysmain.dll,PfSvWsSwapAssessmentTask|dfdts.dll,DfdGetDefaultPolicyAndSMART|PcaSvc.dll,PcaPatchSdbTask</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Windows control panel -->
+	<rule id="103206" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.parentCommandLine">C:\\Windows\\System32\\control.exe\.+appwiz.cpl|C:\\Windows\\System32\\control.exe\.+bthprops.cpl|C:\\Windows\\System32\\control.exe\.+desk.cpl|C:\\Windows\\System32\\control.exe\.+FlashPlayerCPLApp.cpl|C:\\Windows\\System32\\control.exe\.+hdwwiz.cpl|C:\\Windows\\System32\\control.exe\.+inetcpl.cpl|C:\\Windows\\System32\\control.exe\.+intl.cpl|C:\\Windows\\System32\\control.exe\.+irprops.cpl|C:\\Windows\\System32\\control.exe\.+joy.cpl|C:\\Windows\\System32\\control.exe\.+main.cpl|C:\\Windows\\System32\\control.exe\.+mmsys.cpl|C:\\Windows\\System32\\control.exe\.+ncpa.cpl|C:\\Windows\\System32\\control.exe\.+powercfg.cpl|C:\\Windows\\System32\\control.exe\.+sysdm.cpl|C:\\Windows\\System32\\control.exe\.+telephon.cpl|C:\\Windows\\System32\\control.exe\.+timedate.cpl|C:\\Windows\\System32\\control.exe\.+wscui.cpl</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="103207" level="0">
+		<if_sid>103201</if_sid>
+		<field name="processCommandLine">C:\\Windows\\System32\\control.exe\.+appwiz.cpl|C:\\Windows\\System32\\control.exe\.+bthprops.cpl|C:\\Windows\\System32\\control.exe\.+desk.cpl|C:\\Windows\\System32\\control.exe\.+FlashPlayerCPLApp.cpl|C:\\Windows\\System32\\control.exe\.+hdwwiz.cpl|C:\\Windows\\System32\\control.exe\.+inetcpl.cpl|C:\\Windows\\System32\\control.exe\.+intl.cpl|C:\\Windows\\System32\\control.exe\.+irprops.cpl|C:\\Windows\\System32\\control.exe\.+joy.cpl|C:\\Windows\\System32\\control.exe\.+main.cpl|C:\\Windows\\System32\\control.exe\.+mmsys.cpl|C:\\Windows\\System32\\control.exe\.+ncpa.cpl|C:\\Windows\\System32\\control.exe\.+powercfg.cpl|C:\\Windows\\System32\\control.exe\.+sysdm.cpl|C:\\Windows\\System32\\control.exe\.+telephon.cpl|C:\\Windows\\System32\\control.exe\.+timedate.cpl|C:\\Windows\\System32\\control.exe\.+wscui.cpl</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate PCA process -->
+	<rule id="103208" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.parentCommandLine">C:\\Windows\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s PcaSvc</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="103209" level="0">
+		<if_sid>103201</if_sid>
+		<field name="processCommandLine">C:\\Windows\\system32\\svchost.exe -k LocalSystemNetworkRestricted -p -s PcaSvc</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Adobe Reader process, printui -->
+	<rule id="103210" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.commandLine">Adobe\\Acrobat Reader DC\\Esl\\AiodLite.dll|printui</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="103211" level="0">
+		<if_sid>103201</if_sid>
+		<field name="processCommandLine">Adobe\\Acrobat Reader DC\\Esl\\AiodLite.dll|printui</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate windows app store update process -->
+	<rule id="103212" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.parentCommandLine">C:\\Windows\\system32\\svchost.exe -k wsappx -p -s AppXSvc</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate NVIDIA Container -->
+	<rule id="103213" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.parentImage">C:\\Program Files\\NVIDIA Corporation</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Windows update related -->
+	<rule id="103214" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.commandLine">C:\\$WINDOWS.~BT\\Sources\\GeneralTel.dll</field>
+		<field name="sysmon.parentImage">SetupHost.Exe</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="103215" level="0">
+		<if_sid>103201</if_sid>
+		<field name="processCommandLine">C:\\$WINDOWS.~BT\\Sources\\GeneralTel.dll</field>
+		<field name="createProcessName">SetupHost.Exe</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Symantec Endpoint Protection -->
+	<rule id="103216" level="0">
+		<if_sid>103200</if_sid>
+		<field name="sysmon.commandLine">C:\\ProgramData\\Symantec\\Symantec Endpoint Protection</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="103217" level="0">
+		<if_sid>103201</if_sid>
+		<field name="processCommandLine">C:\\ProgramData\\Symantec\\Symantec Endpoint Protection</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<!-- Legitimate Windows Application Experience CEIP-->
+	<rule id="103218" level="0">
+		<if_sid>103201</if_sid>
+		<field name="sysmon.commandLine">C:\\Windows\\system32\\rundll32.exe aepdu.dll,AePduRunUpdate</field>
+		<field name="sysmon.parentCommandLine">C:\\Windows\\system32\\services.exe</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+	<rule id="103219" level="0">
+		<if_sid>103201</if_sid>
+		<field name="processCommandLine">C:\\Windows\\system32\\rundll32.exe aepdu.dll,AePduRunUpdate</field>
+		<field name="createProcessName">C:\\Windows\\system32\\services.exe</field>
+		<description>Legitimate - Detect dll run by Rundll32</description>
+	</rule>
+</group>
