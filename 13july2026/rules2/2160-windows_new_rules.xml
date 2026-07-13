@@ -1,0 +1,29 @@
+
+<!-- Modify it at your will. -->
+<group name="pwc_caas,windows_eventchannel,">
+  <!-- Excluded, covered the use case in rule=107503
+  <rule id="216000" level="12">
+    <if_sid>60141</if_sid>
+    <field name="win.eventdata.targetUserName">^Domain Admins$|^Enterprise Admins$|Administrators</field>
+    <description>A member was added from a Security-Enabled Global Group(Domain Admins/Enterprise Admins).</description>
+    <options>no_full_log</options>
+    <group>windows,windows_security,group_changed,win_group_changed,</group>
+  </rule>
+  --> 
+  <rule id="216001" level="12">
+    <if_sid>60142</if_sid>
+    <field name="win.eventdata.targetUserName">^Domain Admins$|^Enterprise Admins$</field>
+    <description>A member was removed from a Security-Enabled Global Group(Domain Admins/Enterprise Admins).</description>
+    <!--<options>no_full_log</options>-->
+    <!-- DEV-3497 -->
+    <group>windows,windows_security,group_changed,win_group_changed,</group>
+  </rule>
+  <rule id="216002" level="12">
+    <if_sid>60145</if_sid>
+    <field name="win.eventdata.targetUserName">^Administrators$</field>
+    <description>A member was removed from a Security-Enabled Local Group(Administrators).</description>
+    <!--<options>no_full_log</options>-->
+    <!-- DEV-3497 -->
+    <group>windows,windows_security,group_changed,win_group_changed,attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+  </rule>
+</group>

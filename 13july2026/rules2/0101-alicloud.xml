@@ -1,0 +1,241 @@
+
+<!-- Modify it at your will. -->
+<!-- Alicloud Json Rules
+Rule Number: 136000 ~ 136999
+-->
+<group name="pwc_caas,all_client,alicloud,auto_escalate_disabled,cloud,">
+  <rule id="136000" level="3">
+    <decoded_as>alicloud-json</decoded_as>
+    <description>Group of Alicloud events</description>
+    <group>network_device,</group>
+  </rule>
+  <rule id="136050" level="3">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">RunInstances|StartInstance</field>
+    <description>Alicloud: Create new instance successfully</description>
+  </rule>
+  <rule id="136001" level="12">
+    <if_sid>136050</if_sid>
+    <field name="alicloud.eventName">RunInstances</field>
+    <field name="alicloud.errorCode">NoPermission</field>
+    <description>Alicloud: Run a new instance without permission</description>
+  </rule>
+  <rule id="136002" level="12">
+    <if_sid>136050</if_sid>
+    <field name="alicloud.eventName">StartInstance</field>
+    <field name="alicloud.errorCode">Client.UnauthorizedOperation</field>
+    <description>Alicloud: Start instances in ECS without permission</description>
+  </rule>
+  <rule id="136003" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">^StopInstance</field>
+    <description>Alicloud: Stop instances in ECS</description>
+  </rule>
+  <rule id="136004" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">DeleteSecurityGroup</field>
+    <description>Alicloud: Deleted Security Groups in ECS</description>
+    <group>groupid_135004,</group>
+  </rule>
+  <rule id="136005" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">AuthorizeSecurityGroup</field>
+    <description>Alicloud: A rule has been added to a security group</description>
+  </rule>
+  <rule id="136006" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">RevokeSecurityGroup</field>
+    <description>Alicloud: A rule has been removed from a security group</description>
+  </rule>
+  <rule id="136007" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">ModifySecurityGroupAttribute</field>
+    <description>Alicloud: Security Group attribute was modified</description>
+  </rule>
+  <rule id="136008" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">AllocateEipAddress|AllocatePublicIpAddress</field>
+    <description>Alicloud: Allocate a new Elastic IP address</description>
+    <group>groupid_135010,</group>
+  </rule>
+  <rule id="136009" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">AssociateEipAddress</field>
+    <description>Alicloud: Associate a new Elastic IP address</description>
+    <group>groupid_135011,</group>
+  </rule>
+  <!-- According to official Doc, the RAM successful logon do not have any extra field saying it is successful. But latest log shows it will appear "errorMessage"= success.
+						Note that it is also different from Root account signin, which for successful logins there will be no "errorMessage" field at all. So far no failure signin logs sample available for root-account. Will assume it behaves the same with RAM logs. Thus, I will use only errorCode = Authentication.failed to determine it is a failed log on, else are sucecssful logons.
+					-->
+  <rule id="136010" level="3">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">ConsoleSignin</field>
+    <description>Successful Logon</description>
+    <group>authentication_success,</group>
+  </rule>
+  <rule id="136011" level="4">
+    <if_sid>136010</if_sid>
+    <field name="alicloud.errorCode">Authentication\.</field>
+    <description>Alicloud: User login failed</description>
+    <group>authentication_failed,</group>
+  </rule>
+  <rule frequency="4" id="136012" level="12" timeframe="300">
+    <if_matched_sid>136011</if_matched_sid>
+    <same_source_ip/>
+    <description>Alicloud: Possible break-in attempt</description>
+    <group>authentication_failed,groupid_135018,</group>
+  </rule>
+  <rule id="136013" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">CreateUser</field>
+    <description>Alicloud: Create user account</description>
+    <group>groupid_135015,</group>
+  </rule>
+  <rule id="136014" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">CreateUser</field>
+    <field name="alicloud.errorCode">NoPermission</field>
+    <description>Alicloud: Create user account without permission</description>
+    <group>groupid_135016,</group>
+  </rule>
+  <rule id="136015" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">DeleteBucket</field>
+    <description>Alicloud OSS: Bucket Deleted</description>
+  </rule>
+  <rule id="136016" level="3">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">DeleteObject</field>
+    <description>Alicloud OSS: Object Deleted</description>
+  </rule>
+  <rule frequency="5" id="136017" level="12" timeframe="300">
+    <if_matched_sid>136016</if_matched_sid>
+    <same_field>alicloud.userName</same_field>
+    <description>Alicloud OSS: Multiple object being deleted</description>
+  </rule>
+  <rule id="136018" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">StopLogging</field>
+    <description>Alicloud: ActionTrail stopped logging</description>
+  </rule>
+
+  <rule frequency="3" id="136019" level="12" timeframe="300">
+    <if_matched_sid>136011</if_matched_sid>
+    <same_user/>
+    <description>Alicloud: Same User Login Failed Multiple times: $(dstuser)</description>
+    <group>authentication_failed,groupid_135023,</group>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136020" level="13">
+    <if_sid>136010</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+    <description>Successful Alicloud login from Tor-IP</description>
+    <group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,groupid_135221,</group>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136021" level="12">
+    <if_sid>136010</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+    <description>Successful Alicloud login from malware-IP</description>
+    <group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+    <!-- DEV-5016 -->
+  </rule>
+
+  <rule id="136022" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">CreateRole</field>
+    <field name="alicloud.requestParameters.RoleName">Admin</field>
+    <description>Alicloud: Create Admin Role</description>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136023" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">DeleteRole</field>
+    <field name="alicloud.requestParameters.RoleName">Admin</field>
+    <description>Alicloud: Delete Admin Role</description>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136024" level="5">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">CreateGroup</field>
+    <field name="alicloud.requestParameters.GroupName">Admin</field>
+    <description>Alicloud: Create Admin Group</description>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136025" level="5">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">DeleteGroup</field>
+    <field name="alicloud.requestParameters.GroupName">Admin</field>
+    <description>Alicloud: Delete Admin Group</description>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136026" level="5">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">AttachPolicyToUser|AttachPolicyToRole</field>
+    <field name="alicloud.requestParameters.PolicyName">AdministratorAccess|FullAccess</field>
+    <description>Alicloud: Attached Administrator Access Policy to User/Role</description>
+    <group>demo_rules,DEV-5016,</group>
+    <!-- DEV-5016 -->
+  </rule>
+
+  <rule id="136030" level="3">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">ChangePassword</field>
+    <description>Alicloud: Change Password</description>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136031" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.eventName">ChangePassword</field>
+    <field name="alicloud.errorCode">Authentication\.</field>
+    <description>Alicloud: Change Password Failure: $(alicloud.errorCode)</description>
+    <!-- DEV-5016 -->
+  </rule>
+
+  <rule id="136700" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.__topic__">sas-vul-log</field>
+    <description>Alicloud Vulnerability Scanning Alert: $(alicloud.alias_name)</description>
+    <group>realert_12h,</group>
+  </rule>
+  <rule id="136701" level="12">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.__topic__">sas-security-log</field>
+    <description>Alicloud Security Center Alert: $(alicloud.name)</description>
+  </rule>
+  <rule id="136702" level="0">
+    <if_sid>136700,136701</if_sid>
+    <field name="alicloud.op">dealing</field>
+    <description>[WHITELIST] Alicloud Old Alert Update event</description>
+  </rule>
+  <rule id="136703" level="3">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.__topic__">sas-hc-log</field>
+    <field name="alicloud.level">low</field>
+    <description>Alicloud Baseline Low Severity Alert: $(alicloud.risk_name)</description>
+    <group>groupid_135101,severity_low,</group>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136704" level="3">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.__topic__">sas-hc-log</field>
+    <field name="alicloud.level">medium</field>
+    <description>Alicloud Baseline Midium Severity Alert: $(alicloud.risk_name)</description>
+    <group>groupid_135102,severity_medium,</group>
+    <!-- DEV-5016 -->
+  </rule>
+  <rule id="136705" level="3">
+    <if_sid>136000</if_sid>
+    <field name="alicloud.__topic__">sas-hc-log</field>
+    <field name="alicloud.level">high</field>
+    <description>Alicloud Baseline High Severity Alert: $(alicloud.risk_name)</description>
+    <group>groupid_135103,severity_high,</group>
+    <!-- DEV-5016 -->
+  </rule>
+
+  <rule id="136090" level="0">
+    <if_group>alicloud</if_group>
+    <field name="alicloud.sourceIpAddress">Internal</field>
+    <description>Alicloud actions Internally</description>
+  </rule>
+</group>

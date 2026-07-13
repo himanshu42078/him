@@ -1,0 +1,11 @@
+<group name="pwc_caas,cisco-ise,">
+  <rule id="203700" level="0">
+    <decoded_as>cisco-ise</decoded_as>
+    <description>Group of Cisco ISE Syslogs</description>
+  </rule>
+  <rule id="203701" level="5">
+    <if_sid>203700</if_sid>
+    <field name="severity">ERROR</field>
+    <description>Cisco ISE Error Massage.</description>
+  </rule>
+</group>

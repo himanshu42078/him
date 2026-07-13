@@ -1,0 +1,14 @@
+
+<group name="pwc_caas,radware_defensepro,">
+	<rule id="142500" level="2">
+		<decoded_as>radware-defensepro</decoded_as>
+		<description>Group of Radware Defensepro events</description>
+	</rule>
+	<rule id="142501" level="12">
+		<if_sid>142500</if_sid>
+		<action>forward</action>
+		<field name="severity">high</field>
+		<description>High Radware Defensepro Alert: $(policy)</description>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+	</rule>
+</group>

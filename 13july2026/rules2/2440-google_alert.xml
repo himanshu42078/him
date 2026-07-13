@@ -1,0 +1,52 @@
+
+<group name="pwc_caas,google-alert,">
+    <!-- Google Alert API -->
+    <rule id="244000" level="0">
+        <decoded_as>google-api-json</decoded_as>
+        <description>Group of Google Alert API logs</description>
+        <options>no_counter</options>
+    </rule>
+    <!-- For now it is Medium / High, we may change it-->
+    <rule id="244001" level="3">
+        <if_sid>244000</if_sid>
+        <field name="alerts.metadata.severity">Medium</field>
+        <field name="alerts.type">Data Loss Prevention</field>
+        <description>Medium Severity Google Alert DLP alerts</description>
+        <group>severity_medium,</group>
+    </rule>
+    <rule id="244002" level="3">
+        <if_sid>244000</if_sid>
+        <field name="alerts.metadata.severity">High</field>
+        <field name="alerts.type">Data Loss Prevention</field>
+        <description>High Severity Google Alert DLP alerts</description>
+        <group>severity_high,</group>
+    </rule>
+
+    <rule id="244003" level="12">
+        <if_sid>244001</if_sid>
+        <field name="alerts.data.ruleViolationInfo.recipients">anyone</field>
+        <description>Medium Severity Google DLP Alert: Item is publicly shared</description>
+        <group>auto_escalate_disabled,severity_medium,</group>
+    </rule>  
+
+    <rule id="244004" level="12">
+        <if_sid>244001</if_sid>
+        <field name="alerts.data.ruleViolationInfo.recipients">\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,</field>
+        <description>Medium Severity Google DLP Alert: Item is shared to high number of recipients</description>
+        <group>auto_escalate_disabled,severity_medium,</group>
+    </rule>
+
+    <rule id="244005" level="12">
+        <if_sid>244002</if_sid>
+        <field name="alerts.data.ruleViolationInfo.recipients">anyone</field>
+        <description>High Severity Google DLP Alert: Item is publicly shared</description>
+        <group>auto_escalate_disabled,severity_high,</group>
+    </rule>  
+
+    <rule id="244006" level="12">
+        <if_sid>244002</if_sid>
+        <field name="alerts.data.ruleViolationInfo.recipients">\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,\.*,</field>
+        <description>High Severity Google DLP Alert: Item is shared to high number of recipients</description>
+        <group>auto_escalate_disabled,severity_high,</group>
+    </rule>
+</group>

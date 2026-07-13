@@ -1,0 +1,88 @@
+
+<group name="pwc_caas,McAfee_security_manager,">
+  <rule id="137000" level="0">
+    <decoded_as>mcafee_security_manager</decoded_as>
+    <description>Group of McAfee Security Manager logs</description>
+  </rule>
+  <rule id="137001" level="3">
+    <if_sid>137000</if_sid>
+    <field name="severity">Low</field>
+    <description>McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>severity_low,</group>
+  </rule>
+  <rule id="137002" level="5">
+    <if_sid>137000</if_sid>
+    <field name="severity">Medium</field>
+    <description>McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>severity_medium,</group>
+  </rule>
+  <rule id="137003" level="12">
+    <if_sid>137000</if_sid>
+    <field name="direction">Inbound</field>
+    <field name="severity">High</field>
+    <description>McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+  </rule>
+  <rule id="137004" level="12">
+    <if_sid>137000</if_sid>
+    <field name="direction">Outbound</field>
+    <field name="severity">High</field>
+    <description>McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,severity_high,</group>
+  </rule>
+  <rule id="137005" level="5">
+    <if_sid>137000</if_sid>
+    <field name="direction">Inbound</field>
+    <field name="severity">Medium|High</field>
+    <!-- <field name="severity">Low|Medium|High</field> Removed low on 27 July-->
+    <description>McAfee Security Manager Inbound Alert</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip</group>
+  </rule>
+  <rule id="137006" level="12" frequency="10" timeframe="3600">
+    <if_matched_sid>137005</if_matched_sid>
+    <same_source_ip/>
+    <description>Multiple McAfee Security Manager Alert from $(srcip) - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,severity_high,</group>
+  </rule>
+  <rule id="137007" level="0">
+    <if_sid>137003,137004,137005</if_sid>
+    <field name="result">block</field>
+    <description>McAfee Security Manager $(severity) blocked Alert - $(msg) - blocked</description>
+  </rule>
+  <rule id="137008" level="0">
+    <if_sid>137003,137004,137005</if_sid>
+    <field name="raw_srcip">N/A</field>
+    <description>McAfee Security Manager $(severity) Alert - $(msg) with N/A source</description>
+  </rule>
+  <rule id="137010" level="5">
+    <if_sid>137003</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+    <description>Detect Bad Reputation Source in SOC TI - McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip</group>
+  </rule>
+  <rule id="137011" level="5">
+    <if_sid>137003</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/pwc-ti-ip</list>
+    <description>Detect Bad Reputation Source in SOC TI - McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip</group>
+  </rule>
+  <rule id="137012" level="5">
+    <if_sid>137003</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/cyberthreatcoalition-ip</list>
+    <description>Detect Bad Reputation Source in SOC TI - McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip</group>
+  </rule>
+  <rule id="137013" level="5">
+    <if_sid>137011,137012,137012</if_sid>
+    <description>Detect Bad Reputation Source in SOC TI - McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,</group>
+  </rule>  
+  <!-- reverted the low whitelisting for mcafee 30 Jun 2021 
+<rule id="137020" level="0">
+<if_sid>137003,137004,137005,137006</if_sid>
+<location>coma</location>
+<field name="severity">Low</field>
+<description>Whitelist McAfee Low alerts</description>
+</rule>
+ -->
+</group>

@@ -1,0 +1,50 @@
+
+<group name="pwc_caas,fireeye,">
+  <rule id="141000" level="1">
+    <decoded_as>fireeye</decoded_as>
+    <description>Group of Fireeye alerts</description>
+  </rule>
+  <rule id="141001" level="13">
+    <if_sid>141000</if_sid>
+    <action>notified</action>
+    <field name="sname">Phish.LIVE.DTI.URL</field>
+    <description>Fireeye $(action) alert - Detect Phishing Email with subject "$(subject)" from $(srcuser)</description>
+    <group>attack_stage_Initial_Access,attack_category_Spearphishing,group_by_data.srcuser</group>
+  </rule>
+  <rule id="141002" level="11">
+    <if_sid>141000</if_sid>
+    <field name="srchost">\.+</field>
+    <description>Fireeye $(action) alert - Detect $(event_type) on $(srchost)</description>
+    <group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srchost</group>
+  </rule>
+  <rule id="141003" level="12">
+    <if_sid>141000</if_sid>
+    <action>notified</action>
+    <field name="subject">\.+</field>
+    <description>Fireeye $(action) alert - Detect $(event_type) with subject "$(subject)" from $(srcuser)</description>
+    <group>attack_stage_Initial_Access,attack_category_Spearphishing,group_by_data.srcuser</group>
+  </rule>
+  <rule id="141004" level="10">
+    <if_sid>141000</if_sid>
+    <action>notified</action>
+    <regex>suser=\S+</regex>
+    <description>Fireeye $(action) alert - Detect $(event_type) from $(srcuser)</description>
+    <group>attack_stage_Initial_Access,attack_category_Spearphishing,group_by_data.srcuser</group>
+  </rule>
+  <rule id="141011" level="12">
+    <if_sid>141000</if_sid>
+    <action>notified</action>
+    <field name="event_type">malware-callback</field>
+    <field name="severity">7|8|9|10</field>
+    <description>Fireeye Alert - Detect Malware Callback</description>
+    <group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,severity_high,</group>
+  </rule>
+  <rule id="141012" level="12">
+	<if_sid>141000</if_sid>
+	<field name="product">ETP</field>
+	<action>delivered (retroactive)</action>
+	<description>Fireeye Alert - Possible Phishing Email from: $(srcuser), subject: $(subject) </description>
+	<group>attack_stage_Initial_Access,attack_category_Spearphishing,</group>
+  </rule>
+
+</group>

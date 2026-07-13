@@ -1,0 +1,50 @@
+
+<group name="pwc_caas,sentinelOne-json,">
+	<rule id="237000" level="3">
+		<decoded_as>sentinelOne-json</decoded_as>
+		<description>Group of SentinelOne Threat api alerts</description>
+		<options>no_counter</options>
+	</rule>
+	<rule id="237001" level="3">
+		<if_sid>237000</if_sid>
+		<field name="sentinel_one.threatInfo.mitigationStatus">not_mitigated</field>
+		<description>Not mitigated Alert SentinelOne: $(description)</description>
+	</rule>
+	<rule id="237002" level="6">
+		<if_sid>237001</if_sid>
+		<field name="sentinel_one.threatInfo.confidenceLevel">suspicious</field>
+		<description>Medium Severity Alert SentinelOne: $(description)</description>
+	</rule>
+	<rule id="237003" level="12">
+		<if_sid>237001</if_sid>
+		<field name="sentinel_one.threatInfo.confidenceLevel">malicious</field>
+		<description>Critical Severity Alert SentinelOne: $(description)</description>
+	</rule>
+	<rule id="237004" level="12">
+		<if_sid>237003</if_sid>
+		<field name="sentinel_one.indicators.tactics">Execution</field>
+		<field name="sentinel_one.indicators.category">Ransomware</field>
+		<description>Detect Malware: "$(description)"</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+	<rule id="237005" level="12">
+		<if_sid>237003</if_sid>
+		<field name="sentinel_one.indicators.tactics">Impact</field>
+		<field name="sentinel_one.indicators.category">Ransomware</field>
+		<description>Files deleted: "$(description)"</description>
+		<group>attack_stage_Impact,attack_category_File_Deletion,</group>
+	</rule>
+	<rule id="237006" level="12">
+		<if_sid>237003</if_sid>
+		<field name="sentinel_one.indicators.tactics">Execution</field>
+		<field name="sentinel_one.indicators.category">Exploitation</field>
+		<description>Exploitative code execution: "$(description)"</description>
+		<group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,</group>
+	</rule>
+	<rule id="237007" level="12">
+		<if_sid>237003</if_sid>
+		<field name="sentinel_one.indicators.category">Privilege Escalation</field>
+		<description>Privilege Escalation: "$(description)"</description>
+		<group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+	</rule>
+</group>

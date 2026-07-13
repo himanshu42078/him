@@ -1,0 +1,13 @@
+
+<group name="pwc_caas,">
+	<rule id="254000" level="0">
+		<decoded_as>lastline_cef</decoded_as>
+		<description>Group of Lastline CEF Logs</description>
+	</rule>
+ 	<rule id="254001" level="8">
+		<if_sid>254000</if_sid>
+		<field name="cef.extensions.cn1Label">impact</field>
+        <field name="cef.extensions.cn1">80</field>
+		<description>Lastline Alert with impact 80 - $(cef.extensions.cat)</description>
+	</rule>   
+</group>

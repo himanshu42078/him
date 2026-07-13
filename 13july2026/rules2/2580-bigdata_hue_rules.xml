@@ -1,0 +1,26 @@
+
+<!-- Modify it at your will. Changed srcuser to user in decoder and rules-->
+
+<group name="pwc_caas, bigdata,">
+    <!-- Bigdata Hue  -->
+    
+    <rule id="258000" level="0">
+        <decoded_as>bigdata-hue-cef</decoded_as>
+        <description>bigdata Hue Alert.</description>
+    </rule>
+
+    <rule id="258001" level="3">
+        <if_sid>258000</if_sid>
+        <field name="operation">USER_LOGIN</field>
+        <description>Bigdata Hue Login.</description>
+    </rule>
+
+	<rule id="258002" level="12" frequency="3" timeframe="60">
+	  <if_matched_sid>258001</if_matched_sid>
+      <same_user/>
+	  <description>Bigdata Hue: Same User Login more then 3 times in 1 minute. User: "$(user)", IP: "$(srcip)" </description>
+	</rule>
+
+	<!-- Bigdata Hue  End-->
+
+</group>

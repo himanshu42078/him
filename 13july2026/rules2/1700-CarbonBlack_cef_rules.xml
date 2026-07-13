@@ -1,0 +1,40 @@
+<!--
+	Carbonblack CEF rules
+	130xxx~130999
+-->
+<!-- 20230426, Cheng Du Team would handle all CB alerts -->
+<group name="pwc_caas,carbonblack,group_by_data.cef.extensions.dhost,auto_escalate_disabled,">
+	<!-- CEF Format -->
+	<rule id="130100" level="0">
+		<decoded_as>carbonblack_cef</decoded_as>
+		<description>Group of CarbonBlack</description>
+	</rule>
+    <rule id="130101" level="0">
+		<decoded_as>vmwarecarbonblack_cef</decoded_as>
+		<description>Group of CarbonBlack</description>
+	</rule>
+	<rule id="130102" level="4">
+		<if_sid>130100,130101</if_sid>
+		<field name="cef.severity">^0$|^1$|^2$|^3$</field>
+		<description>Low Severity Alert Carbonblack - $(cef.description)</description>
+		<group>severity_low,</group>
+	</rule>
+	<rule id="130103" level="4">
+		<if_sid>130100,130101</if_sid>
+		<field name="cef.severity">^4$|^5$|^6$</field>
+		<description>Medium Severity Alert Carbonblack - $(cef.description)</description>
+		<group>severity_medium,</group>
+	</rule>
+	<rule id="130104" level="12">
+		<if_sid>130100,130101</if_sid>
+		<field name="cef.severity">^7$|^8$</field>
+		<description>High Severity Alert Carbonblack - $(cef.description)</description>
+		<group>severity_high,</group>
+	</rule>
+	<rule id="130105" level="12">
+		<if_sid>130100,130101</if_sid>
+		<field name="cef.severity">^9$|^10$</field>
+		<description>Very High Severity Alert Carbonblack - $(cef.description)</description>
+		<group>severity_high,</group>
+	</rule>
+</group>

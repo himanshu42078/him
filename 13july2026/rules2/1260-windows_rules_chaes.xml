@@ -1,0 +1,18 @@
+<!-- Modify it at your will. -->
+<!-- https://caas.pwchk.com/browse/DEV-3720 -->
+<group name="pwc_caas,windows,windows_eventchannel,">
+    <!-- REF: https://sidechannel.blog/en/new-chaes-campaign-uses-windows-management-instrumentation-command-line-utility/ -->
+	<rule id="209100" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">python.exe|pythonw.exe|node.exe$</field>
+		<description>Chaes operations</description>
+	</rule>
+	<rule id="209101" level="10">
+		<if_sid>209100</if_sid>
+		<field name="win.eventdata.parentProcessName">\\\\AppData\\\\Roaming</field>
+		<description>Suspicious activities similar to Chaes hacking group operation</description>
+		<!-- DEV-5290 -->
+		<!-- DEV-5377 -->
+	</rule>
+</group>

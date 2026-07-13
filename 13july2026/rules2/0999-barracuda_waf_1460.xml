@@ -1,0 +1,8 @@
+
+<group name="barracuda_waf,syslog,pwc_caas,">
+	<rule id="146000" level="0">
+		<decoded_as>barracuda_waf</decoded_as>
+		<description>Grouping of Barracuda WAF.</description>
+		<options>no_counter</options>
+	</rule>
+</group>

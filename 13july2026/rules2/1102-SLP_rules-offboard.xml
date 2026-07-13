@@ -1,0 +1,21 @@
+
+<group name="pwc_caas,">
+  <!-- comb03 core banking rules-->
+  <!-- duplicated with 4830-comb03_rules.xml -->
+  <rule id="145000" level="3">
+    <decoded_as>slp</decoded_as>
+    <description>Group of slp logs</description>
+  </rule>
+  <rule id="145001" level="4">
+    <if_sid>145000</if_sid>
+    <field name="result">login success</field>
+    <description>slp login Success</description>
+    <group>authentication_success</group>
+  </rule>
+  <rule id="145002" level="4">
+    <if_sid>145000</if_sid>
+    <field name="result">login error</field>
+    <description>slp login failure $(time), $(dstuser)</description>
+    <group>authentication_failure</group>
+  </rule>
+</group>

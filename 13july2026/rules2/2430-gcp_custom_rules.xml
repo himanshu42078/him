@@ -1,0 +1,478 @@
+
+<!--
+  -  Google Cloud Pub/Sub rules
+  -  Created by Wazuh, Inc.
+  -  Copyright (C) 2015-2020, Wazuh Inc.
+  -  This program is a free software; you can redistribute it and/or modify it under the terms of GPLv2.
+-->
+
+<!--
+ID: 243000 - 243499
+-->
+<group name="pwc_caas,gcp,cloud,">
+    <!-- GCP wodle -->
+    <rule id="243000" level="0">
+        <decoded_as>gcp-json</decoded_as>
+        <description>Group of GCP logs</description>
+        <options>no_counter</options>
+    </rule>
+    <!-- Default Wazuh 4.x rules-->
+    <rule id="243001" level="0">
+        <if_sid>243000</if_sid>
+        <field name="gcp.resource.type">^dns_query$</field>
+        <description>GCP dns query event</description>
+
+    </rule>
+
+    <rule id="243002" level="0">
+        <if_sid>243001</if_sid>
+        <field name="gcp.resource.labels.source_type">^internet$</field>
+        <description>GCP internet event</description>
+
+    </rule>
+
+    <rule id="243003" level="0">
+        <if_sid>243001</if_sid>
+        <field name="gcp.resource.labels.source_type">^gce-vm$</field>
+        <description>GCP virtual machine event</description>
+
+    </rule>
+
+    <rule id="243004" level="2">
+        <if_sid>243002</if_sid>
+        <field name="gcp.severity">^INFO$</field>
+        <description>GCP info event with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+
+    </rule>
+
+    <rule id="243005" level="5">
+        <if_sid>243002</if_sid>
+        <field name="gcp.severity">^WARNING$</field>
+        <description>GCP warning event with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+
+    </rule>
+
+    <rule id="243006" level="3">
+        <if_sid>243002</if_sid>
+        <field name="gcp.severity">^NOTICE$</field>
+        <description>GCP notice event with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+
+    </rule>
+
+    <rule id="243007" level="5">
+        <if_sid>243002</if_sid>
+        <field name="gcp.severity">^ERROR$</field>
+        <description>GCP error with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+
+    </rule>
+
+    <rule id="243008" level="9">
+        <if_sid>243002</if_sid>
+        <field name="gcp.severity">^CRITICAL$</field>
+        <description>GCP critical event with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+    </rule>
+
+    <rule id="243009" level="11">
+        <if_sid>243002</if_sid>
+        <field name="gcp.severity">^ALERT$</field>
+        <description>GCP alert event with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+    </rule>
+
+    <rule id="243010" level="12">
+        <if_sid>243002</if_sid>
+        <field name="gcp.severity">^EMERGENCY$</field>
+        <description>GCP emergency event with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+    </rule>
+
+    <rule id="243011" level="2">
+        <if_sid>243003</if_sid>
+        <field name="gcp.severity">^INFO$</field>
+        <description>GCP info event from VM $(gcp.jsonPayload.vmInstanceName) with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+    </rule>
+
+    <rule id="243012" level="5">
+        <if_sid>243003</if_sid>
+        <field name="gcp.severity">^WARNING$</field>
+        <description>GCP warning event from VM $(gcp.jsonPayload.vmInstanceName) with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+
+    </rule>
+
+    <rule id="243013" level="3">
+        <if_sid>243003</if_sid>
+        <field name="gcp.severity">^NOTICE$</field>
+        <description>GCP notice event from VM $(gcp.jsonPayload.vmInstanceName) with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+
+    </rule>
+
+    <rule id="243014" level="5">
+        <if_sid>243003</if_sid>
+        <field name="gcp.severity">^ERROR$</field>
+        <description>GCP error event from VM $(gcp.jsonPayload.vmInstanceName) with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+
+    </rule>
+
+    <rule id="243015" level="9">
+        <if_sid>243003</if_sid>
+        <field name="gcp.severity">^CRITICAL$</field>
+        <description>GCP critical event from VM $(gcp.jsonPayload.vmInstanceName) with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+    </rule>
+
+    <rule id="243016" level="11">
+        <if_sid>243003</if_sid>
+        <field name="gcp.severity">^ALERT$</field>
+        <description>GCP alert event from VM $(gcp.jsonPayload.vmInstanceName) with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+    </rule>
+
+    <rule id="243017" level="12">
+        <if_sid>243003</if_sid>
+        <field name="gcp.severity">^EMERGENCY$</field>
+        <description>GCP emergency event from VM $(gcp.jsonPayload.vmInstanceName) with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location) with response code $(gcp.jsonPayload.responseCode)</description>
+    </rule>
+
+    <rule id="243018" level="10">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^ERROR$</field>
+        <description>GCP error with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+    </rule>
+
+    <rule id="243019" level="5">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^NXDOMAIN$</field>
+        <description>Unable to resolve domain name with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+    </rule>
+
+    <rule id="243020" level="12">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^SERVFAIL$</field>
+        <description>Unable to process query due to a problem with the name server with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+    </rule>
+
+    <rule id="243021" level="5">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^FORMERR$</field>
+        <description>Unable to interpret query with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243022" level="5">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^NOTIMP$</field>
+        <description>Unsupported requested query with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243023" level="5">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^REFUSED$</field>
+        <description>Refuse to perform the specified operation for policy reasons with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+    </rule>
+
+    <rule id="243024" level="10">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^YXDOMAIN$</field>
+        <description>Specified name already created, when it ought not to exist with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243025" level="10">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^YXRRSET$</field>
+        <description>The specified RR Set already exists with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243026" level="10">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^NXRRSET$</field>
+        <description>The specified RR Set does not exist, and should with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243027" level="10">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^NOTAUTH$</field>
+        <description>Server not authoritative for zone with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243028" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^NOTZONE$</field>
+        <description>Name not contained in zone with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243029" level="5">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^DSOTYPENI$</field>
+        <description>DSO-TYPE not implemented with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243030" level="10">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADVERS$</field>
+        <description>Bad OPT version with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243031" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADSIG$</field>
+        <description>TSIG Signature Failure with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243032" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADKEY$</field>
+        <description>Key not recognized with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243033" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADTIME$</field>
+        <description>Signature out of time window with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243034" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADMODE$</field>
+        <description>Bad TKEY Mode with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243035" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADNAME$</field>
+        <description>Duplicate key name with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243036" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADALG$</field>
+        <description>Algorithm not supported with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243037" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADTRUNC$</field>
+        <description>Bad Truncation with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <rule id="243038" level="7">
+        <if_sid>243002,243003</if_sid>
+        <field name="gcp.jsonPayload.responseCode">^BADCOOKIE$</field>
+        <description>Bad/missing Server Cookie with source IP $(gcp.jsonPayload.sourceIP) from $(gcp.resource.labels.location), severity $(gcp.severity)</description>
+
+    </rule>
+
+    <!-- GCP Generic Events -->
+    <rule id="243039" level="0">
+        <if_sid>243000</if_sid>
+        <field name="gcp.severity">^DEFAULT$</field>
+        <description>A GCP event with no severity information happened on project $(gcp.resource.labels.project_id), monitored resource type: $(gcp.resource.type)</description>
+
+    </rule>
+
+    <rule id="243040" level="2">
+        <if_sid>243000</if_sid>
+        <field name="gcp.severity">^INFO$</field>
+        <description>GCP information event on project $(gcp.resource.labels.project_id), monitored resource type: $(gcp.resource.type)</description>
+
+    </rule>
+
+    <rule id="243041" level="5">
+        <if_sid>243000</if_sid>
+        <field name="gcp.severity">^WARNING$</field>
+        <description>GCP warning event on project $(gcp.resource.labels.project_id), monitored resource type: $(gcp.resource.type)</description>
+        <group>groupid_135102,</group>
+    </rule>
+
+    <rule id="243042" level="3">
+        <if_sid>243000</if_sid>
+        <field name="gcp.severity">^NOTICE$</field>
+        <description>GCP notice event on project $(gcp.resource.labels.project_id), monitored resource type: $(gcp.resource.type)</description>
+        <group>groupid_135101,</group>
+    </rule>
+
+    <rule id="243043" level="5">
+        <if_sid>243000</if_sid>
+        <field name="gcp.severity">^ERROR$</field>
+        <description>GCP error event on project $(gcp.resource.labels.project_id), monitored resource type: $(gcp.resource.type)</description>
+        <group>groupid_135102,</group>
+    </rule>
+
+    <rule id="243044" level="9">
+        <if_sid>243000</if_sid>
+        <field name="gcp.severity">^CRITICAL$</field>
+        <description>GCP critical event on project $(gcp.resource.labels.project_id), monitored resource type: $(gcp.resource.type)</description>
+        <group>groupid_135103,</group>
+    </rule>
+
+    <rule id="243045" level="11">
+        <if_sid>243000</if_sid>
+        <field name="gcp.severity">^ALERT$</field>
+        <description>GCP alert event on project $(gcp.resource.labels.project_id), monitored resource type: $(gcp.resource.type)</description>
+        <group>groupid_135103,</group>
+    </rule>
+
+    <rule id="243046" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.severity">^EMERGENCY$</field>
+        <description>GCP emergency event on project $(gcp.resource.labels.project_id), monitored resource type: $(gcp.resource.type)</description>
+    </rule>
+
+    <rule id="243100" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">storage.buckets.delete</field>
+        <description>GCP Bucket Deleted</description>
+        <group>attack_stage_Impact,attack_category_File_Deletion,</group>
+    </rule>
+    <rule id="243101" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">v1.compute.firewalls.delete</field>
+        <description>GCP Firewall Rule Deleted</description>
+        <group>attack_stage_Impact,attack_category_Malicious_Tampering_of_System,</group>
+    </rule>
+    <rule id="243102" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">beta.compute.instances.stop</field>
+        <description>GCP Compute Instance Stopped</description>
+        <group>attack_stage_Impact,attack_category_Malicious_Tampering_of_System,</group>
+    </rule>
+    <rule id="243103" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">v1.compute.firewalls.patch</field>
+        <field name="gcp.protoPayload.resourceName">default-</field>
+        <description>GCP Default Firewall Rule Changed</description>
+        <group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+    </rule>
+    <rule id="243104" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">v1.compute.firewalls.insert</field>
+        <description>GCP Firewall Rule Created</description>
+        <group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+    </rule>
+    <rule id="243105" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">google.iam.admin.v1.CreateServiceAccount</field>
+        <description>GCP Service Account Created</description>
+        <group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,groupid_135015,</group>
+    </rule>
+    <rule id="243106" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">google.iam.admin.v1.CreateServiceAccountKey</field>
+        <description>GCP Service Account Key Created</description>
+        <group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+    </rule>
+    <rule id="243107" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">AssignResourceToBillingAccount</field>
+        <description>GCP Resource Assigned to Billing Account</description>
+        <group>attack_stage_Impact,attack_category_Malicious_Tampering_of_System,</group>
+    </rule>
+    <rule id="243108" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">google.iam.admin.v1.EnableServiceAccount</field>
+        <description>GCP Service Account Enabled</description>
+        <group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,groupid_135015,</group>
+    </rule>
+    <rule id="243109" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">google.iam.admin.v1.UndeleteServiceAccount</field>
+        <description>GCP Service Account Undeleted</description>
+        <group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+    </rule>
+    <rule id="243110" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">storage.buckets.create</field>
+        <description>GCP Storage Bucket Created</description>
+        <group>attack_stage_Impact,attack_category_Malicious_Tampering_of_System,</group>
+    </rule>
+    <rule id="243111" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">google.iam.admin.v1.CreateRole</field>
+        <description>GCP Role Created</description>
+        <group>attack_stage_Persistence,attack_category_Suspicious_Account_Creation,groupid_135211,</group>
+    </rule>
+    <rule id="243112" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">google.iam.admin.v1.DisableServiceAccount</field>
+        <description>GCP Service Account Disabled</description>
+        <group>attack_stage_Impact,attack_category_Access_Removal,</group>
+    </rule>
+    <rule id="243113" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.protoPayload.methodName">v1.compute.instances.start</field>
+        <description>GCP Compute Instance Started</description>
+        <group>attack_stage_Impact,attack_category_Malicious_Tampering_of_System,</group>
+    </rule>
+    <!-- This rule condition to be fixed in Wazuh 4.x -->
+    <rule id="243114" level="12">
+        <if_sid>243000</if_sid>
+        <field name="gcp.resource.type">gcs_bucket</field>
+        <field name="gcp.protoPayload.methodName">storage.setIamPermissions</field>
+        <match>allusers</match>
+        <match>ADD</match>
+        <description>GCP - New Open Storage Buckets Detected</description>
+        <group>attack_stage_Collection,attack_category_Data_Collection,</group>
+    </rule>
+
+    <!-- Newly Created Rule 20230823 -->
+    <rule id="243115" level="3">
+        <if_sid>243042</if_sid>
+        <field name="gcp.protoPayload.methodName">google.login.LoginService.loginSuccess</field>
+        <description>GCP Successful Login</description>
+        <!-- DEV-5004 -->
+    </rule>
+    <rule id="243116" level="5">
+        <if_sid>243042</if_sid>
+        <field name="gcp.protoPayload.methodName">google.login.LoginService.loginFailure</field>
+        <description>GCP Login Failure</description>
+        <!-- DEV-5004 -->
+    </rule>
+    <rule frequency="3" id="243117" level="12" timeframe="300">
+		<if_matched_sid>243116</if_matched_sid>
+        <same_field>gcp.protoPayload.authenticationInfo.principalEmail</same_field>
+        <description>GCP Same User Login Failed Multiple times: $(gcp.protoPayload.authenticationInfo.principalEmail)</description>
+        <group>groupid_135023,</group>
+        <!-- DEV-5004 -->
+    </rule>
+    <rule frequency="3" id="243118" level="12" timeframe="300">
+		<if_matched_sid>243116</if_matched_sid>
+		<same_source_ip/>
+		<description>GCP Possible break-in attempt from IP $(srcip)</description>
+        <group>groupid_135018,</group>
+		<!-- DEV-5004 -->
+	</rule>
+    <rule id="243119" level="13">
+        <if_sid>243115</if_sid>
+        <list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<description>Successful GCP login from Tor-IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,groupid_135221,</group>
+        <!-- DEV-5004 -->
+    </rule>
+    <rule id="243120" level="12">
+        <if_sid>243115</if_sid>
+        <list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+		<description>Successful GCP login from malware-IP</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+        <!-- DEV-5004 -->
+    </rule>
+
+
+    <!-- Generic Whitelist-->
+    <rule id="243500" level="0">
+		<if_sid>243100,243110</if_sid>
+		<field name="gcp.protoPayload.authenticationInfo.principalEmail">@developer.gserviceaccount.com$</field>
+		<regex>serviceAccountDelegationInfo\.*@compute-system.iam.gserviceaccount.com</regex>
+		<description>[WHITELIST] Legitimate Service Account operation</description>
+	</rule>
+	<!-- DEV-1412 -->
+</group>

@@ -1,0 +1,12 @@
+
+<!-- Modify it at your will. -->
+<!--
+Oct 13 05:49:58 10.6.31.49   %FTD-1-430002: DeviceUUID: 9d663f62-1182-11e8-b879-f27db4027943, AccessControlRuleAction: Allow, SrcIP: 10.6.72.83, DstIP: 113.252.11.68, SrcPort: 39988, DstPort: 300, Protocol: tcp, IngressInterface: Internal-1, EgressInterface: DMZ1, IngressZone: Internal, EgressZone: DMZ1, ACPolicy: ASTRI ACP with IPS and AMP, AccessControlRuleName: Internal R&D to Public, Prefilter Policy: ASTRI_Prefilter_Policy, User: No Authentication Required, UserAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36, Client: Chrome, ClientVersion: 91.0.4472.114, ApplicationProtocol: HTTP, InitiatorPackets: 3, ResponderPackets: 1, InitiatorBytes: 697, ResponderBytes: 74, NAPPolicy: Balanced Security and Connectivity, HTTPReferer: http://kenchristyhome.no-ip.biz:300/web/iph.html, ReferencedHost: kenchristyhome.no-ip.biz:300, URL: http://kenchristyhome.no-ip.biz:300/tmpfs/auto.jpg?1634104199638
+-->
+<group name="cisco_ftd,">
+  <rule id="203800" level="0">
+    <decoded_as>cisco_ftd</decoded_as>
+    <description>Group of Cisco Firepower Threat Defense messages</description>
+    <group>network_device,</group>
+  </rule>
+</group>

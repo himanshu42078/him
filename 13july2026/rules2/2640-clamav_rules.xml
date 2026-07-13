@@ -1,0 +1,85 @@
+
+<!-- Modify it at your will. -->
+
+<group name="pwc_caas,clamav,antivirus,">
+    <!-- ClamAV  -->
+    <rule id="264000" level="0">
+        <decoded_as>clamav-status-cef</decoded_as>
+        <description>clamaAV Alert.</description>
+    </rule>
+
+
+	<rule id="264001" level="12">
+		<if_sid>264000</if_sid>
+		<field name="infectedFile">(\.*)</field>
+		<description>ClamAV - Detected infected file : $(infectedFile)</description>
+	</rule>
+
+    <rule id="264002" level="0" >
+		<if_sid>264001</if_sid>
+		<field name="infectedFile">0</field>
+		<description>Not Found infected file</description>
+    </rule>
+
+    <rule id="264003" level="3" >
+		<if_sid>264000</if_sid>
+		<field name="msg">update failed|ERROR\p getfile\p Unknown response</field>
+		<description>ClamAV - Database update failure.</description>
+    </rule>
+
+    <rule id="264004" level="3" >
+		<if_sid>264000</if_sid>
+		<field name="msg">database is(\.*)</field>
+		<description>ClamAV - Database update failure.</description>
+    </rule>
+
+    <rule id="264005" level="0" >
+		<if_sid>264004</if_sid>
+		<field name="msg">up-to-date</field>
+		<description>ClamAV - Database is up-to-date</description>
+    </rule>
+    
+
+    <rule id="264006" level="3" ignore="3600" frequency="2" timeframe="60">
+        <if_matched_sid>264003</if_matched_sid>
+        <same_location/>
+        <description>ClamAV - Database update failure.</description>
+    </rule>
+
+  <!-- Clone from 0320-clam_av_rules.xml -->
+    <rule id="264007" level="8">
+        <if_sid>52502</if_sid>
+        <match>FOUND</match>
+        <description>ClamAV: Virus detected</description>
+        <group>virus,pci_dss_5.1,pci_dss_5.2,pci_dss_11.4,gpg13_4.2,gdpr_IV_35.7.d,nist_800_53_SI.3,nist_800_53_SI.4,tsc_A1.2,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+    </rule>
+    <rule id="264008" level="10">
+        <if_sid>52503</if_sid>
+        <match>^ERROR: </match>
+        <description>Clamd error</description>
+        <group>virus,gpg13_4.3,gdpr_IV_35.7.d,</group>
+    </rule>
+    <rule id="264009" level="7">
+        <if_sid>52504</if_sid>
+        <match>^WARNING: </match>
+        <description>Clamd warning</description>
+        <group>virus,gpg13_4.12,gdpr_IV_35.7.d,</group>
+    </rule>
+    <rule id="264010" level="6">
+        <if_sid>52510</if_sid>
+        <match>stop|Stop</match>
+        <description>Clamd stopped</description>
+        <mitre>
+          <id>T1089</id>
+        </mitre>
+        <group>virus,pci_dss_5.1,gpg13_4.14,nist_800_53_SI.3,tsc_A1.2,</group>
+    </rule>
+    <rule id="264011" level="10">
+        <if_sid>52511</if_sid>
+        <description>ClamAV: Virus detected multiple times</description>
+        <group>virus,pci_dss_5.1,pci_dss_5.2,pci_dss_11.4,gpg13_4.2,gdpr_IV_35.7.d,nist_800_53_SI.3,nist_800_53_SI.4,tsc_A1.2,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+    </rule>
+
+</group>
+
+    

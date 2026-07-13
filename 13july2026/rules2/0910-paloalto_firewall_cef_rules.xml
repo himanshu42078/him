@@ -1,0 +1,64 @@
+<group name="paloalto-firewall,syslog,pwc_caas,firewall,">
+	<rule id="106750" level="0">
+		<decoded_as>paloaltonetworks_cef</decoded_as>
+		<description>Grouping of Palo Alto Firewall rules.</description>
+	</rule>
+    <rule id="106751" level="4">
+		<if_sid>106750</if_sid>
+		<field name="cef.severity">^0$|^1$|^2$|^3$</field>
+		<description>PA Low Severity Alert</description>
+		<group>severity_low,</group>
+	</rule>
+    <rule id="106752" level="4">
+		<if_sid>106750</if_sid>
+		<field name="cef.severity">^4$|^5$|^6$</field>
+		<description>PA Medium Severity Alert</description>
+		<group>severity_medium,</group>
+	</rule>
+    <rule id="106753" level="5">
+		<if_sid>106750</if_sid>
+		<action>alert</action>
+		<field name="cef.severity">^7$|^8$</field>
+		<description>PA High Severity Alert</description>
+		<group>severity_high,</group>
+	</rule>
+    <rule id="106754" level="12">
+		<if_sid>106750</if_sid>
+		<action>alert</action>
+		<field name="cef.severity">^9$|^10$</field>
+		<description>PA Critical Severity Alert</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule>
+    <rule id="106755" level="12">
+		<if_sid>106750</if_sid>
+		<action>allow|alert</action>
+		<field name="cef.event_class_id">wildfire</field>
+		<field name="cef.severity">^9$|^10$</field>
+		<description>PA Critical Wildfire Threat Event</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule>
+    <rule id="106756" level="12">
+		<if_sid>106750</if_sid>
+		<action>allow|alert</action>
+		<field name="cef.event_class_id">wildfire</field>
+		<field name="cef.severity">^7$|^8$</field>
+		<description>PA High Wildfire Threat Event</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule>
+    <rule id="106757" level="12">
+		<if_sid>106750</if_sid>
+		<action>alert</action>
+		<field name="cef.event_class_id">vulnerability</field>
+		<field name="cef.severity">^9$|^10$</field>
+		<description>PA Critical vulnerability Threat Event</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule>
+    <rule id="106758" level="12">
+		<if_sid>106750</if_sid>
+		<action>alert</action>
+		<field name="cef.event_class_id">vulnerability</field>
+		<field name="cef.severity">^7$|^8$</field>
+		<description>PA High vulnerability Threat Event</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule>
+</group>

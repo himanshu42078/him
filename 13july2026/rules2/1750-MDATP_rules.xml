@@ -1,0 +1,228 @@
+
+<!--
+	mdatp rules
+	1330xx~1339xx
+	Requested by Leonard, include AlertTitle instead
+-->
+<group name="pwc_caas,mdatp,mde,edr,realert_15m,auto_escalate_disabled,">
+	<rule id="133000" level="0">
+		<decoded_as>mdatp</decoded_as>
+		<description>Group of MDATP</description>
+	</rule>
+	<rule id="133001" level="12">
+		<if_sid>133000</if_sid>
+		<field name="mdatp.severity">Low</field>
+		<description>MDATP $(mdatp.Category) Alert - $(mdatp.AlertTitle)</description>
+		<group>severity_low,</group>
+	</rule>
+	<rule id="133002" level="12">
+		<if_sid>133000</if_sid>
+		<field name="mdatp.severity">Medium</field>
+		<description>MDATP $(mdatp.Category) Alert - $(mdatp.AlertTitle)</description>
+		<group>severity_medium,</group>
+	</rule>
+	<rule id="133003" level="12">
+		<if_sid>133000</if_sid>
+		<field name="mdatp.severity">High</field>
+		<description>MDATP $(mdatp.Category) Alert - $(mdatp.AlertTitle)</description>
+		<group>severity_high,</group>
+	</rule>
+	<rule id="133004" level="12">
+		<if_sid>133000</if_sid>
+		<field name="mdatp.severity">Informational</field>
+		<description>MDATP $(mdatp.Category) Alert - $(mdatp.AlertTitle)</description>
+		<group>severity_low,</group>
+	</rule>
+	<rule id="133005" level="3">
+		<if_sid>133001,133004</if_sid>
+		<field name="mdatp.AlertTitle">prevented|block</field>
+		<description>Whitelist MDATP Blocked</description>
+	</rule>
+	<rule id="133006" level="3">
+		<if_sid>133001,133004</if_sid>
+		<field name="mdatp.Category">unwanted</field>
+		<description>Whitelist PUA</description>
+	</rule>
+	<rule id="133007" level="3">
+		<if_sid>133001,133004</if_sid>
+		<field name="mdatp.Url">pianistrefutationgoose.com|venetrigni.com|d24ak3f2b.top</field>
+		<description>Whitelist Blocked Domains</description>
+	</rule>
+	<rule id="133008" level="3">
+		<if_sid>133001,133002,133003,133004</if_sid>
+		<field name="mdatp.UserName">srvibmslsvcrm01|srvibmalsvcrm01</field>
+		<description>Whitelist IBM accounts</description>
+	</rule>
+	<rule id="133009" level="3">
+		<if_sid>133001,133004</if_sid>
+		<field name="mdatp.Description">Cloud App Security</field>
+		<description>Whitelist CAS alerts in MDATP</description>
+	</rule>
+	<!--
+	<rule id="133010" level="3">
+		<if_sid>133002</if_sid>
+		<field name="mdatp.Category">DefenseEvasion</field>
+		<description>Temporary Suppression for Troubleshooting</description>
+	</rule>
+	-->
+	<rule id="133011" level="0">
+		<if_sid>133001,133002,133003,133004</if_sid>
+		<field name="mdatp.FileHash">d01a22720918b781338b5bbf9202b241a5f99ee4</field>
+		<description>Whitelist legitimate hash</description>
+	</rule>
+
+	<rule id="133012" level="0">
+		<decoded_as>mde-api-json</decoded_as>
+		<description>Group of MDE</description>
+	</rule>	
+	<rule id="133013" level="12">
+		<if_sid>133012</if_sid>
+		<field name="mde.severity">Low</field>
+		<description>MDE $(mde.category) Low Alert - $(mde.title)</description>
+		<group>severity_low,</group>
+	</rule>
+	<rule id="133014" level="12">
+		<if_sid>133012</if_sid>
+		<field name="mde.severity">Medium</field>
+		<description>MDE $(mde.category) Medium Alert - $(mde.title)</description>
+		<group>severity_medium,</group>
+	</rule>
+	<rule id="133015" level="12">
+		<if_sid>133012</if_sid>
+		<field name="mde.severity">High</field>
+		<description>MDE $(mde.category) High Alert - $(mde.title)</description>
+		<group>severity_high,</group>
+	</rule>
+	<rule id="133016" level="12">
+		<if_sid>133012</if_sid>
+		<field name="mde.severity">Informational</field>
+		<description>MDE $(mde.category) Informational Alert - $(mde.title)</description>
+		<group>severity_low,</group>
+	</rule>
+	<rule id="133017" level="0">
+		<if_sid>133013,133016</if_sid>
+		<field name="mde.title">prevented|block</field>
+		<description>Whitelist MDE Blocked</description>
+	</rule>	
+	<rule id="133018" level="0">
+		<if_sid>133013,133016</if_sid>
+		<field name="mde.category">unwanted</field>
+		<description>Whitelist PUA</description>
+	</rule>
+	<rule id="133019" level="0">
+		<if_sid>133013,133016</if_sid>
+		<field name="mde.evidence.url">pianistrefutationgoose.com|venetrigni.com|d24ak3f2b.top</field>
+		<description>Whitelist Blocked Domains</description>
+	</rule>
+	<rule id="133020" level="0">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.relatedUser.userName">srvibmslsvcrm01|srvibmalsvcrm01</field>
+		<description>Whitelist IBM accounts</description>
+	</rule>
+	<rule id="133021" level="0">
+		<if_sid>133013,133016</if_sid>
+		<field name="mde.description">Cloud App Security</field>
+		<description>Whitelist CAS alerts in MDATP</description>
+	</rule>
+	<!--
+	<rule id="133022" level="0">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">DefenseEvasion</field>
+		<description>Temporary Suppression for Troubleshooting</description>
+	</rule>
+	-->
+	
+	<rule id="133023" level="0">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.evidence.sha1">d01a22720918b781338b5bbf9202b241a5f99ee4</field>
+		<description>Whitelist legitimate hash</description>
+	</rule>		
+
+	<!-- Put 133024-133037 back to 133013-133016 -->
+	<!-- 
+	<rule id="133024" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">CommandAndControl</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,</group>
+	</rule>	
+	<rule id="133025" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">CredentialAccess</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Dumping,</group>
+	</rule>
+	<rule id="133026" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">Discovery</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+	</rule>
+	<rule id="133027" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">Execution</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="133028" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">Exfiltration</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+	</rule>
+	<rule id="133029" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">Exploit</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Others,attack_category_Others,</group>
+	</rule>
+	<rule id="133030" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">InitialAccess</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+	</rule>
+	<rule id="133031" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">LateralMovement</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+	</rule>
+	<rule id="133032" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">Malware</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+	<rule id="133033" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">Persistence</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="133034" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">PrivilegeEscalation</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Privilege_Escalation,attack_category_Privileged_Account_Misuse_/_Abuse,</group>
+	</rule>
+	<rule id="133035" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">Ransomware</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+	<rule id="133036" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">SuspiciousActivity</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Defense_Evasion,attack_category_Suspicious_System_Configuration_Abuse,</group>
+	</rule>
+	<rule id="133037" level="12">
+		<if_sid>133013,133014,133015,133016</if_sid>
+		<field name="mde.category">UnwantedSoftware</field>
+		<description>MDE $(mde.category) Alert - $(mde.title)</description>
+		<group>attack_stage_Execution,attack_category_Potential_Unwanted_Application(PUA),</group>
+	</rule>
+	 -->
+</group>

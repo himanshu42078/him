@@ -1,0 +1,25 @@
+
+<!-- Modify it at your will. -->
+
+<group name="birchstreet,pwc_caas,">
+    <!-- birchstreet  -->
+    <rule id="261000" level="1">
+        <decoded_as>birchstreet</decoded_as>
+        <description>Birchstreet Alert.</description>
+    </rule>
+
+    <!--<rule id="79001" level="0">-->
+    <!--  <if_sid>79000</if_sid>-->
+    <!--  <field name="username">\.*</field>-->
+    <!--  <description>Birchstreet Alert.</description>-->
+    <!--</rule>-->
+    
+    <!--1min logon more then 5 time-->
+    <rule id="261001" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>261000</if_matched_sid>
+      <same_field>shortdate</same_field>
+      <same_field>birchstreet.Remote Address</same_field>
+      <description>Birchstreet: Multiple logins in a short period. The user: $(username) logon from IP : $(dstip) multiple times within one minute at time: $(logintime).</description>
+    </rule>  
+
+</group>

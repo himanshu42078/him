@@ -1,0 +1,157 @@
+
+<!--
+General Attack Scenario by Markus.
+The rule ID Range will be 11xxxx.
+-->
+<!--
+<rule id="xxx" level="12">
+	<if_group>sysmon_event1</if_group>
+	<field name="sysmon.commandLine">xxx</field>
+	<description>Detect suspicious XXX </description>
+	<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+</rule>
+Windows event 4688 - Detect suspicious long command
+<rule id="yyy" level="12">
+	<if_sid>18104</if_sid>
+	<id>^4688$</id>
+	<field name="processCommandLine">yyy</field>
+	<description>Detect suspicious YYY</description>
+	<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+</rule>
+-->
+<group name="General_Attack_Scenario,pwc_caas,sysmon,">
+	<rule id="110000" level="4">
+		<if_sid>18104</if_sid>
+		<id>^4769$</id>
+		<field name="eventID">4769</field>
+		<field name="ticketEncryptionType">0x17</field>
+		<field name="failureCode">0x0</field>
+		<description>Detected Kerberoasting Attack</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Dumping,</group>
+	</rule>
+	<rule id="110001" level="0">
+		<if_sid>110000</if_sid>
+		<field name="serviceName">krbtgt</field>
+		<description>False positive condition for Kerberoasting</description>
+	</rule>
+	<rule id="110002" level="0">
+		<if_sid>110000</if_sid>
+		<field name="serviceName">\.*\$</field>
+		<description>False positive condition for Kerberoasting</description>
+	</rule>
+	<rule id="110003" level="0">
+		<if_sid>110000</if_sid>
+		<field name="targetUserName">\.*\$@\.*</field>
+		<description>False positive condition for Kerberoasting</description>
+	</rule>
+	<!--
+																	      For whitelisting XP previous versions endpoints.
+																	  -->
+	<rule id="110200" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="sysmon.commandLine">\sinterface\s|\sinterfac\s|\sinterfa\s|\sinterf\s|\sinter\s|\sinte\s|\sint\s|\sin\s|\si\s</field>
+		<field name="sysmon.commandLine">\sportproxy\s|\sportprox\s|\sportpro\s|\sportpr\s|\sportp\s|\sport\s|\spor\s|\spo\s|\sp\s</field>
+		<field name="sysmon.commandLine">\sadd\s|\sad\s|\sa\s</field>
+		<field name="sysmon.commandLine">\sv\s|\sv4\s|\sv4t\s|\sv4to\s|\sv4tov\s|\sv4tov6\s|\sv4tov4\s|\sv6\s|\sv6t\s|\sv6to\s|\sv6tov\s|\sv6tov4\s|\sv6tov6\s</field>
+		<field name="sysmon.image">^netsh\W|\Wnetsh$|^netsh$|\Wnetsh\W</field>
+		<description>Detect Suspicious Netsh Portproxy commands: "$(sysmon.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110201" level="12">
+		<if_sid>18104</if_sid>
+		<id>^4688$</id>
+		<field name="processCommandLine">\sinterface\s|\sinterfac\s|\sinterfa\s|\sinterf\s|\sinter\s|\sinte\s|\sint\s|\sin\s|\si\s</field>
+		<field name="processCommandLine">\sportproxy\s|\sportprox\s|\sportpro\s|\sportpr\s|\sportp\s|\sport\s|\spor\s|\spo\s|\sp\s</field>
+		<field name="processCommandLine">\sadd\s|\sad\s|\sa\s</field>
+		<field name="processCommandLine">\sv\s|\sv4\s|\sv4t\s|\sv4to\s|\sv4tov\s|\sv4tov6\s|\sv4tov4\s|\sv6\s|\sv6t\s|\sv6to\s|\sv6tov\s|\sv6tov4\s|\sv6tov6\s</field>
+		<field name="processName">^netsh\W|\Wnetsh$|^netsh$|\Wnetsh\W</field>
+		<description>Detect Suspicious Netsh Portproxy commands: $(processCommandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110202" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="sysmon.commandLine">\sad\s|\sadv\s|\sadvf\s|\sadvfi\s|\sadvfir\s|\sadvfire\s|\sadvfirew\s|\sadvfirewa\s|\sadvfirewal\s|\sadvfirewall\s</field>
+		<field name="sysmon.commandLine">\sf\s|\sfi\s|\sfir\s|\sfire\s|\sfirew\s|\sfirewa\s|\sfirewal\s|\sfirewall\s</field>
+		<field name="sysmon.commandLine">\sadd\s|\sad\s|\sa\s</field>
+		<field name="sysmon.commandLine">\sr\s|\sru\s|\srul\s|\srule\s</field>
+		<field name="sysmon.image">^netsh\W|\Wnetsh$|^netsh$|\Wnetsh\W</field>
+		<description>Detect Suspicious Netsh commands - New firewall rule:"$(sysmon.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110203" level="12">
+		<if_sid>18104</if_sid>
+		<id>^4688$</id>
+		<field name="processCommandLine">\sad\s|\sadv\s|\sadvf\s|\sadvfi\s|\sadvfir\s|\sadvfire\s|\sadvfirew\s|\sadvfirewa\s|\sadvfirewal\s|\sadvfirewall\s</field>
+		<field name="processCommandLine">\sf\s|\sfi\s|\sfir\s|\sfire\s|\sfirew\s|\sfirewa\s|\sfirewal\s|\sfirewall\s</field>
+		<field name="processCommandLine">\sadd\s|\sad\s|\sa\s</field>
+		<field name="processCommandLine">\sr\s|\sru\s|\srul\s|\srule\s</field>
+		<field name="processName">^netsh\W|\Wnetsh$|^netsh$|\Wnetsh\W</field>
+		<description>Detect Suspicious Netsh commands - New firewall rule: $(processCommandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110204" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="sysmon.commandLine">^smbexec.py\W|\Wsmbexec.py$|^smbexec.py$|\Wsmbexec.py\W</field>
+		<description>Detect Smbexec.py commands: "$(sysmon.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110205" level="12">
+		<if_sid>18104</if_sid>
+		<id>^4688$</id>
+		<field name="processCommandLine">^smbexec.py\W|\Wsmbexec.py$|^smbexec.py$|\Wsmbexec.py\W</field>
+		<description>Detect Smbexec.py commands: $(processCommandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110206" level="12">
+		<if_sid>18101</if_sid>
+		<id>^7045$</id>
+		<field name="serviceName">BTOBTO</field>
+		<description>Detected Smbexec.py spawned services: BTOBTO</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110207" level="12">
+		<if_sid>18104</if_sid>
+		<id>^4697$</id>
+		<field name="serviceName">BTOBTO</field>
+		<description>Detected Smbexec.py spawned services: BTOBTO</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110208" level="12">
+		<if_sid>18101</if_sid>
+		<id>^7045$</id>
+		<field name="serviceFileName">%COMSPEC% /Q /c</field>
+		<description>Detected Smbexec.py spawned service</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110209" level="12">
+		<if_sid>18104</if_sid>
+		<id>^4697$</id>
+		<field name="serviceFileName">%COMSPEC% /Q /c</field>
+		<description>Detected Smbexec.py spawned service</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110210" level="12">
+		<if_group>sysmon_event1</if_group>
+		<field name="sysmon.commandLine">^ping\W|\Wping$|^ping$|\Wping\W</field>
+		<field name="sysmon.commandLine">-n 1\s|-n 1$</field>
+		<description>Detected Suspicious "Ping -n 1" command: "$(sysmon.commandLine)"</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110211" level="12">
+		<if_sid>18104</if_sid>
+		<id>^4688$</id>
+		<field name="processCommandLine">^ping\W|\Wping$|^ping$|\Wping\W</field>
+		<field name="processCommandLine">-n 1\s|-n 1$</field>
+		<description>Detected Suspicious "Ping -n 1" command: $(processCommandLine)</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+	<rule id="110300" level="0">
+		<decoded_as>freshscan</decoded_as>
+		<description>freshscan logs</description>
+	</rule>
+	<rule id="110301" level="12">
+		<if_sid>110300</if_sid>
+		<field name="msg">failed</field>
+		<description>Freshclam update failed</description>
+	</rule>
+</group>

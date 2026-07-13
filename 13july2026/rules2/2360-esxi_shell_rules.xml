@@ -1,0 +1,49 @@
+
+<group name="pwc_caas,esxi_shell,">
+	<rule id="236000" level="0">
+		<decoded_as>shell</decoded_as>
+		<description>Group of ESXI shell logs</description>
+		<options>no_counter</options>
+	</rule>
+	<rule id="236001" level="4">
+		<if_sid>236000</if_sid>
+		<field name="commandLine">pkill -9 vmx-*</field>
+		<description>Potential REvil targeting of ESXi Servers with Ransomware - $(commandLine)</description>
+	</rule>
+	<rule id="236002" level="12">
+		<if_sid>236000</if_sid>
+		<field name="commandLine">esxcli --formatter=csv --format-param=fields==</field>
+		<description>Potential REvil targeting of ESXi Servers with Ransomware - $(commandLine)</description>
+	</rule>
+	<rule id="236003" level="12">
+		<if_sid>236000</if_sid>
+		<field name="commandLine">vm process list</field>
+		<description>Potential REvil targeting of ESXi Servers with Ransomware - $(commandLine)</description>
+	</rule>
+	<rule id="236004" level="12">
+		<if_sid>236000</if_sid>
+		<field name="commandLine">system</field>
+		<description>Potential REvil targeting of ESXi Servers with Ransomware - $(commandLine)</description>
+	</rule>
+    <rule id="236005" level="12">
+		<if_sid>236000</if_sid>
+		<field name="commandLine">esxcli vm process kill --type=force --world-id=</field>
+		<description>Potential REvil targeting of ESXi Servers with Ransomware - $(commandLine)</description>
+	</rule>
+    <rule id="236006" level="12">
+		<if_sid>236000</if_sid>
+		<field name="commandLine">rhkrc-readme</field>
+		<description>Potential REvil targeting of ESXi Servers with Ransomware - $(commandLine)</description>
+	</rule>
+	<rule id="236007" level="12">
+		<if_sid>236000</if_sid>
+		<field name="commandLine">openssl</field>
+		<field name="commandLine">rsautil</field>
+		<field name="commandLine">-encrypt</field>
+		<field name="commandLine">-inkey</field>
+		<field name="commandLine">pubkey.txt</field>
+		<field name="commandLine">-pubin</field>
+		<field name="commandLine">-out</field>
+		<description>Detects Python Ransomware targets VMware ESXiserver - $(commandLine)</description>
+	</rule>
+</group>

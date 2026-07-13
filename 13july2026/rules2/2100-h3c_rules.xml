@@ -1,0 +1,60 @@
+
+<group name="pwc_caas,h3c,">
+  <rule id="141500" level="2">
+    <decoded_as>h3c</decoded_as>
+    <description>Group of H3C log</description>
+  </rule>
+  <rule id="141501" level="3">
+    <if_sid>141500</if_sid>
+    <field name="alert_type">WAF</field>
+    <description>Group of H3C WAF log</description>
+  </rule>
+  <rule id="141502" level="3">
+    <if_sid>141500</if_sid>
+    <action>CONTINUE</action>
+    <field name="severity">2|3</field>
+    <description>H3C WAF alert - $(attack_type)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,</group>
+  </rule>
+  <rule id="141504" level="12" frequency="10" timeframe="3600">
+    <if_matched_sid>141502</if_matched_sid>
+    <same_source_ip/>
+    <description>Multiple H3C WAF alert from $(srcip) - $(attack_type)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,</group>
+  </rule>
+  <rule id="141503" level="12">
+    <if_sid>141500</if_sid>
+    <location>coma</location>
+    <field name="rule_id">1\d\d\d\d|7\d\d\d\d</field>
+    <description>H3C WAF alert - $(attack_type)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,</group>
+  </rule>
+  <rule id="141510" level="5">
+    <if_sid>141502,141503</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+    <description>Detect Bad Reputation Source in SOC TI - McAfee Security Manager $(severity) Alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip</group>
+  </rule>
+  <rule id="141511" level="5">
+    <if_sid>141502,141503</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/pwc-ti-ip</list>
+    <description>Detect Bad Reputation Source in SOC TI - H3C WAF alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip</group>
+  </rule>
+  <rule id="141512" level="5">
+    <if_sid>141502,141503</if_sid>
+    <list field="srcip" lookup="address_match_key">etc/lists/cyberthreatcoalition-ip</list>
+    <description>Detect Bad Reputation Source in SOC TI - H3C WAF alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip</group>
+  </rule>
+  <rule id="141513" level="5">
+    <if_sid>141510,141511,141512</if_sid>
+    <description>Detect Bad Reputation Source in SOC TI - H3C WAF alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,</group>
+  </rule>
+  <rule id="141514" level="13">
+    <if_sid>134010,137013,141513</if_sid>
+    <description>Detect Bad Reputation Source in SOC TI - $(product) Alert - $(msg)</description>
+    <group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_rule.id,realert_24h,org_empty,</group>
+  </rule>  
+</group>

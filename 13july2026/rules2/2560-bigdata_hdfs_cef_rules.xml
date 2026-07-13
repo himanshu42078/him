@@ -1,0 +1,21 @@
+
+<!-- Modify it at your will. -->
+
+<!-- Bigdata HDFS  -->
+
+<group name="pwc_caas, bigdata-hdfs,">
+	
+    <rule id="256000" level="0">
+        <decoded_as>bigdata-hdfs-cef</decoded_as>
+        <description>bigdata hdfs Alert.</description>
+    </rule>
+    
+    
+    <rule id="256001" level="12">
+    	<if_sid>256000</if_sid>
+    	<field name="result">0</field>
+    	<description>Bigdata HDFS: An unauthorized Access was blocked by Ranger's corresponding Security Policy, User: "$(srcuser)", IP: "$(srcip)", Host: "$(srchost)" </description>
+    </rule>
+</group>
+
+<!-- Bigdata HDFS End -->

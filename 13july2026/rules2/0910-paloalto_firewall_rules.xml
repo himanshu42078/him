@@ -1,0 +1,69 @@
+
+<group name="paloalto-firewall,syslog,pwc_caas,firewall,">
+	<rule id="106250" level="3">
+		<decoded_as>paloalto-firewall</decoded_as>
+		<description>Grouping of Palo Alto Firewall rules.</description>
+	</rule>
+	<rule id="106251" level="12">
+		<if_sid>106250</if_sid>
+		<action>alert</action>
+		<field name="severity">^critical$</field>
+		<description>PA Critical Threat Event with Alert Action - $(threatid)</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule>
+	<rule id="106252" level="0">
+		<if_sid>106251</if_sid>
+		<field name="threatid">\(40015\)|\(40004\)</field>
+		<description>[Whitelist] PA Critical Threat Event with Alert Action - $(threatid)</description>
+	</rule>
+	<rule id="106260" level="12">
+		<if_sid>106250</if_sid>
+		<action>allow|alert</action>
+		<field name="subtype">wildfire</field>
+		<field name="severity">^critical$</field>
+		<description>PA Critical Wildfire Threat Event - $(threatid)</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule>
+	<rule id="106261" level="12">
+		<if_sid>106250</if_sid>
+		<action>allow|alert</action>
+		<field name="subtype">wildfire</field>
+		<field name="severity">^high$</field>
+		<description>PA High Severity Wildfire Threat Event - $(threatid)</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule>
+	<rule id="106262" level="1">
+		<if_sid>106250</if_sid>
+		<field name="eventid">globalprotectgateway-regist-succ</field>
+		<description>Successful login from Global Protect Gateway below 9.0</description>
+		<group>R2L,authentication_success,vpn_login_success,</group>
+	</rule>  
+	<rule id="106263" level="5">
+		<if_sid>106250</if_sid>
+		<action>alert</action>
+		<field name="subtype">vulnerability</field>
+		<field name="severity">^high$</field>
+		<description>PA High Severity Vulnerability Threat Event - $(threatid)</description>
+	</rule>  
+	<rule id="106264" level="12">
+		<if_sid>106250</if_sid>
+		<action>alert</action>
+		<field name="subtype">vulnerability</field>
+		<field name="severity">^critical$</field>
+		<description>PA Critical Severity Vulnerability Threat Event - $(threatid)</description>
+		<group>groupid_100205,severity_high,</group>
+	</rule> 
+
+  	<rule id="106265" level="1">
+		<if_sid>106250</if_sid>
+		<field name="type">GLOBALPROTECT</field>
+		<field name="tunnel_type">SSLVPN</field>
+		<description>Groups of GlobalProtect VPN Log</description>
+	</rule>
+    <rule id="106266" level="1">
+		<if_sid>106265</if_sid>
+		<field name="eventid">gateway-connected</field>
+		<group>authentication_success,vpn,vpn_login_success,</group>
+		<description>GlobalProtect VPN Login Success</description>
+	</rule>	 		
+</group>

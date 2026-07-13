@@ -1,0 +1,6 @@
+<group name="pwc_caas,">
+  <rule id="113500" level="1">
+    <decoded_as>db2audit</decoded_as>
+    <description>Group of db2audit</description>
+  </rule>
+</group>

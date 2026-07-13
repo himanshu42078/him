@@ -1,0 +1,90 @@
+
+<group name="pwc_caas,fireeye_helix,">
+  <rule id="140000" level="2">
+    <decoded_as>fireeye-helix</decoded_as>
+    <description>Group of Fireeye Helix alerts</description>
+  </rule>
+  <rule id="140001" level="3">
+    <if_sid>140000</if_sid>
+    <field name="fireeye_helix.severity">Low</field>
+    <description>Fireeye Helix Low Alert: $(fireeye_helix.message)</description>
+    <group>severity_low,</group>
+  </rule>
+  <rule id="140002" level="3">
+    <if_sid>140000</if_sid>
+    <field name="fireeye_helix.severity">Medium</field>
+    <description>Fireeye Helix Medium Alert: $(fireeye_helix.message)</description>
+    <group>severity_medium,</group>
+  </rule>
+  <!-- Generic Rule, will group by message if no AgentIP or Device name there-->
+  <rule id="140003" level="12">
+    <if_sid>140000</if_sid>
+    <field name="fireeye_helix.severity">High</field>
+    <description>Fireeye Helix High Alert: $(fireeye_helix.message)</description>
+    <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.id,realert_15m,severity_high,</group>
+    <!-- <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.message,realert_15m</group> -->
+  </rule>
+  <rule id="140004" level="12">
+    <if_sid>140000</if_sid>
+    <field name="fireeye_helix.severity">Critical</field>
+    <description>Fireeye Helix Critical Alert: $(fireeye_helix.message)</description>
+    <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.id,realert_0m,severity_high,</group>
+    <!-- <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.message,realert_15m</group> -->
+  </rule>
+  <!-- Check if have devicename-->
+  <rule id="140013" level="12">
+    <if_sid>140003</if_sid>
+    <field name="fireeye_helix.alert_type_details.detail.devicename">\.+</field>
+    <field name="fireeye_helix.severity">High</field>
+    <description>Fireeye Helix High Alert: $(fireeye_helix.message) on $(fireeye_helix.alert_type_details.detail.devicename)</description>
+    <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.alert_type_details.detail.devicename,realert_0m,severity_high,</group>
+    <!-- <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.alert_type_details.detail.devicename,realert_15m</group>-->
+  </rule>
+  <!-- End -->
+  <rule id="140014" level="12">
+    <if_sid>140004</if_sid>
+    <field name="fireeye_helix.alert_type_details.detail.devicename">\.+</field>
+    <field name="fireeye_helix.severity">Critical</field>
+    <description>Fireeye Helix Critical Alert: $(fireeye_helix.message) on $(fireeye_helix.alert_type_details.detail.devicename)</description>
+    <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.alert_type_details.detail.devicename,realert_0m,severity_high,</group>
+    <!-- <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.alert_type_details.detail.devicename,realert_15m</group> -->
+  </rule>
+  <!-- Check if have agentip-->
+  <rule id="140023" level="12">
+    <if_sid>140003</if_sid>
+    <field name="fireeye_helix.alert_type_details.detail.agentip">\.+</field>
+    <field name="fireeye_helix.severity">High</field>
+    <description>Fireeye Helix High Alert: $(fireeye_helix.message) on $(fireeye_helix.alert_type_details.detail.agenthostname)</description>
+    <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.alert_type_details.detail.agentip,realert_0m,severity_high,</group>
+    <!-- <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.alert_type_details.detail.agentip,realert_15m</group>-->
+  </rule>
+  <rule id="140024" level="12">
+    <if_sid>140004</if_sid>
+    <field name="fireeye_helix.alert_type_details.detail.agentip">\.+</field>
+    <field name="fireeye_helix.severity">Critical</field>
+    <description>Fireeye Helix Critical Alert: $(fireeye_helix.message) on $(fireeye_helix.alert_type_details.detail.agenthostname)</description>
+    <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.alert_type_details.detail.agentip,realert_0m,severity_high,</group>
+    <!-- <group>attack_stage_Execution,attack_category_Malware_Detection,group_by_data.fireeye_helix.alert_type_details.detail.agentip,realert_15m</group>-->
+  </rule>
+  <rule id="140005" level="13">
+    <if_sid>140000</if_sid>
+    <field name="fireeye_helix.alert_type_details.detail.iocnames">\.+</field>
+    <description>Fireeye Helix IoC Alert: $(fireeye_helix.message)</description>
+    <group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,group_by_data.fireeye_helix.alert_type_details.detail.agentip,realert_15m,severity_high,</group>
+  </rule>
+  <rule id="140006" level="0">
+    <if_sid>140003,140004,140013,140014,140023,140024</if_sid>
+    <field name="fireeye_helix.alert_type_details.detail.result">quarantined</field>
+    <description>Fireeye Helix Quarantined alert</description>
+  </rule>
+  <rule id="140910" level="0">
+		<if_sid>140000</if_sid>
+		<field name="fireeye_helix.alert_type_details.detail.virus">generic.mg.</field>
+		<description>Detected by AI (high false postive rate)</description>
+	</rule>
+  <!--<rule id="140007" level="0">-->
+  <!--  <if_sid>140000</if_sid>-->
+  <!--  <field name="fireeye_helix.alert_type_details.detail.virus">generic.mg.</field>-->
+  <!--  <description>Detected by AI (high false postive rate)</description>-->
+  <!--</rule>-->
+</group>

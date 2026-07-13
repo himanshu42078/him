@@ -1,0 +1,8 @@
+
+<group name="pwc_caas,cylance-protect,">
+    <rule id="248000" level="0">
+        <decoded_as>cylance-protect</decoded_as>
+        <description>Group of cylancePROTECT logs</description>
+        <options>no_counter</options>
+    </rule>
+</group>

@@ -1,0 +1,15 @@
+<group name="pwc_caas,fireeye,">
+  <rule id="200000" level="12">
+    <decoded_as>fireeye-etp-json</decoded_as>
+    <description>Fireeye ETP Alert - $(fireeye.email.headers.subject)</description>
+    <group>group_by_data.fireeye.email.etp_message_id,realert_3h,</group>
+    <!-- DEV-5079 -->
+  </rule>
+
+  <rule id="200001" level="0">
+		<if_sid>200000</if_sid>
+		<field name="fireeye.email.status">quarantined</field>
+		<description>[whitelist] Fireeye ETP Alert</description>
+		<!-- DEV-5026 -->
+	</rule>
+</group>

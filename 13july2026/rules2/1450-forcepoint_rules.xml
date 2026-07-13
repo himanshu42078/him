@@ -1,0 +1,48 @@
+
+<group name="pwc_caas,mail_alerts,">
+	<!--Group Forcepoint Together-->
+	<rule id="106301" level="3">
+		<decoded_as>forcepoint_cef</decoded_as>
+		<description>ForcePoint event</description>
+	</rule>
+	<!--Check "High" Severity-->
+	<rule id="106302" level="6">
+		<if_sid>106301</if_sid>
+		<field name="cef.severity">high</field>
+		<description>ForcePoint High Severity</description>
+		<group>severity_high,</group>
+	</rule>
+	<!--Whitelist Quarantined Action-->
+	<rule id="106303" level="0">
+		<if_sid>106302</if_sid>
+		<action>Quarantined</action>
+		<description>Successfully Quarantined</description>
+	</rule>
+
+	<rule id="106400" level="1">
+		<if_sid>106301</if_sid>
+		<field name="cef.product">Email Security</field>
+		<description>Forcepoint Email Security Event</description>
+	</rule>
+	<rule id="106401" level="0">
+		<if_sid>106400</if_sid>
+		<field name="cef.extensions.deviceProcessName">Anti-Virus</field>
+		<action>Drop and Quarantine</action>
+		<description>Dropped by AV</description>
+	</rule>
+
+	<rule id="106402" level="5">
+		<if_sid>106400</if_sid>
+		<field name="cef.extensions.fnameAndfileHash" type="osregex">malicious</field>
+		<description>Malicious Email</description>
+		<!-- DEV-4311 -->
+	</rule>
+
+	<rule id="106403" frequency="5" timeframe="180" level="5">
+		<if_matched_sid>106400</if_matched_sid>
+		<same_source_ip/>
+		<field name="cef.description" type="osregex">Spam</field>
+		<description>Multiple spam emails from the same source IP</description>
+		<!-- DEV-4311 -->
+	</rule>	
+</group>

@@ -1,0 +1,37 @@
+
+<group name="pwc_caas,f5_asm,">
+	<rule id="132000" level="0">
+		<decoded_as>f5-asm</decoded_as>
+		<description>Group of F5 ASM Logs</description>
+	</rule>
+	<rule id="132001" level="5">
+		<if_sid>132000</if_sid>
+		<field name="severity">Critical|^9$|^10$</field>
+		<description>Critical F5 ASM Alert Detected: $(attack_type)</description>
+		<group>severity_high,</group>
+	</rule>
+	<rule id="132002" level="12">
+		<if_sid>132001</if_sid>
+		<field name="attack_type">Buffer Overflow,Information Leakage,Forceful Browsing</field>
+		<action>alerted</action>
+		<description>Critical F5 ASM Alert Detected: $(attack_type)</description>
+		<group>severity_high,</group>
+	</rule>
+	<rule id="132003" level="12">
+		<if_sid>132001</if_sid>
+		<field name="attack_type">Buffer Overflow,Information Leakage,Forceful Browsing</field>
+		<action>passed</action>
+		<description>Critical F5 ASM Alert Detected: $(attack_type)</description>
+		<group>severity_high,</group>
+	</rule>
+	<rule id="132004" level="0">
+		<if_sid>132002,132003</if_sid>
+		<field name="user_agent">\.+</field>
+		<description>Ignore if user agent exist</description>
+	</rule>
+	<rule id="132008" level="0">
+		<if_sid>132002,132003</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/microsoft_pip_cdb</list>
+		<description>Whitelist MS all Public IP</description>
+	</rule>
+</group>

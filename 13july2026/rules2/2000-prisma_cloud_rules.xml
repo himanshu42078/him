@@ -1,0 +1,32 @@
+
+<group name="pwc_caas,prisma_cloud,cloud,">
+	<rule id="333000" level="3">
+		<decoded_as>prisma-cloud</decoded_as>
+		<description>Prisma Cloud Alert: $(prisma_cloud.policy.name)</description>
+		<!-- DEV-4898 -->
+	</rule>
+	<rule id="333001" level="12">
+		<if_sid>333000</if_sid>
+		<field name="prisma_cloud.policy.severity">high</field>
+		<description>High Severity Prisma Cloud Alert: $(prisma_cloud.policy.name)</description>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,severity_high,</group>
+	</rule>
+
+	<rule id="333002" level="0">
+		<decoded_as>Twistlock</decoded_as>
+		<description>Group of Twistlock</description>
+	</rule>	
+	<rule id="333003" level="12">
+		<if_sid>333002</if_sid>
+		<field name="type">incident</field>
+		<description>Prisma Cloud Twistlock Alert: $(incident_category)</description>
+	</rule>	
+
+	<rule id="333004" level="12">
+		<if_sid>333000,333001</if_sid>
+		<location>pwcsoc-testing-plwazag10-gcp.int.darklab.hk</location>
+		<description>Prisma Cloud Alert: $(prisma_cloud.policy.name)</description>
+		<group>group_by_data.prisma_cloud.id,demo_rules,</group>
+		<!-- Enable for Cloud Team to DEMO -->
+	</rule>
+</group>

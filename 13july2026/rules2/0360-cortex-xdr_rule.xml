@@ -1,0 +1,42 @@
+
+<!-- 139000 - 139999 Cortex-xdr rule. -->
+<group name="pwc_caas,cortex_xdr,auto_escalate_disabled,">
+	<rule id="139000" level="3">
+		<decoded_as>cortex-xdr-json</decoded_as>
+		<description>Group of Cortex XDR alerts</description>
+	</rule>
+	<rule id="139001" level="12">
+		<if_sid>139000</if_sid>
+		<field name="cortex_xdr.severity">high</field>
+		<description>High Severity Cortex XDR Alert: $(cortex_xdr.name)</description>
+		<options>no_full_log</options>
+		<group>realert_1h,cortex_alert,group_by_data.srcip,severity_high,</group>
+	</rule>
+	<rule id="139002" level="12">
+		<if_sid>139000</if_sid>
+		<field name="cortex_xdr.severity">medium</field>
+		<description>Medium Severity Cortex XDR Alert: $(cortex_xdr.name)</description>
+		<options>no_full_log</options>
+		<group>cortex_alert,group_by_data.srcip,severity_medium,</group>
+	</rule>
+	<rule id="139003" level="12">
+		<if_sid>139002</if_sid>
+		<field name="cortex_xdr.mitre_tactic_id_and_name">TA0011 - Command and Control</field>
+		<description>Medium Severity Cortex XDR Alert: $(cortex_xdr.name) TA0011 - Command and Control</description>
+		<group>realert_1h,cortex_alert,group_by_data.srcip,severity_medium,</group>
+	</rule>
+	<rule id="139004" level="12">
+		<if_sid>139002</if_sid>
+		<field name="cortex_xdr.mitre_tactic_id_and_name">TA0007 - Discovery</field>
+		<description>Medium Severity Cortex XDR Alert: $(cortex_xdr.name) TA0007 - Discovery</description>
+		<group>realert_1h,cortex_alert,group_by_data.srcip,severity_medium,</group>
+	</rule>
+	<rule id="139005" level="0">
+		<if_sid>139000</if_sid>
+		<field name="cortex_xdr.source">PAN NGFW</field>
+		<field name="cortex_xdr.action" negate="yes">BLOCKED</field>
+		<description>[Whitelist] Firewall alerts from Cortex</description>
+		<!-- DEV-4064 -->
+	</rule>	
+</group>
+<!-- Modify it at your will. -->

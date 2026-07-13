@@ -1,0 +1,152 @@
+
+<group name="pwc_caas,apexCentral_logs,antivirus,">
+	<!-- apexCentral core banking rules-->
+	<rule id="132910" level="3">
+		<decoded_as>trendmicro_cef</decoded_as>
+		<field name="cef.product">Apex Central</field>
+		<description>Group of apexCentral logs</description>
+	</rule>
+	<!--spyware-->
+	<rule id="132911" level="12">
+		<if_sid>132910</if_sid>
+		<field name="cef.event_class_id">Spyware Detected</field>
+		<description>Trend Micro - Spyware detected</description>
+		<group>virus,</group>
+	</rule>
+	<!--
+	<rule id="132912" level="2">
+		<if_sid>132911</if_sid>
+		<field name="cef.extensions.cs5">File cleaned</field>
+		<description>spyware detected, file deleted</description>
+	</rule>
+	-->
+	<!-- trojan-->
+	<rule id="132913" level="3">
+		<if_sid>132910</if_sid>
+		<field name="cef.description">TROJ</field>
+		<description>Trend Micro - Trojan event detected $(cef.description) - $(cef.event_class_id)</description>
+	</rule>
+	<rule id="132914" level="12">
+		<if_sid>132913</if_sid>
+		<action>Access denied</action>
+		<field name="cef.extensions.cs5">Unable to clean file</field>
+		<description>Trend Micro - Trojan event detected $(cef.description), Unable to clean Malware but access denied</description>
+		<group>virus,</group>
+		<!-- DEV-3084 -->
+	</rule>
+	<rule id="132915" level="12">
+		<if_sid>132913</if_sid>
+		<action>Unable to quarantine file</action>
+		<description>Trend Micro - Trojan event detected $(cef.description), Action Required for Trojan cleanup</description>
+		<group>virus,</group>
+		<!-- DEV-3084 -->
+	</rule>	
+	<rule id="132916" level="12">
+		<if_sid>132913</if_sid>
+		<action>Action Required</action>
+		<description>Trend Micro - Trojan event detected $(cef.description), Action Required for Trojan cleanup</description>
+		<group>virus,</group>
+		<!-- DEV-3084 -->
+	</rule>		
+	<!-- 
+	<rule id="132915" level="2">
+		<if_sid>132914</if_sid>
+		<field name="cef.extensions.cs6">File quarantined</field>
+		<description>trojan event detected $(cef.description), quarantined on second attempt</description>
+	</rule>
+	<rule id="132916" level="2">
+		<if_sid>132913</if_sid>
+		<field name="cef.extensions.cs5">File cleaned</field>
+		<description>trojan event detected $(cef.description), file cleaned on first atempt</description>
+	</rule>
+	-->
+	<!--CNC callback-->
+	<rule id="132917" level="12">
+		<if_sid>132910</if_sid>
+		<field name="cef.description">CnC Callback</field>
+		<description>Trend Micro CNC Callback event detected $(action)</description>
+		<group>attack_stage_Command_and_Control,attack_category_Beaconing</group>
+	</rule>	
+	<rule id="132918" level="2">
+		<if_sid>132917</if_sid>
+		<action>Block</action>
+		<description>CNC Callback event detected and Blocked</description>
+	</rule>
+	<!-- SUspicious connection-->
+	<rule id="132919" level="12">
+		<if_sid>132910</if_sid>
+		<field name="cef.description">Suspicious Connection</field>
+		<description>Trend Micro - Suspicious Connection detected from $(srcip) to $(dstip)</description>
+	</rule>
+	<rule id="132920" level="2">
+		<if_sid>132919</if_sid>
+		<action>Block</action>
+		<description>Suspicious Connection detected and blocked from $(srcip) to $(dstip)</description>
+	</rule>
+	<!-- Web Reputation-->
+	<rule id="132921" level="12">
+		<if_sid>132910</if_sid>
+		<field name="cef.event_class_id">WB:36</field>
+		<description>Trend Micro Web Reputation Alert</description>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.dstuser</group>
+	</rule>
+	<!--
+	<rule id="132922" level="2">
+		<if_sid>132921</if_sid>
+		<field name="cef.extensions.request">onedrive|microsoft|dropbox|google.com</field>
+		<description>Whitelisted requests drafts</description>
+	</rule>
+	<rule id="132923" level="2">
+		<if_sid>132917</if_sid>
+		<srcip>192.168.121.190</srcip>
+		<description>Whitelist External Device</description>
+	</rule>
+	-->
+	<rule id="132924" level="3">
+		<if_sid>132921</if_sid>
+		<action>2</action>
+		<description>Trend Micro Web Reputation Alert for Blocked Traffic</description>
+	</rule>
+	<rule id="132930" level="0">
+		<if_sid>132910</if_sid>
+		<field name="cef.extensions.cs1">1008179 - Restrict File Extensions For Rename Activity Over Network Share|1007912 - Identified Possible Ransomware File Rename Activity Over Network Share - Client|1008179 - Restrict File Extensions For Rename Activity Over Network Share</field>
+		<description>Trend Micro: Ransomware related activity observed on $(srcip)</description>
+		<group>virus,group_by_data.srcip,realert_2h</group>
+	</rule>
+
+	<rule id="132931" level="12">
+		<if_sid>132910</if_sid>
+		<action>File quarantined</action>
+		<field name="cef.description">Ransom.Win32.RANMSGHP.SMT2.note</field>
+		<description>Trend Micro - File quarantined with Ransom note</description>
+		<!-- DEV-3084 -->
+	</rule>	
+
+	<rule id="132932" level="12">
+		<if_sid>132910</if_sid>
+		<field name="cef.extensions.cs2">System File Modification</field>
+		<description>Trend Micro - System file modificaiton with dll or suspicious extension - $(cef.extensions.sproc)</description>
+		<!-- DEV-3084 -->
+	</rule>		
+
+	<rule id="132933" level="12">
+		<if_sid>132910</if_sid>
+		<field name="cef.extensions.cs2">Unauthorized File Encryption</field>
+		<description>Trend Micro - Terminated procress with High severity - $(cef.extensions.sproc)</description>
+		<!-- DEV-3084 -->
+	</rule>	
+
+	<rule id="132934" level="12">
+		<if_sid>132910</if_sid>
+		<field name="cef.extensions.cs1">Identified Remote Service Creation Over DCE//RPC Protocol</field>
+		<description>Trend Micro - Identified Remote Service Creation Over DCE/RPC Protocol</description>
+		<!-- DEV-3084 -->
+	</rule>	
+
+	<rule id="132935" level="12">
+		<if_sid>132910</if_sid>
+		<field name="cef.description">CnC Callback</field>
+		<description>Trend Micro - CnC Callback</description>
+		<!-- DEV-3084 -->
+	</rule>					
+</group>
