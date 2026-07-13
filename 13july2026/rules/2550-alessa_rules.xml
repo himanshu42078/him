@@ -1,0 +1,27 @@
+
+<!-- Modify it at your will. -->
+
+<group name="pwc_caas,alessa,">
+    <!-- alessa  -->
+    <rule id="255000" level="0">
+        <decoded_as>alessa</decoded_as>
+        <description>alessa Alert.</description>
+    </rule>
+
+
+<!-- wazuh ignore case....-->
+
+	<rule id="255001" level="12">
+		<if_sid>255000</if_sid>
+		<field name="columnname">\.*LogonAttempts\.*</field>
+		<field name="oldvalue">\d+</field>
+		<description>Alessa - Suspecios logon attempt with user: $(objectname), Hostname: $(alessa.hostname) , System name: $(sysname), Attempt logon count: $(oldvalue) at time: $(recordtimestamp)</description>
+	</rule>
+
+    <rule id="255002" level="0">
+		<if_sid>255001</if_sid>
+		<field name="oldvalue">0|1</field>
+		<description>Whitelist condition</description>
+    </rule>
+
+</group>

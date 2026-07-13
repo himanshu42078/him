@@ -1,0 +1,29 @@
+<!-- Modify it at your will. -->
+<group name="local,">
+  <rule id="100004" level="5">
+    <if_sid>2902, 2904</if_sid>
+    <description>Suppression for known Linux package updates - Suppress rule 2902, 2904</description>
+    <group>ossec,</group>
+  </rule>
+  
+  <rule id="100300" level="5">
+    <if_sid>67006</if_sid>
+    <field name="win.eventdata.modifyingUser" type="pcre2">^S-1-5-18$|^S-1-5-80-3088073201-1464728630-1879813800-1107566885-823218052$</field>
+    <description>Windows Firewall With Advanced Security: $(win.eventdata.ruleId) rule has been added to the Windows Defender Firewall exception list.</description>
+    <group>ossec,</group>
+  </rule>
+
+  <rule id="100301" level="5">
+    <if_sid>67007</if_sid>
+    <field name="win.eventdata.modifyingUser" type="pcre2">^S-1-5-18$|^S-1-5-80-3088073201-1464728630-1879813800-1107566885-823218052$</field>
+    <description>Windows Firewall With Advanced Security: $(win.eventdata.ruleId) rule has been modified in the Windows Defender Firewall exception list.</description>
+    <group>ossec,</group>
+  </rule>
+
+  <rule id="100302" level="5">
+    <if_sid>67008</if_sid>
+    <field name="win.eventdata.modifyingUser" type="pcre2">^S-1-5-18$|^S-1-5-80-3088073201-1464728630-1879813800-1107566885-823218052$</field>
+    <description>Windows Firewall With Advanced Security: $(win.eventdata.ruleId) rule has been deleted in the Windows Defender Firewall exception list.</description>
+    <group>ossec,</group>
+  </rule>
+</group>

@@ -1,0 +1,16 @@
+
+<group name="pwc_caas,antivirus,">
+	<rule id="242000" level="3">
+		<decoded_as>trendmicro_cef</decoded_as>
+		<description>Group of trendMicro logs</description>
+	</rule>   
+
+	<rule id="242005" level="12">
+		<if_sid>242000</if_sid>
+		<field name="cef.product">Vision One</field>
+		<field name="cef.severity">^7$|^8$|^9$|^10$</field>
+		<description>Trend Micro Alert - $(reason)</description>
+		<group>severity_high,</group>
+		<!-- DEV-2853 -->
+	</rule>   	 
+</group>

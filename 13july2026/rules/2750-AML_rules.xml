@@ -1,0 +1,21 @@
+<!-- AML rules -->
+
+<group name="AML,pwc_caas,">
+    <rule id="275000" level="3">
+      <if_sid>60002</if_sid>
+      <field name="win.system.computer">CODVPAMLANA01.mpel.com|CODVPAMLAPP01.mpel.com|CODVPAMLWEB01.mpel.com|CODVPAMLDBN01.mpel.com|CODVPAMLDBN02.mpel.com|CODVPAMLDBC01.mpel.com|CODVPAMLDBD01.mpel.com|CODVPAMLDDS01.mpel.com</field>
+      <field name="win.system.eventID">^7031$|^5074$</field>
+      <description>Alessa(AML) system restarted</description>
+    </rule>
+
+  <rule id="275001" level="3">
+    <regex>Fault message: There was an error while validating the database entity supplied|message: The username or password supplied is not valid.</regex>
+    <!--<location>melco</location>-->
+    <description>AML: Authentication failure detected</description>
+  </rule> 
+
+  <rule id="275002" level="12" frequency="5" timeframe="60">
+    <if_matched_sid>274001</if_matched_sid>
+    <description>AML: Multiple login failure attempts within a short period of time. </description>
+  </rule>
+</group>

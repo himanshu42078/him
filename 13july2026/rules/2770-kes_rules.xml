@@ -1,0 +1,47 @@
+<group name="pwc_caas,kes,antivirus,">
+	<rule id="277000" level="1">
+		<decoded_as>kes</decoded_as>
+		<description>Group of kaspersky</description>
+	</rule>
+	<rule id="277001" level="3">
+		<if_sid>277000</if_sid>
+		<field name="component">Virus Scan</field>
+		<description>kaspersky Virus Scan</description>
+	</rule>
+	<rule id="277002" level="3">
+		<if_sid>277000</if_sid>
+		<field name="component">Malware Scan</field>
+		<description>kaspersky Malware Scan</description>
+	</rule>
+	<rule id="277003" level="5">
+		<if_sid>277002</if_sid>
+		<field name="type">Trojan|Worm|Virus</field>
+		<description>kaspersky Malware Scan Alert: $(type) detected</description>
+	</rule>
+
+	<!-- Jun  2 09:43:43 hknpbak02.ctf.hk KES|11.0.0.0 Result description: Detected\r\nType: Trojan\r\nName: PDM:Exploit.Win32.Generic\r\nUser: NT AUTHORITY\NETWORK SERVICE (System user)\r\nObject: C:\Windows\System32\wbem\WmiPrvSE.exe\r\nReason: Behavior analysis\r\nDatabase release date: 2/6/2023 7:02:00 AM\r\nSHA256: B5C78BEF3883E3099F7EF844DA1446DB29107E5C0223B97F29E7FAFAB5527F15\r\nMD5: 06C66FF5CCDC2D22344A3EB761A4D38A -->
+	<rule id="277004" level="12">
+		<if_sid>277000</if_sid>
+		<field name="description">^Detected$</field>
+		<field name="type">Trojan|Worm|Virus</field>
+		<description>kaspersky Alert: $(type) detected</description>
+	</rule>
+	<rule id="277005" level="12">
+		<if_sid>277000</if_sid>
+		<field name="description">^Detected$</field>
+		<field name="name">DangerousObject</field>
+		<description>kaspersky Alert: DangerousObject detected</description>
+	</rule>
+	<rule id="277006" level="5">
+		<if_sid>277000</if_sid>
+		<field name="description">^Detected$</field>
+		<field name="type">Adware</field>
+		<description>kaspersky Alert: Adware detected</description>
+	</rule>
+	<rule id="277007" level="5">
+		<if_sid>277000</if_sid>
+		<field name="description">^Detected$</field>
+		<field name="type">Software that may cause harm</field>
+		<description>kaspersky Alert: Software that may cause harm detected</description>
+	</rule>
+</group>

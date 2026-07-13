@@ -1,0 +1,6 @@
+<group name="pwc_caas,kaspersky_mdr,antivirus,">
+	<rule id="246100" level="12">
+		<decoded_as>kaspersky-mdr-json</decoded_as>
+		<description>Kaspersky MDR Alert: $(kaspersky.summary)</description>
+	</rule>
+</group>

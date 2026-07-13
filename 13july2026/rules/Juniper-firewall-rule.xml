@@ -1,0 +1,81 @@
+
+<group name="pwc_caas,juniper">
+
+	<rule id="100500" level="3">
+	    <decoded_as>juniper_system_event</decoded_as>
+		<description>All Juniper System Logs</description>
+	</rule>
+	
+	<rule id="100501" level="12">
+	    <if_sid>100500</if_sid>
+	    <action>UI_DBASE_LOGIN_EVENT</action>
+		<description>Juniper Firewall $(hostname) - Login on Juniper firewall by User : $(dstuser)</description>
+        <mitre>
+            <id>T1078</id>
+            <id>T1133</id>
+        </mitre>
+	</rule>
+	
+	<rule id="100502" level="5">
+	    <if_sid>100500</if_sid>
+	    <action>UI_DBASE_LOGOUT_EVENT</action>
+		<description>Juniper Firewall $(hostname) - Logout on Juniper firewall by User : $(dstuser)</description>
+	</rule>
+	
+	<rule id="100503" level="12">
+	    <if_sid>100500</if_sid>
+	    <action>UI_CFG_AUDIT_OTHER</action>
+		<description>Juniper Firewall $(hostname) - Configuration Change  : $(action)</description>
+        <mitre>
+            <id>T1562.004</id>
+            <id>T1565.001</id>
+        </mitre>
+	</rule>
+	
+	<rule id="100504" level="12">
+	    <if_sid>100500</if_sid>
+	    <action>UI_CFG_AUDIT_SET</action>
+		<description>Juniper Firewall $(hostname) - Configuration Change : $(action)</description>
+        <mitre>
+            <id>T1562.004</id>
+            <id>T1565.001</id>
+        </mitre>
+	</rule>
+	
+	<rule id="100505" level="1">
+	    <decoded_as>juniper_traffic_event</decoded_as>
+		<description>All Juniper traffic Logs</description>
+	</rule>
+	<rule id="100506" level="3">
+	    <if_sid>100505</if_sid>
+	    <action>KMD_PM_SA_ESTABLISHED</action>
+		<description>Juniper Firewall Traffic from $(hostname)</description>
+	</rule>
+	
+	<rule id="100507" level="3">
+	    <if_sid>100505</if_sid>
+	    <action>IPSec negotiation failed with error</action>
+		<description>Error in firewall traffic</description>
+	</rule>
+	<!--Catch for user editing-->
+	<rule id="100508" level="12">
+	    <if_sid>100504</if_sid>
+	    <field name="message" type="pcre2">UI_CFG_AUDIT_SET: User '\w+' set: \[system login user .*</field>
+		<description>Juniper Firewall $(hostname) - User Created/Modified</description>
+        <mitre>
+            <id>T1098</id>
+            <id>T1136</id>
+            <id>T1562.004</id>
+            <id>T1565.001</id>
+        </mitre>
+	</rule>
+	<rule id="100509" level="12">
+	    <if_sid>100503</if_sid>
+	    <field name="message" type="pcre2">UI_CFG_AUDIT_OTHER: User '\w+' delete: \[system login user .*</field>
+		<description>Juniper Firewall $(hostname) - User deleted</description>
+        <mitre>
+            <id>T1098</id>
+            <id>T1204</id>
+        </mitre>
+	</rule>
+</group>

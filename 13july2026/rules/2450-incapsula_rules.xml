@@ -1,0 +1,78 @@
+
+<group name="pwc_caas,incapsula,">
+    <!-- Incapsula -->
+    <rule id="245000" level="0">
+        <decoded_as>incapsula_cef</decoded_as>
+        <description>Group of Incapsula logs</description>
+        <options>no_counter</options>
+    </rule>
+
+    <rule id="245001" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">SQL Injection</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>
+
+    <rule id="245002" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">Cross Site Scripting</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>
+
+    <rule id="245003" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">Illegal Resource Access</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>    
+    <rule id="245004" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">Bot Access Control</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>    
+    <rule id="245005" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">DDoS</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>    
+    <rule id="245006" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">Backdoor Protect</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>    
+    <rule id="245007" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">Remote File Inclusion</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>    
+    <rule id="245008" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">Manual rule (IncapRule)</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>    
+    <rule id="245009" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">API Specification Violation</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule>    
+    <rule id="245010" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">Account Takeover Protection</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule> 
+    <rule id="245011" level="12">
+        <if_sid>245000</if_sid>
+        <field name="alertSeverity">Bad Bot (Advanced Bot Protection)</field>
+        <field name="cef.extensions.act">REQ_PASSED</field>
+        <description>Incapsula Alert: $(alertSeverity)</description>
+    </rule> 
+</group>

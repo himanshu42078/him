@@ -1,0 +1,8 @@
+ 
+<group name="pwc_caas,custom"> 
+  <rule id="100180" level="7" frequency="5" timeframe="1800" ignore="900">
+    <if_matched_sid>81614</if_matched_sid>
+      <same_field>remip</same_field>
+    <description>Fortigate: Multiple firewall SSL VPN failed login events from same source. Possible bruteforce</description>
+  </rule>
+</group>

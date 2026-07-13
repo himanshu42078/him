@@ -1,0 +1,87 @@
+<group name="local,ibm">
+ 
+  <!-- unseen event detection--> 
+  <rule id="119001" level="3"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <description>IBM i event: $(event_name) </description> 
+  </rule>
+
+  <rule id="119002" level="6"> 
+    <if_sid>900001</if_sid> 
+    <list field="event_name" lookup="not_match_key">etc/lists/IBMevent</list> 
+    <description>NEW IBM i event: $(event_name), contact YC </description> 
+  </rule> 
+
+
+ <!--Severity-based--> 
+  <rule id="119003" level="0"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <field name="severity">^0$</field> 
+    <description>IBM i event: $(event_name), EMERGENCY (by default) severity</description> 
+  </rule>
+  
+  <rule id="119004" level="0"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <field name="severity">^1$</field> 
+    <description>IBM i event: $(event_name), ALERT severity</description> 
+  </rule>
+  
+  <rule id="119005" level="0"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <field name="severity">^2$</field> 
+    <description>IBM i event: $(event_name), CRITICAL severity</description> 
+  </rule>
+  
+  <rule id="119006" level="0"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <field name="severity">^3$</field> 
+    <description>IBM i event: $(event_name), ERROR severity</description> 
+  </rule>
+  
+  <rule id="119007" level="0"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <field name="severity">^4$</field> 
+    <description>IBM i event: $(event_name), WARNING severity</description> 
+  </rule>
+  
+  <rule id="119008" level="0"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <field name="severity">^5$</field> 
+    <description>IBM i event: $(event_name), NOTICE severity</description> 
+  </rule>
+  
+  <rule id="119009" level="0"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <field name="severity">^6$</field> 
+    <description>IBM i event: $(event_name), INFORMATIONAL severity</description> 
+  </rule>
+  
+  <rule id="119010" level="0"> 
+    <decoded_as>cef-header-frame</decoded_as> 
+    <field name="severity">^7$</field> 
+    <description>IBM i event: $(event_name), DEBUG severity</description> 
+  </rule>
+  
+ <!--Severity based baselines rules-->
+  <rule id="119011" level="4"> 
+    <if_sid negate="yes">900002</if_sid> 
+    <if_sid>900003,900004,900005,900006,900007,900008,900009,900010</if_sid> 
+    <description>IBM i event: $(event_name)</description> 
+  </rule>
+  
+  
+  <!--Focus Security Event-->
+  <rule id="119012" level="6"> 
+    <if_sid>900011</if_sid> 
+    <field name="reason">^PW/P$</field> 
+    <description>IBM $(event_name) event: An incorrect password was entered</description> 
+  </rule> 
+  
+  <rule id="119013" level="6"> 
+    <if_sid>900011</if_sid> 
+    <field name="reason">^CP/A$</field> 
+    <description>IBM $(event_name) event: A User profile create, change, or restore</description> 
+  </rule> 
+ 
+  
+</group>

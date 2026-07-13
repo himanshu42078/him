@@ -1,0 +1,168 @@
+
+<group name="pwc_caas,ransomware,">
+	<!-- ransomware rules for Clients-->
+	<rule id="300900" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\Wlockbit\.*.exe\W|\Wemotet\.*.exe\W|\Wconti\w*.exe\W|\Wwannacry\.*.exe\W|\Wpchunter64\.*.exe\W|\Wlockbit\.*.com\W|\Wemotet\.*.com\W|\Wwannacry\.*.com\W|\Wpchunter64\.*.com\W|\Wlockbit\.*.bat\W|\Wemotet\.*.bat\W|\Wwannacry\.*.bat\W|\Wpchunter64\.*.bat\W|\Wlockbit\.*.dll\W|\Wemotet\.*.dll\W|\Wwannacry\.*.dll\W|\Wpchunter64\.*.dll\W|\Wlockbit\.*.dat\W|\Wemotet\.*.dat\W|\Wwannacry\.*.dat\W|\Wpchunter64\.*.dat\W|\Wnetscan\.*.exe\W|\Wstealbit\.*.exe\W|\Wsvhost\.*.exe\W|\Wmimik\.*.exe\W|\Wkiwi\.*.exe\W|\Wwirelesskeyview\.*.exe\W|\Woperapassview\.*.exe\W|\Wrdpv\.*.exe\W|\Wrouterpassview\.*.exe\W|\Wpspv\.*.exe\W|\Wpstpassword\.*.exe\W|\Wiepv\.*.exe\W|\Wpasswordfox\.*.exe\W|\Wnetpass\.*.exe\W|\Wdialupass\.*.exe\W|\Wmspass\.*.exe\W|\Wmailpv\.*.exe\W|\Wbulletspassview\.*.exe\W|\Wchromepass\.*.exe\W|\Wvncpassview\.*.exe\W|\Wsniffpass\.*.exe\W|\Wwebbrowserpassview\.*.exe\W|\Wconti\W</field>
+        <description>Suspicious ransomware / malicious hacker tool execution</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+		<!-- DEV-4624 -->
+		<!-- DEV-4798 -->
+	</rule>
+	<rule id="300901" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4624$</field>
+		<field name="win.eventdata.workstationName">^kali|backbox|parrot|blackarch</field>
+		<description>Successful Windows login from Pentesting Tools hosts</description>
+        <group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+	</rule>
+
+    <rule id="300902" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4625$</field>
+		<field name="win.eventdata.workstationName">^kali|backbox|parrot|blackarch</field>
+		<description>Potential Windows Login attempt from Pentesting Tools hosts</description>
+        <group>attack_stage_Initial_Access,attack_category_Brute-Forcing,</group>
+	</rule>
+
+    <rule id="300903" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">:\\\\users\\\\public\\\\\w+.exe$|:\\\\programdata\\\\\w+.exe$|:\\\\perflogs\\\\\w+.exe$</field>
+        <description>Suspicious EXE Staging Location detected in command line</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+
+    <rule id="300904" level="12" frequency="10" timeframe="300">
+		<if_matched_sid>60111</if_matched_sid>
+		<same_field>win.system.computer</same_field>
+        <description>Multiple Account Being Disabled/ Deleted in short period of time</description>
+        <group>attack_stage_Impact,attack_category_Access_Removal,</group>
+	</rule>
+
+	<rule id="300920" level="0">
+		<if_sid>300900</if_sid>
+		<field name="win.eventdata.commandLine">continuous|continue|sesmcontinst|contid|ContinuumAnalytics|RemoteToMyPC|continuation|Contingency|continuing</field>
+        <description>[Whitelist]Legit FPs in Ransomware command line detection</description>
+	</rule>
+
+	<rule id="300905" level="4" frequency="10" timeframe="300">
+		<if_matched_sid>60121</if_matched_sid>
+    	<field name="win.system.eventID">^4742$</field>
+		<same_field>win.system.computer</same_field>
+        <description>Multiple Computer account changed/deleted in short period of time</description>
+	</rule>	
+
+	<rule id="300906" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\\svchost.exe</field>
+        <description>Suspicious Ransomware related command executed</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+
+	<rule id="300922" level="0">
+		<if_sid>300906</if_sid>
+		<field name="win.eventdata.commandLine">\.:\\\\Windows\\\\System32\\\\|CtxSvcHost</field>
+        <description>[Whitelist] Legit FPs in Ransomware command line detection</description>
+	</rule>
+
+	<rule id="300907" level="10">
+		<if_sid>60002</if_sid>
+		<field name="win.system.eventID">^7036$</field>
+		<field name="win.eventdata.param1">Kaspersky Security Exploit Prevention Service</field>
+		<field name="win.eventdata.param2">stopped|停止</field>
+        <description>Anti-virus entered the stopped state</description>
+	</rule>	
+
+<!--
+This alert will be further analyzed by ElastAlert for new IP with 30 days
+-->
+	<rule id="300908" level="5">
+		<if_sid>60106</if_sid>
+		<field name="win.eventdata.logonType">^10$</field>
+		<time>9 pm - 7 am</time>
+		<description>Non-office hour successful Remote login</description>
+		<group>attack_stage_Initial_Access,attack_category_Unauthorised_/_Unrecognised_Device,</group>
+	</rule>		
+
+	<rule id="300910" level="10">
+		<if_sid>60121</if_sid>
+    	<field name="win.system.eventID">^4742$</field>
+		<field name="win.system.subjectUserSid">ANONYMOUS LOGON</field>
+		<field name="win.system.subjectUserName">ANONYMOUS LOGON</field>
+		<field name="win.system.passwordLastSet"></field>
+        <description>Zerologon Attempt</description>
+	</rule>	
+
+	<rule id="300911" level="10">
+		<if_sid>61102</if_sid>
+    	<field name="win.system.eventID">^5805$</field>
+		<field name="win.system.message">mimikatz</field>
+        <description>Zerologon Attempt</description>
+	</rule>	
+
+	<rule id="300912" level="12">
+		<if_sid>61615</if_sid>
+		<field name="win.eventdata.targetObject">\\SOFTWARE\\ATERA Networks\\AlphaAgent</field>
+        <description>Conti Ransomware Gang's Atera Agent Installation</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+		<!-- DEV-983 -->
+	</rule>	
+	<rule id="300913" level="5">
+		<if_sid>61603</if_sid>
+		<field name="win.eventdata.image">\\curl.exe</field>
+		<field name="win.eventdata.commandLine">atera.com</field>
+        <description>Conti Ransomware Gang's Atera Agent Installation (Partial)</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+		<!-- DEV-983 -->
+	</rule>	
+	<rule id="300914" level="12">
+		<if_sid>300913</if_sid>
+		<field name="win.eventdata.commandLine">msi</field>
+        <description>Conti Ransomware Gang's Atera Agent Installation</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+		<!-- DEV-983 -->
+	</rule>		
+
+	<rule id="300915" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\\MpCmdRun.exe</field>
+        <description>Lockbit 3.0 leverages new sideloading</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+		<!-- DEV-2147 -->
+	</rule>	
+	<rule id="300916" level="0">
+		<if_sid>300915</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files\\\\Windows Defender|C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\Platform</field>
+        <description>[Whitelist] Lockbit 3.0 leverages new sideloading</description>
+		<!-- DEV-2147 -->
+	</rule>	
+	<rule id="300917" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\\VMwareXferlogs.exe</field>
+        <description>Lockbit 3.0 leverages new sideloading</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+		<!-- DEV-2147 -->
+	</rule>	
+	<rule id="300918" level="0">
+		<if_sid>300917</if_sid>
+		<field name="win.eventdata.commandLine">C:\\\\Program Files\\\\VMware\\\\VMware Tools</field>
+        <description>[Whitelist] Lockbit 3.0 leverages new sideloading</description>
+		<!-- DEV-2147 -->
+	</rule>		
+
+	<rule id="300919" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">\\ONENOTE.exe$|\\WINWORD.EXE$|\\EXCEL.EXE$|\\POWERPNT.EXE$|\\MSPUB.EXE$|\\VISIO.EXE$|\\MSACCESS.EXE$|\\EQNEDT32.EXE$</field>
+		<field name="win.eventdata.newProcessName">\\cmd.exe$|\\powershell.exe$|\\pwsh.exe$|\\wscript.exe$|\\cscript.exe$|\\sh.exe$|\\bash.exe$|\\scrcons.exe$|\\schtasks.exe$|\\regsvr32.exe$|\\hh.exe$|\\wmic.exe$|\\mshta.exe$|\\rundll32.exe|\\msiexec.exe$|\\forfiles.exe$|\\scriptrunner.exe$|\\mftrace.exe$|\\AppVLP.exe$|\\svchost.exe$|\\msbuild.exe$</field>
+        <description>Suspicious Microsoft Office Product Spawning Windows Shell</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+		<!-- DEV-2780 -->
+		<!-- DEV-3537 -->
+	</rule>								
+</group>

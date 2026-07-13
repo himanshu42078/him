@@ -1,0 +1,21 @@
+<!-- opswat rules -->
+
+<group name="opswat,pwc_caas,">
+    <rule id="276000" level="0">
+        <decoded_as>opswat</decoded_as>
+        <description>OPSWAT Rules.</description>
+    </rule>
+
+    <rule id="276001" level="12">
+      <if_sid>276000</if_sid>
+      <field name="threatFoundCount">\.*</field>
+      <description>OPSWAT Alert: Threat file found. File name: $(fileName).</description>
+    </rule>
+
+    <rule id="276002" level="0">
+      <if_sid>276001</if_sid>
+      <field name="threatFoundCount">0</field>
+      <description>OPSWAT: No Threat File Found.</description>
+    </rule>
+
+</group>

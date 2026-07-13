@@ -1,0 +1,22 @@
+
+<group name="pwc_caas,SAP_SAL,">
+    <rule id="250000" level="0">
+        <decoded_as>SAP</decoded_as>
+        <description>Group of SAP Security Audit Logs</description>
+        <options>no_counter</options>
+    </rule>
+
+    <rule id="250001" level="5">
+        <if_sid>250000</if_sid>
+        <field name="severity">^Very Critical$</field>
+        <description>SAP SAL Very Critical Alert</description>
+        <options>no_counter</options>
+    </rule>
+
+    <rule id="250002" level="5">
+        <if_sid>250000</if_sid>
+        <field name="severity">^Critical$</field>
+        <description>SAP SAL Critical Alert</description>
+        <options>no_counter</options>
+    </rule>
+</group>

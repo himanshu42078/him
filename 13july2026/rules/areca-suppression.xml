@@ -1,0 +1,41 @@
+<!-- Modify it at your will. -->
+<group name="areca,">
+  
+  <rule id="100139" level="5">
+    <if_sid>61017</if_sid>
+    <hostname>^areca-arecahqweb02$</hostname>
+    <description>Suppress process terminated due to unhandeled exception alerts from arecahqweb02</description>
+  </rule>
+  
+  <rule id="100140" level="5">
+    <if_sid>92657</if_sid>
+    <field name="win.eventdata.targetDomainName">^ARECAHQ$|^NT AUTHORITY$</field>
+    <list field="win.eventdata.workstationName" lookup="match_key">etc/lists/ARECA-MachineListing</list>
+    <list field="win.eventdata.targetUserName" lookup="match_key">etc/lists/ARECA-UserListing</list>
+    <description>Areca NTLM Logon from SentinelOne monitored device</description>
+  </rule>
+  
+  <rule id="100143" level="5">
+    <if_sid>92657</if_sid>
+    <field name="win.eventdata.targetDomainName">^ARECAHQ$</field>
+    <field name="win.eventdata.ipAddress">^192.168.1.72$|^192.168.1.35$|^192.168.1.22$|^192.168.1.38$|^192.168.1.17$|^192.168.1.65$|^192.168.1.57$|^192.168.1.68$|^192.168.1.56$|^192.168.1.63$</field>
+    <field name="win.eventdata.targetUserName">^backup$</field>
+    <field name="win.eventdata.targetUserSid">^S-1-5-21-1984335085-1541298671-425076451-1246$</field>
+    <field name="win.eventdata.workstationName">^ARECAHQBK$|^ARECAHQWEB03$|^ARECAHQWEB04$|^ACSB3012$|^ARECAHQWEB02$|^ACSB1122$</field>
+    <description>Suppression for known Areca backup logon</description>
+    <group>ossec,</group>
+  </rule>
+
+  <rule id="100144" level="5">
+   <if_sid>92657</if_sid>
+   <field name="win.eventdata.targetDomainName">^ARECAHQ$</field>
+   <field name="win.eventdata.ipAddress">^192.168.8.6$|^192.168.1.3$|^192.168.1.13$|^192.168.8.7$</field>
+   <field name="win.eventdata.targetUserName">^scan$</field>
+   <field name="win.eventdata.targetUserSid">^S-1-5-21-1984335085-1541298671-425076451-1130$</field>
+   <field name="win.eventdata.workstationName">^CANONCECAB6$|^CANON577C4F$|^CANON73DBB5$|^HP262EC2$</field>
+   <time>22:00-11:00</time>
+   <description>Suppression for known Areca scan  logon alerts</description>
+   <group>ossec,</group>
+ </rule>
+  
+</group>

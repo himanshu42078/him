@@ -1,0 +1,12 @@
+<group name="agentless_hc,">
+  <rule id="100141" level="12">
+    <field name="agentless_hc.value">No logs from agentless source</field>
+    <description>$(agentless_hc.organisation) $(agentless_hc.source) healthcheck failed</description>
+    <options>no_full_log</options>
+  </rule>
+   <rule id="100142" level="5">
+    <field name="agentless_hc.value">Logs fetched from agentless source</field>
+    <description>$(agentless_hc.organisation) $(agentless_hc.source) healthcheck passed</description>
+    <options>no_full_log</options>
+  </rule>
+</group>

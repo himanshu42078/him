@@ -1,0 +1,43 @@
+
+<!-- Modify it at your will. -->
+<group name="pwc_caas,">
+	<rule id="251000" level="1">
+		<decoded_as>sangfor_vpn</decoded_as>
+		<description>Group of Sangfor VPN Logs</description>
+		<options>no_counter</options>
+	</rule>
+	<rule id="251001" level="1">
+		<if_sid>251000</if_sid>
+		<action>login</action>
+        <status>success</status>
+		<description>Successful login from Sangfor VPN</description>
+		<group>vpn,vpn_login_success,</group>
+	</rule>
+	<rule id="251002" level="8">
+		<decoded_as>sangfor-ccom-json</decoded_as>
+		<description>Sangfor Cyber Command Alert - $(event_content)</description>
+	</rule>	
+ 	<rule id="251003" level="1">
+		<decoded_as>sangfor_vpn_json</decoded_as>
+		<description>Group of Sangfor VPN Json Logs</description>
+	</rule>
+ 	<rule id="251004" level="1">
+		<if_sid>251003</if_sid>
+   		<field name="logSubType">login</field>
+   		<field name="actionResult">success</field>
+		<description>Successful login from Sangfor VPN</description>
+	</rule>
+ 	<rule id="251005" level="3">
+		<if_sid>251003</if_sid>
+   		<field name="logSubType">login</field>
+   		<field name="actionResult">failed</field>
+		<description>Failed login from Sangfor VPN</description>
+	</rule>
+
+	<rule id="251006" level="8">
+		<decoded_as>sangfor_cef</decoded_as>
+		<field name="cef.product">CYBER COMMAND</field>
+		<description>Sangfor Cyber Command Alert - $(cef.description)</description>
+	</rule>
+
+</group>

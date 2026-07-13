@@ -1,0 +1,28 @@
+
+<group name="pwc_caas,active_directory,">
+	<rule id="301200" level="10">
+		<if_sid>60121</if_sid>
+    	<field name="win.system.eventID">^4742$</field>
+		<field name="win.system.message">Server Trust Account\.*Enabled</field>
+        <description>Active Directory attack - Abuse of trust account</description>
+		<!-- DEV-1924 -->
+	</rule>	
+
+	<rule id="301201" level="10">
+		<if_sid>60103</if_sid>
+    	<field name="win.system.eventID">^5136$</field>
+		<field name="win.eventdata.attributeLDAPDisplayName">msDS-KeyCredentialLink</field>
+        <description>Active Directory attack - Shadow Credentials with certificates</description>
+		<group>attack_stage_Credential_Access,attack_category_Credentials_Dumping,</group>
+		<!-- DEV-1925 -->
+		<!-- DEV-3887 -->
+	</rule>
+
+	<rule id="301202" level="0">
+		<if_sid>301201</if_sid>
+    	<field name="win.eventdata.objectClass">^user$</field>
+        <description>Whitelist service accounts for Active Directory attack - Shadow Credentials with certificates</description>
+		<!-- DEV-3887 -->
+	</rule>
+
+</group>

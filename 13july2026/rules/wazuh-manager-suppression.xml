@@ -1,0 +1,19 @@
+<group name="local,">
+  <rule id="100002" level="0">
+    <if_sid>40101, 533, 510</if_sid>
+    <hostname>^MY-KULWAZPLV001$|^MY-KULWAZPLV002$|^MY-KULWAZPLV003$</hostname>
+    <description>Suppression for alerts triggered by Wazuh Servers - Suppress rule 40101, 533, 510</description>
+    <group>ossec,</group>
+  </rule>
+  <rule id="100006" level="5">
+    <if_sid>5712, 5551</if_sid>
+    <hostname>^MY-KULWAZPLV001$|^MY-KULWAZPLV002$|^MY-KULWAZPLV003$|^safeguards-logcollector_m365_2$</hostname>
+    <srcip>10.138.133.168</srcip>
+    <srcip>10.138.133.169</srcip> 
+    <srcip>10.138.133.170</srcip>
+    <time>4 pm - 6:30 pm</time>
+    <weekday>friday</weekday>
+    <description>Suppression for alerts triggered by NIS scan on Wazuh Servers - Suppress rule 5712, 5551</description>
+    <group>ossec,</group>
+  </rule>
+</group>

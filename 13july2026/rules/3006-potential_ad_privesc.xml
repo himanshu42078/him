@@ -1,0 +1,49 @@
+
+<group name="pwc_caas,active_directory,">
+	<!-- New rule created for Possible Part of Exploitation Chain of CVE-2021-42287/CVE-2021-42278 [AD Privilege Escalation/sAMAccountName Spoofing] (via audit)-->
+	<rule id="300600" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4781$</field>
+		<field name="win.eventdata.oldTargetUserName">\$$</field>
+        <description>[1]Possible Part of Exploitation Chain of CVE-2021-42287/CVE-2021-42278 [AD Privilege Escalation/sAMAccountName Spoofing]</description>
+        <group>attack_stage_Privilege_Escalation,attack_category_System_Exploitation,</group>
+	</rule>
+	<rule id="300601" level="0">
+		<if_sid>300600</if_sid>
+		<field name="win.eventdata.newTargetUserName">\$$</field>
+		<description>[Whitelist] Possible Part of Exploitation Chain of CVE-2021-42287/CVE-2021-42278 [AD Privilege Escalation/sAMAccountName Spoofing]</description>
+	</rule>
+
+
+    <rule id="300602" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4742$</field>
+		<field name="win.eventdata.targetUserName">\$$</field>
+		<!-- Since if samaccountname = '-' (empty), there will be no field available in Wazuh. This we need to whitelist-->
+		<field name="win.eventdata.samAccountName">\.+</field>
+		<description>[2]Possible Part of Exploitation Chain of CVE-2021-42287/CVE-2021-42278 [AD Privilege Escalation/sAMAccountName Spoofing]</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+    <rule id="300603" level="0">
+		<if_sid>300602</if_sid>
+		<field name="win.eventdata.samAccountName">\$$|-$</field>
+		<description>[Whitelist] Possible Part of Exploitation Chain of CVE-2021-42287/CVE-2021-42278 [AD Privilege Escalation/sAMAccountName Spoofing]</description>
+	</rule>
+
+
+
+    <rule id="300604" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4742$</field>
+		<field name="win.eventdata.targetUserName">\$$</field>
+		<description>[3]Possible Part of Exploitation Chain of CVE-2021-42287/CVE-2021-42278 [AD Privilege Escalation/sAMAccountName Spoofing]</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+    <rule id="300605" level="12">
+		<if_sid>300604</if_sid>
+		<field name="win.eventdata.servicePrincipalNames">1793</field>
+		<description>[Whitelist] Possible Part of Exploitation Chain of CVE-2021-42287/CVE-2021-42278 [AD Privilege Escalation/sAMAccountName Spoofing]</description>
+	</rule>
+
+
+</group>

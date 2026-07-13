@@ -1,0 +1,586 @@
+
+<!-- <group name="syslog,pwc_caas,all_client,">
+																																																																																																																																																																											 -->
+	<!-- Local L2L ICMP Scanner -->
+	<!-- <rule id="101001" level="3">
+		<if_group>L2L</if_group>
+		<protocol>^1$|^ping$</protocol>
+		<description>Local L2L ICMP Connection</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule frequency="60" id="101002" ignore="600" level="10" timeframe="600">
+		<if_matched_sid>101001</if_matched_sid>
+		<same_source_ip/>
+		<description>Local L2L ICMP Scanner</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+																																																																																																																																																																											 -->
+	<!-- Local L2L SNMP Scanner -->
+	<!-- <rule id="101003" level="3">
+		<if_group>L2L</if_group>
+		<dstport>^161$|^162$</dstport>
+		<description>Local L2L SNMP Connection</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule frequency="60" id="101004" ignore="600" level="10" timeframe="600">
+		<if_matched_sid>101003</if_matched_sid>
+		<same_source_ip/>
+		<description>Local L2L SNMP Scanner</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+																																																																																																																																																																											 -->
+	<!-- Local L2R TCP Scanner -->
+	<!-- <rule id="101005" level="3">
+		<if_group>L2R</if_group>
+		<protocol>tcp</protocol>
+		<srcport>!^53$</srcport>
+		<dstport>!^1433$|^1434$|^3306$|^66$|^1521$|^1525$|^1526$|^1527$|^1528$|^1529$|^1571$|^1575$|^1630$|^1748$|^1754$|^1808$|^1809$|^2481$|^2482$|^2484$|^3872$|^3891$|^3938$|^67$|^68$|^53$|^20$|^21$|^26000$|^27500$|^27960$|^27961$|^27962$|^27963$|^27015$|^7777$|^2790$|^666$|^47624$|^6073$|^11999$|^2300$|^2301$|^2302$|^2303$|^2304$|^2305$|^2306$|^2307$|^2308$|^2309$|^2310$|^2400$|^2399$|^2398$|^2397$|^2396$|^2395$|^28800$|^28801$|^28802$|^28803$|^28804$|^28805$|^28806$|^28807$|^28808$|^28809$|^1863$|^5000$|^50001$|^5100$|^5002$|^5003$|^5004$|^5005$|^5006$|^5007$|^5008$|^5009$|^5010$|^5190$|^5191$|^5192$|^5193$|^5222$|^5223$|^5224$|^5225$|^5226$|^5227$|^5228$|^5229$|^5230$|^5231$|^5232$|^5233$|^5234$|^5235$|^5236$|^5237$|^5238$|^5239$|^5240$|^5241$|^5242$|^5243$|^5244$|^5245$|^5246$|^5247$|^5248$|^5249$|^5251$|^5252$|^5253$|^5254$|^5255$|^5256$|^5257$|^5258$|^5259$|^5260$|^1025$|^1026$|^1027$|^1863$|^5000$|^50001$|^5100$|^5002$|^5003$|^5004$|^5005$|^5006$|^5007$|^5008$|^5009$|^5010$|^5190$|^5191$|^5192$|^5193$|^5222$|^5223$|^5224$|^5225$|^5226$|^5227$|^5228$|^5229$|^5230$|^5231$|^5232$|^5233$|^5234$|^5235$|^5236$|^5237$|^5238$|^5239$|^5240$|^5241$|^5242$|^5243$|^5244$|^5245$|^5246$|^5247$|^5248$|^5249$|^5251$|^5252$|^5253$|^5254$|^5255$|^5256$|^5257$|^5258$|^5259$|^5260$|^1025$|^1026$|^1027$|^88$|^389$|^636$|^25$|^465$|^587$|^110$|^143$|^993$|^995$|^563$|^1352$|^1214$|^1337$|^2234$|^5534$|^2705$|^5500$|^5501$|^5502$|^5503$|^5504$|^5505$|^6346$|^6347$|^6881$|^6882$|^6883$|^6884$|^6885$|^6886$|^6887$|^6888$|^6889$|^6969$|^3128$|^1080$|^111$|^369$|^530$|^161$|^162$|^22$|^80$|^8080$|^443$|^8000$|^8001$|^135$|^137$|^138$|^139$|^445$|^593$</dstport>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<description>Local L2R TCP Connection</description>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule frequency="60" id="101006" ignore="600" level="10" timeframe="600">
+		<if_matched_sid>101005</if_matched_sid>
+		<same_source_ip/>
+		<description>Local L2R TCP Scanner</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+																																																																																																																																																																											 -->
+	<!-- L2L Local Port Scan Detected -->
+	<!-- <rule id="101007" level="3">
+		<if_group>L2L</if_group>
+		<srcport>!^53$</srcport>
+		<dstport>!^1433$|^1434$|^3306$|^66$|^1521$|^1525$|^1526$|^1527$|^1528$|^1529$|^1571$|^1575$|^1630$|^1748$|^1754$|^1808$|^1809$|^2481$|^2482$|^2484$|^3872$|^3891$|^3938$|^67$|^68$|^53$|^20$|^21$|^88$|^389$|^636$|^5$|^465$|^587$|^110$|^143$|^993$|^995$|^563$|^1352$|^3128$|^1080$|^111$|^369$|^530$|^161$|^162$|^22$|^80$|^8080$|^443$|^8000$|^8001$|^135$|^137$|^138$|^139$|^445$|^593$</dstport>
+		<description>L2L Local Port Connection</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule frequency="100" id="101008" ignore="600" level="10" timeframe="600">
+		<if_matched_sid>101007</if_matched_sid>
+		<same_source_ip/>
+		<description>L2L Local Port Scan Detected</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+																																																																																																																																																																											 -->
+	<!-- PwC CaaS - Local L2L Windows Server Scanner -->
+	<!-- <rule id="101009" level="3">
+		<if_group>L2L</if_group>
+		<dstport>^80$|^8080$|^443$|^8000$|^8001$</dstport>
+		<description>PwC CaaS - Local L2L Windows Server Connection</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+	<rule frequency="200" id="101010" ignore="600" level="10" timeframe="600">
+		<if_matched_sid>101009</if_matched_sid>
+		<same_source_ip/>
+		<description>PwC CaaS - Local L2L Windows Server Scanner</description>
+		<group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+																																																																																																																																																																											 -->
+	<!-- Multiple Firewalls Deny from Different Source IP -->
+	<!-- <rule frequency="300" id="101011" ignore="60" level="10" timeframe="60">
+		<if_matched_group>R2L</if_matched_group>
+		<action>blocked|deny</action>
+		<description>Multiple Firewalls Deny from Different Source IP</description>
+		<group>attack_stage_Impact,attack_category_Network_Denial_of_Service,</group>
+		<group>pci_dss_11.4,gdpr_IV_35.7.d,nist_800_53_SI.4,</group>
+	</rule>
+</group>
+ -->
+<!-- <group name="syslog,pwc_caas,all_client,">
+																																																																																																																																																																											 -->
+	<!-- PwC CaaS - Potential Beaconing Connection -->
+	<!-- <rule frequency="250" id="101100" ignore="300" level="10" timeframe="3600">
+		<if_matched_group>L2R</if_matched_group>
+		<same_source_ip/>
+		<same_dst_port/>
+		<not_same_field>destination_ip</not_same_field>
+		<group>attack_stage_Command_and_Control,attack_category_Beaconing,</group>
+		<description>PwC CaaS - Potential Beaconing Connection</description>
+	</rule>
+	<rule id="101101" level="0">
+		<if_group>L2R</if_group>
+		<field name="app">Skype</field>
+		<description>Exclude Skype</description>
+	</rule>
+																																																																																																																																																																											 -->
+<!-- </group>
+ -->
+<group name="syslog,pwc_caas,all_client,">
+	<!-- PwC Anomaly: Connection Attempt TO Malware IP(s) -->
+	<rule id="101204" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/malware-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	<rule id="101205" level="13">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Connection Attempt TO Tor IP(s)</description>
+	</rule>
+	<!-- Login success FROM Malware IP(s) -->
+	<rule id="101207" level="12">
+		<if_group>authentication_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/malware-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>Login success FROM Malware IP(s)</description>
+	</rule>
+
+	<rule id="101208" level="12">
+		<if_group>vpn_login_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>Login success FROM Tor IP(s) - SSLVPN</description>
+		<!-- DEV-3824 -->
+	</rule>
+	<rule id="101209" level="12">
+		<if_sid>104015</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>Login success FROM Tor IP(s) - O365</description>
+		<!-- DEV-3824 -->
+	</rule>
+	<rule id="101210" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4624$</field>
+		<list field="srcip" lookup="address_match_key">etc/lists/tor-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>Login success FROM Tor IP(s) - Windows</description>
+		<!-- DEV-3824 -->
+	</rule>
+
+	<!-- COVID-19 Cuber Threat Coalition -->
+	<rule id="101215" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/cyberthreatcoalition-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>COVID-19 Cuber Threat Coalition TI: Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	<rule id="101216" level="12">
+		<if_group>authentication_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/cyberthreatcoalition-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>COVID-19 Cuber Threat Coalition TI: Login success FROM Malware IP(s)</description>
+	</rule>
+	<rule id="101217" level="12">
+		<if_group>sysmon_event1|sysmon_event6|sysmon_event7|sysmon_event_15</if_group>
+		<list field="sysmon.hashes" lookup="match_key">etc/lists/cyberthreatcoalition-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>COVID-19 Cuber Threat Coalition TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="101218" level="12">
+		<if_group>sysmon_event1|sysmon_event6|sysmon_event7|sysmon_event_15</if_group>
+		<list field="sysmon.hash" lookup="match_key">etc/lists/cyberthreatcoalition-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>COVID-19 Cuber Threat Coalition TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="101219" level="12">
+		<if_sid>550, 554</if_sid>
+		<list field="syscheck.sha256_after" lookup="match_key">etc/lists/cyberthreatcoalition-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>COVID-19 Cuber Threat Coalition TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="101220" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url_domain" lookup="match_key">etc/lists/cyberthreatcoalition-domain</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>COVID-19 Cuber Threat Coalition TI: Connection Attempt TO Malicious domain(s)</description>
+	</rule>
+	<rule id="101221" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url" lookup="match_key">etc/lists/cyberthreatcoalition-url</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>COVID-19 Cuber Threat Coalition TI: Connection Attempt TO Malicious URL(s)</description>
+	</rule>
+	<!-- Barium IP and domain -->
+	<rule id="101222" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/barium-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Barium IOCs:Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	<rule id="101223" level="12">
+		<if_group>authentication_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/barium-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>Barium IOCs: Login success FROM Malware IP(s)</description>
+	</rule>
+	<rule id="101224" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url_domain" lookup="match_key">etc/lists/barium-domain</list>
+		<description>Barium IOCs: Detect Connection to Barium Domain</description>
+		<group>group_by_data.srcip,</group>
+	</rule>
+	<!-- Hafnium IP -->
+	<rule id="101225" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/hafnium-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Hafnium IOCs:Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	<rule id="101226" level="12">
+		<if_group>authentication_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/hafnium-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>Hafnium IOCs: Login success FROM Malware IP(s)</description>
+	</rule>
+	<!-- Solarwind ioc-->
+	<rule id="101227" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/solarwind-ioc-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Solarwind IP IOCs:Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	<rule id="101228" level="12">
+		<if_group>authentication_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/solarwind-ioc-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>Solarwind IP IOCs: Login success FROM Malware IP(s)</description>
+	</rule>
+	<!-- New domain access -->
+	<rule id="101230" level="8">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url_sld" lookup="match_key">etc/lists/newly-registered-domain</list>
+		<field name="subtype">webfilter</field>
+		<field name="bytes_sent">\d\d\d\d</field>
+		<description>Detect Connection to Newly Registered Domain</description>
+		<group>auto_escalate_disabled,group_by_data.url_sld,</group>
+	</rule>
+	<!--
+	Whitelist those not interactive connection
+	-->
+	<rule id="101233" level="0">
+		<if_sid>101230</if_sid>
+		<field name="bytes_sent">^1\d\d\d$</field>
+		<description>[Whitelist] Detect Connection to Newly Registered Domain</description>
+	</rule>	
+	<rule id="101231" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url_domain" lookup="match_key">etc/lists/fireeye_sunburst_fqdn_ioc</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Fireeye Sunburst IOCs: Connection Attempt To Malicious domain(s)</description>
+	</rule>
+	<rule id="101232" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/fireeye_sunburst_ip_ioc</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Fireeye Sunburst IOCs: Connection Attempt To Malware IP(s)</description>
+	</rule>
+	<!-- Temp rule for all clients-->
+	<rule id="101235" level="3">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/huwang-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>(All client) HuWang Detection: Connection Attempt To Attacker IP(s)</description>
+	</rule>
+	<rule id="101236" level="3">
+		<if_group>R2L</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/huwang-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.srcip,</group>
+		<description>(All client) HuWang Detection: Access Attempt from Attacker IP(s) </description>
+	</rule>
+	<!-- MISP feed -->
+	<rule id="101240" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/misp-ti-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>MISP TI: Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	<rule id="101241" level="12">
+		<if_group>authentication_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/misp-ti-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,group_by_data.srcip,</group>
+		<description>MISP TI: Login success FROM Malware IP(s)</description>
+	</rule>
+	<rule id="101242" level="12">
+		<if_group>sysmon_event1|sysmon_event6|sysmon_event7|sysmon_event_15</if_group>
+		<list field="sysmon.hashes" lookup="match_key">etc/lists/misp-ti-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>MISP TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="101243" level="12">
+		<if_group>sysmon_event1|sysmon_event6|sysmon_event7|sysmon_event_15</if_group>
+		<list field="sysmon.hash" lookup="match_key">etc/lists/misp-ti-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>MISP TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="101244" level="12">
+		<if_sid>550, 554</if_sid>
+		<list field="syscheck.sha256_after" lookup="match_key">etc/lists/misp-ti-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>MISP TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="101245" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url_domain" lookup="match_key">etc/lists/misp-ti-domain</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>MISP TI: Connection Attempt TO Malicious domain(s)</description>
+	</rule>
+	<rule id="101246" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url" lookup="match_key">etc/lists/misp-ti-url</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>MISP TI: Connection Attempt TO Malicious URL(s)</description>
+	</rule>
+	<rule id="101247" level="0">
+		<if_sid>101204</if_sid>
+		<dstport>^123$</dstport>
+		<description>Whitelist dstport for MISP TI: Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	<rule id="101248" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url_domain" lookup="match_key">etc/lists/young-domain</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>MISP TI: Connection Attempt TO suspicious young domain(s)</description>
+	</rule>	
+
+	<rule id="101249" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<field name="url_domain">wings-sfc-hk.com</field>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Phishing Email impersonating SFC</description>
+		<!-- DEV-1912 -->
+	</rule>	
+	<rule id="101250" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<field name="url_domain">32sssaawervvvv.biz|adminmmi.biz|auth2022.live|cleanifl.com|docpmsi.us|vrtlsrvmapp.biz|vrtofcvm.live|login.actionspsort.cam|login.akasmisoft.xyz|login.aueuth11.live|login.auth009.xyz|login.auth2022.live|login.auth83kl.live|login.bittermann-hh.co|login.cbhbanlc.com|login.cleanifl.com|login.clfonl365.xyz|login.gddss36.live|login.grodno-pl.com|login.hfs923.shop|login.karlandpearson.com|login.klm2136.click|login.login-micro.mcrsfts-passwdupdate.com|login.mcrosfts-updata.live|login.mcrosfts-update.cloud|login.mcrosfts-update.digital|login.mcrosftts-update.cloud|login.mcrsft-audio.xyz|login.mcrsfts-cloud.live|login.mcrsfts-passwd.cloud|login.mcrsfts-passwd.digital|login.mcrsfts-passwdupdate.com|login.mcrsfts-update.cloud|login.mcrsfts-update.digital|login.mcrsfts-virtualofficevm.com|login.mcrsftsvm-app.digital|login.mcrsftsvm-app.live|login.mcrsfts-voiceapp.digital|login.mcrsftsvoice-mail.cloud|login.microsecurity.us|login.microstoff.xyz|login.mljs365.xyz|login.mwhhncndn.xyz|login.mycrsfts-passwd.live|login.qwwxthn.xyz|login.seafoodsconnection.com|login.sunmarks.co.uk|login.tfosorcimonline.xyz|login.whitmanlab.uk|login.yi087011.xyz</field>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>AiTM cookie theft phishing sites IOC detected</description>
+		<!-- DEV-2214 -->
+	</rule>			
+	<!-- C!S Malware IP Aggregation -->
+	<!-- <rule id="101250" level="5">
+		<if_sid>101204</if_sid>
+		<location>citysup</location>
+		<group>group_by_rule.id,attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,</group>
+		<description>PwC TI: Malware IP Aggregation</description>
+	</rule>
+																																																															 -->
+	<!--Disable all NTP-->
+	<rule id="101251" level="5">
+		<if_sid>101204,101205</if_sid>
+		<dstport>^123$</dstport>
+		<description>Whitelist NTP for Tor IP</description>
+	</rule>
+	<rule id="101256" level="1">
+		<if_group>attack_category_Anomalous_Outbound_Traffic</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/microsoft_pip_cdb</list>
+		<description>Whitelisting MS all Public IP</description>
+	</rule>
+	<rule id="101257" level="1">
+		<if_group>attack_category_Anomalous_Outbound_Traffic</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/shopify_ip_cdb</list>
+		<description>Whitelisting Shopify all Public IP</description>
+	</rule>
+	<!-- ignore incomplete and deny -->
+	<rule id="101262" level="1">
+		<if_group>attack_category_Anomalous_Outbound_Traffic</if_group>
+		<regex>deny|denied|drop|incomplete|client-rst|timeout|AGE OUT|age-out</regex>
+		<description>ignore incomplete/denied traffic at the moment</description>
+	</rule>
+	<rule id="101272" level="1">
+		<if_group>attack_category_Anomalous_Outbound_Traffic</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/aws_ip_range</list>
+		<description>Whitelisting AWS Public IP</description>
+	</rule>
+		<!-- DEV-5030 -->
+	<!--
+	<rule id="101273" level="0">
+		<if_sid>101205</if_sid>
+		<dstip>88.209.121.106</dstip>
+		<description>[Whitelist] Connection Attempt TO Tor IP(s)</description>
+	</rule>
+	-->
+		<!-- DEV-5531 -->
+	<!--
+	<rule id="101274" level="0">
+		<if_sid>101204</if_sid>
+		<dstip>205.185.216.10</dstip>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	-->
+	<rule id="101273" level="0">
+		<if_sid>101245</if_sid>
+		<field name="url_domain">.amazonaws.com</field>
+		<description>[Whitelist] MISP TI: Connection Attempt TO Malicious domain(s)</description>
+		<!-- DEV-5929 -->
+	</rule>
+</group>
+<group name="syslog,pwc_caas,all_client,">
+	<!-- PwC CaaS - Connecting to IP address only -->
+	<rule id="101300" level="7">
+		<if_group>L2R</if_group>
+		<action>!blocked|deny</action>
+		<regex>http://\d+.\d+.\d+.\d+|https://\d+.\d+.\d+.\d+</regex>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Connecting to IP address only</description>
+	</rule>
+	<!-- PwC CaaS: Common Non-Local to Remote Ports -->
+	<!-- <rule id="101309" level="3">
+		<if_group>L2R</if_group>
+		<dstport>^135$|^136$|^137$|^138$|^139$|^444$|^445$|^995$|^996$|^997$|^998$|^999$|^8998$|^3127$|^3128$|^3129$|^3130$|^3131$|^3132$|^3133$|^3134$|^3135$|^3136$|^3137$|^3138$|^3139$|^3140$|^3141$|^3142$|^3143$|^3144$|^3145$|^3146$|^3147$|^3148$|^3149$|^3389$</dstport>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,</group>
+		<description>PwC CaaS: Common Non-Local to Remote Ports</description>
+	</rule>
+																																																																																																																																																																											 -->
+	<!-- the upd 137 will spam if NetBios over TCP/IP is enabled-->
+	<!-- <rule id="101310" level="0">
+		<if_sid>101309</if_sid>
+		<dstport>^137$</dstport>
+		<protocol>^17$</protocol>
+		<description>PwC CaaS: Common Non-Local to Remote Ports - exclude port 137 and udp</description>
+	</rule>
+	<rule frequency="51" id="101311" ignore="60" level="10" timeframe="300">
+		<if_matched_sid>101309</if_matched_sid>
+		<same_source_ip/>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,</group>
+		<description>PwC CaaS: Common Non-Local to Remote Ports</description>
+	</rule>
+																																																																																																																																																																											 -->
+
+</group>
+<group name="firewall,attacks,pwc_caas,">
+	<!--Network Perimeter Rule: Internet Facing Services-->
+	<rule id="101313" level="5">
+		<if_group>R2L</if_group>
+		<url>/owa/|/owa</url>
+		<match>allow|alert|accept|detect|pass</match>
+		<group>attack_stage_Defense_Evasion, attack_category_Suspicious_System_Configuration_Abuse,</group>
+		<description>OWA Publically Accessible</description>
+	</rule>
+	
+	<!--Disable UDP NetBios 137-->
+	<rule id="101424" level="0">
+		<if_sid>101204</if_sid>
+		<dstip>13.107.246.10</dstip>
+		<description>Whitelisting MS CDN IP</description>
+	</rule>
+	<rule id="101425" level="0">
+		<if_sid>101204</if_sid>
+		<dstip>23.227.38.64</dstip>
+		<description>Whitelisting Shopify CDN IP</description>
+	</rule>
+	<!-- Remarks, tcp-rst-from-client/server is a complete connection and should not be ignored 20220601-->
+	<rule id="101429" level="3">
+		<if_sid>101204</if_sid>
+		<match>incomplete|aged-out|server-rst|tcp-rst</match>
+		<description>Ignore incomplete/aged-out at the moment(Malware IP)</description>
+		<!-- DEV-5346 -->
+	</rule>
+	<rule id="101430" level="3">
+		<if_sid>101205</if_sid>
+		<match>incomplete|aged-out|server-rst|tcp-rst</match>
+		<description>Ignore incomplete/aged-out at the moment(Tor IP)</description>
+		<!-- DEV-5346 -->
+	</rule>
+	<rule id="101501" level="12" frequency="15" timeframe="300">
+		<if_matched_sid>101429</if_matched_sid>
+		<same_source_ip />
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,</group>
+		<description>Multiple Same Source IP Connection Attempt TO Malware IP(s) with incomplete/aged-out/tcp-rst/server-rst status</description>
+	</rule>
+	<rule id="101502" level="13" frequency="15" timeframe="300">
+		<if_matched_sid>101430</if_matched_sid>
+		<same_source_ip />
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,</group>
+		<description>Multiple Same Source IP Connection Attempt TO Tor IP(s) with incomplete/aged-out/tcp-rst/server-rst status</description>
+	</rule>
+
+	<rule id="101600" level="0">
+		<if_sid>101220</if_sid>
+		<dstip>146.112.61.107</dstip>
+		<description>Whitelist OpenDNS Block Page</description>
+	</rule>
+
+	<rule id="101700" level="0">
+		<if_sid>101204</if_sid>
+		<dstip>20.187.117.134</dstip>
+		<dstport>80</dstport>
+		<description>[Whitelist] MISP TI: Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-1791 -->
+	</rule>	
+	<rule id="101701" level="0">
+		<if_sid>101204</if_sid>
+		<dstip>20.187.117.134</dstip>
+		<dstport>443</dstport>
+		<description>[Whitelist] MISP TI: Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-1791 -->
+	</rule>			
+	<rule id="101702" level="0">
+		<if_sid>101204</if_sid>
+		<dstip>104.21.234.84</dstip>
+		<dstport>443</dstport>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-2807 -->
+	</rule>		
+	<rule id="101703" level="0">
+		<if_sid>101204</if_sid>
+		<dstip>104.21.234.85</dstip>
+		<dstport>443</dstport>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-2807 -->
+	</rule>	
+
+	<rule id="101704" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/cobalt-strike-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>Potential beaconing to known Cobalt Strike server</description>
+	</rule>		
+
+	<rule id="101705" level="0">
+		<if_sid>101204,101205</if_sid>
+		<field name="session_end_reason">tcp-rst-from-server</field>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-4104 -->
+	</rule>
+	<rule id="101706" level="0">
+		<if_sid>101204,101205</if_sid>
+		<field name="session_end_reason">tcp-rst-from-client</field>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-4104 -->
+	</rule>	
+	<rule id="101707" level="0">
+		<if_sid>101204,101205</if_sid>
+		<action>server-rst</action>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-4104 -->
+	</rule>
+	<rule id="101708" level="0">
+		<if_sid>101204,101205</if_sid>
+		<action>client-rst</action>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-4104 -->
+	</rule>	
+
+	<rule id="101314" level="5">
+		<if_sid>100052</if_sid>
+		<dstport>^23$|^445$|^1433$|^139$|^389$|^636$</dstport>
+		<match>allow|accept|pass</match>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,group_by_data.dstport,</group>
+		<description>Outgoing Admin Protocol Used</description>
+	</rule>
+	<rule id="101315" level="5">
+		<if_sid>100053</if_sid>
+		<dstport>^20$|^21$|^22$|^23$|^3389$|^111$|^135$|^137$|^530$|^445$|^636$|^3306$|^1433$|^1521$</dstport>
+		<match>allow|accept|pass</match>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.dstport,</group>
+		<description>Incoming Admin Protocol Used</description>
+	</rule>
+	<rule id="101316" level="5">
+		<if_sid>100052</if_sid>
+		<dstport>^22$|^3389$</dstport>
+		<match>allow|accept|pass</match>
+		<group>attack_stage_Persistence,attack_category_System_Configuration_Abuse,group_by_data.dstport,</group>
+		<description>Outgoing SSH/RDP Protocol Used</description>
+	</rule>	
+</group>

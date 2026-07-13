@@ -1,0 +1,41 @@
+
+<group name="pwc_caas,">
+    <rule id="300200" level="12">
+        <if_group>R2L|web|accesslog</if_group>
+        <field name="uriStem">/owa/auth/\w+.js|/ecp/\w+.js|/ecp/\w+.flt|/ecp/\w+.css</field>
+        <description>Suspected ProxyLogon attack (1)</description>
+        <group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+    </rule>
+
+    <rule id="300201" level="12">
+        <if_group>R2L|web|accesslog</if_group>
+        <field name="uri">/owa/auth/Current|/ecp/default.flt|/ecp/main.css|/owa/auth/current/themes/resources|/ecp/\.*.js</field>
+        <action>POST</action>
+        <description>Suspected ProxyLogon attack (2)</description>
+        <group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+    </rule>
+
+    <rule id="300211" level="12">
+        <if_group>R2L|web|accesslog</if_group>
+        <field name="uri">/autodiscover/autodiscover.json?@|Email=autodiscover/autodiscover.json</field>
+        <action>GET</action>
+        <status>302</status>
+        <description>Suspected ProxyShell attack (1)</description>
+        <group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+    </rule>
+    <rule id="300212" level="12">
+        <if_group>R2L|web|accesslog</if_group>
+        <field name="uri">/autodiscover.json</field>
+        <field name="uri">/powershell|/mapi/nspi/|/EWS|X-Rps-CAT</field>
+        <description>Suspected ProxyShell attack (2)</description>
+        <group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+    </rule>
+
+    <rule id="300213" level="12">
+        <if_group>R2L|web|accesslog</if_group>
+        <field name="uri">/autodiscover.json</field>
+        <field name="uri">autodiscover.json?@|autodiscover.json%3f@|%3f@foo.com|Email=autodiscover/autodiscover.json|json?@foo.com</field>
+        <description>Suspected ProxyShell attack (3)</description>
+        <group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+    </rule>
+</group>

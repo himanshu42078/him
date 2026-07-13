@@ -1,0 +1,292 @@
+<group name="local,">
+  <!-- Test rule --> 
+  <!-- rule id="100109" level="0">
+    <if_sid>92657</if_sid>
+    <time>8 am - 7:00 pm</time>
+    <field name="win.eventdata.targetDomainName">^OPUS$</field>
+    <description>Successful Remote Logon Detected - User:$(win.eventdata.subjectDomainName)\$(win.eventdata.targetUserName) - NTLM authentication, possible pass-the-hash attack - Possible RDP connection. Verify that $(win.eventdata.workstationName) is allowed to perform RDP connections</description>
+    <group>ossec,</group>
+  </rule --> 
+  <!--<rule id="100007" level="5">-->
+  <!--  <field name="agent.name">^my-kulsocopus-.*</field>-->
+  <!--  <srcip>192.168.2.156</srcip>-->
+  <!--  <srcip>192.168.2.158</srcip>-->
+  <!--  <srcip>192.168.2.35</srcip>-->
+  <!--  <description>Temp suppression for opus scans</description>-->
+  <!--  <group>ossec,</group>-->
+  <!--</rule> -->
+  <!--<rule id="100008" level="5">-->
+    <!--<field name="agent.name">^my-kulsocopus-.*</field>-->
+  <!--  <if_sid>100122</if_sid>-->
+  <!--  <match>Unrecognised Device Logon - PT7</match>-->
+    <!--<field name="win.eventdata.ipAddress">^192.168.2.156$|^192.168.2.158$|^192.168.2.35$</field>-->
+  <!--  <description>Temp suppression for opus scans 2</description>-->
+  <!--</rule>-->
+  <!--test-->
+  <!--suppression-->
+  <rule id="100007" level="5">
+    <if_sid>92657,100121</if_sid>
+    <field name="win.system.computer" type="pcre2">^OPUS.*|^my-kulsocopus-OSSBHTCWEB01$|^OSSBHTCWEB01$|^OAMHTCRPTSVR01.my.opus.com$</field>
+    <field name="win.eventdata.ipAddress">^172.19.16.14$</field>
+    <field name="win.eventdata.targetUserName">^hitachi$|^backupadmin$</field>
+    <field name="win.eventdata.workstationName">^VBR$</field>
+    <time>3 pm - 3:30 pm</time>
+    <description>Suppression for known Opus backup activities logon alerts - Suppress rule 92657</description>
+    <group>ossec,</group>
+  </rule>
+  
+  <rule id="100008" level="5">
+    <if_sid>92657,100121</if_sid>
+    <field name="win.system.computer" type="pcre2">^OPUS.*|^my-kulsocopus-OSSBHTCWEB01$|OSSBHTCWEB01$|^OAMHTCRPTSVR01.my.opus.com$</field>
+    <field name="win.eventdata.ipAddress">^172.19.16.14$</field>
+    <field name="win.eventdata.targetUserName">^hitachi$|^backupadmin$</field>
+    <field name="win.eventdata.workstationName">^VBR$</field>
+    <time>4 pm - 4:30 pm</time>
+    <description>Suppression for known Opus backup activities logon alerts - Suppress rule 92657</description>
+    <group>ossec,</group>
+  </rule>
+  
+  <rule id="100009" level="5">
+    <if_sid>92657</if_sid>
+    <field name="win.eventdata.targetDomainName">^OPUS$</field>
+    <field name="win.eventdata.ipAddress">^192.168.1.6$|^192.168.1.8$</field>
+    <field name="win.eventdata.targetUserName">^LastAccount$</field>
+    <field name="win.eventdata.targetUserSid">^S-1-5-21-919105661-3503277867-108559474-500$</field>
+    <field name="win.eventdata.workstationName">^OPUSAMDC01$|^OPUSAMDC03$</field>
+    <description>Suppression for known Opus LastAccount logon alerts - Suppress rule 92657</description>
+    <group>ossec,</group>
+  </rule>
+
+<!-- FIREWALL RULES --> 
+<!-- Suppression for Palo and Forti URL block -->   
+  <rule id="100110" level="5">
+    <if_group>opus_linux_group</if_group>
+    <if_sid>64508, 81644</if_sid>
+    <description>Surpression for alerts triggered by opus_linux group - Suppress rule 64508, 81644</description>
+    <group>ossec,</group>
+  </rule>
+  
+<!-- Admin login to Fortinet firewall--> 
+  <rule id="100111" level="12">
+    <if_sid>81626</if_sid>
+    <!--list field="dstuser" lookup="match_key">etc/lists/OpusAssetManagement/firewallAdmin</list-->
+    <field name="devname">^OPUS-FGVM-FW$|^OPUS-OFFICE-FW$</field>
+    <description>Alert required - User "$(dstuser)" login to Opus Fortinet firewall ("$(devname)")</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1133</id>
+    </mitre>
+  </rule> 
+  
+<!-- Admin login to Palo Alto firewall--> 
+  <rule id="100113" level="12">
+    <field name="event_id">^auth-success$</field>
+    <if_sid>64501</if_sid>
+    <description>Client alert required - User login to Palo Alto firewall ("$(device_name)") - $(description)</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1133</id>
+    </mitre>
+  </rule> 
+
+<!-- WINDOWS ID RULES--> 
+<!-- Account has been created or enabled [Windows Event ID 4720 & 4722] --> 
+  <rule id="100114" level="8">
+    <field name="win.eventdata.targetDomainName">^OPUS$</field>
+    <if_sid>60109</if_sid>
+    <description>User account enabled or created, $(win.eventdata.subjectUserName) created user $()</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1133</id>
+    </mitre>
+  </rule> 
+  
+<!-- Account has been disabled or deleted [Windows Event ID 4725 & 4726] --> 
+  <rule id="100115" level="8">
+    <field name="win.system.computer">^OPUSAMDC01.my.opus.com$</field>
+    <if_sid>60111</if_sid>
+    <description>User account disabled or deleted</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1531</id>
+    </mitre>
+  </rule> 
+  
+<!-- Account has been changed [Windows Event ID 4738]--> 
+  <rule id="100116" level="8">
+    <field name="win.system.computer">^OPUSAMDC01.my.opus.com$</field>
+    <if_sid>60110</if_sid>
+    <description>User account changed</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1098</id>
+    </mitre>
+  </rule> 
+
+<!-- Account has been locked [Windows Event ID 4740]--> 
+  <rule id="100117" level="8">
+    <field name="win.system.computer">^OPUSAMDC01.my.opus.com$</field>
+    <if_sid>60115</if_sid>
+    <description>User account changed</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1531</id>
+        <id>T1110</id>
+    </mitre>
+  </rule>   
+
+<!-- VPN LOGON RULES --> 
+<!-- No alert during business hours --> 
+  <rule id="100118" level="3">
+    <if_sid>92657</if_sid>
+    <!-- field name="win.system.computer">^OPUSAMDC01.my.opus.com$</field -->
+    <list field="win.system.computer" lookup="match_key">etc/lists/OPUS-DomainList</list>
+    <time>11 pm - 12 pm</time>
+    <weekday>weekdays</weekday>
+    <description>Successful Remote Logon Detected - User:$(win.eventdata.subjectDomainName)\$(win.eventdata.targetUserName) - $(win.eventdata.workstationName) Logged in during business hours</description>
+    <group>ossec,</group>
+  </rule>   
+
+<!-- Alert logon during non-business hours --> 
+  <rule id="100119" level="5">
+    <list field="win.system.computer" lookup="match_key">etc/lists/OPUS-DomainList</list>
+    <if_sid>92657</if_sid>
+    <time>12 pm - 11 pm</time>
+    <weekday>weekdays</weekday>
+    <description>Successful Remote Logon Detected During Non-Business Hours - User:$(win.eventdata.subjectDomainName)\$(win.eventdata.targetUserName) - NTLM authentication, possible pass-the-hash attack - Possible RDP connection. Verify that $(win.eventdata.workstationName) is allowed to perform RDP connections</description>
+    <group>ossec,</group>
+  </rule> 
+  
+<!-- Logon during weekend-->   
+  <rule id="100120" level="5">
+    <list field="win.system.computer" lookup="match_key">etc/lists/OPUS-DomainList</list>
+    <if_sid>92657</if_sid>
+    <weekday>weekends</weekday>
+    <description>Successful Login During Weekend - User:$(win.eventdata.subjectDomainName)\$(win.eventdata.targetUserName) - Workstation:$(win.eventdata.workstationName)</description>
+    <group>ossec,</group>
+  </rule>
+
+<!-- Alert if user account is logging in during weekend/non-business hours --> 
+  <rule id="100121" level="8">
+    <list field="win.eventdata.targetUserName" lookup="not_match_key">etc/lists/OPUS-MachineAccounts</list>
+    <if_sid>100119, 100120</if_sid>
+    <description>Successful Remote Logon Detected - User:$(win.eventdata.subjectDomainName)\$(win.eventdata.targetUserName) - NTLM authentication, possible pass-the-hash attack - Possible RDP connection. Verify that $(win.eventdata.workstationName) is allowed to perform RDP connections</description>
+    <mitre>
+        <id>T1550.002</id>
+        <id>T1078.002</id>
+        <id>T1021.001</id>
+    </mitre>
+    <group>ossec,</group>
+  </rule> 
+  
+<!-- Unrecognised Device --> 
+  <rule id="100122" level="12">
+    <if_sid>100118, 100119, 100120</if_sid>
+    <list field="win.eventdata.workstationName" lookup="not_match_key">etc/lists/OPUS-InventoryListing</list>
+    <description>Unrecognised Device Logon - $(win.eventdata.workstationName)</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+    </mitre>
+  </rule> 
+  
+<!-- Unrecognised user logon --> 
+    <rule id="100123" level="12">
+    <list field="win.eventdata.targetUserName" lookup="not_match_key">etc/lists/OPUS-UserListing</list>
+    <if_sid>100118, 100119, 100120</if_sid>
+    <description>Unrecognised user login - $(win.eventdata.targetUserName) on machine $(win.eventdata.workstationName)</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+    </mitre>
+  </rule>
+  
+<!-- Opus Fortigate VPN Login Success --> 
+  <rule id="100124" level="5">
+    <if_group>vpn_login_success</if_group>
+    <field name="devname">^OPUS-FGVM-FW$|^OPUS-OFFICE-FW$</field>
+    <description>Successful VPN Login - $(dstuser)</description>
+    <group>ossec,</group>
+  </rule>
+
+<!-- Opus Fortigate VPN Login non-business hours --> 
+  <rule id="100125" level="8">
+    <if_sid>100124</if_sid>
+    <field name="devname">^OPUS-FGVM-FW$|^OPUS-OFFICE-FW$</field>
+    <time>1 pm - 11 pm</time>
+    <weekday>weekdays</weekday>
+    <description>Successful VPN Login on Non-business Hours - $(dstuser)</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1133</id>
+    </mitre>
+  </rule>
+
+<!-- Opus Fortigate VPN Login on weekends --> 
+  <rule id="100126" level="8">
+    <if_sid>100124</if_sid>
+    <field name="devname">^OPUS-FGVM-FW$|^OPUS-OFFICE-FW$</field>
+    <weekday>weekends</weekday>
+    <description>Successful VPN Login on Weekend - $(dstuser)</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1133</id>
+    </mitre>
+  </rule>
+
+<!-- Opus Fortigate VPN Login Unrecognised User -->
+  <rule id="100127" level="12">
+    <if_sid>100124,100125,100126</if_sid>
+    <list field="user" lookup="not_match_key">etc/lists/OPUS-userOnly</list>
+    <description>Unrecognised User VPN Login - $(dstuser)</description>
+    <group>ossec,</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1133</id>
+    </mitre>
+  </rule>
+  
+<!-- Opus Anonymous Login Suppression -->
+    <rule id="100128" level="4">
+    <if_sid>92657,60137,100123</if_sid>
+    <field name="win.eventdata.targetUserName">ANONYMOUS LOGON</field>
+    <field name="win.system.computer">OPUSAMDC01.my.opus.com|OPUSAMSVR02.my.opus.com|OPUSAMAPP01.my.opus.com|OPUSAMDMZDEV01.my.opus.com</field>
+    <description>Anonymous Logon Suppression</description>
+  </rule>
+  
+<!-- Opus Anonymous Login Suppression -->
+  <rule id="10029" level="3" frequency="2" timeframe="1">
+    <if_matched_sid>100128</if_matched_sid>
+    <same_field>win.eventdata.targetLogonId</same_field>
+    <description>Anonymous Logon Suppression - Anonymous immediately logout within 1 sec</description>
+  </rule>
+  
+<!-- Opus Anonymous Login Suppression -->
+  <rule id="111124" level="5">
+    <if_sid>100118</if_sid>
+    <list field="win.eventdata.targetUserName" lookup="match_key">etc/lists/OPUS-MachineAccounts</list>
+    <description>Suppression – Machine account logons during business hours</description>  
+  </rule>
+  
+<!-- Opus fsso Login Suppression -->
+  <rule id="111125" level="5">
+    <if_sid>100123</if_sid>
+    <field name="win.eventdata.targetUserName">^fssoossb$</field>
+    <field name="win.eventdata.targetUserSid">^S-1-5-21-1707047590-1648170845-1748402362-1130$</field>
+    <field name="win.eventdata.ipAddress">^192.168.70.8$</field>
+    <field name="win.eventdata.targetDomainName">^OSSB$</field>
+    <field name="win.eventdata.workstationName">^OSSBDC01$</field>
+    <description>Suppression for known FSSO Event logon</description>
+    <group>ossec,</group>
+ </rule>
+  
+  
+</group>

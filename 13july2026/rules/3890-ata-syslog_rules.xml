@@ -1,0 +1,12 @@
+<group name="pwc_caas,">
+
+    <rule id="389000" level="12">
+        <decoded_as>microsoft_cef</decoded_as>
+        <location>hkbn</location>
+        <field name="cef.extensions.externalId">^2\d\d\d$</field>
+        <description>[HKBN] High Severity Microsoft Advanced Threat Analytics (ATA) Alert: $(cef.description)</description>
+        <group>severity_high,</group>
+        <!-- DEV-3878-->
+    </rule>
+  
+</group>

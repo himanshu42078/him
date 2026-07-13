@@ -1,0 +1,23 @@
+
+<!-- Modify it at your will. -->
+
+<!-- Bigdata Hive  -->
+
+<group name="pwc_caas, bigdata,">
+
+	
+    <rule id="257000" level="0">
+        <decoded_as>bigdata-hive-cef</decoded_as>
+        <description>bigdata hive Alert.</description>
+    </rule>
+
+
+	<rule id="257001" level="12">
+		<if_sid>257000</if_sid>
+		<field name="result">0</field>
+		<description>Bigdata Hive: An unauthorized Access was blocked by Ranger's corresponding Security Policy, User: "$(srcuser)", IP: "$(srcip)", Host: "$(srchost)" </description>
+	</rule>
+
+</group>
+
+<!-- Bigdata Hive End  -->

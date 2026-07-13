@@ -1,0 +1,11 @@
+<group name="pwc_caas,">
+	<rule id="301400" level="5">
+		<if_group>edr</if_group>
+		<dstport>^20$|^21$|^22$|^23$|^3389$|^135$|^137$|^139$|^445$|^3306$|^1433$</dstport>
+		<list field="srcip" lookup="not_address_match_key">etc/lists/private-ip</list>
+		<list field="dstip" lookup="address_match_key">etc/lists/private-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Exploit_Public-Facing_Application,group_by_data.dstport,</group>
+		<description>Incoming Admin Protocol Used (EDR)</description>
+        <!-- DEV-1983 -->
+	</rule>
+</group>

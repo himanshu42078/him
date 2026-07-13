@@ -1,0 +1,31 @@
+
+<!-- Melco Workday ruleset. -->
+
+<group name="pwc_caas,workday,">
+    <!-- Workday  -->
+    <rule id="252000" level="0">
+        <decoded_as>workday</decoded_as>
+        <description>Workday Alert.</description>
+    </rule>
+    <!-- Rules are at level 5, monitor only-->
+    <rule id="252001" level="5">
+        <if_sid>252000</if_sid>
+        <field name="log_type">auth</field>
+        <match>Session_ID</match>
+        <description>Workday authentication success event. User: $(dstuser) with source IP: $(srcip) and source device: $(Device_Type) at time: $(timestamp).</description>
+    </rule>
+    
+    <rule id="252002" level="5">
+        <if_sid>252000</if_sid>
+        <field name="log_type">auth</field>
+        <match>Authentication_Failure_Message</match>
+        <description>Workday authentication failed event. User: $(dstuser) with source IP: $(srcip) and source device: $(Device_Type) at time: $(timestamp).</description>
+    </rule>
+    
+    <rule id="252003" level="5">
+        <if_sid>252000</if_sid>
+        <field name="log_type">audit_trail</field>
+        <description>Workday audit trail event. Task: $(action), modified by user: $(dstuser) at time: $(timestamp).</description>
+    </rule>
+
+</group>

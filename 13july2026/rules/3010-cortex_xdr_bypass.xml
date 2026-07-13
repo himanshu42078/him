@@ -1,0 +1,15 @@
+
+<group name="pwc_caas,cortex_bypass,">
+	<!-- Cortex_bypass rules for Clients DEV-1657 -->
+	<rule id="301000" level="3">
+		<if_sid>60103</if_sid>
+		<field name="win.eventdata.commandLine">cytool</field>
+		<description>cytool running in Cortex XDR</description>
+	</rule>
+	<rule id="301001" level="12">
+		<if_sid>301000</if_sid>
+		<field name="win.eventdata.commandLine">start disable|protect disable|runtime disable|event_collection disable</field>
+		<description>Suspicious Commands in Bypassing Cortex XDR</description>
+		<group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>	
+</group>

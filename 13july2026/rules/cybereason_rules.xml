@@ -1,0 +1,32 @@
+<group name="cybereason,syslog,">
+
+  <rule id="100600" level="0">
+    <decoded_as>cybereason</decoded_as>
+    <description>Cybereason grouped</description>
+  </rule>
+    
+  <rule id="100601" level="6">
+    <if_sid>100600</if_sid>
+    <field name="alert_type">^Malware$</field>
+    <description>Cybereason: Malware alert type</description>
+  </rule>
+  
+  <rule id="100602" level="8">
+    <if_sid>100601</if_sid>
+    <field name="alert_action">^Malware Created$</field>
+    <description>Cybereason: Malware have been created</description>
+  </rule>
+  
+  <rule id="100603" level="3">
+    <if_sid>100600</if_sid>
+    <field name="alert_type">^UserAction$</field>
+    <description>Cybereason: User Action group alert</description>
+  </rule>
+  
+  <rule id="100604" level="3">
+    <if_sid>100600</if_sid>
+    <field name="alert_action">^Behavioral Whitelisting/ListRules$</field>
+    <description>Cybereason: Behavioral Whitelisting/ListRules</description>
+  </rule>
+
+</group>

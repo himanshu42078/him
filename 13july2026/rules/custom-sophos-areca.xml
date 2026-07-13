@@ -1,0 +1,139 @@
+<!--
+  -  Sophos XGS136 Firewall rules
+  -  Created by Justin L.
+  -  Copyright (C) 2025, Dark Lab MY.
+  -  This program is a free software; you can redistribute it and/or modify it under the terms of GPLv2.
+-->
+<group name="sophos-fw">
+<!--  <rule id="70020" level="0">-->
+<!--    <decoded_as>sophos-fw</decoded_as>-->
+<!--    <description>Sophos XG210 Firewall event</description>-->
+<!--  </rule>-->
+
+<!-- Catch all group event  -->
+<rule id="100150" level="1">
+<if_sid>70020</if_sid>
+<field name="device_id">X13107FKP29VT07</field>
+<description>Areca Firewall Events</description>
+</rule>
+<!-- Antivirus Event Type  -->
+<rule id="100151" level="8">
+<if_sid>100150</if_sid>
+<field name="log_type">Anti-Virus</field>
+<description>Sophos: Antivirus type</description>
+</rule>
+
+<!-- Event Group type  -->
+<rule id="100152" level="3">
+<if_sid>100150</if_sid>
+<field name="log_type">Event</field>
+<description>Sophos: Event type</description>
+</rule>
+<!-- Content Filtering type  -->
+<rule id="100153" level="3">
+<if_sid>100150</if_sid>
+<field name="log_type">Content Filtering</field>
+<description>Sophos: Content Filtering type</description>
+</rule>
+<!-- Firewall type  -->
+<rule id="100154" level="3">
+<if_sid>100150</if_sid>
+<field name="log_type">Firewall</field>
+<description>Sophos: Firewall type</description>
+</rule>
+<!-- DoS Attack Alert  -->  
+<rule id="100155" level="12">
+<if_sid>100154</if_sid>
+<field name="log_component">DoS Attack</field>
+<description>Sophos: DoS Attack</description>
+</rule>
+<!-- SSL VPN Group Alert  -->    
+<rule id="100156" level="5">
+<if_sid>100152</if_sid>
+<field name="log_component">SSL VPN</field>
+<description>Sophos: VPN Group Alert</description>
+</rule>
+ 
+<!-- Firewall Auth Alert  -->    
+<rule id="100157" level="5">
+<if_sid>100152</if_sid>
+<field name="log_component">Firewall Authentication</field>
+<field name="sophos_fw_status_msg">Failed</field>
+<description>Sophos: User Failed Login to Firewall</description>
+</rule>
+<!-- Firewall Auth Alert, need to recheck  -->      
+<rule id="100158" level="5">
+<if_sid>100152</if_sid>
+<field name="log_component">Firewall Authentication</field>
+<field name="sophos_fw_status_msg">Successful</field>
+<description>Sophos: User Successful Login to Firewall</description>
+</rule>
+<!-- SSL VPN Auth Alert  -->     
+<rule id="100159" level="6">
+<if_sid>100152</if_sid>
+<field name="log_component">SSL VPN Authentication</field>
+<field name="sophos_fw_status_msg">Successful</field>
+<description>Sophos: Successful VPN Login</description>
+</rule>
+<!-- SSL VPN Auth Alert  -->       
+<rule id="100160" level="5">
+<if_sid>100152</if_sid>
+<field name="log_component">SSL VPN Authentication</field>
+<field name="sophos_fw_status_msg">Failed</field>
+<description>Sophos: Failed VPN Login</description>
+</rule>
+<!-- SSL VPN Auth Alert  -->     
+<rule id="100161" level="6">
+<if_sid>100152</if_sid>
+<field name="log_component">VPN Authentication</field>
+<field name="sophos_fw_status_msg">Successful</field>
+<description>Sophos: Successful VPN Login</description>
+</rule>
+<!-- SSL VPN Auth Alert  -->      
+<rule id="100162" level="5">
+<if_sid>100152</if_sid>
+<field name="log_component">VPN Authentication</field>
+<field name="sophos_fw_status_msg">Failed</field>
+<description>Sophos: Failed VPN Login</description>
+</rule>
+<!-- Admin Auth Alert  -->      
+<rule id="100163" level="5">
+<if_sid>100152</if_sid>
+<field name="log_subtype">Admin</field>
+<field name="sophos_fw_status_msg">Failed</field>
+<description>Sophos: Failed Admin Authentication</description>
+</rule>
+<!-- Admin Auth Alert  -->       
+<rule id="100164" level="8">
+<if_sid>100152</if_sid>
+<field name="log_subtype">Admin</field>
+<field name="sophos_fw_status_msg">Successful</field>
+<description>Sophos: Sucessful Admin Authentication</description>
+</rule>
+<!-- Brute Force Alert  -->       
+<rule id="100165" level="5" frequency="30" timeframe="15">
+<if_matched_sid>100163</if_matched_sid>
+<description>Sophos: Brute Force Attempt to Admin Account Detected</description>
+</rule>
+
+<rule id="100170" level="12">
+ <if_sid>100152</if_sid>
+ <field name="log_component">GUI</field>
+ <field name="log_subtype">Admin</field>
+ <regex type="pcre2" negate="yes">log_id=".*17507"</regex>> 
+ <field name="sophos_fw_status_msg">Successful</field>
+ <description>Sophos Firewall Config Change from $(src_ip)</description>
+</rule>
+
+<rule id="100171" level="5">
+  <if_sid>100164,100170</if_sid>
+  <field name="user_name">arecamis</field>
+  <weekday>weekdays</weekday>
+  <time>0:45 am - 9:45 am</time>
+  <description>Suppression for Areca IT Support Account Business Hours Tuning</description>
+</rule>
+
+
+
+  
+</group>

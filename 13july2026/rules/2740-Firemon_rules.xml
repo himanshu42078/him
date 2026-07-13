@@ -1,0 +1,58 @@
+<!-- Firemon rules -->
+
+<group name="Firemon,pwc_caas,">
+    <rule id="274000" level="0">
+        <decoded_as>firemon</decoded_as>
+        <description>Firemon Rules.</description>
+    </rule>
+
+    <rule id="274001" level="12">
+      <if_sid>274000</if_sid>
+      <field name="eventName">User Created</field>
+      <description>Firemon Alert: [User creation] action detected by user: $(srcuser).</description>
+    </rule>
+
+    <rule id="274002" level="12">
+      <if_sid>274000</if_sid>
+      <field name="eventName">User Group Created</field>
+      <description>Firemon Alert: [user group creation] action detected by user: $(srcuser).</description>
+    </rule>
+
+    <rule id="274003" level="12">
+      <if_sid>274000</if_sid>
+      <field name="eventName">User Added To User Group</field>
+      <description>Firemon Alert: [Add user to user group] action detected by user: $(srcuser).</description>
+    </rule>
+
+    <rule id="274004" level="12">
+      <if_sid>274000</if_sid>
+      <field name="eventName">Collector Updated</field>
+      <description>Firemon Alert: [DataCollector setting information change] action detected by user: $(srcuser).</description>
+    </rule>
+
+    <rule id="274005" level="3">
+      <if_sid>274000</if_sid>
+      <field name="eventName">Login Failure</field>
+      <description>Firemon: User login failure.</description>
+    </rule>
+
+    <rule id="274006" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>274005</if_matched_sid>
+      <same_field>detail.after.uesrname</same_field>
+      <description>Firemon Alert: Multiple login attempts in short period of time using user: $(detail.after.uesrname).</description>
+    </rule>
+
+    <rule id="274007" level="12">
+      <if_sid>274000</if_sid>
+      <field name="eventName">Auth Server Created</field>
+      <description>Firemon Alert: [Auth Server Created User] action detected by user: $(srcuser).</description>
+    </rule>
+
+    <rule id="274008" level="12">
+      <if_sid>274000</if_sid>
+      <field name="eventName">Auth Server Updated</field>
+      <description>Firemon Alert: [Auth Server Updated User] action detected by user: $(srcuser).</description>
+    </rule>
+
+
+</group>

@@ -1,0 +1,92 @@
+<!-- FCS rules -->
+
+<group name="FCS,pwc_caas,">
+    <rule id="273000" level="0">
+        <decoded_as>FCSGatewayTable</decoded_as>
+        <description>FCS Gateway Rules.</description>
+    </rule>
+
+    <rule id="273001" level="3">
+      <if_sid>273000</if_sid>
+      <field name="description">Incorrect Password</field>
+      <description>FCS Gateway Login with incorrect password.</description>
+    </rule>
+
+    <rule id="273002" level="3">
+      <if_sid>273000</if_sid>
+      <field name="description">Reason: Invalid User</field>
+      <description>FCS Gateway Login with invalid user.</description>
+    </rule>
+
+    <rule id="273003" level="12">
+      <if_sid>273000</if_sid>
+      <field name="description">Updated in tblsetting</field>
+      <description>FCS Gateway Alert: System setting table updated.</description>
+    </rule>
+
+    <!--1min logon event trigger more then 5 time frmm same user-->
+    <rule id="273004" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>273001</if_matched_sid>
+      <same_field>usrID</same_field>
+      <description>FCS Gateway Alert: Multiple login attempts in short period of time from the same user. </description>
+    </rule>
+
+    <!--1min logon event trigger more then 5 time frmm same srcip-->
+    <rule id="273005" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>273002</if_matched_sid>
+      <same_field>srcIP</same_field>
+      <description>FCS Gateway Alert: Multiple login attempts in short period of time from unknown user. </description>
+    </rule>
+
+    <rule id="273100" level="0">
+        <decoded_as>FCSVoice</decoded_as>
+        <description>FCS Voice Rules.</description>
+    </rule>
+
+    <rule id="273101" level="3">
+      <if_sid>273000</if_sid>
+      <field name="description">Invalid Password</field>
+      <description>FCS Voice Login with incorrect password.</description>
+    </rule>
+
+    <rule id="273102" level="3">
+      <if_sid>273000</if_sid>
+      <field name="description">Invalid Username</field>
+      <description>FCS Voice Login with invalid user.</description>
+    </rule>
+
+    <rule id="273103" level="3">
+      <if_sid>273000</if_sid>
+      <field name="description">LDAP Account not Authenticated</field>
+      <description>FCS Voice Login with unauthenticated LDAP account.</description>
+    </rule>
+
+    <rule id="273104" level="12">
+      <if_sid>273000</if_sid>
+      <field name="description">SYSTEM STOPPED|SYSTEM STARTED</field>
+      <description>FCS Voice Alert: System stopped/restarted.</description>
+    </rule>
+
+    <!--1min logon event trigger more then 5 time frmm same user-->
+    <rule id="273105" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>273101</if_matched_sid>
+      <same_field>usrID</same_field>
+      <description>FCS Voice Alert: Multiple login attempts with incorrect password in short period of time from the same user. </description>
+    </rule>
+
+    <!--1min logon event trigger more then 5 time frmm same srcip-->
+    <rule id="273106" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>273002</if_matched_sid>
+      <same_field>srcIP</same_field>
+      <description>FCS Voice Alert: Multiple login attempts with unknown user in short period of time. </description>
+    </rule>
+
+    <!--1min logon event trigger more then 5 time frmm same srcip-->
+    <rule id="273107" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>273103</if_matched_sid>
+      <same_field>srcIP</same_field>
+      <description>FCS Voice Alert: Multiple login attempts with unauthenticated LDAP account in short period of time. </description>
+    </rule>
+
+
+</group>

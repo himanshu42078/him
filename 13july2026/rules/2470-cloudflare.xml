@@ -1,0 +1,21 @@
+
+<group name="pwc_caas,cloudflare,">
+    <!-- Cloudflare -->
+    <rule id="247000" level="0">
+        <decoded_as>cloudflare-json</decoded_as>
+        <description>Group of cloudflare logs</description>
+        <options>no_counter</options>
+        <group>R2L,web,accesslog,</group>
+    </rule>
+  <!--
+  https://developers.cloudflare.com/ddos-protection/reference/alerts/#alert-types
+  Cloudflare can issue notifications for different types of DDoS attack alerts.
+  Standard alerts
+    HTTP DDoS Attack Alert: Alert for HTTP attacks that generate more than 100 requests per second.
+    Layer 3/4 DDoS Attack Alert: Alert for Layer 3/4 attacks that generate more than 20,000 packets per second.
+  -->
+  <rule frequency="6000" id="247001" level="12" timeframe="60">
+    <if_matched_sid>247000</if_matched_sid>
+    <description>Cloudflare: Suspicious DDoS Attempt</description>
+  </rule>
+</group>

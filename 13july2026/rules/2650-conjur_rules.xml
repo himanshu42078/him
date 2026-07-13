@@ -1,0 +1,30 @@
+
+<group name="pwc_caas,conjur,">
+	<rule id="265000" level="3">
+        <decoded_as>conjur</decoded_as>
+		<description>Group of conjur log</description>
+		<options>no_counter</options>
+	</rule>
+	<rule id="265001" level="3">
+		<if_sid>265000</if_sid>
+		<field name="conjur.action.result">failure</field>
+		<field name="conjur.action.operation">authenticate</field>
+		<description>Conjur Authentication failure</description>
+	</rule>
+	<rule id="265002" level="12" frequency="5" timeframe="300">
+		<if_matched_sid>265001</if_matched_sid>
+		<same_source_ip />
+		<description>Multiple Conjur Authentication failure in a short period of time from the same IP.</description>
+	</rule>
+	<rule id="265003" level="3">
+		<if_sid>265000</if_sid>
+		<field name="conjur.action.result">failure</field>
+		<description>Conjur Failure activities</description>
+	</rule>
+
+	<rule id="265004" level="12" frequency="20" timeframe="300">
+		<if_matched_sid>265003</if_matched_sid>
+		<same_source_ip />
+		<description>Multiple Conjur failure acitivities in a short period of time from the same IP.</description>
+	</rule>
+</group>

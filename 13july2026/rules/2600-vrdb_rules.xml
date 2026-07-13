@@ -1,0 +1,28 @@
+
+<!-- Modify it at your will. -->
+<group name="pwc_caas, VRDB,">
+    <!-- VRDB  -->
+    <rule id="260000" level="3">
+        <decoded_as>VRDB</decoded_as>
+        <description>VRDB Alert.</description>
+    </rule>
+
+    <rule id="260001" level="12">
+        <if_sid>260000</if_sid>
+        <field name="XML">LOGONFAILURE\.*</field>
+        <description>Virtual Roster - Found Logon failure record: $(XML)</description>
+    </rule>
+
+    <rule id="260002" level="12">
+        <if_sid>260000</if_sid>
+        <field name="XML">A\sGroup\swith\.*removed</field>
+        <description>Virtual Roster - Found User Group Change record: $(XML)</description>
+    </rule>
+
+    <rule id="260003" level="12">
+        <if_sid>260000</if_sid>
+        <field name="XML">RoleChange\.*</field>
+        <description>Virtual Roster - Found User Role Change record: $(XML)</description>
+    </rule>
+
+</group>

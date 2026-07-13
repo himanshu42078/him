@@ -1,0 +1,16 @@
+
+<!-- Modify it at your will. -->
+
+<group name="pwc_caas,neuvector,">
+	<rule id="262000" level="3">
+        <decoded_as>neuvector</decoded_as>
+		<description>Group of Neuvector log</description>
+		<options>no_counter</options>
+	</rule>
+	<rule id="262001" level="12">
+		<if_sid>262000</if_sid>
+		<field name="neuvector.level">critical</field>
+		<description>Neuvector Critical Severity alert: $(neuvector.name)</description>
+		<group>severity_high,</group>
+	</rule>
+</group>

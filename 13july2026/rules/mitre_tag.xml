@@ -1,0 +1,249 @@
+
+<var name="MS_FREQ">8</var>
+
+<group name="pwc_caas,wazuh,mitre,">
+
+  <rule id="80717" level="8" overwrite="yes">
+    <if_sid>80700</if_sid>
+    <field name="audit.type">ANOM_RBAC_FAIL|ANOM_RBAC_INTEGRITY_FAIL</field>
+    <description>Auditd: Role-Based Access Control (RBAC) failure detected.</description>
+    <group>audit_anom,gdpr_IV_30.1.g,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,nist_800_53_SI.4,pci_dss_10.6.1,pci_dss_11.4,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+    <mitre>
+        <id>T1548</id>
+        <id>T1068</id>
+    </mitre>
+  </rule>
+
+  <rule id="67005" level="7" overwrite="yes">
+    <if_sid>67001</if_sid>
+    <field name="win.system.eventID">^2003$</field>
+    <field name="win.eventdata.settingType">^1$</field>
+    <field name="win.eventdata.settingValueString">^No$</field>
+    <description>Windows Firewall With Advanced Security: Windows Defender Firewall disabled.</description>
+    <options>no_full_log</options>
+    <group>pci_dss_1.4,gpg13_4.12,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_SC.7,tsc_CC6.7,tsc_CC6.8,</group>
+    <mitre>
+        <id>T1562.004</id>
+        <id>T1565.001</id>
+        <id>T1562</id>
+    </mitre>
+  </rule>
+  
+  <rule id="67006" level="7" overwrite="yes">
+    <if_sid>67001</if_sid>
+    <field name="win.system.eventID">^2004$</field>
+    <description>Windows Firewall With Advanced Security: $(win.eventdata.ruleId) rule has been added to the Windows Defender Firewall exception list.</description>
+    <options>no_full_log</options>
+    <group>pci_dss_1.4,gpg13_4.12,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_SC.7,tsc_CC6.7,tsc_CC6.8,</group>
+    <mitre>
+        <id>T1562.004</id>
+        <id>T2561</id>
+    </mitre>
+  </rule>
+  
+  <rule id="67007" level="7" overwrite="yes">
+    <if_sid>67001</if_sid>
+    <field name="win.system.eventID">^2005$</field>
+    <description>Windows Firewall With Advanced Security: $(win.eventdata.ruleId) rule has been modified in the Windows Defender Firewall exception list.</description>
+    <options>no_full_log</options>
+    <group>pci_dss_1.4,gpg13_4.12,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_SC.7,tsc_CC6.7,tsc_CC6.8,</group>
+    <mitre>
+        <id>T1562.004</id>
+        <id>T2561</id>
+    </mitre>
+  </rule>
+  
+  <rule id="67008" level="7" overwrite="yes">
+    <if_sid>67001</if_sid>
+    <field name="win.system.eventID">^2006$</field>
+    <description>Windows Firewall With Advanced Security: $(win.eventdata.ruleId) rule has been deleted in the Windows Defender Firewall exception list.</description>
+    <options>no_full_log</options>
+    <group>pci_dss_1.4,gpg13_4.12,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_SC.7,tsc_CC6.7,tsc_CC6.8,</group>
+    <mitre>
+        <id>T1562.004</id>
+        <id>T2561</id>
+    </mitre>
+  </rule>
+  
+ <rule id="67009" level="10" overwrite="yes" frequency="$MS_FREQ" timeframe="120">
+    <if_matched_sid>67002</if_matched_sid>
+    <description>Multiple Windows Firewall With Advanced Security warning events</description>
+    <options>no_full_log</options>
+    <group>pci_dss_1.4,gpg13_4.12,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_SC.7,tsc_CC6.7,tsc_CC6.8,</group>
+    <mitre>
+        <id>T1562.004</id>
+        <id>T1565.001</id>
+    </mitre>
+  </rule>
+
+  <rule id="67010" level="10" overwrite="yes" frequency="$MS_FREQ" timeframe="240">
+    <if_matched_sid>67003</if_matched_sid>
+    <description>Multiple Windows Firewall With Advanced Security error events</description>
+    <options>no_full_log</options>
+    <group>system_error,pci_dss_1.4,gpg13_4.12,gdpr_IV_35.7.d,hipaa_164.312.a.1,nist_800_53_SC.7,tsc_CC6.7,tsc_CC6.8,</group>
+    <mitre>
+        <id>T1562.004</id>
+        <id>T1565.001</id>
+        <id>T1489</id>
+    </mitre>
+  </rule>
+  
+  <rule id="62103" level="10" overwrite="yes" frequency="$MS_FREQ" timeframe="240">
+    <if_matched_sid>62102</if_matched_sid>
+    <description>Multiple Windows Defender error events</description>
+    <options>no_full_log</options>
+    <group>system_error,gpg13_4.3,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,</group>
+    <mitre>
+        <id>T1562.001</id>
+        <id>T1562</id>
+    </mitre>
+  </rule>
+  
+  <rule id="62106" level="14" overwrite="yes" frequency="$MS_FREQ" timeframe="30">
+    <if_matched_sid>62102</if_matched_sid>
+    <description>Short-time multiple Windows Defender warning events</description>
+    <options>no_full_log</options>
+    <group>pci_dss_10.6.1,gpg13_4.12,gdpr_IV_35.7.d,hipaa_164.312.b,nist_800_53_AU.6,tsc_CC7.2,tsc_CC7.3,</group>
+    <mitre>
+        <id>T1562.001</id>
+        <id>T1562</id>
+    </mitre>
+  </rule>
+  
+  <rule id="60014" level="10" overwrite="yes" frequency="8" timeframe="240">
+    <if_matched_sid>60011</if_matched_sid>
+    <options>no_full_log</options>
+    <description>Multiple Windows error events.</description>
+    <mitre>
+        <id>T1499</id>
+        <id>T1562.001</id>
+        <id>T1203</id>
+    </mitre>
+  </rule>
+  
+  <rule id="5902" level="8" overwrite="yes">
+    <match>^new user|^new account added</match>
+    <description>New user added to the system.</description>
+    <mitre>
+      <id>T1136</id>
+    </mitre>
+    <group>pci_dss_10.2.7,pci_dss_10.2.5,pci_dss_8.1.2,gpg13_4.13,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_AC.2,nist_800_53_IA.4,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+    <mitre>
+        <id>T1136</id>
+        <id>T1136.001</id>
+        <id>T1136.002</id>
+    </mitre>
+  </rule>
+  
+  <rule id="5901" level="8" overwrite="yes">
+    <match>^new group</match>
+    <description>New group added to the system.</description>
+    <group>pci_dss_10.2.7,pci_dss_10.2.5,pci_dss_8.1.2,gpg13_4.13,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,nist_800_53_AU.14,nist_800_53_AC.7,nist_800_53_AC.2,nist_800_53_IA.4,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>
+    <mitre>
+        <id>T1098</id>
+        <id>T1098.007</id>
+    </mitre>
+  </rule>
+  
+  <rule id="60776" level="7" overwrite="yes">
+    <if_sid>60774</if_sid>
+    <field name="win.system.eventID">^6003$</field>
+    <options>no_full_log</options>
+    <description>$(win.eventdata.data) was unavailable to handle a critical notification event.</description>
+    <mitre>
+        <id>T1562</id>
+        <id>T1489</id>
+        <id>T1562</id>
+    </mitre>
+  </rule>
+  
+  <rule id="91593" level="9" overwrite="yes">
+    <if_sid>91532</if_sid>
+    <field name="office365.RecordType" type="osregex">^65$</field>
+    <description>Office 365: Quarantine events.</description>
+    <options>no_full_log</options>
+    <group>Quarantine,hipaa_164.312.b,pci_dss_5.3,pci_dss_10.6.1,pci_dss_11.5</group>
+    <mitre>
+        <id>T1566</id>
+        <id>T1204</id>
+    </mitre>
+  </rule>
+
+  <rule id="91712" level="6" overwrite="yes">
+    <if_sid>91532</if_sid>
+    <field name="office365.Operation" type="osregex">^Add group.$</field>
+    <description>Office 365: Added group</description>
+    <options>no_full_log</options>
+    <group>AzureActiveDirectory,pci_dss_8.1.2,hipaa_164.312.a.2.I</group>
+    <mitre>
+        <id>T1098</id>
+    </mitre>
+  </rule>
+  
+  <rule id="91713" level="6" overwrite="yes">
+    <if_sid>91532</if_sid>
+    <field name="office365.Operation" type="osregex">^Add member to group.$</field>
+    <description>Office 365: Added member to group</description>
+    <options>no_full_log</options>
+    <group>AzureActiveDirectory,pci_dss_8.1.2,hipaa_164.312.a.2.I</group>
+    <mitre>
+        <id>T1098</id>
+        <id>T1078</id>
+    </mitre>
+  </rule>
+  
+  <rule id="91556" level="12" overwrite="yes">
+    <if_sid>91532</if_sid>
+    <field name="office365.RecordType" type="osregex">^28$</field>
+    <description>Office 365: Phishing and malware events from Exchange Online Protection and Microsoft Defender for Office 365.</description>
+    <options>no_full_log</options>
+    <group>ThreatIntelligence,hipaa_164.312.b,pci_dss_5.3,pci_dss_6.1,pci_dss_10.6.1</group>
+    <mitre>
+        <id>T1566</id>
+        <id>T1204</id>
+        <id>T1078</id>
+    </mitre>
+  </rule>
+
+  <rule id="91703" level="6" overwrite="yes">
+    <if_sid>91532</if_sid>
+    <field name="office365.Operation" type="osregex">^PermissionLevelAdded$</field>
+    <description>Office 365: A permission level was added to a site collection.</description>
+    <options>no_full_log</options>
+    <group>OneDrive,SharePoint,hipaa_164.312.a.1,hipaa_164.312.b,pci_dss_10.5.1</group>
+    <mitre>
+        <id>T1098</id>
+        <id>T1078</id>
+        <id>T1213</id>
+        <id>T1213.002</id>
+    </mitre>
+  </rule>
+  
+  <rule id="91725" level="10" overwrite="yes">
+    <if_sid>91705</if_sid>
+    <field name="office365.Parameters" type="pcre2">\"Value\":\s*\"FullAccess\"</field>
+    <description>Office 365: User $(office_365.UserId) got FullAccess permissions in Exchange</description>
+    <options>no_full_log</options>
+    <group>Exchange,hipaa_164.312.a.1,pci_dss_10.2.2</group>
+    <mitre>
+        <id>T1078</id>
+        <id>T1098.002</id>
+        <id>T1114</id>
+        <id>T1114.002</id>
+    </mitre>
+  </rule>
+
+  <rule id="91706" level="6" overwrite="yes">
+    <if_sid>91532</if_sid>
+    <field name="office365.Operation" type="osregex">^AddFolderPermissions$</field>
+    <description>Office 365: Added permissions to folder</description>
+    <options>no_full_log</options>
+    <group>Exchange,hipaa_164.312.a.1,hipaa_164.312.b,pci_dss_10.5.1,pci_dss_10.6.2</group>
+    <mitre>
+        <id>T1098</id>
+        <id>T1078</id>
+        <id>T1222</id>
+    </mitre>
+  </rule>
+
+</group>

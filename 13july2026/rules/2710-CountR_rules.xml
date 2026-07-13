@@ -1,0 +1,105 @@
+<!--###################Access Log####################-->
+
+
+<group name="countRAccessLog,pwc_caas,">
+    <!-- accessLog  -->
+    <rule id="271000" level="3">
+        <decoded_as>CountRAccessLogTable</decoded_as>
+        <description>CountR accessLog Alert.</description>
+    </rule>
+
+    <rule id="271001" level="3">
+      <if_sid>271000</if_sid>
+      <field name="operatorID">\.*</field>
+      <description>CountR accessLog Alert.</description>
+    </rule>
+
+    <!--1min event trigger more then 5 time-->
+    <rule id="271002" level="3" frequency="5" timeframe="60">
+      <if_matched_sid>271001</if_matched_sid>
+      <field name="accessState">1|2</field>
+      <same_field>accessState</same_field>
+      <description>CountR accessLog Alert same accessState with same user detected in 1 min</description>
+    </rule>
+
+    <!--If state = 1-->
+    <rule id="271003" level="12">
+      <if_sid>271002</if_sid>
+      <field name="accessState">1</field>
+      <description>CountR Access Log Alert: Multiple login attempts in 1 min. </description>
+    </rule>
+
+    <!--If state = 2-->
+    <rule id="271004" level="12">
+      <if_sid>271002</if_sid>
+      <field name="accessState">2</field>
+      <description>CountR Access Log Alert: Multiple login failures in 1 min. User: $(accessDetails).</description>
+    </rule>
+
+    <!--If state = 3-->
+    <rule id="271005" level="12">
+      <if_sid>271001</if_sid>
+      <field name="accessState">3</field>
+      <description>CountR Access Log Alert: Account Locked. User: $(accessDetails) has been locked.</description>
+    </rule>
+
+</group>
+
+
+<!--###################Event Log####################-->
+
+
+<group name="countRErrorLog,pwc_caas,">
+    <!-- errorLog  -->
+    <rule id="271100" level="0">
+        <decoded_as>CountRErrorTable</decoded_as>
+        <description>CountR errorLog Alert.</description>
+    </rule>
+
+    <rule id="271101" level="12">
+      <if_sid>271100</if_sid>
+      <field name="errorCode">^2$</field>
+      <description>CountR Error Log Alert: $(errorDescription). Door: $(doorName). </description>
+    </rule>
+
+
+</group>
+
+<group name="countROperatorLog,pwc_caas,">
+
+    <rule id="271200" level="0">
+        <decoded_as>CountROperatorTable</decoded_as>
+        <description>CountR Operator Alert.</description>
+    </rule>
+
+    <rule id="271201" level="3">
+      <if_sid>271200</if_sid>
+      <field name="errorCode">0</field>
+      <field name="description">safe door open|upper door open</field>
+      <description>CountR Door Open.</description>
+    </rule>
+
+    <rule id="271202" level="12" frequency="2" timeframe="60">
+      <if_matched_sid>271201</if_matched_sid>
+      <same_field>idx</same_field>
+      <different_field>description</different_field>
+      <description>CountR Operator Alert: Different types of doors open within a short period of time. Door: $(doorName). </description>
+    </rule>
+
+</group>
+
+<group name="countRConfigurationLog,pwc_caas,">
+    <!-- AccessConfurationLog  -->
+    <rule id="271300" level="0">
+        <decoded_as>CountRChangeLogTable</decoded_as>
+        <description>CountR Configuration Change Alert.</description>
+    </rule>
+
+    <rule id="271301" level="12">
+      <if_sid>271300</if_sid>
+      <field name="seqNo">\.*</field>
+      <description>CountR Configuration Change Alert.</description>
+    </rule>
+
+
+</group>

@@ -1,0 +1,47 @@
+
+<!-- Modify it at your will. -->
+
+<group name="trustifi,pwc_caas,">
+    <!-- Trustifi  -->
+    <rule id="259000" level="1">
+        <decoded_as>trustifi</decoded_as>
+        <description>Trustifi Alert.</description>
+    </rule>
+
+    <!--<rule id="259001" level="1">-->
+    <!--    <if_sid>259000</if_sid>-->
+    <!--    <match>malicious</match>-->
+    <!--    <description>Trustifi potential malicious email alerts. Email: $(srcuser) with source IP: $(srcip) sent a potential malicious email to email $(mailbox) at time: $(timestamp).</description>-->
+    <!--</rule>-->
+
+	<rule id="259002" level="12">
+		<if_sid>259000</if_sid>
+		<field name="trustifi.malicious.status">Malicious</field>
+		<field name="trustifi.status">quarantined</field>
+		<field name="headmessage">The Sender has been whitelisted by your admin\.*</field>
+		<description>Possible Legitimate Email but blocked by Trustifi, Email: $(trustifi.sender) with source IP: $(srcip) sent a potential malicious email at time: $(timestamp).</description>
+	</rule>
+
+
+    <rule id="259003" level="1" >
+        <if_sid>259000</if_sid>
+        <field name="trustifi.malicious.status">Suspicious</field>
+        <field name="trustifi.status">release</field>
+        <description>Trustifi Suspecious and release email.</description>
+    </rule>  
+                   
+                            
+    <rule id="259004" level="12" ignore="3600" frequency="5" timeframe="599">
+        <if_matched_sid>259003</if_matched_sid>
+        <same_field>trustifi.sender</same_field>
+        <description>Possible Phishing Email or Possible Legitimate Email not blocked by Trustifi at time: $(timestamp).</description>
+    </rule>  
+    
+    <rule id="259005" level="1" frequency="2" timeframe="3600">
+        <if_matched_sid>259002</if_matched_sid>
+        <same_field>trustifi.sender</same_field>
+        <options>no_log</options>
+        <description>Trustifi Threhold.</description>
+    </rule>  
+
+</group>

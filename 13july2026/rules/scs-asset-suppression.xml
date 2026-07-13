@@ -1,0 +1,163 @@
+
+<group name="safeguard,">
+
+  <!-- Suppression for SCS Endpoint --> 
+  <rule id="100130" level="1">
+    <if_sid>504</if_sid>
+    <description>SCS Endpoint Disconnected</description>
+    <match>ossec: Agent disconnected:</match>
+    <regex>SCS-LAPTOP-|SCS-DESKTOP-</regex>
+    <group>safeguard,</group>
+  </rule>
+  
+  <rule id="100131" level="1">
+    <field name="agent.name">^SCS-Laptop-.*|^SCS-LAPTOP-.*|^SCS-DESKTOP-.*</field>
+    <description>Suppress all alerts from SCS Laptop</description>
+    <options>no_full_log</options>
+  </rule>
+ 
+  <rule id="100400" level="5">
+    <if_sid>35051</if_sid>
+    <hostname>^drsqdpxtok01.safeguardscs.com$</hostname>
+    <srcip>10.192.66.41</srcip>
+    <srcip>10.192.66.26</srcip>
+    <srcip>10.192.66.22</srcip>
+    <srcip>10.192.66.3</srcip>
+    <srcip>10.192.22.232</srcip>
+    <srcip>10.192.22.239</srcip>
+    <srcip>10.192.22.197</srcip>
+    <srcip>10.192.22.205</srcip>
+    <description>Suppression for SCS Squid alert on drsqdpxtok01, rule 35051</description>
+  </rule>
+  
+  <rule id="100132" level="5">
+    <if_sid>91593</if_sid>
+    <hostname>^safeguards-logcollector_m365_2$</hostname>
+    <field name="office365.UserId">^hazeeq.hadi@safeguardsnet.com$</field>
+    <field name="office365.Operation">^QuarantineViewMessageHeader$|^QuarantineExportMessage$|^QuarantineReleaseMessage$</field>
+    <field name="office365.RequestType">^2$|^3$|^5$</field>
+    <field name="office365.UserType">2</field>
+    <description>Suppression for BAU Quarantine events of hazeeq.hadi@safeguardsnet.com - Rule ID 91593</description>
+    <group>ossec,</group>
+  </rule>
+
+  <rule id="100133" level="5">
+    <if_sid>91593</if_sid>
+    <hostname>^safeguards-logcollector_m365_2$</hostname>
+    <field name="office365.UserId">^hazeeq.hadi@safeguardsnet.com$</field>
+    <field name="office365.Operation">^QuarantinePreviewMessage$</field>
+    <field name="office365.UserType">2</field>
+    <description>Suppression for BAU Quarantine events of hazeeq.hadi@safeguardsnet.com - Rule ID 91593</description>
+    <group>ossec,</group>
+  </rule>
+  
+  <rule id="100401" level="5">
+    <if_sid>91810</if_sid>
+    <field name="win.system.computer" type="regex">^\w+\.safeguardscs\.com$</field>
+    <field name="win.eventdata.path">^C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat Protection\\\\SenseCM\\\\PolicyEnforcer\.ps1$</field>
+    <description>Suppression for ChreateThread API Alert on known file path</description>
+  </rule>
+  
+  <rule id="100402" level="5">
+    <if_sid>91822</if_sid>
+    <field name="win.system.computer" type="regex">^\w+\.safeguardscs\.com$</field>
+    <field name="win.eventdata.path">^C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat Protection\\\\DataCollection</field>
+    <description>Suppression for Invoke Command on known file path</description>
+  </rule>
+  
+  <rule id="100403" level="5">
+    <if_sid>35051</if_sid>
+    <hostname>^prsqdpxsyd01.safeguardscs.com$</hostname>
+    <srcip>10.63.80.61</srcip>
+    <srcip>10.63.80.36</srcip>
+    <srcip>10.63.80.40</srcip>
+    <srcip>10.63.80.35</srcip>
+    <description>Suppression for SCS Squid alert on prsqdpxsyd01, rule 35051</description>
+  </rule>
+  
+  
+  
+ <rule id="100405" level="5">
+    <if_sid>107073</if_sid>
+    <field name="win.system.computer">^pretpdbsyd01.safeguardscs.com$|^pretpwasyd01.safeguardscs.com$|^prauxdbsyd01.safeguardscs.com$|^dretpdbtok01.safeguardscs.com$|^drauxwatok01.safeguardscs.com$|^dretpwatok01.safeguardscs.com$|^drauxdbtok01.safeguardscs.com$|^prauxwasyd01.safeguardscs.com$</field>
+    <field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Netdata\\\\usr\\\\bin\\\\bash.exe</field>
+    <field name="win.eventdata.commandLine">netdata/plugins.d/alarm-notify.sh dump_methods</field>
+    <field name="win.eventdata.subjectUserName">^PRAUXDBSYD01\$$|^PRAUXWASYD01\$$|^PRETPDBSYD01\$$|^DRAUXWATOK01\$$|^PRETPWASYD01\$$|^DRETPDBTOK01\$$|^DRETPWATOK01\$$|^DRAUXDBTOK01\$$</field>
+    <description>Suppress Netdata bash.exe alarm-notify.sh dump_methods</description>
+  </rule>
+
+  <rule id="100406" level="5">
+    <if_sid>107073</if_sid>
+    <field name="win.system.computer">^pretpdbsyd01.safeguardscs.com$|^pretpwasyd01.safeguardscs.com$|^prauxdbsyd01.safeguardscs.com$|^dretpdbtok01.safeguardscs.com$|^drauxwatok01.safeguardscs.com$|^dretpwatok01.safeguardscs.com$|^drauxdbtok01.safeguardscs.com$|^prauxwasyd01.safeguardscs.com$</field>
+    <field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Netdata\\\\usr\\\\bin\\\\env.exe</field>
+    <field name="win.eventdata.commandLine">netdata/plugins.d/alarm-notify.sh dump_methods</field>
+    <field name="win.eventdata.subjectUserName">^PRAUXDBSYD01\$$|^PRAUXWASYD01\$$|^PRETPDBSYD01\$$|^DRAUXWATOK01\$$|^PRETPWASYD01\$$|^DRETPDBTOK01\$$|^DRETPWATOK01\$$|^DRAUXDBTOK01\$$</field>
+    <description>Suppress Netdata env.exe alarm-notify.sh dump_methods</description>
+</rule>
+
+<rule id="100407" level="5">
+    <if_sid>107073</if_sid>
+    <field name="win.system.computer">^pretpdbsyd01.safeguardscs.com$|^pretpwasyd01.safeguardscs.com$|^prauxdbsyd01.safeguardscs.com$|^dretpdbtok01.safeguardscs.com$|^drauxwatok01.safeguardscs.com$|^dretpwatok01.safeguardscs.com$|^drauxdbtok01.safeguardscs.com$|^prauxwasyd01.safeguardscs.com$</field>
+    <field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Netdata\\\\usr\\\\bin\\\\env.exe</field>
+    <field name="win.eventdata.commandLine">netdata/plugins.d/get-kubernetes-labels.sh</field>
+    <field name="win.eventdata.subjectUserName">^PRAUXDBSYD01\$$|^PRAUXWASYD01\$$|^PRETPDBSYD01\$$|^DRAUXWATOK01\$$|^PRETPWASYD01\$$|^DRETPDBTOK01\$$|^DRETPWATOK01\$$|^DRAUXDBTOK01\$$</field>
+    <description>Suppress Netdata env.exe get-kubernetes-labels.sh</description>
+  </rule>
+ 
+
+ <rule id="100408" level="5">
+    <if_sid>107073</if_sid>
+    <field name="win.system.computer">^pretpdbsyd01.safeguardscs.com$|^pretpwasyd01.safeguardscs.com$|^prauxdbsyd01.safeguardscs.com$|^dretpdbtok01.safeguardscs.com$|^drauxwatok01.safeguardscs.com$|^dretpwatok01.safeguardscs.com$|^drauxdbtok01.safeguardscs.com$|^prauxwasyd01.safeguardscs.com$</field>
+    <field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Netdata\\\\usr\\\\bin\\\\bash.exe</field>
+    <field name="win.eventdata.commandLine">netdata/plugins.d/get-kubernetes-labels.sh</field>
+    <field name="win.eventdata.subjectUserName">^PRAUXDBSYD01\$$|^PRAUXWASYD01\$$|^PRETPDBSYD01\$$|^DRAUXWATOK01\$$|^PRETPWASYD01\$$|^DRETPDBTOK01\$$|^DRETPWATOK01\$$|^DRAUXDBTOK01\$$</field>
+    <description>Suppress Netdata bash.exe get-kubernetes-labels.sh</description>
+    <group>groupid_107073,</group>
+ </rule>
+
+
+  <rule id="100409" level="5">
+    <if_sid>107073</if_sid>
+    <field name="win.system.computer">^pretpdbsyd01.safeguardscs.com$|^pretpwasyd01.safeguardscs.com$|^prauxdbsyd01.safeguardscs.com$|^dretpdbtok01.safeguardscs.com$|^drauxwatok01.safeguardscs.com$|^dretpwatok01.safeguardscs.com$|^drauxdbtok01.safeguardscs.com$|^prauxwasyd01.safeguardscs.com$</field>
+    <field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Netdata\\\\usr\\\\bin\\\\env.exe</field>
+    <field name="win.eventdata.commandLine">netdata/plugins.d/ioping.plugin 1</field>
+    <field name="win.eventdata.subjectUserName">^PRAUXDBSYD01\$$|^PRAUXWASYD01\$$|^PRETPDBSYD01\$$|^DRAUXWATOK01\$$|^PRETPWASYD01\$$|^DRETPDBTOK01\$$|^DRETPWATOK01\$$|^DRAUXDBTOK01\$$</field>
+    <description>Suppress Netdata env.exe ioping.plugin 1</description>
+  </rule>
+ 
+  <rule id="100410" level="5">
+    <if_sid>107073</if_sid>
+    <field name="win.system.computer">^pretpdbsyd01.safeguardscs.com$|^pretpwasyd01.safeguardscs.com$|^prauxdbsyd01.safeguardscs.com$|^dretpdbtok01.safeguardscs.com$|^drauxwatok01.safeguardscs.com$|^dretpwatok01.safeguardscs.com$|^drauxdbtok01.safeguardscs.com$|^prauxwasyd01.safeguardscs.com$</field>
+    <field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Netdata\\\\usr\\\\bin\\\\bash.exe</field>
+    <field name="win.eventdata.commandLine">netdata/plugins.d/ioping.plugin 1</field>
+    <field name="win.eventdata.subjectUserName">^PRAUXDBSYD01\$$|^PRAUXWASYD01\$$|^PRETPDBSYD01\$$|^DRAUXWATOK01\$$|^PRETPWASYD01\$$|^DRETPDBTOK01\$$|^DRETPWATOK01\$$|^DRAUXDBTOK01\$$</field>
+    <description>Suppress Netdata bash.exe ioping.plugin 1</description>
+  </rule>
+ 
+  <rule id="100411" level="5">
+    <if_sid>107073</if_sid>
+    <field name="win.system.computer">^pretpdbsyd01.safeguardscs.com$|^pretpwasyd01.safeguardscs.com$|^prauxdbsyd01.safeguardscs.com$|^dretpdbtok01.safeguardscs.com$|^drauxwatok01.safeguardscs.com$|^dretpwatok01.safeguardscs.com$|^drauxdbtok01.safeguardscs.com$|^prauxwasyd01.safeguardscs.com$</field>
+    <field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Netdata\\\\usr\\\\bin\\\\env.exe</field>
+    <field name="win.eventdata.commandLine">netdata/plugins.d/python.d.plugin 1</field>
+    <field name="win.eventdata.subjectUserName">^PRAUXDBSYD01\$$|^PRAUXWASYD01\$$|^PRETPDBSYD01\$$|^DRAUXWATOK01\$$|^PRETPWASYD01\$$|^DRETPDBTOK01\$$|^DRETPWATOK01\$$|^DRAUXDBTOK01\$$</field>
+    <description>Suppress Netdata env.exe python.d.plugin 1</description>
+  </rule>
+ 
+  <rule id="100412" level="5">
+    <if_sid>107073</if_sid>
+    <field name="win.system.computer">^pretpdbsyd01.safeguardscs.com$|^pretpwasyd01.safeguardscs.com$|^prauxdbsyd01.safeguardscs.com$|^dretpdbtok01.safeguardscs.com$|^drauxwatok01.safeguardscs.com$|^dretpwatok01.safeguardscs.com$|^drauxdbtok01.safeguardscs.com$|^prauxwasyd01.safeguardscs.com$</field>
+    <field name="win.eventdata.newProcessName">C:\\\\Program Files\\\\Netdata\\\\usr\\\\bin\\\\bash.exe</field>
+    <field name="win.eventdata.commandLine">netdata/plugins.d/python.d.plugin 1</field>
+    <field name="win.eventdata.subjectUserName">^PRAUXDBSYD01\$$|^PRAUXWASYD01\$$|^PRETPDBSYD01\$$|^DRAUXWATOK01\$$|^PRETPWASYD01\$$|^DRETPDBTOK01\$$|^DRETPWATOK01\$$|^DRAUXDBTOK01\$$</field>
+    <description>Suppress Netdata bash.exe python.d.plugin 1</description>
+  </rule>
+  
+  <rule id="100413" level="5">
+    <if_sid>35052</if_sid>
+    <srcip>10.63.220.92</srcip>
+    <url>app.netdata.cloud:443</url>
+    <description>Safeguard - netdata squid supression</description>
+  </rule>
+  
+</group>
+<!-- Modify it at your will. -->

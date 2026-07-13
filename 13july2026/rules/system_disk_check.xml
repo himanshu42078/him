@@ -1,0 +1,7 @@
+<!-- Modify it at your will. -->
+<group name="disk_usage,">
+  <rule id="100003" level="12">
+    <field name="disk_usage.trigger_point">disk_usage_healthcheck</field>
+    <description>$(manager.name) disk full</description>
+  </rule>
+</group>

@@ -1,0 +1,17 @@
+
+<group name="pwc_caas,menlo_security,">
+    <rule id="249000" level="0">
+        <decoded_as>menlo-json</decoded_as>
+        <description>Group of Menlo Logs</description>
+        <options>no_counter</options>
+        <group>L2R,</group>
+    </rule>
+
+    <rule id="249001" level="12">
+        <if_sid>249000</if_sid>
+        <field name="menlo.risk_score">high</field>
+        <field name="menlo.threat_types">Malware</field>
+        <description>Menlo Websecurity - High risk score Malware threat detected</description>
+        <description>Group of Menlo Logs</description>
+    </rule>
+</group>
