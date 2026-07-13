@@ -1,0 +1,65 @@
+<!--
+  -  IBMi (AS/400) decoders
+  -  Created by Yi Ching Eng (PwC MY).
+  -  This program is a free software; you can redistribute it and/or modify it under the terms of GPLv2.
+-->
+
+<!--
+Jan  2 11:04:41 DEV01 CEF: 0|RazLeeSecurity|Audit|1.0|MGR0600|Generic record|6|suser=TSNETDATA outcome=success sproc=057316/QUSER/QZDASOINIT PGM=QSYS/QZDASOINIT reason=GR/F Function registration operations src=10.192.64.43 RazLeeSecurityAudit_Port=36452 RazLeeSecurityAudit_Action=ZR RazLeeSecurityAudit_User_profile_name=TSNETDATA RazLeeSecurityAudit_Field_1=*USAGEFAILURE RazLeeSecurityAudit_for_A/D/R_Exit_point=*USAGEFAILURE RazLeeSecurityAudit_Field_2=QIBM_DB_SYSMON
+
+Jan  2 11:04:41 DEV01 CEF: 0|RazLeeSecurity|Audit|1.0|MAF0100|Authority failure|6|suser=TSNETDATA outcome=failure sproc=057316/QUSER/QZDASOINIT PGM=QSYS/QZDASOINIT reason=AF/A User not authorized to object or operation src=10.192.64.43 RazLeeSecurityAudit_Port=36452 RazLeeSecurityAudit_Name_of_object=QLPINSTALL RazLeeSecurityAudit_Library_name=QSYS RazLeeSecurityAudit_Object_type=*SBSD RazLeeSecurityAudit_Name_of_job=QZDASOINIT RazLeeSecurityAudit_Name_of_user=QUSER RazLeeSecurityAudit_Number_of_job=057316 RazLeeSecurityAudit_User_profile_name=TSNETDATA RazLeeSecurityAudit_Program_instruction_no=0000000 RazLeeSecurityAudit_ASP_name=*SYSBAS RazLeeSecurityAudit_ASP_number=00000 RazLeeSecurityAudit_ASP_name_for_program_lib=*N RazLeeSecurityAudit_ASP_no_for_program_lib=*N
+-->
+
+<decoder name="cef-header-frame">
+  <program_name>CEF</program_name>
+</decoder>
+
+<decoder name="cef-razlee-fields">
+  <parent>cef-header-frame</parent>
+  <regex type="pcre2">\s*(\d+)\|(\w+)\|(\w+)\|(\S+)\|(\w+)\|([^|]+)\|(\d+)\|</regex>
+  <order>cef_version,vendor,product_name,product_version,event_id,event_name,severity</order>
+</decoder>
+
+<decoder name="cef-razlee-fields">
+  <parent>cef-header-frame</parent>
+  <regex>suser=(\S+)</regex>
+  <order>src_user</order>
+</decoder>
+
+<decoder name="cef-razlee-fields">
+  <parent>cef-header-frame</parent>
+  <regex>outcome=(\S+)</regex>
+  <order>outcome</order>
+</decoder>
+
+<decoder name="cef-razlee-fields">
+  <parent>cef-header-frame</parent>
+  <regex>duser=(\S+)</regex>
+  <order>dst_user</order>
+</decoder>
+
+<decoder name="cef-razlee-fields">
+  <parent>cef-header-frame</parent>
+  <regex>src=(\S+)</regex>
+  <order>src_ip</order>
+</decoder>
+
+<decoder name="cef-razlee-fields">
+  <parent>cef-header-frame</parent>
+  <regex>sproc=(\S+)</regex>
+  <order>source_process</order>
+</decoder>
+
+<decoder name="cef-razlee-fields">
+  <parent>cef-header-frame</parent>
+  <regex>PGM=(\S+)</regex>
+  <order>ibm_program</order>
+</decoder>
+
+<decoder name="cef-razlee-fields">
+  <parent>cef-header-frame</parent>
+  <regex type="pcre2">reason=(\w+/\w+)</regex>
+  <order>reason</order>
+</decoder>
+
+

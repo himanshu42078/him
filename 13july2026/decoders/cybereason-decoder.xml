@@ -1,0 +1,124 @@
+
+<decoder name="cybereason">
+  <prematch>CEF:0\|Cybereason\|Cybereason\|</prematch>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">CEF:0\|Cybereason\|Cybereason\|\|(.*?)\|(.*?)\|</regex>
+ <order>alert_type, alert_action</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs1Label=virusName cs1=([^ ]+)</regex>
+ <order>virusName</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs1Label=username cs1=([^ ]+)</regex>
+ <order>username</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs2Label=context cs2=([^ ]+)</regex>
+ <order>context</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cn1Label=actionSuccess cn1=([^ ]+)</regex>
+ <order>actionSuccess</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">deviceCustomDate1Label=userActionTime deviceCustomDate1=([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+)</regex>
+ <order>userActionTime</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs2Label=malopID cs2=([^ ]+)</regex>
+ <order>malopID</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs3Label=investigation cs3=([^ ]+)</regex>
+ <order>investigation</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs3Label=linkToMalop cs3=([^ ]+)</regex>
+ <order>linkToMalop</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs3Label=QueryParameters cs3=([^ ]+)</regex>
+ <order>QueryParameters</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs3Label=userRole cs3=([^ ]+)</regex>
+ <order>userRole</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs4=([^ ]+)</regex>
+ <order>cs4_label</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs5Label=machineIP cs5=([^ ]+)</regex>
+ <order>machineIP</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs5Label=affectedMachineName cs5=([^ ]+)</regex>
+ <order>affectedMachineName</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">cs6Label=affectedElement cs6=([^ ]+)</regex>
+ <order>affectedElement</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">deviceCustomDate2Label=actionOccurranceTime deviceCustomDate2=([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+)</regex>
+ <order>actionOccuranceTime</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">act=([^ ]+)</regex>
+ <order>action</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">dvchost=([^ ]+)</regex>
+ <order>device_host</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">eventId=([^ ]+)</regex>
+ <order>event_id</order>
+</decoder>
+
+<decoder name="cybereason">
+ <parent>cybereason</parent>
+ <regex type="pcre2">start=([^ ]+ [^ ]+ [^ ]+ [^ ]+ [^ ]+)</regex>
+ <order>start_time</order>
+</decoder>

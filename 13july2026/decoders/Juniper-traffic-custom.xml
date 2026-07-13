@@ -1,0 +1,78 @@
+<decoder name="juniper_traffic_event">
+        <program_name>kmd</program_name>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">([^:]+):\.*</regex>
+    <order>action</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Local gateway: (\S+),</regex>
+    <order>local_gateway</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Remote gateway: (\S+),</regex>
+    <order>remote_gateway</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Local ID: (\S+),</regex>
+    <order>local_id</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Remote ID: (\S+),</regex>
+    <order>remote_id</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Direction: (\S+),</regex>
+    <order>direction</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Mode: (\S+),</regex>
+    <order>mode</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Type: (\S+),</regex>
+    <order>type</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Traffic-selector: (\S+),</regex>
+    <order>traffic_selector</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">FC Name: (\S+),</regex>
+    <order>fc_name</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">VPN: (\S+),</regex>
+    <order>vpn</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Local: (\S+),</regex>
+    <order>local</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Remote: (\S+),</regex>
+    <order>remote</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Local IKE-ID: (\S+),</regex>
+    <order>local_ike_id</order>
+</decoder>
+<decoder name="juniper_traffic_event_fields">
+    <parent>juniper_traffic_event</parent>
+    <regex type="pcre2">Remote IKE-ID: (\S+),</regex>
+    <order>remote_ike_id</order>
+</decoder>

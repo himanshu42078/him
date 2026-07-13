@@ -1,0 +1,20 @@
+<decoder name="juniper_system_event">
+        <program_name>mgd|checklogin</program_name>
+</decoder>
+<decoder name="juniper_system_event_fields">
+    <parent>juniper_system_event</parent>
+    <regex type="pcre2">^(.+)$</regex>
+            <!-- <regex type="pcre2">^[^,]*\s+(\S+)\s+mgd\[\d+\]:\s+UI_DBASE_LOGIN_EVENT:\s+User\s+'([^']+)'\s+entering\s+configuration\s+mode$<regex> -->
+    <order>message</order>
+</decoder>
+<decoder name="juniper_system_event_fields_2">
+    <parent>juniper_system_event</parent>
+    <prematch>UI_CFG_AUDIT_SET</prematch>
+    <regex type="pcre2">(\S+):\s+User\s+'(\S+)'\s+(.*)</regex>
+    <order>action,user,message</order>
+</decoder>
+<decoder name="juniper_system_event_fields">
+    <parent>juniper_system_event</parent>
+    <regex type="pcre2">(.?):\s(.?):\s(.*)</regex>
+    <order>action,status,message</order>
+</decoder>

@@ -1,0 +1,224 @@
+<!-- O365 Decoder -->
+<decoder name="office-365">
+	<prematch>{"office_365"</prematch>
+</decoder>
+<!--
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ClientIP":\s*"(\d+.\d+.\d+.\d+)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ClientIP":\s*"(\w+:\w*:\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ObjectId": "(\S+@\S+)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"UserId": "(\S+@\S+)"</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ClientIP":\s*"[\d+.\d+.\d+.\d+]:(\d+)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Id":\s*"(\S+)"</regex>
+	<order>id</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Operation":\s*"(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ResultStatus":\s*"(\.*)"</regex>
+	<order>status</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ClientInfoString": "(\.*)"</regex>
+	<order>office_365.ClientInfoString</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"UserAgent":\s*"(\.*)"</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ClientInfoString":\s*"Client=\.+;\s*(Mozilla\.*)"|"ClientInfoString":\s*"Client=(\.+)"</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"SourceApp":\s*"(\.*)"</regex>
+	<order>office_365.SourceApp</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Operation":\s*"(\.*)"</regex>
+	<order>office_365.Operation</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ResultStatus":\s*"(\.*)"</regex>
+	<order>office_365.ResultStatus</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"UserKey":\s*"(\.*)"</regex>
+	<order>office_365.UserKey</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"LogonError":\s*"(\.*)"</regex>
+	<order>office_365.LogonError</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"UserId":\s*"(\.*)"</regex>
+	<order>office_365.UserId</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"EventSource":\s*"(\.*)"</regex>
+	<order>office_365.EventSource</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"SourceFileName":\s*"(\.*)"</regex>
+	<order>office_365.SourceFileName</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Category":\s*"(\.*)"</regex>
+	<order>office_365.Category</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Name":\s*"(\.*)"</regex>
+	<order>office_365.Name</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"MailboxOwnerUPN":\s*"(\.*)"</regex>
+	<order>office_365.MailboxOwnerUPN</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Workload":\s*"(\.*)"</regex>
+	<order>office_365.Workload</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"CreationTime":\s*"(\.*)"</regex>
+	<order>eventTime</order>
+</decoder>
+
+<!-- DEV-4054 -->
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Data": \.*:\\"(\.*)\\"</regex>
+	<order>office_365.Data</order>
+</decoder>
+
+<!-- DEV-4153 -->
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ObjectId":\s*"(\.*)"</regex>
+	<order>office_365.ObjectId</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"OrganizationId":\s*"(\.*)"</regex>
+	<order>office_365.OrganizationId</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"SystemUserId":\s*"(\.*)"</regex>
+	<order>office_365.SystemUserId</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Subject":\s*"(\.*)"</regex>
+	<order>office_365.Subject</order>
+</decoder>
+
+<!-- DEV-4165 -->
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>{"Name": "JobTitle", "NewValue": "[\\r\\n  \\"(\.*)\\"\\r\\n]", "OldValue":</regex>
+	<order>office_365.NewValue.JobTitle</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>{"Name": "JobTitle", "NewValue": "[\.*]", "OldValue": "[\\r\\n  \\"(\.*)\\"\\r\\n]"</regex>
+	<order>office_365.OldValue.JobTitle</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>{"Name": "Role.DisplayName", "NewValue": "(\.*)", "OldValue":</regex>
+	<order>office_365.NewValue.Role.DisplayName</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>{"Name": "Role.DisplayName", "NewValue": "(\.*)", "OldValue":</regex>
+	<order>roleName</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>{"Name": "Role.TemplateId", "NewValue": "(\.*)", "OldValue":</regex>
+	<order>templateId</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>{"Name": "Role.DisplayName", "NewValue": "\.*", "OldValue": "(\.*)"</regex>
+	<order>office_365.OldValue.Role.DisplayName</order>
+</decoder>
+
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>{"Name": "Role.WellKnownObjectName", "NewValue": "(\.*)", "OldValue":</regex>
+	<order>office_365.NewValue.Role.WellKnownObjectName</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>{"Name": "Role.WellKnownObjectName", "NewValue": "\.*", "OldValue": "(\.*)"</regex>
+	<order>office_365.OldValue.Role.WellKnownObjectName</order>
+</decoder>
+
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"RequestType": "(\S+)",</regex>
+	<order>office_365.RequestType</order>
+</decoder>
+
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"ErrorNumber": "(\d*)"</regex>
+	<order>office_365.ErrorNumber</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"LogonError": "(\.*)"</regex>
+	<order>office_365.LogonError</order>
+</decoder>
+<decoder name="office-365-fields">
+	<parent>office-365</parent>
+	<regex>"Name": "MethodExecutionResult.", "NewValue": "(\.*)",</regex>
+	<order>office_365.MethodExecutionResult</order>
+</decoder>
