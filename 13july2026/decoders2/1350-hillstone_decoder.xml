@@ -1,0 +1,214 @@
+<!--
+	Apr 8 19:46:42 172.16.63.138 2812730182009952(root)[h: HK-KLT-IC2F-Rack03-E3662-FW-IN-][p:6] 4424361f Traffic@FLOW: SESSION: 172.16.144.9:25->129.226.240.91:60160(TCP), interface ethernet0/2, vr trust-vr, policy 7, user -@-, host -, policy deny
+
+	Apr 8 19:58:38 172.16.63.138 2812730182009952(root)[h: HK-KLT-IC2F-Rack03-E3662-FW-IN-][p:6] 44243624 Traffic@FLOW: SESSION: 172.16.36.4:49994->211.233.84.186:123(UDP), application NTP, interface aggregate1.41, vr trust-vr, policy 69, user -@-, host -, send packets 1,send bytes 90,receive packets 1,receive bytes 90,start time 2022-04-08 19:57:37,close time 2022-04-08 19:58:38,session end,Ageout
+
+	Apr 8 19:56:24 172.16.63.138 2812730182009952(root)[h: HK-KLT-IC2F-Rack03-E3662-FW-IN-][p:6] 44243624 Traffic@FLOW: SESSION: 134.209.164.184:55728->172.16.36.3:24515(TCP), application TCP-ANY, interface ethernet0/1, vr trust-vr, policy 70, user -@-, host -, send packets 1,send bytes 60,receive packets 1,receive bytes 60,start time 2022-04-08 19:56:23,close time 2022-04-08 19:56:24,session end,TCP RST
+-->
+
+<!-- Jun 23 03:15:24 172.16.63.138 2812730182009952(root)[h: HK-KLT-IC2F-Rack03-E3662-FW-IN-][p:6] 4424361f Traffic@FLOW: SESSION: 172.16.200.113:58099->40.122.192.126:443(TCP), interface ethernet0/2, vr trust-vr, policy 7, user -@-, host -, policy deny -->
+
+<!--
+Oct 24 11:55:50 10.1.231.133 2812205182006643(root)[h: HK-JJA-0101-D11-E5260-BFW-01][p:5] 43240501 Event@NET: ARP entry is created, 10.1.250.153, 0000.5e00.0101, trust-vr
+
+Oct 18 18:31:22 172.16.63.138 #000<180>2022-10-18T18: 31:22.619154+08:00 2812730182009952(root)[h:HKKLT02INTFW01][p:4] 460c9413 Threat@FLOW: From 129.226.103.216:8003(ethernet0/1) to 172.16.162.133:53916(-), threat name: udp-flood, threat type: Dos, threat subtype: -, App/Protocol: IPv4/UDP, action: DROP, defender: AD, severity: Middle, zone untrust: UDP flood attack, occurred 2063 times in the last 11414 seconds
+-->
+<!--
+<decoder name="hillstone">
+        <prematch>\S+\(root\)[h:</prematch>
+</decoder>
+-->
+<decoder name="hillstone">
+        <prematch>\d+\(root\)\.+\S+ \S+@\S+:</prematch>
+</decoder>
+
+<decoder name="hillstone-field">
+        <parent>hillstone</parent>
+        <regex>(\S+\(root\))[h:</regex>
+        <order>id</order>
+</decoder>
+
+<decoder name="hillstone-field">
+        <parent>hillstone</parent>
+        <regex>[h: (\S+)]</regex>
+        <order>hillstone.h</order>
+</decoder>
+
+<decoder name="hillstone-field">
+        <parent>hillstone</parent>
+        <regex>[p:(\d+)] (\S+)</regex>
+        <order>hillstone.p,hillstone.msgId</order>
+</decoder>
+
+<decoder name="hillstone-field">
+        <parent>hillstone</parent>
+        <regex>(\S+)@(\S+): </regex>
+        <order>hillstone.type,hillstone.process</order>
+</decoder>
+
+<decoder name="hillstone-field">
+        <parent>hillstone</parent>
+        <regex>, (\.+)$</regex>
+        <order>hillstone.msg</order>
+</decoder>
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>(\d+.\d+.\d+.\d+):(\d+)->(\d+.\d+.\d+.\d+):(\d+)\((\S+)\),</regex> 
+         <order>srcip,srcport,dstip,dstport,protocol</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>application (\.+),</regex> 
+         <order>hillstone.application</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>interface (\.+),</regex> 
+         <order>hillstone.interface</order> 
+</decoder>  
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>vr (\.+),</regex> 
+         <order>hillstone.vr</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>, policy (\.+),</regex> 
+         <order>hillstone.policyId</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>user (\.+),</regex> 
+         <order>hillstone.user</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>host (\.+),</regex> 
+         <order>hillstone.host,hillstone.policyState</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>host\s\.+, policy (\.+)</regex> 
+         <order>hillstone.policyState</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>send packets (\.+),</regex> 
+         <order>hillstone.sendpkt</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>send packets (\.+),</regex> 
+         <order>packets_sent</order> 
+</decoder> 
+ 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>send bytes (\.+),</regex> 
+         <order>hillstone.sendbytes</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>send bytes (\.+),</regex> 
+         <order>bytes_sent</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>receive packets (\.+),</regex> 
+         <order>hillstone.recvpkt</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>receive packets (\.+),</regex> 
+         <order>packets_received</order> 
+</decoder> 
+ 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>receive bytes (\.+),</regex> 
+         <order>hillstone.recvbytes</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>receive bytes (\.+),</regex> 
+         <order>bytes_received</order> 
+</decoder> 
+ 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>start time (\d+-\d+-\d+\s\d+:\d+:\d+),</regex> 
+         <order>hillstone.startTime</order> 
+</decoder> 
+ 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>close time (\d+-\d+-\d+\s\d+:\d+:\d+),</regex> 
+         <order>hillstone.closeTime</order> 
+</decoder> 
+ 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>session (\.+),(\.+)</regex> 
+         <order>hillstone.sessionState,hillstone.reason</order> 
+</decoder> 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>session (\.+)$</regex> 
+         <order>hillstone.sessionState</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>action: (\.+),</regex> 
+         <order>action</order> 
+</decoder> 
+
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>From (\d+.\d+.\d+.\d+):(\d+)\(\.+\) to (\d+.\d+.\d+.\d+):(\d+)\(\.+\),</regex> 
+         <order>srcip,srcport,dstip,dstport</order> 
+</decoder> 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>threat name: (\S+),</regex> 
+         <order>hillstone.threat.name</order> 
+</decoder> 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>threat type: (\S+),</regex> 
+         <order>hillstone.threat.type</order> 
+</decoder> 
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>threat subtype: (\S+),</regex> 
+         <order>hillstone.threat.subtype</order> 
+</decoder>
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>App/Protocol: (\S+),</regex> 
+         <order>protocol</order> 
+</decoder>
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>severity: (\S+),</regex> 
+         <order>hillstone.threat.severity</order> 
+</decoder>
+<decoder name="hillstone-field"> 
+         <parent>hillstone</parent> 
+         <regex>zone untrust: (\.+), (\.+)</regex> 
+         <order>hillstone.threat.untrust, hillstone.threat.message</order> 
+</decoder>

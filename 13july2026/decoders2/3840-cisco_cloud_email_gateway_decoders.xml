@@ -1,0 +1,55 @@
+<!--
+Feb  6 13:49:58 10.30.11.7 audit_logs: Info: Appliance: sma1.hc896-30.ap.iphmx.com, Interaction Mode: GUI, User: aeonc356, Source IP: 10.9.89.11, Event: Session established successfully
+Feb  6 13:49:59 10.30.11.7 audit_logs: Info: Appliance: sma1.hc896-30.ap.iphmx.com, Interaction Mode: GUI, User: aeonc356, Source IP: 10.9.89.11, Location: /default, Event: User visited the web page.
+Feb  6 13:49:58 10.30.11.7 audit_logs: Info: Appliance: sma1.hc896-30.ap.iphmx.com, Interaction Mode: GUI, User: aeonc356, Source IP: 10.9.89.11, Destination IP: 139.138.43.18, Event: Successful login
+-->
+<decoder name="cisco-cloud-email-gateway">
+    <program_name>audit_logs</program_name>
+    <prematch>^Info: Appliance: \S+, Interaction Mode:</prematch>
+</decoder>
+
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>^(\S+): </regex>
+	<order>severity</order>
+</decoder>
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>Appliance: (\.+),</regex>
+	<order>Appliance</order>
+</decoder>
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>Interaction Mode: (\.+),</regex>
+	<order>Interaction_Mode</order>
+</decoder>
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>User: (\.+),</regex>
+	<order>username</order>
+</decoder>
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>User: (\.+),</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>Source IP: (\.+),</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>Event: (\.+),|Event: (\.+)$</regex>
+	<order>event</order>
+</decoder>
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>Location: (\.+),</regex>
+	<order>location</order>
+</decoder>
+<decoder name="cisco-cloud-email-gateway-fields">
+	<parent>cisco-cloud-email-gateway</parent>
+	<regex>Destination IP: (\.+),</regex>
+	<order>dstip</order>
+</decoder>

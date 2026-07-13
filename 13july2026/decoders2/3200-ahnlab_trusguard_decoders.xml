@@ -1,0 +1,245 @@
+<!-- Modify it at your will. -->
+<decoder name="ahnlab-trusguard">
+	<prematch>\S+`\S+`\S+`\d+`\S+`\d+`\d\d\d\d\d\d\d\d`\.+`</prematch>
+</decoder>
+<!--
+Common
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>(\S+)`(\S+)`(\S+)`(\d+)`(\S+)`(\d+)`(\d\d\d\d\d\d\d\d)`(\.+)`</regex>
+	<order>ahnlab.header.version,ahnlab.header.encrypt,ahnlab.header.type,ahnlab.header.count,ahnlab.header.id,ahnlab.module_flag,ahnlab.date,ahnlab.time</order>
+</decoder>
+<!--
+Module flag: 1010
+Example:
+Apr 26 12:03:26 192.168.73.3 3`0`2`1`a244f8`1010`20220426`13: 03:02`2``````281``�ý��� �̺�Ʈ`DHCP �������� �ּ� ������ �Ҵ��߽��ϴ�(IP �ּ�: 10.10.73.247, MAC �ּ�: e8:f4:8:63:2a:a9).``0`0`1`1````
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1010`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.description,ahnlab.inst_code,ahnlab.user_type,ahnlab.alert_id,ahnlab.log_type,ahnlab.log_sub_type,ahnlab.user_addr,ahnlab.rule_id,ahnlab.vs_name</order>
+</decoder>
+<!--
+Module Flag: 1011
+Example:
+Mar 18 22:49:12 10.10.200.2 3`0`2`1`a0415f`1011`20220318`23: 48:39`�ý��� ����`1`20`11`1561`8735360`8867920`1413`1450`OFF``292343767`90481080`76514893207347`5899297991`42616`63`984537`120`22`11`
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1011`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.module_name,ahnlab.cpu,ahnlab.mem,ahnlab.hdd,ahnlab.session,ahnlab.in_data,ahnlab.out_data,ahnlab.in_pkt,ahnlab.out_pkt,ahnlab.ha,ahnlab.inst_code,ahnlab.allow_pps,ahnlab.deny_pps,ahnlab.allow_bps,ahnlab.deny_bps,ahnlab.vpn_rx_bps,ahnlab.vpn_rx_pps,ahnlab.vpn_tx_bps,ahnlab.vpn_tx_pps,ahnlab.vpn_tunnel,ahnlab.drop_packet</order>
+</decoder>
+<!--
+Module Flag: 1012
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1012`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.module_name,ahnlab.nif_name,ahnlab.nif_ip,ahnlab.line_name,ahnlab.restore_status,ahnlab.start_time,ahnlab.end_time,ahnlab.duration,ahnlab.inst_code</order>
+</decoder>
+<!--
+Module Flag: 1013
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1013`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.module_name,ahnlab.nif_name,ahnlab.nif_ip,ahnlab.line_name,ahnlab.rtt_ip,ahnlab.min,ahnlab.avg,ahnlab.max,ahnlab.bps,ahnlab.inst_code</order>
+</decoder>
+<!--
+Module Flag: 1016
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1016`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.module_name,ahnlab.severity,ahnlab.my_id,ahnlab.my_state,ahnlab.peer_id,ahnlab.peer_state,ahnlab.description,ahnlab.inst_code</order>
+</decoder>
+<!--
+Module Flag: 1017
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1017`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.module_name,ahnlab.nif_name,ahnlab.rx_bytes,ahnlab.rx_pkts,ahnlab.tx_bytes,ahnlab.tx_pkts,ahnlab.inst_code</order>
+</decoder>
+<!--
+Module Flag: 1020
+Example:
+Mar 18 22:49:16 10.10.200.2 3`0`1`1`a0415f`1020`20220318`23: 48:44`1`6`210927154131831`128.14.209.230`13361`58.72.90.165`5222`eth0`eth1````````````S`EXT`NONE`4``4`````0`845564286`0````0`0`0```````20220318`23:48:44```````
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1020`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.type,protocol,ahnlab.log_id,srcip,srcport,dstip,dstport,ahnlab.in_nic,ahnlab.out_nic,ahnlab.snat_type,ahnlab.snat_ip,ahnlab.snat_port,ahnlab.sent_data,ahnlab.sent_pkt,ahnlab.rcvd_data,ahnlab.rcvd_pkt,ahnlab.duration,ahnlab.state,ahnlab.reason,ahnlab.inst_code,ahnlab.tcp_flag,ahnlab.in_zone,ahnlab.out_zone,ahnlab.rule_id,ahnlab.nat_id,ahnlab.ip_ver,ahnlab.dnat_type,ahnlab.dnat_ip,ahnlab.dnat_port,ahnlab.detect_desc,ahnlab.sub_reason,ahnlab.session_id,ahnlab.detect_info,ahnlab.user_id,ahnlab.fqdn_id,ahnlab.vlan_id,ahnlab.inbount_spi,ahnlab.outbound_spi,ahnlab.direction,ahnlab.s_mac,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc,ahnlab.snat_cc,ahnlab.dnat_cc,ahnlab.session_date,ahnlab.session_time,ahnlab.vs_name</order>
+</decoder>
+<!--
+Module Flag: 1021
+Example:
+Apr 26 11:58:46 192.168.73.3 3`0`1`1`a244f8`1021`20220426`12: 58:21`2`6`UTM_IN_DEFAULT`17.253.75.208`80`210.216.121.130`29726`eth0`none````54`1```````R`EXT````4````DENY BY INPUT POLICY`39`120634354`0````0`0`0```````20220426`12:58:21```````
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1021`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.type,protocol,ahnlab.log_id,srcip,srcport,dstip,dstport,ahnlab.in_nic,ahnlab.out_nic,ahnlab.snat_type,ahnlab.snat_ip,ahnlab.snat_port,ahnlab.sent_data,ahnlab.sent_pkt,ahnlab.rcvd_data,ahnlab.rcvd_pkt,ahnlab.duration,ahnlab.state,ahnlab.reason,ahnlab.inst_code,ahnlab.tcp_flag,ahnlab.in_zone,ahnlab.out_zone,ahnlab.rule_id,ahnlab.nat_id,ahnlab.ip_ver,ahnlab.dnat_type,ahnlab.dnat_ip,ahnlab.dnat_port,ahnlab.detect_desc,ahnlab.sub_reason,ahnlab.session_id,ahnlab.detect_info,ahnlab.user_id,ahnlab.fqdn_id,ahnlab.vlan_id,ahnlab.inbount_spi,ahnlab.outbound_spi,ahnlab.direction,ahnlab.s_mac,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc,ahnlab.snat_cc,ahnlab.dnat_cc,ahnlab.session_date,ahnlab.session_time,ahnlab.vs_name</order>
+</decoder>
+<!--
+Module Flag: 1030
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1030`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.vf_type,ahnlab.virus_filter,ahnlab.virus_name,ahnlab.virus_fname,ahnlab.sender_addr,ahnlab.recipients_addr,ahnlab.subject,ahnlab.inst_code,ahnlab.file_size,ahnlab.profile_name,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc,ahnlab. url,ahnlab.mds_severity,ahnlab.file_type,ahnlab.md5,ahnlab.direction</order>
+</decoder>
+<!--
+Module Flag: 1040
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1040`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.spam_filter,ahnlab.sendspamlog,ahnlab.sender_addr,ahnlab.recipients_addr,ahnlab.subject,ahnlab.inst_code,ahnlab.mail_size,ahnlab.prx_protocol,ahnlab.reason,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc,ahnlab.Profile</order>
+</decoder>
+<!--
+Module Flag: 1050
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1050`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.webfilter_type,ahnlab.block_reason,ahnlab.url,ahnlab.inst_code,ahnlab.profile_name,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc</order>
+</decoder>
+<!--
+Module Flag: 1070
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1070`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.ap_protocol,ahnlab.description,ahnlab.inst_code,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc</order>
+</decoder>
+<!--
+Module Flag: 1080
+Example:
+Apr 26 12:25:03 192.168.73.3 3`0`2`1`a244f8`1080`20220426`13: 24:39`22`1`Center`61.32.125.66`IPSec VPN`IPSec SA �������� �Ϸ��߽��ϴ�(���� ����Ʈ����(ID): 61.32.125.66(Center), ���� ��������: ESP, Inbound SPI: ca2dff74, Outbound SPI: 805ec235).``
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1080`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.ipsec_type,ahnlab.result,ahnlab.remote_id,ahnlab.remote_ip,ahnlab.module_name,ahnlab.description,ahnlab.inst_code</order>
+</decoder>
+<!--
+Module Flag: 1090
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1090`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.log_type,ahnlab.result,dstuser,ahnlab.userip,ahnlab.module_name,ahnlab.description,ahnlab.inst_code,ahnlab.group_name,ahnlab.login_time,ahnlab.logout_time,ahnlab.conn_time,ahnlab.bps</order>
+</decoder>
+<!--
+Module Flag: 1100
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>
+	<regex>\S+`\S+`\S+`\d+`\S+`1100`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+	<order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.reason,ahnlab.rx_nif,ahnlab.eth_protocol,ahnlab.smac,ahnlab.signatureid,ahnlab.vlanid,ahnlab.message,ahnlab.inst_code,ahnlab.tx_nif,ahnlab.network_direction,ahnlab.network_id,ahnlab.log_id,ahnlab.profile_name,ahnlab.group_name,ahnlab.count,ahnlab.packet_ownership,ahnlab.offset,ahnlab.pattern_size,ahnlab.payload,ahnlab.profile_id,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc,ahnlab.group_id,ahnlab.inst_name,ahnlab.equip_code,ahnlab.equip_ip,ahnlab.packet_frame_size,ahnlab.offset_payload</order>
+</decoder>
+<!--
+Module Flag: 1101
+-->
+<decoder name="ahnlab-trusguard-fields">
+	<parent>ahnlab-trusguard</parent>		<regex>\S+`\S+`\S+`\d+`\S+`1101`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>         <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.profile_name,ahnlab.group_name,ahnlab.app_name,ahnlab.alarm_type,ahnlab.message,ahnlab.signatureid,ahnlab.logid,ahnlab.inst_code,ahnlab.count,ahnlab.packet_ownership,ahnlab.appid,ahnlab.category,ahnlab.technology,ahnlab.country,ahnlab.purpose,ahnlab.profile_id,ahnlab.offset,ahnlab.pattern_size,ahnlab.payload,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc,ahnlab.packet_frame_size</order>
+</decoder>
+<!--
+Module Flag: 1110
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1110`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.reason,ahnlab.description,ahnlab.inst_code,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc</order>
+</decoder>
+<!--
+Module Flag: 1121
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1121`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.description([GroupName]SignatureName),ahnlab.inst_code,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc</order>
+</decoder>
+<!--
+Module Flag: 1130
+-->	
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1130`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.sg_type,ahnlab.reason,ahnlab.description(url),ahnlab.inst_code,ahnlab.profile_name,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc</order>
+</decoder>
+<!--
+Module Flag: 1140
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1140`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.qos_name,ahnlab.eth_name,ahnlab.bps,ahnlab.pps,ahnlab.inst_code</order>
+</decoder>
+<!--
+Module Flag: 1141
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1141`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.description,ahnlab.inst_code</order>
+</decoder>
+<!--
+Module Flag: 1150
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1150`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.description,ahnlab.inst_code,ahnlab.session_id,ahnlab.rule_id</order>
+</decoder>
+<!--
+Module Flag: 1151
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1151`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.description,ahnlab.inst_code,ahnlab.session_id,ahnlab.rule_id</order>
+</decoder>
+<!--
+Module Flag: 1170
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1170`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,ahnlab.module_name,ahnlab.profile_name,ahnlab.risk_score_db,ahnlab.risk_score_user,ahnlab.risk_action_user,ahnlab.diffusion_score_db,ahnlab.diffusion_score_user,ahnlab.diffusion_action_user,ahnlab.accuracy_score_db,ahnlab.accuracy_score_user,ahnlab.accuracy_action_user,ahnlab.botnetname,ahnlab.diagname,ahnlab.inst_code,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc,action</order>
+</decoder>
+<!--
+Module Flag: 1180
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1180`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,ahnlab.detected_by,ahnlab.risk,ahnlab.normality,ahnlab.threat_type,ahnlab.file_name,ahnlab.file_type,ahnlab.origination,ahnlab.md5,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc</order>
+</decoder>
+<!--
+Module Flag: 1181
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1181`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>  <order>ahnlab.Headerfield,ahnlab.module_flag,ahnlab.time,ahnlab.severity,protocol,srcip,srcport,dstip,dstport,ahnlab.file_name,ahnlab.file_type,ahnlab.server_ip,ahnlab.send_result,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc</order>
+</decoder>
+<!--
+Module Flag: 1230
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1230`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>  <order>ahnlab.severity,protocol,srcip,srcport,dstip,dstport,action,dstuser,ahnlab.module_name,ahnlab.service_type,ahnlab.file,ahnlab.filetype,ahnlab.reason,ahnlab.content,ahnlab.match_str,ahnlab.sender,ahnlab.recipients,ahnlab.subject,ahnlab.url,ahnlab.ftpUser,ahnlab.profile_name,ahnlab.inst_code,ahnlab.session_id,ahnlab.rule_id,ahnlab.service,ahnlab.sip_cc,ahnlab.dip_cc</order>
+</decoder>
+<!--
+Module Flag: 1900
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1900`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>
+  <order>ahnlab.severity,ahnlab.device_model,ahnlab.alert_id,ahnlab.description,ahnlab.inst_code</order>
+</decoder>
+<!--
+Module Flag: 1901
+-->
+<decoder name="ahnlab-trusguard-fields">
+  <parent>ahnlab-trusguard</parent>
+  <regex>\S+`\S+`\S+`\d+`\S+`1901`\d\d\d\d\d\d\d\d`\.+:\.+:\.+`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`(\.*)`</regex>  <order>ahnlab.cpu,ahnlab.mem,ahnlab.hdd,ahnlab.version,ahnlab.uptime,ahnlab.ha,ahnlab.device_ip,ahnlab.total_rx_bps,ahnlab.total_rx_pps,ahnlab.total_tx_bps,ahnlab.total_tx_pps,ahnlab.session,ahnlab.vpn_rx_bps,ahnlab.vpn_rx_pps,ahnlab.vpn_tx_bps,ahnlab.vpn_tx_pps,ahnlab.vpn_tunnel,ahnlab.fw_allow_bps,ahnlab.fw_allow_pps,ahnlab.fw_deny_bps,ahnlab.fw_deny_pps,ahnlab.device_model,ahnlab.cpu_type,ahnlab.mem_size,ahnlab.cf_size,ahnlab.hdd_size,ahnlab.power_status,ahnlab.nif_status,ahnlab.ha_status,ahnlab.ha_nif_status,ahnlab.line_status,ahnlab.vpn_status,ahnlab.heartbeat_status,ahnlab.cpu_status,ahnlab.mem_status,ahnlab.disk_status,ahnlab.session_status,ahnlab.inst_code,ahnlab.dr_name,ahnlab.dr_ip,ahnlab.vpn_total_tunnel,ahnlab.subnethost_cnt,ahnlab.subnethost_iac_cnt,ahnlab.serial_number</order>
+</decoder>

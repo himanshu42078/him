@@ -1,0 +1,95 @@
+<!--<decoder name="sangfor_vpn">
+	<prematch>^\w*\D*\d* \d+:\d+:\d+ \d+.\d+.\d+.\d+ [</prematch>
+</decoder>
+-->
+<!--
+<decoder name="sangfor_vpn">
+	<prematch>[\.*][\w*]\w*</prematch>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>^(\w*\D*\d* \d+:\d+:\d+) (\d+.\d+.\d+.\d+) [</regex>
+	<order>timestamp,hostname</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>[(SSL VPN)][(\.*)][(\d*-\d*)](\.*)$</regex>
+	<order>action,sangfor.MOD_TWF,sangfor.vpn_numbers,sangfor.msg</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>[(Cluster)][(\.*)][(\d*-\d*)](\.*)$</regex>
+	<order>action,sangfor.field1,sangfor.field2,sangfor.msg</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>[(CTRL SYS)][(\.*)](\.*)$</regex>
+	<order>action,sangfor.field1,sangfor.msg</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>[(logout)][(\w*)](\.*)$</regex>
+	<order>action,status,sangfor.msg</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>[(allocate vip)][(\w*)](\.*)$</regex>
+	<order>action,status,sangfor.msg</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>[(access resource)][(\w*)](\.*)$</regex>
+	<order>action,sangfor.vpn_type,sangfor.msg</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>sess:(\.*)\s</regex>
+	<order>sangfor.session_uid</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>user:(\.*)\s</regex>
+	<order>user</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>\sip:(\d+.\d+.\d+.\d+)\s</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>
+						uri:(\.*)>
+	</regex>
+	<order>uri</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>accessIP:\s*(\d+.\d+.\d+.\d+)\s</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>virtualIP:\s*(\d+.\d+.\d+.\d+)\s</regex>
+	<order>vip</order>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>\svip:\s*(\d+.\d+.\d+.\d+)\s</regex>
+	<order>vip</order>
+</decoder>
+-->
+<!--
+Example:
+Mar 17 15:13:34 10.103.1.117 [login][success]minsu.cho from IP 101.88.201.255: [accessIP: 101.88.201.255] Log in successfully!
+Mar 17 15:13:41 10.103.1.117 [allocate vip][success]minsu.cho from IP 101.88.201.255: [accessIP: 101.88.201.255 virtualIP: 2.0.1.84] Allocate vip successfully
+Mar 17 15:22:54 10.103.1.117 [logout][success]janet.yang from IP 180.164.238.225: [accessIP: 180.164.238.225 virtualIP: 2.0.1.85] Log out successfully!
+-->
+<decoder name="sangfor_vpn">
+	<prematch>[\.*][\S*]\.* from IP (\d+.\d+.\d+.\d+): [\.*] (\.*)$</prematch>
+</decoder>
+<decoder name="sangfor_vpn">
+	<parent>sangfor_vpn</parent>
+	<regex>[(\.*)][(\S*)](\.*) from IP (\d+.\d+.\d+.\d+): [\.*] (\.*)$</regex>
+	<order>action,status,dstuser,srcip,msg</order>
+</decoder>

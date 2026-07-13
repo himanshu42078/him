@@ -1,0 +1,124 @@
+<decoder name="opswat">
+    <prematch>\.*MSCW\p\d+\d+\d+\d+\p\sProcessing\sfinished</prematch>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>user='(\.*)',</regex>
+    <order>srcuser</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>workflow_id='(\.*)',</regex>
+    <order>workflowID</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>parentDataId='(\.*)',</regex>
+    <order>parentDataId</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>dataId='(\S+)',</regex>
+    <order>dataId</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>fileName='(\.*)',</regex>
+    <order>fileName</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>fileSize='(\d+)',</regex>
+    <order>fileSize</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>fileTypeDesc='(\.*)',</regex>
+    <order>fileTypeDesc</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>sha256sum='(\S+)',</regex>
+    <order>sha256sum</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>blocked='(\S+)',</regex>
+    <order>blocked</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>blocked_reason='(\.*)',</regex>
+    <order>blockedReason</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>overallResult='(\.*)',</regex>
+    <order>overallResult</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>threatFoundCount='(\d+)',</regex>
+    <order>threatFoundCount</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>embeddedObjectsWithThreat='(\d+)',</regex>
+    <order>embeddedObjectsWithThreat</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>totalResultCount='(\d+)',</regex>
+    <order>totalResultCount</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>threatDetectedBy='(\.*)',</regex>
+    <order>threatDetectedBy</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>threatName='(\.*)',</regex>
+    <order>threatName</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>yaraRuleMatched='(\.*)',</regex>
+    <order>yaraRuleMatched</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>ruleName='(\.*)',</regex>
+    <order>ruleName</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>source='(\.*)',</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="opswatFields">
+    <parent>opswat</parent>
+    <regex>engines-metadata='(\.*)',</regex>
+    <order>enginesMetadata</order>
+</decoder>
+

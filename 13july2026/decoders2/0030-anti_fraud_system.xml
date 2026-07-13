@@ -1,0 +1,24 @@
+<!-- Modify it at your will. -->
+<decoder name="anti_fraud_system">
+  <prematch>http-nio-\d+-exec-\d+</prematch>
+</decoder>
+<decoder name="anti_fraud_system-field">
+  <parent>anti_fraud_system</parent>
+  <regex>user[(\w+)]</regex>
+  <order>dstuser</order>
+</decoder>
+<decoder name="anti_fraud_system-field">
+  <parent>anti_fraud_system</parent>
+  <regex offset="after_parent">[(\w+)]</regex>
+  <order>dstuser</order>
+</decoder>
+<decoder name="anti_fraud_system-field">
+  <parent>anti_fraud_system</parent>
+  <regex>operation_user=(\S+)</regex>
+  <order>username</order>
+</decoder>
+<decoder name="anti_fraud_system-field">
+  <parent>anti_fraud_system</parent>
+  <regex>operation_result=(\S+)</regex>
+  <order>operationResult</order>
+</decoder>

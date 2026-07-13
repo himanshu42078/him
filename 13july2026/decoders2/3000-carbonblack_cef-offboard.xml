@@ -1,0 +1,250 @@
+<!-- DEV-642 -->
+<!-- General CarbonBlack Decoder -->
+
+<decoder name="CarbonBlack">
+	<prematch>Carbon Black\|\.+\|\S+\|\d+\|\.+\|\d+\|</prematch>
+	<program_name>CEF</program_name>
+</decoder>
+
+<!-- VMWare Carbon Black EDR 7.7.1 -->
+<!--
+Reference:
+https://docs.vmware.com/en/VMware-Carbon-Black-EDR/7.7.1/cb-edr-integration-guide/GUID-1590E6D0-6F9E-4917-8C53-12A377E60141.html 
+-->
+<decoder name="CarbonBlack">
+	<prematch>CEF:0\|Carbon Black\|\.+\|\S+\|reason=\S+\|\.+\|\d+\|</prematch>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>0\|(\.+)\|(\.+)\|(\S+)\|reason=(\S+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>0\|(\.+)\|(\.+)\|(\S+)\|(\S+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>externalId=(\S+)</regex>
+	<order>cb.externalId</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cat=(\.+) start=</regex>
+	<order>cb.cat</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>start=(\S+ \d+ \d+:\d+:d+) UTC</regex>
+	<order>cb.start</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>start=(\.+) UTC</regex>
+	<order>cb.start</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>rt=(\S+ \d+ \d+:\d+:d+) UTC</regex>
+	<order>cb.rt</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>start=(\.+) UTC</regex>
+	<order>cb.rt</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>start=(\.+) \S+=</regex>
+	<order>cb.rt</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>filePath=(\.+) \S+=</regex>
+	<order>cb.filePath</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>fname=(\.+) \S+=</regex>
+	<order>cb.filename</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>fileHash=(\S+)</regex>
+	<order>cb.fileHash</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>fileId=(\S+)</regex>
+	<order>cb.fileId</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>deviceProcessName=(\.+) \S+=</regex>
+	<order>cb.deviceProcessName</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>dhost=(\S+)</regex>
+	<order>cb.dhost</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>duser=(\.+) \S+=</regex>
+	<order>dstuser</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>dvchost=(\S+)</regex>
+	<order>cb.dvchost</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>msg=(\.+) \S+=|msg=(\.+)</regex>
+	<order>cb.msg</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>sproc=(\S+)</regex>
+	<order>cb.sproc</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>prevalence=(\S+)</regex>
+	<order>cb.prevalence</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>global_state=(\S+)</regex>
+	<order>cb.global_state</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cs3Label=(\S+)</regex>
+	<order>cb.cs3Label</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cs3=(\.+) \S+=|cs3=(\.+)</regex>
+	<order>cb.cs3</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cs5Label=(\S+)</regex>
+	<order>cb.cs5Label</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cs5=(\.+) \S+=</regex>
+	<order>cb.cs5</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cfp1Label=(\S+)</regex>
+	<order>cb.cfp1Label</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cfp1=(\S+)</regex>
+	<order>cb.cfp1</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>flexString1Label=(\S+)</regex>
+	<order>cb.flexString1Label</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>flexString1=(\.+) \S+=</regex>
+	<order>cb.flexString1</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cfp2Label=(\S+)</regex>
+	<order>cb.cfp2Label</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cfp2=(\S+)</regex>
+	<order>cb.cfp2</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>flexString2Label=(\S+)</regex>
+	<order>cb.flexString2Label</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>flexString2=(\.+)</regex>
+	<order>cb.flexString2</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cs1Label=(\S+)</regex>
+	<order>cb.cs1Label</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cs1=(\S+)</regex>
+	<order>cb.cs1</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cs2Label=(\S+)</regex>
+	<order>cb.cs2Label</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>cs2=(\S+)</regex>
+	<order>cb.cs2</order>
+</decoder>
+
+<decoder name="CarbonBlack-field">
+	<parent>CarbonBlack</parent>
+	<regex>dproc=(\S+)</regex>
+	<order>cb.dproc</order>
+</decoder>

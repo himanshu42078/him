@@ -1,0 +1,453 @@
+<!-- DEV-683 -->
+
+<decoder name="Twistlock">
+	<program_name>^Twistlock-Console|^Twistlock-Defender</program_name>
+</decoder>
+<!-- Twistlock-Console -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<program_name>Twistlock-Console</program_name>
+	<regex>time="(\.*)"</regex>
+	<order>time</order>
+</decoder>
+<!-- Twistlock-Defender -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<program_name>Twistlock-Defender</program_name>
+	<regex>time="(\.*)"</regex>
+	<order>time</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>incident_category="(\.*)"</regex>
+	<order>incident_category</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>type="(\.*)"</regex>
+	<order>type</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>effect="(\.*)"</regex>
+	<order>effect</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>msg="(\.*)"</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>user_name="(\.*)"</regex>
+	<order>user_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>activity_type="(\.*)"</regex>
+	<order>activity_type</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>audit_id="(\.*)"</regex>
+	<order>audit_id</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>account_id="(\.*)"</regex>
+	<order>account_id</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>cluster="(\.*)"</regex>
+	<order>cluster</order>
+</decoder>
+<!-- Fields -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>type="(\.*)"</regex>
+	<order>type</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>log_type="(\.*)"</regex>
+	<order>log_type</order>
+</decoder>
+<!-- log_type="image" -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>image_id="(\.*)"</regex>
+	<order>image_id</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>image_name="(\.*)"</regex>
+	<order>image_name</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>vulnerabilities="(\.*)"</regex>
+	<order>vulnerabilities</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>compliance="(\.*)"</regex>
+	<order>compliance</order>
+</decoder>
+<!-- log_type="container" -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>container_id="(\.*)"</regex>
+	<order>container_id</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>container_name="(\.*)"</regex>
+	<order>container_name</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>image_name="(\.*)"</regex>
+	<order>image_name</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>compliance="(\.*)"</regex>
+	<order>compliance</order>
+</decoder>
+<!-- log_type="host" -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>hostname="(\.*)"</regex>
+	<order>hostname</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>vulnerabilities="(\.*)"</regex>
+	<order>vulnerabilities</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>compliance="(\.*)"</regex>
+	<order>compliance</order>
+</decoder>
+<!-- log_type="containerCompliance" -->
+<!-- 1. host compliance issue -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>compliance_id="(\.*)"</regex>
+	<order>compliance_id</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>severity="(\.*)"</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>description="(\.*)"</regex>
+	<order>description</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>rule="(\.*)"</regex>
+	<order>rule</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>host="(\.*)"</regex>
+	<order>host</order>
+</decoder>
+<!--  2. image compliance issue -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>image_id="(\.*)"</regex>
+	<order>image_id</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>image_name="(\.*)"</regex>
+	<order>image_name</order>
+</decoder>
+<!-- 3. container compliance issue -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>container_id="(\.*)"</regex>
+	<order>container_id</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>container_name="(\.*)"</regex>
+	<order>container_name</order>
+</decoder>
+<!-- log_type="vulnerability" -->
+<!-- 1. image vulnerability issue -->
+<!-- 2. registry image vulnerability issue -->
+<!-- 3. host vulnerability issue -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>vulnerability_id="(\.*)"</regex>
+	<order>vulnerability_id</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>description="(\.*)"</regex>
+	<order>description</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>cve="(\.*)"</regex>
+	<order>cve</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>severity="(\.*)"</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>package="(\.*)"</regex>
+	<order>package</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>package_version="(\.*)"</regex>
+	<order>package_version</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>vendor_status="(\.*)"</regex>
+	<order>vendor_status</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>rule="(\.*)"</regex>
+	<order>rule</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>host="(\.*)"</regex>
+	<order>host</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>image_id="(\.*)"</regex>
+	<order>image_id</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>image_name="(\.*)"</regex>
+	<order>image_name</order>
+</decoder>
+<!-- log_type="login" -->
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>username="(\.*)"</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>source_ip="(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>api="(\.*)"</regex>
+	<order>api</order>
+</decoder>
+<decoder name="Twistlock-Console">
+	<parent>Twistlock</parent>
+	<regex>status="(\.*)"</regex>
+	<order>status</order>
+</decoder>
+<!-- Defender events -->
+<!-- Container runtime audit -->
+<!-- The log_type field specifies the runtime sensor that detected the anomaly (filesystem, processes. syscalls, or network). -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>container_id="(\.*)"</regex>
+	<order>container_id</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>container_name="(\.*)"</regex>
+	<order>container_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>image_id="(\.*)"</regex>
+	<order>image_id</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>image_name="(\.*)"</regex>
+	<order>image_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>effect="(\.*)"</regex>
+	<order>effect</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>msg="(\.*)"</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>log_type="(\.*)"</regex>
+	<order>log_type</order>
+</decoder>
+<!-- Host runtime audit -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>service_name="(\.*)"</regex>
+	<order>service_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>effect="(\.*)"</regex>
+	<order>effect</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>msg="(\.*)"</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>log_type="(\.*)"</regex>
+	<order>log_type</order>
+</decoder>
+<!-- Access audit -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>user="(\.*)"</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>action="(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>action_type="(\.*)"</regex>
+	<order>action_type</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>allow="(\.*)"</regex>
+	<order>allow</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>rule="(\.*)"</regex>
+	<order>rule</order>
+</decoder>
+<!-- App firewall audit -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>container_id="(\.*)"</regex>
+	<order>container_id</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>container_name="(\.*)"</regex>
+	<order>container_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>image_name="(\.*)"</regex>
+	<order>image_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>effect="(\.*)"</regex>
+	<order>effect</order>
+</decoder>
+<!-- Network firewall audit -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>src_image="(\.*)"</regex>
+	<order>src_image</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>dst_container_name="(\.*)"</regex>
+	<order>dst_container_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>dst_image="(\.*)"</regex>
+	<order>dst_image</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>port="(\.*)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>block="(\.*)"</regex>
+	<order>block</order>
+</decoder>
+<!-- Process activity audit -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>pid="(\.*)"</regex>
+	<order>pid</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>path="(\.*)"</regex>
+	<order>path</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>md5="(\.*)"</regex>
+	<order>md5</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>interactive="(\.*)"</regex>
+	<order>interactive</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>container_id="(\.*)"</regex>
+	<order>container_id</order>
+</decoder>
+<!-- Incidents -->
+<!-- container incident -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>container_id="(\.*)"</regex>
+	<order>container_id</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>image_name="(\.*)"</regex>
+	<order>image_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>host="(\.*)"</regex>
+	<order>host</order>
+</decoder>
+<!-- host incident -->
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>service_name="(\.*)"</regex>
+	<order>service_name</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>host="(\.*)"</regex>
+	<order>host</order>
+</decoder>
+<decoder name="Twistlock-Defender">
+	<parent>Twistlock</parent>
+	<regex>audit_ids="(\.*)"</regex>
+	<order>audit_ids</order>
+</decoder>

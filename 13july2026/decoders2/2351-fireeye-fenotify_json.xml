@@ -1,0 +1,162 @@
+<!-- Modify it at your will. -->
+<decoder name="fireeye-fenotify-json">
+	<program_name>fenotify</program_name>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>"dst": {\.*"ip": "(\S+)"</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>"dst": {\.*"port": "(\d+)"</regex>
+  <order>dstport</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>"src": {\.*"ip": "(\S+)"</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>"src": {\.*"port": "(\d+)"</regex>
+  <order>srcport</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>"action": "(\S+)"</regex>
+  <order>action</order>
+</decoder>
+
+<!--
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>alert id="(\d+)"</regex>
+  <order>alert_id</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>root-infection="(\d+)"</regex>
+  <order>root_infection</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>uuid="(\.+)"</regex>
+  <order>uuid</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>name="(\.+)"</regex>
+  <order>alert_name</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>severity="(\.+)"</regex>
+  <order>severity</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>class="(\.+)"</regex>
+  <order>class</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>ack="(\.+)"</regex>
+  <order>ack</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>explanation analysis="(\.+)"</regex>
+  <order>explanation_analysis</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>protocol="(\.+)"</regex>
+  <order>protocol</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>malware name="(\.+)"</regex>
+  <order>malware_name</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>malicious="(\.+)"</regex>
+  <order>malicious</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>type="(\.*)"</regex>
+  <order>type</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>url>(\.+)\</url</regex>
+  <order>url</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>executed-at>(\.+)\</executed-at</regex>
+  <order>executed_time</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>port="(\.*)"</regex>
+  <order>port</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>protocol="(\.*)"</regex>
+  <order>protocol</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>address>(\.+)\</address</regex>
+  <order>address</order>
+</decoder>
+
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>product="(\.+)"</regex>
+  <order>product</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>sig-name>(\.+)\</sig-name</regex>
+  <order>sig_name</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>action-taken>(\.+)\</action-taken</regex>
+  <order>action_taken</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>attack-mode>(\.+)\</attack-mode</regex>
+  <order>attack_mode</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>mvx-status>(\.+)\</mvx-status</regex>
+  <order>mvx_status</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>src\.*>\<ip>(\.+)\</ip>\<port>(\.+)\</port</regex>
+  <order>srcip,srcport</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>dst\.*>\<ip>(\.+)\</ip>\<port>(\.+)\</port</regex>
+  <order>dstip,dstport</order>
+</decoder>
+<decoder name="fireeye-fenotify-json-fields">
+	<parent>fireeye-fenotify-json</parent>
+  <regex>action>(\.+)\</action</regex>
+  <order>action</order>
+</decoder>
+-->

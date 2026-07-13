@@ -1,0 +1,83 @@
+<!--
+Feb  6 15:48:16 172.16.10.133 CEF: 0|AAA|Core|5.0|101|User was successfully logged on|7|chain_name=Card&ADpass ep=ACSBRLCKINS1 ep_addr=192.168.36.141 event=Windows<space>logon method_name=LDAP_PASSWORD:1 session_id=msvwIJ6ffACmrYOARzDlBpMu5Yul3IK6 template_owner=AEONclara.flcheung tenant_name=TOP user_name=AEONclara.flcheung p=24364\
+Feb  6 15:47:56 172.16.10.133 CEF: 0|AAA|Core|5.0|103|User was switched to different method|2| ep=ACSAHKLT0034 ep_addr=172.17.4.56 new_method_name=TOTP:1 old_method_name=LDAP_PASSWORD:1 session_id=ypcBuHVKng9AP1xn1GwNBepOWngv7Qdm tenant_name=TOP user_name=AEONali.kwchan p=24621
+-->
+<decoder name="HPE-sso">
+    <program_name>CEF</program_name>
+    <prematch>^0\|AAA\|Core\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)</regex>
+    <order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>chain_name=(\.+) \S+=</regex>
+    <order>chain_name</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>ep=(\.+) \S+=</regex>
+    <order>ep</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>ep_addr=(\.+) \S+=</regex>
+    <order>ep_addr</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>event=(\.+) \S+=</regex>
+    <order>event</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>method_name=(\.+) \S+=</regex>
+    <order>method_name</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>session_id=(\.+) \S+=</regex>
+    <order>session_id</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>record_id=(\.+) \S+=</regex>
+    <order>record_id</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>template_owner=(\.+) \S+=</regex>
+    <order>template_owner</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>tenant_name=(\.+) \S+=</regex>
+    <order>tenant_name</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>user_name=(\.+) \S+=</regex>
+    <order>user_name</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>user_name=(\.+) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>new_method_name=(\.+) \S+=</regex>
+    <order>new_method_name</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>old_method_name=(\.+) \S+=</regex>
+    <order>old_method_name</order>
+</decoder>
+<decoder name="HPE-sso_fields">
+    <parent>HPE-sso</parent>
+    <regex>p=(\S+)$</regex>
+    <order>p</order>
+</decoder>

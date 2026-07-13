@@ -1,0 +1,63 @@
+<decoder name="mcafee_security_manager">
+	<program_name>SyslogAlertForwarder</program_name>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>(\.*) detected (\.*) attack (\.*) \(severity = (\.*)\). (\.*):\.* -> \.*:\.* \(result = (\.*)\)</regex>
+	<order>hostname,direction,msg,severity,raw_srcip,action</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>(\.*) detected</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>(\.*) detected</regex>
+	<order>product</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>(\d+.\d+.\d+.\d+):\.* -> \.*:\.*</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>\.*:(\d+) -> \.*:\.*</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>\.*:\.* -> (\d+.\d+.\d+.\d+):\.*</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>\.*:\.* -> \.*:(\d+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>\(result = (\.*)\)</regex>
+	<order>result</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>HTTP Request Method == (\S+)\s*;;;</regex>
+	<order>method</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>HTTP User-Agent == (\.+);;;</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>HTTP URI == (\.+);;;</regex>
+	<order>url</order>
+</decoder>
+<decoder name="mcafee_security_manager_fields">
+	<parent>mcafee_security_manager</parent>
+	<regex>HTTP Host == (\.+);;;</regex>
+	<order>url_domain</order>
+</decoder>

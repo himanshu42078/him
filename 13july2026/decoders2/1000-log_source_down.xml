@@ -1,0 +1,5 @@
+<decoder name="log-source-down">
+	<program_name>^log-source-down</program_name>
+	<regex>(\S+), (\S+) (\S+)</regex>
+	<order>down_agentname, down_hostname, down_duration</order>
+</decoder>

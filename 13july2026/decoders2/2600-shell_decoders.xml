@@ -1,0 +1,8 @@
+<decoder name="shell">
+	<program_name>shell</program_name>
+</decoder>
+<decoder name="shell-fields">
+	<parent>shell</parent>
+	<regex>[(\.+)]:\s(\.+)$</regex>
+	<order>dstuser,commandLine</order>
+</decoder>

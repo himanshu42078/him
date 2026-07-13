@@ -1,0 +1,288 @@
+<decoder name="h3c">
+  <prematch>devicename=H3C|\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d DDoS:\S+:H3C</prematch>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex>DDoS:\S+:(\.*) \S+:(\.*) \S+:(\.*) \S+:(\.*) \S+:(\.*) \S+:(\.*) </regex>
+  <order>devicename,srcip,srcport,dstip,dstport,protocol</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex offset="after_regex">\S+:(\.*) \S+:(\.*) \S+:(\.*) CDN ip:(\.*) XFF ip:(\.*) \S+:(\.*) \S+:(\.*)</regex>
+  <order>attack_type,url,url_domain,cdn_ip,xff_ip,severity,attack_freq</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex>(H3C)</regex>
+  <order>product</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex>\d\d:\d\d:\d\d (\S+):</regex>
+  <order>alert_type</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex>WAF: (\d+.\d+.\d+.\d+):(\d+)-></regex>
+  <order>srcip, srcport</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex>WAF:\.+->(\.+) dip=</regex>
+  <order>url_domain</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> dip=(\d+.\d+.\d+.\d+)</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex>devicename=(\S+) \w+=</regex>
+  <order>devicename</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> url=(\S+) method=</regex>
+  <order>url</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> method=(\S+) \w+=</regex>
+  <order>method</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> args=(\.*) flag_field=</regex>
+  <order>args</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> flag_field=(\.*) block_time=</regex>
+  <order>flag_field</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> block_time=(\.*) http_type=</regex>
+  <order>block_time</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> http_type=(\.*) attack_field=</regex>
+  <order>http_type</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> attack_field=(\.*) profile_id=</regex>
+  <order>attack_field</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> profile_id=(\.*) rule_id=</regex>
+  <order>profile_id</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> rule_id=(\.*) type=</regex>
+  <order>rule_id</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> type=(\.*) severity=</regex>
+  <order>attack_type</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> type=(\.*) severity=</regex>
+  <order>msg</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> severity=(\.*) action=</regex>
+  <order>severity</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> action=(\.*) referer=</regex>
+  <order>action</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> referer=(\.*) useragent=</regex>
+  <order>referer</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> useragent=(\.*) post=</regex>
+  <order>useragent</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> post=(\.*) equipment=</regex>
+  <order>post</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> equipment=(\.*) os=</regex>
+  <order>equipment</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> os=(\.*) browser=</regex>
+  <order>osname</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> browser=(\.*) |</regex>
+  <order>browser</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> svr_id=(\S+)</regex>
+  <order>svr_id</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> tcp_ccn=(\S+)</regex>
+  <order>tcp_ccn</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> tcp_cns=(\S+)</regex>
+  <order>tcp_cns</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> tcp_bytes_c2s_in=(\S+)</regex>
+  <order>tcp_bytes_c2s_in</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> tcp_bytes_c2s_out=(\S+)</regex>
+  <order>tcp_bytes_c2s_out</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> udp_ccn=(\S+)</regex>
+  <order>udp_ccn</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> udp_cns=(\S+)</regex>
+  <order>udp_cns</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> udp_bytes_c2s_in=(\S+)</regex>
+  <order>udp_bytes_c2s_in</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> udp_bytes_c2s_out=(\S+)</regex>
+  <order>udp_bytes_c2s_out</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> icmp_ccn=(\S+)</regex>
+  <order>icmp_ccn</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> icmp_cns=(\S+)</regex>
+  <order>icmp_cns</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> icmp_bytes_c2s_in=(\S+)</regex>
+  <order>icmp_bytes_c2s_in</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> icmp_bytes_c2s_out=(\S+)</regex>
+  <order>icmp_bytes_c2s_out</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> rawip_ccn=(\S+)</regex>
+  <order>rawip_ccn</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> rawip_cns=(\S+)</regex>
+  <order>rawip_cns</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> rawip_bytes_c2s_in=(\S+)</regex>
+  <order>rawip_bytes_c2s_in</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> rawip_bytes_c2s_out=(\S+)</regex>
+  <order>rawip_bytes_c2s_out</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> http_crn=(\S+)</regex>
+  <order>http_crn</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> http_reqs_get=(\S+)</regex>
+  <order>http_reqs_get</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> http_reqs_post=(\S+)</regex>
+  <order>http_reqs_post</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> http_reqs_misc=(\S+)</regex>
+  <order>http_reqs_misc</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> dns_qrys=(\S+)</regex>
+  <order>dns_qrys</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> tcp_delay_synack_sum_count=(\S+)</regex>
+  <order>tcp_delay_synack_sum_count</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> tcp_delay_synack_sum_delay=(\S+)</regex>
+  <order>tcp_delay_synack_sum_delay</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> http_delay_rsp_sum_count=(\S+)</regex>
+  <order>http_delay_rsp_sum_count</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> http_delay_rsp_sum_delay =(\d+)</regex>
+  <order>http_delay_rsp_sum_delay</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> dns_delay_rsp_sum_count=(\S+)</regex>
+  <order>dns_delay_rsp_sum_count</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> dns_delay_rsp_sum_delay=(\d+)</regex>
+  <order>dns_delay_rsp_sum_delay</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex>start_time=(\d+)</regex>
+  <order>start_time</order>
+</decoder>
+<decoder name="h3c_fields">
+  <parent>h3c</parent>
+  <regex> end_time=(\S+)</regex>
+  <order>end_time</order>
+</decoder>

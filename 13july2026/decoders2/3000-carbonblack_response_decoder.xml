@@ -1,0 +1,115 @@
+<decoder name="carbonblack_response">
+    <program_name></program_name>
+    <prematch>^\pwarning\p\s+reason=\S+ type=\S+ process_guid=</prematch>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>reason=(\S+) \S+=</regex>
+    <order>reason</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>type=(\S+) \S+=</regex>
+    <order>type</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>process_guid=(\S+) \S+=</regex>
+    <order>process_guid</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>segment_id=(\S+) \S+=</regex>
+    <order>segment_id</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>host='(\S+)' \S+=</regex>
+    <order>hostname</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>comms_ip='(\S+)' \S+=</regex>
+    <order>comms_ip</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>interface_ip='(\S+)' \S+=</regex>
+    <order>interface_ip</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>sensor_id=(\d+) \S+=</regex>
+    <order>sensor_id</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>feed_id=(\d+) \S+=</regex>
+    <order>feed_id</order>
+</decoder>
+
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>feed_name='(\S+)' \S+=</regex>
+    <order>feed_name</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>report_id='(\S+)' \S+=</regex>
+    <order>report_id</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>report_title='(\S+)' \S+=</regex>
+    <order>report_title</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>timestamp='(\S+)' \S+=</regex>
+    <order>timestamp</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>start_time='(\S+)' \S+=</regex>
+    <order>start_time</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>group='(\S+)' \S+=</regex>
+    <order>group</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>process_md5='(\S+)' \S+=</regex>
+    <order>process_md5</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>process_sha256='(\S+)' \S+=</regex>
+    <order>process_sha256</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>process_name='(\S+)' \S+=</regex>
+    <order>process_name</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>process_path='(\S+)' \S+=|process_path='(\S+)' last_update</regex>
+    <order>process_path</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>last_update='(\S+)' \S+=|last_update='(\S+)'$</regex>
+    <order>last_update</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>alliance_data_bit9endpointvisibility='(\S+)' \S+=</regex>
+    <order>alliance_data_bit9endpointvisibility</order>
+</decoder>
+<decoder name="carbonblack_response_fields">
+    <parent>carbonblack_response</parent>
+    <regex>alliance_score_bit9endpointvisibility='(\S+)' \S+=</regex>
+    <order>alliance_score_bit9endpointvisibility</order>
+</decoder>

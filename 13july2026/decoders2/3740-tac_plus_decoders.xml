@@ -1,0 +1,9 @@
+<decoder name="tac_plus">
+    <program_name>tac_plus</program_name>
+    <prematch>^connect from \S+ [\S+]$</prematch>
+</decoder>
+<decoder name="tac_plus-fields">
+    <parent>tac_plus</parent>
+    <regex>^connect from (\S+) [\S+]$</regex>
+    <order>srcip</order>
+</decoder>

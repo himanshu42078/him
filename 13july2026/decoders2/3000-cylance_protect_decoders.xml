@@ -1,0 +1,13 @@
+<decoder name="cylance-protect">
+	<prematch>CylancePROTECT</prematch>
+</decoder>
+<decoder name="cylance-protect-fields">
+	<parent>cylance-protect</parent>
+	<regex>Event Type: (\.*), Event Name: (\.*), Device Name: (\.*), IP Address: \((\.*)\), File Name: (\.*), Path: (\.*), Drive Type: (\.*), File Owner: (\.*), SHA256: (\.*), MD5: (\.*), Status: (\.*), Cylance Score: (\.*), Found Date: (\.*), File Type: (\.*), Is Running: (\.*), Auto Run: (\.*), Detected By: (\.*), Zone Names: \((\.*)\), Is Malware: (\.*), Is Unique To Cylance: (\.*), Threat Classification: (\.*), Device Id: (\.*), Policy Name: (\.*)</regex>
+	<order>event_type,event_name,device,srcip,file_name,path,drive_type,file_owner,SHA256,MD5,status,cylance_score,date,file_type,is_running,auto_run,detected_by,zone_names,is_malware,is_unique_to_cylance,threat_classification,device_id,policy_name</order>
+</decoder>
+<decoder name="cylance-protect-fields">
+	<parent>cylance-protect</parent>
+	<regex>Event Type: (\.*), Event Name: (\.*), Device Name: (\.*), IP Address: \((\.*)\), File Name: (\.*), Path: (\.*), Drive Type: (\.*), SHA256: (\.*), MD5: (\.*), Status: (\.*), Cylance Score: (\.*), Found Date: (\.*), File Type: (\.*), Is Running: (\.*), Auto Run: (\.*), Detected By: (\.*), Zone Names: \((\.*)\), Is Malware: (\.*), Is Unique To Cylance: (\.*), Threat Classification: (\.*), Device Id: (\.*), Policy Name: (\.*)</regex>
+	<order>event_type,event_name,device,srcip,file_name,path,drive_type,SHA256,MD5,status,cylance_score,date,file_type,is_running,auto_run,detected_by,zone_names,is_malware,is_unique_to_cylance,threat_classification,device_id,policy_name</order>
+</decoder>

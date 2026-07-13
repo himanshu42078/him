@@ -1,0 +1,177 @@
+<!--
+https://docs.cyberark.com/Product-Doc/OnlineHelp/PAS/Latest/en/Content/PTA/CEF-Based-Format-Definition.htm
+
+Oct 20 11:02:58 10.106.194.37 CEF: 0|CyberArk|PTA|12.2.6|39|Risky activities detected in privileged session|5|suser=chandaph(Vault user) shost=hkitd565dt.hkg.mizuho-sc.com src=10.106.53.219 duser=hkesbprd@hklxboikap01v.hkg.mizuho-sc.com dhost=hklxboikap01v.hkg.mizuho-sc.com dst=10.106.154.150 cs1Label=ExtraData cs1=2b21e7a7-8b34-40e4-aab2-1b49732cd1b1 cs2Label=EventID cs2=6350ba62e4b0f7e63ed1d824 deviceCustomDate1Label=DetectionDate deviceCustomDate1=1666234978000 cs3Label=PTALink cs3=https://hkwnincykp006v.hkg.mizuho-sc.com:443/PasswordVault/v10/pta/events/6350ba62e4b0f7e63ed1d824 cs4Label=ExternalLink cs4=https://hkwnincykp006v.hkg.mizuho-sc.com:443/PasswordVault/directaccess.aspx?livesessiondetails.aspx&searchpattern\=2b21e7a7-8b34-40e4-aab2-1b49732cd1b1 cs5Label=SuspiciousSessionActivity cs5=sftp -oIdentityFile\\\=\\"/u01/app/esb/shared/ssh/id_rsa_ICE\\" MIZASIAFTPH1@ftpprod.icedataservices.com
+-->
+<decoder name="cyberark">
+  <program_name>CEF</program_name>
+  <prematch>0\|CyberArk\|</prematch>
+</decoder>
+<decoder name="cyberark">
+  <program_name>CEF</program_name>
+  <prematch>0\|Cyber-Ark\|</prematch>
+</decoder>
+
+<!-- PTA -->
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>\d+\|(\S+)\|(\S+)\|(\S+)\|(\S+)\|(\.+)\|(\d+)\|</regex>
+  <order>vendor, product, version, id, rulename, severity</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>\d+\|(\S+)\|(\S+)\|(\S+)\|(\S+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>act=(\.*)\s+\S+=</regex>
+  <order>action</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>suser=(\.*)\s+\S+=</regex>
+  <order>srcuser</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>shost=(\.*)\s+\S+=</regex>
+  <order>shost</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>src=(\.*)\s+\S+=</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>duser=(\.*)\s+\S+=</regex>
+  <order>dstuser</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>dhost=(\.*)\s+\S+=</regex>
+  <order>dhost</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>dst=(\.*)\s+\S+=</regex>
+  <order>dstip</order>
+</decoder>
+
+
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs1Label=ExtraData cs1=(\S+)</regex>
+  <order>cyberark.ExtraData</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs2Label=EventID cs2=(\S+)</regex>
+  <order>cyberark.EventID</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>deviceCustomDate1Label=DetectionDate deviceCustomDate1=(\d+)</regex>
+  <order>cyberark.DetectionDate</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs3Label=PTALink cs3=(\S+)</regex>
+  <order>cyberark.PTALink</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs3Label=PTALink cs3=(\S+)</regex>
+  <order>cyberark.PTALink</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs4Label=ExternalLink cs4=(\S+)</regex>
+  <order>cyberark.ExternalLink</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs5Label=SuspiciousSessionActivity cs5=(\.*)</regex>
+  <order>cyberark.SuspiciousSessionActivity</order>
+</decoder>
+
+
+
+<!-- Vault -->
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>fname=(\.*)\s+\S+=</regex>
+  <order>filename</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>dvc=(\.*)\s+\S+=</regex>
+  <order>dvc</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>shost=(\d+.\d+.\d+.\d+)\s+\S+=</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>dhost=(\d+.\d+.\d+.\d+)\s+\S+=</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>externalId=(\.*)\s+\S+=</regex>
+  <order>sessionId</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>app=(\.*)\s+\S+=</regex>
+  <order>protocol</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>reason=(\.*)\s+\S+=</regex>
+  <order>reason</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs1Label="Affected User Name" cs1=(\.*)\s+\S+=</regex>
+  <order>cyberack.AffectedUserName</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs2Label="Safe Name" cs2=(\.*)\s+\S+=</regex>
+  <order>cyberack.SafeName</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs3Label="Device Type" cs3=(\.*)\s+\S+=</regex>
+  <order>cyberack.AffectedUserName</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs4Label="Database" cs4=(\.*)\s+\S+=</regex>
+  <order>cyberack.Database</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cs5Label="Other info" cs5=(\.*)\s+\S+=</regex>
+  <order>cyberack.OtherInfo</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cn1Label="Request Id" cn1=(\.*)\s+\S+=</regex>
+  <order>cyberack.RequestId</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>cn2Label="Ticket Id" cn2=(\.*)\s+\S+=</regex>
+  <order>cyberack.TicketId</order>
+</decoder>
+<decoder name="cyberark_fields">
+  <parent>cyberark</parent>
+  <regex>msg=(\.*)</regex>
+  <order>msg</order>
+</decoder>
+

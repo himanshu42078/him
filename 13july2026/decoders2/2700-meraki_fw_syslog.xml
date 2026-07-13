@@ -1,0 +1,108 @@
+<!-- Modify it at your will. -->
+<decoder name="meraki_fw_syslog">
+	<prematch>\d\d\d\d\d\d\d\d\d\d.\d\d\d\d\d\d\d\d\d\sPRIMARY\s|\d\d\d\d\d\d\d\d\d\d.\d\d\d\d\d\d\d\d\d\sSPARE\s|\d\d\d\d\d\d\d\d\d\d.\d\d\d\d\d\d\d\d\d\sMX84\s</prematch>
+</decoder>
+<decoder name="meraki_fw_syslog">
+	<prematch>\d\d\d\d\d\d\d\d\d\d.\d\d\d\d\d\d\sPRIMARY\s|\d\d\d\d\d\d\d\d\d\d.\d\d\d\d\d\d\sSPARE\s|\d\d\d\d\d\d\d\d\d\d.\d\d\d\d\d\d\sMX84\s</prematch>
+</decoder>
+<!-- Meraki FW logs
+Nov  9 14:45:05 192.168.110.1  1636440458.181783689 PRIMARY urls src=192.168.9.91:64281 dst=112.85.219.133:443 mac=00:27:E3:1E:2F:D1 request: UNKNOWN https://wx3.sinaimg.cn/...
+Nov  9 14:45:05 192.168.110.1  1636440458.351917061 PRIMARY ip_flow_start src=192.168.9.91 dst=220.196.144.161 protocol=tcp sport=56947 dport=80 translated_src_ip=58.247.6.13 translated_port=56947
+Nov  9 14:45:05 192.168.110.1  1636440458.351767625 PRIMARY flows src=192.168.9.91 dst=123.6.3.119 mac=00:27:E3:1E:2F:D1 protocol=tcp sport=56946 dport=80 pattern: Group Policy Allow
+-->
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex>\d\d\d\d\d\d\d\d\d\d.\d\d\d\d\d\d\d\d\d\s(\w+)\s</regex>
+	<order>meraki.logsource</order>
+    <!-- avoid using logsource field-->
+</decoder>
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex>\d\d\d\d\d\d\d\d\d\d.\d\d\d\d\d\d\s(\w+)\s</regex>
+	<order>meraki.logsource</order>
+	<!-- avoid using logsource field-->
+</decoder>
+<!--
+  events
+  vpn connectivity change	
+  Dec 6 08:46:12 192.168.1.1 1 1386337584.254756845 MX84 events Cellular connection down
+  Dec 6 08:45:24 192.168.1.1 1 1386337535.803931423 MX84 events failover to wan1
+  Dec 6 08:43:43 192.168.1.1 1 1386337435.108107268 MX84 events failover to cellular
+  Dec 6 08:41:44 192.168.1.1 1 1386337316.207232138 MX84 events Cellular connection up
+-->
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">^(\S+)\s</regex>
+	<order>meraki.event</order>
+</decoder>
+<!-- Sep 11 16:12:41 192.168.10.1 1 1599865961.535491111 MX84 events dhcp no offers for mac A4:83:E7:XX:XX:XX host = 192.168.10.1 -->
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">src=(\d+.\d+.\d+.\d+):(\d+)</regex>
+	<order>srcip,srcport</order>
+</decoder>
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">dst=(\d+.\d+.\d+.\d+):(\d+)</regex>
+	<order>dstip,dstport</order>
+</decoder>
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">protocol=(\S+)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">sport=(\S+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">dport=(\S+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">translated_src_ip=(\S+)</regex>
+	<order>nat_srcip</order>
+</decoder>
+
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">translated_src_port=(\S+)</regex>
+	<order>nat_srcport</order>
+</decoder>
+
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">pattern : (\.+)$</regex>
+	<order>pattern</order>
+</decoder>
+
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">mac=(\S+)</regex>
+	<order>mac</order>
+</decoder>
+
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">agent='(\S+)'</regex>
+	<order>userAgent</order>
+</decoder>
+
+<decoder name="meraki_fw_syslog_fields">
+	<parent>meraki_fw_syslog</parent>
+	<regex offset="after_parent">request: (\S+) (\.+)$</regex>
+	<order>http_method, url</order>
+</decoder>

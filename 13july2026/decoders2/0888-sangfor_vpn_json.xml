@@ -1,0 +1,8 @@
+<decoder name="sangfor_vpn_json">
+    <program_name></program_name>
+    <prematch>^\s*{"id":"\d+","msgid":"\d+","deviceID":"\S+","type":|^\s*{"id":"\d+","msgid":"\d+","userInfo":{"userName":</prematch>
+</decoder>
+<decoder name="sangfor_vpn_json_fields">
+	<parent>sangfor_vpn_json</parent>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

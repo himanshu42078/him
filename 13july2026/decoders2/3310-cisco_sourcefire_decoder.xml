@@ -1,0 +1,106 @@
+<!-- cisco sourcefire Decoder -->
+
+<decoder name="cisco_sourcefire_decoders">
+	<prematch>%NGIPS-|%FTD-</prematch>
+</decoder>
+
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>DeviceUUID: (\S+),</regex>
+	<order>device_uuid</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>AccessControlRuleAction: (\S+),</regex>
+	<order>action</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>SrcIP: (\S+),</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>DstIP: (\S+),</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>SrcPort: (\S+),</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>DstPort: (\S+),</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>Protocol: (\S+),</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>IngressInterface: (\S+),</regex>
+	<order>ingress_interface</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>EgressInterface: (\S+),</regex>
+	<order>egress_interface</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>IngressZone: (\S+),</regex>
+	<order>ingress_zone</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>EgressZone: (\S+),</regex>
+	<order>egress_zone</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>ACPolicy: (\.+),</regex>
+	<order>ac_policy</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>AccessControlRuleName: (\.+),</regex>
+	<order>access_control_rule_name</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>Prefilter Policy: (\.+),</regex>
+	<order>prefilter_policy</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>User: (\.+),</regex>
+	<order>user</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>InitiatorPackets: (\d+),</regex>
+	<order>initiator_packets</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>ResponderPackets: (\d+),</regex>
+	<order>responder_packets</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>InitiatorBytes: (\d+),</regex>
+	<order>initiator_bytes</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>ResponderBytes: (\d+),</regex>
+	<order>responder_bytes</order>
+</decoder>
+<decoder name="cisco_sourcefire_decoders_fields">
+	<parent>cisco_sourcefire_decoders</parent>
+	<regex>NAPPolicy: (\.+)</regex>
+	<order>nap_policy</order>
+</decoder>

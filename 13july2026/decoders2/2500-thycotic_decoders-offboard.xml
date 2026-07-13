@@ -1,0 +1,84 @@
+<decoder name="thycotic">
+	<prematch>\|Thycotic Software\|</prematch>
+	<program_name>CEF</program_name>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>msg=(\.+) \S+=</regex>
+	<order>thycotic.msg</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>Action: [(\.+)]</regex>
+	<order>thycotic.action</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>rt=(\.+) \S+=</regex>
+	<order>thycotic.rt</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>suser=(\.+) \S+=</regex>
+	<order>suser</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>suser=(\.+) \S+=</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>duser=(\.+) \S+=</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>suid=(\.+)\s</regex>
+	<order>thycotic.suid</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>src=(\.+)\s</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>cs3Label=(\S+)</regex>
+	<order>thycotic.cs3Label</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>cs3=(\S+)</regex>
+	<order>thycotic.cs3</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>cs4Label=(\.+) \S+=</regex>
+	<order>thycotic.cs4Label</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>cs4=(\.+) \S+=</regex>
+	<order>thycotic.cs4</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>fname=(\.+)\s</regex>
+	<order>thycotic.filename</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>fileType=(\.+)\s</regex>
+	<order>thycotic.fileType</order>
+</decoder>
+<decoder name="thycotic_secret_server_fields">
+	<parent>thycotic</parent>
+	<regex>fileId=(\.+)\s</regex>
+	<order>thycotic.fileId</order>
+</decoder>

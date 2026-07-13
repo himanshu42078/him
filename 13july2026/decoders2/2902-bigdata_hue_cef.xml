@@ -1,0 +1,54 @@
+<!-- Modify it at your will. -->
+
+<!-- BigData Decoder -->
+
+<!-- Hue -->
+<decoder name="bigdata-hue-cef">
+	<prematch>hue\p+audit\p+log</prematch>
+</decoder>
+
+<decoder name="bigdata-hue-cef-fields">
+	<parent>bigdata-hue-cef</parent>
+	<regex>"username":\s*"(\.*)",</regex>
+	<order>user</order>
+	<!--<order>srcuser</order>-->
+</decoder>
+
+<decoder name="bigdata-hue-cef-fields">
+	<parent>bigdata-hue-cef</parent>
+	<regex>"eventTime":\s*"(\.*)",</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="bigdata-hue-cef-fields">
+	<parent>bigdata-hue-cef</parent>
+	<regex>"operationText":\s*"(\.*)",</regex>
+	<order>opertext</order>
+</decoder>
+
+
+<decoder name="bigdata-hue-cef-fields">
+	<parent>bigdata-hue-cef</parent>
+	<regex>"url":\s*"(\.*)",</regex>
+	<order>url</order>
+</decoder>
+
+
+<decoder name="bigdata-hue-cef-fields">
+	<parent>bigdata-hue-cef</parent>
+	<regex>"allowed":\s*(\.*),</regex>
+	<order>allowed</order>
+</decoder>
+
+<decoder name="bigdata-hue-cef-fields">
+	<parent>bigdata-hue-cef</parent>
+	<regex>"operation":\s*"(\.*)",</regex>
+	<order>operation</order>
+</decoder>
+
+<decoder name="bigdata-hue-cef-fields">
+	<parent>bigdata-hue-cef</parent>
+	<regex>"ipAddress":\s*"(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<!-- Hue End -->

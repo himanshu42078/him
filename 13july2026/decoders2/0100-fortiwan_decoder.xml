@@ -1,0 +1,323 @@
+<!-- Modify it at your will. -->
+<!--
+Example:
+Mar 15 11:33:49 fwn FW PROTO=6 SRC=165.227.98.205.48022 DST=192.168.9.150.22 ACTION=ACCEPT TOTLEN=60
+Mar 15 15:34:14 fwn VS PROTO=6 SRC=185.156.72.52.57425 DST=59.124.31.106.45550 NEW_DST=192.168.6.155.45550 TOTLEN=40
+-->
+
+
+<decoder name="fortiwan">	
+  <prematch>FW\s\.*\sACTION=\S+\sTOTLEN=\d+$</prematch>
+</decoder>
+<decoder name="fortiwan">	
+  <prematch>NAT\s\.*\sNEW_SRC=\S+$</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>AR\s\.*\sAR=\S+\sTOTLEN=\d+$</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>PR\s\.*\sPR=\S+\sTOTLEN=\d+$</prematch>
+</decoder>
+<decoder name="fortiwan">	
+  <prematch>VS\s\.*\sNEW_DST=\S+\sTOTLEN=\d+$</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>BM\s\.*\sINPKTS=\d+\sINBYTES=\d+\sOUTPKTS=\d+\sOUTBYTES=\d+\sTOTALPKTS=\d+\sTOTALBYTES=\d+\sDURATION=\d+SECS$</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>CL\sSRC=\S+\sDROP=\d+$</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>RL\sRULE=\S+\sDROP=\d+$</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>CR\s\.*\sNEW_DST=\S+$</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>MH\sFROM=\S+\sTYPE=\S+\sWLINK=\S+\sREPLY=\S+$</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>DHCP\sWLINK=\S+\sACTION=\S+</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>PPPOE\sWLINK=\S+\sACTION=\S+</prematch>
+</decoder>
+<decoder name="fortiwan">
+  <prematch>MAC\s\.*\sBAD_SRC_MAC=\S+$</prematch>
+</decoder> 
+<decoder name="fortiwan">
+  <prematch>MAC\s\.*\sBAD_DST_MAC=\S+$</prematch>
+</decoder> 
+<decoder name="fortiwan">
+  <prematch>TR\s\.*\sGROUP=\S+\sTOTLEN=\d+$</prematch>
+</decoder> 
+<decoder name="fortiwan">
+  <prematch>TUN\sFROM=\S+\sTO=\S+\sACTION=\S+$</prematch>
+</decoder> 
+<decoder name="fortiwan">
+  <prematch>ISAKMP-SA\s\S+\s\S+-\S+$</prematch>
+</decoder> 
+<!--
+<decoder name="fortiwan">
+  <prematch>IPsec-SA\s\S+: ESP/\S+\s\S+->\S+$</prematch>
+</decoder>
+ -->
+<!--
+FW {IP‐5‐TUPLE} ACTION=[ACCEPT|DENY] TOTLEN=<pktlen>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(FW)\s\.*\sACTION=\S+\sTOTLEN=\d+$</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>ACTION=(\S+)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>TOTLEN=(\d+)</regex>
+	<order>pktlen</order>
+</decoder>
+<!--
+NAT {IP‐5‐TUPLE} NEW_SRC={ADDR}
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(NAT)\s\.*\sNEW_SRC=\S+$</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>sNEW_SRC=(\d+.\d+.\d+.\d+).(\d+)</regex>
+	<order>new_srcip,new_srcport</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>sNEW_SRC=(\d+.\d+.\d+.\d+)</regex>
+	<order>new_srcip</order>
+</decoder>
+<!--
+AR {IP‐5‐TUPLE} AR=[<widx>|NONE] TOTLEN=<pktlen>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(AR)\s\.*\sAR=\S+\sTOTLEN=\d+$</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>AR=(\S+)</regex>
+	<order>widx</order>
+</decoder>
+<!--
+PR {IP‐5‐TUPLE} PR=[<widx>|WAIT_AR|NONE] TOTLEN=<pktlen>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(PR)\s\.*\sPR=\S+\sTOTLEN=\d+$</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>PR=(\S+)</regex>
+	<order>widx</order>
+</decoder>
+<!--
+VS {IP‐5‐TUPLE} NEW_DST={ADDR} TOTLEN=<pktlen>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(VS)\s\.*\sNEW_DST=\S+\sTOTLEN=\d+$</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>NEW_DST=(\d+.\d+.\d+.\d+).(\d+)</regex>
+	<order>new_dstip,new_dstport</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>NEW_DST=(\d+.\d+.\d+.\d+)</regex>
+	<order>new_dstip</order>
+</decoder>
+<!--
+BM {IP‐5‐TUPLE} INPKTS=<%lu> INBYTES=<%lu> OUTPKTS=<%lu> OUTBYTES=<%lu> TOTALPKTS=<%lu> TOTALBYTES=<%lu> DURATION=<%lu>SECS
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(BM)\s\.*\sINPKTS=\d+\sINBYTES=\d+\sOUTPKTS=\d+\sOUTBYTES=\d+\sTOTALPKTS=\d+\sTOTALBYTES=\d+\sDURATION=\d+SECS$</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>INPKTS=(\d+)</regex>
+	<order>inpkts</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>INBYTES=(\d+)</regex>
+	<order>inbytesn</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>OUTPKTS=(\d+)</regex>
+	<order>outpkts</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>TOTALPKTS=(\d+)</regex>
+	<order>totalpkts</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>TOTALBYTES=(\d+)</regex>
+	<order>totalbytes</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>DURATION=(\d+)SECS$</regex>
+	<order>duration</order>
+</decoder>
+<!--
+CL SRC=<ip> DROP=<pkt_number>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(CL)\sSRC=\S+\sDROP=\d+$</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>DROP=(\d+)</regex>
+	<order>drop</order>
+</decoder>
+<!--
+RL RULE=<ridx> DROP=<pkt_number>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(RL)\sRULE=\S+\sDROP=\d+$</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>RULE=(\S+)</regex>
+	<order>rule</order>
+</decoder>
+<!--
+CR {IP‐5‐TUPLE} NEW_DST={ADDR‐PORT}
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(CR)\s\.*\sNEW_DST=\S+$</regex>
+	<order>type</order>
+</decoder>
+<!--
+MH FROM=<ip> TYPE=<A|AAAA> WLINK=<widx> REPLY=<ip>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(MH)\sFROM=(\d+.\d+.\d+.\d+).(\d+)\sTYPE=(\S+)\sWLINK=(\S+)\sREPLY=(\d+.\d+.\d+.\d+).(\d+)$</regex>
+	<order>type,srcip,srcport,tunnel_type,widx,dstip,dstport</order>
+</decoder>
+<!--
+DHCP WLINK=<widx> ACTION=<init|renew|rebind|expired|failed|release|stop|bind> [IP=<ip>]
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(DHCP)\sWLINK=\S+\sACTION=\S+</regex>
+	<order>type</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>IP=(\S+)$</regex>
+	<order>ip</order>
+</decoder> 
+<!--
+PPPOE WLINK=<widx> ACTION=<start|terminated|bind> [IP=<ip>]
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(PPPOE)\sWLINK=\S+\sACTION=\S+</regex>
+	<order>type</order>
+</decoder>
+<!--
+MAC {IP‐5‐TUPLE} BAD_SRC_MAC=<MAC>
+MAC {IP‐5‐TUPLE} BAD_DST_MAC=<MAC>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(MAC)\s\.*\sBAD_SRC_MAC=(\S+)$</regex>
+	<order>type,bad_src_mac</order>
+</decoder> 
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(MAC)\s\.*\sBAD_DST_MAC=(\S+)$</regex>
+	<order>type,bad_dst_mac</order>
+</decoder> 
+<!--
+TR {IP‐5‐TUPLE} GROUP=<group name> TOTLEN=<pktlen>
+TUN FROM=<ip> TO=<ip> ACTION=<start|stop|fail|recover>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>TR\s\.*\sGROUP=(\S+)\sTOTLEN=\d+$</regex>
+	<order>type,tunnel_group</order>
+</decoder> 
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(TUN)\sFROM=(\S+)\sTO=(\S+)\sACTION=\S+$</regex>
+	<order>type,srcip,dstip</order>
+</decoder> 
+
+<!--
+ISAKMP-SA <established|expired|deleted> <LOCAL_IP_PORT>-<REMOTE_IP_PORT>
+IPsec-SA <established|expired>: ESP/<Transport|Tunnel> <LOCAL_IP_PORT>-><REMOTE_ IP_PORT>
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>(ISAKMP-SA)\s(\S+)\s(\d+.\d+.\d+.\d+).(\d+)-(\d+.\d+.\d+.\d+).(\d+)$</regex>
+	<order>type,action,srcip,srcport,dstip,dstport</order>
+</decoder> 
+
+<!--
+Mar 15 11:33:42 fwn FW PROTO=1 SRC=128.1.208.214 DST=1.1.1.2 ID=5468 TYPE=8 CODE=0 ACTION=ACCEPT TOTLEN=60
+Mar 15 11:33:43 fwn FW PROTO=17 SRC=192.168.9.161.51715 DST=168.95.1.1.53 ACTION=ACCEPT TOTLEN=74
+-->
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>PROTO=(\d+)</regex>
+	<order>proto</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>SRC=(\d+.\d+.\d+.\d+).(\d+)</regex>
+	<order>srcip,srcport</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>SRC=(\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>DST=(\d+.\d+.\d+.\d+).(\d+)</regex>
+	<order>dstip,dstport</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>DST=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>ID=(\S+)</regex>
+	<order>icmpid</order>
+</decoder>
+<decoder name="fortiwan-fields">
+	<parent>fortiwan</parent>
+	<regex>TYPE=(\S+)\sCODE=(\S+)</regex>
+	<order>icmptype,icmpcode</order>
+</decoder>

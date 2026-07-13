@@ -1,0 +1,33 @@
+<!-- Modify it at your will. -->
+
+<!-- Hive -->
+<decoder name="bigdata-hive-cef">
+	<program_name>Hive</program_name>
+</decoder>
+
+<decoder name="bigdata-hive-cef-fields">
+	<parent>bigdata-hive-cef</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+<decoder name="bigdata-hive-cef-fields">
+	<parent>bigdata-hive-cef</parent>
+	<regex>"reqUser":"(\.*)",</regex>
+	<order>srcuser</order>
+</decoder>
+
+<decoder name="bigdata-hive-cef-fields">
+	<parent>bigdata-hive-cef</parent>
+	<regex>"cliIP":"(\.*)",</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="bigdata-hive-cef-fields">
+	<parent>bigdata-hive-cef</parent>
+	<regex>"agentHost":"(\.*)",</regex>
+	<order>srchost</order>
+</decoder>
+
+
+
+<!-- Hive END -->

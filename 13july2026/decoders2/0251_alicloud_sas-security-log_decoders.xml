@@ -1,0 +1,121 @@
+<!--Alicloud SAS Security Log Decoder-->
+<!-- Sample Log 1:
+1 2020-07-13T21:00:42.000000+0700 alicloud-sas-hangzhou hangzhou - - '|status=1|data_source=aegis_suspicious_event|uuid=bf926238-0291-4732-b3bf-e292b900e754|level=serious|__source__=log_service|unique_info=725a4d240d4b584bf9bbba22b03bceea|__topic__=sas-security-log|detail={"lastTime":1594645237000,"level":"high","proc_path":"/var/opt/kaspersky/kesl/10.1.1.6421_1561618064/opt/kaspersky/kesl/libexec/kesl","ip":"10.0.3.147","messageId":"MSG_ID_NULL","pid":"572","eventType":"\xe6\x81\xb6\xe6\x84\x8f\xe8\xbf\x9b\xe7\xa8\x8b\xef\xbc\x88\xe4\xba\x91\xe6\x9f\xa5\xe6\x9d\x80\xef\xbc\x89","ext_content":"{\\"cmdline\\":\\"/opt/kaspersky/kesl/libexec/kesl\\",\\"proc_path\\":\\"/var/opt/kaspersky/kesl/10.1.1.6421_1561618064/opt/kaspersky/kesl/libexec/kesl\\",\\"malicious_port\\":\\"80\\",\\"pid\\":\\"572\\",\\"malicious_ip\\":\\"124.238.243.10\\",\\"ppid\\":\\"570\\"}","type":"suspEvent","ppid":"570","firstTime":1594645237000,"event_type":"\xe6\x81\xb6\xe6\x84\x8f\xe8\xbf\x9b\xe7\xa8\x8b\xef\xbc\x88\xe4\xba\x91\xe6\x9f\xa5\xe6\x9d\x80\xef\xbc\x89","cmdline":"/opt/kaspersky/kesl/libexec/kesl","eventName":"\xe8\xae\xbf\xe9\x97\xae\xe6\x81\xb6\xe6\x84\x8fIP","event_name":"\xe8\xae\xbf\xe9\x97\xae\xe6\x81\xb6\xe6\x84\x8fIP","malicious_port":"80","tag":"725a4d240d4b584bf9bbba22b03bceea","malicious_ip":"124.238.243.10","time":"2020-07-13 21:00:37","ruleId":"\xe8\xae\xbf\xe9\x97\xae\xe6\x81\xb6\xe6\x84\x8fIP","notice":true,"status":1}|op=new|name=Malicious Process-Access malicious IP'
+Sample Log 2:
+1 2020-07-13T21:00:31.000000+0700 alicloud-sas-hangzhou hangzhou - - '|status=1|data_source=aegis_suspicious_event|uuid=493e7602-06a9-4e1e-9c2c-2e01aaa2816e|level=serious|__source__=log_service|unique_info=c0728c6bf97e3cd965d267021d9e9058|__topic__=sas-security-log|detail={"lastTime":1594645225000,"level":"high","proc_path":"/var/opt/kaspersky/kesl/10.1.1.6421_1562208430/opt/kaspersky/kesl/libexec/kesl","ip":"10.0.1.72","messageId":"MSG_ID_NULL","pid":"587","eventType":"\xe6\x81\xb6\xe6\x84\x8f\xe8\xbf\x9b\xe7\xa8\x8b\xef\xbc\x88\xe4\xba\x91\xe6\x9f\xa5\xe6\x9d\x80\xef\xbc\x89","ext_content":"{\\"cmdline\\":\\"/opt/kaspersky/kesl/libexec/kesl\\",\\"proc_path\\":\\"/var/opt/kaspersky/kesl/10.1.1.6421_1562208430/opt/kaspersky/kesl/libexec/kesl\\",\\"malicious_port\\":\\"80\\",\\"pid\\":\\"587\\",\\"malicious_ip\\":\\"124.238.243.15\\",\\"ppid\\":\\"586\\"}","type":"suspEvent","ppid":"586","firstTime":1594645225000,"event_type":"\xe6\x81\xb6\xe6\x84\x8f\xe8\xbf\x9b\xe7\xa8\x8b\xef\xbc\x88\xe4\xba\x91\xe6\x9f\xa5\xe6\x9d\x80\xef\xbc\x89","cmdline":"/opt/kaspersky/kesl/libexec/kesl","eventName":"\xe8\xae\xbf\xe9\x97\xae\xe6\x81\xb6\xe6\x84\x8fIP","event_name":"\xe8\xae\xbf\xe9\x97\xae\xe6\x81\xb6\xe6\x84\x8fIP","malicious_port":"80","tag":"c0728c6bf97e3cd965d267021d9e9058","malicious_ip":"124.238.243.15","time":"2020-07-13 21:00:25","ruleId":"\xe8\xae\xbf\xe9\x97\xae\xe6\x81\xb6\xe6\x84\x8fIP","notice":true,"status":1}|op=new|name=Malicious Process-Access malicious IP'
+-->
+<!--Decoder Prematch-->
+<decoder name="sas-security-log">
+	<prematch>__topic__=sas-security-log</prematch>
+</decoder>
+<!--SAS Security Log fields-->
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>\|status=(\S+)\|</regex>
+	<order>status</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>\|data_source=(\S+)\|</regex>
+	<order>sas.data_source</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>\|uuid=(\S+)\|</regex>
+	<order>sas.uuid</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>\|level=(\S+)\|</regex>
+	<order>sas.level</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>\|__source__=(\S+)\|</regex>
+	<order>sas.source</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>unique_info=(\S+)\|</regex>
+	<order>sas.unique_info</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>\|op=(\S+)\|</regex>
+	<order>sas.op</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>\|name=(\.*)'</regex>
+	<order>sas.event_name</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"firstTime":(\d+),</regex>
+	<order>sas.firstTime</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"lastTime":(\d+),</regex>
+	<order>sas.last_time</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"proc_path":"(\.*)","ip":</regex>
+	<order>sas.process_path</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"ip":"(\d+.\d+.\d+.\d+)",</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"messageId":"(\S+)","pid"</regex>
+	<order>sas.messageId</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"pid":"(\d+)"</regex>
+	<order>processId</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"eventType":"(\.*)","ext_content"</regex>
+	<order>sas.eventType</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"cmdline\\\\":\\\\"(.*)\\\\",\\\\"proc_path"</regex>
+	<order>cmdline</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"malicious_port\\\\":\\\\"(\d+)\\\\"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"malicious_ip\\\\":\\\\"(\d+.\d+.\d+.\d+)\\\\"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>ppid":"(\d+)"</regex>
+	<order>parent_processId</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"type":"(\w+)",</regex>
+	<order>sas.type</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"event_name":"(\.*)","malicious_port"</regex>
+	<order>eventName</order>
+</decoder>
+<decoder name="sas-fields">
+	<parent>sas-security-log</parent>
+	<regex>"ruleId":"(\.*)","notice"</regex>
+	<order>ruleId</order>
+</decoder>

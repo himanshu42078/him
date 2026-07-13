@@ -1,0 +1,10 @@
+<!-- Modify it at your will. -->
+<!-- Sas_system comb03 Decoder -->
+<decoder name="sas_system">
+  <prematch>New\sclient\sconnection\s\(\d+\)\s\w+\sfrom\sserver\sport\s\d+\sfor\sSAS\stoken\suser</prematch>
+</decoder>
+<decoder name="sas_system-fields">
+  <parent>sas_system</parent>
+  <regex>user\s(\w+).</regex>
+  <order>dstuser</order>
+</decoder>

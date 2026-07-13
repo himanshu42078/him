@@ -1,0 +1,774 @@
+<!-- DEV-427 -->
+<!--
+https://knowledge.broadcom.com/external/article/155205/external-logging-settings-and-log-event.html
+-->
+
+<!--
+Administrative logs
+-->
+<decoder name="sepm-administrative">
+	<program_name>SymantecServer</program_name>
+	<prematch>Site: (\.*),Server Name: (\.*),Domain Name: (\.*),Admin: (\.*),EventContent:(\.*)</prematch>
+</decoder>
+<decoder name="sepm-administrative-fields">
+	<parent>sepm-administrative</parent>
+	<regex>Site: (\.*),Server Name: (\.*),Domain Name: (\.*),Admin: (\.*),EventContent: (\.*)</regex>
+	<order>symantecServer.site_name, symantecServer.server_name, symantecServer.sepm_domain_name, symantecServer.admin_name, symantecServer.event_description</order>
+</decoder>
+<decoder name="sepm-administrative-fields">
+	<parent>sepm-administrative</parent>
+	<regex>(\.+)$</regex>
+	<order>symantecServer.payload</order>
+</decoder>
+
+<!--
+Agent Activity logs
+
+Aug 30 18:21:47 HXDINFPROSEP1 SymantecServer: Site: Site HXDINFPROSEP1,Server Name: HXDINFPROSEP1,Domain Name: Default,The client has downloaded the content package successfully,haeco.com,jos.wintel.samuel,HAECO.COM
+-->
+<decoder name="sepm-activity">
+	<program_name>SymantecServer</program_name>
+	<prematch>Site: (\.*),Server Name: (\.*),Domain Name: (\.*),(\.*),(\.*),(\.*),(\.*)</prematch>
+</decoder>
+<decoder name="sepm-activity-fields">
+	<parent>sepm-activity</parent>
+	<regex>Site: (\.*),Server Name: (\.*),Domain Name: (\.*),(\.*),(\.*),(\.*),(\.*)</regex>
+	<order>symantecServer.site_name, symantecServer.server_name, symantecServer.sepm_domain_name, symantecServer.event_description, symantecServer.host_name, dstuser, symantecServer.domain_name</order>
+</decoder>
+<decoder name="sepm-activity-fields">
+	<parent>sepm-activity</parent>
+	<regex>(\.+)$</regex>
+	<order>symantecServer.payload</order>
+</decoder>
+
+<!--
+Agent Scan logs
+
+Aug 30 18:33:16 HXDINFPROSEP1 SymantecServer: Scan ID: 1661128191,Begin: 2022-08-30 18:14:56,End Time: 2022-08-30 18:15:50,Completed,Duration (seconds): 54,User1: SYSTEM,User2: SYSTEM,Scan started on selected drives and folders and all extensions.,Scan Complete:  Risks: 0   Scanned: 1093   Files/Folders/Drives Omitted: 0 Trusted Files Skipped: 726,Command: Not a command scan (),Threats: 0,Infected: 0,Total files: 1093,Omitted: 0,Computer: HXBINFPROPWC02,IP Address: 10.81.19.13,Domain Name: Default,Group Name: My Company\SDC\SDC Server,Server Name: HXDINFPROSEP1,Scan Type: DefWatch
+-->
+<decoder name="sepm-scan">
+	<program_name>SymantecServer</program_name>
+	<prematch>Scan ID: (\d+),Begin: (\.*),End Time: (\.*),(\S+),Duration \(seconds\): (\d+),User1: (\.*),User2: (\.*),(\.*),(\.*),Command: (\.*),Threats: (\d+),Infected: (\d+),Total files: (\d+),Omitted: (\d+),Computer: (\.*),IP Address: (\.*),Domain Name: (\.*),Group Name: (\.*),Server Name: (\.*)</prematch>
+</decoder>
+<decoder name="sepm-scan-fields">
+	<parent>sepm-scan</parent>
+	<regex>Scan ID: (\d+),Begin: (\.*),End Time: (\.*),(\S+),Duration \(seconds\): (\d+),User1: (\.*),User2: (\.*),(\.*),(\.*),Command: (\.*),Threats: (\d+),Infected: (\d+),Total files: (\d+),Omitted: (\d+),Computer: (\.*),IP Address: (\.*),Domain Name: (\.*),Group Name: (\.*),Server Name: (\.*)</regex>
+	<order>symantecServer.scan_id, symantecServer.start_datetime, symantecServer.end_datetime, symantecServer.status, symantecServer.duration, srcuser, dstuser, symantecServer.message1, symantecServer.message2, symantecServer.command, symantecServer.threats, symantecServer.infected, symantecServer.total_files, symantecServer.omitted, symantecServer.computer, dstip, symantecServer.domain_name, symantecServer.group_name, symantecServer.server_name</order>
+</decoder>
+<decoder name="sepm-scan-fields">
+	<parent>sepm-scan</parent>
+	<regex>(\.+)$</regex>
+	<order>symantecServer.payload</order>
+</decoder>
+
+<!--
+Agent Traffic logs
+
+	Aug 30 18:50:29 HXDINFPROSEP1 SymantecServer: PC191052_AFS,Local Host IP: 0.0.0.0,Local Port: 35020,Local Host MAC: 0180C200000E,Remote Host IP: 0.0.0.0,Remote Host Name: ,Remote Port: 0,Remote Host MAC: C81FEA8D020E,ETHERNET,Inbound,Begin: 2022-08-30 11:48:44,End Time: 2022-08-30 11:48:44,Occurrences: 1,Application: ,Rule: Block all other traffic,Location: BM,User Name: 102020,Domain Name: HXDOM1,Action: Blocked,SHA-256: ,MD-5: 
+-->
+<decoder name="sepm-traffic">
+	<program_name>SymantecServer</program_name>
+	<prematch>(\.*),Local Host IP: (\.*),Local Port: (\d+),Local Host MAC: (\.*),Remote Host IP: (\.*),Remote Host Name: (\.*),Remote Port: (\d+),Remote Host MAC: (\.*),(\.*),(\.*),Begin: (\.*),End Time: (\.*),Occurrences: (\d+),Application: (\.*),Rule: (\.*),Location: (\.*),User Name: (\.*),Domain Name: (\.*),\.*Action: (\.*),</prematch>
+</decoder>
+<decoder name="sepm-traffic-fields">
+	<parent>sepm-traffic</parent>
+	<regex>(\.*),Local Host IP: \.*,Local Port: \d+,Local Host MAC: (\.*),Remote Host IP: \.*,Remote Host Name: (\.*),Remote Port: \d+,Remote Host MAC: (\.*),(\.*),(\.*),Begin: (\.*),End Time: (\.*),Occurrences: (\d+),Application: (\.*),Rule: (\.*),Location: (\.*),User Name: (\.*),Domain Name: (\.*),\.*Action: (\.*),</regex>
+	<order>symantecServer.host_name, symantecServer.local_mac, symantecServer.remote_host_name, symantecServer.remote_mac, protocal, symantecServer.direction, symantecServer.start_datetime, symantecServer.end_datetime, symantecServer.occurrences, symantecServer.application_name, symantecServer.rule_name, symantecServer.location_name, srcuser, symantecServer.domain_name, action</order>
+</decoder>
+<decoder name="sepm-traffic-fields">
+        <parent>sepm-traffic</parent>
+        <regex>Local Host IP: (\S+),Local Port: (\d+),\.*,Inbound,</regex>
+        <order>dstip, dstport</order>
+</decoder>
+<decoder name="sepm-traffic-fields">
+        <parent>sepm-traffic</parent>
+        <regex>Remote Host IP: (\S+),\.*,Remote Port: (\d+),\.*,Inbound,\.*,</regex>
+        <order>srcip, srcport</order>
+</decoder>
+<decoder name="sepm-traffic-fields">
+        <parent>sepm-traffic</parent>
+        <regex>Local Host IP: (\S+),Local Port: (\d+),\.*,Outbound,</regex>
+        <order>srcip, srcport</order>
+</decoder>
+<decoder name="sepm-traffic-fields">
+        <parent>sepm-traffic</parent>
+        <regex>Remote Host IP: (\S+),\.*,Remote Port: (\d+),\.*,Outbound,</regex>
+        <order>dstip, dstport</order>
+</decoder>
+
+<decoder name="sepm-traffic-fields">
+	<parent>sepm-traffic</parent>
+	<regex>(\.+)$</regex>
+	<order>symantecServer.payload</order>
+</decoder>
+<decoder name="sepm-traffic-fields">
+	<parent>sepm-traffic</parent>
+	<regex>,User Name: (\.*),</regex>
+	<order>dstuser</order>
+</decoder>
+
+<!--
+Agent Security logs
+
+Aug 31 09:17:45 HXDINFPROSEP1 SymantecServer: NB221017_IT,Event Description: [SID: 32939] Audit: TeamViewer Remote Access Activity attack detected but not blocked. Application path: C:\USERS\344771\APPDATA\LOCAL\TEMP\TEAMVIEWER\TEAMVIEWER.EXE,Event Type: ,Local Host IP: 10.81.88.146,Local Host MAC: 000000000000,Remote Host Name: ,Remote Host IP: 169.38.74.18,Remote Host MAC: 000000000000,Outbound,TCP,Allowed,Begin: 2022-08-31 09:16:11,End Time: 2022-08-31 09:16:11,Occurrences: 1,Application: C:/USERS/344771/APPDATA/LOCAL/TEMP/TEAMVIEWER/TEAMVIEWER.EXE,Location: BM,User Name: 344771,Domain Name: HXDOM1,Local Port: 60282,Remote Port: 5938,CIDS Signature ID: 32939,CIDS Signature string: Audit: TeamViewer Remote Access Activity,CIDS Signature SubID: 65537,Intrusion URL: ,Intrusion Payload URL: ,SHA-256: 52CCDA7496320582CBFF6A33E9FF268D0D3C13E1D6BECE0FC16CCF75322F1E6B,MD-5: ,Intensive Protection Level: N/A,URL Risk: N/A,URL Category: N/A
+
+Mar 21 14:47:46 CODVPSEPAPP01 SymantecServer: MPELC36DC01,Event Description: [SID: 32939] Audit: TeamViewer Remote Access Activity attack detected but not blocked. Application path: C:\USERS\344771\APPDATA\LOCAL\TEMP\TEAMVIEWER\TEAMVIEWER.EXE,Local: 10.112.150.11,Local Host MAC: 000000000000,Remote Host Name: ,Remote Host IP: 8.8.8.8,Remote Host MAC: 000000000000,Outbound,UDP,Intrusion ID: 0,Begin: 2023-03-21 14:47:07,End: 2023-03-21 14:47:07,Occurrences: 1,Application: C:/WINDOWS/SYSTEM32/DNS[.]EXE,Location: Centrium & Cyberport,User: domain_admin_cyark5,Domain: MPEL,Local Port: 55889,Remote Port: 53,CIDS Signature ID: 33590,CIDS Signature string: Audit: Ngrok Activity 2,CIDS Signature SubID: 65536,Intrusion URL: ,Intrusion Payload URL: ,SHA-256: 830DB8427582E91CB6A903D695F5D49CF6168470A8FDF3B886BED8940D4F39AB,MD-5:
+-->
+<decoder name="sepm-security">
+	<program_name>SymantecServer</program_name>
+	<prematch>^\.*,Event Description:|^\.*,"Event Description:</prematch>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>^(\.*),</regex>
+	<order>symantecServer.host_name</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>Event Description: (\.*). Application path: (\.*),|"Event Description: (\.*). Application path: (\.*)"</regex>
+	<order>symantecServer.event_description, symantecServer.application_path</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>Event Description: (\.*). Description: (\.*),|"Event Description: (\.*). Description: (\.*)"</regex>
+	<order>symantecServer.event_description, symantecServer.description</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>Event Description: (\.*),|"Event Description: (\.*)"</regex>
+	<order>symantecServer.event_description</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>Event Type: (\.*),Local Host IP: (\.*),Local Host MAC: (\.*),Remote Host Name: (\.*),Remote Host IP: (\.*),Remote Host MAC: (\.*),(\.*),(\.*),(\.*),Begin: (\.*),End Time: (\.*),Occurrences: (\d+),Application: (\.*),Location: (\.*),User Name: (\.*),Domain Name: (\.*),Local Port: \d+,Remote Port: \d+,CIDS Signature ID: (\.*),CIDS Signature string: (\.*),CIDS Signature SubID: (\.*),Intrusion URL: (\.*),Intrusion Payload URL: (\.*),SHA-256: (\S*),MD-5: (\S*),Intensive Protection Level: (\.*),URL Risk: (\.*),</regex>
+	<order>symantecServer.event_type, symanctecServer.local_host_ip, symantecServer.local_mac, symantecServer.remote_host_name, symantecServer.remote_host_ip, symantecServer.remote_mac, symantecServer.direction, protocol, symantecServer.hack_type, symantecServer.start_datetime, symantecServer.end_datetime, symantecServer.occurrences, symantecServer.application_name, symantecServer.location_name, dstuser, symantecServer.domain_name, symantecServer.CIDS_signature_id, symantecServer.CIDS_signature_string, symantecServer.CIDS_signature_subid, symantecServer.intrusion_url, symantecServer.intrusion_payload_url, symantecServer.sha256_hash, symantecServer.md5_hash, symantecServer.intensive_protection_level,symantecServer.url_risk</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>"URL Category: (\.*)"$|URL Category: (\.*)$</regex>
+	<order>symantecServer.url_category</order>
+</decoder>
+<decoder name="sepm-security-fields">
+        <parent>sepm-security</parent>
+        <regex>Local Host IP: (\S+),\.*,Inbound,\.*,Local Port: (\d+),</regex>
+        <order>dstip, dstport</order>
+</decoder>
+<decoder name="sepm-security-fields">
+        <parent>sepm-security</parent>
+        <regex>Remote Host IP: (\S+),\.*,Inbound,\.*,Remote Port: (\d+),</regex>
+        <order>srcip, srcport</order>
+</decoder>
+<decoder name="sepm-security-fields">
+        <parent>sepm-security</parent>
+        <regex>Local Host IP: (\S+),\.*,Outbound,\.*,Local Port: (\d+),</regex>
+        <order>srcip, srcport</order>
+</decoder>
+<decoder name="sepm-security-fields">
+        <parent>sepm-security</parent>
+        <regex>Remote Host IP: (\S+),\.*,Outbound,\.*,Remote Port: (\d+),</regex>
+        <order>dstip, dstport</order>
+</decoder>
+
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>(\.+)$</regex>
+	<order>symantecServer.payload</order>
+</decoder>
+
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,User: (\.*),</regex>
+	<order>dstuser</order>
+</decoder>
+
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Local: (\.*),</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Local Host MAC: (\.*),</regex>
+	<order>symantecServer.local_mac</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Remote Host Name: (\.*),</regex>
+	<order>symantecServer.remote_host_name</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Remote Host IP: (\.*),</regex>
+	<order>symantecServer.remote_host_ip</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Remote Host MAC: (\.*),(\S*),(\.*),</regex>
+	<order>symantecServer.remote_host_mac,symantecServer.direction,protocol</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Intrusion ID: (\d*),</regex>
+	<order>symantecServer.intrusion_id</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Begin: (\.*),</regex>
+	<order>symantecServer.start_datetime</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,End: (\.*),</regex>
+	<order>symantecServer.end_datetime</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Occurrences: (\d*),</regex>
+	<order>symantecServer.occurrences</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Application: (\.*),</regex>
+	<order>symantecServer.application</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Location: (\.*),</regex>
+	<order>symantecServer.location</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,User: (\.*),</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Domain: (\.*),</regex>
+	<order>symantecServer.domain_name</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Local Port: (\d*),</regex>
+	<order>symantecServer.local_port</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Remote Port: (\d*),</regex>
+	<order>symantecServer.remote_port</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,CIDS Signature ID: (\d*),</regex>
+	<order>symantecServer.CIDS_signature_id</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,CIDS Signature string: (\.*),</regex>
+	<order>symantecServer.CIDS_signature_string</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,CIDS Signature SubID: (\.*),</regex>
+	<order>symantecServer.CIDS_signature_subid</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Intrusion URL: (\.*),</regex>
+	<order>symantecServer.intrusion_url</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,Intrusion Payload URL: (\.*),</regex>
+	<order>symantecServer.intrusion_payload_url</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,SHA-256: (\.*),</regex>
+	<order>symantecServer.sha256_hash</order>
+</decoder>
+<decoder name="sepm-security-fields">
+	<parent>sepm-security</parent>
+	<regex>,MD-5: (\.*),</regex>
+	<order>symantecServer.md5_hash</order>
+</decoder>
+
+<!--
+Agent Risk logs
+
+Dec 12 16:26:55 HXDINFPROSEP1 SymantecServer: Security risk found,IP Address: 10.81.72.126,Computer name: PC191444_DOCK,Source: Auto-Protect scan,Risk name: PUA.Keygen,Occurrences: 1,File path: C:\Users\Dock3-j\AppData\Local\Temp\collab_low\SPOON\CACHE\0x8AD6C74255D9B4F4\sxs\x86_Adobe.Acrobat.Dependencies@10.0.0.0\amtlib.dll,Description: AP realtime deferred scanning,Actual action: Quarantined,Requested action: Quarantined,Secondary action: Quarantined,Event time: 2022-12-12 16:26:03,Event Insert Time: 2022-12-12 16:26:55,End Time: 2022-12-12 16:26:03,Last update time: 2022-12-12 16:26:55,Domain Name: Default,Group Name: My Company\HKG\PC,Server Name: HXDINFPROSEP1,User Name: Dock3-J,Source Computer Name: ,Source Computer IP: ,Disposition: Bad,Download site: ,Web domain: ,Downloaded by: c:/users/dock3-j/desktop/acrobat dc 2019 portable/sandbox/adobe acrobat dc 2019/local/stubexe/0x400a38bad0733fd3/adobecollabsync.exe,Prevalence: This file has been seen by hundreds of thousands of Symantec users.,Confidence: There is strong evidence that this file is untrustworthy.,URL Tracking Status: On,First Seen: Symantec has known about this file for more than 1 year.,Sensitivity: ,Allowed application reason: Not on the allow list,Application hash: 649F3B0148C4F8202B0C2D24A490A99523ACC0BD3245C08499162B94CA5D30A5,Hash type: SHA2,Company name: painter,Application name: AMTEmu,Application version: 10.0.0.3BuildVersion: 10.0; BuildDate: Thu Apr 21 2016 3:6:38),Application type: 127,File size (bytes): 48640,Category set: Security risk,Category type: Security Risk,Location: BM,Intensive Protection Level: 0,Certificate issuer: ,Certificate signer: ,Certificate thumbprint: ,Signing timestamp: 0,Certificate serial number: 
+-->
+<decoder name="sepm-risk">
+        <program_name>SymantecServer</program_name>
+        <prematch>\.*,IP Address: \.*,Computer name: \.*,Source: \.*,Risk name: \.*,Occurrences: \.*,</prematch>
+</decoder>
+<decoder name="sepm-risk-fields">
+        <parent>sepm-risk</parent>
+        <regex>(\.*),IP Address: (\.*),Computer name: (\.*),Source: (\.*),Risk name: (\.*),Occurrences: (\.*),File path: (\.*),Description: (\.*),Actual action: (\.*),Requested action: (\.*),Secondary action: (\.*),Event time: (\.*),Event Insert Time: (\.*),End Time: (\.*),Last update time: (\.*),Domain Name: (\.*),Group Name: (\.*),Server Name: (\.*),User Name: (\.*),Source Computer Name: (\.*),Source Computer IP: (\.*),Disposition: (\.*),Download site: (\.*),Web domain: (\.*),Downloaded by: (\.*),Prevalence: (\.*),Confidence: (\.*),URL Tracking Status: (\.*),First Seen: (\.*),Sensitivity: (\.*),Allowed application reason: (\.*),Application hash: (\.*),Hash type: (\.*),Company name: (\.*),Application name: (\.*),Application version: (\.*),Application type: (\.*),File size \(bytes\): (\.*),Category set: (\.*),Category type: (\.*)</regex>
+        <order>symantecServer.event_description,dstip,symantecServer.computer_name,symantecServer.scan_source,symantecServer.virus_name,symantecServer.occurrences,symantecServer.file_path,symantecServer.event_description,symantecServer.actual_action,symantecServer.requested_action,symantecServer.secondary_action,symantecServer.event_time,symantecServer.event_insert_time,symantecServer.end_time,symantecServer.last_update_time,symantecServer.domain_name,symantecServer.group_name,symantecServer.server_name,dstuser,symantecServer.source_computer_name,srcip,symantecServer.disposition,symantecServer.donwload_site,domain,symantecServer.download_by,symantecServer.prevalence,symantecServer.confidence,symantecServer.url_tracking_status,symantecServer.first_seen,symantecServer.sensitivity,symantecServer.allowed_application_reason,symantecServer.application_hash,symantecServer.hash_type,symantecServer.company_name,symantecServer.application_name,symantecServer.application_version,symantecServer.application_type,symantecServer.file_size,symantecServer.category_set,symantecServer.category_type</order>
+</decoder>
+<decoder name="sepm-risk-fields">
+        <parent>sepm-risk</parent>
+        <regex>(\.*),IP Address: (\.*),Computer name: (\.*),Source: (\.*),Risk name: (\.*),Occurrences: (\.*),(\.*),(\.*),Actual action: (\.*),Requested action: (\.*),Secondary action: (\.*),Event time: (\.*),Inserted: (\.*),End: (\.*),Last update time: (\.*),Domain: (\.*),Group: (\.*),Server: (\.*),User: (\.*),Source Computer: (\.*),Source IP: (\.*),Disposition: (\.*),Download site: (\.*),Web domain: (\.*),Downloaded by: (\.*),Prevalence: (\.*),Confidence: (\.*),URL Tracking Status: (\.*),,First Seen: (\.*),Sensitivity: (\.*),(\.*),Application hash: (\.*),Hash type: (\.*),Company name: (\.*),Application name: (\.*),Application version: (\.*),Application type: (\.*),File size \(bytes\): (\.*),Category set: (\.*),Category type: (\.*)</regex>
+        <order>symantecServer.event_description,dstip,symantecServer.computer_name,symantecServer.scan_source,symantecServer.virus_name,symantecServer.occurrences,symantecServer.file_path,symantecServer.event_description,symantecServer.actual_action,symantecServer.requested_action,symantecServer.secondary_action,symantecServer.event_time,symantecServer.event_insert_time,symantecServer.end_time,symantecServer.last_update_time,symantecServer.domain_name,symantecServer.group_name,symantecServer.server_name,dstuser,symantecServer.source_computer_name,srcip,symantecServer.disposition,symantecServer.donwload_site,domain,symantecServer.download_by,symantecServer.prevalence,symantecServer.confidence,symantecServer.url_tracking_status,symantecServer.first_seen,symantecServer.sensitivity,symantecServer.allowed_application_reason,symantecServer.application_hash,symantecServer.hash_type,symantecServer.company_name,symantecServer.application_name,symantecServer.application_version,symantecServer.application_type,symantecServer.file_size,symantecServer.category_set,symantecServer.category_type</order>
+</decoder>
+<decoder name="sepm-risk-fields">
+        <parent>sepm-risk</parent>
+        <regex>Location: (\.*),Intensive Protection Level: (\.*),Certificate issuer: (\.*),Certificate signer: (\.*),Certificate thumbprint: (\.*),Signing timestamp: (\.*),Certificate serial number: (\.*)</regex>
+        <order>symantecServer.location,symantecServer.intensive_protection_level,symantecServer.certificate_issuer,symantecServer.certificate_signer,symantecServer.certificate_thumbprint,symantecServer.signing_timestamp,symantecServer.certificate_serial_number</order>
+</decoder>
+
+<decoder name="sepm-risk-fields">
+	<parent>sepm-risk</parent>
+	<regex>(\.+)$</regex>
+	<order>symantecServer.payload</order>
+</decoder>
+
+<!--
+Agent Behavior logs
+
+Jun 17 16:28:25 HXDINFPROSEP1 SymantecServer: PC201545_TS,10.81.76.197,Continue," - Caller SHA256=b99d61d874728edc0918ca0eb10eab93d381e7367e377406e65963366c874450 - Target Arguments='-ExecutionPolicy Bypass -NoProfile -Command 'Add-Type 'using System; using System.Diagnostics; using System.Diagnostics.Tracing; namespace Sense { [EventData(Name = \'Onboarding\')]public struct Onboarding{public string Message { get; set; }} public class Trace {public static EventSourceOptions TelemetryCriticalOption = new EventSourceOptions(){Level = EventLevel.Informational, Keywords = (EventKeywords)0x0000200000000000, Tags = (EventTags)0x0200000}; public void WriteOnboardingMessage(string message){es.Write(\'OnboardingScript\', TelemetryCriticalOption, new Onboarding {Message = message});} private static readonly string[] telemetryTraits = { \'ETW_GROUP\', \'{5ECB0BAC-B930-47F5-A8A4-E8253529EDB7}\' }; private EventSource es = new EventSource(\'Microsoft.Windows.Sense.Client.Management\',EventSourceSettings.EtwSelfDescribingEventFormat,telemetryTraits);}}'; $logger = New-Object -TypeName Sense.Trace; $logger.WriteOnboardingMessage('Successfully onboarded machine to Microsoft Defender for Endpoint')' '",Create Process,Begin: 2023-06-17 15:57:25,End Time: 2023-06-17 15:57:26,Rule: Powershell Session Restriction | Launch Process Attempts,11736,C:/Windows/System32/cmd.exe,0,No Module Name,C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe,User Name: SYSTEM,Domain Name: NT AUTHORITY,Action Type: ,File size (bytes): 452608,Device ID: SCSI\Disk&Ven_TOSHIBA&Prod_DT01ACA050\4&5796c24&0&000000
+-->
+<decoder name="sepm-behavior">
+	<program_name>SymantecServer</program_name>
+	<prematch>^\.*,\d+\.\d+\.\d+\.\d+,\.+,"\.+",\.*,Begin: \.*,End Time: \.*,Rule: \.*,\.*,\.*,\.*,\.*,\.*,User Name: \.*,Domain Name: \.*,Action Type: \.*,File size \(bytes\): \d*,Device ID: \.*</prematch>
+</decoder>
+
+<decoder name="sepm-behavior-fields">
+	<parent>sepm-behavior</parent>
+	<regex>^(\.*),(\d+\.\d+\.\d+\.\d+,\.+),"(\.+)",(\.*),Begin: (\.*),End Time: (\.*),Rule: (\.*),(\.*),(\.*),(\.*),(\.*),(\.*),User Name: (\.*),Domain Name: (\.*),Action Type: (\.*),File size \(bytes\): (\d*),Device ID: (\.*)</regex>
+	<order>symantecServer.host_name,srcip,action,symantecServer.event_description,symantecServer.api_name,symantecServer.begin_time,symantecServer.end_time,symantecServer.rule_name,symantecServer.process_id,symantecServer.process_name,symantecServer.caller_return_address,symantecServer.caller_return_module,symantecServer.parameters,srcuser,symantecServer.domain_name,symantecServer.action_type,symantecServer.file_size,symantecServer.device_id</order>
+</decoder>
+
+<decoder name="sepm-behavior-fields">
+	<parent>sepm-behavior</parent>
+	<regex>(\.+)$</regex>
+	<order>symantecServer.payload</order>
+</decoder>
+
+<decoder name="symantec-endpoint-protection">
+	<program_name>SymantecServer</program_name>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex offset="after_parent">(\.+)$</regex>
+	<order>symantecServer.payload</order>
+</decoder>
+<!-- Nov 28 04:50:42 Tsymantecpv01 SymantecServer: Compressed File,IP Address: 192.168.110.123,Computer name: RDS16HOST03,Intensive Protection Level: 0,Certificate issuer: ,Certificate signer: ,Certificate thumbprint: ,Signing timestamp: 0,Certificate serial number: ,Source: Scheduled scan,Risk name: Heur[.]AdvML.B,Occurrences: 1,C:\$Recycle[.]Bin\S-1-5-21-2857402018-3677419238-435161019-21426\$RZW6HXL[.]eml,Still contains 1 infected items,Actual action: Quarantined,Requested action: Quarantined,Secondary action: Left alone,Event time: 2020-11-28 04:49:35,Inserted: 2020-11-28 04:50:42,End: 2020-11-28 04:49:35,Last update time: 2020-11-28 04:50:42,Domain: Default,Group: My Company\Server,Server: Tsymantecpv01,User: SYSTEM,Source computer: ,Source IP: ,Disposition: Good,Download site: null,Web domain: null,Downloaded by: null,Prevalence: Reputation was not used in this detection.,Confidence: Reputation was not used in this detection.,URL Tracking Status: Off,,First Seen: Reputation was not used in this detection.,Sensitivity: Low,Not on the permitted application list,Application hash: ,Hash type: SHA1,Company name: ,Application name: ,Application version: ,Application type: -1,File size (bytes): 0,Category set: Malware,Category type: Heuristic Virus,Location: Default
+Dec 14 21:51:55 HK1SEP02 SymantecServer: Virus found,IP Address: 192.168.130.218,Computer name: WIN7IDCCN01,Intensive Protection Level: 0,Certificate issuer: 上海展盟网络科技有限公司,Certificate signer: VeriSign Class 3 Code Signing 2010 CA,Certificate thumbprint: 50A9E557FD20D1497AFA20C83A9F391205BD3F28,Signing timestamp: 1562208974,Certificate serial number: 2C2ACD9E52B3FC9524229D8D213D8758,Source: DefWatch,Risk name: Trojan[.]Gen.9,Occurrences: 1,C:\Program Files\abcviewer\ABC看图\ShellExt64[.]dll,,Actual action: Cleaned,Requested action: Cleaned,Secondary action: Left alone,Event time: 2020-12-14 21:50:35,Inserted: 2020-12-14 21:51:55,End: 2020-12-14 21:50:43,Last update time: 2020-12-14 21:51:55,Domain: Default,Group: My Company\Default Group,Server: HK1SEP02,User: SYSTEM,Source computer: ,Source IP: ,Disposition: Bad,Download site: ,Web domain: ,Downloaded by: ,Prevalence: This file has been seen by thousands of Symantec users.,Confidence: There is strong evidence that this file is untrustworthy.,URL Tracking Status: Off,,First Seen: Reputation was not used in this detection.,Sensitivity: ,Not on the permitted application list,Application hash: 1C531BBE44906284989F824729985FF2ACCBBAE74609816B19D9709A66E49E3C,Hash type: SHA2,Company name: 上海展盟网络科技有限公司,Application name: ABC看图,Application version: 3.0.0.2,Application type: 127,File size (bytes): 2522528,Category set: Malware,Category type: Heuristic Virus,Location: -->
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>SymantecServer: (\.*),IP Address:</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,IP Address: (\.*),</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Computer name: (\.*),</regex>
+	<order>computer_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Computer name: (\.*),</regex>
+	<order>system_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Intensive Protection Level: (\.*),</regex>
+	<order>intensive_protection_level</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Certificate issuer: (\.*),</regex>
+	<order>certificate_issuer</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Certificate signer: (\.*),</regex>
+	<order>certificate_signer</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Certificate thumbprint: (\.*),</regex>
+	<order>certificate_thumbprint</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Signing timestamp: (\.*),</regex>
+	<order>signing_timestamp</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Certificate serial number: (\.*),</regex>
+	<order>certificate_serial_number</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Source: (\.*),</regex>
+	<order>source</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Risk name: (\.*),</regex>
+	<order>risk_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Occurrences: (\.*),</regex>
+	<order>occurrences</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Occurrences:\.*,(\.*),(\.*),Actual action:</regex>
+	<order>filepath,status</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Actual action: (\.*),</regex>
+	<order>action</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Actual action: (\.*),</regex>
+	<order>actual_action</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Requested action: (\.*),</regex>
+	<order>requested_action</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Secondary action: (\.*),</regex>
+	<order>secondary_action</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Event time: (\.*),</regex>
+	<order>event_time</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Inserted: (\.*),</regex>
+	<order>inserted</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,End: (\.*),</regex>
+	<order>end</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Last update time: (\.*),</regex>
+	<order>last_update_time</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Domain: (\.*),</regex>
+	<order>domain</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Group: (\.*),</regex>
+	<order>group</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Server: (\.*),</regex>
+	<order>server</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,User: (\.*),</regex>
+	<order>user</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Source computer: (\.*),</regex>
+	<order>source_computer</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Source IP: (\.*),</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Disposition: (\.*),</regex>
+	<order>disposition</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Download site: (\.*),</regex>
+	<order>download_site</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Web domain: (\.*),</regex>
+	<order>web_domain</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Downloaded by: (\.*),</regex>
+	<order>downloaded_by</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Prevalence: (\.*),</regex>
+	<order>prevalence</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Confidence: (\.*),</regex>
+	<order>confidence</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,URL Tracking Status: (\.*),</regex>
+	<order>url_tracking_status</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,First Seen: (\.*),</regex>
+	<order>first_seen</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Sensitivity: (\.*),</regex>
+	<order>sensitivity</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Application hash: (\.*),</regex>
+	<order>hash</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Application hash: (\.*),</regex>
+	<order>application_hash</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Hash type: (\.*),</regex>
+	<order>hash_type</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Company name: (\.*),</regex>
+	<order>company_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Application name: (\.*),</regex>
+	<order>application_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Application version: (\.*),</regex>
+	<order>application_version</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Application type: (\.*),</regex>
+	<order>application_type</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,File size (bytes): (\.*),</regex>
+	<order>file_size</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Category set: (\.*),</regex>
+	<order>category_set</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Category type: (\.*),</regex>
+	<order>category_type</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Location: (\.*),|,Location: (\.*)</regex>
+	<order>location</order>
+</decoder>
+<!-- Dec 14 16:27:02 HK1SEP02 SymantecServer: HKHOWTTLX017,SHA-256: FBABDB68BA095638602AEABF903599DB281452040E2BBD3A1BA6491E23DAE2AD,MD-5: ,[SID: 31651] Audit: Malicious Domain Request 3 attack detected but not blocked. Application path: C:\PROGRAM FILES (X86)\GOOGLE\CHROME\APPLICATION\CHROME[.]EXE,Local: 192.168.0.191,Local: 000000000000,Remote: ,Remote: 23.7.212.252,Remote: 000000000000,Inbound,TCP,Intrusion ID: 0,Begin: 2020-12-14 12:35:42,End: 2020-12-14 12:35:42,Occurrences: 1,Application: C:/PROGRAM FILES (X86)/GOOGLE/CHROME/APPLICATION/CHROME[.]EXE,Location: Default,User: WinniePong,Domain: RILEY,Local Port 51208,Remote Port 443,CIDS Signature ID: 31651,CIDS Signature string: Audit: Malicious Domain Request 3,CIDS Signature SubID: 73327,Intrusion URL: ,Intrusion Payload URL:
+Dec 14 16:27:02 HK1SEP02 SymantecServer: HKHOWTTLX017,SHA-256: FBABDB68BA095638602AEABF903599DB281452040E2BBD3A1BA6491E23DAE2AD,MD-5: ,[SID: 31651] Audit: Malicious Domain Request 3 attack detected but not blocked. Application path: C:\PROGRAM FILES (X86)\GOOGLE\CHROME\APPLICATION\CHROME[.]EXE,Local: 192.168.0.191,Local: 000000000000,Remote: ,Remote: 23.7.212.252,Remote: 000000000000,Inbound,TCP,Intrusion ID: 0,Begin: 2020-12-14 14:35:42,End: 2020-12-14 14:35:42,Occurrences: 1,Application: C:/PROGRAM FILES (X86)/GOOGLE/CHROME/APPLICATION/CHROME[.]EXE,Location: Default,User: WinniePong,Domain: RILEY,Local Port 51923,Remote Port 443,CIDS Signature ID: 31651,CIDS Signature string: Audit: Malicious Domain Request 3,CIDS Signature SubID: 73327,Intrusion URL: ,Intrusion Payload URL: -->
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>SymantecServer: (\.*),SHA-256:</regex>
+	<order>system_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,SHA-256: (\.*),</regex>
+	<order>sha256_hash</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,MD-5: (\.*),</regex>
+	<order>md5_hash</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,MD-5:\.*,(\.*.) Application path:</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,MD-5:\.*,(\.*. application):</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>SymantecServer: (\.+),SHA-256</regex>
+	<order>symantecServer</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>. Application path: (\.*),</regex>
+	<order>application_path</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>. Application path: (\.*),</regex>
+	<order>file_path</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Local: (\d+.\d+.\d+.\d+),\.+,\.+,Outbound,|,Remote: (\d+.\d+.\d+.\d+),\.+,Inbound,</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Local: (\d+.\d+.\d+.\d+),\.+,\.+,Inbound,|,Remote: (\d+.\d+.\d+.\d+),\.+,Outbound,</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Outbound,\.+,Local Port (\.*),|,Inbound,\.+,Remote Port (\.*),</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Inbound,\.+,Local Port (\.*),|,Outbound,\.+,Remote Port (\.*),</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>Remote:\.*,Remote:\.*,Remote:\.*,(\.*),(\.*),Intrusion ID:</regex>
+	<order>direction,protocol</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Intrusion ID: (\.*),</regex>
+	<order>intrusion_id</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Begin: (\.*),</regex>
+	<order>begin</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,End: (\.*),</regex>
+	<order>end</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,End Time: (\.*),</regex>
+	<order>end</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Occurrences: (\.*),</regex>
+	<order>occurrences</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Application: (\.*),</regex>
+	<order>application</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,User: (\.*),</regex>
+	<order>user</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Domain: (\.*),</regex>
+	<order>domain</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,CIDS Signature ID: (\.*),</regex>
+	<order>CIDS_signature_id</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,CIDS Signature string: (\.*),</regex>
+	<order>CIDS_signature_string</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,CIDS Signature SubID: (\.*),</regex>
+	<order>CIDS_signature_subid</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Intrusion URL: (\.*),</regex>
+	<order>intrusion_url</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Intrusion Payload URL: (\.*),</regex>
+	<order>intrusion_payload_url</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>^\.*,(\.*). Application path:</regex>
+	<order>symantecServer.event_description</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Rule: (\.*),</regex>
+	<order>symantecServer.rule_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,User Name: (\.*),</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,User Name: (\.*),</regex>
+	<order>symantecServer.user_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,File size \S+: (\d*),</regex>
+	<order>symantecServer.file_size</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Device ID: (\.*),|,Device ID: (\.*)</regex>
+	<order>symantecServer.device_id</order>
+</decoder>
+<!-- Agent Behavior logs -->
+<!-- 
+Apr 11 16:27:02 HK1SEP02 SymantecServer: NB3808,10.11.16.40,Blocked,[AC3-1.1] Block writing to removable drives - Caller MD5=4e2aeae2720996cb3d7c3f4c7f2ab036,File Delete,Begin: 2023-04-11 17:04:37,End Time: 2023-04-11 17:04:37,Rule: Block writing to removable media | [AC3-1.1] Block writing to all files and folders,12064,C:/Windows/System32/SearchIndexer.exe,0,No Module Name,d:/System Volume Information,User Name: SYSTEM,Domain Name: hkmcadm,Action Type: ,File size (bytes): 0,Device ID: USBSTOR\Disk&Ven_Barco&Prod_ClickShare&Rev_0328\7&8ac60a&0&02.00.00.01.12.00.0000_0000&0
+Apr 11 16:27:02 HK1SEP02 SymantecServer: NB1685,10.11.21.59,Continue,This rule will log all applications that writing files to any USB device that add a drive letter to your system. - Caller MD5=4e2aeae2720996cb3d7c3f4c7f2ab036,File Write,Begin: 2023-04-06 12:39:02,End Time: 2023-04-06 12:39:10,Rule: Log files written to USB drives | [AC5-1.1] Log writing to USB drives,12532,C:/Windows/System32/SearchIndexer.exe,0,No Module Name,d:/System Volume Information,User Name: SYSTEM,Domain Name: HKMCDM,Action Type: ,File size (bytes): 0,Device ID: USBSTOR\Disk&Ven_Kingston&Prod_DT2000&Rev_01\200916AF660106C4468EE933&0
+-->
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>^(\.*),(\d+.\d+.\d+.\d+),(\S*),(\.*),(\.*),Begin:</regex>
+	<order>symantecServer.host_name,srcip,action,symantecServer.event_description,symantecServer.api_name</order>
+</decoder>
+<decoder name="symantec-endpoint-protection-fields">
+	<parent>symantec-endpoint-protection</parent>
+	<regex>,Domain Name: (\.*),</regex>
+	<order>symantecServer.domain_name</order>
+</decoder>

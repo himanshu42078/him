@@ -1,0 +1,60 @@
+<decoder name="pulse-secure">
+	<program_name>PulseSecure</program_name>
+</decoder>
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex offset="after_parent">(\d+-\d+-\d+ \d+:\d+:\d+) - (\S+)</regex>
+	<order>timestamp, vpn</order>
+</decoder>
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex offset="after_regex"> - [(\.*)]</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex offset="after_regex"> (\.*)::(\.*)\(\.*\)</regex>
+	<order>realm,dstuser</order>
+</decoder>
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex offset="after_regex">[(\.*)]</regex>
+	<order>roles</order>
+</decoder>
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex offset="after_regex">- (\.*)$</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex>[\d+.\d+.\d+.\d+] (\.+)\(\.+\)[\.+]</regex>
+	<order>dstuser</order>
+</decoder>
+<!--
+Apr 11 09:58:32 nwdsslvpn01.nwd.nws PulseSecure: 2022-04-11 09:58:32 - NWDSSLVPN02 - [210.6.15.44] Default Network::NWD-EDP-NT\maxsit(NWD)[NWD_Webmail_Users] - WebRequest completed, POST to https://mail.nwd.com.hk:443//owa/service.svc?action=GetCalendarView&EP=1&UA=0&ID=-31&AC=1 from 10.32.6.78 result=200 sent=75 received=210 in 1 seconds
+-->
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex>WebRequest completed, (\S+) to (\.*) from (\d+.\d+.\d+.\d+) result=(\d+) sent=(\d+) received=(\d+) in (\d+) seconds</regex>
+	<order>act,url,srcip,status,bytes_sent,bytes_received,duration</order>
+</decoder>
+
+<!--
+Apr  8 22:44:09 nwdsslvpn01.nwd.nws PulseSecure: 2022-04-08 22:44:13 - NWDSSLVPN01 - [93.38.0.200] Default Network::NWD-EDP-NT\patriziamagnani(NWD)[NWD_OutlookAnywhere, NWD_Webmail_Users] - Login succeeded for NWD-EDP-NT\patriziamagnani/NWD (session:sidc85d7b08335ea93a47420e8716a1f913c551922a9344d9e2) from 93.38.0.200 with Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36 .
+Dec 22 01:16:55 vpn01 PulseSecure: 2022-12-22 01:16:55 - ive - [127.0.0.1] System()[] - Agent login succeeded for kevin.wu/Riley (session:side1fc95337bc78d3975cc3e1199a055bcb06458a900000000) from 116.23.123.218 with Pulse-Secure/9.1.12.10249 (Windows 10) Pulse/9.1.12.10249 FIPSClient.
+-->
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex>Login succeeded for \.* \(session:(\.*)\) from (\d+.\d+.\d+.\d+) with (\.*).</regex>
+	<order>session,srcip,agent</order>
+</decoder>
+
+<!--
+Apr 11 09:58:31 nwdsslvpn01.nwd.nws PulseSecure: 2022-04-11 09:58:31 - NWDSSLVPN02 - [210.6.15.44] Default Network::NWD-EDP-NT\maxsit(NWD)[NWD_Webmail_Users] - WebRequest ok : Host: mail.nwd.com.hk, Request: GET /owa/prem/15.1.2176.14/scripts/microsoft.owa.calendar.core.js HTTP/1.1
+-->
+<decoder name="pulse-secure-fields">
+	<parent>pulse-secure</parent>
+	<regex>WebRequest ok : Host: (\.*), Request: (\S+) (\S+) (\S+)</regex>
+	<order>url_domain,act,url,protocol</order>
+</decoder>

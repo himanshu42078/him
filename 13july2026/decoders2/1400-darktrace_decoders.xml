@@ -1,0 +1,66 @@
+<decoder name="darktrace-syslog">
+	<program_name>LEEF</program_name>
+	<prematch>1.0\|Darktrace\|DCIP</prematch>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex>1.0\|Darktrace\|DCIP\|\.*\|(\.+)\|</regex>
+	<order>event_info</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">externalId=(\.+)\t</regex>
+	<order>external_id</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tsrc=(\.+)\t</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tmessage=(\.+)\t</regex>
+	<order>message</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tsrcType=(\.+)\t</regex>
+	<order>src_type</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tsev=(\.+)\t</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tpid=(\.+)\t</regex>
+	<order>pid</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tdarktraceUrl=(\.+)$</regex>
+	<order>darktraceUrl</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tdst=(\.+)\t</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tshost=(\.+)\t</regex>
+	<order>src_host</order>
+</decoder>
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\tsrcMAC=(\.+)\t</regex>
+	<order>src_MAC</order>
+</decoder>
+<!--
+<decoder name="darktrace-syslog-fields">
+	<parent>darktrace-syslog</parent>
+	<regex offset="after_parent">\t=(\.+)\t</regex>
+	<order></order>
+</decoder>
+-->

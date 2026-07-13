@@ -1,0 +1,63 @@
+<decoder name="alicloud">
+	<prematch>^\d \d+-\d+-\d+T\d+:\d+:\d+.\d+\S+</prematch>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>\d (\d+-\d+-\d+T\d+:\d+:\d+.\d+\S+) (\S+) (\S+)</regex>
+	<order>timestamp,logsource,region</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>status=(\.+)\|status=(\.+)</regex>
+	<order>status</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>proc_path=(\.+)\|proc_path=(\.+)</regex>
+	<order>proc_path</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>uuid=(\.+)\|uuid=(\.+)</regex>
+	<order>uuid</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>proto=(\.+)\|proto=(\.+)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>src_ip=(\.+)\|src_ip=(\.+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>src_port=(\.+)\|src_port=(\.+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>dst_port=(\.+)\|dst_port=(\.+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>dst_ip=(\.+)\|dst_ip=(\.+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>proc_name=(\.+)\|proc_name=(\.+)</regex>
+	<order>proc_name</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>__topic__=(\.+)\|__topic__=(\.+)</regex>
+	<order>topic</order>
+</decoder>
+<decoder name="alicloud-fields">
+	<parent>alicloud</parent>
+	<regex>__source__=(\.+)\|__source__=(\.+)</regex>
+	<order>source</order>
+</decoder>

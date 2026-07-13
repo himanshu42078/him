@@ -1,0 +1,13 @@
+<decoder name="SAP">
+    <prematch>SAP_SAL</prematch>
+</decoder>
+<decoder name="SAP-fields">
+	<parent>SAP</parent>
+    <regex>message_id=(\.*) date=(\.*) time=(\.*) term1=(\.*) os_process_id=(\.*) term2=(\.*) work_process_number=(\.*) sap_process=(\.*) WP=(\.*) term3=(\.*) user=(\.*) transaction=(\.*) app=(\.*) client=(\.*) term4=(\.*) message=(\.*) src=(\.*) severity=(\.*) message=(\.*)</regex>
+    <order>message_id,date,time,term1,os_process_id,term2,work_process_number,sap_process,WP,term3,user,transaction,app,client,term4,message_raw,src,severity,message</order>
+</decoder>
+<decoder name="SAP-fields">
+	<parent>SAP</parent>
+    <regex>^(\.*): SAP_SAL:</regex>
+    <order>logsource</order>
+</decoder>

@@ -1,0 +1,42 @@
+<!-- 
+Dec  6 18:19:02 HKSTPSSW02 raslogd: AUDIT, 2022/12/06-18:19:02 (HKT), [SEC-3022], INFO, SECURITY, admin/admin/172.32.12.1/ssh/CLI, ad_0/HKSTPSSW02/FID 128, 8.1.2d, , , , , , , Event: logout, Status: success, Info: Successful logout by user [admin].
+Dec  6 18:17:08 HKSTPSSW02 raslogd: AUDIT, 2022/12/06-18:17:08 (HKT), [RAS-3005], INFO, CLI, admin/admin/172.32.12.1/ssh/CLI, ad_0/BrocadeG620/CHASSIS, 8.1.2d, , , , , , , CLI: cfgshow
+Dec  6 18:11:49 HKSTPSSW02 raslogd: AUDIT, 2022/12/06-18:11:49 (HKT), [ZONE-3002], INFO, ZONE, admin/admin/172.32.12.1/ssh/CLI, ad_0/HKSTPSSW02/FID 128, 8.1.2d, , , , , , , Event: alicreate, Status: success, Info: Alias "HKSTPTRHV06_P1" created with Alias member(s) "10:00:00:62:0b:42:9c:c4".
+Dec  6 18:11:49 HKSTPSSW02 raslogd: AUDIT, 2022/12/06-18:11:49 (HKT), [ZONE-3002], INFO, SECURITY, admin/admin/172.32.12.123/ssh/CLI, ad_0/HKSTPSSW02/FID 128, 8.1.2d, , , , , , , Event: login, Status: failed, Info: Failed login attempt via HTTP, IP Addr: 172.32.12.123.
+-->
+<decoder name="raslogd">
+    <program_name>raslogd</program_name>
+    <prematch>^AUDIT, \d\d\d\d/\d\d/\d\d-\d\d:\d\d:\d\d \S+, [\S+],</prematch>
+</decoder>
+
+<decoder name="raslogd-fields">
+    <parent>raslogd</parent>
+    <regex>AUDIT, \.+, [(\S+)], (\S+), (\S+), (\S+)/(\S+)/(\S+)/(\S+)/(\S+), ad_0/(\S+)/(\.+),</regex>
+    <order>event_id, severity, event_class, user_id, role, srcip, interface, application_name, admin_domain, switch_name</order>
+</decoder>
+
+<decoder name="raslogd-fields">
+    <parent>raslogd</parent>
+    <regex>, Event: (\S+),</regex>
+    <order>event</order>
+</decoder>
+<decoder name="raslogd-fields">
+    <parent>raslogd</parent>
+    <regex>, Status: (\S+),</regex>
+    <order>status</order>
+</decoder>
+<decoder name="raslogd-fields">
+    <parent>raslogd</parent>
+    <regex>, Info: (\.+),|, Info: (\.+).</regex>
+    <order>info</order>
+</decoder>
+<decoder name="raslogd-fields">
+    <parent>raslogd</parent>
+    <regex>, CLI: (\S+)</regex>
+    <order>cli</order>
+</decoder>
+<decoder name="raslogd-fields">
+    <parent>raslogd</parent>
+    <regex>, IP Addr: (\S+)</regex>
+    <order>srcip</order>
+</decoder>

@@ -1,0 +1,52 @@
+<decoder name="juniper-wlc100">
+	<prematch>^fpc\d+</prematch>
+</decoder>
+
+<decoder name="juniper-wlc100_fields">
+	<parent>juniper-wlc100</parent>
+	<regex>] (\.+):|]: (\.+);</regex>
+	<order>juniper-wlc100.event</order>
+</decoder>
+
+<decoder name="juniper-wlc100_fields">
+	<parent>juniper-wlc100</parent>
+	<regex>spd = (\d+)</regex>
+	<order>juniper-wlc100.spd</order>
+</decoder>
+
+<decoder name="juniper-wlc100_fields">
+	<parent>juniper-wlc100</parent>
+	<regex>dpx = (\d+)</regex>
+	<order>juniper-wlc100.dpx</order>
+</decoder>
+
+<decoder name="juniper-wlc100_fields">
+	<parent>juniper-wlc100</parent>
+	<regex>an = (\d+)</regex>
+	<order>juniper-wlc100.an</order>
+</decoder>
+
+<decoder name="juniper-wlc100_fields">
+	<parent>juniper-wlc100</parent>
+	<regex>fc = (\d+)</regex>
+	<order>juniper-wlc100.fc</order>
+</decoder>
+
+<decoder name="juniper-wlc100_fields">
+	<parent>juniper-wlc100</parent>
+	<regex>esi (\S+),</regex>
+	<order>juniper-wlc100.esi</order>
+</decoder>
+
+<decoder name="juniper-wlc100_fields">
+	<parent>juniper-wlc100</parent>
+	<regex>mode 0 df type: (\d+)</regex>
+	<order>juniper-wlc100.mode-0-df-type</order>
+</decoder>
+
+<decoder name="juniper-wlc100_fields">
+	<parent>juniper-wlc100</parent>
+	<regex>pref 0 dp: (\d+)</regex>
+	<order>juniper-wlc100.pref-0-dp</order>
+</decoder>
+

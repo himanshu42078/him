@@ -1,0 +1,11 @@
+<!-- 	DEV-2337 -->
+<!-- 	Dec  9 15:48:14 192.168.6.28  INFO "2022-12-09 15:48:14.938 GMT+0800"  0.0.0.0 sctwvipeg:1812 0 0 49243 "text=Authentication Success for user [chenll]. StatusCode: 0, StatusMessage: Success" Thread-9540 VSAuthOTPStandardControllerImpl.cpp -->
+<!-- 	Dec  9 15:48:14 192.168.6.28  AUDIT "2022-12-09 15:48:14.938 GMT+0800"  192.1.28.2 sctwvipeg:1812 0 0 49244 "text=Access GRANTED 0x0: Success&tokenid=SYMC92958382 ,reason=0&tokenid=SYMC92958382; Success" Thread-9540 VSValidationEngine.c -->
+<decoder name="symantec_vip">
+    <prematch>INFO "\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d.\d* GMT+\d*"  \d+.\d+.\d+.\d+ \S*:\d* \d+ \d+|AUDIT "\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d.\d* GMT+\d*"  \d+.\d+.\d+.\d+ \S*:\d* \d+ \d+</prematch>
+</decoder>
+<decoder name="symantec_vip_fields">
+    <parent>symantec_vip</parent>
+    <regex>^\s(\.*) "(\.*)"  (\.*) (\.*):\d* (\d*) (\d*) (\d*) "(\.*)"</regex>
+    <order>loglevel,datetime,clientip,component,sessionid,transactionid,errorcode,message</order>
+</decoder>

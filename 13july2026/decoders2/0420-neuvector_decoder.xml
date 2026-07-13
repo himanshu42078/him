@@ -1,0 +1,456 @@
+<decoder name="neuvector">
+	<prematch>/usr/local/bin/controller[\d\d\d\d\d\d\s</prematch>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>\p(\d+)\p(\d+) (\d+-\d+-\d+T\d+:\d+:\S+) (\S+) (\S+) (\S+)</regex>
+	<order>neuvector.priorityVal,neuvector.version,neuvector.timestamp,neuvector.podId,neuvector.loc,neuvector.val</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+   <parent>neuvector</parent>
+   <regex>neuvector\s-\snotification=(\S+),</regex>
+   <order>neuvector.notification</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+   <parent>neuvector</parent>
+   <regex>name=(\S+),</regex>
+   <order>neuvector.name</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+   <parent>neuvector</parent>
+   <regex>level=(\S+),</regex>
+   <order>neuvector.info</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+   <parent>neuvector</parent>
+   <regex>reported_timestamp=(\S+),</regex>
+   <order>neuvector.reportedTimestamp</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+   <parent>neuvector</parent>
+   <regex>reported_at=(\S+),</regex>
+   <order>neuvector.reportedAt</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+   <parent>neuvector</parent>
+   <regex>cluster_name=(\S+),</regex>
+   <order>neuvector.clusterName</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+   <parent>neuvector</parent>
+   <regex>host_id=(\S+),</regex>
+   <order>neuvector.hostId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+   <parent>neuvector</parent>
+   <regex>host_name=(\S+),</regex>
+   <order>neuvector.hostName</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>enforcer_id=(\S+),enforcer_name=(\S+),</regex>
+	<order>neuvector.enforcerId,neuvector.enforcerName</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>controller_id=(\S+),</regex>
+	<order>neuvector.controllerId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>controller_name=(\S+),</regex>
+	<order>neuvector.controllerName</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>workload_id=(\S+),workload_name=(\S+),workload_domain=(\S+),workload_image=(\S+),workload_service=(\S+),</regex>
+	<order>neuvector.workloadId,neuvector.workloadName,neuvector.workloadDomain,neuvector.workloadImage,neuvector.workloadService</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>workload_id=(\S+),workload_name=(\S+),workload_image=(\S+),workload_service=(\S+),</regex>
+	<order>neuvector.workloadId,neuvector.workloadName,neuvector.workloadImage,neuvector.workloadService</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>category=(\S+),</regex>
+	<order>neuvector.category</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>user=(\S+),</regex>
+	<order>neuvector.user</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>user_roles=(\S+),</regex>
+	<order>neuvector.userRoles</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>user_addr=(\S+),</regex>
+	<order>neuvector.userAddr</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>user_session=(\S+),</regex>
+	<order>neuvector.userSession</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>message=(\.*)$</regex>
+	<order>neuvector.message</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>rest_method=(\S+),</regex>
+	<order>neuvector.restMethod</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>rest_request=(\S+),rest_body=(\S+),message=(\.+)</regex>
+	<order>neuvector.restRequest,neuvector.restBody,neuvector.message</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>rest_body={(\.+)},</regex>
+	<order>neuvector.restBody</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>,id=(\S+),</regex>
+	<order>id</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>proc_name=(\S+),</regex>
+	<order>neuvector.procName</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>proc_path=(\S+),</regex>
+	<order>neuvector.procPath</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>proc_parent_path=(\S+),</regex>
+	<order>neuvector.procParentPath</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>action=(\S+),</regex>
+	<order>neuvector.action</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>action=(\S+),group=(\S+),</regex>
+	<order>neuvector.action,neuvector.group</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>rule_id=(\S+),</regex>
+	<order>neuvector.ruleId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>aggregation_from=(\S+),</regex>
+	<order>neuvector.aggregationFrom</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>count=(\S+),</regex>
+	<order>neuvector.count</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>threat_id=(\S+),</regex>
+	<order>neuvector.threatId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_workload_id=(\S+),</regex>
+	<order>neuvector.clientWorkloadId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_workload_name=(\S+),</regex>
+	<order>neuvector.clientWorkloadName</order>
+</decoder>
+
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_workload_domain=(\S+),</regex>
+	<order>neuvector.clientWorkloadDomain</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_workload_image=(\S+),</regex>
+	<order>neuvector.clientWorkloadImage</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_workload_service=(\S+),</regex>
+	<order>neuvector.clientWorkloadService</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_workload_id=(\S+),</regex>
+	<order>neuvector.serverWorkloadId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_workload_name=(\S+),</regex>
+	<order>neuvector.serverWorkloadName</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>severity=(\S+),</regex>
+	<order>neuvector.severity</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>ether_type=(\S+),</regex>
+	<order>neuvector.etherType</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_port=(\S+),</regex>
+	<order>neuvector.clientPort</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_port=(\S+),</regex>
+	<order>neuvector.serverPort</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_conn_port=(\S+),</regex>
+	<order>neuvector.serverConnPort</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>icmp_code=(\S+),</regex>
+	<order>neuvector.icmpCode</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>icmp_type=(\S+),</regex>
+	<order>neuvector.icmpType</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>ip_proto=(\S+),</regex>
+	<order>neuvector.ipProto</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_ip=(\S+),</regex>
+	<order>neuvector.clientIp</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_ip=(\S+),</regex>
+	<order>neuvector.serverIp</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>application=(\S*),sensor=(\S*),group=(\S*),target=</regex>
+	<order>neuvector.application,neuvector.sensor,neuvector.group</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>target=(\S+),monitor=(\S+),</regex>
+	<order>neuvector.target,neuvector.monitor</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_id=(\S+),</regex>
+	<order>neuvector.clientId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_name=(\S+),</regex>
+	<order>neuvector.clientName</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_domain=(\S+),</regex>
+	<order>neuvector.clientDomain</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_image=(\S+),</regex>
+	<order>neuvector.clientImage</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>client_service=(\S+),</regex>
+	<order>neuvector.clientService</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_id=(\S+),</regex>
+	<order>neuvector.serverId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_name=(\S+),</regex>
+	<order>neuvector.serverName</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>applications=[(\.+)],</regex>
+	<order>neuvector.applications</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>servers=[(\.+)],</regex>
+	<order>neuvector.servers</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>sessions=(\S+),</regex>
+	<order>neuvector.sessions</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>policy_action=(\S+),</regex>
+	<order>neuvector.policyAction</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>policy_id=(\S+),</regex>
+	<order>neuvector.policyId</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>xff=(\.+)</regex>
+	<order>neuvector.xff</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>proc_cmd=(\.+),proc_effective_user=(\S+),</regex>
+	<order>neuvector.procCmd,neuvector.procEffectiveUser</order>
+</decoder>
+
+<!--<decoder name="neuvector-fields">-->
+<!--	<parent>neuvector</parent>-->
+<!--	<regex>proc_effective_user=(\S+),</regex>-->
+<!--	<order>neuvector.procEffectiveUser</order>-->
+<!--</decoder>-->
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>file_path=(\S+),</regex>
+	<order>neuvector.filePath</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_workload_image=(\S+),</regex>
+	<order>neuvector.serverWorkloadImage</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>server_workload_service=(\S+),</regex>
+	<order>neuvector.serverWorkloadService</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>high_vul_cnt=(\S+),</regex>
+	<order>neuvector.highVulCnt</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>medium_vul_cnt=(\S+),</regex>
+	<order>neuvector.mediumVulCnt</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>message=(\.*),items=[(\.+)]</regex>
+	<order>neuvector.message,neuvector.items</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>base_os=(\S+),</regex>
+	<order>neuvector.baseOs</order>
+</decoder>
+
+<decoder name="neuvector-fields">
+	<parent>neuvector</parent>
+	<regex>cvedb_version=(\S+),</regex>
+	<order>neuvector.cvedbVersion</order>
+</decoder>
+
+

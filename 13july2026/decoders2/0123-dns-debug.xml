@@ -1,0 +1,34 @@
+<!-- DNS-Debug Decoder -->
+<decoder name="dns-debug">
+	<prematch>\s\S\S\S\S\sPACKET\s+\w\w\w\w\w\w\w\w\w\w\w\w\w\w\w\w\s</prematch>
+</decoder>
+<decoder name="dns-debug-fields">
+	<parent>dns-debug</parent>
+	<regex>(\w\w\w)\s+(\w\w\w)\s+(\d*.\d*.\d*.\d*)\s+\S\S\S\S\s+(R)\s+(Q)\s+[(\d\d\d\d)\.+(\w+)]\s+(\w+)\s+(\S*)$</regex>
+	<order>protocol,dns.direction,srcip,dns.response,dns.request,dns.flag,dns.rcode,dns.rrtype,dns.domain</order>
+</decoder>
+<decoder name="dns-debug-fields">
+	<parent>dns-debug</parent>
+	<regex>(\w\w\w)\s+(\w\w\w)\s+(\d*.\d*.\d*.\d*)\s+\S\S\S\S\s+(Q)\s+[(\d\d\d\d)\.+(\w+)]\s+(\w+)\s+(\S*)$</regex>
+	<order>protocol,dns.direction,srcip,dns.request,dns.flag,dns.rcode,dns.rrtype,dns.domain</order>
+</decoder>
+<decoder name="dns-debug-fields">
+	<parent>dns-debug</parent>
+	<regex>\(\d+\)(\w+\(\d+\)\w+\(2\)\w+)\(0\)$</regex>
+	<order>dns.domain_extract</order>
+</decoder>
+<decoder name="dns-debug-fields">
+	<parent>dns-debug</parent>
+	<regex>\(\d+\)(\w+\(3\)\w+)\(0\)$</regex>
+	<order>dns.domain_extract</order>
+</decoder>
+<decoder name="dns-debug-fields">
+	<parent>dns-debug</parent>
+	<regex>\(\d+\)(\w+)\(\S*\d+\)\w+\(\d+\)\w+\(2\)\w+\(0\)$</regex>
+	<order>dns.last_subdomain_extract</order>
+</decoder>
+<decoder name="dns-debug-fields">
+	<parent>dns-debug</parent>
+	<regex>\(\d+\)(\w+)\(\S*\d+\)\w+\(3\)\w+\(0\)$</regex>
+	<order>dns.last_subdomain_extract</order>
+</decoder>

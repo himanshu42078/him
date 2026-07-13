@@ -1,0 +1,51 @@
+<decoder name="PrintAnyWhereOS">
+    <prematch>\.*ServiceEndpoint\.*Received request message:</prematch>
+</decoder>
+
+<decoder name="PrintAnyWhereOSFields">
+    <parent>PrintAnyWhereOS</parent>
+    <regex>\.*(\S+){senderServerGuid=\S+,</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="PrintAnyWhereOSFields">
+    <parent>PrintAnyWhereOS</parent>
+    <regex>{senderServerGuid=(\S+),</regex>
+    <order>user</order>
+</decoder>
+
+<decoder name="PrintAnyWhereOSFields">
+    <parent>PrintAnyWhereOS</parent>
+    <regex>sender=(\S+),</regex>
+    <order>sender</order>
+</decoder>
+
+<decoder name="PrintAnyWhereOSFields">
+    <parent>PrintAnyWhereOS</parent>
+    <regex>recipientServerGuid=(\S+),</regex>
+    <order>server</order>
+</decoder>
+
+<decoder name="PrintAnyWhereOSFields">
+    <parent>PrintAnyWhereOS</parent>
+    <regex>recipient=(\S+),</regex>
+    <order>recipient</order>
+</decoder>
+
+<decoder name="PrintAnyWhereOSFields">
+    <parent>PrintAnyWhereOS</parent>
+    <regex>login='(\.+)',</regex>
+    <order>loginCode</order>
+</decoder>
+
+<decoder name="PrintAnyWhereOSFields">
+    <parent>PrintAnyWhereOS</parent>
+    <regex>{resultCode=(\S+),</regex>
+    <order>resultCode</order>
+</decoder>
+
+<decoder name="PrintAnyWhereOSFields">
+    <parent>PrintAnyWhereOS</parent>
+    <regex>errorMessage='(\.*)'</regex>
+    <order>errorMessage</order>
+</decoder>

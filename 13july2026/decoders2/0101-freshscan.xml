@@ -1,0 +1,8 @@
+<decoder name="freshscan">
+	<prematch>updatedb: </prematch>
+</decoder>
+<decoder name="freshscan-fields">
+	<parent>freshscan</parent>
+	<regex offset="after_parent">(\.+)</regex>
+	<order>freshscan.msg</order>
+</decoder>

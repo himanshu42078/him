@@ -1,0 +1,830 @@
+<!--
+-  Wazuh decoders CarbonBlack
+{"direction":"Outbound","dns_name":"stats.wordpress.com","local_ip":"-1407832499","local_port":"60011","port":"60011","protocol":"TCP","remote_ip":"-1073721830","remote_port":"80"}
+-->
+<decoder name="CarbonBlack">
+	<prematch>LEEF:\.*\|CB\|CB\|</prematch>
+</decoder>
+<decoder name="CarbonBlack">
+	<program_name>LEEF</program_name>
+	<prematch>\d.\d\|CB\|CB\|</prematch>
+</decoder>
+<!--<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<prematch>ioc_attr=</prematch>
+	<plugin_decoder offset="after_prematch">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\d.\d\|CB\|CB\|(\S+)\|(\S+)\|</regex>
+	<order>cb.version, cb.type</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>"direction":"(\.*)"</regex>
+	<order>cb.direction</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>"dns_name":"(\.*)"</regex>
+	<order>cb.dns_name</order>
+</decoder>
+<!--
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>"local_ip":"(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+Not in correct format, using interface_ip as the srcip instead.
+-->
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>"local_port":"(\.*)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>"protocol":"(\.*)"</regex>
+	<order>cb.protocol</order>
+</decoder>
+<!--
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>"remote_ip":"(\.*)"</regex>
+	<order>dstip</order>
+</decoder>
+Not useful, since the IP address is not in correct form. Using ioc_value as dstip instead
+-->
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>"remote_port":"(\.*)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcb_server=(\.*)\t</regex>
+	<order>cb.cb_server</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tchildproc_count=(\.*)\t</regex>
+	<order>cb.childproc_count</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcmdline=(\.*)\t</regex>
+	<order>cb.cmdline</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcomms_ip=(\.*)\t</regex>
+	<order>cb.comms_ip</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcrossproc_count=(\.*)\t</regex>
+	<order>cb.crossproc_count</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfilemod_count=(\.*)\t</regex>
+	<order>cb.filemod_count</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tgroup=(\.*)\t</regex>
+	<order>cb.group</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\thost_type=(\.*)\t</regex>
+	<order>cb.host_type</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\thostname=(\.*)\t</regex>
+	<order>cb.hostname</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tid=(\.*)\t</regex>
+	<order>cb.id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tinterface_ip=(\.*)\t</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlast_update=(\.*)\t</regex>
+	<order>cb.last_update</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tmodload_count=(\.*)\t</regex>
+	<order>cb.modload_count</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tnetconn_count=(\.*)\t</regex>
+	<order>cb.netconn_count</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tos_type=(\.*)\t</regex>
+	<order>cb.os_type</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_guid=(\.*)\t</regex>
+	<order>cb.parent_guid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_md5=(\.*)\t</regex>
+	<order>cb.parent_md5</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_name=(\.*)\t</regex>
+	<order>cb.parent_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_pid=(\.*)\t</regex>
+	<order>cb.parent_pid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_unique_id=(\.*)\t</regex>
+	<order>cb.parent_unique_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tpath=(\.*)\t</regex>
+	<order>cb.path</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tprocess_guid=(\.*)\t</regex>
+	<order>cb.process_guid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tprocess_md5=(\.*)\t</regex>
+	<order>cb.process_md5</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tprocess_name=(\.*)\t</regex>
+	<order>cb.process_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tprocess_pid=(\.*)\t</regex>
+	<order>cb.process_pid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tregmod_count=(\.*)\t</regex>
+	<order>cb.regmod_count</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tsensor_id=(\.*)\t</regex>
+	<order>cb.sensor_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tserver_name=(\.*)\t</regex>
+	<order>cb.server_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tstart=(\.*)\t</regex>
+	<order>cb.start</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\ttimestamp=(\.*)\t</regex>
+	<order>cb.timestamp</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\ttype=(\.*)\t|\ttype=(\.*)$</regex>
+	<order>cb.type</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tunique_id=(\.*)\t</regex>
+	<order>cb.unique_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tusername=(\.*)\t|\tusername=(\.*)$</regex>
+	<order>cb.username</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\twatchlist_id=(\.*)\t</regex>
+	<order>cb.watchlist_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\twatchlist_name=(\.*)\t</regex>
+	<order>cb.watchlist_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcomputer_name=(\.*)\t</regex>
+	<order>cb.computer_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tevent_type=(\.*)\t</regex>
+	<order>cb.event_type</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\ttamper_type=(\.*)\t</regex>
+	<order>cb.tamper_type</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tblocked_event=(\.*)\t</regex>
+	<order>cb.blocked_event</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tblocked_reason=(\.*)\t</regex>
+	<order>cb.blocked_reason</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tblocked_result=(\.*)\t</regex>
+	<order>cb.blocked_result</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcommand_line=(\.*)\t</regex>
+	<order>cb.command_line</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tmd5=(\.*)\t</regex>
+	<order>cb.md5</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tuid=(\.*)\t</regex>
+	<order>cb.uid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tblocked=(\.*)\t</regex>
+	<order>cb.blocked</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\temet_timestamp=(\.*)\t</regex>
+	<order>cb.emet_timestamp</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlink_process=(\.*)\t</regex>
+	<order>cb.link_process</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlink_sensor=(\.*)\t</regex>
+	<order>cb.link_sensor</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlog_id=(\.*)\t</regex>
+	<order>cb.log_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlog_message=(\.*)\t</regex>
+	<order>cb.log_message</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tmitigation=(\.*)\t</regex>
+	<order>cb.mitigation</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tpid=(\.*)\t</regex>
+	<order>cb.pid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcross_process_type=(\.*)\t</regex>
+	<order>cb.cross_process_type</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tis_target=(\.*)\t</regex>
+	<order>cb.is_target</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlink_target=(\.*)\t</regex>
+	<order>cb.link_target</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\trequested_access=(\.*)\t</regex>
+	<order>cb.requested_access</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\ttarget_create_time=(\.*)\t</regex>
+	<order>cb.target_create_time</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\ttarget_md5=(\.*)\t</regex>
+	<order>cb.target_md5</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\ttarget_path=(\.*)\t</regex>
+	<order>cb.target_path</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\ttarget_pid=(\.*)\t</regex>
+	<order>cb.target_pid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\ttarget_process_guid=(\.*)\t</regex>
+	<order>cb.target_process_guid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\texpect_followon_w_md5=(\.*)\t</regex>
+	<order>cb.expect_followon_w_md5</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlink_parent=(\.*)\t</regex>
+	<order>cb.link_parent</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_create_time=(\.*)\t</regex>
+	<order>cb.parent_create_time</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_path=(\.*)\t</regex>
+	<order>cb.parent_path</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_process_guid=(\.*)\t</regex>
+	<order>cb.parent_process_guid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tchild_process_guid=(\.*)\t</regex>
+	<order>cb.child_process_guid</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcreated=(\.*)\t</regex>
+	<order>cb.created</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlink_child=(\.*)\t</regex>
+	<order>cb.link_child</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tproxy=(\.*)\t</regex>
+	<order>cb.proxy</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tproxy_ip=(\.*)\t</regex>
+	<order>cb.proxy_ip</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tproxy_port=(\.*)\t</regex>
+	<order>cb.proxy_port</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tproxy_domain=(\.*)\t</regex>
+	<order>cb.proxy_domain</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdirection=(\.*)\t</regex>
+	<order>cb.direction</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdomain=(\.*)\t</regex>
+	<order>cb.domain</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tipv4=(\.*)\t</regex>
+	<order>cb.ipv4</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlocal_ip=(\.*)\t</regex>
+	<order>cb.local_ip</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlocal_port=(\.*)\t</regex>
+	<order>cb.local_port</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tport=(\.*)\t</regex>
+	<order>cb.port</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tprotocol=(\.*)\t</regex>
+	<order>cb.protocol</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tremote_ip=(\.*)\t</regex>
+	<order>cb.remote_ip</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tremote_port=(\.*)\t</regex>
+	<order>cb.remote_port</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\taction=(\.*)\t</regex>
+	<order>cb.action</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tactiontype=(\.*)\t</regex>
+	<order>cb.actiontype</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfiletype=(\.*)\t</regex>
+	<order>cb.filetype</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfiletype_name=(\.*)\t</regex>
+	<order>cb.filetype_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.regmod=(\.*)\t</regex>
+	<order>cb.ingress.event.regmod</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.filemod=(\.*)\t</regex>
+	<order>cb.ingress.event.filemod</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.netconn=(\.*)\t</regex>
+	<order>cb.ingress.event.netconn</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.module=(\.*)\t</regex>
+	<order>cb.ingress.event.module</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.childproc=(\.*)\t</regex>
+	<order>cb.ingress.event.childproc</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.process=(\.*)\t</regex>
+	<order>cb.ingress.event.process</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.crossprocopen=(\.*)\t</regex>
+	<order>cb.ingress.event.crossprocopen</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.remotethread=(\.*)\t</regex>
+	<order>cb.ingress.event.remotethread</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.emetmitigation=(\.*)\t</regex>
+	<order>cb.ingress.event.emetmitigation</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.processblock=(\.*)\t</regex>
+	<order>cb.ingress.event.processblock</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tingress.event.tamper=(\.*)\t</regex>
+	<order>cb.ingress.event.tamper</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tsize=(\.*)\t</regex>
+	<order>cb.size</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcompressed_size=(\.*)\t</regex>
+	<order>cb.compressed_size</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tevent_timestamp=(\.*)\t</regex>
+	<order>cb.event_timestamp</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfile_path=(\.*)\t</regex>
+	<order>cb.file_path</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tscores=(\.*)\t</regex>
+	<order>cb.scores</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\twatchlists=(\.*)\t</regex>
+	<order>cb.watchlists</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcomments=(\.*)\t</regex>
+	<order>cb.comments</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcompany_name=(\.*)\t</regex>
+	<order>cb.company_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcopied_mod_len=(\.*)\t</regex>
+	<order>cb.copied_mod_len</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tendpoint=(\.*)\t</regex>
+	<order>cb.endpoint</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfile_desc=(\.*)\t</regex>
+	<order>cb.file_desc</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfile_version=(\.*)\t</regex>
+	<order>cb.file_version</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\thost_count=(\.*)\t</regex>
+	<order>cb.host_count</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdigsig_issuer=(\.*)\t</regex>
+	<order>cb.digsig_issuer</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdigsig_publisher=(\.*)\t</regex>
+	<order>cb.digsig_publisher</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdigsig_result=(\.*)\t</regex>
+	<order>cb.digsig_result</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdigsig_result_code=(\.*)\t</regex>
+	<order>cb.digsig_result_code</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdigsig_sign_time=(\.*)\t</regex>
+	<order>cb.digsig_sign_time</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdigsig_subject=(\.*)\t</regex>
+	<order>cb.digsig_subject</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tinternal_name=(\.*)\t</regex>
+	<order>cb.internal_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tis_executable_image=(\.*)\t</regex>
+	<order>cb.is_executable_image</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tis_64bit=(\.*)\t</regex>
+	<order>cb.is_64bit</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlast_seen=(\.*)\t</regex>
+	<order>cb.last_seen</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlegal_copyright=(\.*)\t</regex>
+	<order>cb.legal_copyright</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlegal_trademark=(\.*)\t</regex>
+	<order>cb.legal_trademark</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tobserved_filename=(\.*)\t</regex>
+	<order>cb.observed_filename</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\torig_mod_len=(\.*)\t</regex>
+	<order>cb.orig_mod_len</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\toriginal_filename=(\.*)\t</regex>
+	<order>cb.original_filename</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tprivate_build=(\.*)\t</regex>
+	<order>cb.private_build</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tproduct_name=(\.*)\t</regex>
+	<order>cb.product_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tproduct_version=(\.*)\t</regex>
+	<order>cb.product_version</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tserver_added_timestamp=(\.*)\t</regex>
+	<order>cb.server_added_timestamp</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tsigned=(\.*)\t</regex>
+	<order>cb.signed</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\treport_id=(\.*)\t</regex>
+	<order>cb.report_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tioc_type=(\.*)\t</regex>
+	<order>cb.ioc_type</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>ioc_type=ipv4\tioc_value=(\.*)\t</regex>
+	<order>dstip</order>
+</decoder>
+<!-- Since the remote_ip field in json is not in correct format, using ioc_value as the dstip instead. -->
+<!-- ioc_value is ip if and only if ioc_type=ipv4. -->
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tioc_attr=(\.*)\t</regex>
+	<order>cb.ioc_attr</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tcb_version=(\.*)\t</regex>
+	<order>cb.cb_version</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfeed_id=(\.*)\t</regex>
+	<order>cb.feed_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfeed_name=(\.*)\t</regex>
+	<order>cb.feed_name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tdocs=(\.*)\t</regex>
+	<order>cb.docs</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tsegment_id=(\.*)\t</regex>
+	<order>cb.segment_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tprocess_id=(\.*)\t</regex>
+	<order>cb.process_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlegal_trademarkt=(\.*)\t</regex>
+	<order>cb.legal_trademarkt</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tname=(\.*)\t</regex>
+	<order>cb.name</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\|alliance_data_alienvault=(\.*)\t</regex>
+	<order>cb.alliance_data_alienvault</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\talliance_link_alienvault=(\.*)\t</regex>
+	<order>cb.alliance_link_alienvault</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\talliance_score_alienvault=(\.*)\t</regex>
+	<order>cb.alliance_score_alienvault</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\talliance_updated_alienvault=(\.*)\t</regex>
+	<order>cb.alliance_updated_alienvault</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tfrom_feed_search=(\.*)\t</regex>
+	<order>cb.from_feed_search</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tlast_update=(\.*)\t</regex>
+	<order>cb.last_update</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tparent_segment_id=(\.*)\t</regex>
+	<order>cb.parent_segment_id</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\treport_score=(\.*)\t</regex>
+	<order>cb.report_score</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tprocess_path=(\.*)\t</regex>
+	<order>cb.process_path</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tioc_confidence=(\.*)\t</regex>
+	<order>cb.ioc_confidence</order>
+</decoder>
+<decoder name="CarbonBlack-fields">
+	<parent>CarbonBlack</parent>
+	<regex>\tioc_type=query\tioc_value=(\.*)\t</regex>
+	<order>cb.ioc_query</order>
+</decoder>

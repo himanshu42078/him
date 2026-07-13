@@ -1,0 +1,59 @@
+<decoder name="Micosoft-ATA">
+	<prematch>CEF:0\|Microsoft\|ATA</prematch>
+	<program_name>ATA</program_name>
+</decoder>
+
+<!--
+	Apr  4 03:32:30 TATACP01 ATA[1848] CEF:0|Microsoft|ATA|1.9.7576.49398|PassTheTicketSuspiciousActivity|Identity theft using Pass-the-Ticket attack|10|start=2023-04-04T01:25:23.7906627Z app=Kerberos suser=Eddie Choi msg=Eddie Choi (ASSISTANT MANAGER - SALES)'s Kerberos tickets were stolen from 5CD030KHK1 to 192.168.133.31 and used to access krbtgt/NT Authority. externalId=2018 cs1Label=url cs1=https://192.168.238.118/suspiciousActivity/642b7c6e38cbeb073860d532
+-->
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>CEF:\d+\|(\.+)\|(\.+)\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>start=(\.*) \S+=</regex>
+	<order>eventTime</order>
+</decoder>
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>app=(\.*) \S+=</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>suser=(\.*) \S+=</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>shost=(\.*) \S+=</regex>
+	<order>shost</order>
+</decoder>
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>outcome=(\.*) \S+=</regex>
+	<order>status</order>
+</decoder>
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>cnt=(\.*) \S+=</regex>
+	<order>count</order>
+</decoder>
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>msg=(\.*) \S+=|msg=(\.*)$</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>externalId=(\.*) \S+=</regex>
+	<order>externalId</order>
+</decoder>
+<decoder name="Micosoft-ATA_fields">
+	<parent>Micosoft-ATA</parent>
+	<regex>cs1Label=url cs1=(\.*) \S+=|cs1Label=url cs1=(\.*)$</regex>
+	<order>url</order>
+</decoder>

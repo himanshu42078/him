@@ -1,0 +1,61 @@
+<!--
+-  Wazuh decoders huawei-firewall
+Apr  1 02:39:29 CC25USG6615E_01 %%01POLICY/6/POLICYDENY(l): vsys=public, protocol=6, source-ip=192.168.130.205, source-port=52742, destination-ip=23.41.74.108, destination-port=80, time=2021/4/1 10:39:29, source-zone=trust, destination-zone=untrust, application-name=, rule-name=69.-->
+<decoder name="huawei-firewall">
+  <prematch>%%01POLICY/(\d+)/(\w+)\(\.+\):</prematch>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>%%\d+\w+/(\d+)/POLICY(\w+)\(\.+\):</regex>
+  <order>log_level,action</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>vsys=(\.+),</regex>
+  <order>vsys</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>protocol=(\d+),</regex>
+  <order>protocol</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>source-ip=(\d+.\d+.\d+.\d+),</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>source-port=(\d+),</regex>
+  <order>srcport</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>destination-ip=(\d+.\d+.\d+.\d+),</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>destination-port=(\d+),</regex>
+  <order>dstport</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>time=(\.+),</regex>
+  <order>event_time</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>source-zone=(\.+),</regex>
+  <order>srczone</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>destination-zone=(\.+),</regex>
+  <order>dstzone</order>
+</decoder>
+<decoder name="huawei-firewall-fields">
+  <parent>huawei-firewall</parent>
+  <regex>application-name=(\.*),</regex>
+  <order>application_name</order>
+</decoder>

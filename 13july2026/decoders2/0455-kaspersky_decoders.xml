@@ -1,0 +1,12 @@
+<decoder name="kesl">
+	<program_name>^kesl$</program_name>
+</decoder>
+<!--
+<decoder name="kesl">
+	<prematch>kesl</prematch>
+</decoder>
+-->
+<decoder name="kesl_child">
+	<parent>kesl</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>

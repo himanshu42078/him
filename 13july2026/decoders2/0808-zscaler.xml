@@ -1,0 +1,198 @@
+<decoder name="zscaler">
+	<program_name>zscaler-nss</program_name>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex offset="after_parent">cat=(\.*)\t</regex>
+	<order>cat</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>devTime=(\.*)\sdevTimeformat</regex>
+	<order>devTime</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>src=(\.*)\t</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>dst=(\.*)\t</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>realm=(\.*)\t</regex>
+	<order>realm</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>usrName=(\.*)\t</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>srcBytes=(\d*)\t</regex>
+	<order>srcBytes</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>srcBytes=(\d*)\t</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>dstBytes=(\d*)\t</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>role=(\.*)\t</regex>
+	<order>role</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>policy=(\.*)\t</regex>
+	<order>policy</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>url=(\.*)\t</regex>
+	<order>url</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>url=\S+://(\S+):\.*\trecordid=|url=\S+://(\S+)/\.*\trecordid=|url=\S+://(\S+)\trecordid=|url=(\S+):\.*\trecordid=|url=(\S+)/\.*\trecordid=|url=(\S+)\trecordid=</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>url=\.*.(\w+.\w+):\.*\t\w+=|url=\.*.(\w+.\w+)/\.*\t\w+=|url=\.*(\w+.\w+)\.*\t\w+=</regex>
+	<order>url_sld</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>recordid=(\d*)\t</regex>
+	<order>recordid</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>bwthrottle=(\.*)\t</regex>
+	<order>bwthrottle</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>useragent=(\.*)\t</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>referer=(\.*)\t</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>hostname=(\.*)\t</regex>
+	<order>hostname</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>appproto=(\.*)\t</regex>
+	<order>appproto</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>urlcategory=(\.*)\t</regex>
+	<order>urlcategory</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>urlsupercategory=(\.*)\t</regex>
+	<order>urlsupercategory</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>urlclass=(\.*)\t</regex>
+	<order>urlclass</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>appclass=(\.*)\t</regex>
+	<order>appclass</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>appname=(\.*)\t</regex>
+	<order>appname</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>malwaretype=(\.*)\t</regex>
+	<order>malwaretype</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>malwareclass=(\.*)\t</regex>
+	<order>malwareclass</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>threatname=(\.*)\t</regex>
+	<order>threatname</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>riskscore=(\.*)\t</regex>
+	<order>riskscore</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>dlpdict=(\.*)\t</regex>
+	<order>dlpdict</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>dlpeng=(\.*)\t</regex>
+	<order>dlpeng</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>fileclass=(\.*)\t</regex>
+	<order>fileclass</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>filetype=(\.*)\t</regex>
+	<order>filetype</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>reqmethod=(\.*)\t</regex>
+	<order>reqmethod</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>respcode=(\.*)\t</regex>
+	<order>respcode</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>contenttype=(\.*)\t</regex>
+	<order>contenttype</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>unscannabletype=(\.*)\t</regex>
+	<order>unscannabletype</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>deviceowner=(\.*)\t</regex>
+	<order>deviceowner</order>
+</decoder>
+<decoder name="zscaler_field">
+	<parent>zscaler</parent>
+	<regex>devicehostname=(\.*)</regex>
+	<order>devicehostname</order>
+</decoder>

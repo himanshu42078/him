@@ -1,0 +1,84 @@
+<decoder name="kasperskySC_cef">
+	<program_name>CEF</program_name>
+	<prematch>KasperskyLab\|SecurityCenter\|</prematch>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex offset="after_parent">(\S+)\|(\S+)\|(\.+)\|(\S+)\|</regex>
+	<order>kasperskySC.version, kasperskySC.alert, kasperskySC.alertname, kasperskySC.severity</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>msg=(\.*)rt=</regex>
+	<order>kasperskySC.msg</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>rt=(\.+)\scs9=</regex>
+	<order>kasperskySC.alerttime</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>cs9=(\.+)\scs9label=(\.*)\s</regex>
+	<order>kasperskySC.cs9,kasperskySC.cs9label</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>dst=(\S+)\s</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>cs2=(\.+)\scs2Label=(\S+)\s</regex>
+	<order>kasperskySC.cs2,kasperskySC.cs2Label</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>cs3=(\.+)\scs3Label=(\S+)\s</regex>
+	<order>kasperskySC.cs3,kasperskySC.cs3Label</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>cs4=(\.+)\scs4Label=(\S+)\s</regex>
+	<order>kasperskySC.cs4,kasperskySC.cs4Label</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>cs5=(\.+)\scs5Label=(\S+)\s</regex>
+	<order>kasperskySC.cs5,kasperskySC.cs5Label</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>cn1=(\.+)\scn1Label=(\S+)</regex>
+	<order>kasperskySC.cn1,kasperskySC.cn1Label</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>filePath=(\.+)\s\w+=|filePath=(\.+)\s$</regex>
+	<order>kasperskySC.filePath</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>duser=(\.+) \w+=|duser=(\.+)\s$</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>User: (\.+) \(</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>SHA256:\s(\S+)</regex>
+	<order>kasperskySC.SHA256</order>
+</decoder>
+<decoder name="kasperskySC_fields">
+	<parent>kasperskySC_cef</parent>
+	<regex>MD5:\s(\S+)</regex>
+	<order>kasperskySC.MD5</order>
+</decoder>

@@ -1,0 +1,254 @@
+<!-- DEV-658 -->
+<!-- Modify it at your will. -->
+<!--
+Feb 22 11:56:23 10.0.0.166 date=2022-02-22 time=11:56:22 log_id=30001000 msg_id=000043766038 device_id=FV-1KET121900023 vd="root" timezone="(GMT+8:00)Beijing,ChongQing,HongKong,Urumgi" timezone_dayst="GMTa-8" type=traffic subtype="https" pri=notice proto=tcp service=https/tls1.3 status=success reason=none policy=www_hkic_edu_hk original_src=101.78.142.230 src=101.78.142.230 src_port=58550 dst=10.0.1.10 dst_port=80 http_request_time=0 http_response_time=0 http_request_bytes=649 http_response_bytes=260353 http_method=get http_url="/uploads/Luke/Wu.jpg" http_agent="Mozilla/5.0 (iPhone; CPU iPhone OS 15_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Mobile/15E148 Safari/604.1" http_retcode=200 msg="HTTPS get request from 101.78.142.230:58550 to 10.0.1.10:80" original_srccountry="Hong Kong" srccountry="Hong Kong" content_switch_name="none" server_pool_name="www.hkic.edu.hk" http_host="www.hkic.edu.hk" user_name="Unknown" http_refer="https://www.hkic.edu.hk/chi/shares" http_version="1.x" dev_id=none cipher_suite="TLS_AES_256_GCM_SHA384" 
+-->
+<decoder name="fortiweb-syslog">
+  <prematch>date=\S+ time=\.+ log_id=\d+ msg_id=\d+ device_id=\S+ vd=\S+ timezone=</prematch>
+  <type>syslog</type>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>device_id=(\S+)</regex>
+  <order>logsource</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>device_id=(\S+)</regex>
+  <order>device_id</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>vd="(\S+)"</regex>
+  <order>vd</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>timezone="(\S+)"</regex>
+  <order>timezone</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>timezone_dayst="(\S+)"</regex>
+  <order>timezone_dayst</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>type=(\S+)</regex>
+  <order>type</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>main_type="(\.+)"</regex>
+  <order>main_type</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>sub_type="(\.+)"</regex>
+  <order>sub_type</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>pri=(\S+)</regex>
+  <order>pri</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>proto=(\S+)</regex>
+  <order>proto</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>service=(\S+)</regex>
+  <order>service</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>src=(\S+)</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>src_port=(\d+)</regex>
+  <order>srcport</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>dst=(\S+)</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>dst_port=(\d+)</regex>
+  <order>dstport</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>\spolicy="(\S+)"</regex>
+  <order>policy</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>user=(\S+)</regex>
+  <order>user</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>user_name="(\S+)"</regex>
+  <order>username</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>ui=(\S+)</regex>
+  <order>ui</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>action=(\S+)</regex>
+  <order>action</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>\sstatus=(\S+)</regex>
+  <order>status</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>monitor_status="(\S+)"</regex>
+  <order>monitor_status</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>reason=(\S+)</regex>
+  <order>reason</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_retcode=(\d+)</regex>
+  <order>http_retcode</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_request_time=(\d+)</regex>
+  <order>http_request_time</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_response_time=(\d+)</regex>
+  <order>http_response_time</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_request_bytes=(\d+)</regex>
+  <order>http_request_bytes</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_response_bytes=(\d+)</regex>
+  <order>http_response_bytes</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_method=(\S+)</regex>
+  <order>http_method</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_url="(\S+)"</regex>
+  <order>http_url</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_host="(\.+)"</regex>
+  <order>http_host</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_agent="(\.+)"</regex>
+  <order>http_agent</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>http_session_id=(\S+)</regex>
+  <order>http_session_id</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>severity_level=(\S+)</regex>
+  <order>severity_level</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>trigger_policy="(\S+)"</regex>
+  <order>trigger_policy</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>signature_subclass="(\S+)"</regex>
+  <order>signature_subclass</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>signature_id="(\S+)"</regex>
+  <order>signature_id</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>signature_cve_id="(\S+)"</regex>
+  <order>signature_cve_id</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>srccountry="(\.+)"</regex>
+  <order>srccountry</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>msg="(\.+)"</regex>
+  <order>msg</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>content_switch_name="(\.+)"</regex>
+  <order>content_switch_name</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>server_pool_name="(\.+)"</regex>
+  <order>server_pool_name</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>false_positive_mitigation="(\S+)"</regex>
+  <order>false_positive_mitigation</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>log_type=(\S+)</regex>
+  <order>log_type</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>event_score=(\S+)</regex>
+  <order>event_score</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>score_message="(\.+)"</regex>
+  <order>score_message</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>entry_sequence="(\S+)"</regex>
+  <order>entry_sequence</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>attack_type="(\.+)"</regex>
+  <order>attack_type</order>
+</decoder>
+<decoder name="fortiweb-syslog-fields">
+  <parent>fortiweb-syslog</parent>
+  <regex>owasp_top10="(\.+)"</regex>
+  <order>owasp_top10</order>
+</decoder>

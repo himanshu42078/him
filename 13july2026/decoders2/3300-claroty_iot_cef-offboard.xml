@@ -1,0 +1,106 @@
+<decoder name="claroty_iot_cef">
+	<program_name>CEF</program_name>
+	<prematch>\d\|Claroty</prematch>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex>Claroty\|CTD\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+	<order>version, alerttype, alertname, severity</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">smac=(\S+)</regex>
+	<order>srcmac</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">shost=(\S+)</regex>
+	<order>srchost</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">dmac=(\S+)</regex>
+	<order>dstmac</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">dhost=(\S+)</regex>
+	<order>dsthost</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">externalId=(\S+)</regex>
+	<order>externalId</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">cat=(\S+)</regex>
+	<order>cat</order>
+</decoder>
+
+<!-- Alex changed the regex -->
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">rt=(\w\w\w \d+ \d+:\d+:\d+)</regex>
+	<order>rt</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">start=(\w\w\w \d+ \d\d\d\d \d+:\d+:\d+)</regex>
+	<order>timestamp</order>
+</decoder>
+
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">msg=(\.*)</regex>
+	<order>msg</order>
+</decoder>
+
+<!-- Alex added new rule for filepath -->
+<!-- filepath is nonsequential. In order to identify the logs between the filepath and the next category, currently I used "blank" to sperate them-->
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+    <regex offset="after_parent">filepath=(\S*)</regex>
+<!--    <regex offset="after_parent">filepath=(^\\\w*\p*\w*)*.\w+</regex> -->
+	<order>filepath</order>
+</decoder>
+
+<!-- Alex added new rule for mark duser -->
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">duser=(\S*)</regex>
+	<order>dstuser</order>
+</decoder>
+
+<!-- Alex added new rule for mark destinationServiceName -->
+<decoder name="claroty_iot_fields">
+	<parent>claroty_iot_cef</parent>
+	<regex offset="after_parent">destinationServiceName=(\S*)</regex>
+	<order>dstServiceName</order>
+</decoder>

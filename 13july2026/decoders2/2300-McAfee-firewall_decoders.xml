@@ -1,0 +1,132 @@
+<!--
+Aug 17 06:36:03 fw01 auditd: date="2022-08-17 05:36:03 +0000",fac=f_dns_proxy,area=a_proxy,type=t_nettraffic,pri=p_major,pid=1417,logid=0,cmd=dnsp,hostname=fw01.celestion.com,event="session end",netsessid=231c662fc7e43,srcip=172.17.3.213,srcport=65384,srczone=internal,protocol=17,dst_geo=GB,dstip=88.215.61.255,dstport=53,dstzone=external,bytes_written_to_client=110,bytes_written_to_server=54,rule_name="dnsp internal resolvers to external",cache_hit=1,start_time="2022-08-17 05:36:03 +0000",application=DNS
+-->
+<decoder name="mcafee-firewall">
+    <program_name>auditd</program_name>
+    <prematch>^date="\.+",fac=\.+,area=</prematch>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>date="(\.+)",</regex>
+    <order>date</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>fac=(\S+),</regex>
+    <order>fac</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>area=(\S+),</regex>
+    <order>area</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>type=(\S+),</regex>
+    <order>type</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>pri=(\S+),</regex>
+    <order>pri</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>pid=(\d+),</regex>
+    <order>pid</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>logid=(\d+),</regex>
+    <order>logid</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>cmd=(\S+),</regex>
+    <order>cmd</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>hostname=(\S+),</regex>
+    <order>hostname</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>event="(\.+)",</regex>
+    <order>event</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>netsessid=(\S+),</regex>
+    <order>netsessid</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>srcip=(\S+),</regex>
+    <order>srcip</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>srcport=(\d+),</regex>
+    <order>srcport</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>srczone=(\S+),</regex>
+    <order>srczone</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>protocol=(\d+),</regex>
+    <order>protocol</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>dst_geo=(\S+),</regex>
+    <order>dst_geo</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>dstip=(\S+),</regex>
+    <order>dstip</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>dstport=(\d+),</regex>
+    <order>dstport</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>dstzone=(\S+),</regex>
+    <order>dstzone</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>bytes_written_to_client=(\d+),</regex>
+    <order>bytes_written_to_client</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>bytes_written_to_server=(\d+),</regex>
+    <order>bytes_written_to_server</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>rule_name="(\.+)",</regex>
+    <order>rule_name</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>cache_hit=(\d+),</regex>
+    <order>cache_hit</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>start_time="(\.+)",</regex>
+    <order>start_time</order>
+</decoder>
+<decoder name="mcafee-firewall-fields">
+    <parent>mcafee-firewall</parent>
+    <regex>application=(\S+)</regex>
+    <order>application</order>
+</decoder>

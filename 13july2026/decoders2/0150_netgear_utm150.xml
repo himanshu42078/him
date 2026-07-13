@@ -1,0 +1,49 @@
+<!-- Modify it at your will. -->
+<!-- Netgear Decoder UTM150 -->
+<decoder name="Netgear">
+	<prematch>^ kernel: [\d+ \w+\s+\d+ \d+:\d+:\d+] UTM150</prematch>
+</decoder>
+<decoder name="Netgear-fields">
+	<parent>Netgear</parent>
+	<regex offset="after_parent">IN=(\w+)</regex>
+	<order>netgear.ininf</order>
+</decoder>
+<decoder name="Netgear-fields">
+	<parent>Netgear</parent>
+	<regex offset="after_parent">OUT=(\w+)</regex>
+	<order>netgear.outinf</order>
+</decoder>
+<decoder name="Netgear-fields">
+	<parent>Netgear</parent>
+	<regex offset="after_parent">SRC=(\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="Netgear-fields">
+	<parent>Netgear</parent>
+	<regex offset="after_parent">DST=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="Netgear-fields">
+	<parent>Netgear</parent>
+	<regex offset="after_parent">PROTO=(\w+)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="Netgear-fields">
+	<parent>Netgear</parent>
+	<regex offset="after_parent">SPT=(\d+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="Netgear-fields">
+	<parent>Netgear</parent>
+	<regex offset="after_parent">DPT=(\d+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="Netgear">
+	<prematch>^ VPNKA: [\d+ \w+ \d+ \d+:\d+:\d+] UTM150</prematch>
+</decoder>
+<decoder name="Netgear-fields">
+	<parent>Netgear</parent>
+	<regex offset="after_parent">vpnNodeId:(\w+)</regex>
+	<order>netgear.vpnNode</order>
+</decoder>
+<!-- dhcpd: [2021 Feb 22 11:52:35] UTM150 DHCPREQUEST for 192.168.53.144 from 52:0e:24:27:da:3d (yanai-iPhone) via eth0.5-->

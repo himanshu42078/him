@@ -1,0 +1,33 @@
+<!-- Modify it at your will. -->
+
+<!-- HDFS -->
+
+<decoder name="bigdata-hdfs-cef">
+	<program_name>HDFS</program_name>
+</decoder>
+
+<decoder name="bigdata-hdfs-cef-fields">
+	<parent>bigdata-hdfs-cef</parent>
+	<plugin_decoder offset="after_parent">JSON_Decoder</plugin_decoder>
+</decoder>
+
+
+<decoder name="bigdata-hdfs-cef-fields">
+	<parent>bigdata-hdfs-cef</parent>
+	<regex>"reqUser":"(\.*)",</regex>
+	<order>srcuser</order>
+</decoder>
+
+<decoder name="bigdata-hdfs-cef-fields">
+	<parent>bigdata-hdfs-cef</parent>
+	<regex>"cliIP":"(\.*)",</regex>
+	<order>srcip</order>
+</decoder>
+
+<decoder name="bigdata-hdfs-cef-fields">
+	<parent>bigdata-hdfs-cef</parent>
+	<regex>"agentHost":"(\.*)",</regex>
+	<order>srchost</order>
+</decoder>
+
+<!-- HDFS END -->

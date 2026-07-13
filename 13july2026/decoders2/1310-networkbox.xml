@@ -1,0 +1,1112 @@
+<!-- DEV-464 -->
+<!-- Modify it at your will. -->
+<!--Parent Decoder-->
+<decoder name="NetworkBox">
+    <prematch>^intrusion|^webclient|^firewall|^syslog.vpn.message|^event.vpn.ipsec|^vpn.ssl.server.connections|^event.vpn.pptp|^vpn.ipsec.connections|^vpn.ssl.client.connect|^vpn.ssl.up</prematch>
+	<program_name>nbsyslog</program_name>
+</decoder>
+<!-- Child Decoders-->
+<!--Log type: instrusion-->
+<!-- Example:
+Feb 24 14:20:41 ctfhk1 nbsyslog[18320] intrusion.suricata priority=2 ip.srcport=25 application=ips ip.protocol=tcp ip.src.family=ipv4 result=deny ip.dst.family=ipv4 ip.dstport=41650 threat=1:2102275:3 ip.dst=87.246.7.243 ip.src=203.198.63.50 timestamp="2021-02-24 06:20:41.136" id=6b27afc4-7668-11eb-b8b3-a794cf136069 summary="GPL SMTP AUTH LOGON brute force attempt [Classification: An attempted login using a suspicious username was detected]" raw.packet="[wDrop] [1:2102275:3] GPL SMTP AUTH LOGON brute force attempt [Classification: An attempted login using a suspicious username was detected] [Priority: 2] {TCP} 203.198.63.50:25 -> 87.246.7.243:41650"
+Feb 25 10:45:06 ctfhk3 nbsyslog[26641] intrusion intrusion.hardware.type=1 intrusion.ip.version=4 intrusion.ip.protonum=6 intrusion.flags.acknum=0 intrusion.flags.hlen=6 intrusion.flags.foffset=0 intrusion.flags.urg=0 intrusion.flags.ttl=37 intrusion.flags.len=44 intrusion.bytes.rx=58 intrusion.ip.protocol=tcp intrusion.interface.in=NET intrusion.bridge.in=NET intrusion.flags.SYN=SYN intrusion.hardware.protocol=2048 packet.fwmark=2560 intrusion.flags.tos=0x20 intrusion.result=deny intrusion.flags.winsize=1024 intrusion.flags.reserved=0x00 intrusion.ip.dstport=2375 intrusion.flags.cksum=48606 intrusion.ip.srcport=51696 intrusion.mac.type=0x0800 intrusion.flags=0x0002 intrusion.application=frontline intrusion.flags.seqnum=2770312804 intrusion.ip.dst=203.198.63.66 intrusion.ip.src=35.169.144.218 intrusion.mac.src=b8:c2:53:f0:ce:14 intrusion.raw.tag="IPS SCAN.PORTSCAN" intrusion.tag="IPS SCAN.PORTSCAN" intrusion.mac.dst=00:90:0b:31:23:26 intrusion.id=77a21874-7713-11eb-a423-23b6a091f0a3
+-->
+<decoder name="NetworkBox-intrusion-fields">
+  <parent>NetworkBox</parent>
+	<prematch>^intrusion</prematch>
+  <regex>priority=(\d+)</regex>
+	<order>NetworkBox.priority</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+  <parent>NetworkBox</parent>
+	<regex>intrusion.hardware.type=(\d+)</regex>
+	<order>NetworkBox.intrusion.hardware.type</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.ip.version=(\d+)</regex>
+	<order>NetworkBox.intrusion.ip.version</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.ip.protonum=(\d+)</regex>
+	<order>NetworkBox.intrusion.ip.protonum</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.bytes.rx=(\w+)</regex>
+	<order>NetworkBox.intrusion.bytes.rx</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.ip.protocol=(\w+)</regex>
+	<order>NetworkBox.intrusion.ip.protocol</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.hardware.protocol=(\w+)</regex>
+	<order>NetworkBox.intrusion.hardware.protocol</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.interface.in=(\w+)</regex>
+	<order>NetworkBox.intrusion.interface.in</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.interface.in=(\w+)</regex>
+	<order>NetworkBox.intrusion.bridge.in</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.interface.out=(\w+)</regex>
+	<order>NetworkBox.intrusion.interface.out</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.interface.out=(\w+)</regex>
+	<order>NetworkBox.intrusion.bridge.out</order>
+</decoder>
+<!-- Flags -->
+<!--
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags</order>
+</decoder>
+-->
+<!--
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.len=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.len</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.hlen=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.hlen</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.foffset=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.foffset</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.urg=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.urg</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.ttl=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.ttl</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.tos=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.tos</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.cksum=(\d+)\s</regex>
+	<order>NetworkBox.intrusion.flags.cksum</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.reserved=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.reserved</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.acknum=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.acknum</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.flags.SYN=(\w+)</regex>
+	<order>NetworkBox.intrusion.flags.SYN</order>
+</decoder>
+-->
+<!-- Flags -->
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>packet.fwmark=(\w+)</regex>
+	<order>NetworkBox.packet.fwmark</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>ip.dstport=(\d+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>ip.srcport=(\d+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>application=(\.*) </regex>
+	<order>NetworkBox.application</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>ip.protocol=(\w+)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>ip.src.family=(\w+)</regex>
+	<order>NetworkBox.ip.src.family</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>result=(\w+)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>ip.dst.family=(\w+)</regex>
+	<order>NetworkBox.ip.dst.family</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.raw.tag="(\.+)"</regex>
+	<order>NetworkBox.intrusion.raw.tag</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.tag="(\.+)"</regex>
+	<order>NetworkBox.intrusion.tag</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>intrusion.mac.src=(\w+:\w+:\w+:\w+:\w+:\w+)</regex>
+	<order>NetworkBox.intrusion.mac.src</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>ip.dstport=(\d+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>threat=(\d+:\d+:\d+)</regex>
+	<order>NetworkBox.threat</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.dst=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)|firewall.ip.dst=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.src=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)|firewall.ip.src=(\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>timestamp="(\.+)"</regex>
+	<order>NetworkBox.timestamp</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>id=(\w+-\w+-\w+-\w+-\w+)</regex>
+	<order>id</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>summary="(\.+)"</regex>
+	<order>NetworkBox.summary</order>
+</decoder>
+<decoder name="NetworkBox-intrusion-fields">
+	<parent>NetworkBox</parent>
+	<regex>raw.packet="(\.*)"</regex>
+	<order>NetworkBox.raw.packet</order>
+</decoder>
+<!--Log type: webclient-->
+<!--Example:
+Feb 24 14:20:39 ctfhk1 nbsyslog[18320] webclient tls_auth= tls_suite= tls_threat= tls_protocol= local_n_family=4 application_productivity=1 application_risk=2 urlpath=/ remote_n_family=4 severity=0 tls_auth_bits=0 remote_country=cn is_secure=yes res_category=chat bytes_rx=2842 bytes_tx=5913 urlprefix=https result=audit start_timestamp_usec=528505 remote_city=Shenzhen local_protocol=HTTP/1.0 remote_protocol=HTTP/1.0 application_category=Messaging remote_latitude=22.533300 start_timestamp_sec=1614147629 local_n=10.64.1.80 application=www.wechat remote_longitude=114.133304 network_input=x_WCLs_10.64 urlhost=web.wechat.com remote_n=203.205.251.169 application_chain=net.tcp,net.ssl,www.wechat recordid=643c5944-7668-11eb-a3d6-00900b3136e0 application_tags=net,net.ssl,net.tcp,ssl,tcp,wechat,www,www.wechat summary="HTTPS TLS Decode Bypass for domain: 'web.wechat.com'"
+-->
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+  <prematch>^webclient</prematch>
+	<regex>tls_auth=(\w+)</regex>
+	<order>NetworkBox.tls_auth</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>tls_suite=(\w+)</regex>
+	<order>NetworkBox.tls_suite</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>tls_protocol=(\w+)</regex>
+	<order>NetworkBox.tls_protocol</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_n_family=(\d+)</regex>
+	<order>NetworkBox.local_n_family</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>application_productivity=(\d+)</regex>
+	<order>NetworkBox.application_productivity</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>application_risk=(\d+)</regex>
+	<order>NetworkBox.application_risk</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>urlpath=(\.*) </regex>
+	<order>urlpath</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>urlpath=(\.*) </regex>
+	<order>url</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_n_family=(\d+)</regex>
+	<order>NetworkBox.remote_n_family</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>severity=(\d+)</regex>
+	<order>NetworkBox.severity=</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>tls_auth_bits=(\d+)</regex>
+	<order>NetworkBox.tls_auth_bits</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_country=(\w+)</regex>
+	<order>NetworkBox.remote_country</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>is_secure=(\w+)</regex>
+	<order>NetworkBox.is_secure</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>res_category=(\w+)</regex>
+	<order>NetworkBox.res_category</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>bytes_rx=(\d+)</regex>
+	<order>NetworkBox.bytes_rx</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>bytes_rx=(\d+)</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>bytes_tx=(\d+)</regex>
+	<order>NetworkBox.bytes_tx</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>bytes_tx=(\d+)</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>urlprefix=(\w+)</regex>
+	<order>NetworkBox.urlprefix</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>result=(\w+)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>start_timestamp_usec=(\d+)</regex>
+	<order>NetworkBox.start_timestamp_usec</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_city=(\w+)</regex>
+	<order>NetworkBox.remote_city</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_protocol=(\.+) </regex>
+	<order>NetworkBox.local_protocol</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_protocol=(\.+) </regex>
+	<order>NetworkBox.remote_protocol</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>application_category=(\w+)</regex>
+	<order>NetworkBox.application_category</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_latitude=(\d+.\d+)</regex>
+	<order>NetworkBox.remote_latitude</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>start_timestamp_sec=(\d+)</regex>
+	<order>NetworkBox.start_timestamp_sec</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_n=(\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>application=(\.+) </regex>
+	<order>NetworkBox.application</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_longitude=(\d+.\d+)</regex>
+	<order>NetworkBox.remote_longitude</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>network_input=(\.+) </regex>
+	<order>NetworkBox.network_input</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>urlhost=(\.+) </regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>urlhost=\.*.(\w+.\w+) |urlhost=\.*(\w+.\w+)</regex>
+	<order>url_sld</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_n=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>application_chain=(\.+) </regex>
+	<order>NetworkBox.application_chain</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>recordid=(\.+) </regex>
+	<order>NetworkBox.recordid</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>application_tags=(\.+) </regex>
+	<order>NetworkBox.application_tags</order>
+</decoder>
+<decoder name="NetworkBox-webclient-fields">
+	<parent>NetworkBox</parent>
+	<regex>summary="(\.+)"</regex>
+	<order>NetworkBox.summary</order>
+</decoder>
+<!--Log type: firewall-->
+<!--Example:
+Ipv6
+Feb 24 14:20:39 ctfhk1 nbsyslog[18320] firewall firewall.flags.ptr= firewall.flags.seq= firewall.flags.mtu= firewall.ip.icmp.code=0 firewall.hardware.type=1 firewall.ip.version=6 firewall.bytes.rx=70 firewall.ip.protonum=58 firewall.bridge.in=LAN firewall.interface.in=LAN firewall.ip.icmp.type=133 firewall.result=deny firewall.hardware.protocol=34525 firewall.flags.cksum=63273 firewall.mac.type=0x86dd firewall.ip.class=0x0000 firewall.ip.flow=0x0000 firewall.raw.tag=default firewall.tag=default firewall.application=firewall firewall.ip.protocol=ipv6-icmp firewall.mac.dst=33:33:00:00:00:02 firewall.mac.src=f8:9e:28:73:20:f0 firewall.ip.dst=ff02:0:0:0:0:0:0:2 firewall.ip.src=fe80:0:0:0:fa9e:28ff:fe73:20f0 firewall.ip.icmp.message=00.00.00.00.01.01.f8.9e.28.73.20.f0 firewall.id=6a3e9c44-7668-11eb-ba96-8f0c6025dd00
+Ipv4
+Feb 24 18:41:56 ctfhk1 nbsyslog[18320] firewall firewall.flags.foffset=0 firewall.ip.version=4 firewall.flags=0 firewall.ip.protonum=17 firewall.bridge.out=NET firewall.ip.dstport=389 firewall.bytes.rx=276 firewall.flags.len=276 firewall.interface.out=NET firewall.flags.hlen=256 firewall.ip.protocol=udp firewall.flags.ttl=127 firewall.result=deny firewall.hardware.protocol=2048 firewall.flags.tos=0x00 firewall.hardware.type=65534 firewall.ip.srcport=52248 firewall.flags.cksum=44956 firewall.raw.tag=default firewall.tag=default firewall.application=firewall firewall.bridge.in=tunctfhk1 firewall.interface.in=tunctfhk1 firewall.ip.src=10.68.68.80 firewall.ip.dst=10.190.1.196 firewall.id=ea6d6750-768c-11eb-bc19-ffacc45d4057
+Feb 25 10:32:25 ctfhk1 nbsyslog[18320] firewall firewall.flags.foffset=0 firewall.ip.protonum=6 firewall.hardware.type=1 firewall.flags.urg=0 firewall.flags.hlen=5 firewall.ip.version=4 firewall.flags.acknum=0 firewall.bytes.rx=54 firewall.flags.len=40 firewall.bridge.in=NET firewall.interface.in=NET firewall.ip.protocol=tcp firewall.flags.ttl=237 firewall.flags.SYN=SYN firewall.result=deny firewall.ip.dstport=2375 packet.fwmark=2560 firewall.flags.winsize=1024 firewall.flags.reserved=0x00 firewall.hardware.protocol=2048 firewall.flags.tos=0x24 firewall.ip.srcport=41115 firewall.flags.cksum=11292 firewall.mac.type=0x0800 firewall.flags=0x0002 firewall.raw.tag=default firewall.tag=default firewall.application=firewall firewall.flags.seqnum=3244329068 firewall.ip.dst=203.198.63.51 firewall.ip.src=117.143.11.142 firewall.mac.dst=00:90:0b:31:36:e0 firewall.mac.src=b8:c2:53:f0:ce:14 firewall.id=b22482f4-7711-11eb-a72c-83fd532f69fb
+-->
+<!--
+<decoder name="NetworkBox-fields">
+	<parent>NetworkBox-firewall</parent>
+	<regex>firewall.flags.ptr=(\.+)</regex>
+	<order>NetworkBox.firewall.flags.ptr</order>
+</decoder>
+<decoder name="NetworkBox-fields">
+	<parent>NetworkBox-firewall</parent>
+	<regex>firewall.flags.seq=(\.+)</regex>
+	<order>NetworkBox.firewall.flags.seq</order>
+</decoder>
+<decoder name="NetworkBox-fields">
+	<parent>NetworkBox-firewall</parent>
+	<regex>firewall.flags.mtu=(\.+)</regex>
+	<order>NetworkBox.firewall.flags.mtu</order>
+</decoder>
+-->
+<!--
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+  <prematch>^firewall</prematch>
+	<regex>firewall.flags.ptr=(\S+)\s</regex>
+	<order>NetworkBox.firewall.flags.ptr</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.seq=(\S+)\s</regex>
+	<order>NetworkBox.firewall.flags.seq</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.mtu=(\S+)\s</regex>
+	<order>NetworkBox.firewall.flags.mtu</order>
+</decoder>
+-->
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<prematch>^firewall</prematch>
+	<regex>firewall.ip.icmp.code=(\d+)</regex>
+	<order>NetworkBox.firewall.ip.icmp.code</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.hardware.type=(\d+)</regex>
+	<order>NetworkBox.firewall.hardware.type</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.version=(\d+)</regex>
+	<order>NetworkBox.firewall.ip.version</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.bytes.rx=(\d+)</regex>
+	<order>NetworkBox.firewall.bytes.rx</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.protonum=(\d+)</regex>
+	<order>NetworkBox.firewall.ip.protonum</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.bridge.in=(\w+)</regex>
+	<order>NetworkBox.firewall.bridge.in</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.interface.in=(\w+)</regex>
+	<order>NetworkBox.firewall.interface.in</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.icmp.type=(\d+)</regex>
+	<order>NetworkBox.firewall.ip.icmp.type</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.bridge.out=(\w+)</regex>
+	<order>NetworkBox.firewall.bridge.out</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.interface.out=(\w+)</regex>
+	<order>NetworkBox.firewall.interface.out</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.result=(\w+)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.hardware.protocol=(\d+)</regex>
+	<order>NetworkBox.firewall.hardware.protocol</order>
+</decoder>
+<!-- Flags -->
+<!--
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags=(\w+)</regex>
+	<order>NetworkBox.firewall.flags</order>
+</decoder>
+-->
+<!--
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.len=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.len</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.hlen=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.hlen</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.foffset=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.foffset</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.urg=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.urg</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.ttl=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.ttl</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.tos=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.tos</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.cksum=(\S+)\s</regex>
+	<order>NetworkBox.firewall.flags.cksum</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.reserved=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.reserved</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.acknum=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.acknum</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.SYN=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.SYN</order>
+</decoder>
+-->
+<!-- Flags -->
+<!--
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.winsize=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.winsize</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.reserved=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.reserved</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.seqnum=(\w+)</regex>
+	<order>NetworkBox.firewall.flags.seqnum</order>
+</decoder>
+-->
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>packet.fwmark=(\d+)</regex>
+	<order>NetworkBox.packet.fwmark</order>
+</decoder>
+<!--
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.flags.winsize=(\d+)</regex>
+	<order>NetworkBox.firewall.flags.winsize</order>
+</decoder>
+-->
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.mac.type=(\w+)</regex>
+	<order>NetworkBox.firewall.mac.type</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.class=(\w+)</regex>
+	<order>NetworkBox.firewall.ip.class</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.raw.tag=(\w+)</regex>
+	<order>NetworkBox.firewall.raw.tag</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.tag=(\w+)</regex>
+	<order>NetworkBox.firewall.tag</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.application=(\w+)</regex>
+	<order>NetworkBox.firewall.application</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.protocol=(\w+)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.mac.dst=(\w+:\w+:\w+:\w+:\w+:\w+)</regex>
+	<order>NetworkBox.firewall.mac.dst</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.mac.src=(\w+:\w+:\w+:\w+:\w+:\w+)</regex>
+	<order>NetworkBox.firewall.mac.src</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.dstport=(\d+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.srcport=(\d+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.dst=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)|firewall.ip.dst=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.src=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)|firewall.ip.src=(\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.ip.icmp.message=(\.+)</regex>
+	<order>NetworkBox.firewall.ip.icmp.message</order>
+</decoder>
+<decoder name="NetworkBox-firewall-fields">
+	<parent>NetworkBox</parent>
+	<regex>firewall.id=(\S+)\s</regex>
+	<order>id</order>
+</decoder>
+<!--Log type: syslog.vpn.message-->
+<!--Example:
+1.
+Feb 24 18:30:53 ctfhk1 nbsyslog[18320] syslog.vpn.message pid=3185 tunnel=ctfhk1 tunnelname=ctfhk1 state=Connected interface=tunctfhk1 application=ssl.server raw="kennyyipssl/219.79.20.137:55506 Control Channel: TLSv1.2, cipher TLSv1/SSLv3 ECDHE-RSA-AES256-GCM-SHA384, 4096 bit RSA" summary="SSL VPN info update: kennyyipssl/219.79.20.137:55506 Control Channel: TLSv1.2, cipher TLSv1/SSLv3 ECDHE-RSA-AES256-GCM-SHA384, 4096 bit RSA"
+2.
+Feb 25 10:00:58 ctfhk1 nbsyslog[18320] syslog.vpn.message remote_subnet=LAN local_subnet=LAN application=ipsec result=audit local_site=ctfhk1 remote_site=ctfushk2 tunnel=CTFUSHK2 state=Disconnect remote_n=72.253.73.68 local_n=203.198.63.60 remote_routes="route 10.78.3.0/24" local_routes="route 10.72.2.0/24" id=CTFUSHK2-ctfhk1-LAN-ctfushk2-LAN tunnelname=CTFUSHK2-ctfhk1-LAN-ctfushk2-LAN error_message="asynchronous network error report on p4p1 " summary="IPSec error: asynchronous network error report on p4p1  (tunnel: CTFUSHK2-ctfhk1-LAN-ctfushk2-LAN)" raw="ERROR: asynchronous network error report on p4p1 (sport=500) for message to 72.253.73.68 port 500, complainant 72.253.73.68: Connection refused [errno 111, origin ICMP type 3 code 3 (not authenticated)]"
+-->
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+  <prematch>^syslog.vpn.message</prematch>
+	<regex>remote_subnet=(\w+)</regex>
+	<order>NetworkBox.remote_subnet</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_subnet=(\w+)</regex>
+	<order>NetworkBox.local_subnet</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_site=(\w+)</regex>
+	<order>NetworkBox.local_site</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_site=(\w+)</regex>
+	<order>NetworkBox.remote_site</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_n=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)|remote_n=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_n=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)|local_n=(\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_routes="(\.+)"</regex>
+	<order>NetworkBox.remote_routes</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_routes="(\.+)"</regex>
+	<order>NetworkBox.local_routes</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>pid=(\d+)</regex>
+	<order>id</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>id=(\w+-\w+-\w+-\w+-\w+)</regex>
+	<order>id</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>tunnel=(\w+)</regex>
+	<order>NetworkBox.tunnel</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>tunnelname=(\w+)</regex>
+	<order>NetworkBox.tunnelname</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>state=(\w+)</regex>
+	<order>status</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>interface=(\w+)</regex>
+	<order>NetworkBox.interface</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>application=(\.+) </regex>
+	<order>NetworkBox.application</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>raw="(\.+)"</regex>
+	<order>NetworkBox.raw_message</order>
+</decoder>
+<decoder name="NetworkBox-syslog-fields">
+	<parent>NetworkBox</parent>
+	<regex>summary="(\.+)"</regex>
+	<order>NetworkBox.summary</order>
+</decoder>
+<!--Log type: event.vpn.ipsec-->
+<!--Example:
+Feb 25 13:26:28 ctfhk1 nbsyslog[18320] event.vpn.ipsec remote_subnet=LAN local_subnet=LAN result=audit local_site=ctfhk1 remote_site=ctfushk2 tunnel=CTFUSHK2 state=Disconnect remote_n=72.253.73.68 local_n=203.198.63.60 remote_routes="route 10.78.3.0/24" local_routes="route 10.72.2.0/24" id=CTFUSHK2-ctfhk1-LAN-ctfushk2-LAN tunnelname=CTFUSHK2-ctfhk1-LAN-ctfushk2-LAN error_message="asynchronous network error report on p4p1 " summary="IPSec error: asynchronous network error report on p4p1  (tunnel: CTFUSHK2-ctfhk1-LAN-ctfushk2-LAN)" raw="ERROR: asynchronous network error report on p4p1 (sport=500) for message to 72.253.73.68 port 500, complainant 72.253.73.68: Connection refused [errno 111, origin ICMP type 3 code 3 (not authenticated)]"
+-->
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+  <prematch>^event.vpn.ipsec</prematch>
+	<regex>remote_subnet=(\w+)</regex>
+	<order>NetworkBox.remote_subnet</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_subnet=(\w+)</regex>
+	<order>NetworkBox.local_subnet</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>result=(\w+)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_site=(\w+)</regex>
+	<order>NetworkBox.local_site</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_site=(\w+)</regex>
+	<order>NetworkBox.remote_site</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>tunnel=(\w+)</regex>
+	<order>NetworkBox.tunnel</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>state=(\w+)</regex>
+	<order>status</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_n=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)|remote_n=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_n=(\w+:\w+:\w+:\w+:\w+:\w+:\w+:\w+)|local_n=(\d+.\d+.\d+.\d+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_routes="(\.+)"</regex>
+	<order>NetworkBox.remote_routes</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>local_routes="(\.+)"</regex>
+	<order>NetworkBox.local_routes</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>id=(\w+-\w+-\w+-\w+-\w+)</regex>
+	<order>id</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>tunnelname=(\w+-\w+-\w+-\w+-\w+)</regex>
+	<order>NetworkBox.tunnelname</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>error_message="(\.+)"</regex>
+	<order>NetworkBox.error_message</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>summary="(\.+)"</regex>
+	<order>NetworkBox.summary</order>
+</decoder>
+<decoder name="NetworkBox-event-fields">
+	<parent>NetworkBox</parent>
+	<regex>raw="(\.+)"</regex>
+	<order>NetworkBox.raw_message</order>
+</decoder>
+<!--Log type: vpn.ssl.server.connections-->
+<!--Example:
+Feb 28 14:27:00 ctfhk3 nbsyslog[9171] vpn.ssl.server.connections 59.152.215.10:53786.remote_site=sip1 59.152.215.10:46368.remote_site=sip2 pid=31901 209.58.221.202:60226.remote_port=60226 59.152.215.10:46368.remote_port=46368 59.152.215.10:53786.remote_port=53786 status=active tunnel=ctfhk3 substatus=running 59.152.215.10:46368.remote_ip=10.58.3.3 59.152.215.10:53786.remote_ip=10.58.3.2 209.58.221.202:60226.remote_ip=10.58.3.7 59.152.215.10:46368.username=1665084637 59.152.215.10:53786.username=1677392206 209.58.221.202:60226.username=1677345516 occured_sec=1677565620 application=ssl.server 59.152.215.10:53786.remote_n=59.152.215.10 59.152.215.10:46368.remote_n=59.152.215.10 209.58.221.202:60226.remote_site=bran6621-acc01 209.58.221.202:60226.remote_n=209.58.221.202 59.152.215.10:53786.remote_route="route 10.58.3.2" 209.58.221.202:60226.remote_route="route 10.58.3.7" 59.152.215.10:46368.remote_route="route 10.58.3.3" period.utc="2023-02-28 06:26" period.local="2023-02-28 14:26" 59.152.215.10:46368.conkey=59.152.215.10:46368 59.152.215.10:53786.conkey=59.152.215.10:53786 209.58.221.202:60226.conkey=209.58.221.202:60226 209.58.221.202:60226.connected_since="Sun Feb 26 01:18:36 2023" 59.152.215.10:46368.connected_since="Fri Oct  7 03:30:37 2022" 59.152.215.10:53786.connected_since="Sun Feb 26 14:16:46 2023"
+-->
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+  <prematch>^vpn.ssl.server.connections</prematch>
+	<regex>remote_site=(\w+)</regex>
+	<order>NetworkBox.remote_site</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>pid=(\d+)</regex>
+	<order>NetworkBox.pid</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_port=(\w+)</regex>
+	<order>NetworkBox.remote_port</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>status=(\S+)</regex>
+	<order>NetworkBox.status</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>tunnel=(\S+)</regex>
+	<order>NetworkBox.tunnel</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>substatus=(\S+)</regex>
+	<order>NetworkBox.substatus</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_ip=(\S+)</regex>
+	<order>NetworkBox.remote_ip</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>username=(\S+)</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>occured_sec=(\d+)</regex>
+	<order>NetworkBox.occured_sec</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>application=(\S+)</regex>
+	<order>NetworkBox.application</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_n=(\S+)</regex>
+	<order>NetworkBox.remote_n</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_site=(\S+)</regex>
+	<order>NetworkBox.remote_site</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>remote_route=(\.+) \S+=</regex>
+	<order>NetworkBox.remote_route</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>period.utc=(\.+) \S+=</regex>
+	<order>NetworkBox.period_utc</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>period.local=(\.+) \S+=</regex>
+	<order>NetworkBox.period_local</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>conkey=(\S+)</regex>
+	<order>NetworkBox.conkey</order>
+</decoder>
+<decoder name="NetworkBox-ssl-fields">
+	<parent>NetworkBox</parent>
+	<regex>connected_since=(\.+) \S+=</regex>
+	<order>NetworkBox.connected_since</order>
+</decoder>
+
+<!--Log type: event.vpn.pptp-->
+<!--Example:
+Sep 13 10:54:43 ctfhk3 nbsyslog[15659] event.vpn.pptp remote_n=205.210.31.75 state=PPPDisconnected
+-->
+<decoder name="NetworkBox-pptp-fields">
+	<parent>NetworkBox</parent>
+  <prematch>event.vpn.pptp</prematch>
+	<regex>remote_n=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="NetworkBox-pptp-fields">
+	<parent>NetworkBox</parent>
+	<regex>state=(\S+)</regex>
+	<order>NetworkBox.state</order>
+</decoder>
+
+<!--Log type: vpn.ipsec.connections-->
+<!--Example:
+Sep 13 12:13:02 ctfhk2 nbsyslog[6725] vpn.ipsec.connections CTFHK1-ctfhk2-LAN-ctfhk1-LAN.state=connected period.local="2023-09-13 12:12" period.utc="2023-09-13 04:12" CTFHK1-ctfhk2-LAN-ctfhk1-LAN.tunnelname=CTFHK1-ctfhk2-LAN-ctfhk1-LAN
+Sep 13 12:13:02 ctfhk3 nbsyslog[12503] vpn.ipsec.connections CTFTWHK2-ctfhk3-LAN-ctftwhk2-LAN_16.state=connected CTFTWHK2-ctfhk3-LN2-ctftwhk2-LAN_2.state=connected CTFTWHK2-ctfhk3-LN2-ctftwhk2-LAN_4.state=connected CTFTWHK2-ctfhk3-LN2-ctftwhk2-LAN_8.state=connected CTFTWHK2-ctfhk3-LN2-ctftwhk2-LAN_1.remote_n=59.124.12.135
+-->
+<decoder name="NetworkBox-ipsec-fields">
+	<parent>NetworkBox</parent>
+  <prematch>^vpn.ipsec.connections</prematch>
+	<regex>remote_n=(\d+.\d+.\d+.\d+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="NetworkBox-ipsec-fields">
+	<parent>NetworkBox</parent>
+	<regex>state=(\S+)</regex>
+	<order>NetworkBox.state</order>
+</decoder>
+<decoder name="NetworkBox-ipsec-fields">
+	<parent>NetworkBox</parent>
+	<regex>tunnelname=(\S+)</regex>
+	<order>NetworkBox.tunnelname</order>
+</decoder>
+
+<!--Log type: vpn.ssl.client.connect-->
+<!--Example:
+Sep 13 13:04:52 ctfhk3 nbsyslog[15659] vpn.ssl.client.connect sslvpn.iv.comp.stub=1 sslvpn.iv.lz4v2=1 sslvpn.iv.lzo=1 sslvpn.iv.comp.stubv2=1 sslvpn.iv.ncp=2 sslvpn.iv.lz4=1 sslvpn.iv.proto=6 sslvpn.iv.tcpnl=1 sslvpn.x509.0.c=HK sslvpn.x509.0.c.1=HK sslvpn.x509.1.c.1=HK sslvpn.tls.serial.hex.0=0b sslvpn.x509.1.c=HK sslvpn.tls.serial.0=11 sslvpn.iv.plat=win sslvpn.dev.type=tun sslvpn.proto.1=udp sslvpn.script.context=init sslvpn.local.port.1=1196 sslvpn.tun.mtu=1500 sslvpn.link.mtu=1621 sslvpn.remote.port.1=1194 result=audit sslvpn.daemon.pid=18728 sslvpn.x509.1.cn.1=ctfhk sslvpn.iv.ver=2.5.5 sslvpn.trusted.port=56966 sslvpn.x509.1.cn=ctfhk sslvpn.untrusted.port=56966 sslvpn.username=ryanlaw sslvpn.common.name=ryanlaw sslvpn.ifconfig.local=10.62.0.1 sslvpn.x509.0.l="Kwai Chung" sslvpn.x509.1.l="Kwai Chung" sslvpn.iv.plat.ver=10.0_64bit sslvpn.x509.1.l.1="Kwai Chung" sslvpn.x509.0.l.1="Kwai Chung" sslvpn.ifconfig.pool.remote.ip=10.62.3.129 sslvpn.dev=tunctfhk3_m sslvpn.ifconfig.broadcast=10.62.15.255 sslvpn.trusted.ip=45.64.240.240 sslvpn.untrusted.ip=45.64.240.240 sslvpn.x509.0.cn.1=sslvpn_client sslvpn.ifconfig.netmask=255.255.240.0 sslvpn.ifconfig.pool.netmask=255.255.240.0 sslvpn.local.1=203.198.63.64 sslvpn.x509.0.cn=sslvpn_client sslvpn.script.type=client-connect sslvpn.iv.gui.ver=OpenVPN_GUI_11 sslvpn.iv.sso=openurl,crtext
+-->
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+  <prematch>^vpn.ssl.client.connect</prematch>
+	<regex>sslvpn.proto.1=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.proto.1</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.local.port.1=(\d*) \S+=</regex>
+	<order>NetworkBox.sslvpn.local.port.1</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.remote.port.1=(\d*) \S+=</regex>
+	<order>NetworkBox.sslvpn.remote.port.1</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.daemon.pid=(\d*) \S+=</regex>
+	<order>NetworkBox.sslvpn.daemon.pid</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.trusted.port=(\d*) \S+=</regex>
+	<order>NetworkBox.sslvpn.trusted.port</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.untrusted.port=(\d*) \S+=</regex>
+	<order>NetworkBox.sslvpn.untrusted.port</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.ifconfig.local=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.ifconfig.local</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.username=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.username</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.ifconfig.pool.remote.ip=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.ifconfig.pool.remote.ip</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.ifconfig.broadcast=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.ifconfig.broadcast</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.local.1=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.local.1</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.trusted.ip=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.trusted.ip</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.script.type=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.script.type</order>
+</decoder>
+<decoder name="NetworkBox-client-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.untrusted.ip=(\.*) \S+=|sslvpn.untrusted.ip=(\d+.\d+.\d+.\d+)</regex>
+	<order>NetworkBox.sslvpn.untrusted.ip</order>
+</decoder>
+
+<!--Log type: vpn.ssl.up-->
+<!--Example:
+Sep 13 13:04:52 ctfhk3 nbsyslog[32489] vpn.ssl.up sslvpn.script.type=up sslvpn.dev.type=tun sslvpn.proto.1=udp sslvpn.script.context=init sslvpn.link.mtu=1621 sslvpn.remote.port.1=1194 sslvpn.local.port.1=1196 sslvpn.tun.mtu=1500 sslvpn.daemon.pid=18728 result=audit sslvpn.ifconfig.local=10.62.0.1 sslvpn.dev=tunctfhk3_m sslvpn.ifconfig.broadcast=10.62.15.255 sslvpn.local.1=203.198.63.64 sslvpn.ifconfig.netmask=255.255.240.0 sslvpn.config=s_ctfhk3_m.conf
+-->
+<decoder name="NetworkBox-up-fields">
+	<parent>NetworkBox</parent>
+  <prematch>^vpn.ssl.up</prematch>
+	<regex>sslvpn.proto.1=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.proto.1</order>
+</decoder>
+<decoder name="NetworkBox-up-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.local.port.1=(\d*) \S+=</regex>
+	<order>NetworkBox.sslvpn.local.port.1</order>
+</decoder>
+<decoder name="NetworkBox-up-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.remote.port.1=(\d*) \S+=</regex>
+	<order>NetworkBox.sslvpn.remote.port.1</order>
+</decoder>
+<decoder name="NetworkBox-up-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.daemon.pid=(\d*) \S+=</regex>
+	<order>NetworkBox.sslvpn.daemon.pid</order>
+</decoder>
+<decoder name="NetworkBox-up-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.ifconfig.local=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.ifconfig.local</order>
+</decoder>
+<decoder name="NetworkBox-up-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.dev=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.dev</order>
+</decoder>
+<decoder name="NetworkBox-up-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.ifconfig.broadcast=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.ifconfig.broadcast</order>
+</decoder>
+<decoder name="NetworkBox-up-fields">
+	<parent>NetworkBox</parent>
+	<regex>sslvpn.local.1=(\.*) \S+=</regex>
+	<order>NetworkBox.sslvpn.local.1</order>
+</decoder>

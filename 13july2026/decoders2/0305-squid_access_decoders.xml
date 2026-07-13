@@ -1,0 +1,19 @@
+<decoder name="squid-access-log">
+  <program_name>squid</program_name>
+  <type>squid</type>
+</decoder>
+<decoder name="squid-access-log-fields">
+  <parent>squid-access-log</parent>
+  <regex>^(\d+.\d+)\s+(\S+)\s+(\S+)\s+(\w+)/(\d+)\s+(\d+)\s+(\w+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\S+)</regex>
+  <order>timestamp, duration, srcip, action, status, content_length, request_method, url, srcuser, hierarchy_code, content_type</order>
+</decoder>
+<decoder name="squid-access-log-fields">
+  <parent>squid-access-log</parent>
+  <regex>^\d+.\d+\s+\S+\s+\S+\s+\w+/\d+\s+\d+\s+\w+\s+\S+(\d+.\d+.\d+.\d+)</regex>
+  <order>dstip</order>
+</decoder>
+<decoder name="squid-access-log-fields">
+  <parent>squid-access-log</parent>
+  <regex>^\d+.\d+\s+\S+\s+\S+\s+\w+/\d+\s+\d+\s+\w+\s+\S+:(\d+)</regex>
+  <order>dstport</order>
+</decoder>

@@ -1,0 +1,33 @@
+<!-- DEV-668 -->
+
+<decoder name="sangfor">
+	<prematch>Log Type: |Log type: </prematch>
+	<program_name>fwlog</program_name>
+</decoder>
+
+<!--
+Feb  2 15:44:08 172.16.63.130 fwlog:  Log Type: traffic audit, App Category:Other, Username/Host:172.16.162.31, Outbound(B):3356, Inbound(B):58902, Bidirectional(B):62258
+-->
+<decoder name="sangfor_fields">
+	<parent>sangfor</parent>
+	<regex>Log Type: (\.+), App Category:(\.+), Username/Host:(\.+), Outbound\(\.*\):(\.+), Inbound\(\.*\):(\.+), Bidirectional\(\.*\):(\.+)</regex>
+	<order>sangfor.logType, sangfor.appCategory, sangfor.host_ip, sangfor.bytes_sent, sangfor.bytes_received, sangfor.bytes</order>
+</decoder>
+
+<!--
+Feb  2 15:44:13 172.16.63.130 fwlog:  Log type: service/application control, policy name:User Internet Access, user:(null), Src IP:172.16.168.210, Src port:64094, Dst IP:104.18.20.226, Dst port: 80, App category:Other, application:http, action:Allow
+-->
+<decoder name="sangfor_fields">
+	<parent>sangfor</parent>
+	<regex>Log type: (\.+), policy name:(\.+), user:(\.+), Src IP:(\.+), Src port:\s*(\d+), Dst IP:(\.+), Dst port:\s*(\d+), App category:(\.+), application:(\.+), action:(\.+)</regex>
+	<order>sangfor.logType, sangfor.policyName, dstuser, srcip, srcport, dstip, dstport, sangfor.appCategory, sangfor.application, action</order>
+</decoder>
+
+<!--
+Feb  2 15:40:46 172.16.65.49 nat:  Log type: NAT, type:dnat, Src IP:162.158.74.16, Src port:38328, Dst IP:118.143.50.148, Dst port:9070, protocol:6, translated-to IP:172.16.142.100, translated-to port:9070
+-->
+<decoder name="sangfor_fields">
+	<parent>sangfor</parent>
+	<regex>Log type: (\.+), type:(\.+), Src IP:(\.+), Src port:(\d+), Dst IP:(\.+), Dst port:(\d+), protocol:(\d+), translated-to IP:(\.+), translated-to port:(\d+)</regex>
+	<order>sangfor.logType, sangfor.type, srcip, srcport, dstip, dstport, protocol, sangfor.translated_to_ip, sangfor.translated_to_port</order>
+</decoder>

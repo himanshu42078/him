@@ -1,0 +1,34 @@
+<!--
+Osquery decoder v1.0
+Grabbing the log source by:
+osqueryd.results.log'$
+	Jun 18 15:44:00 172.18.32.199  2020-06-18T15:41:54.000000+0700 alicloud-server-shanghai shanghai - - '|__source__=192.168.6.75|name=pack_fim_file_events|__tag__:__hostname__=izuf6aim8tbhc4le6yzeqhz|hostIdentifier=izuf6aim8tbhc4le6yzeqhz|calendarTime=Thu Jun 18 07:41:54 2020 UTC|counter=0|__topic__=|epoch=0|decorations={"host_uuid":"8439B45E-5DAE-4FB3-A173-E66E222F6654","username":"reboot"}|unixTime=1592466114|action=added|__tag__:__pack_id__=389979EB9DCE2642-1A90|columns={"action":"MOVED_TO","atime":"1592462996","category":"tmp","ctime":"1592462996","gid":"0","hashed":"0","inode":"396443","md5":"","mode":"0666","mtime":"1592462996","sha1":"","sha256":"","size":"4152","target_path":"/tmp/logtail_check_point","time":"1592462996","transaction_id":"17713110","uid":"0"}|__tag__:__path__=/var/log/osquery/osqueryd.results.log'
+-->
+<decoder name="osquery">
+	<prematch>/osquery/osqueryd</prematch>
+</decoder>
+<decoder name="osquery-fields">
+	<parent>osquery</parent>
+	<prematch>columns=</prematch>
+	<plugin_decoder offset="after_prematch">JSON_Decoder</plugin_decoder>
+</decoder>
+<decoder name="osquery-fields">
+	<parent>osquery</parent>
+	<regex>hostIdentifier=(\.*)\|</regex>
+	<order>osquery.hostIdentifier</order>
+</decoder>
+<decoder name="osquery-fields">
+	<parent>osquery</parent>
+	<regex>__hostname__=(\.*)\|</regex>
+	<order>osquery.hostname</order>
+</decoder>
+<decoder name="osquery-fields">
+	<parent>osquery</parent>
+	<regex>"username":"(\w+)"</regex>
+	<order>user</order>
+</decoder>
+<decoder name="osquery-fields">
+	<parent>osquery</parent>
+	<regex>\|name=(\S+)\|</regex>
+	<order>alicloud.name</order>
+</decoder>

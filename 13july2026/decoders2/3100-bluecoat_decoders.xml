@@ -1,0 +1,544 @@
+<!--
+Feb  9 17:13:08 192.168.50.47  2023-02-09T09:13:07.000z hkmcdabcs1 bluecoat - splunk_format - c-ip=192.168.3.17 rs-Content-Type="-"  cs-auth-groups=- cs-bytes=101 cs-categories="Technology/Internet" cs-host=unity.fireeye.com cs-ip=192.168.50.47 cs-method=CONNECT cs-uri-port=443 cs-uri-scheme=tcp cs-User-Agent="-" cs-username=- dnslookup-time=0 duration=0 rs-status=0 rs-version=- s-action=TCP_ACCELERATED s-ip=192.168.50.47 service.name="Explicit HTTP" service.group="Standard" s-supplier-ip=192.168.50.47 s-supplier-name=192.168.50.47 sc-bytes=39 sc-filter-result=PROXIED sc-status=200 time-taken=12 x-exception-id=- x-virus-id=- c-url="tcp://unity.fireeye.com:443/" cs-Referer="-" c-cpu=- connect-time=- cs-auth-groups=- cs-headerlength=101 cs-threat-risk=unavailable r-ip=162.159.246.125 r-supplier-ip=- rs-time-taken=- rs-server=- s-connect-type=Unknown s-icap-status=ICAP_NOT_SCANNED s-sitename=http.proxy s-source-port=0 s-supplier-country="Unavailable" sc-Content-Encoding=- sr-Accept-Encoding=identity x-auth-credential-type=- x-cookie-date=Thu,%2009-Feb-23%2009:13:07%20GMT x-cs-certificate-subject=- x-cs-connection-negotiated-cipher=none x-cs-connection-negotiated-cipher-size=- x-cs-connection-negotiated-ssl-version=- x-cs-ocsp-error=- x-cs-Referer-uri=- x-cs-Referer-uri-address=- x-cs-Referer-uri-extension=- x-cs-Referer-uri-host=- x-cs-Referer-uri-hostname=- x-cs-Referer-uri-path=- x-cs-Referer-uri-pathquery=- x-cs-Referer-uri-port=- x-cs-Referer-uri-query=- x-cs-Referer-uri-scheme=- x-cs-Referer-uri-stem=- x-exception-category=- x-exception-category-review-message=- x-exception-company-name=- x-exception-contact=- x-exception-details=- x-exception-header=- x-exception-help=- x-exception-last-error=- x-exception-reason="-" x-exception-sourcefile=- x-exception-sourceline=0 x-exception-summary=- x-icap-error-code=- x-rs-certificate-hostname=- x-rs-certificate-hostname-category=- x-rs-certificate-observed-errors=- x-rs-certificate-subject=- x-rs-certificate-validate-status=- x-rs-connection-negotiated-cipher=none x-rs-connection-negotiated-cipher-size=- x-rs-connection-negotiated-ssl-version=- x-rs-ocsp-error=- cs-uri-extension=- cs-uri-path=/ cs-uri-query="-" c-uri-pathquery=/  
+-->
+<!--
+DEV-3330
+DEV-4136
+-->
+<decoder name="bluecoat">
+    <prematch>bluecoat - splunk_format - \.+=</prematch>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>c-ip=(\.+) \S+=</regex>
+    <order>c-ip</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>c-ip=(\.+) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-username=(\.+) \S+=</regex>
+    <order>cs-username</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+	<parent>bluecoat</parent>
+    <regex>cs-username=(\.*) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-auth-groups=(\.+) \S+=</regex>
+    <order>cs-auth-groups</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-supplier-name=(\.+) \S+=</regex>
+    <order>s-supplier-name</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-supplier-ip=(\.+) \S+=</regex>
+    <order>s-supplier-ip</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-supplier-country="(\.*)" \S+=|s-supplier-country="(\.*)"$</regex>
+    <order>s-supplier-country</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-supplier-failures=(\.+) \S+=</regex>
+    <order>s-supplier-failures</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-exception-id=(\.+) \S+=</regex>
+    <order>x-exception-id</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>sc-filter-result=(\.+) \S+=</regex>
+    <order>sc-filter-result</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-categories="(\.+)" \S+=|cs-categories=(\.+) \S+=</regex>
+    <order>cs-categories</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-Referer="(\.+)" \S+=|cs-Referer=(\.+) \S+=</regex>
+    <order>cs-Referer</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>sc-status=(\.+) \S+=</regex>
+    <order>sc-status</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-action=(\.+) \S+=</regex>
+    <order>s-action</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-action=(\.+) \S+=</regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-method=(\.+) \S+=</regex>
+    <order>cs-method</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>rs-Content-Type="(\.+)" \S+=|rs-Content-Type=(\.+) \S+=</regex>
+    <order>rs-Content-Type</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-uri-scheme=(\.+) \S+=</regex>
+    <order>cs-uri-scheme</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-host=(\.+) \S+=</regex>
+    <order>cs-host</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-host=(\.+) \S+=</regex>
+    <order>url_domain</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-uri-port=(\.+) \S+=</regex>
+    <order>cs-uri-port</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-uri-port=(\.+) \S+=</regex>
+    <order>dstport</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-uri-path=(\.+) \S+=</regex>
+    <order>cs-uri-path</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-uri-query="(\.*)" \S+=|cs-uri-query="(\.*)"$</regex>
+    <order>cs-uri-query</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-uri-extension=(\.+) \S+=</regex>
+    <order>cs-uri-extension</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-User-Agent="(\.+)" \S+=|cs-User-Agent=(\.+) \S+=</regex>
+    <order>cs-User-Agent</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-ip=(\.+) \S+=</regex>
+    <order>s-ip</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>sc-bytes=(\.+) \S+=</regex>
+    <order>sc-bytes</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-bytes=(\.+) \S+=</regex>
+    <order>cs-bytes</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-virus-id=(\.+) \S+=</regex>
+    <order>x-virus-id</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-bluecoat-application-name=(\.+) \S+=</regex>
+    <order>x-bluecoat-application-name</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-bluecoat-application-operation=(\.+) \S+=</regex>
+    <order>x-bluecoat-application-operation</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-bluecoat-application-groups=(\.+) \S+=</regex>
+    <order>x-bluecoat-application-groups</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-threat-risk=(\.+) \S+=</regex>
+    <order>cs-threat-risk</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-bluecoat-transaction-uuid=(\.+) \S+=</regex>
+    <order>x-bluecoat-transaction-uuid</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-icap-reqmod-header=(\.+) \S+=</regex>
+    <order>x-icap-reqmod-header</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-icap-respmod-header="(\.*)" \S+=|x-icap-respmod-header="(\.*)"$</regex>
+    <order>x-icap-respmod-header</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-rs-certificate-observed-errors=(\.+) \S+=</regex>
+    <order>x-rs-certificate-observed-errors</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cs-ocsp-error=(\.+) \S+=</regex>
+    <order>x-cs-ocsp-error</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-rs-ocsp-error=(\.+) \S+=</regex>
+    <order>x-rs-ocsp-error</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-rs-connection-negotiated-cipher-strength=(\.+) \S+=</regex>
+    <order>x-rs-connection-negotiated-cipher-strength</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-rs-certificate-hostname=(\.+) \S+=</regex>
+    <order>x-rs-certificate-hostname</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-rs-certificate-hostname-category=(\.+) \S+=</regex>
+    <order>x-rs-certificate-hostname-category</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-rs-certificate-hostname-threat-risk=(\.*) \S+=|x-rs-certificate-hostname-threat-risk=(\.*)$</regex>
+    <order>x-rs-certificate-hostname-threat-risk</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>rs-bytes=(\.+) \S+=</regex>
+    <order>rs-bytes</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>c-starttime=(\.+) \S+=</regex>
+    <order>c-starttime</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>filelength=(\.+) \S+=</regex>
+    <order>filelength</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>filesize=(\.+) \S+=</regex>
+    <order>filesize</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>avgbandwidth=(\.+) \S+=</regex>
+    <order>avgbandwidth</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-rs-streaming-content=(\.+) \S+=</regex>
+    <order>x-rs-streaming-content</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-streaming-rtmp-app-name=(\.+) \S+=</regex>
+    <order>x-streaming-rtmp-app-name</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-streaming-rtmp-stream-name=(\.+) \S+=</regex>
+    <order>x-streaming-rtmp-stream-name</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-streaming-rtmp-swf-url=(\.+) \S+=</regex>
+    <order>x-streaming-rtmp-swf-url</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-streaming-rtmp-page-url=(\.+) \S+=</regex>
+    <order>x-streaming-rtmp-page-url</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-dns=(\.+) \S+=</regex>
+    <order>s-dns</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-session-id=(\.+) \S+=</regex>
+    <order>s-session-id</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cache-info=(\.*) \S+=|x-cache-info=(\.*)$</regex>
+    <order>x-cache-info</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-ip=(\.+) \S+=</regex>
+    <order>cs-ip</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>dnslookup-time=(\.+) \S+=</regex>
+    <order>dnslookup-time</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>duration=(\.+) \S+=</regex>
+    <order>duration</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>rs-status=(\.+) \S+=</regex>
+    <order>rs-status</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>rs-version=(\.+) \S+=</regex>
+    <order>rs-version</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>time-taken=(\.+) \S+=</regex>
+    <order>time-taken</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>c-url="(\.+)" \S+=|c-url=(\.+) \S+=</regex>
+    <order>c-url</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>c-url="(\.+)" \S+=|c-url=(\.+) \S+=</regex>
+    <order>url</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>c-cpu=(\.+) \S+=</regex>
+    <order>c-cpu</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>connect-time=(\.+) \S+=</regex>
+    <order>connect-time</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>cs-headerlength=(\.+) \S+=</regex>
+    <order>cs-headerlength</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex> r-ip=(\.+) \S+=</regex>
+    <order>r-ip</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex> r-ip=(\.+) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>r-supplier-ip=(\.+) \S+=</regex>
+    <order>r-supplier-ip</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>rs-time-taken=(\.+) \S+=</regex>
+    <order>rs-time-taken</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>rs-server=(\.+) \S+=</regex>
+    <order>rs-server</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-connect-type=(\.+) \S+=</regex>
+    <order>s-connect-type</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-icap-status=(\.+) \S+=</regex>
+    <order>s-icap-status</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-sitename=(\.+) \S+=</regex>
+    <order>s-sitename</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>s-source-port=(\.+) \S+=</regex>
+    <order>s-source-port</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>sc-Content-Encoding=(\.+) \S+=</regex>
+    <order>sc-Content-Encoding</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>sr-Accept-Encoding=(\.+) \S+=</regex>
+    <order>sr-Accept-Encoding</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-auth-credential-type=(\.+) \S+=</regex>
+    <order>x-auth-credential-type</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cookie-date=(\.+) \S+=</regex>
+    <order>x-cookie-date</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cs-certificate-subject=(\.+) \S+=</regex>
+    <order>x-cs-certificate-subject</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cs-connection-negotiated-cipher=(\.+) \S+=</regex>
+    <order>x-cs-connection-negotiated-cipher</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cs-connection-negotiated-cipher-size=(\.+) \S+=</regex>
+    <order>x-cs-connection-negotiated-cipher-size</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cs-connection-negotiated-ssl-version=(\.+) \S+=</regex>
+    <order>x-cs-connection-negotiated-ssl-version</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cs-Referer-uri=(\.+) \S+=</regex>
+    <order>x-cs-Referer-uri</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cs-Referer-uri-address=(\.+) \S+=</regex>
+    <order>x-cs-Referer-uri-address</order>
+</decoder>
+
+<decoder name="bluecoat-fields">
+    <parent>bluecoat</parent>
+    <regex>x-cs-Referer-uri-extension=(\.+) \S+=</regex>
+    <order>x-cs-Referer-uri-extension</order>
+</decoder>

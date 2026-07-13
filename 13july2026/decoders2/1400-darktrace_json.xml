@@ -1,0 +1,263 @@
+<!-- Modify it at your will. -->
+<decoder name="darktrace-json">
+	<prematch>darktrace\s{</prematch>
+</decoder>
+<!--
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<prematch>darktrace</prematch>
+	<plugin_decoder offset="after_prematch">JSON_Decoder</plugin_decoder>
+</decoder>
+-->
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"device":{\.*"ip":"(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"device":{\.*"hostname":"(\.*)"</regex>
+	<order>system_name</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"device":{\.*"credentials":[(\.*)]</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"type":"externalHost","values":[{"hostname":"\S+","ip":"(\d+.\d+.\d+.\d+)"}]</regex>
+	<order>dstip</order>
+</decoder>
+
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"breachDevices":[{"identifier":\S+,"hostname":\S+,"ip":"(\d+.\d+.\d+.\d+)",</regex>
+	<order>srcip</order>
+</decoder>
+
+<!-- model -->
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"model":{\.*"name":"(\.*)"</regex>
+	<order>model.name</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"model":{\.*"pid":(\d*),</regex>
+	<order>model.pid</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"model":{\.*"phid":"(\d*),</regex>
+	<order>model.phid</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"model":{\.*"uuid":"(\.*)"</regex>
+	<order>model.uuid</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"model":{\.*"category":"(\.*)"</regex>
+	<order>model.category</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"model":{\.*"compliance":"(\.*)"</regex>
+	<order>model.compliance</order>
+</decoder>
+
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"summariser":"(\.*)",</regex>
+	<order>summariser</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"acknowledged":"(\.*)",</regex>
+	<order>acknowledged</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"pinned":"(\.*)",</regex>
+	<order>pinned</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"title":"(\.*)",</regex>
+	<order>title</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"id":"(\.*)",</regex>
+	<order>id</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"incidentEventUrl":"(\.*)",</regex>
+	<order>incidentEventUrl</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"category":"(\.*)",</regex>
+	<order>category</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"currentGroup":"(\.*)",</regex>
+	<order>currentGroup</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"groupCategory":"(\.*)",</regex>
+	<order>groupCategory</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"groupScore":(\S*),</regex>
+	<order>groupScore</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"activityId":"(\.*)",</regex>
+	<order>activityId</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"groupByActivity":(\S*),</regex>
+	<order>groupByActivity</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"userTriggered":(\S*),</regex>
+	<order>userTriggered</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"externalTriggered":(\S*),</regex>
+	<order>externalTriggered</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"aiaScore":(\S*),</regex>
+	<order>aiaScore</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"summary":"(\.*)",</regex>
+	<order>summary</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"key":"Source device","type":"\S+","values":[{"identifier":"\S+","hostname":"\S+","ip":"(\d+.\d+.\d+.\d+)",</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"key":"Destination device","type":"\S+","values":[{"identifier":"\S+","hostname":"\S+","ip":"(\d+.\d+.\d+.\d+)",</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"key":"Destination port","type":"integer","values":[(\d+)]</regex>
+	<order>dstport</order>
+</decoder>
+
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"hostname":"(\.*)",</regex>
+	<order>hostname</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"devicelabel":"(\.*)",</regex>
+	<order>device.devicelabel</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"typename":"(\.*)",</regex>
+	<order>device.typename</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"typelabel":"(\.*)"</regex>
+	<order>device_type</order>
+</decoder>
+
+<!-- tags -->
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"device":{\.*"tags":[{\.*"tid":(\d*),</regex>
+	<order>device.tags.tid</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"device":{\.*"tags":[{\.*"expiry":"(\.*)",</regex>
+	<order>device.tags.expiry</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"device":{\.*"tags":[{\.*"thid":(\d*),</regex>
+	<order>device.tags.thid</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"device":{\.*"tags":[{\.*"name":"(\.*)",</regex>
+	<order>device.tags.name</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"device":{\.*"tags":[{\.*"restricted":(\S*),</regex>
+	<order>device.tags.restricted</order>
+</decoder>
+<!-- 
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"tags":[{"tid":(\.*),"expiry":(\.*),"thid":(\.*),"name":"(\.*)","restricted":(\.*),</regex>
+	<order>device.tags.tid,device.tags.expiry,device.tags.thid,device.tags.name,device.tags.restricted</order>
+</decoder>
+-->
+ 
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"breachUrl":(\d*),</regex>
+	<order>breachUrl</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"pbid":"(\.*)",</regex>
+	<order>pbid</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"score":(\S*),</regex>
+	<order>score</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"mitreTechniques":[{"technique":"(\.*)","techniqueID":"(\.*)"}]</regex>
+	<order>mitreTechniques.technique,mitreTechniques.techniqueID</order>
+</decoder>
+
+<!-- triggeredFilters -->
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"triggeredFilters":[{\.*"cfid":(\d*),</regex>
+	<order>triggeredComponents.triggeredFilters.cfid</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"triggeredFilters":[{\.*"id":"(\.*)"</regex>
+	<order>triggeredComponents.triggeredFilters.id</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"triggeredFilters":[{\.*"filterType":"(\.*)"</regex>
+	<order>triggeredComponents.triggeredFilters.filterType</order>
+</decoder>
+<decoder name="darktrace-json-fields">
+	<parent>darktrace-json</parent>
+	<regex>"triggeredFilters":[{\.*"arguments":{"value":"(\.*)"</regex>
+	<order>triggeredComponents.triggeredFilters.arguments.value</order>
+</decoder>

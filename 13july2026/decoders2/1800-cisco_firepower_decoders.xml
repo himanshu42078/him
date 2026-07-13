@@ -1,0 +1,1472 @@
+<decoder name="cisco_firepower-syslog">
+	<prematch>DeviceType=\.+	DeviceAddress=\.+	CurrentTime=\.+</prematch>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>DeviceType=(\.*)	</regex>
+	<order>DeviceType</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>DeviceAddress=(\.*)	</regex>
+	<order>DeviceAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>DeviceAddress=(\.*)	</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>CurrentTime=(\.*)	</regex>
+	<order>CurrentTime</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>recordType=(\.*)	</regex>
+	<order>recordType</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>recordLength=(\.*)	</regex>
+	<order>recordLength</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>timestamp=(\.*)	</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>netmapDomainRef=(\.*)	</regex>
+	<order>netmapDomainRef</order>
+</decoder>
+<!-- Intrusion Events::: SERVER-WEBAPP attemps-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventId=(\.*)	</regex>
+	<order>eventId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>sourceAddress=(\.*)\t</regex>
+	<order>sourceAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>destinationAddress=(\.*)	</regex>
+	<order>destinationAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>sourcePortOrICMPType=(\.*)	</regex>
+	<order>sourcePortOrICMPType</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>destinationPortOrICMPCode=(\.*)	</regex>
+	<order>destinationPortOrICMPCode</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>ipProtocolId=(\.*)	</regex>
+	<order>ipProtocolId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>impactFlags=(\.*)	</regex>
+	<order>impactFlags</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>impact=(\.*)	</regex>
+	<order>impact</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>blocked=(\.*)	</regex>
+	<order>blocked</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>mplsLabel=(\.*)	</regex>
+	<order>mplsLabel</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>userId=(\.*)  </regex>
+	<order>userId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>webApplicationId=(\.*)	</regex>
+	<order>webApplicationId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>clientApplicationId=(\.*)	</regex>
+	<order>clientApplicationId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>applicationProtocolId=(\.*)	</regex>
+	<order>applicationProtocolId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>accessControlRuleId=(\.*)	</regex>
+	<order>accessControlRuleId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>rule.generatorId=(\.*)	</regex>
+	<order>rule.generatorId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>rule.ruleId=(\.*)	</regex>
+	<order>rule.ruleId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>rule.ruleRevision=(\.*)	</regex>
+	<order>rule.ruleRevision</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>rule.renderedSignatureId=(\.*)	</regex>
+	<order>rule.renderedSignatureId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>rule.message=(\.*)	</regex>
+	<order>rule.message</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>rule.ruleUUID=(\.*)	</regex>
+	<order>rule.ruleUUID</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>rule.ruleRevisionUUID=(\.*)	</regex>
+	<order>rule.ruleRevisionUUID</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>priority.priorityId=(\.*)	</regex>
+	<order>priority.priorityId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>priority.name=(\.*)	</regex>
+	<order>priority.name</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>classification.classificationId=(\.*)	</regex>
+	<order>classification.classificationId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>classification.name=(\.*)	</regex>
+	<order>classification.name</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>classification.description=(\.*)	</regex>
+	<order>classification.description</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>classification.classificationUUID=(\.*)	</regex>
+	<order>classification.classificationUUID</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>classification.classificationRevisionUUID=(\.*)	</regex>
+	<order>classification.classificationRevisionUUID</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>accessControlPolicyRef=(\.*)	</regex>
+	<order>accessControlPolicyRef</order>
+</decoder>
+<!--
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>ingressSecurityZone.securityZoneName=(\.*)	</regex>
+	<order>ingressSecurityZone.securityZoneName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>egressSecurityZone.securityZoneUUID=(\.*)	</regex>
+	<order>egressSecurityZone.securityZoneUUID</order>
+</decoder>
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>egressSecurityZone.securityZoneName=(\.*)\s\s\s|egressSecurityZone.securityZoneName=(\w+)</regex>
+	<order>egressSecurityZone.securityZoneName</order>
+</decoder>
+<!-- SERVER-WEBAPP extra data (use 'event' as separator is beacuase they have rarndom amount of spaces between these fields-->
+<!--<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventExtraData.eventId=(\.*)event</regex>
+	<order>eventExtraData.eventId</order>
+</decoder>
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventExtraData.eventSecond=(\.*)event</regex>
+	<order>eventExtraData.eventSecond</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventExtraData.managedDevice.managedDeviceId=(\.*)event</regex>
+	<order>eventExtraData.managedDevice.managedDeviceId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventExtraData.managedDevice.name=(\.*)event</regex>
+	<order>eventExtraData.managedDevice.name</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventExtraData.extraDataType.eventExtraDataType.type=(\.*)event</regex>
+	<order>eventExtraData.extraDataType.eventExtraDataType.type</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventExtraData.extraDataType.eventExtraDataType.name=(\.*)event</regex>
+	<order>eventExtraData.extraDataType.eventExtraDataType.name</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventExtraData.extraDataType.eventExtraDataType.encoding=(\.*)event</regex>
+	<order>eventExtraData.extraDataType.eventExtraDataType.encoding</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventExtraData.extraData=(\.*)$</regex>
+	<order>eventExtraData.extraData</order>
+</decoder>
+<!--impactAlertData -->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>impactAlertData.description=(\.*)$</regex>
+	<order>impactAlertData.description</order>
+</decoder>
+<!-- Flowstatistics -->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>detectionEngineRef=(\.*)	</regex>
+	<order>detectionEngineRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>ipAddress=(\.*)	</regex>
+	<order>ipAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>MACAddress=(\.*)	</regex>
+	<order>MACAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>hasIPv6=(\.*)	</regex>
+	<order>hasIPv6</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventSecond=(\.*)	</regex>
+	<order>eventSecond</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventMicroSecond=(\.*)	</regex>
+	<order>eventMicroSecond</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>eventType=(\.*)	</regex>
+	<order>eventType</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileNumber=(\.*)	</regex>
+	<order>fileNumber</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>filePosition=(\.*)	</regex>
+	<order>filePosition</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>ipV6Address=(\.*)	</regex>
+	<order>ipV6Address</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.initiatorIPAddress=(\.*)	</regex>
+	<order>initiatorIPAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.responderIPAddress=(\.*)	</regex>
+	<order>responderIPAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.originalClientIPAddress=(\.*)	</regex>
+	<order>originalClientIPAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.policyRevision=(\.*)	</regex>
+	<order>policyRevision</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.ruleId=(\.*)	</regex>
+	<order>ruleId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.tunnelRuleId=(\.*)	</regex>
+	<order>tunnelRuleId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.ruleAction=(\.*)	</regex>
+	<order>ruleAction</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.ruleReason=(\.*)	</regex>
+	<order>ruleReason</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.initiatorPort=(\.*)	</regex>
+	<order>initiatorPort</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.responderPort=(\.*)	</regex>
+	<order>responderPort</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.tcpFlags=(\.*)	</regex>
+	<order>tcpFlags</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.protocol=(\.*)	</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.netFlowIPAddress=(\.*)	</regex>
+	<order>netFlowIPAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.instanceId=(\.*)	</regex>
+	<order>instanceId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.connectionCounter=(\.*)	</regex>
+	<order>connectionCounter</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.firstPacketTimestamp=(\.*)	</regex>
+	<order>firstPacketTimestamp</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.lastPacketTimestamp=(\.*)	</regex>
+	<order>lastPacketTimestamp</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.packetsSent=(\.*)	</regex>
+	<order>packetsSent</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.packetsReceived=(\.*)	</regex>
+	<order>packetsReceived</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.bytesSent=(\.*)	</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.bytesReceived=(\.*)	</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.initiatorPacketsDropped=(\.*)	</regex>
+	<order>initiatorPacketsDropped</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.responderPacketsDropped=(\.*)	</regex>
+	<order>responderPacketsDropped</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.initiatorBytesDropped=(\.*)	</regex>
+	<order>initiatorBytesDropped</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.responderBytesDropped=(\.*)	</regex>
+	<order>responderBytesDropped</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.qosAppliedInterface=(\.*)	</regex>
+	<order>qosAppliedInterface</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.qosRuleId=(\.*)	</regex>
+	<order>qosRuleId</order>
+</decoder>
+<!--
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.applicationProtocolId=(\.*)	</regex>
+	<order>applicationProtocolId</order>
+</decoder>
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.clientAppId=(\.*)	</regex>
+	<order>clientAppId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.clientAppURL=(\.*)	</regex>
+	<order>clientAppURL</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.netbiosName=(\.*)	</regex>
+	<order>netbiosName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.clientAppVersion=(\.*)	</regex>
+	<order>clientAppVersion</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.monitorRule1=(\.*)	</regex>
+	<order>monitorRule1</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.monitorRule2=(\.*)	</regex>
+	<order>monitorRule2</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.monitorRule3=(\.*)	</regex>
+	<order>monitorRule3</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.monitorRule4=(\.*)	</regex>
+	<order>monitorRule4</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.monitorRule5=(\.*)	</regex>
+	<order>monitorRule5</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.monitorRule6=(\.*)	</regex>
+	<order>monitorRule6</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.monitorRule7=(\.*)	</regex>
+	<order>monitorRule7</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.monitorRule8=(\.*)	</regex>
+	<order>monitorRule8</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.securityIntelligenceSrcOrDest=(\.*)	</regex>
+	<order>securityIntelligenceSrcOrDest</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.securityIntelligenceLayer=(\.*)	</regex>
+	<order>securityIntelligenceLayer</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.fileEventCount=(\.*)	</regex>
+	<order>fileEventCount</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.intrusionEventCount=(\.*)	</regex>
+	<order>intrusionEventCount</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sourceAutonomousSystem=(\.*)	</regex>
+	<order>sourceAutonomousSystem</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.destinationAutonomousSystem=(\.*)	</regex>
+	<order>destinationAutonomousSystem</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.snmpIn=(\.*)	</regex>
+	<order>snmpIn</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.snmpOut=(\.*)	</regex>
+	<order>snmpOut</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sourceTOS=(\.*)	</regex>
+	<order>sourceTOS</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.destinationTOS=(\.*)	</regex>
+	<order>destinationTOS</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sourceMask=(\.*)	</regex>
+	<order>sourceMask</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.destinationMask=(\.*)	</regex>
+	<order>destinationMask</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.vlanId=(\.*)	|vlanId=(\.*)	</regex>
+	<order>vlanId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.referencedHost=(\.*)	</regex>
+	<order>referencedHost</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.userAgent=(\.*)	</regex>
+	<order>userAgent</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.httpReferrer=(\.*)	</regex>
+	<order>httpReferrer</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslRuleId=(\.*)	</regex>
+	<order>sslRuleId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslFlowError=(\.*)	</regex>
+	<order>sslFlowError</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslFlowMessages=(\.*)	</regex>
+	<order>sslFlowMessages</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslFlowFlags=(\.*)	</regex>
+	<order>sslFlowFlags</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslServerNames=(\.*)	</regex>
+	<order>sslServerNames</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslSessionId=(\.*)	</regex>
+	<order>sslSessionId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslSessionIdLength=(\.*)	</regex>
+	<order>sslSessionIdLength</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslTicketId=(\.*)	</regex>
+	<order>sslTicketId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslTicketIdLength=(\.*)	</regex>
+	<order>sslTicketIdLength</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.networkAnalysisPolicyRevision=(\.*)	</regex>
+	<order>networkAnalysisPolicyRevision</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.endpointProfileId=(\.*)	</regex>
+	<order>endpointProfileId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.locationIPv6Address=(\.*)	</regex>
+	<order>locationIPv6Address</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.httpResponse=(\.*)	</regex>
+	<order>httpResponse</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.dnsQuery=(\.*)	</regex>
+	<order>dnsQuery</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.dnsRecordType=(\.*)	</regex>
+	<order>dnsRecordType</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.dnsResponseType=(\.*)	</regex>
+	<order>dnsResponseType</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.dnsTTL=(\.*)	</regex>
+	<order>dnsTTL</order>
+</decoder>
+<!--flowStatistics.managedDevice.managedDeviceId=(\.*)	|
+flowStatistics.ingressSecurityZone.securityZoneUUID=(\.*)	|
+flowStatistics.managedDevice.name=(\.*)	|
+flowStatistics.ingressInterface.interfaceUUID=(\.*)	|
+flowStatistics.ingressInterface.interfaceName=(\.*)	|
+flowStatistics.egressInterface.interfaceUUID=(\.*)	|
+flowStatistics.egressInterface.interfaceName=(\.*)	|
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>managedDevice.managedDeviceId=(\.*)	</regex>
+	<order>managedDevice.managedDeviceId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>managedDevice.name=(\.*)	</regex>
+	<order>managedDevice.name</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>ingressSecurityZone.securityZoneUUID=(\.*)	</regex>
+	<order>ingressSecurityZone.securityZoneUUID</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>ingressSecurityZone.securityZoneName=(\.*)	</regex>
+	<order>ingressSecurityZone.securityZoneName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>egressSecurityZone.securityZoneUUID=(\.*)	</regex>
+	<order>egressSecurityZone.securityZoneUUID</order>
+</decoder>
+<!--
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.egressSecurityZone.securityZoneName=(\.*)	</regex>
+	<order>egressSecurityZone.securityZoneName</order>
+</decoder>
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>ingressInterface.interfaceUUID=(\.*)	</regex>
+	<order>ingressInterface.interfaceUUID</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>ingressInterface.interfaceName=(\.*)	</regex>
+	<order>ingressInterface.interfaceName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>egressInterface.interfaceUUID=(\.*)	</regex>
+	<order>egressInterface.interfaceUUID</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>egressInterface.interfaceName=(\.*)	</regex>
+	<order>egressInterface.interfaceName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.user.userId=(\.*)	</regex>
+	<order>user.userId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.user.protocolRef=(\.*)	</regex>
+	<order>user.protocolRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.user.userName=(\.*)	</regex>
+	<order>user.userName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.urlCategoryRef=(\.*)	</regex>
+	<order>urlCategoryRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.urlReputation.urlReputationId=(\.*)	</regex>
+	<order>urlReputation.urlReputationId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.urlReputation.reputationName=(\.*)	</regex>
+	<order>urlReputation.reputationName</order>
+</decoder>
+-->
+<!--
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.webAppRef=(\.*)	|webAppRef=(\.*)	</regex>
+	<order>webAppRef</order>
+</decoder>
+-->
+<!--the displaying fields limit issue is here-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.initiatorCountry.geolocation.countryCode=(\.*)	</regex>
+	<order>geolocation.countryCode</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.initiatorCountry.geolocation.countryName=(\.*)	</regex>
+	<order>initiatorCountry.geolocation.countryName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.initiatorCountryRef=(\.*)\t</regex>
+	<order>initiatorCountryRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.responderCountryRef=(\.*)	</regex>
+	<order>responderCountryRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.originalClientCountryRef=(\.*)	</regex>
+	<order>originalClientCountryRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.IOCRef=(\.*)	</regex>
+	<order>IOCRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.securityContextRef=(\.*)	</regex>
+	<order>securityContextRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslPolicyRef=(\.*)	</regex>
+	<order>sslPolicyRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslCertificateFingerprintRef=(\.*)	</regex>
+	<order>sslCertificateFingerprintRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslCiperSuite.sslCipherId=(\.*)	</regex>
+	<order>sslCiperSuite.sslCipherId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslCiperSuite.sslCipherSuiteName=(\.*)	</regex>
+	<order>sslCiperSuite.sslCipherSuiteName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslVersion.sslVersionId=(\.*)	</regex>
+	<order>sslVersion.sslVersionId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslVersion.sslVersionName=(\.*)	</regex>
+	<order>sslVersion.sslVersionName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslServerCertificateStatus.sslServerCertificateStatus=(\.*)	</regex>
+	<order>sslServerCertificateStatus.sslServerCertificateStatus</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslServerCertificateStatus.sslServerCertificateStatusDescription=(\.*)	</regex>
+	<order>sslServerCertificateStatus.sslServerCertificateStatusDescription</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslActualAction.sslActualAction=(\.*)	</regex>
+	<order>sslActualAction.sslActualAction</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslActualAction.description=(\.*)	</regex>
+	<order>sslActualAction.description</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslExpectedActionRef=(\.*)	</regex>
+	<order>sslExpectedActionRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslFlowStatus.sslFlowStatus=(\.*)	</regex>
+	<order>sslFlowStatus.sslFlowStatus</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslFlowStatus.description=(\.*)	</regex>
+	<order>sslFlowStatus.description</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sslURLCategoryRef=(\.*)	</regex>
+	<order>sslURLCategoryRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.securityGroupRef=(\.*)	</regex>
+	<order>securityGroupRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.sinkholeRef=(\.*)	</regex>
+	<order>sinkholeRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.securityIntelligenceList1Ref=(\.*)	</regex>
+	<order>securityIntelligenceList1Ref</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>flowStatistics.securityIntelligenceList2Ref=(\.*)$</regex>
+	<order>securityIntelligenceList2Ref</order>
+</decoder>
+<!-- File Event -->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.connectionInstance=(\.*)	</regex>
+	<order>connectionInstance</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.connectionCounter=(\.*)	</regex>
+	<order>connectionCounter</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.connectionTimestamp=(\.*)	</regex>
+	<order>connectionTimestamp</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.fileEventTimestamp=(\.*)	</regex>
+	<order>fileEventTimestamp</order>
+</decoder>
+<!--
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sourceAddress=(\.*)	</regex>
+	<order>sourceAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.destinationAddress=(\.*)	</regex>
+	<order>destinationAddress</order>
+</decoder>
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.disposition=(\.*)	</regex>
+	<order>disposition</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.speroDisposition=(\.*)	</regex>
+	<order>speroDisposition</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.fileStorageStatus=(\.*)	</regex>
+	<order>fileStorageStatus</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.fileAnalysisStatus=(\.*)	</regex>
+	<order>fileAnalysisStatus</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.localMalwareAnalysisStatus=(\.*)	</regex>
+	<order>localMalwareAnalysisStatus</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.archiveFileStatus=(\.*)	</regex>
+	<order>archiveFileStatus</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.threatScore=(\.*)	</regex>
+	<order>threatScore</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.action=(\.*)	</regex>
+	<order>action</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.fileName=(\.*)	</regex>
+	<order>fileName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.fileSize=(\.*)	</regex>
+	<order>fileSize</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.direction=(\.*)	</regex>
+	<order>direction</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.uri=(\.*)	</regex>
+	<order>uri</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.signature=(\.*)	</regex>
+	<order>signature</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sourcePort=(\.*)	</regex>
+	<order>sourcePort</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.destinationPort=(\.*)	</regex>
+	<order>destinationPort</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.protocol=(\.*)	</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.clientAppId=(\.*)	</regex>
+	<order>clientAppId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.archiveSHAHash=(\.*)	</regex>
+	<order>archiveSHAHash</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.archiveName=(\.*)	</regex>
+	<order>archiveName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.archiveDepth=(\.*)	</regex>
+	<order>archiveDepth</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.httpResponse=(\.*)	</regex>
+	<order>httpResponse</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.managedDevice.managedDeviceId=(\.*)	</regex>
+	<order>managedDevice.managedDeviceId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.managedDevice.name=(\.*)	</regex>
+	<order>managedDevice.name</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.SHAHash.SHAHashData.SHAHash=(\.*)	</regex>
+	<order>SHAHash.SHAHashData.SHAHash</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.SHAHash.SHAHashData.fileNameOrDisposition=(\.*)	</regex>
+	<order>SHAHash.SHAHashData.fileNameOrDisposition</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.SHAHash.SHAHashData.disposition=(\.*)	</regex>
+	<order>SHAHash.SHAHashData.disposition</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.SHAHash.SHAHashData.userDefined=(\.*)	</regex>
+	<order>SHAHash.SHAHashData.userDefined</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.fileType.fileTypeId=(\.*)	</regex>
+	<order>fileType.fileTypeId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.fileType.fileTypeName=(\.*)	</regex>
+	<order>fileType.fileTypeName</order>
+</decoder>
+<!--
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.webAppRef=(\.*)	</regex>
+	<order>webAppRef</order>
+</decoder>
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sslCertificateFingerprintRef=(\.*)	</regex>
+	<order>sslCertificateFingerprintRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sourceCountry.geolocation.countryCode=(\.*)	</regex>
+	<order>sourceCountry.geolocation.countryCode</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sourceCountry.geolocation.countryName=(\.*)	</regex>
+	<order>sourceCountry.geolocation.countryName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.destinationCountryRef=(\.*)	</regex>
+	<order>destinationCountryRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.securityContextRef=(\.*)	</regex>
+	<order>securityContextRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sslActualAction.sslActualAction=(\.*)	</regex>
+	<order>sslActualAction.sslActualAction</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sslActualAction.description=(\.*)	</regex>
+	<order>sslActualAction.description</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sslFlowStatus.sslFlowStatus=(\.*)	</regex>
+	<order>sslFlowStatus.sslFlowStatus</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.sslFlowStatus.description=(\.*)	</regex>
+	<order>sslFlowStatus.description</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.accessControlPolicyRef=(\.*)	</regex>
+	<order>accessControlPolicyRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.application.serviceId=(\.*)	</regex>
+	<order>application.serviceId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.application.serviceName=(\.*)	</regex>
+	<order>application.serviceName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.user.userId=(\.*)	</regex>
+	<order>user.userId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.user.protocolRef=(\.*)	</regex>
+	<order>user.protocolRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>fileEventData.user.userName=(\.*)$</regex>
+	<order>user.userName</order>
+</decoder>
+<!-- malware event -->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.agentUUID=(\.*)	</regex>
+	<order>agentUUID</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.malwareEventTimestamp=(\.*)	</regex>
+	<order>malwareEventTimestamp</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.detectorId=(\.*)	</regex>
+	<order>detectorId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.detectionName=(\.*)	</regex>
+	<order>detectionName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.user=(\.*)	</regex>
+	<order>user</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.fileName=(\.*)	</regex>
+	<order>fileName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.filePath=(\.*)	</regex>
+	<order>filePath</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.fileSHAHash=(\.*)	</regex>
+	<order>fileSHAHash</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.fileSize=(\.*)	</regex>
+	<order>fileSize</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.fileType=(\.*)	</regex>
+	<order>fileType</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.fileTimestamp=(\.*)	</regex>
+	<order>fileTimestamp</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.parentFileName=(\.*)	</regex>
+	<order>parentFileName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.parentFileSHAHash=(\.*)	</regex>
+	<order>parentFileSHAHash</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.eventDescription=(\.*)	</regex>
+	<order>eventDescription</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.connectionInstance=(\.*)	</regex>
+	<order>connectionInstance</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.connectionCounter=(\.*)	</regex>
+	<order>connectionCounter</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.connectionEventTimestamp=(\.*)	</regex>
+	<order>connectionEventTimestamp</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.direction=(\.*)	</regex>
+	<order>direction</order>
+</decoder>
+<!--
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sourceAddress=(\.*)	</regex>
+	<order>sourceAddress</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.destinationAddress=(\.*)	</regex>
+	<order>destinationAddress</order>
+</decoder>
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.disposition=(\.*)	</regex>
+	<order>disposition</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.retrospectiveDispostion=(\.*)	</regex>
+	<order>retrospectiveDispostion</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.uri=(\.*)	</regex>
+	<order>uri</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sourcePort=(\.*)	</regex>
+	<order>sourcePort</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.destinationPort=(\.*)	</regex>
+	<order>destinationPort</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.clientAppId=(\.*)	</regex>
+	<order>clientAppId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.action=(\.*)	</regex>
+	<order>action</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.protocol=(\.*)	</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.threatScore=(\.*)	</regex>
+	<order>threatScore</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.archiveSHAHash=(\.*)	</regex>
+	<order>archiveSHAHash</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.achiveName=(\.*)	</regex>
+	<order>achiveName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.archiveDepth=(\.*)	</regex>
+	<order>archiveDepth</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.httpResponse=(\.*)	</regex>
+	<order>httpResponse</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.managedDeviceRef=(\.*)	</regex>
+	<order>managedDeviceRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.managedDevice.managedDeviceId=(\.*)	</regex>
+	<order>managedDevice.managedDeviceId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.managedDevice.name=(\.*)	</regex>
+	<order>managedDevice.name</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.accessControlPolicyRef=(\.*)\t</regex>
+	<order>accessControlPolicyRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.cloudRef=(\.*)\t</regex>
+	<order>cloudRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.malwareEventType.malwareEventTypeId=(\.*)\t</regex>
+	<order>malwareEventType.malwareEventTypeId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.malwareEventType.malwareEventType=(\.*)\t</regex>
+	<order>malwareEventType.malwareEventType</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.malwareEventSubtypeRef=(\.*)\t</regex>
+	<order>malwareEventSubtypeRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sslActualAction.sslActualAction=(\.*)	</regex>
+	<order>sslActualAction.sslActualAction</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sslActualAction.description=(\.*)	</regex>
+	<order>sslActualAction.description</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sslFlowStatus.sslFlowStatus=(\.*)	</regex>
+	<order>sslFlowStatus.sslFlowStatus</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sslFlowStatus.description=(\.*)	</regex>
+	<order>sslFlowStatus.description</order>
+</decoder>
+<!--
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.webAppRef=(\.*)	</regex>
+	<order>webAppRef</order>
+</decoder>
+-->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>webAppRef=(\.*)	</regex>
+	<order>webAppRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sslCertificateFingerprintRef=(\.*)	</regex>
+	<order>sslCertificateFingerprintRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.IOCRef=(\.*)	</regex>
+	<order>IOCRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sourceCountryRef=(\.*)	</regex>
+	<order>sourceCountryRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.destinationCountryRef=(\.*)	</regex>
+	<order>destinationCountryRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.securityContextRef=(\.*)	</regex>
+	<order>securityContextRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.applicationRef=(\.*)	</regex>
+	<order>applicationRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.userIdRef=(\.*)</regex>
+	<order>userIdRef</order>
+</decoder>
+<!-- Add -->
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sourceCountry.geolocation.countryCode=(\.*)	</regex>
+	<order>sourceCountry.geolocation.countryCode</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.sourceCountry.geolocation.countryName=(\.*)	</regex>
+	<order>sourceCountry.geolocation.countryName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.application.serviceId=(\.*)	</regex>
+	<order>application.serviceId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.application.serviceName=(\.*)	</regex>
+	<order>application.serviceName</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.userId.userId=(\.*)	</regex>
+	<order>userId.userId</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.userId.protocolRef=(\.*)	</regex>
+	<order>userId.protocolRef</order>
+</decoder>
+<decoder name="cisco_firepower-syslog-fields">
+	<parent>cisco_firepower-syslog</parent>
+	<regex>malwareEventData.userId.userName=(\.*)</regex>
+	<order>userId.userName</order>
+</decoder>

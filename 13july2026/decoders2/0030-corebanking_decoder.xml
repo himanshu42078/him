@@ -1,0 +1,14 @@
+<!-- Modify it at your will. -->
+<!-- Corebanking comb03 Decoder -->
+<!--
+<decoder name="Corebanking">
+<prematch>logicproxy_thread_15-thread</prematch>
+</decoder>-->
+<decoder name="Corebanking">
+  <prematch>logicproxy_thread_</prematch>
+</decoder>
+<decoder name="Corebanking-fields">
+  <parent>Corebanking</parent>
+  <regex>"USER_ID"\s+:\s+Field\s+{\s+type=FieldType[string]\s+length=\d+\s+scale=\d+\s+value=\s+{(\w+)}</regex>
+  <order>dstuser</order>
+</decoder>

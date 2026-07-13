@@ -1,0 +1,540 @@
+<!-- DEV-241 -->
+<!--Sep 11 14:50:23 ltm06.hkbn.com ASM:"Informational","2020-09-11 14:50:22","","N/A","ltm06.hkbn.com","192.168.232.87","/MyaccWS/sso/redemptedItemInfos/v2","443","192.168.183.5","GET","HTTPS","itemSerialNos=HKBN1000623933","passed","200","12c195261b809f0e","8746846619419798304","GET /MyaccWS/sso/redemptedItemInfos/v2?itemSerialNos=HKBN1000623933 HTTP/1.1\r\nAuthorization: Bearer 62d77c72-acac-4d8f-94e8-7fc2655329d5-d9ce207883e4d8af9fa57a34c838ddbadb806bc86db70666010643436f3e620e\r\nAccept: */*\r\nCache-Control: no-cache\r\nPragma: no-cache\r\nUser-Agent: Java/1.8.0_212\r\nHost: myacc-ws.hkbn.com.hk\r\nConnection: keep-alive\r\nX-Forwarded-For: 192.168.183.5\r\n\r\n"-->
+<!--Sep 11 15:05:33 ltm06.hkbn.com ASM:"Critical","2020-09-11 15:05:32","Abuse of Functionality,Buffer Overflow,Forceful Browsing","N/A","ltm06.hkbn.com","192.168.232.230","/ices/pages/pop/customerhandle.jsf","443","192.168.110.110","POST","HTTPS","","alerted","200","81244a0991d0aa6d","8746846619425489899","POST /ices/pages/pop/customerhandle.jsf HTTP/1.1\r\nAccept: */*\r\nContent-Type: application/x-www-form-urlencoded; charset=UTF-8\r\nReferer: https://ices.hkbn.com.hk/ices/pages/pop/customerhandle.jsf?action=newCustomerHandle&isCreateFolder=N\r\nAccept-Language: en-US,en;q=0.8,zh-Hant-HK;q=0.7,zh-Hant;q=0.5,zh-Hans-CN;q=0.3,zh-Hans;q=0.2\r\nUser-Agent: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729)\r\nHost: ices.hkbn.com.hk\r\nContent-Length: 8294\r\nConnection: Keep-Alive\r\nCache-Control: no-cache\r\nCookie: BIGipServerpool_itappl.hkbn.com.hk_ices=2078845120.20253.0000; TS012b3c93=0129f258d8db0e93114add5996186ce15cef2e44557943b6e1683dac0d15cd7637-->
+<!--Dec 13 15:33:05 MK-UWAF01.jtetbwkl.com.hk ASM: CEF:0|F5|ASM|14.1.4|Successful Request|Successful Request|2|dvchost=MK-UWAF01.jtetbwkl.com.hk dvc=192.168.68.9 cs1=/Common/WAF-uapi2port cs1Label=policy_name cs2=/Common/WAF-uapi2port cs2Label=http_class_name deviceCustomDate1=Mar 30 2022 17:11:24 deviceCustomDate1Label=policy_apply_date externalId=9582077436168231835 act=passed cn1=200 cn1Label=response_code src=210.176.64.22 spt=10439 dst=10.19.6.9 dpt=443 requestMethod=GET app=HTTPS cs5=210.176.64.22 cs5Label=x_forwarded_for_header_value rt=Dec 13 2022 15:33:04 deviceExternalId=0 cs4=N/A cs4Label=attack_type cs6=HK cs6Label=geo_location c6a1= c6a1Label=device_address c6a2= c6a2Label=source_address c6a3= c6a3Label=destination_address c6a4= c6a4Label=ip_address_intelligence msg=N/A suid=75bd0221ef96e836 suser=N/A cn2=0 cn2Label=violation_rating cn3=0 cn3Label=device_id microservice=N/A request=/openrice/api/user/login?destination\=ibm_apim/analyticsproxy%3Fdashboard%3Dtrue%26manage%3Dtrue cs3Label=full_request cs3=GET /openrice/api/user/login?destination\=ibm_apim/analyticsproxy%3Fdashboard%3Dtrue%26manage%3Dtrue HTTP/1.1\r\nHost: uapix-portal.jtetbwkl.com.hk\r\nConnection: keep-alive\r\nsec-ch-ua: "Google Chrome";v\="105", "Not)A;Brand";v\="8", "Chromium";v\="105"\r\nkbn-xsrf: 5.5.1\r\nsec-ch-ua-mobile: ?0\r\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36\r\nsec-ch-ua-platform: "Windows"\r\nAccept: */*\r\nSec-Fetch-Site: same-origin\r\nSec-Fetch-Mode: cors\r\nSec-Fetch-Dest: empty\r\nReferer: https://uapix-portal.jtetbwkl.com.hk/openrice/api/node/108\r\nAccept-Encoding: gzip, deflate, br\r\nAccept-Language: en-US,en;q\=0.9\r\nCookie: SSESS4c2e2dc04e2108aa9a5c236ec51f6702\=92sZoj-b7YCYzJ0ko5AnVmbToWToPWaZ818oGqFMFEA89y%2Cm; TS01e19e9a\=01151f9dec1e8d439989cce15723d0e364fdb2eb7230962c8668e31d78626f8045fb83bd3ecfb266b084ec3c38d006cabb7218486fcdb1262aefb964777565530e06b8350ece323ff5a3d2c18373fe3d8fb6623b81; _ga\=GA1.3.1138366025.1643595261; UqZBpD3n3iTMBARS\=v1MXUhg9agyuZ; portal_session_-->
+<decoder name="f5-asm">
+	<program_name>ASM</program_name>
+</decoder>
+<!-- For CEF -->
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">CEF:0\|F5\|ASM\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|dvchost=</regex>
+	<order>version,event,description,severity</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">dvchost=(\S+)</regex>
+	<order>dvchost</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">dvc=(\S+)</regex>
+	<order>dvc</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs1=(\S+)</regex>
+	<order>cs1</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs1Label=(\S+)</regex>
+	<order>cs1Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs2=(\S+)</regex>
+	<order>cs2</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs2Label=(\S+)</regex>
+	<order>cs2Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">deviceCustomDate1=(\.+) deviceCustomDate1Label=(\S+)</regex>
+	<order>deviceCustomDate1, deviceCustomDate1Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">externalId=(\d+)</regex>
+	<order>externalId</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">act=(\S+)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cn1=(\S+)</regex>
+	<order>cn1</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cn1Label=(\S+)</regex>
+	<order>cn1Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">spt=(\S+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">dpt=(\S+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">requestMethod=(\S+)</regex>
+	<order>requestMethod</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">app=(\S+)</regex>
+	<order>app</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs5=(\S+)</regex>
+	<order>cs5</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs5Label=(\S+)</regex>
+	<order>cs5Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">rt=(\.+) \S+=</regex>
+	<order>rt</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs4=(\S+)</regex>
+	<order>cs4</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs4Label=(\S+)</regex>
+	<order>cs4Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs6=(\S+)</regex>
+	<order>cs6</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs6Label=(\S+)</regex>
+	<order>cs6Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">c6a1=(\S*)</regex>
+	<order>c6a1</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">c6a1Label=(\S+)</regex>
+	<order>c6a1Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">c6a2=(\S*)</regex>
+	<order>c6a2</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">c6a2Label=(\S+)</regex>
+	<order>c6a2Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">c6a3=(\S*)</regex>
+	<order>c6a3</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">c6a3Label=(\S+)</regex>
+	<order>c6a3Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">c6a4=(\S*)</regex>
+	<order>c6a4</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">c6a4Label=(\S+)</regex>
+	<order>c6a4Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">msg=(\S+)</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">suid=(\d+)</regex>
+	<order>suid</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">suser=(\S+)</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cn2=(\S+)</regex>
+	<order>cn2</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cn2Label=(\S+)</regex>
+	<order>cn2Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cn3=(\S+)</regex>
+	<order>cn3</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cn3Label=(\S+)</regex>
+	<order>cn3Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">microservice=(\S+)</regex>
+	<order>microservice</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">request=(\S+)</regex>
+	<order>request</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs3Label=(\S+)</regex>
+	<order>cs3Label</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs3=(\.+)</regex>
+	<order>cs3</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">cs4=(\.+) cs4Label=attack_type</regex>
+	<order>attack_type</order>
+</decoder>
+
+<!-- Finish CEF -->
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">"(\w+)","(\.*)","(\.*)","(\.*)","\.*","(\.*)","(\.*)","(\d*)","(\.*)","(\.*)","\.*","(\.*)","(\.*)","(\.*)","\.*","\.*","(\.*)</regex>
+	<order>severity,timestamp,attack_type,user,dstip,url,dstport,srcip,method,protocol,action,status,request</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">User-Agent: (\.*)\\r\\n|User-Agent: (\.*)</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">Host: (\.*)\\r\\n</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">X-Forwarded-For: (\.*)\\r\\n</regex>
+	<order>xff</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex offset="after_parent">Referer: (\.*)\\r\\n</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>unit_hostname="(\.*)"</regex>
+	<order>unit_hostname</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>management_ip_address="(\.*)"</regex>
+	<order>management_ip_address</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>http_class_name="(\.*)"</regex>
+	<order>http_class_name</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>policy_name="(\.*)"</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>violations="(\.*)"</regex>
+	<order>violations</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>support_id="(\.*)"</regex>
+	<order>support_id</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>request_status="(\.*)"</regex>
+	<order>request_status</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>request_status="(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>response_code="(\.*)"</regex>
+	<order>response_code</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>response_code="(\.*)"</regex>
+	<order>status</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>ip_client="(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>route_domain="(\.*)"</regex>
+	<order>route_domain</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>method="(\.*)"</regex>
+	<order>method</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>protocol="(\.*)"</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>query_string="(\.*)"</regex>
+	<order>query_string</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>x_forwarded_for_header_value="(\.*)"</regex>
+	<order>x_forwarded_for_header_value</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>x_forwarded_for_header_value="(\.*)"</regex>
+	<order>xff</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>sig_ids="(\.*)"</regex>
+	<order>sig_ids</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>sig_names="(\.*)"</regex>
+	<order>sig_names</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>date_time="(\.*)"</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>severity="(\.*)"</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>attack_type="(\.*)"</regex>
+	<order>attack_type</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>geo_location="(\.*)"</regex>
+	<order>geo_location</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>ip_address_intelligence="(\.*)"</regex>
+	<order>ip_address_intelligence</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>username="(\.*)"</regex>
+	<order>user</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>session_id="(\.*)"</regex>
+	<order>session_id</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>src_port="(\.*)"</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>dest_port="(\.*)"</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>dest_ip="(\.*)"</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>sub_violations="(\.*)"</regex>
+	<order>sub_violations</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>virus_name="(\.*)"</regex>
+	<order>virus_name</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>uri="(\.*)"</regex>
+	<order>uri</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>uri="(\.*)"</regex>
+	<order>url</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>request="(\.*)"</regex>
+	<order>request</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>headers="(\.*)"</regex>
+	<order>headers</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>response="(\.*)"</regex>
+	<order>response</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>violation_details="(\.*)"</regex>
+	<order>violation_details</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>act="(\.*)"</regex>
+	<order>action</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>anomaly_attack_type="(\.*)"</regex>
+	<order>anomaly_attack_type</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>attack_id="(\.*)"</regex>
+	<order>attack_id</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>attack_status="(\.*)"</regex>
+	<order>attack_status</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>current_mitigation="(\.*)"</regex>
+	<order>current_mitigation</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>detection_average="(\.*)"</regex>
+	<order>detection_average</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>detection_mode="(\.*)"</regex>
+	<order>detection_mode</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>dropped_requests="(\.*)"</regex>
+	<order>dropped_requests</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>,dvc="(\.*)"</regex>
+	<order>dvc</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>,dvchost="(\.*)"</regex>
+	<order>dvchost</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>ip_list="(\.*)"</regex>
+	<order>ip_list</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>operation_mode="(\.*)"</regex>
+	<order>operation_mode</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>policy_apply_date="(\.*)"</regex>
+	<order>policy_apply_date</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>,rt="(\.*)"</regex>
+	<order>rt</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>source_ip="(\.*)"</regex>
+	<order>source_ip</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>src="(\.*)"</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>url_list="(\.*)"</regex>
+	<order>url_list</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>violation_counter="(\.*)"</regex>
+	<order>violation_counter</order>
+</decoder>
+<decoder name="f5-asm-fields">
+	<parent>f5-asm</parent>
+	<regex>web_application_name="(\.*)"</regex>
+	<order>web_application_name</order>
+</decoder>

@@ -1,0 +1,39 @@
+<!-- DEV-3623 -->
+<!--
+Mar 13 16:29:32 192.168.50.59 [Device: hkmcdadfp2 192.168.50.43] M_20000: 2 attacks of type "Anti-Scanning" started between 16:29:05 HKT and 16:29:15 HKT. Detected by policy: DR_Inbound_IIDS; Attack names: TCP Scan (horizontal), UDP Scan (horizontal); Source IPs: 165.227.128.189, 104.167.222.98; Destination IP: 0.0.0.0; Destination ports: 22, 5060; Action: drop.
+Mar 13 15:01:44 192.168.60.37 [Device: 192.168.60.32 192.168.60.32] M_20000: An attack of type "Intrusions" started. Detected by policy: Inbound_signature; Attack name: SIP-Scanner-SIPVicious; Source IP: 212.83.190.41; Destination IP: 223.197.64.36; Destination port: 5060; Action: drop.
+Mar 13 16:09:44 192.168.60.37 [Device: 192.168.60.32 192.168.60.32] M_20000: 3 attacks of type "Intrusions" started between 16:08:58 HKT and 16:09:28 HKT. Detected by policy: Inbound_signature; Attack name: SIP-Scanner-SIPVicious; Source IPs: 45.93.16.228, 70.36.102.154, 45.134.144.45; Destination IPs: Multiple, 223.197.64.36, 223.197.64.61; Destination port: 5060; Action: drop.
+-->
+<decoder name="radware-defensepro">
+    <prematch>^[Device: \S+ \S+] M_20000: \S+ attack\S* of type</prematch>
+</decoder>
+<decoder name="radware-defensepro-fields">
+    <parent>radware-defensepro</parent>
+    <regex>^[Device: \S+ \S+] M_20000: (\.+). Detected by policy: (\S+);</regex>
+    <order>msg,policy</order>
+</decoder>
+<decoder name="radware-defensepro-fields">
+    <parent>radware-defensepro</parent>
+    <regex>Attack name: (\.+);|Attack names: (\.+);</regex>
+    <order>attack_name</order>
+</decoder>
+<decoder name="radware-defensepro-fields">
+    <parent>radware-defensepro</parent>
+    <regex>Source IP: (\d+.\d+.\d+.\d+);|Source IPs: (\d+.\d+.\d+.\d+),</regex>
+    <order>srcip</order>
+</decoder>
+<decoder name="radware-defensepro-fields">
+    <parent>radware-defensepro</parent>
+    <regex>Destination IP: (\d+.\d+.\d+.\d+);|Destination IPs: (\d+.\d+.\d+.\d+),</regex>
+    <order>dstip</order>
+</decoder>
+<decoder name="radware-defensepro-fields">
+    <parent>radware-defensepro</parent>
+    <regex>Destination port: (\S+);|Destination ports: (\S+),</regex>
+    <order>dstport</order>
+</decoder>
+<decoder name="radware-defensepro-fields">
+    <parent>radware-defensepro</parent>
+    <regex>Action\S*: (\.+).</regex>
+    <order>action</order>
+</decoder>

@@ -1,0 +1,147 @@
+<!-- DEV-537 -->
+<decoder name="filebeat">
+	<program_name>filebeat</program_name>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>"message":"(\.*)","service"</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>status=(\.*)\)</regex>
+	<order>status</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex offset="after_regex">"type":"(\.*)"</regex>
+	<order>type</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex offset="after_regex">"reason":"(\.*)"</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>"caused_by"\.*"type":"(\.*)","reason":"(\.*)"</regex>
+	<order>caused_by.type,caused_by.reason</order>
+</decoder>
+
+<!--DEV 537-->
+<!--1.severity levels-->
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>#011(\S+)#011\S+#011</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>\t(\S+)\t\S+\t</regex>
+	<order>severity</order>
+</decoder>
+<!--2. log headline-->
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>#011\S+#011\S+#011(Connection to backoff)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>#011\S+#011\S+#011(Elasticsearch license)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>#011\S+#011\S+#011(monitoring bulk item insert failed)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>#011\S+#011\S+#011(Failed to publish events)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>#011\S+#011\S+#011(Attempting to connect to Elasticsearch version \.+)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>#011\S+#011\S+#011(Cannot index event publisher)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>#011\S+#011\S+#011(Non-zero metrics in the last \S+)</regex>
+	<order>header</order>
+</decoder>
+
+<!-- tab delimiter-->
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>\t\S+\t\S+\t(Connection to backoff)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>\t\S+\t\S+\t(Elasticsearch license)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>\t\S+\t\S+\t(monitoring bulk item insert failed)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>\t\S+\t\S+\t(Failed to publish events)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>\t\S+\t\S+\t(Attempting to connect to Elasticsearch version \.+)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>\t\S+\t\S+\t(Cannot index event publisher)</regex>
+	<order>header</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>\t\S+\t\S+\t(Non-zero metrics in the last \S+)\t</regex>
+	<order>header</order>
+</decoder>
+
+<!--3.wazug agent info: id, name, ip, label, e.g. -->
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>customer\\":\\"(\w+)</regex>
+	<order>agent.customer</order>
+</decoder>
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>agent\\":{\\"id\\":\\"(\d+)\\",\\"name\\":\\"(\S+)\\",\\"ip\\":\\"(\S+)\\",\\"labels\\":{(\S+)}}</regex>
+	<order>agent.id,agent.name,agent.ip,agent.label</order>
+</decoder>
+
+<!--4. log source location-->
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>location\\":\\"(\S+)\\"}"</regex>
+	<order>location</order>
+</decoder>
+
+<!--5. Hostname-->
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>hostname\\":\\"(\S+)\\"},\\"decoder</regex>
+	<order>hostname</order>
+</decoder>
+<!--6. decoder-->
+<decoder name="filebeat-fields">
+	<parent>filebeat</parent>
+	<regex>decoder\\":{\\"name\\":\\"(\S+)\\"},\\"data</regex>
+	<order>decoder</order>
+</decoder>

@@ -1,0 +1,271 @@
+<decoder name="fireeye">
+	<prematch>CEF:0\|FireEye</prematch>
+</decoder>
+<decoder name="fireeye">
+	<prematch>CEF:0\|FireEye</prematch>
+	<program_name/>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>\d+\|(\S+)\|(\S+)\|(\S+)\|(\S+)\|(\.+)\|(\d+)\|</regex>
+	<order>location, product, version, event_type_id, event_type, severity</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<!---CN LABELS -->
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>requestClientApplication=(\.+) \w+=</regex>
+	<order>requestClientApplication</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cn3Labek=cncPort cn5=(\.+) \w+=</regex>
+	<order>cncPort</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cn2Label=sid cn2=(\.+) \w+=</regex>
+	<order>sid</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cn1Label=vlan cn1=(\.+) \w+=</regex>
+	<order>vlan</order>
+</decoder>
+<!---CS LABELS -->
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs6Label=channel cs6=(\.+) \w+=</regex>
+	<order>channel</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs6Label=channel cs6=\w+ (\.+) HTTP/\d</regex>
+	<order>url</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>Host: (\.+)::~~</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>User-Agent: (\.+)::~~</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>Referer: (\.+)::~~</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>X-Forwarded-For: (\.+)::~~</regex>
+	<order>xff</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs5Label=cncHost cs5=(\.+) \w+=</regex>
+	<order>cncHost</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs5Label=cncHost cs5=(\.+) \w+=</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs4Label=link cs4=(\S+)</regex>
+	<order>link</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs3Label=osinfo cs3=(\.+) \w+=</regex>
+	<order>osinfo</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs2Label=anomaly cs2=(\.+) \w+=</regex>
+	<order>anomaly</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs1Label=sname cs1=(\.+) \w+=</regex>
+	<order>sname</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>shost=(\S+)</regex>
+	<order>srchost</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>requestMethod=(\S+)</regex>
+	<order>method</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>requestContext=(\.+) \w+=</regex>
+	<order>referer</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>request=(\.+) \w+=</regex>
+	<order>url</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>spt=(\S+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>dpt=(\S+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>fileHash=(\S+)</regex>
+	<order>filehash</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>act=(\S+\s*\(\S+\))|act=(\S+)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>dvchost=(\S+)</regex>
+	<order>dvchost</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>dmac=(\S+)</regex>
+	<order>dmac</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>externalId=(\S+)</regex>
+	<order>externalId</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>dvc=(\S+)</regex>
+	<order>dvc</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>duser=(\S+)</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>suser=(\S+)</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>msg=(\S+)</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>devicePayloadId=(\S+)</regex>
+	<order>devicePayloadId</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>fileType=(\S+)</regex>
+	<order>fileType</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>sproc=(\S+)\s+fname</regex>
+	<order>sproc</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>fname=(\.+) \w+=</regex>
+	<order>fname</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>smac=(\.+) \w+=</regex>
+	<order>smac</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>flexString1Label=sha256sum flexString1=(\.+) \w+=</regex>
+	<order>sha256sum</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>flexString1Label=sha256sum flexString1=(\.+) \w+=</regex>
+	<order>filehash</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>flexString2Label=subject flexString2=(\.+) \w+=</regex>
+	<order>subject</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>sourceDnsDomain=(\S+)</regex>
+	<order>sourceDnsDomain</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>start=(\.+) \S+=|start=(\.+)</regex>
+	<order>start</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>end=(\.+) \w+=</regex>
+	<order>end</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>applicationProtocol=(\S+)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>proto=(\S+)</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>requestClientApplication=(\.+) \w+=</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cn3Labek=cncPort cn5=(\.+) \w+=</regex>
+	<order>dstport</order>
+</decoder>
+
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cs3Label=Subject cs3=(\.+) \w+=</regex>
+	<order>subject</order>
+</decoder>
+
+<decoder name="fireeye_fields">
+	<parent>fireeye</parent>
+	<regex>cat=(\.+) \S+=</regex>
+	<order>cat</order>
+</decoder>

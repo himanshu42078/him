@@ -1,0 +1,178 @@
+<decoder name="aruba_networks-syslog">
+  <!-- program_name>
+^aruba_networks</program_name -->
+  <prematch> LEEF:1.0\|Aruba Networks\|</prematch>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>LEEF:1.0\|Aruba Networks\|(\.*)\|\.*\|\.*\|</regex>
+  <order>event_product</order>
+</decoder>
+<!--Common Fields-->
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>messageId=(\.+)\t</regex>
+  <order>messageId</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.Username=(\.+)\t</regex>
+  <order>Common.Username</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.Service=(\.+)\t</regex>
+  <order>Common.Service</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>Common.Roles=(\.*)\t</regex>
+  <order>Common.Roles</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.System-Posture-Token=(\.+)\t</regex>
+  <order>Common.System-Posture-Token</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.Enforcement-Profiles=(\.+)\t</regex>
+  <order>Common.Enforcement-Profiles</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.Host-MAC-Address=(\.+)\t</regex>
+  <order>Common.Host-MAC-Address</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.NAS-IP-Address=(\.+)\t</regex>
+  <order>Common.NAS-IP-Address</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.Error-Code=(\.+)\t</regex>
+  <order>Common.Error-Code</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.Alerts=(\.+)\t</regex>
+  <order>Common.Alerts</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tCommon.Request-Timestamp=(\.+)\t</regex>
+  <order>Common.Request-Timestamp</order>
+</decoder>
+<!--Radius Accounting-->
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Auth-Source=(\.+)\t</regex>
+  <order>RADIUS.Auth-Source</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Username=(\.+)\t</regex>
+  <order>RADIUS.Acct-Username</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-NAS-IP-Address=(\.+)\t</regex>
+  <order>RADIUS.Acct-NAS-IP-Address</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-NAS-Port=(\.+)\t</regex>
+  <order>RADIUS.Acct-NAS-Port</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-NAS-Port-Type=(\.+)\t</regex>
+  <order>RADIUS.Acct-NAS-Port-Type</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Calling-Station-Id=(\.+)\t</regex>
+  <order>RADIUS.Acct-Calling-Station-Id</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Session-Id=(\S+)\t</regex>
+  <order>RADIUS.Acct-Session-Id</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Timestamp=(\.+)\t</regex>
+  <order>RADIUS.Acct-Timestamp</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Session-Time=(\.+)\t</regex>
+  <order>RADIUS.Acct-Session-Time</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Output-Pkts=(\.+)\t</regex>
+  <order>RADIUS.Acct-Output-Pkts</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Input-Pkts=(\.+)\t</regex>
+  <order>RADIUS.Acct-Input-Pkts</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Output-Octets=(\.+)\t</regex>
+  <order>RADIUS.Acct-Output-Octets</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>RADIUS.Acct-Input-Octets=(\.+)\t</regex>
+  <order>RADIUS.Acct-Input-Octets</order>
+</decoder>
+<!--normalones-->
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tsrc=(\.+)\t</regex>
+  <order>srcip</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tdevTimeFormat=(\.+)\t</regex>
+  <order>devTimeFormat</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tcat=(\.+)$|cat=(\.+)\t</regex>
+  <order>category</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tdevTime=(\.+)\t</regex>
+  <order>devTime</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tcomponent=(\.+)\t</regex>
+  <order>component</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tlevel=(\.+)\t</regex>
+  <order>level</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tsub-cat=(\.+)\t</regex>
+  <order>sub-cat</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\taction=(\.+)\t</regex>
+  <order>action</order>
+</decoder>
+<decoder name="aruba_networks-syslog-fields">
+  <parent>aruba_networks-syslog</parent>
+  <regex>\tdescription=(\.+)\t</regex>
+  <order>description</order>
+</decoder>

@@ -1,0 +1,3194 @@
+<!--
+Based on Check Point's Log Fields Description at https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk144192
+Last Modified 07-Apr-2020
+And LEEF format field name mapping: https://community.checkpoint.com/t5/Logging-and-Reporting/Log-Exporter-LEEF-Field-Mappings/td-p/48905
+-->
+<decoder name="checkpoint-syslog">
+	<prematch>LEEF: 2.0\|Check Point\||LEEF:2.0\|Check Point\|</prematch>
+</decoder>
+<decoder name="checkpoint-syslog">
+	<program_name>LEEF</program_name>
+	<prematch>\d.\d\|Check Point</prematch>
+</decoder>
+<!--
+<decoder name="checkpoint-syslog">
+	<program_name>CEF</program_name>
+	<prematch>\d\|Check Point</prematch>
+</decoder>
+-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\S+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+
+<!-- Added for Sandblast - Anti-Malware logs-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>cp_severity=(\.+)\s|cp_severity=(\.+)#011</regex>
+	<order>cp_severity</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>cs1Label=(\.+)\scs1=(\.+)\s|cs1Label=(\.+)#011cs1=(\.+)#011</regex>
+	<order>cs1Label,cs1</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>cs2Label=(\.+)\scs2=(\.+)\s|cs2Label=(\.+)#011cs2=(\.+)#011</regex>
+	<order>cs2Label,cs2</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>deviceDirection=(\.+)\s|deviceDirection=(\.+)#011</regex>
+	<order>deviceDirection</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>action_details=(\.+) \S+=|action_details=(\.+)#011</regex>
+	<order>action_details</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>event_type=(\.+)\s|event_type=(\.+)#011</regex>
+	<order>event_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>installed_products=(\.+)\sitems_detected=(\d+)\sitems_scanned=(\d+)\sitems_treated=(\d+)\s|installed_products=(\.+)#011items_detected=(\d+)#011items_scanned=(\d+)#011items_treated=(\d+)#011</regex>
+	<order>installed_products,items_detected,items_scanned,items_treated</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>scanned_drives=(\.+)\ssig_ver|scanned_drives=(\.+)#011sig_ver</regex>
+	<order>scanned_drives</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>action_details=(\.+) \S+=|action_details=(\.+)#011client_version</regex>
+	<order>action_details</order>
+</decoder>
+<!-- Added for YFLife -->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slog_sys_message=(\.+)\s\w+=|\slog_sys_message=(\.+)\s|\tlog_sys_message=(\.+)\t|#011log_sys_message=(\.+)#011</regex>
+	<order>log_sys_message</order>
+</decoder>
+<!--Common Fields-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>\|Check Point\|(\.*)\|1.0\|\.*\|</regex>
+	<order>event_product</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">cat=(\w+)\t|cat=(\w+)#011</regex>
+	<order>action</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">devTime=(\d+)\t|devTime=(\d+)#011</regex>
+	<order>devtime</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">devTime=(\d+)\t|devTime=(\d+)#011</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slocal_time=(\.+)\s\w+=|\slocal_time=(\.+)\s</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssev=(\.+)\s\w+=|\ssev=(\.+)\s|\tsev=(\d+)\t|#011sev=(\d+)#011</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sbytes=(\.+)\s\w+=|\sbytes=(\.+)\s|\tbytes=(\.+)\t|#011bytes=(\.+)#011</regex>
+	<order>bytes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sflexNumber1Label=Confidence flexNumber1=(\.+)\s\w+=|\sflexNumber1Label=Confidence flexNumber1=(\.+)\s|\tconfidence_level=(\.+)\t|#011confidence_level=(\.+)#011</regex>
+	<order>confidence_level</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scalc_desc=(\.+)\s\w+=|\scalc_desc=(\.+)\s|\tcalc_desc=(\.+)\t|#011calc_desc=(\.+)#011</regex>
+	<order>calc_desc</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdst=(\.+)\s\w+=|\sdst=(\.+)\s|\tdst=(\.+)\t|#011dst=(\.+)#011</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdst_country=(\.+)\s\w+=|\sdst_country=(\.+)\s|\tdst_country=(\.+)\t|#011dst_country=(\.+)#011</regex>
+	<order>dst_country</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdst_ip=(\.+)\s\w+=|\sdst_ip=(\.+)\s|\tdst_ip=(\.+)\t|#011dst_ip=(\.+)#011</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\tdst_user_name=(\.+)\t|#011dst_user_name=(\.+)#011</regex>
+	<order>user</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_id=(\.+)\s\w+=|\semail_id=(\.+)\s|\temail_id=(\.+)\t|#011email_id=(\.+)#011</regex>
+	<order>email_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs2Label=Email Subject cs2=(\.+)\s\w+=|\scs2Label=Email Subject cs2=(\.+)\s|\temail_subject=(\.+)\t|emailSubject=(\.+)\t|#011email_subject=(\.+)#011|emailSubject=(\.+)#011</regex>
+	<order>email_subject</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs5Label=Email Session ID cs5=(\.+)\s\w+=|\scs5Label=Email Session ID cs5=(\.+)\s|\temail_session_id=(\.+)\t|#011email_session_id=(\.+)#011</regex>
+	<order>email_session_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scnt=(\.+)\s\w+=|\scnt=(\.+)\s|\tevent_count=(\.+)\t|#011event_count=(\.+)#011</regex>
+	<order>event_count</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfailure_impact=(\.+)\s\w+=|\sfailure_impact=(\.+)\s|\tfailure_impact=(\.+)\t|#011failure_impact=(\.+)#011</regex>
+	<order>failure_impact</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfileId=(\.+)\s\w+=|\sfileId=(\.+)\s|\tfile_id=(\.+)\t|#011file_id=(\.+)#011</regex>
+	<order>file_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfileType=(\.+)\s\w+=|\sfileType=(\.+)\s|\tfile_type=(\.+)\t|#011file_type=(\.+)#011</regex>
+	<order>file_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfile_name=(\.+)\s\w+=|\sfile_name=(\.+)\s|\tfile_name=(\.+)\t|#011file_name=(\.+)#011</regex>
+	<order>file_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfsize=(\.+)\s\w+=|\sfsize=(\.+)\s|\tfile_size=(\.+)\t|#011file_size=(\.+)#011</regex>
+	<order>file_size</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfile_md5=(\.+)\s\w+=|\sfile_md5=(\.+)\s|\tfile_md5=(\.+)\t|#011file_md5=(\.+)#011</regex>
+	<order>file_md5</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfile_sha1=(\.+)\s\w+=|\sfile_sha1=(\.+)\s|\tfile_sha1=(\.+)\t|#011file_sha1=(\.+)#011</regex>
+	<order>file_sha1</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfileHash=\s+fileHash=(\.+)\s+\w+=|\sfileHash=(\.+)\s+\w+=|\sfileHash=(\.+)\s+|\tfile_md5=(\.+)\t|#011file_md5=(\.+)#011|\tfile_sha1=(\.+)\t|#011file_sha1=(\.+)#011</regex>
+	<order>filehash</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfile_sha256=(\.+)\s\w+=|\sfile_sha256=(\.+)\s|\tfile_sha256=(\.+)\t|#011file_sha256=(\.+)#011</regex>
+	<order>file_sha256</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfrom=(\.+)\s\w+=|\sfrom=(\.+)\s|\tfrom=(\.+)\t|#011from=(\.+)#011</regex>
+	<order>email_sender</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sSender=(\.+)\s\w+=|\sSender=(\.+)\s|\tmail_sender=(\.+)\t|#011mail_senderr=(\.+)#011</regex>
+	<order>email_sender</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sRecipient=(\.+)\s\w+=|\sRecipient=(\.+)\s|\tto=(\.+)\t|#011to=(\.+)#011</regex>
+	<order>email_receiver</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sid=(\.+)\s\w+=|\sid=(\.+)\s|\tid=(\.+)\t|#011id=(\.+)#011</regex>
+	<order>application_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinformation=(\.+)\s\w+=|\sinformation=(\.+)\s|\tinformation=(\.+)\t|#011information=(\.+)#011</regex>
+	<order>information</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinterface_name=(\.+)\s\w+=|\sinterface_name=(\.+)\s|\tinterface_name=(\.+)\t|#011interface_name=(\.+)#011</regex>
+	<order>interface_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinterfacedir=(\.+)\s\w+=|\sinterfacedir=(\.+)\s|\tinterfacedir=(\.+)\t|#011interfacedir=(\.+)#011</regex>
+	<order>interfacedir</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slayer_name=(\.+)\s\w+=|\slayer_name=(\.+)\s|\tlayer_name=(\.+)\t|#011layer_name=(\.+)#011</regex>
+	<order>layer_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slayer_uuid=(\.+)\s\w+=|\slayer_uuid=(\.+)\s|\tlayer_uuid=(\.+)\t|#011layer_uuid=(\.+)#011</regex>
+	<order>layer_uuid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slog_id=(\.+)\s\w+=|\slog_id=(\.+)\s|\tlog_id=(\.+)\t|logid=(\.+)\t|#011log_id=(\.+)#011|logid=(\.+)#011</regex>
+	<order>log_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sloguid=(\.+)\s\w+=|\sloguid=(\.+)\s|\tloguid=(\.+)\t|#011loguid=(\.+)#011</regex>
+	<order>loguid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sflexString2Label=Malware Action flexString2=(\.+)\s\w+=|\sflexString2Label=Malware Action flexString2=(\.+)\s|\tmalware_action=(\.+)\t|#011malware_action=(\.+)#011</regex>
+	<order>malware_action</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs6Label=Malware Family cs6=(\.+)\s\w+=|\scs6Label=Malware Family cs6=(\.+)\s|\tmalware_family=(\.+)\t|#011malware_family=(\.+)#011</regex>
+	<order>malware_family</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=Threat Prevention Rule ID cs4=(\.+)\s\w+=|\scs4Label=Threat Prevention Rule ID cs4=(\.+)\s|\tmalware_rule_id=(\.+)\t|#011malware_rule_id=(\.+)#011</regex>
+	<order>malware_rule_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs1Label=Threat Prevention Rule Name cs1=(\.+)\s\w+=|\scs1Label=Threat Prevention Rule Name cs1=(\.+)\s|\tmalware_rule_name=(\.+)\t|#011malware_rule_name=(\.+)#011</regex>
+	<order>malware_rule_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs5Label=Matched Category cs5=(\.+)\s\w+=|\scs5Label=Matched Category cs5=(\.+)\s|\tmatched_category=(\.+)\t|#011matched_category=(\.+)#011</regex>
+	<order>matched_category</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sorigin=(\.+)\s\w+=|\sorigin=(\.+)\s|\torigin=(\.+)\t|#011origin=(\.+)#011</regex>
+	<order>origin</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sorigin_ip=(\.+)\s\w+=|\sorigin_ip=(\.+)\s|\torigin_ip=(\.+)\t|#011origin_ip=(\.+)#011</regex>
+	<order>origin_ip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sorigin_sic_name=(\.+)\s\w+=|\sorigin_sic_name=(\.+)\s|\soriginsicname=(\.+)\s\w+=|\soriginsicname=(\.+)\s|\torigin_sic_name=(\.+)\t|originsicname=(\.+)\t|#011origin_sic_name=(\.+)#011|originsicname=(\.+)#011</regex>
+	<order>origin_sic_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srequestContext=(\.+)\s\w+=|\srequestContext=(\.+)\s|\shttp_referer=(\.+)\s\w+=|\shttp_referer=(\.+)\s|\thttp_referer=(\.+)\t|#011http_referer=(\.+)#011</regex>
+	<order>http_referer</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\spolicy_mgmt=(\.+)\s\w+=|\spolicy_mgmt=(\.+)\s|\tpolicy_mgmt=(\.+)\t|#011policy_mgmt=(\.+)#011</regex>
+	<order>policy_mgmt</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\spolicy_name=(\.+)\s\w+=|\spolicy_name=(\.+)\s|\tpolicy_name=(\.+)\t|policyName=(\.+)\t|#011policy_name=(\.+)#011|policyName=(\.+)#011</regex>
+	<order>policy_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sproduct=(\.+)\s\w+=|\sproduct=(\.+)\s|\tproduct=(\.+)\t|#011product=(\.+)#011</regex>
+	<order>product</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdeviceFacility=(\.+)\s\w+=|\sdeviceFacility=(\.+)\s|\tproduct_family=(\.+)\t|#011product_family=(\.+)#011</regex>
+	<order>product_family</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs2Label=Protection ID cs2=(\.+)\s\w+=|\scs2Label=Protection ID cs2=(\.+)\s|\tprotection_id=(\.+)\t|#011protection_id=(\.+)#011</regex>
+	<order>protection_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=Protection Name cs4=(\.+)\s\w+=|\scs4Label=Protection Name cs4=(\.+)\s|\tprotection_name=(\.+)\t|signature=(\.+)\t|#011protection_name=(\.+)#011|signature=(\.+)#011</regex>
+	<order>protection_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs3Label=Protection Type cs3=(\.+)\s\w+=|\scs3Label=Protection Type cs3=(\.+)\s|\tprotection_type=(\.+)\t|#011protection_type=(\.+)#011</regex>
+	<order>protection_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sproto=(\.+)\s\w+=|\sproto=(\.+)\s|\tproto=(\.+)\t|#011proto=(\.+)#011</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp=(\.+)\s\w+=|\sapp=(\.+)\s|\tprotocol=(\.+)\t|#011protocol=(\.+)#011</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sproxy_src_ip=(\.+)\s\w+=|\sproxy_src_ip=(\.+)\s|\tproxy_src_ip=(\.+)\t|#011proxy_src_ip=(\.+)#011</regex>
+	<order>proxy_src_ip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreason=(\.+)\s\w+=|\sreason=(\.+)\s|\treason=(\.+)\t|#011reason=(\.+)#011</regex>
+	<order>reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreceived_bytes=(\.+)\s\w+=|\sreceived_bytes=(\.+)\s|\treceived_bytes=(\.+)\t|dstBytes=(\.+)\t|#011received_bytes=(\.+)#011|dstBytes=(\.+)#011</regex>
+	<order>received_bytes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sresource=(\.+)\s\w+=|\sresource=(\.+)\s|\tresource=(\.+)\t|#011resource=(\.+)#011</regex>
+	<order>resource</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srule=(\.+)\s\w+=|\srule=(\.+)\s|\trule=(\.+)\t|#011rule=(\.+)#011</regex>
+	<order>rule</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srule_action=(\.+)\s\w+=|\srule_action=(\.+)\s|\trule_action=(\.+)\t|#011rule_action=(\.+)#011</regex>
+	<order>rule_action</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srule_name=(\.+)\s\w+=|\srule_name=(\.+)\s|\trule_name=(\.+)\t|#011rule_name=(\.+)#011</regex>
+	<order>rule_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srule_uid=(\.+)\s\w+=|\srule_uid=(\.+)\s|\trule_uid=(\.+)\t|#011rule_uid=(\.+)#011</regex>
+	<order>rule_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscan_direction=(\.+)\s\w+=|\sscan_direction=(\.+)\s|\tscan_direction=(\.+)\t|#011scan_direction=(\.+)#011</regex>
+	<order>scan_direction</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssent_bytes=(\.+)\s\w+=|\ssent_bytes=(\.+)\s|\tsent_bytes=(\.+)\t|src_bytes=(\.+)\t|#011sent_bytes=(\.+)#011|src_bytes=(\.+)#011|srcBytes=(\.+)\t|srcBytes=(\.+)#011</regex>
+	<order>sent_bytes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssession_id=(\.+)\s\w+=|\ssession_id=(\.+)\s|\tsession_id=(\.+)\t|#011session_id=(\.+)#011</regex>
+	<order>session_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssequencenum=(\.+)\s\w+=|\ssequencenum=(\.+)\s|\tsequencenum=(\.+)\t|#011sequencenum=(\.+)#011</regex>
+	<order>sequencenum</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdpt=(\.+)\s\w+=|\sdpt=(\.+)\s|\tservice=(\.+)\t|fservice=(\.+)\t|#011service=(\.+)#011|fservice=(\.+)#011</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sservice_id=(\.+)\s\w+=|\sservice_id=(\.+)\s|\tservice_id=(\.+)\t|#011service_id=(\.+)#011</regex>
+	<order>service_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scp_severity=(\.+)\s\w+=|\scp_severity=(\.+)\s|\tseverity=(\.+)\t|#011severity=(\.+)#011</regex>
+	<order>severity</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssourceServiceName=(\.+)\s\w+=|\ssourceServiceName=(\.+)\s|\ssource_os=(\.+)\s\w+=|\ssource_os=(\.+)\s|\tsource_os=(\.+)\t|#011source_os=(\.+)#011</regex>
+	<order>source_os</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=Destination OS cs4=(\.+)\s\w+=|\scs4Label=Destination OS cs4=(\.+)\s|\tdestination_os=(\.+)\t|#011destination_os=(\.+)#011</regex>
+	<order>destination_os</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrc=(\.+)\s\w+=|\ssrc=(\.+)\s|\tsrc=(\.+)\t|#011src=(\.+)#011|\ssrc=(\d+.\d+.\d+.\d+)$</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrc_ip=(\.+)\s\w+=|\ssrc_ip=(\.+)\s|\tsrc_ip=(\.+)\t|#011src_ip=(\.+)#011|\ssrc_ip=(\d+.\d+.\d+.\d+)$</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrc_country=(\.+)\s\w+=|\ssrc_country=(\.+)\s|\tsrc_country=(\.+)\t|#011src_country=(\.+)#011</regex>
+	<order>src_country</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrc_user_name=(\.+)\s+\w+=|\ssrc_user_name=(\.+)\s|\tsrc_user_name=(\.+)\t|#011src_user_name=(\.+)#011</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssuser=(\.+)\s+\w+=|\ssuser=(\.+)\s|\sSender=(\.+)\s+\w+=|\sSender=(\.+)\s|\tmail_sender=(\.+)\t|#011mail_senderr=(\.+)#011|\sfrom=(\.+)\s\w+=|\sfrom=(\.+)\s|\tfrom=(\.+)\t|#011from=(\.+)#011</regex>
+	<order>srcuser</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ss_port=(\.+)\s\w+=|\ss_port=(\.+)\s|\ts_port=(\.+)\t|#011s_port=(\.+)#011</regex>
+	<order>s_port</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sspt=(\.+)\s\w+=|\sspt=(\.+)\s|\ssrc_port=(\.+)\s\w+=|\ssrc_port=(\.+)\s|\tsrc_port=(\.+)\t|s_port=(\.+)\t|srcPort=(\.+)\t|#011src_port=(\.+)#011|s_port=(\.+)#011|srcPort=(\.+)#011</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sticket_id=(\.+)\s\w+=|\sticket_id=(\.+)\s|\tticket_id=(\.+)\t|#011ticket_id=(\.+)#011</regex>
+	<order>ticket_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srt=(\.+)\s\w+=|\srt=(\.+)\s|\stime=(\.+)\s\w+=|\stime=(\.+)\s|\ttime=(\.+)\t|#011time=(\.+)#011</regex>
+	<order>time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\stls_server_host_name=(\.+)\s\w+=|\stls_server_host_name=(\.+)\s|\ttls_server_host_name=(\.+)\t|#011tls_server_host_name=(\.+)#011</regex>
+	<order>tls_server_host_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdeviceExternalId=(\.+)\s\w+=|\sdeviceExternalId=(\.+)\s|\ttype=(\.+)\t|#011type=(\.+)#011</regex>
+	<order>type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sverdict=(\.+)\s\w+=|\sverdict=(\.+)\s|\tverdict=(\.+)\t|#011verdict=(\.+)#011</regex>
+	<order>verdict</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sduser=(\.+)\s+\w+=|\sduser=(\.+)\s|\tuser=(\.+)\t|#011user=(\.+)#011</regex>
+	<order>user</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svendor_list=(\.+)\s\w+=|\svendor_list=(\.+)\s|\tvendor_list=(\.+)\t|#011vendor_list=(\.+)#011</regex>
+	<order>vendor_list</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srequestClientApplication=(\.+)\s\w+=|\srequestClientApplication=(\.+)\s|\tclient_name=(\.+)\t|#011client_name=(\.+)#011|\tweb_client_type=(\.+)\t|#011web_client_type=(\.+)#011</regex>
+	<order>client_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srequestClientApplication=(\.+)\s\w+=|\srequestClientApplication=(\.+)\s|\tclient_name=(\.+)\t|#011client_name=(\.+)#011|\tweb_client_type=(\.+)\t|#011web_client_type=(\.+)#011</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sweb_client_type=(\.+)\s\w+=|\sweb_client_type=(\.+)\s|\tweb_client_type=(\.+)\t|#011web_client_type=(\.+)#011</regex>
+	<order>web_client_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sweb_server_type=(\.+)\s\w+=|\sweb_server_type=(\.+)\s|\tweb_server_type=(\.+)\t|#011web_server_type=(\.+)#011</regex>
+	<order>web_server_type</order>
+</decoder>
+<!--Anti-Bot - SandBlast Agent-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfirst_detection=(\.+)\s\w+=|\sfirst_detection=(\.+)\s|\tfirst_detection=(\.+)\t|#011first_detection=(\.+)#011</regex>
+	<order>first_detection</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slast_detection=(\.+)\s\w+=|\slast_detection=(\.+)\s|\tlast_detection=(\.+)\t|#011last_detection=(\.+)#011</regex>
+	<order>last_detection</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sparent_process_md5=(\.+)\s\w+=|\sparent_process_md5=(\.+)\s|\tparent_process_md5=(\.+)\t|#011parent_process_md5=(\.+)#011</regex>
+	<order>parent_process_md5</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sparent_process_name=(\.+)\s\w+=|\sparent_process_name=(\.+)\s|\tparent_process_name=(\.+)\t|#011parent_process_name=(\.+)#011</regex>
+	<order>parent_process_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sparent_process_username=(\.+)\s\w+=|\sparent_process_username=(\.+)\s|\tparent_process_username=(\.+)\t|#011parent_process_username=(\.+)#011</regex>
+	<order>parent_process_username</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sprocess_username=(\.+)\s\w+=|\sprocess_username=(\.+)\s|\tprocess_username=(\.+)\t|#011process_username=(\.+)#011</regex>
+	<order>process_username</order>
+</decoder>
+<!--Anti-Malware - SandBlast Agent-->
+<!--Added-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\spolicy_time=(\.+)\s\w+=|\spolicy_time=(\.+)\s|\tpolicy_time=(\.+)\t|#011policy_time=(\.+)#011</regex>
+	<order>policy_time</order>
+</decoder>
+<!--end-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdestinationDnsDomain=(\.+)\s\w+=|\sdestinationDnsDomain=(\.+)\s|\tdestination_dns_hostname=(\.+)\t|#011destination_dns_hostname=(\.+)#011</regex>
+	<order>destination_dns_hostname</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdestinationServiceName=(\.+)\s\w+=|\sdestinationServiceName=(\.+)\s|\tservice_name=(\.+)\t|#011service_name=(\.+)#011</regex>
+	<order>service_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssmartdefense_profile=(\.+)\s\w+=|\ssmartdefense_profile=(\.+)\s|\tsmartdefense_profile=(\.+)\t|#011smartdefense_profile=(\.+)#011</regex>
+	<order>smartdefense_profile</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_session_id=(\.+)\s\w+=|\semail_session_id=(\.+)\s|\temail_session_id=(\.+)\t|#011email_session_id=(\.+)#011</regex>
+	<order>email_session_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scn1Label=Email Recipients Number cn1=(\.+)\s\w+=|\scn1Label=Email Recipients Number cn1=(\.+)\s|\temail_recipients_num=(\.+)\t|#011email_recipients_num=(\.+)#011</regex>
+	<order>email_recipients_num</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\tsuppressed_logs=(\.+)\t|#011suppressed_logs=(\.+)#011</regex>
+	<order>suppressed_logs</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sblade_name=(\.+)\s\w+=|\sblade_name=(\.+)\s|\tblade_name=(\.+)\t|#011blade_name=(\.+)#011</regex>
+	<order>blade_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soutcome=(\.+)\s\w+=|\soutcome=(\.+)\s|\sstatus=(\.+)\s\w+=|\sstatus=(\.+)\s|\tattack_assessment=(\.+)\t|#011attack_assessment=(\.+)#011|\tverdict=(\.+)\t|#011verdict=(\.+)#011|\tstatus=(\.+)\t|#011status=(\.+)#011</regex>
+	<order>status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sshort_desc=(\.+)\s\w+=|\sshort_desc=(\.+)\s|\tshort_desc=(\.+)\t|#011short_desc=(\.+)#011</regex>
+	<order>short_desc</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slong_desc=(\.+)\s\w+=|\slong_desc=(\.+)\s|\tlong_desc=(\.+)\t|#011long_desc=(\.+)#011</regex>
+	<order>long_desc</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscan_hosts_hour=(\.+)\s\w+=|\sscan_hosts_hour=(\.+)\s|\tscan_hosts_hour=(\.+)\t|#011scan_hosts_hour=(\.+)#011</regex>
+	<order>scan_hosts_hour</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscan_hosts_day=(\.+)\s\w+=|\sscan_hosts_day=(\.+)\s|\tscan_hosts_day=(\.+)\t|#011scan_hosts_day=(\.+)#011</regex>
+	<order>scan_hosts_day</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscan_hosts_week=(\.+)\s\w+=|\sscan_hosts_week=(\.+)\s|\tscan_hosts_week=(\.+)\t|#011scan_hosts_week=(\.+)#011</regex>
+	<order>scan_hosts_week</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sunique_detected_hour=(\.+)\s\w+=|\sunique_detected_hour=(\.+)\s|\tunique_detected_hour=(\.+)\t|#011unique_detected_hour=(\.+)#011</regex>
+	<order>unique_detected_hour</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sunique_detected_day=(\.+)\s\w+=|\sunique_detected_day=(\.+)\s|\tunique_detected_day=(\.+)\t|#011unique_detected_day=(\.+)#011</regex>
+	<order>unique_detected_day</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sunique_detected_week=(\.+)\s\w+=|\sunique_detected_week=(\.+)\s|\tunique_detected_week=(\.+)\t|#011unique_detected_week=(\.+)#011</regex>
+	<order>unique_detected_week</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscan_mail=(\.+)\s\w+=|\sscan_mail=(\.+)\s|\tscan_mail=(\.+)\t|#011scan_mail=(\.+)#011</regex>
+	<order>scan_mail</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sadditional_ip=(\.+)\s\w+=|\sadditional_ip=(\.+)\s|\tadditional_ip=(\.+)\t|#011additional_ip=(\.+)#011</regex>
+	<order>additional_ip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdescription=(\.+)\s\w+=|\sdescription=(\.+)\s|\tdescription=(\.+)\t|#011description=(\.+)#011</regex>
+	<order>description</order>
+</decoder>
+<!--Anti Spam - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_spam_category=(\.+)\s\w+=|\semail_spam_category=(\.+)\s|\temail_spam_category=(\.+)\t|#011email_spam_category=(\.+)#011</regex>
+	<order>email_spam_category</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=Email Control cs4=(\.+)\s\w+=|\scs4Label=Email Control cs4=(\.+)\s|\temail_control=(\.+)\t|#011email_control=(\.+)#011</regex>
+	<order>email_control</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_control_analysis=(\.+)\s\w+=|\semail_control_analysis=(\.+)\s|\temail_control_analysis=(\.+)\t|#011email_control_analysis=(\.+)#011</regex>
+	<order>email_control_analysis</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_session_id=(\.+)\s\w+=|\semail_session_id=(\.+)\s|\temail_session_id=(\.+)\t|#011email_session_id=(\.+)#011</regex>
+	<order>email_session_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_id=(\.+)\s\w+=|\semail_id=(\.+)\s|\temail_id=(\.+)\t|#011email_id=(\.+)#011</regex>
+	<order>email_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_recipients_num=(\.+)\s\w+=|\semail_recipients_num=(\.+)\s|\temail_recipients_num=(\.+)\t|#011email_recipients_num=(\.+)#011</regex>
+	<order>email_recipients_num</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfrom=(\.+)\s\w+=|\sfrom=(\.+)\s|\tfrom=(\.+)\t|#011from=(\.+)#011</regex>
+	<order>from</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sto=(\.+)\s\w+=|\sto=(\.+)\s|\tto=(\.+)\t|#011to=(\.+)#011</regex>
+	<order>to</order>
+</decoder>
+<!--Anti Virus - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=Scan Result cs4=(\.+)\s\w+=|\scs4Label=Scan Result cs4=(\.+)\s|\tscan_result=(\.+)\t|#011scan_result=(\.+)#011</regex>
+	<order>scan_result</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\striggered_by=(\.+)\s\w+=|\striggered_by=(\.+)\s|\ttriggered_by=(\.+)\t|#011triggered_by=(\.+)#011</regex>
+	<order>triggered_by</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soriginal_queue_id=(\.+)\s\w+=|\soriginal_queue_id=(\.+)\s|\toriginal_queue_id=(\.+)\t|#011original_queue_id=(\.+)#011</regex>
+	<order>original_queue_id </order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srisk=(\.+)\s\w+=|\srisk=(\.+)\s|\trisk=(\.+)\t|#011risk=(\.+)#011</regex>
+	<order>risk</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sresource=(\.+)\s\w+=|\sresource=(\.+)\s|\tresource=(\.+)\t|#011resource=(\.+)#011</regex>
+	<order>resource</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_recipients_num=(\.+)\s\w+=|\semail_recipients_num=(\.+)\s|\temail_recipients_num=(\.+)\t|#011email_recipients_num=(\.+)#011</regex>
+	<order>email_recipients_num</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sobservable_name=(\.+)\s\w+=|\sobservable_name=(\.+)\s|\tobservable_name=(\.+)\t|#011observable_name=(\.+)#011</regex>
+	<order>observable_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sobservable_id=(\.+)\s\w+=|\sobservable_id=(\.+)\s|\tobservable_id=(\.+)\t|#011observable_id=(\.+)#011</regex>
+	<order>observable_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sobservable_comment=(\.+)\s\w+=|\sobservable_comment=(\.+)\s|\tobservable_comment=(\.+)\t|\tcomment=(\.+)\t|#011observable_comment=(\.+)#011|#011comment=(\.+)#011</regex>
+	<order>observable_comment</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sindicator_name=(\.+)\s\w+=|\sindicator_name=(\.+)\s|\tindicator_name=(\.+)\t|#011indicator_name=(\.+)#011</regex>
+	<order>indicator_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sindicator_description=(\.+)\s\w+=|\sindicator_description=(\.+)\s|\tindicator_description=(\.+)\t|#011indicator_description=(\.+)#011</regex>
+	<order>indicator_description</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sindicator_reference=(\.+)\s\w+=|\sindicator_reference=(\.+)\s|\tindicator_reference=(\.+)\t|#011indicator_reference=(\.+)#011</regex>
+	<order>indicator_reference</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sindicator_uuid=(\.+)\s\w+=|\sindicator_uuid=(\.+)\s|\tindicator_uuid=(\.+)\t|#011indicator_uuid=(\.+)#011</regex>
+	<order>indicator_uuid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreason=(\.+)\s\w+=|\sreason=(\.+)\s|\ttermination_reason=(\.+)\t|#011termination_reason=(\.+)#01|\treason=(\.+)\t|#011reason=(\.+)#011</regex>
+	<order>reason</order>
+</decoder>
+<!--Application Control  & URLF - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs6Label=Application Name cs6=(\.+)\s\w+=|\scs6Label=Application Name cs6=(\.+)\s|\tappi_name=(\.+)\t|#011appi_name=(\.+)#011</regex>
+	<order>appi_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_desc=(\.+)\s\w+=|\sapp_desc=(\.+)\s|\tapp_desc=(\.+)\t|#011app_desc=(\.+)#011</regex>
+	<order>app_desc</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_id=(\.+)\s\w+=|\sapp_id=(\.+)\s|\tapp_id=(\.+)\t|#011app_id=(\.+)#011</regex>
+	<order>app_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_properties=(\.+)\s\w+=|\sapp_properties=(\.+)\s|\tapp_properties=(\.+)\t|#011app_properties=(\.+)#011</regex>
+	<order>app_properties</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scp_app_risk=(\.+)\s\w+=|\scp_app_risk=(\.+)\s|\tapp_risk=(\.+)\t|#011app_risk=(\.+)#011</regex>
+	<order>app_risk</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_rule_id=(\.+)\s\w+=|\sapp_rule_id=(\.+)\s|\tapp_rule_id=(\.+)\t|#011app_rule_id=(\.+)#011</regex>
+	<order>app_rule_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs1Label=Application Rule Name cs1=(\.+)\s\w+=|\scs1Label=Application Rule Name cs1=(\.+)\s|\tapp_rule_name=(\.+)\t|#011app_rule_name=(\.+)#011</regex>
+	<order>app_rule_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sflexString1Label=Application Signature ID flexString1=(\.+)\s\w+=|\sflexString1Label=Application Signature ID flexString1=(\.+)\s|\tapp_sig_id=(\.+)\t|#011app_sig_id=(\.+)#011</regex>
+	<order>app_sig_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs2Label=Categories cs2=(\.+)\s\w+=|\scs2Label=Categories cs2=(\.+)\s|\tcategories=(\.+)\t|#011categories=(\.+)#011</regex>
+	<order>categories</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs2Label=Category cs2=(\.+)\s\w+=|\scs2Label=Category cs2=(\.+)\s|\tcategory=(\.+)\t|#011category=(\.+)#011</regex>
+	<order>category</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scertificate_resource=(\.+)\s\w+=|\scertificate_resource=(\.+)\s|\tcertificate_resource=(\.+)\t|#011certificate_resource=(\.+)#011</regex>
+	<order>certificate_resource</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scertificate_validation=(\.+)\s\w+=|\scertificate_validation=(\.+)\s|\tcertificate_validation=(\.+)\t|#011certificate_validation=(\.+)#011</regex>
+	<order>certificate_validation</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sduid=(\.+)\s\w+=|\sduid=(\.+)\s|\tusercheck_incident_uid=(\.+)\t|#011usercheck_incident_uid=(\.+)#011</regex>
+	<order>usercheck_incident_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sresource=(\.+)\s\w+=|\sresource=(\.+)\s|\tresource=(\.+)\t|#011resource=(\.+)#011</regex>
+	<order>resource</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sbrowse_time=(\.+)\s\w+=|\sbrowse_time=(\.+)\s|\tbrowse_time=(\.+)\t|#011browse_time=(\.+)#011</regex>
+	<order>browse_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slimit_requested=(\.+)\s\w+=|\slimit_requested=(\.+)\s|\tlimit_requested=(\.+)\t|#011limit_requested=(\.+)#011</regex>
+	<order>limit_requested</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slimit_applied=(\.+)\s\w+=|\slimit_applied=(\.+)\s|\tlimit_applied=(\.+)\t|#011limit_applied=(\.+)#011</regex>
+	<order>limit_applied</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_outgoing=(\.+)\s\w+=|\sdropped_outgoing=(\.+)\s|\tdropped_outgoing=(\.+)\t|#011dropped_outgoing=(\.+)#011</regex>
+	<order>dropped_outgoing</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_incoming=(\.+)\s\w+=|\sdropped_incoming=(\.+)\s|\tdropped_incoming=(\.+)\t|#011dropped_incoming=(\.+)#011</regex>
+	<order>dropped_incoming</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_total=(\.+)\s\w+=|\sdropped_total=(\.+)\s|\tdropped_total=(\.+)\t|#011dropped_total=(\.+)#011</regex>
+	<order>dropped_total</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssuppressed_logs=(\.+)\s\w+=|\ssuppressed_logs=(\.+)\s|\tsuppressed_logs=(\.+)\t|#011suppressed_logs=(\.+)#011</regex>
+	<order>suppressed_logs</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smatch_id=(\.+)\s\w+=|\smatch_id=(\.+)\s|\tmatch_id=(\.+)\t|#011match_id=(\.+)#011</regex>
+	<order>match_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sclient_type_os=(\.+)\s\w+=|\sclient_type_os=(\.+)\s|\tclient_type_os=(\.+)\t|#011client_type_os=(\.+)#011</regex>
+	<order>client_type_os</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreferrer=(\.+)\s\w+=|\sreferrer=(\.+)\s|\treferrer=(\.+)\t|#011referrer=(\.+)#011</regex>
+	<order>referrer</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sname=(\.+)\s\w+=|\sname=(\.+)\s|\tname=(\.+)\t|#011name=(\.+)#011</regex>
+	<order>name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sproperties=(\.+)\s\w+=|\sproperties=(\.+)\s|\tproperties=(\.+)\t|#011properties=(\.+)#011</regex>
+	<order>properties</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srisk=(\.+)\s\w+=|\srisk=(\.+)\s|\trisk=(\.+)\t|#011risk=(\.+)#011</regex>
+	<order>risk</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssig_id=(\.+)\s\w+=|\ssig_id=(\.+)\s|\tsig_id=(\.+)\t|#011sig_id=(\.+)#011</regex>
+	<order>sig_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdesc=(\.+)\s\w+=|\sdesc=(\.+)\s|\tdesc=(\.+)\t|#011desc=(\.+)#011</regex>
+	<order>desc</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreferrer_self_uid=(\.+)\s\w+=|\sreferrer_self_uid=(\.+)\s|\treferrer_self_uid=(\.+)\t|#011referrer_self_uid=(\.+)#011</regex>
+	<order>referrer_self_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreferrer_parent_uid=(\.+)\s\w+=|\sreferrer_parent_uid=(\.+)\s|\treferrer_parent_uid=(\.+)\t|#011referrer_parent_uid=(\.+)#011</regex>
+	<order>referrer_parent_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sneeds_browse_time=(\.+)\s\w+=|\sneeds_browse_time=(\.+)\s|\tneeds_browse_time=(\.+)\t|#011needs_browse_time=(\.+)#011</regex>
+	<order>needs_browse_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssecurity_inzone=(\.+)\s\w+=|\ssecurity_inzone=(\.+)\s|\tsecurity_inzone=(\.+)\t|#011security_inzone=(\.+)#011</regex>
+	<order>security_inzone</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssecurity_outzone=(\.+)\s\w+=|\ssecurity_outzone=(\.+)\s|\tsecurity_outzone=(\.+)\t|#011security_outzone=(\.+)#011</regex>
+	<order>security_outzone</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srequest=(\.+)\s\w+=|\srequest=(\.+)\s|\surl=(\.+)\s\w+=|\surl=(\.+)\s|\turl=(\.+)\t|#011url=(\.+)#011</regex>
+	<order>url</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>\srequest=\S+://(\S+)/|\srequest=\S+://(\S+)|\srequest=(\S+)/|\srequest=(\S+)|\surl=\S+://(\S+)/|\surl=\S+://(\S+)|\surl=(\S+)/|\surl=(\S+)|\turl=\S+://(\S+)/|\turl=\S+://(\S+)\t|\turl=(\S+)/|\turl=(\S+)\t|#011url=\S+://(\S+)/|#011url=\S+://(\S+)#011|#011url=(\S+)/|#011url=(\S+)#011</regex>
+	<order>url_domain</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srequest=\.*.(\w+.\w+)/|\srequest=\.*.(\w+.\w+)\s\w+=|\srequest=\.*(\w+.\w+)/|\srequest=\.*(\w+.\w+)\s\w+=|\surl=\.*.(\w+.\w+)/|\surl=\.*.(\w+.\w+)\s\w+=|\surl=\.*(\w+.\w+)/|\surl=\.*(\w+.\w+)\s\w+=|\turl=\.*.(\w+.\w+)/|\turl=\.*.(\w+.\w+)\t|\turl=\.*(\w+.\w+)/|\turl=\.*(\w+.\w+)\t|#011url=\.*.(\w+.\w+)/|#011url=\.*.(\w+.\w+)#011|#011url=\.*(\w+.\w+)/|#011url=\.*(\w+.\w+)#011</regex>
+	<order>url_sld</order>
+</decoder>
+<!--Cluster (VPN-1 & FireWall-1) -  Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scluster_info=(\.+)\s\w+=|\scluster_info=(\.+)\s|\tcluster_info=(\.+)\t|#011cluster_info=(\.+)#011</regex>
+	<order>cluster_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssync=(\.+)\s\w+=|\ssync=(\.+)\s|\tsync=(\.+)\t|#011sync=(\.+)#011</regex>
+	<order>sync</order>
+</decoder>
+<!--Content Awareness - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfile_direction=(\.+)\s\w+=|\sfile_direction=(\.+)\s|\tfile_direction=(\.+)\t|#011file_direction=(\.+)#011</regex>
+	<order>file_direction</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinvalid_file_size=(\.+)\s\w+=|\sinvalid_file_size=(\.+)\s|\tinvalid_file_size=(\.+)\t|#011invalid_file_size=(\.+)#011</regex>
+	<order>invalid_file_size</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\stop_archive_file_name=(\.+)\s\w+=|\stop_archive_file_name=(\.+)\s|\ttop_archive_file_name=(\.+)\t|#011top_archive_file_name=(\.+)#011</regex>
+	<order>top_archive_file_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdata_type_name=(\.+)\s\w+=|\sdata_type_name=(\.+)\s|\tdata_type_name=(\.+)\t|#011data_type_name=(\.+)#011</regex>
+	<order>data_type_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sspecific_data_type_name=(\.+)\s\w+=|\sspecific_data_type_name=(\.+)\s|\tspecific_data_type_name=(\.+)\t|#011specific_data_type_name=(\.+)#011</regex>
+	<order>specific_data_type_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sword_list=(\.+)\s\w+=|\sword_list=(\.+)\s|\tword_list=(\.+)\t|#011word_list=(\.+)#011</regex>
+	<order>word_list</order>
+</decoder>
+<!--DLP - Security Gateway -->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinfo=(\.+)\s\w+=|\sinfo=(\.+)\s|\tinfo=(\.+)\t|#011info=(\.+)#011</regex>
+	<order>info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soutgoing_url=(\.+)\s\w+=|\soutgoing_url=(\.+)\s|\toutgoing_url=(\.+)\t|#011outgoing_url=(\.+)#011</regex>
+	<order>outgoing_url</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs1Label=DLP Rule Name cs1=(\.+)\s\w+=|\scs1Label=DLP Rule Name cs1=(\.+)\s|\tdlp_rule_name=(\.+)\t|#011dlp_rule_name=(\.+)#011</regex>
+	<order>dlp_rule_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_recipients=(\.+)\s\w+=|\sdlp_recipients=(\.+)\s|\tdlp_recipients=(\.+)\t|#011dlp_recipients=(\.+)#011</regex>
+	<order>dlp_recipients</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_subject=(\.+)\s\w+=|\sdlp_subject=(\.+)\s|\tdlp_subject=(\.+)\t|#011dlp_subject=(\.+)#011</regex>
+	<order>dlp_subject</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_word_list=(\.+)\s\w+=|\sdlp_word_list=(\.+)\s|\tdlp_word_list=(\.+)\t|#011dlp_word_list=(\.+)#011</regex>
+	<order>dlp_word_list</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_template_score=(\.+)\s\w+=|\sdlp_template_score=(\.+)\s|\tdlp_template_score=(\.+)\t|#011dlp_template_score=(\.+)#011</regex>
+	<order>dlp_template_score</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smessage_size=(\.+)\s\w+=|\smessage_size=(\.+)\s|\tmessage_size=(\.+)\t|#011message_size=(\.+)#011</regex>
+	<order>message_size</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_rule_name=(\.+)\s\w+=|\sdlp_rule_name=(\.+)\s|\tdlp_rule_name=(\.+)\t|#011dlp_rule_name=(\.+)#011</regex>
+	<order>dlp_rule_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sexternalId=(\.+)\s\w+=|\sexternalId=(\.+)\s|\tdlp_rule_uid=(\.+)\t|#011dlp_rule_uid=(\.+)#011</regex>
+	<order>dlp_rule_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_incident_uid=(\.+)\s\w+=|\sdlp_incident_uid=(\.+)\s|\tdlp_incident_uid=(\.+)\t|#011dlp_incident_uid=(\.+)#011</regex>
+	<order>dlp_incident_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_related_incident_uid=(\.+)\s\w+=|\sdlp_related_incident_uid=(\.+)\s|\tdlp_related_incident_uid=(\.+)\t|#011dlp_related_incident_uid=(\.+)#011</regex>
+	<order>dlp_related_incident_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_data_type_name=(\.+)\s\w+=|\sdlp_data_type_name=(\.+)\s|\tdlp_data_type_name=(\.+)\t|#011dlp_data_type_name=(\.+)#011</regex>
+	<order>dlp_data_type_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_data_type_uid=(\.+)\s\w+=|\sdlp_data_type_uid=(\.+)\s|\tdlp_data_type_uid=(\.+)\t|#011dlp_data_type_uid=(\.+)#011</regex>
+	<order>dlp_data_type_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soutgoing_url=(\.+)\s\w+=|\soutgoing_url=(\.+)\s|\toutgoing_url=(\.+)\t|#011outgoing_url=(\.+)#011</regex>
+	<order>outgoing_url</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_file_name=(\.+)\s\w+=|\sdlp_file_name=(\.+)\s|\tdlp_file_name=(\.+)\t|#011dlp_file_name=(\.+)#011</regex>
+	<order>dlp_file_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_file_name=(\.+)\s\w+=|\sdlp_file_name=(\.+)\s|\tdlp_file_name=(\.+)\t|#011dlp_file_name=(\.+)#011</regex>
+	<order>filename</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfname=(\.+)\s\w+=|\sfname=(\.+)\s|\sfile_name=(\.+)\s\w+=|\sfile_name=(\.+)\s|\tfile_name=(\.+)\t|#011file_name=(\.+)#011</regex>
+	<order>filename</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_violation_description=(\.+)\s\w+=|\sdlp_violation_description=(\.+)\s|\tdlp_violation_description=(\.+)\t|#011dlp_violation_description=(\.+)#011</regex>
+	<order>dlp_violation_description </order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_relevant_data_types=(\.+)\s\w+=|\sdlp_relevant_data_types=(\.+)\s|\tdlp_relevant_data_types=(\.+)\t|#011dlp_relevant_data_types=(\.+)#011</regex>
+	<order>dlp_relevant_data_types</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_action_reason=(\.+)\s\w+=|\sdlp_action_reason=(\.+)\s|\tdlp_action_reason=(\.+)\t|#011dlp_action_reason=(\.+)#011</regex>
+	<order>dlp_action_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_categories=(\.+)\s\w+=|\sdlp_categories=(\.+)\s|\tdlp_categories=(\.+)\t|#011dlp_categories=(\.+)#011</regex>
+	<order>dlp_categories</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_transint=(\.+)\s\w+=|\sdlp_transint=(\.+)\s|\tdlp_transint=(\.+)\t|#011dlp_transint=(\.+)#011</regex>
+	<order>dlp_transint</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sduplicate=(\.+)\s\w+=|\sduplicate=(\.+)\s|\tduplicate=(\.+)\t|#011duplicate=(\.+)#011</regex>
+	<order>duplicate</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs3Label=Incident Extension cs3=(\.+)\s\w+=|\scs3Label=Incident Extension cs3=(\.+)\s|\tincident_extension=(\.+)\t|#011incident_extension=(\.+)#011</regex>
+	<order>incident_extension</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smatched_file=(\.+)\s\w+=|\smatched_file=(\.+)\s|\tmatched_file=(\.+)\t|#011matched_file=(\.+)#011</regex>
+	<order>matched_file</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smatched_file_text_segments=(\.+)\s\w+=|\smatched_file_text_segments=(\.+)\s|\tmatched_file_text_segments=(\.+)\t|#011matched_file_text_segments=(\.+)#011</regex>
+	<order>matched_file_text_segments</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smatched_file_percentage=(\.+)\s\w+=|\smatched_file_percentage=(\.+)\s|\tmatched_file_percentage=(\.+)\t|#011matched_file_percentage=(\.+)#011</regex>
+	<order>matched_file_percentage</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_addtional_action=(\.+)\s\w+=|\sdlp_addtional_action=(\.+)\s|\tdlp_addtional_action=(\.+)\t|#011dlp_addtional_action=(\.+)#011</regex>
+	<order>dlp_addtional_action</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_watermark_profile=(\.+)\s\w+=|\sdlp_watermark_profile=(\.+)\s|\tdlp_watermark_profile=(\.+)\t|#011dlp_watermark_profile=(\.+)#011</regex>
+	<order>dlp_watermark_profile</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_id=(\.+)\s\w+=|\sdlp_repository_id=(\.+)\s|\tdlp_repository_id=(\.+)\t|#011dlp_repository_id=(\.+)#011</regex>
+	<order>dlp_repository_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_data_type_uid=(\.+)\s\w+=|\sdlp_data_type_uid=(\.+)\s|\tdlp_data_type_uid=(\.+)\t|#011dlp_data_type_uid=(\.+)#011</regex>
+	<order>dlp_data_type_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_data_type_name=(\.+)\s\w+=|\sdlp_data_type_name=(\.+)\s|\tdlp_data_type_name=(\.+)\t|#011dlp_data_type_name=(\.+)#011</regex>
+	<order>dlp_data_type_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_root_path=(\.+)\s\w+=|\sdlp_repository_root_path=(\.+)\s|\tdlp_repository_root_path=(\.+)\t|#011dlp_repository_root_path=(\.+)#011</regex>
+	<order>dlp_repository_root_path</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscan_id=(\.+)\s\w+=|\sscan_id=(\.+)\s|\tscan_id=(\.+)\t|#011scan_id=(\.+)#011</regex>
+	<order>scan_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sspecial_properties=(\.+)\s\w+=|\sspecial_properties=(\.+)\s|\tspecial_properties=(\.+)\t|#011special_properties=(\.+)#011</regex>
+	<order>special_properties</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_total_size=(\.+)\s\w+=|\sdlp_repository_total_size=(\.+)\s|\tdlp_repository_total_size=(\.+)\t|#011dlp_repository_total_size=(\.+)#011</regex>
+	<order>dlp_repository_total_size</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_files_number=(\.+)\s\w+=|\sdlp_repository_files_number=(\.+)\s|\tdlp_repository_files_number=(\.+)\t|#011dlp_repository_files_number=(\.+)#011</regex>
+	<order>dlp_repository_files_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_scanned_files_number=(\.+)\s\w+=|\sdlp_repository_scanned_files_number=(\.+)\s|\tdlp_repository_scanned_files_number=(\.+)\t|#011dlp_repository_scanned_files_number=(\.+)#011</regex>
+	<order>dlp_repository_scanned_files_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sduration=(\.+)\s\w+=|\sduration=(\.+)\s|\tduration=(\.+)\t|#011duration=(\.+)#011</regex>
+	<order>duration</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_fingerprint_long_status=(\.+)\s\w+=|\sdlp_fingerprint_long_status=(\.+)\s|\tdlp_fingerprint_long_status=(\.+)\t|#011dlp_fingerprint_long_status=(\.+)#011</regex>
+	<order>dlp_fingerprint_long_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_fingerprint_short_status=(\.+)\s\w+=|\sdlp_fingerprint_short_status=(\.+)\s|\tdlp_fingerprint_short_status=(\.+)\t|#011dlp_fingerprint_short_status=(\.+)#011</regex>
+	<order>dlp_fingerprint_short_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_directories_number=(\.+)\s\w+=|\sdlp_repository_directories_number=(\.+)\s|\tdlp_repository_directories_number=(\.+)\t|#011dlp_repository_directories_number=(\.+)#011</regex>
+	<order>dlp_repository_directories_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_unreachable=(\.+)\s\w+=|\sdlp_repository_unreachable=(\.+)\s|\tdlp_repository_unreachable=(\.+)\t|#011dlp_repository_unreachable=(\.+)#011</regex>
+	<order>dlp_repository_unreachable</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\s_directories_number=(\.+)\s\w+=|\s_directories_number=(\.+)\s|\t_directories_number=(\.+)\t|#011_directories_number=(\.+)#011</regex>
+	<order>_directories_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_fingerprinted_files_number=(\.+)\s\w+=|\sdlp_fingerprinted_files_number=(\.+)\s|\tdlp_fingerprinted_files_number=(\.+)\t|#011dlp_fingerprinted_files_number=(\.+)#011</regex>
+	<order>dlp_fingerprinted_files_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_skipped_files_number=(\.+)\s\w+=|\sdlp_repository_skipped_files_number=(\.+)\s|\tdlp_repository_skipped_files_number=(\.+)\t|#011dlp_repository_skipped_files_number=(\.+)#011</regex>
+	<order>dlp_repository_skipped_files_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_scanned_directories_number=(\.+)\s\w+=|\sdlp_repository_scanned_directories_number=(\.+)\s|\tdlp_repository_scanned_directories_number=(\.+)\t|#011dlp_repository_scanned_directories_number=(\.+)#011</regex>
+	<order>dlp_repository_scanned_directories_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\snumber_of_errors=(\.+)\s\w+=|\snumber_of_errors=(\.+)\s|\tnumber_of_errors=(\.+)\t|#011number_of_errors=(\.+)#011</regex>
+	<order>number_of_errors</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\snext_scheduled_scan_date=(\.+)\s\w+=|\snext_scheduled_scan_date=(\.+)\s|\tnext_scheduled_scan_date=(\.+)\t|#011next_scheduled_scan_date=(\.+)#011</regex>
+	<order>next_scheduled_scan_date</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_scanned_total_size=(\.+)\s\w+=|\sdlp_repository_scanned_total_size=(\.+)\s|\tdlp_repository_scanned_total_size=(\.+)\t|#011dlp_repository_scanned_total_size=(\.+)#011</regex>
+	<order>dlp_repository_scanned_total_size</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_scanned_files_number=(\.+)\s\w+=|\sdlp_repository_scanned_files_number=(\.+)\s|\tdlp_repository_scanned_files_number=(\.+)\t|#011dlp_repository_scanned_files_number=(\.+)#011</regex>
+	<order>dlp_repository_scanned_files_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_reached_directories_number=(\.+)\s\w+=|\sdlp_repository_reached_directories_number=(\.+)\s|\tdlp_repository_reached_directories_number=(\.+)\t|#011dlp_repository_reached_directories_number=(\.+)#011</regex>
+	<order>dlp_repository_reached_directories_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_fingerprint_short_status=(\.+)\s\w+=|\sdlp_fingerprint_short_status=(\.+)\s|\tdlp_fingerprint_short_status=(\.+)\t|#011dlp_fingerprint_short_status=(\.+)#011</regex>
+	<order>dlp_fingerprint_short_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_not_=(\.+)\s\w+=|\sdlp_repository_not_=(\.+)\s|\tdlp_repository_not_=(\.+)\t|#011dlp_repository_not_=(\.+)#011</regex>
+	<order>dlp_repository_not_</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscanned_directories_percentage=(\.+)\s\w+=|\sscanned_directories_percentage=(\.+)\s|\tscanned_directories_percentage=(\.+)\t|#011scanned_directories_percentage=(\.+)#011</regex>
+	<order>scanned_directories_percentage</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_scanned_directories_number=(\.+)\s\w+=|\sdlp_repository_scanned_directories_number=(\.+)\s|\tdlp_repository_scanned_directories_number=(\.+)\t|#011dlp_repository_scanned_directories_number=(\.+)#011</regex>
+	<order>dlp_repository_scanned_directories_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sspeed=(\.+)\s\w+=|\sspeed=(\.+)\s|\tspeed=(\.+)\t|#011speed=(\.+)#011</regex>
+	<order>speed</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_repository_scan_progress=(\.+)\s\w+=|\sdlp_repository_scan_progress=(\.+)\s|\tdlp_repository_scan_progress=(\.+)\t|#011dlp_repository_scan_progress=(\.+)#011</regex>
+	<order>dlp_repository_scan_progress</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdlp_relevant_data_types=(\.+)\s\w+=|\sdlp_relevant_data_types=(\.+)\s|\tdlp_relevant_data_types=(\.+)\t|#011dlp_relevant_data_types=(\.+)#011</regex>
+	<order>dlp_relevant_data_types</order>
+</decoder>
+<!-- Firewall  - Security Gateway -->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinzone=(\.+)\s\w+=|\sinzone=(\.+)\s|\tinzone=(\.+)\t|#011inzone=(\.+)#011</regex>
+	<order>inzone</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soutzone=(\.+)\s\w+=|\soutzone=(\.+)\s|\toutzone=(\.+)\t|#011outzone=(\.+)#011</regex>
+	<order>outzone</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssub_policy_name=(\.+)\s\w+=|\ssub_policy_name=(\.+)\s|\tsub_policy_name=(\.+)\t|#011sub_policy_name=(\.+)#011</regex>
+	<order>sub_policy_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssub_policy_uid=(\.+)\s\w+=|\ssub_policy_uid=(\.+)\s|\tsub_policy_uid=(\.+)\t|#011sub_policy_uid=(\.+)#011</regex>
+	<order>sub_policy_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfields_message=(\.+)\s\w+=|\sfields_message=(\.+)\s|\tfields_message=(\.+)\t|#011fields_message=(\.+)#011</regex>
+	<order>fields_message</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smsg=(\.+)\s+\w+=|\smsg=(\.+)\s|\tmessage=(\.+)\t|#011message=(\.+)#011|\tmessage_info=(\.+)\t|#011message_info=(\.+)#011|\tinformation=(\.+)\t|#011information=(\.+)#011|\tdescription=(\.+)\t|#011description=(\.+)#011|\tattack=(\.+)\t|#011attack=(\.+)#011</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sisp_link=(\.+)\s\w+=|\sisp_link=(\.+)\s|\tisp_link=(\.+)\t|#011isp_link=(\.+)#011</regex>
+	<order>isp_link</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfields_subproduct=(\.+)\s\w+=|\sfields_subproduct=(\.+)\s|\tfields_subproduct=(\.+)\t|#011fields_subproduct=(\.+)#011</regex>
+	<order>fields_subproduct</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssctp_error=(\.+)\s\w+=|\ssctp_error=(\.+)\s|\tsctp_error=(\.+)\t|#011sctp_error=(\.+)#011</regex>
+	<order>sctp_error</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\schunk_type=(\.+)\s\w+=|\schunk_type=(\.+)\s|\tchunk_type=(\.+)\t|#011chunk_type=(\.+)#011</regex>
+	<order>chunk_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssctp_association_state=(\.+)\s\w+=|\ssctp_association_state=(\.+)\s|\tsctp_association_state=(\.+)\t|#011sctp_association_state=(\.+)#011</regex>
+	<order>sctp_association_state</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\stcp_packet_out_of_state=(\.+)\s\w+=|\stcp_packet_out_of_state=(\.+)\s|\ttcp_packet_out_of_state=(\.+)\t|#011tcp_packet_out_of_state=(\.+)#011</regex>
+	<order>tcp_packet_out_of_state</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=TCP Flags cs4=(\.+)\s\w+=|\scs4Label=TCP Flags cs4=(\.+)\s|\ttcp_flags=(\.+)\t|#011tcp_flags=(\.+)#011</regex>
+	<order>tcp_flags</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sconnectivity_level=(\.+)\s\w+=|\sconnectivity_level=(\.+)\s|\tconnectivity_level=(\.+)\t|#011connectivity_level=(\.+)#011</regex>
+	<order>connectivity_level</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sip_option=(\.+)\s\w+=|\sip_option=(\.+)\s|\tip_option=(\.+)\t|#011ip_option=(\.+)#011</regex>
+	<order>ip_option</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\stcp_state=(\.+)\s\w+=|\stcp_state=(\.+)\s|\ttcp_state=(\.+)\t|#011tcp_state=(\.+)#011</regex>
+	<order>tcp_state</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sexpire_time=(\.+)\s\w+=|\sexpire_time=(\.+)\s|\texpire_time=(\.+)\t|#011expire_time=(\.+)#011</regex>
+	<order>expire_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scn2Label=ICMP Type cn2=(\.+)\s\w+=|\scn2Label=ICMP Type cn2=(\.+)\s|\ticmp_type=(\.+)\t|#011icmp_type=(\.+)#011</regex>
+	<order>icmp_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scn3Label=ICMP Code cn3=(\.+)\s\w+=|\scn3Label=ICMP Code cn3=(\.+)\s|\ticmp_code=(\.+)\t|#011icmp_code=(\.+)#011</regex>
+	<order>icmp_code</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srpc_prog=(\.+)\s\w+=|\srpc_prog=(\.+)\s|\trpc_prog=(\.+)\t|#011rpc_prog=(\.+)#011</regex>
+	<order>rpc_prog</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdce-rpc_interface_uuid=(\.+)\s\w+=|\sdce-rpc_interface_uuid=(\.+)\s|\tdce-rpc_interface_uuid=(\.+)\t|#011dce-rpc_interface_uuid=(\.+)#011</regex>
+	<order>dce-rpc_interface_uuid </order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sstart=(\.+)\s\w+=|\sstart=(\.+)\s|\sstart_time=(\.+)\s\w+=|\sstart_time=(\.+)\s|\tstart_time=(\.+)\t|#011start_time=(\.+)#011</regex>
+	<order>start_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scn1Label=Elapsed Time in Seconds cn1=(\.+)\s\w+=|\scn1Label=Elapsed Time in Seconds cn1=(\.+)\s|\telapsed=(\.+)\t|#011elapsed=(\.+)#011</regex>
+	<order>elapsed</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\spackets=(\.+)\s\w+=|\spackets=(\.+)\s|\tpackets=(\.+)\t|#011packets=(\.+)#011</regex>
+	<order>packets</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sclient_inbound_packets=(\.+)\s\w+=|\sclient_inbound_packets=(\.+)\s|\tclient_inbound_packets=(\.+)\t|#011client_inbound_packets=(\.+)#011</regex>
+	<order>client_inbound_packets</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sclient_outbound_packets=(\.+)\s\w+=|\sclient_outbound_packets=(\.+)\s|\tclient_outbound_packets=(\.+)\t|#011client_outbound_packets=(\.+)#011</regex>
+	<order>client_outbound_packets</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sserver_inbound_packets=(\.+)\s\w+=|\sserver_inbound_packets=(\.+)\s|\tserver_inbound_packets=(\.+)\t|#011server_inbound_packets=(\.+)#011</regex>
+	<order>server_inbound_packets</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sserver_outbound_packets=(\.+)\s\w+=|\sserver_outbound_packets=(\.+)\s|\tserver_outbound_packets=(\.+)\t|#011server_outbound_packets=(\.+)#011</regex>
+	<order>server_outbound_packets</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sclient_inbound_bytes=(\.+)\s\w+=|\sclient_inbound_bytes=(\.+)\s|\tclient_inbound_bytes=(\.+)\t|#011client_inbound_bytes=(\.+)#011</regex>
+	<order>client_inbound_bytes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sclient_outbound_bytes=(\.+)\s\w+=|\sclient_outbound_bytes=(\.+)\s|\tclient_outbound_bytes=(\.+)\t|#011client_outbound_bytes=(\.+)#011</regex>
+	<order>client_outbound_bytes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sserver_inbound_bytes=(\.+)\s\w+=|\sserver_inbound_bytes=(\.+)\s|\tserver_inbound_bytes=(\.+)\t|#011server_inbound_bytes=(\.+)#011</regex>
+	<order>server_inbound_bytes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sserver_outbound_bytes=(\.+)\s\w+=|\sserver_outbound_bytes=(\.+)\s|\tserver_outbound_bytes=(\.+)\t|#011server_outbound_bytes=(\.+)#011</regex>
+	<order>server_outbound_bytes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdeviceInboundInterface=(\.+)\s\w+=|\sdeviceInboundInterface=(\.+)\s|\tclient_inbound_interface=(\.+)\t|#011client_inbound_interface=(\.+)#011</regex>
+	<order>client_inbound_interface</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdeviceOutboundInterface=(\.+)\s\w+=|\sdeviceOutboundInterface=(\.+)\s|\tclient_outbound_interface=(\.+)\t|#011client_outbound_interface=(\.+)#011</regex>
+	<order>client_outbound_interface</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sserver_inbound_interface=(\.+)\s\w+=|\sserver_inbound_interface=(\.+)\s|\tserver_inbound_interface=(\.+)\t|#011server_inbound_interface=(\.+)#011</regex>
+	<order>server_inbound_interface</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sserver_outbound_interface=(\.+)\s\w+=|\sserver_outbound_interface=(\.+)\s|\tserver_outbound_interface=(\.+)\t|#011server_outbound_interface=(\.+)#011</regex>
+	<order>server_outbound_interface</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sicmp=(\.+)\s\w+=|\sicmp=(\.+)\s|\ticmp=(\.+)\t|#011icmp=(\.+)#011</regex>
+	<order>icmp</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scapture_uuid=(\.+)\s\w+=|\scapture_uuid=(\.+)\s|\tcapture_uuid=(\.+)\t|#011capture_uuid=(\.+)#011</regex>
+	<order>capture_uuid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdiameter_app_name=(\.+)\s\w+=|\sdiameter_app_name=(\.+)\s|\tdiameter_app_name=(\.+)\t|#011diameter_app_name=(\.+)#011</regex>
+	<order>diameter_app_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdiameter_app_ID=(\.+)\s\w+=|\sdiameter_app_ID=(\.+)\s|\tdiameter_app_ID=(\.+)\t|#011diameter_app_ID=(\.+)#011</regex>
+	<order>diameter_app_ID</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdiameter_cmd_code=(\.+)\s\w+=|\sdiameter_cmd_code=(\.+)\s|\tdiameter_cmd_code=(\.+)\t|#011diameter_cmd_code=(\.+)#011</regex>
+	<order>diameter_cmd_code</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdiameter_msg_type=(\.+)\s\w+=|\sdiameter_msg_type=(\.+)\s|\tdiameter_msg_type=(\.+)\t|#011diameter_msg_type=(\.+)#011</regex>
+	<order>diameter_msg_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinfo=(\.+)\s\w+=|\sinfo=(\.+)\s|\tinfo=(\.+)\t|#011info=(\.+)#011</regex>
+	<order>info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scp_message=(\.+)\s\w+=|\scp_message=(\.+)\s|\tcp_message=(\.+)\t|#011cp_message=(\.+)#011</regex>
+	<order>cp_message</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slog_delay=(\.+)\s\w+=|\slog_delay=(\.+)\s|\tlog_delay=(\.+)\t|#011log_delay=(\.+)#011</regex>
+	<order>log_delay</order>
+</decoder>
+<!--Forensics - SandBlast Agent-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sattack_status=(\.+)\s\w+=|\sattack_status=(\.+)\s|\tattack_status=(\.+)\t|\tattackStatus=(\.+)\t|#011attack_status=(\.+)#011|#011attackStatus=(\.+)#011</regex>
+	<order>attack_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\simpacted_files=(\.+)\s\w+=|\simpacted_files=(\.+)\s|\timpacted_files=(\.+)\t|#011impacted_files=(\.+)#011</regex>
+	<order>impacted_files</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sremediated_files=(\.+)\s\w+=|\sremediated_files=(\.+)\s|\tremediated_files=(\.+)\t|#011remediated_files=(\.+)#011</regex>
+	<order>remediated_files</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\striggered_by=(\.+)\s\w+=|\striggered_by=(\.+)\s|\ttriggered_by=(\.+)\t|#011triggered_by=(\.+)#011</regex>
+	<order>triggered_by</order>
+</decoder>
+<!--HTTPs Inspection - Security Gateway -->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shttps_inspection_rule_id=(\.+)\s\w+=|\shttps_inspection_rule_id=(\.+)\s|\thttps_inspection_rule_id=(\.+)\t|#011https_inspection_rule_id=(\.+)#011</regex>
+	<order>https_inspection_rule_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shttps_inspection_rule_name=(\.+)\s\w+=|\shttps_inspection_rule_name=(\.+)\s|\thttps_inspection_rule_name=(\.+)\t|#011https_inspection_rule_name=(\.+)#011</regex>
+	<order>https_inspection_rule_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_properties=(\.+)\s\w+=|\sapp_properties=(\.+)\s|\tapp_properties=(\.+)\t|#011app_properties=(\.+)#011</regex>
+	<order>app_properties</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sresource=(\.+)\s\w+=|\sresource=(\.+)\s|\tresource=(\.+)\t|#011resource=(\.+)#011</regex>
+	<order>resource</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shttps_validation=(\.+)\s\w+=|\shttps_validation=(\.+)\s|\thttps_validation=(\.+)\t|#011https_validation=(\.+)#011</regex>
+	<order>https_validation</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shttps_inspection_action=(\.+)\s\w+=|\shttps_inspection_action=(\.+)\s|\thttps_inspection_action=(\.+)\t|#011https_inspection_action=(\.+)#011</regex>
+	<order>https_inspection_action</order>
+</decoder>
+<!--ICAP Client (VPN-1 & FireWall-1) - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sicap_service_id=(\.+)\s\w+=|\sicap_service_id=(\.+)\s|\ticap_service_id=(\.+)\t|#011icap_service_id=(\.+)#011</regex>
+	<order>icap_service_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sicap_server_name=(\.+)\s\w+=|\sicap_server_name=(\.+)\s|\ticap_server_name=(\.+)\t|#011icap_server_name=(\.+)#011</regex>
+	<order>icap_server_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinternal_error=(\.+)\s\w+=|\sinternal_error=(\.+)\s|\tinternal_error=(\.+)\t|#011internal_error=(\.+)#011</regex>
+	<order>internal_error</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sverdict=(\.+)\s\w+=|\sverdict=(\.+)\s|\tverdict=(\.+)\t|#011verdict=(\.+)#011</regex>
+	<order>verdict</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sicap_more_info=(\.+)\s\w+=|\sicap_more_info=(\.+)\s|\ticap_more_info=(\.+)\t|#011icap_more_info=(\.+)#011</regex>
+	<order>icap_more_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreply_status=(\.+)\s\w+=|\sreply_status=(\.+)\s|\treply_status=(\.+)\t|#011reply_status=(\.+)#011</regex>
+	<order>reply_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sicap_server_service=(\.+)\s\w+=|\sicap_server_service=(\.+)\s|\ticap_server_service=(\.+)\t|#011icap_server_service=(\.+)#011</regex>
+	<order>icap_server_service</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smirror_and_decrypt_type=(\.+)\s\w+=|\smirror_and_decrypt_type=(\.+)\s|\tmirror_and_decrypt_type=(\.+)\t|#011mirror_and_decrypt_type=(\.+)#011</regex>
+	<order>mirror_and_decrypt_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinterface_name=(\.+)\s\w+=|\sinterface_name=(\.+)\s|\tinterface_name=(\.+)\t|#011interface_name=(\.+)#011</regex>
+	<order>interface_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssession_uid=(\.+)\s\w+=|\ssession_uid=(\.+)\s|\tsession_uid=(\.+)\t|#011session_uid=(\.+)#011</regex>
+	<order>session_uid</order>
+</decoder>
+<!--Identity Awareness - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sbroker_publisher=(\.+)\s\w+=|\sbroker_publisher=(\.+)\s|\tbroker_publisher=(\.+)\t|#011broker_publisher=(\.+)#011</regex>
+	<order>broker_publisher</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sshost=(\.+)\s\w+=|\sshost=(\.+)\s|\ssrc_machine_name=(\.+)\s\w+=|\ssrc_machine_name=(\.+)\s|\tsrc_machine_name=(\.+)\t|#011src_machine_name=(\.+)#011</regex>
+	<order>src_machine_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sshost=(\.+)\s\w+=|\sshost=(\.+)\s|\ssrc_machine_name=(\.+)\s\w+=|\ssrc_machine_name=(\.+)\s|\tsrc_machine_name=(\.+)\t|#011src_machine_name=(\.+)#011</regex>
+	<order>shost</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sshost=(\.+)\s\w+=|\sshost=(\.+)\s|\ssrc_machine_name=(\.+)\s\w+=|\ssrc_machine_name=(\.+)\s|\tsrc_machine_name=(\.+)\t|#011src_machine_name=(\.+)#011</regex>
+	<order>system_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrc_user_dn=(\.+)\s\w+=|\ssrc_user_dn=(\.+)\s|\tsrc_user_dn=(\.+)\t|#011src_user_dn=(\.+)#011</regex>
+	<order>src_user_dn</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sproxy_user_name=(\.+)\s\w+=|\sproxy_user_name=(\.+)\s|\tproxy_user_name=(\.+)\t|#011proxy_user_name=(\.+)#011</regex>
+	<order>proxy_user_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sproxy_machine_name=(\.+)\s\w+=|\sproxy_machine_name=(\.+)\s|\tproxy_machine_name=(\.+)\t|#011proxy_machine_name=(\.+)#011</regex>
+	<order>proxy_machine_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sproxy_user_dn=(\.+)\s\w+=|\sproxy_user_dn=(\.+)\s|\tproxy_user_dn=(\.+)\t|#011proxy_user_dn=(\.+)#011</regex>
+	<order>proxy_user_dn</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\tdst_machine_name=(\.+)\t|#011dst_machine_name=(\.+)#011</regex>
+	<order>dst_machine_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\tdestination_dhcp_hostname=(\.+)\t|#011destination_dhcp_hostname=(\.+)#011</regex>
+	<order>destination_dhcp_hostname</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\tendpoint_addr=(\.+)\t|#011endpoint_addr=(\.+)#011</regex>
+	<order>endpoint_addr</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\tnetbios_destination_hostname=(\.+)\t|#011netbios_destination_hostname=(\.+)#011</regex>
+	<order>netbios_destination_hostname</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdmac=(\.+)\s\w+=|\sdmac=(\.+)\s|\tmac_destination_address=(\.+)\t|#011mac_destination_address=(\.+)#011</regex>
+	<order>mac_destination_address</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdhost=(\.+)\s\w+=|\sdhost=(\.+)\s|\tdestination_dhcp_hostname=(\.+)\t|#011destination_dhcp_hostname=(\.+)#011|\tdst_machine_name=(\.+)\t|#011dst_machine_name=(\.+)#011|\tendpoint_addr=(\.+)\t|#011endpoint_addr=(\.+)#011|\tnetbios_destination_hostname=(\.+)\t|#011netbios_destination_hostname=(\.+)#011</regex>
+	<order>dhost</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sproxy_user_dn=(\.+)\s\w+=|\sproxy_user_dn=(\.+)\s|\tproxy_user_dn=(\.+)\t|#011proxy_user_dn=(\.+)#011</regex>
+	<order>proxy_user_dn</order>
+</decoder>
+<!-- IPS  (SmartDefense) - Security Gateway-->
+<!--added-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sattack=(\.+)\s\w+=|\sattack=(\.+)\s|\tattack=(\.+)\t|#011attack=(\.+)#011</regex>
+	<order>attack</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sflexString2Label=Attack Information flexString2=(\.+)\s\w+=|\sflexString2Label=Attack Information flexString2=(\.+)\s|\tattack_info=(\.+)\t|#011attack_info=(\.+)#011</regex>
+	<order>attack_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdescription_url=(\.+)\s\w+=|\sdescription_url=(\.+)\s|\tdescription_url=(\.+)\t|#011description_url=(\.+)#011</regex>
+	<order>description_url</order>
+</decoder>
+<!--end-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sresource=(\.+)\s\w+=|\sresource=(\.+)\s|\tresource=(\.+)\t|#011resource=(\.+)#011</regex>
+	<order>resource</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\squery=(\.+)\s\w+=|\squery=(\.+)\s|\tquery=(\.+)\t|#011query=(\.+)#011</regex>
+	<order>query</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdns_query=(\.+)\s\w+=|\sdns_query=(\.+)\s|\tdns_query=(\.+)\t|#011dns_query=(\.+)#011</regex>
+	<order>dns_query</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdns_type=(\.+)\s\w+=|\sdns_type=(\.+)\s|\tdns_type=(\.+)\t|#011dns_type=(\.+)#011</regex>
+	<order>dns_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinspection_item=(\.+)\s\w+=|\sinspection_item=(\.+)\s|\tinspection_item=(\.+)\t|#011inspection_item=(\.+)#011</regex>
+	<order>inspection_item</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sflexNumber2Label=Performance Impact flexNumber2=(\.+)\s\w+=|\sflexNumber2Label=Performance Impact flexNumber2=(\.+)\s|\tperformance_impact=(\.+)\t|performanceImpact=(\.+)\t|#011performance_impact=(\.+)#011|performanceImpact=(\.+)#011</regex>
+	<order>performance_impact</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinspection_category=(\.+)\s\w+=|\sinspection_category=(\.+)\s|\tinspection_category=(\.+)\t|#011inspection_category=(\.+)#011</regex>
+	<order>inspection_category</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinspection_profile=(\.+)\s\w+=|\sinspection_profile=(\.+)\s|\tinspection_profile=(\.+)\t|#011inspection_profile=(\.+)#011</regex>
+	<order>inspection_profile</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinspection_information=(\.+)\s\w+=|\sinspection_information=(\.+)\s|\tinspection_information=(\.+)\t|#011inspection_information=(\.+)#011</regex>
+	<order>inspection_information</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smessage=(\.+)\s\w+=|\smessage=(\.+)\s|\tmessage=(\.+)\t|#011message=(\.+)#011</regex>
+	<order>msg</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssuppressed_logs=(\.+)\s\w+=|\ssuppressed_logs=(\.+)\s|\tsuppressed_logs=(\.+)\t|#011suppressed_logs=(\.+)#011</regex>
+	<order>suppressed_logs</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssummary=(\.+)\s\w+=|\ssummary=(\.+)\s|\tsummary=(\.+)\t|#011summary=(\.+)#011</regex>
+	<order>summary</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\stid=(\.+)\s\w+=|\stid=(\.+)\s|\ttid=(\.+)\t|#011tid=(\.+)#011</regex>
+	<order>tid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdns_message_type=(\.+)\s\w+=|\sdns_message_type=(\.+)\s|\tdns_message_type=(\.+)\t|#011dns_message_type=(\.+)#011</regex>
+	<order>dns_message_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\squestion_rdata=(\.+)\s\w+=|\squestion_rdata=(\.+)\s|\tquestion_rdata=(\.+)\t|#011question_rdata=(\.+)#011</regex>
+	<order>question_rdata</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sanswer_rdata=(\.+)\s\w+=|\sanswer_rdata=(\.+)\s|\tanswer_rdata=(\.+)\t|#011answer_rdata=(\.+)#011</regex>
+	<order>answer_rdata</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sauthority_rdata=(\.+)\s\w+=|\sauthority_rdata=(\.+)\s|\tauthority_rdata=(\.+)\t|#011authority_rdata=(\.+)#011</regex>
+	<order>authority_rdata</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sadditional_rdata=(\.+)\s\w+=|\sadditional_rdata=(\.+)\s|\tadditional_rdata=(\.+)\t|#011additional_rdata=(\.+)#011</regex>
+	<order>additional_rdata</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfiles_names=(\.+)\s\w+=|\sfiles_names=(\.+)\s|\tfiles_names=(\.+)\t|#011files_names=(\.+)#011</regex>
+	<order>files_names</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sftp_user=(\.+)\s\w+=|\sftp_user=(\.+)\s|\tftp_user=(\.+)\t|#011ftp_user=(\.+)#011</regex>
+	<order>ftp_user</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smime_from=(\.+)\s\w+=|\smime_from=(\.+)\s|\tmime_from=(\.+)\t|#011mime_from=(\.+)#011</regex>
+	<order>mime_from</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smime_to=(\.+)\s\w+=|\smime_to=(\.+)\s|\tmime_to=(\.+)\t|#011mime_to=(\.+)#011</regex>
+	<order>mime_to</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scc=(\.+)\s\w+=|\scc=(\.+)\s|\tcc=(\.+)\t|#011cc=(\.+)#011</regex>
+	<order>cc</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sbcc=(\.+)\s\w+=|\sbcc=(\.+)\s|\tbcc=(\.+)\t|#011bcc=(\.+)#011</regex>
+	<order>bcc</order>
+</decoder>
+<!--VoIP (VPN-1 & FireWall-1) - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scontent_type=(\.+)\s\w+=|\scontent_type=(\.+)\s|\tcontent_type=(\.+)\t|#011content_type=(\.+)#011</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssubject=(\.+)\s\w+=|\ssubject=(\.+)\s|\tsubject=(\.+)\t|#011subject=(\.+)#011</regex>
+	<order>subject</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\suser_agent=(\.+)\s\w+=|\suser_agent=(\.+)\s|\tuser_agent=(\.+)\t|#011user_agent=(\.+)#011</regex>
+	<order>user_agent</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreferrer=(\.+)\s\w+=|\sreferrer=(\.+)\s|\treferrer=(\.+)\t|#011referrer=(\.+)#011</regex>
+	<order>referrer</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shttp_location=(\.+)\s\w+=|\shttp_location=(\.+)\s|\thttp_location=(\.+)\t|#011http_location=(\.+)#011</regex>
+	<order>http_location</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scontent_disposition=(\.+)\s\w+=|\scontent_disposition=(\.+)\s|\tcontent_disposition=(\.+)\t|#011content_disposition=(\.+)#011</regex>
+	<order>content_disposition</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svia=(\.+)\s\w+=|\svia=(\.+)\s|\tvia=(\.+)\t|#011via=(\.+)#011</regex>
+	<order>via</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shttp_server=(\.+)\s\w+=|\shttp_server=(\.+)\s|\thttp_server=(\.+)\t|#011http_server=(\.+)#011</regex>
+	<order>http_server</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scontent_length=(\.+)\s\w+=|\scontent_length=(\.+)\s|\tcontent_length=(\.+)\t|#011content_length=(\.+)#011</regex>
+	<order>content_length</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smethod=(\.+)\s\w+=|\smethod=(\.+)\s|\tmethod=(\.+)\t|#011method=(\.+)#011</regex>
+	<order>method</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sauthorization=(\.+)\s\w+=|\sauthorization=(\.+)\s|\tauthorization=(\.+)\t|#011authorization=(\.+)#011</regex>
+	<order>authorization</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shttp_host=(\.+)\s\w+=|\shttp_host=(\.+)\s|\thttp_host=(\.+)\t|#011http_host=(\.+)#011</regex>
+	<order>http_host</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sSignature=(\.+)\s\w+=|\sSignature=(\.+)\s\sindustry_reference=(\.+)\s\w+=|\sindustry_reference=(\.+)\s|\tindustry_reference=(\.+)\t|#011industry_reference=(\.+)#011</regex>
+	<order>industry_reference</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sinspection_settings_log=(\.+)\s\w+=|\sinspection_settings_log=(\.+)\s|\tinspection_settings_log=(\.+)\t|#011inspection_settings_log=(\.+)#011</regex>
+	<order>inspection_settings_log</order>
+</decoder>
+<!--Mobile Access (Connectra) - Security Gateway -->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs3Label=User Group cs3=(\.+)\s\w+=|\scs3Label=User Group cs3=(\.+)\s|\tuser_group=(\.+)\t|#011user_group=(\.+)#011</regex>
+	<order>user_group</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scvpn_resource=(\.+)\s\w+=|\scvpn_resource=(\.+)\s|\tcvpn_resource=(\.+)\t|#011cvpn_resource=(\.+)#011</regex>
+	<order>cvpn_resource</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scvpn_category=(\.+)\s\w+=|\scvpn_category=(\.+)\s|\tcvpn_category=(\.+)\t|#011cvpn_category=(\.+)#011</regex>
+	<order>cvpn_category</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soutgoing_url=(\.+)\s\w+=|\soutgoing_url=(\.+)\s|\toutgoing_url=(\.+)\t|#011outgoing_url=(\.+)#011</regex>
+	<order>outgoing_url</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreject_id=(\.+)\s\w+=|\sreject_id=(\.+)\s|\treject_id=(\.+)\t|#011reject_id=(\.+)#011</regex>
+	<order>reject_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfs-proto=(\.+)\s\w+=|\sfs-proto=(\.+)\s|\tfs-proto=(\.+)\t|#011fs-proto=(\.+)#011</regex>
+	<order>fs-proto</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssession_uid=(\.+)\s\w+=|\ssession_uid=(\.+)\s|\tsession_uid=(\.+)\t|#011session_uid=(\.+)#011</regex>
+	<order>session_uid</order>
+</decoder>
+<!--Mobile App -  SandBlast Mobile-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_package=(\.+)\s\w+=|\sapp_package=(\.+)\s|\tapp_package=(\.+)\t|#011app_package=(\.+)#011</regex>
+	<order>app_package</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sappi_name=(\.+)\s\w+=|\sappi_name=(\.+)\s|\tappi_name=(\.+)\t|#011appi_name=(\.+)#011</regex>
+	<order>appi_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_repackaged=(\.+)\s\w+=|\sapp_repackaged=(\.+)\s|\tapp_repackaged=(\.+)\t|#011app_repackaged=(\.+)#011</regex>
+	<order>app_repackaged</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_sid_id=(\.+)\s\w+=|\sapp_sid_id=(\.+)\s|\tapp_sid_id=(\.+)\t|#011app_sid_id=(\.+)#011</regex>
+	<order>app_sid_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sapp_version=(\.+)\s\w+=|\sapp_version=(\.+)\s|\tapp_version=(\.+)\t|#011app_version=(\.+)#011</regex>
+	<order>app_version</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdeveloper_certificate_name=(\.+)\s\w+=|\sdeveloper_certificate_name=(\.+)\s|\tdeveloper_certificate_name=(\.+)\t|#011developer_certificate_name=(\.+)#011</regex>
+	<order>developer_certificate_name</order>
+</decoder>
+<!--MTA - Security Gateway -->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_control=(\.+)\s\w+=|\semail_control=(\.+)\s|\temail_control=(\.+)\t|#011email_control=(\.+)#011</regex>
+	<order>email_control</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_message_id=(\.+)\s\w+=|\semail_message_id=(\.+)\s|\temail_message_id=(\.+)\t|#011email_message_id=(\.+)#011</regex>
+	<order>email_message_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_session_id=(\.+)\s\w+=|\semail_session_id=(\.+)\s|\temail_session_id=(\.+)\t|#011email_session_id=(\.+)#011</regex>
+	<order>email_session_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_recipients_num=(\.+)\s\w+=|\semail_recipients_num=(\.+)\s|\temail_recipients_num=(\.+)\t|#011email_recipients_num=(\.+)#011</regex>
+	<order>email_recipients_num</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs1Label=Email ID cs1=(\.+)\s\w+=|\scs1Label=Email ID cs1=(\.+)\s|\temail_id=(\.+)\t|#011email_id=(\.+)#011</regex>
+	<order>email_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_queue_id=(\.+)\s\w+=|\semail_queue_id=(\.+)\s|\temail_queue_id=(\.+)\t|#011email_queue_id=(\.+)#011</regex>
+	<order>email_queue_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_queue_name=(\.+)\s\w+=|\semail_queue_name=(\.+)\s|\temail_queue_name=(\.+)\t|#011email_queue_name=(\.+)#011</regex>
+	<order>email_queue_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soriginal_queue_id=(\.+)\s\w+=|\soriginal_queue_id=(\.+)\s|\toriginal_queue_id=(\.+)\t|#011original_queue_id=(\.+)#011</regex>
+	<order>original_queue_id </order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfile_name=(\.+)\s\w+=|\sfile_name=(\.+)\s|\tfile_name=(\.+)\t|#011file_name=(\.+)#011</regex>
+	<order>filename</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfailure_reason=(\.+)\s\w+=|\sfailure_reason=(\.+)\s|\tfailure_reason=(\.+)\t|#011failure_reason=(\.+)#011</regex>
+	<order>failure_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_headers=(\.+)\s\w+=|\semail_headers=(\.+)\s|\temail_headers=(\.+)\t|#011email_headers=(\.+)#011</regex>
+	<order>email_headers</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sarrival_time=(\.+)\s\w+=|\sarrival_time=(\.+)\s|\tarrival_time=(\.+)\t|#011arrival_time=(\.+)#011</regex>
+	<order>arrival_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_status=(\.+)\s\w+=|\semail_status=(\.+)\s|\temail_status=(\.+)\t|#011email_status=(\.+)#011</regex>
+	<order>email_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sstatus_update=(\.+)\s\w+=|\sstatus_update=(\.+)\s|\tstatus_update=(\.+)\t|#011status_update=(\.+)#011</regex>
+	<order>status_update</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soriginal_queue_id=(\.+)\s\w+=|\soriginal_queue_id=(\.+)\s|\toriginal_queue_id=(\.+)\t|#011original_queue_id=(\.+)#011</regex>
+	<order>original_queue_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscan_started=(\.+)\s\w+=|\sscan_started=(\.+)\s|\tscan_started=(\.+)\t|#011scan_started=(\.+)#011</regex>
+	<order>scan_started</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscan_ended=(\.+)\s\w+=|\sscan_ended=(\.+)\s|\tscan_ended=(\.+)\t|#011scan_ended=(\.+)#011</regex>
+	<order>scan_ended</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdelivery_time=(\.+)\s\w+=|\sdelivery_time=(\.+)\s|\tdelivery_time=(\.+)\t|#011delivery_time=(\.+)#011</regex>
+	<order>delivery_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slinks_num=(\.+)\s\w+=|\slinks_num=(\.+)\s|\tlinks_num=(\.+)\t|#011links_num=(\.+)#011</regex>
+	<order>links_num</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sattachments_num=(\.+)\s\w+=|\sattachments_num=(\.+)\s|\tattachments_num=(\.+)\t|#011attachments_num=(\.+)#011</regex>
+	<order>attachments_num</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semail_content=(\.+)\s\w+=|\semail_content=(\.+)\s|\temail_content=(\.+)\t|#011email_content=(\.+)#011</regex>
+	<order>email_content</order>
+</decoder>
+<!--NAT - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sallocated_ports=(\.+)\s\w+=|\sallocated_ports=(\.+)\s|\tallocated_ports=(\.+)\t|#011allocated_ports=(\.+)#011</regex>
+	<order>allocated_ports</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scapacity=(\.+)\s\w+=|\scapacity=(\.+)\s|\tcapacity=(\.+)\t|#011capacity=(\.+)#011</regex>
+	<order>capacity</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sports_usage=(\.+)\s\w+=|\sports_usage=(\.+)\s|\tports_usage=(\.+)\t|#011ports_usage=(\.+)#011</regex>
+	<order>ports_usage</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\snat_exhausted_pool=(\.+)\s\w+=|\snat_exhausted_pool=(\.+)\s|\tnat_exhausted_pool=(\.+)\t|#011nat_exhausted_pool=(\.+)#011</regex>
+	<order>nat_exhausted_pool</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrcPostNAT=(\.+)\s\w+=|\ssrcPostNAT=(\.+)\s|\tsrcPostNAT=(\.+)\t|#011srcPostNAT=(\.+)#011</regex>
+	<order>nat_srcip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdstPostNAT=(\.+)\s\w+=|\sdstPostNAT=(\.+)\s|\tdstPostNAT=(\.+)\t|#011dstPostNAT=(\.+)#011</regex>
+	<order>nat_dstip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrcPostNATPort=(\.+)\s\w+=|\ssrcPostNATPort=(\.+)\s|\tsrcPostNATPort=(\.+)\t|#011srcPostNATPort=(\.+)#011</regex>
+	<order>xlatesint</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdstPostNATPort=(\.+)\s\w+=|\sdstPostNATPort=(\.+)\s|\tdstPostNATPort=(\.+)\t|#011dstPostNATPort=(\.+)#011</regex>
+	<order>xlatedint</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\snat_rulenum=(\.+)\s\w+=|\snat_rulenum=(\.+)\s|\tnat_rulenum=(\.+)\t|#011nat_rulenum=(\.+)#011</regex>
+	<order>nat_rulenum</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\snat_addtnl_rulenum=(\.+)\s\w+=|\snat_addtnl_rulenum=(\.+)\s|\tnat_addtnl_rulenum=(\.+)\t|#011nat_addtnl_rulenum=(\.+)#011</regex>
+	<order>nat_addtnl_rulenum</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smessage_info=(\.+)\s\w+=|\smessage_info=(\.+)\s|\tmessage_info=(\.+)\t|#011message_info=(\.+)#011</regex>
+	<order>message_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\snat46=(\.+)\s\w+=|\snat46=(\.+)\s|\tnat46=(\.+)\t|#011nat46=(\.+)#011</regex>
+	<order>nat46</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\send_time=(\.+)\s\w+=|\send_time=(\.+)\s|\tend_time=(\.+)\t|#011end_time=(\.+)#011</regex>
+	<order>end_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\stcp_end_reason=(\.+)\s\w+=|\stcp_end_reason=(\.+)\s|\ttcp_end_reason=(\.+)\t|#011tcp_end_reason=(\.+)#011</regex>
+	<order>tcp_end_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\snat_rulenum=(\.+)\s\w+=|\snat_rulenum=(\.+)\s|\tnat_rulenum=(\.+)\t|#011nat_rulenum=(\.+)#011</regex>
+	<order>nat_rulenum</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scgnet=(\.+)\s\w+=|\scgnet=(\.+)\s|\tcgnet=(\.+)\t|#011cgnet=(\.+)#011</regex>
+	<order>cgnet</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssubscriber=(\.+)\s\w+=|\ssubscriber=(\.+)\s|\tsubscriber=(\.+)\t|#011subscriber=(\.+)#011</regex>
+	<order>subscriber</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shide_ip=(\.+)\s\w+=|\shide_ip=(\.+)\s|\thide_ip=(\.+)\t|#011hide_ip=(\.+)#011</regex>
+	<order>hide_ip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sint_start=(\.+)\s\w+=|\sint_start=(\.+)\s|\tint_start=(\.+)\t|#011int_start=(\.+)#011</regex>
+	<order>int_start</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sint_end=(\.+)\s\w+=|\sint_end=(\.+)\s|\tint_end=(\.+)\t|#011int_end=(\.+)#011</regex>
+	<order>int_end</order>
+</decoder>
+<!--SecureXL (VPN-1 & FireWall-1) - Security Gateway -->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdrop_reason=(\.+)\s\w+=|\sdrop_reason=(\.+)\s|\tdrop_reason=(\.+)\t|#011drop_reason=(\.+)#011</regex>
+	<order>drop_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\spacket_amount=(\.+)\s\w+=|\spacket_amount=(\.+)\s|\tpacket_amount=(\.+)\t|#011packet_amount=(\.+)#011</regex>
+	<order>packet_amount</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\spackets=(\.+)\s\w+=|\spackets=(\.+)\s|\tpackets=(\.+)\t|#011packets=(\.+)#011</regex>
+	<order>packets</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smonitor_reason=(\.+)\s\w+=|\smonitor_reason=(\.+)\s|\tmonitor_reason=(\.+)\t|#011monitor_reason=(\.+)#011</regex>
+	<order>monitor_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdrops_amount=(\.+)\s\w+=|\sdrops_amount=(\.+)\s|\tdrops_amount=(\.+)\t|#011drops_amount=(\.+)#011</regex>
+	<order>drops_amount </order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssecurexl_message=(\.+)\s\w+=|\ssecurexl_message=(\.+)\s|\tsecurexl_message=(\.+)\t|#011securexl_message=(\.+)#011</regex>
+	<order>securexl_message</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sconns_amount=(\.+)\s\w+=|\sconns_amount=(\.+)\s|\tconns_amount=(\.+)\t|#011conns_amount=(\.+)#011</regex>
+	<order>conns_amount</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\saggregation_info=(\.+)\s\w+=|\saggregation_info=(\.+)\s|\taggregation_info=(\.+)\t|#011aggregation_info=(\.+)#011</regex>
+	<order>aggregation_info</order>
+</decoder>
+<!--Threat Emulation - Security Gateway & SandBlast Agent-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscope=(\.+)\s\w+=|\sscope=(\.+)\s|\tscope=(\.+)\t|#011scope=(\.+)#011</regex>
+	<order>scope</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssourceTranslatedAddress=(\.+)\s\w+=|\ssourceTranslatedAddress=(\.+)\s|\tscope=(\.+)\t|#011scope=(\.+)#011|\txlatesrc=(\.+)\t|#011xlatesrc=(\.+)#011|\tvpn_internal_source_ip=(\.+)\t|#011vpn_internal_source_ip=(\.+)#011</regex>
+	<order>xlatesrc</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssourceTranslatedPort=(\.+)\s\w+=|\ssourceTranslatedPort=(\.+)\s|\sxlatesport=(\.+)\s\w+=|\sxlatesport=(\.+)\s|\txlatesport=(\.+)\t|#011xlatesport=(\.+)#011</regex>
+	<order>xlatesport</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sanalyzed_on=(\.+)\s\w+=|\sanalyzed_on=(\.+)\s|\tanalyzed_on=(\.+)\t|#011analyzed_on=(\.+)#011</regex>
+	<order>analyzed_on</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdetected_on=(\.+)\s\w+=|\sdetected_on=(\.+)\s|\tdetected_on=(\.+)\t|#011detected_on=(\.+)#011</regex>
+	<order>detected_on</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_file_name=(\.+)\s\w+=|\sdropped_file_name=(\.+)\s|\tdropped_file_name=(\.+)\t|#011dropped_file_name=(\.+)#011</regex>
+	<order>dropped_file_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_file_type=(\.+)\s\w+=|\sdropped_file_type=(\.+)\s|\tdropped_file_type=(\.+)\t|#011dropped_file_type=(\.+)#011</regex>
+	<order>dropped_file_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_file_hash=(\.+)\s\w+=|\sdropped_file_hash=(\.+)\s|\tdropped_file_hash=(\.+)\t|#011dropped_file_hash=(\.+)#011</regex>
+	<order>dropped_file_hash</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_file_verdict=(\.+)\s\w+=|\sdropped_file_verdict=(\.+)\s|\tdropped_file_verdict=(\.+)\t|#011dropped_file_verdict=(\.+)#011</regex>
+	<order>dropped_file_verdict</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\semulated_on=(\.+)\s\w+=|\semulated_on=(\.+)\s|\temulated_on=(\.+)\t|#011emulated_on=(\.+)#011</regex>
+	<order>emulated_on</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sextracted_file_type=(\.+)\s\w+=|\sextracted_file_type=(\.+)\s|\textracted_file_type=(\.+)\t|#011extracted_file_type=(\.+)#011</regex>
+	<order>extracted_file_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sextracted_file_names=(\.+)\s\w+=|\sextracted_file_names=(\.+)\s|\textracted_file_names=(\.+)\t|#011extracted_file_names=(\.+)#011</regex>
+	<order>extracted_file_names</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sextracted_file_hash=(\.+)\s\w+=|\sextracted_file_hash=(\.+)\s|\textracted_file_hash=(\.+)\t|#011extracted_file_hash=(\.+)#011</regex>
+	<order>extracted_file_hash</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sextracted_file_verdict=(\.+)\s\w+=|\sextracted_file_verdict=(\.+)\s|\textracted_file_verdict=(\.+)\t|#011extracted_file_verdict=(\.+)#011</regex>
+	<order>extracted_file_verdict</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sextracted_file_uid=(\.+)\s\w+=|\sextracted_file_uid=(\.+)\s|\textracted_file_uid=(\.+)\t|#011extracted_file_uid=(\.+)#011</regex>
+	<order>extracted_file_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_initial_access=(\.+)\s\w+=|\smitre_initial_access=(\.+)\s|\tmitre_initial_access=(\.+)\t|#011mitre_initial_access=(\.+)#011</regex>
+	<order>mitre_initial_access</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_execution=(\.+)\s\w+=|\smitre_execution=(\.+)\s|\tmitre_execution=(\.+)\t|#011mitre_execution=(\.+)#011</regex>
+	<order>mitre_execution</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_persistence=(\.+)\s\w+=|\smitre_persistence=(\.+)\s|\tmitre_persistence=(\.+)\t|#011mitre_persistence=(\.+)#011</regex>
+	<order>mitre_persistence</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_privilege_escalation=(\.+)\s\w+=|\smitre_privilege_escalation=(\.+)\s|\tmitre_privilege_escalation=(\.+)\t|#011mitre_privilege_escalation=(\.+)#011</regex>
+	<order>mitre_privilege_escalation</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_defense_evasion=(\.+)\s\w+=|\smitre_defense_evasion=(\.+)\s|\tmitre_defense_evasion=(\.+)\t|#011mitre_defense_evasion=(\.+)#011</regex>
+	<order>mitre_defense_evasion</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_credential_access=(\.+)\s\w+=|\smitre_credential_access=(\.+)\s|\tmitre_credential_access=(\.+)\t|#011mitre_credential_access=(\.+)#011</regex>
+	<order>mitre_credential_access</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_discovery=(\.+)\s\w+=|\smitre_discovery=(\.+)\s|\tmitre_discovery=(\.+)\t|#011mitre_discovery=(\.+)#011</regex>
+	<order>mitre_discovery</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_lateral_movement=(\.+)\s\w+=|\smitre_lateral_movement=(\.+)\s|\tmitre_lateral_movement=(\.+)\t|#011mitre_lateral_movement=(\.+)#011</regex>
+	<order>mitre_lateral_movement</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_collection=(\.+)\s\w+=|\smitre_collection=(\.+)\s|\tmitre_collection=(\.+)\t|#011mitre_collection=(\.+)#011</regex>
+	<order>mitre_collection</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_command_and_control=(\.+)\s\w+=|\smitre_command_and_control=(\.+)\s|\tmitre_command_and_control=(\.+)\t|#011mitre_command_and_control=(\.+)#011</regex>
+	<order>mitre_command_and_control</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_exfiltration=(\.+)\s\w+=|\smitre_exfiltration=(\.+)\s|\tmitre_exfiltration=(\.+)\t|#011mitre_exfiltration=(\.+)#011</regex>
+	<order>mitre_exfiltration</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smitre_impact=(\.+)\s\w+=|\smitre_impact=(\.+)\s|\tmitre_impact=(\.+)\t|#011mitre_impact=(\.+)#011</regex>
+	<order>mitre_impact</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sparent_file_hash=(\.+)\s\w+=|\sparent_file_hash=(\.+)\s|\tparent_file_hash=(\.+)\t|#011parent_file_hash=(\.+)#011</regex>
+	<order>parent_file_hash</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sparent_file_name=(\.+)\s\w+=|\sparent_file_name=(\.+)\s|\tparent_file_name=(\.+)\t|#011parent_file_name=(\.+)#011</regex>
+	<order>parent_file_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sparent_file_uid=(\.+)\s\w+=|\sparent_file_uid=(\.+)\s|\tparent_file_uid=(\.+)\t|#011parent_file_uid=(\.+)#011</regex>
+	<order>parent_file_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssimiliar_iocs=(\.+)\s\w+=|\ssimiliar_iocs=(\.+)\s|\tsimiliar_iocs=(\.+)\t|#011similiar_iocs=(\.+)#011</regex>
+	<order>similiar_iocs</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssimilar_hashes=(\.+)\s\w+=|\ssimilar_hashes=(\.+)\s|\tsimilar_hashes=(\.+)\t|#011similar_hashes=(\.+)#011</regex>
+	<order>similar_hashes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssimilar_strings=(\.+)\s\w+=|\ssimilar_strings=(\.+)\s|\tsimilar_strings=(\.+)\t|#011similar_strings=(\.+)#011</regex>
+	<order>similar_strings</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssimilar_communication=(\.+)\s\w+=|\ssimilar_communication=(\.+)\s|\tsimilar_communication=(\.+)\t|#011similar_communication=(\.+)#011</regex>
+	<order>similar_communication</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ste_verdict_determined_by=(\.+)\s\w+=|\ste_verdict_determined_by=(\.+)\s|\tte_verdict_determined_by=(\.+)\t|#011te_verdict_determined_by=(\.+)#011</regex>
+	<order>te_verdict_determined_by</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\spacket_capture_unique_id=(\.+)\s\w+=|\spacket_capture_unique_id=(\.+)\s|\tpacket_capture_unique_id=(\.+)\t|#011packet_capture_unique_id=(\.+)#011</regex>
+	<order>packet_capture_unique_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\stotal_attachments=(\.+)\s\w+=|\stotal_attachments=(\.+)\s|\ttotal_attachments=(\.+)\t|#011total_attachments=(\.+)#011</regex>
+	<order>total_attachments</order>
+</decoder>
+<!--Threat Extraction - Security Gateway & SandBlast Agent-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sadditional_info=(\.+)\s\w+=|\sadditional_info=(\.+)\s|\tadditional_info=(\.+)\t|#011additional_info=(\.+)#011</regex>
+	<order>additional_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scontent_risk=(\.+)\s\w+=|\scontent_risk=(\.+)\s|\tcontent_risk=(\.+)\t|#011content_risk=(\.+)#011</regex>
+	<order>content_risk</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soperation=(\.+)\s\w+=|\soperation=(\.+)\s|\toperation=(\.+)\t|#011operation=(\.+)#011</regex>
+	<order>operation</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscrubbed_content=(\.+)\s\w+=|\sscrubbed_content=(\.+)\s|\tscrubbed_content=(\.+)\t|#011scrubbed_content=(\.+)#011</regex>
+	<order>scrubbed_content</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscrub_time=(\.+)\s\w+=|\sscrub_time=(\.+)\s|\tscrub_time=(\.+)\t|#011scrub_time=(\.+)#011</regex>
+	<order>scrub_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscrub_download_time=(\.+)\s\w+=|\sscrub_download_time=(\.+)\s|\tscrub_download_time=(\.+)\t|#011scrub_download_time=(\.+)#011</regex>
+	<order>scrub_download_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscrub_total_time=(\.+)\s\w+=|\sscrub_total_time=(\.+)\s|\tscrub_total_time=(\.+)\t|#011scrub_total_time=(\.+)#011</regex>
+	<order>scrub_total_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscrub_activity=(\.+)\s\w+=|\sscrub_activity=(\.+)\s|\tscrub_activity=(\.+)\t|#011scrub_activity=(\.+)#011</regex>
+	<order>scrub_activity</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssubject=(\.+)\s\w+=|\ssubject=(\.+)\s|\tsubject=(\.+)\t|#011subject=(\.+)#011</regex>
+	<order>subject</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\swatermark=(\.+)\s\w+=|\swatermark=(\.+)\s|\twatermark=(\.+)\t|#011watermark=(\.+)#011</regex>
+	<order>watermark</order>
+</decoder>
+<!-- Unified Policy (VPN-1 & FireWall-1) - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssntdom=(\.+)\s\w+=|\ssntdom=(\.+)\s|\sdomain_name=(\.+)\s\w+=|\sdomain_name=(\.+)\s|\tdomain_name=(\.+)\t|#011domain_name=(\.+)#011</regex>
+	<order>domain_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssource_object=(\.+)\s\w+=|\ssource_object=(\.+)\s|\tsource_object=(\.+)\t|#011source_object=(\.+)#011</regex>
+	<order>source_object</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdestination_object=(\.+)\s\w+=|\sdestination_object=(\.+)\s|\tdestination_object=(\.+)\t|#011destination_object=(\.+)#011</regex>
+	<order>destination_object</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdrop_reason=(\.+)\s\w+=|\sdrop_reason=(\.+)\s|\tdrop_reason=(\.+)\t|#011drop_reason=(\.+)#011</regex>
+	<order>drop_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shit=(\.+)\s\w+=|\shit=(\.+)\s|\thit=(\.+)\t|#011hit=(\.+)#011</regex>
+	<order>hit</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srulebase_id=(\.+)\s\w+=|\srulebase_id=(\.+)\s|\trulebase_id=(\.+)\t|#011rulebase_id=(\.+)#011</regex>
+	<order>rulebase_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfirst_hit_time=(\.+)\s\w+=|\sfirst_hit_time=(\.+)\s|\tfirst_hit_time=(\.+)\t|#011first_hit_time=(\.+)#011</regex>
+	<order>first_hit_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slast_hit_time=(\.+)\s\w+=|\slast_hit_time=(\.+)\s|\tlast_hit_time=(\.+)\t|#011last_hit_time=(\.+)#011</regex>
+	<order>last_hit_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srematch_info=(\.+)\s\w+=|\srematch_info=(\.+)\s|\trematch_info=(\.+)\t|#011rematch_info=(\.+)#011</regex>
+	<order>rematch_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slast_rematch_time=(\.+)\s\w+=|\slast_rematch_time=(\.+)\s|\tlast_rematch_time=(\.+)\t|#011last_rematch_time=(\.+)#011</regex>
+	<order>last_rematch_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\saction_reason=(\.+)\s\w+=|\saction_reason=(\.+)\s|\taction_reason=(\.+)\t|#011action_reason=(\.+)#011</regex>
+	<order>action_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sc_bytes=(\.+)\s\w+=|\sc_bytes=(\.+)\s|\tc_bytes=(\.+)\t|#011c_bytes=(\.+)#011</regex>
+	<order>c_bytes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scontext_num=(\.+)\s\w+=|\scontext_num=(\.+)\s|\tcontext_num=(\.+)\t|#011context_num=(\.+)#011</regex>
+	<order>context_num</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smatch_id=(\.+)\s\w+=|\smatch_id=(\.+)\s|\tmatch_id=(\.+)\t|#011match_id=(\.+)#011</regex>
+	<order>match_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\salert=(\.+)\s\w+=|\salert=(\.+)\s|\talert=(\.+)\t|#011alert=(\.+)#011</regex>
+	<order>alert</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">act=(\.+)\s\w+=|act=(\.+)\s|\taction=(\.+)\t|#011action=(\.+)#011</regex>
+	<order>action</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sparent_rule=(\.+)\s\w+=|\sparent_rule=(\.+)\s|\tparent_rule=(\.+)\t|#011parent_rule=(\.+)#011</regex>
+	<order>parent_rule</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smatch_fk=(\.+)\s\w+=|\smatch_fk=(\.+)\s|\tmatch_fk=(\.+)\t|#011match_fk=(\.+)#011</regex>
+	<order>match_fk</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_outgoing=(\.+)\s\w+=|\sdropped_outgoing=(\.+)\s|\tdropped_outgoing=(\.+)\t|#011dropped_outgoing=(\.+)#011</regex>
+	<order>dropped_outgoing</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_incoming=(\.+)\s\w+=|\sdropped_incoming=(\.+)\s|\tdropped_incoming=(\.+)\t|#011dropped_incoming=(\.+)#011</regex>
+	<order>dropped_incoming</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdropped_total=(\.+)\s\w+=|\sdropped_total=(\.+)\s|\tdropped_total=(\.+)\t|#011dropped_total=(\.+)#011</regex>
+	<order>dropped_total</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scontent_type=(\.+)\s\w+=|\scontent_type=(\.+)\s|\tcontent_type=(\.+)\t|#011content_type=(\.+)#011</regex>
+	<order>content_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smedia_type=(\.+)\s\w+=|\smedia_type=(\.+)\s|\tmedia_type=(\.+)\t|#011media_type=(\.+)#011</regex>
+	<order>media_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssip_reason=(\.+)\s\w+=|\ssip_reason=(\.+)\s|\tsip_reason=(\.+)\t|#011sip_reason=(\.+)#011</regex>
+	<order>sip_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_method=(\.+)\s\w+=|\svoip_method=(\.+)\s|\tvoip_method=(\.+)\t|#011voip_method=(\.+)#011</regex>
+	<order>voip_method</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sregistered_ip-phones=(\.+)\s\w+=|\sregistered_ip-phones=(\.+)\s|\tregistered_ip-phones=(\.+)\t|#011registered_ip-phones=(\.+)#011</regex>
+	<order>registered_ip-phones</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_reg_user_type=(\.+)\s\w+=|\svoip_reg_user_type=(\.+)\s|\tvoip_reg_user_type=(\.+)\t|#011voip_reg_user_type=(\.+)#011</regex>
+	<order>voip_reg_user_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_call_id=(\.+)\s\w+=|\svoip_call_id=(\.+)\s|\tvoip_call_id=(\.+)\t|#011voip_call_id=(\.+)#011</regex>
+	<order>voip_call_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_reg_int=(\.+)\s\w+=|\svoip_reg_int=(\.+)\s|\tvoip_reg_int=(\.+)\t|#011voip_reg_int=(\.+)#011</regex>
+	<order>voip_reg_int</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_reg_ipp=(\.+)\s\w+=|\svoip_reg_ipp=(\.+)\s|\tvoip_reg_ipp=(\.+)\t|#011voip_reg_ipp=(\.+)#011</regex>
+	<order>voip_reg_ipp</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_reg_period=(\.+)\s\w+=|\svoip_reg_period=(\.+)\s|\tvoip_reg_period=(\.+)\t|#011voip_reg_period=(\.+)#011</regex>
+	<order>voip_reg_period</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs1Label=VoIP Log Type cs1=(\.+)\s\w+=|\scs1Label=VoIP Log Type cs1=(\.+)\s|\tvoip_log_type=(\.+)\t|#011voip_log_type=(\.+)#011</regex>
+	<order>voip_log_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_method=(\.+)\s\w+=|\svoip_method=(\.+)\s|\tvoip_method=(\.+)\t|#011voip_method=(\.+)#011</regex>
+	<order>voip_method</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrc_phone_number=(\.+)\s\w+=|\ssrc_phone_number=(\.+)\s|\tsrc_phone_number=(\.+)\t|#011src_phone_number=(\.+)#011</regex>
+	<order>src_phone_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_from_user_type=(\.+)\s\w+=|\svoip_from_user_type=(\.+)\s|\tvoip_from_user_type=(\.+)\t|#011voip_from_user_type=(\.+)#011</regex>
+	<order>voip_from_user_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sflexNumber2Label=Destination Phone Number flexNumber2=(\.+)\s\w+=|\sflexNumber2Label=Destination Phone Number flexNumber2=(\.+)\s|\tdst_phone_number=(\.+)\t|#011dst_phone_number=(\.+)#011</regex>
+	<order>dst_phone_number </order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_to_user_type=(\.+)\s\w+=|\svoip_to_user_type=(\.+)\s|\tvoip_to_user_type=(\.+)\t|#011voip_to_user_type=(\.+)#011</regex>
+	<order>voip_to_user_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_call_dir=(\.+)\s\w+=|\svoip_call_dir=(\.+)\s|\tvoip_call_dir=(\.+)\t|#011voip_call_dir=(\.+)#011</regex>
+	<order>voip_call_dir</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_call_state=(\.+)\s\w+=|\svoip_call_state=(\.+)\s|\tvoip_call_state=(\.+)\t|#011voip_call_state=(\.+)#011</regex>
+	<order>voip_call_state</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_call_term_time=(\.+)\s\w+=|\svoip_call_term_time=(\.+)\s|\tvoip_call_term_time=(\.+)\t|#011voip_call_term_time=(\.+)#011</regex>
+	<order>voip_call_term_time</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_duration=(\.+)\s\w+=|\svoip_duration=(\.+)\s|\tvoip_duration=(\.+)\t|#011voip_duration=(\.+)#011</regex>
+	<order>voip_duration</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_media_port=(\.+)\s\w+=|\svoip_media_port=(\.+)\s|\tvoip_media_port=(\.+)\t|#011voip_media_port=(\.+)#011</regex>
+	<order>voip_media_port</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_media_ipp=(\.+)\s\w+=|\svoip_media_ipp=(\.+)\s|\tvoip_media_ipp=(\.+)\t|#011voip_media_ipp=(\.+)#011</regex>
+	<order>voip_media_ipp</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_est_codec=(\.+)\s\w+=|\svoip_est_codec=(\.+)\s|\tvoip_est_codec=(\.+)\t|#011voip_est_codec=(\.+)#011</regex>
+	<order>voip_est_codec</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_exp=(\.+)\s\w+=|\svoip_exp=(\.+)\s|\tvoip_exp=(\.+)\t|#011voip_exp=(\.+)#011</regex>
+	<order>voip_exp</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_attach_sz=(\.+)\s\w+=|\svoip_attach_sz=(\.+)\s|\tvoip_attach_sz=(\.+)\t|#011voip_attach_sz=(\.+)#011</regex>
+	<order>voip_attach_sz</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_attach_action_info=(\.+)\s\w+=|\svoip_attach_action_info=(\.+)\s|\tvoip_attach_action_info=(\.+)\t|#011voip_attach_action_info=(\.+)#011</regex>
+	<order>voip_attach_action_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrc_phone_number=(\.+)\s\w+=|\ssrc_phone_number=(\.+)\s|\tsrc_phone_number=(\.+)\t|#011src_phone_number=(\.+)#011</regex>
+	<order>src_phone_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_media_codec=(\.+)\s\w+=|\svoip_media_codec=(\.+)\s|\tvoip_media_codec=(\.+)\t|#011voip_media_codec=(\.+)#011</regex>
+	<order>voip_media_codec</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_reject_reason=(\.+)\s\w+=|\svoip_reject_reason=(\.+)\s|\tvoip_reject_reason=(\.+)\t|#011voip_reject_reason=(\.+)#011</regex>
+	<order>voip_reject_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_reason_info=(\.+)\s\w+=|\svoip_reason_info=(\.+)\s|\tvoip_reason_info=(\.+)\t|#011voip_reason_info=(\.+)#011</regex>
+	<order>voip_reason_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_config=(\.+)\s\w+=|\svoip_config=(\.+)\s|\tvoip_config=(\.+)\t|#011voip_config=(\.+)#011</regex>
+	<order>voip_config</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svoip_reg_server=(\.+)\s\w+=|\svoip_reg_server=(\.+)\s|\tvoip_reg_server=(\.+)\t|#011voip_reg_server=(\.+)#011</regex>
+	<order>voip_reg_server</order>
+</decoder>
+<!-- VPN - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscv_user=(\.+)\s\w+=|\sscv_user=(\.+)\s|\tscv_user=(\.+)\t|#011scv_user=(\.+)#011</regex>
+	<order>scv_user</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscv_message_info=(\.+)\s\w+=|\sscv_message_info=(\.+)\s|\tscv_message_info=(\.+)\t|#011scv_message_info=(\.+)#011</regex>
+	<order>scv_message_info</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sppp=(\.+)\s\w+=|\sppp=(\.+)\s|\tppp=(\.+)\t|#011ppp=(\.+)#011</regex>
+	<order>ppp</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sscheme=(\.+)\s\w+=|\sscheme=(\.+)\s|\tscheme=(\.+)\t|#011scheme=(\.+)#011</regex>
+	<order>scheme</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs5Label=Authentication Method cs5=(\.+)\s\w+=|\scs5Label=Authentication Method cs5=(\.+)\s|\tauth_method=(\.+)\t|#011auth_method=(\.+)#011</regex>
+	<order>auth_method</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smachine=(\.+)\s\w+=|\smachine=(\.+)\s|\tmachine=(\.+)\t|#011machine=(\.+)#011</regex>
+	<order>machine</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svpn_feature_name=(\.+)\s\w+=|\svpn_feature_name=(\.+)\s|\tvpn_feature_name=(\.+)\t|#011vpn_feature_name=(\.+)#011</regex>
+	<order>vpn_feature_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\svpn_feature_name=(\S+)</regex>
+	<order>vpn_feature_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sike:=(\.+):=IKE</regex>
+	<order>ike</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sreject_category=(\.+)\s\w+=|\sreject_category=(\.+)\s|\treject_category=(\.+)\t|#011reject_category=(\.+)#011</regex>
+	<order>reject_category</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\speer_ip_probing_status_update=(\.+)\s\w+=|\speer_ip_probing_status_update=(\.+)\s|\tpeer_ip_probing_status_update=(\.+)\t|#011peer_ip_probing_status_update=(\.+)#011</regex>
+	<order>peer_ip_probing_status_update</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\speer_ip=(\.+)\s\w+=|\speer_ip=(\.+)\s|\tpeer_ip=(\.+)\t|#011peer_ip=(\.+)#011</regex>
+	<order>peer_ip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs2Label=Peer Gateway cs2=(\.+)\s\w+=|\scs2Label=Peer Gateway cs2=(\.+)\s|\tpeer_gateway=(\.+)\t|#011peer_gateway=(\.+)#011</regex>
+	<order>peer_gateway</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slink_probing_status_update=(\.+)\s\w+=|\slink_probing_status_update=(\.+)\s|\tlink_probing_status_update=(\.+)\t|#011link_probing_status_update=(\.+)#011</regex>
+	<order>link_probing_status_update</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssource_interface=(\.+)\s\w+=|\ssource_interface=(\.+)\s|\tsource_interface=(\.+)\t|#011source_interface=(\.+)#011</regex>
+	<order>source_interface</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\snext_hop_ip=(\.+)\s\w+=|\snext_hop_ip=(\.+)\s|\tnext_hop_ip=(\.+)\t|#011next_hop_ip=(\.+)#011</regex>
+	<order>next_hop_ip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssrckeyid=(\.+)\s\w+=|\ssrckeyid=(\.+)\s|\tsrckeyid=(\.+)\t|#011srckeyid=(\.+)#011</regex>
+	<order>srckeyid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdstkeyid=(\.+)\s\w+=|\sdstkeyid=(\.+)\s|\tdstkeyid=(\.+)\t|#011dstkeyid=(\.+)#011</regex>
+	<order>dstkeyid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sencryption_failure=(\.+)\s\w+=|\sencryption_failure=(\.+)\s|\tencryption_failure=(\.+)\t|#011encryption_failure=(\.+)#011</regex>
+	<order>encryption_failure</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sike_ids=(\.+)\s\w+=|\sike_ids=(\.+)\s|\tike_ids=(\.+)\t|#011ike_ids=(\.+)#011</regex>
+	<order>ike_ids</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scommunity=(\.+)\s\w+=|\scommunity=(\.+)\s|\tcommunity=(\.+)\t|#011community=(\.+)#011</regex>
+	<order>community</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sike=(\.+)\s\w+=|\sike=(\.+)\s|\tike=(\.+)\t|#011ike=(\.+)#011</regex>
+	<order>ike</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srequestCookies=(\.+)\s\w+=|\srequestCookies=(\.+)\s|\scookie=(\.+)\s\w+=|\scookie=(\.+)\s|\tcookie=(\.+)\t|#011cookie=(\.+)#011</regex>
+	<order>cookie</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scookieI=(\.+)\s\w+=|\scookieI=(\.+)\s|\tcookieI=(\.+)\t|#011cookieI=(\.+)#011</regex>
+	<order>cookieI</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scookieR=(\.+)\s\w+=|\scookieR=(\.+)\s|\tcookieR=(\.+)\t|#011cookieR=(\.+)#011</regex>
+	<order>cookieR</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smsgid=(\.+)\s\w+=|\smsgid=(\.+)\s|\tmsgid=(\.+)\t|#011msgid=(\.+)#011</regex>
+	<order>msgid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smethods=(\.+)\s\w+=|\smethods=(\.+)\s|\tmethods=(\.+)\t|#011methods=(\.+)#011</regex>
+	<order>methods</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sconnection_uid=(\.+)\s\w+=|\sconnection_uid=(\.+)\s|\tconnection_uid=(\.+)\t|#011connection_uid=(\.+)#011</regex>
+	<order>connection_uid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssite_name=(\.+)\s\w+=|\ssite_name=(\.+)\s|\tsite_name=(\.+)\t|#011site_name=(\.+)#011</regex>
+	<order>site_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scvpn_category=(\.+)\s\w+=|\scvpn_category=(\.+)\s|\tcvpn_category=(\.+)\t|#011cvpn_category=(\.+)#011</regex>
+	<order>cvpn_category</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sesod_rule_name=(\.+)\s\w+=|\sesod_rule_name=(\.+)\s|\tesod_rule_name=(\.+)\t|#011esod_rule_name=(\.+)#011</regex>
+	<order>esod_rule_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sesod_rule_action=(\.+)\s\w+=|\sesod_rule_action=(\.+)\s|\tesod_rule_action=(\.+)\t|#011esod_rule_action=(\.+)#011</regex>
+	<order>esod_rule_action</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sesod_rule_type=(\.+)\s\w+=|\sesod_rule_type=(\.+)\s|\tesod_rule_type=(\.+)\t|#011esod_rule_type=(\.+)#011</regex>
+	<order>esod_rule_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sesod_noncompliance_reason=(\.+)\s\w+=|\sesod_noncompliance_reason=(\.+)\s|\tesod_noncompliance_reason=(\.+)\t|#011esod_noncompliance_reason=(\.+)#011</regex>
+	<order>esod_noncompliance_reason</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sesod_associated_policies=(\.+)\s\w+=|\sesod_associated_policies=(\.+)\s|\tesod_associated_policies=(\.+)\t|#011esod_associated_policies=(\.+)#011</regex>
+	<order>esod_associated_policies</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs6Label=Malware Name cs6=(\.+)\s\w+=|\scs6Label=Malware Name cs6=(\.+)\s|\tspyware_name=(\.+)\t|malware=(\.+)\t|#011spyware_name=(\.+)#011|malware=(\.+)#011</regex>
+	<order>spyware_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sspyware_type=(\.+)\s\w+=|\sspyware_type=(\.+)\s|\tspyware_type=(\.+)\t|#011spyware_type=(\.+)#011</regex>
+	<order>spyware_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\santi_virus_type=(\.+)\s\w+=|\santi_virus_type=(\.+)\s|\tanti_virus_type=(\.+)\t|#011anti_virus_type=(\.+)#011</regex>
+	<order>anti_virus_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\send_user_firewall_type=(\.+)\s\w+=|\send_user_firewall_type=(\.+)\s|\tend_user_firewall_type=(\.+)\t|#011end_user_firewall_type=(\.+)#011</regex>
+	<order>end_user_firewall_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sesod_scan_status=(\.+)\s\w+=|\sesod_scan_status=(\.+)\s|\tesod_scan_status=(\.+)\t|#011esod_scan_status=(\.+)#011</regex>
+	<order>esod_scan_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sesod_access_status=(\.+)\s\w+=|\sesod_access_status=(\.+)\s|\tesod_access_status=(\.+)\t|#011esod_access_status=(\.+)#011</regex>
+	<order>esod_access_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sclient_type=(\.+)\s\w+=|\sclient_type=(\.+)\s|\tclient_type=(\.+)\t|#011client_type=(\.+)#011</regex>
+	<order>client_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\smessage=(\.+)\s\w+=|\smessage=(\.+)\s|\tmessage=(\.+)\t|#011message=(\.+)#011</regex>
+	<order>message</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssession_uid=(\.+)\s\w+=|\ssession_uid=(\.+)\s|\tsession_uid=(\.+)\t|#011session_uid=(\.+)#011</regex>
+	<order>session_uid</order>
+</decoder>
+<!--Web Security  (VPN-1 & FireWall-1) - Security Gateway-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssummary=(\.+)\s\w+=|\ssummary=(\.+)\s|\tsummary=(\.+)\t|#011summary=(\.+)#011</regex>
+	<order>summary</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sresource=(\.+)\s\w+=|\sresource=(\.+)\s|\tresource=(\.+)\t|#011resource=(\.+)#011</regex>
+	<order>resource</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sprecise_error=(\.+)\s\w+=|\sprecise_error=(\.+)\s|\tprecise_error=(\.+)\t|#011precise_error=(\.+)#011</regex>
+	<order>precise_error</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\srequestMethod=(\.+)\s\w+=|\srequestMethod=(\.+)\s|\smethod=(\.+)\s\w+=|\smethod=(\.+)\s|\tmethod=(\.+)\t|#011method=(\.+)#011</regex>
+	<order>method</order>
+</decoder>
+<!--Zero Phishing - SandBlast Agent-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\strusted_domain=(\.+)\s\w+=|\strusted_domain=(\.+)\s|\ttrusted_domain=(\.+)\t|#011trusted_domain=(\.+)#011</regex>
+	<order>trusted_domain</order>
+</decoder>
+<!--audit log-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sadministrator=(\.+)\s\w+=|\sadministrator=(\.+)\s|\tadministrator=(\.+)\t|#011administrator=(\.+)#011</regex>
+	<order>administrator</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfieldschanges=(\.+)\s\w+=|\sfieldschanges=(\.+)\s|\tfieldschanges=(\.+)\t|#011fieldschanges=(\.+)#011</regex>
+	<order>fieldschanges</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sclient_ip=(\.+)\s\w+=|\sclient_ip=(\.+)\s|\tclient_ip=(\.+)\t|#011client_ip=(\.+)#011</regex>
+	<order>srcip</order>
+</decoder>
+<!-- original field from website is 'logic changes'-->
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\slogic_changes=(\.+)\s\w+=|\slogic_changes=(\.+)\s|\tlogic_changes=(\.+)\t|#011logic_changes=(\.+)#011</regex>
+	<order>logic_changes</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sobjecttype=(\.+)\s\w+=|\sobjecttype=(\.+)\s|\tobjecttype=(\.+)\t|#011objecttype=(\.+)#011</regex>
+	<order>objecttype</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soperation=(\.+)\s\w+=|\soperation=(\.+)\s|\toperation=(\.+)\t|#011operation=(\.+)#011</regex>
+	<order>operation</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\soperation_number=(\.+)\s\w+=|\soperation_number=(\.+)\s|\toperation_number=(\.+)\t|#011operation_number=(\.+)#011</regex>
+	<order>operation_number</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sobjectname=(\.+)\s\w+=|\sobjectname=(\.+)\s|\tobjectname=(\.+)\t|#011objectname=(\.+)#011</regex>
+	<order>objectname</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssession_name=(\.+)\s\w+=|\ssession_name=(\.+)\s|\tsession_name=(\.+)\t|#011session_name=(\.+)#011</regex>
+	<order>session_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssession_description=(\.+)\s\w+=|\ssession_description=(\.+)\s|\tsession_description=(\.+)\t|#011session_description=(\.+)#011</regex>
+	<order>session_description</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssubject=(\.+)\s\w+=|\ssubject=(\.+)\s|\tsubject=(\.+)\t|#011subject=(\.+)#011</regex>
+	<order>subject</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scn1Label=Payload cn1=(\.+)\s\w+=|\scn1Label=Payload cn1=(\.+)\s|\tpayload=(\.+)\t|#011payload=(\.+)#011</regex>
+	<order>payload</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs1Label=Connectivity State cs1=(\.+)\s\w+=|\scs1Label=Connectivity State cs1=(\.+)\s|\tconnectivity_state=(\.+)\t|#011connectivity_state=(\.+)#011</regex>
+	<order>connectivity_state</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs2Label=Scan Invoke Type cs2=(\.+)\s\w+=|\scs2Label=Scan Invoke Type cs2=(\.+)\s|\tintegrity_av_invoke_type=(\.+)\t|#011integrity_av_invoke_type=(\.+)#011</regex>
+	<order>integrity_av_invoke_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs2Label=Sensor Mode cs2=(\.+)\s\w+=|\scs2Label=Sensor Mode cs2=(\.+)\s|\tsensor_mode=(\.+)\t|#011sensor_mode=(\.+)#011</regex>
+	<order>sensor_mode</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs2Label=Update Status cs2=(\.+)\s\w+=|\scs2Label=Update Status cs2=(\.+)\s|\tupdate_status=(\.+)\t|#011update_status=(\.+)#011</regex>
+	<order>update_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs3Label=Email Spool ID cs3=(\.+)\s\w+=|\scs3Label=Email Spool ID cs3=(\.+)\s|\temail_spool_id=(\.+)\t|#011email_spool_id=(\.+)#011</regex>
+	<order>email_spool_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs3Label=Identity Type cs3=(\.+)\s\w+=|\scs3Label=Identity Type cs3=(\.+)\s|\tidentity_type=(\.+)\t|#011identity_type=(\.+)#011</regex>
+	<order>identity_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=Frequency cs4=(\.+)\s\w+=|\scs4Label=Frequency cs4=(\.+)\s|\tfrequency=(\.+)\t|#011frequency=(\.+)#011</regex>
+	<order>frequency</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=Malware Status cs4=(\.+)\s\w+=|\scs4Label=Malware Status cs4=(\.+)\s|\tspyware_status=(\.+)\t|#011spyware_status=(\.+)#011</regex>
+	<order>spyware_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs4Label=User Response cs4=(\.+)\s\w+=|\scs4Label=User Response cs4=(\.+)\s|\tuser_status=(\.+)\t|#011user_status=(\.+)#011</regex>
+	<order>user_status</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs5Label=VLAN ID cs5=(\.+)\s\w+=|\scs5Label=VLAN ID cs5=(\.+)\s|\tvlan_id=(\.+)\t|#011vlan_id=(\.+)#011</regex>
+	<order>vlan_id</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\scs6Label=Virus Name cs6=(\.+)\s\w+=|\scs6Label=Virus Name cs6=(\.+)\s|\tvirus_name=(\.+)\t|#011virus_name=(\.+)#011</regex>
+	<order>virus_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdestinationTranslatedAddress=(\.+)\s\w+=|\sdestinationTranslatedAddress=(\.+)\s|\txlatedst=(\.+)\t|#011xlatedst=(\.+)#011</regex>
+	<order>xlatedst</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdestinationTranslatedPort=(\.+)\s\w+=|\sdestinationTranslatedPort=(\.+)\s|\txlatedport=(\.+)\t|#011xlatedport=(\.+)#011</regex>
+	<order>xlatedport</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdeviceCustomDate2=(\.+)\s\w+=|\sdeviceCustomDate2=(\.+)\s|\tsubs_exp=(\.+)\t|#011subs_exp=(\.+)#011</regex>
+	<order>subs_exp</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdeviceDirection=(\.+)\s\w+=|\sdeviceDirection=(\.+)\s|\tifdir=(\.+)\t|#011ifdir=(\.+)#011</regex>
+	<order>direction</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\tdst_user_name=(\.+)\t|#011dst_user_name=(\.+)#011|\tvpn_user=(\.+)\t|#011vpn_user=(\.+)#011|\tusercheck=(\.+)\t|#011usercheck=(\.+)#011|\tuname4domain=(\.+)\t|#011uname4domain=(\.+)#011|\torig_to=(\.+)\t|#011orig_to=(\.+)#011|\td_name=(\.+)\t|#011d_name=(\.+)#011</regex>
+	<order>user</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sdvc=(\.+)\s\w+=|\sdvc=(\.+)\s|\tendpoint_ip=(\.+)\t|#011endpoint_ip=(\.+)#011</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sfilePath=(\.+)\s\w+=|\sfilePath=(\.+)\s|\tsource_path=(\.+)\t|#011source_path=(\.+)#011|\tdata_origin=(\.+)\t|#011data_origin=(\.+)#011</regex>
+	<order>filepath</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sin=(\.+)\s\w+=|\sin=(\.+)\s|\tclient_inbound_bytes=(\.+)\t|#011client_inbound_bytes=(\.+)#011|\treceived_bytes=(\.+)\t|dstBytes=(\.+)\t|#011received_bytes=(\.+)#011|dstBytes=(\.+)#011</regex>
+	<order>bytes_received</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sout=(\.+)\s\w+=|\sout=(\.+)\s|\tclient_outbound_bytes=(\.+)\t|#011client_outbound_bytes=(\.+)#011|\tsent_bytes=(\.+)\t|src_bytes=(\.+)\t|#011sent_bytes=(\.+)#011|src_bytes=(\.+)#011|srcBytes=(\.+)\t|srcBytes=(\.+)#011</regex>
+	<order>bytes_sent</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\ssmac=(\.+)\s\w+=|\ssmac=(\.+)\s\smac_source_address=(\.+)\s\w+=|\smac_source_address=(\.+)\s|\tmac_source_address=(\.+)\t|#011mac_source_address=(\.+)#011</regex>
+	<order>mac_source_address</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sspriv=(\.+)\s\w+=|\sspriv=(\.+)\s|\tsrc_user_group=(\.+)\t|#011src_user_group=(\.+)#011</regex>
+	<order>src_user_group</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\suser_name=(\.+)\s\w+=|\suser_name=(\.+)\s|\tuser_name=(\.+)\t|#011user_name=(\.+)#011</regex>
+	<order>user</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\suser_sid=(\.+)\s\w+=|\suser_sid=(\.+)\s|\tuser_sid=(\.+)\t|#011user_sid=(\.+)#011</regex>
+	<order>user_sid</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sos_name=(\.+)\s\w+=|\sos_name=(\.+)\s|\tos_name=(\.+)\t|#011os_name=(\.+)#011</regex>
+	<order>os_name</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\sos_version=(\.+)\s\w+=|\sos_version=(\.+)\s|\tos_version=(\.+)\t|#011os_version=(\.+)#011</regex>
+	<order>os_version</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex offset="after_parent">\shost_type=(\.+)\s\w+=|\shost_type=(\.+)\s|\thost_type=(\.+)\t|#011host_type=(\.+)#011</regex>
+	<order>host_type</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>remediation_file=(\.+) \S+=</regex>
+	<order>remediation_file</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>fw_subproduct=(\S+)</regex>
+	<order>fw_subproduct</order>
+</decoder>
+<decoder name="checkpoint-syslog-fields">
+	<parent>checkpoint-syslog</parent>
+	<regex>originsicname=CN\\=(\.+),</regex>
+	<order>logsource</order>
+</decoder>

@@ -1,0 +1,40 @@
+<!-- Modify it at your will. -->
+<decoder name="sonicwall-sma">
+	<prematch>\S+ \d+ \S+ \d+ Info\s+Audit</prematch>
+	<program_name/>
+</decoder>
+<decoder name="sonicwall-sma-fields">
+	<parent>sonicwall-sma</parent>
+	<regex>\S+ \d+ \S+ \d+ (\S+)\s+(\S+)</regex>
+	<order>sonicwall-sma.loglevel, sonicwall-sma.logtype</order>
+</decoder>
+<decoder name="sonicwall-sma-fields">
+	<parent>sonicwall-sma</parent>
+	<regex>Src='(\S+):(\d+)'</regex>
+	<order>srcip, srcport</order>
+</decoder>
+<decoder name="sonicwall-sma-fields">
+	<parent>sonicwall-sma</parent>
+	<regex>User='\((\S+)\)\.*'</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="sonicwall-sma-fields">
+	<parent>sonicwall-sma</parent>
+	<regex>Dest='(\S+):(\d+)'</regex>
+	<order>dstip, dstport</order>
+</decoder>
+<decoder name="sonicwall-sma-fields">
+	<parent>sonicwall-sma</parent>
+	<regex>SrcBytes='(\d+)'</regex>
+	<order>sonicwall-sma.SrcBytes</order>
+</decoder>
+<decoder name="sonicwall-sma-fields">
+	<parent>sonicwall-sma</parent>
+	<regex>DstBytes='(\d+)'</regex>
+	<order>sonicwall-sma.DstBytes</order>
+</decoder>
+<decoder name="sonicwall-sma-fields">
+	<parent>sonicwall-sma</parent>
+	<regex>Command='Flow:(\S+)'</regex>
+	<order>protocol</order>
+</decoder>

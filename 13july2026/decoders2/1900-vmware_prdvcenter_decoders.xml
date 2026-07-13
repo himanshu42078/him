@@ -1,0 +1,8 @@
+<decoder name="vmware-prdvcenter">
+	<prematch>\d\d:\d\d Prd-vCenter \w+ \d+\s</prematch>
+</decoder>
+<decoder name="vmware-prdvcenter-fields">
+	<parent>vmware-prdvcenter</parent>
+	<regex>Prd-vCenter (\w+) \d+ - -  Event [(\d*)] [\d+-\d+] [(\.*)] [(\.*)] [(\.*)] [(\.*)] [(\.*)] [(\.*)] [(\.*)]</regex>
+	<order>program_name, event_number, timestamp, event_name, severity, path, environment, event_number_2, msg</order>
+</decoder>

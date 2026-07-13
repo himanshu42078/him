@@ -1,0 +1,21 @@
+<!--
+Jan 10 15:59:28 192.168.23.134 SCCHKWLC01: *webauthRedirect: Jan 10 16:02:22.917: %EMWEB-6-REQ_NOT_GET_ERR: [SA]http_parser.c:616 http request is not GET
+
+Jan 10 15:59:28 192.168.23.134 SCCHKWLC01: *webauthRedirect: Jan 10 16:02:22.903: %EMWEB-6-HTTP_REQ_BEGIN_ERR: [SA]http_parser.c:580 http request should begin with a character
+
+Jan 10 15:59:28 192.168.23.134 SCCHKWLC01: *webauthRedirect: Jan 10 16:02:22.917: %EMWEB-6-PARSE_ERROR: [SA]webauth_redirect.c:2391 parser exited. client mac= f0:d5:bf:a0:9b:c3 bytes parsed = 4 and bytes read = 226
+-->
+<decoder name="cisco-emweb">
+  <program_name>SCCHKWLC01</program_name>
+	<prematch>%EMWEB-\d+-\S+:</prematch>
+</decoder>
+<decoder name="cisco-emweb-field">
+	<parent>cisco-emweb</parent>
+	<regex>client mac= (\S+)</regex>
+	<order>client_mac</order>
+</decoder>
+<decoder name="cisco-emweb-field">
+	<parent>cisco-emweb</parent>
+	<regex>bytes parsed = (\d+) and bytes read = (\d+)</regex>
+	<order>bytes_parsed,bytes_read</order>
+</decoder>

@@ -1,0 +1,64 @@
+<!-- Modify it at your will. -->
+<decoder name="lastline">
+    <prematch>lastline</prematch>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"timestamp":"(\.*)",</regex>
+	<order>timestamp</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"flow_id":"(\.*)",</regex>
+	<order>flow_id</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"in_iface":"(\.*)",</regex>
+	<order>in_iface</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"event_type":"(\.*)",</regex>
+	<order>event_type</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"vlan":[(\.*)],</regex>
+	<order>vlan</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"src_ip":"(\.*)",</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"src_port":(\.*),</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"dest_ip":"(\.*)",</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"dest_port":(\.*),</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"proto":"(\.*)",</regex>
+	<order>proto</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"direction":"(\.*)",</regex>
+	<order>direction</order>
+</decoder>
+<decoder name="lastline-fields">
+	<parent>lastline</parent>
+	<regex>"metadata":(\.*)</regex>
+	<order>metadata</order>
+</decoder>

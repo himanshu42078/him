@@ -1,0 +1,14 @@
+<decoder name="ehr_cef">
+    <program_name>CEF</program_name>
+    <prematch>^0\|eHR\|eHR\|\.+\|\.+\|\.+\|\.+\|</prematch>
+</decoder>
+<decoder name="ehr_cef_fields">
+    <parent>ehr_cef</parent>
+    <regex>^0\|eHR\|eHR\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)$</regex>
+    <order>device_version,signature_id,name,severity,signature</order>
+</decoder>
+<decoder name="ehr_cef_fields">
+	<parent>ehr_cef</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>

@@ -1,0 +1,8 @@
+<decoder name="radware-defensepro">
+  <program_name>DefensePro</program_name>
+</decoder>
+<decoder name="radware-defensepro-fields">
+  <parent>radware-defensepro</parent>
+  <regex>(\d\d-\d\d-\d\d\d\d \d\d:\d\d:\d\d) (\S+) (\S+) (\S+) "(\.*)" (\S+) (\d+.\d+.\d+.\d+) (\d+) (\d+.\d+.\d+.\d+) (\d+) (\d+) (\S+) "(\.*)" (\S+) (\d+) (\d+) (\S+) (\S+) (\S+) (\S+) (\S+) (\S+)</regex>
+  <order>timestamp,log_level,radware_id,category,attack_name,protocol,srcip,srcport,dstip,dstport,physical_port,context,policy,status,packet_count,volume,vlan_tag,mpls_rd,mpls_tag,severity,action,guid</order>
+</decoder>

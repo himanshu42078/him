@@ -1,0 +1,29 @@
+<decoder name="big-ip-apm">
+    <program_name>/Common/access_sslvpn-swire-1</program_name>
+    <prematch>^Common:\s*\S+:</prematch>
+</decoder>
+<decoder name="big-ip-apm-fields">
+    <parent>big-ip-apm</parent>
+    <regex>^Common:\s*(\S+):\s*(\.+)$</regex>
+    <order>session_id,message</order>
+</decoder>
+<decoder name="big-ip-apm-fields">
+    <parent>big-ip-apm</parent>
+    <regex>client IP (\S+),</regex>
+    <order>clientIP</order>
+</decoder>
+<decoder name="big-ip-apm-fields">
+    <parent>big-ip-apm</parent>
+    <regex>VIP (\S+),</regex>
+    <order>VIP</order>
+</decoder>
+<decoder name="big-ip-apm-fields">
+    <parent>big-ip-apm</parent>
+    <regex>bytes in: (\d+),</regex>
+    <order>bytes_in</order>
+</decoder>
+<decoder name="big-ip-apm-fields">
+    <parent>big-ip-apm</parent>
+    <regex>bytes out: (\d+)</regex>
+    <order>bytes_out</order>
+</decoder>

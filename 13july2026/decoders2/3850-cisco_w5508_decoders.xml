@@ -1,0 +1,34 @@
+<decoder name="cisco-w5508">
+    <program_name>W5508-253</program_name>
+</decoder>
+
+<decoder name="cisco-w5508-fields">
+	<parent>cisco-w5508</parent>
+	<regex>: (\.+): \S+: \p\S+\p\S+.c:\d+ (\.+)$</regex>
+	<order>timestamp, msg</order>
+</decoder>
+<decoder name="cisco-w5508-fields">
+	<parent>cisco-w5508</parent>
+	<regex>track=(\S+)</regex>
+	<order>track</order>
+</decoder>
+<decoder name="cisco-w5508-fields">
+	<parent>cisco-w5508</parent>
+	<regex>preced=(\d+)</regex>
+	<order>preced</order>
+</decoder>
+<decoder name="cisco-w5508-fields">
+	<parent>cisco-w5508</parent>
+	<regex>hits=(\d+)</regex>
+	<order>hits</order>
+</decoder>
+<decoder name="cisco-w5508-fields">
+	<parent>cisco-w5508</parent>
+	<regex>slot=(\d+)</regex>
+	<order>slot</order>
+</decoder>
+<decoder name="cisco-w5508-fields">
+	<parent>cisco-w5508</parent>
+	<regex>channel=(\d+)</regex>
+	<order>channel</order>
+</decoder>

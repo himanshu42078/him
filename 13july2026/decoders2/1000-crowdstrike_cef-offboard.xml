@@ -1,0 +1,259 @@
+<decoder name="crowdStrike_cef">
+	<prematch>\|CrowdStrike\|</prematch>
+	<program_name>CEF</program_name>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, eventId, description, severity</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>\d+\|(\.+)\|\.+\|\.+\|\.+\|\.+\|\d+\|</regex>
+	<order>logsource</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>rt=(\.+)</regex>
+	<order>crowdStrike.rt</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cat=(\.+) </regex>
+	<order>crowdStrike.cat</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>destinationTranslatedAddress=(\.+) </regex>
+	<order>crowdStrike.dnat</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>deviceProcessName=(\.+) cn3Label</regex>
+	<order>crowdStrike.deviceprocessname</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>duser=(\.+) src</regex>
+	<order>crowdStrike.deviceFacility</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>dvchost=(\S+)</regex>
+	<order>crowdStrike.dvchost</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn1Label=(\.+) cn1=(\S+)</regex>
+	<order>crowdStrike.cn1Label,crowdStrike.cn1</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn2Label=(\.+) cn2=(\S+)</regex>
+	<order>crowdStrike.cn2Label, crowdStrike.cn2</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn3Label=(\.+) cn3=(\S+)</regex>
+	<order>crowdStrike.cn3Label, crowdStrike.cn3</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn4Label=(\.+) cn4=(\S+)</regex>
+	<order>crowdStrike.cn4Label,crowdStrike.cn4</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>deviceCustomDate1Label=(\.+) deviceCustomDate1=(\.+) rt=</regex>
+	<order>crowdStrike.deviceCustomDate1Label,crowdStrike.deviceCustomDate1</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>deviceProcessName=(\.+) cn3Label</regex>
+	<order>crowdStrike.deviceprocessname</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>outcome=(\S+)</regex>
+	<order>crowdStrike.outcome</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs1Label=(\.+) cs1=(\.+) cnt</regex>
+	<order>crowdStrike.cs1Label,crowdStrike.cs1</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs2Label=(\.+) cs2=(\S+)</regex>
+	<order>crowdStrike.cs2Label,crowdStrike.cs2</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs3Label=(\S+)</regex>
+	<order>crowdStrike.cs3Label</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs3=(\.*) \S+=</regex>
+	<order>crowdStrike.cs3</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>request=(\S+)</regex>
+	<order>crowdStrike.request</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>src=(\S+)</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>dst=(\S+)</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>smac=(\S+)</regex>
+	<order>crowdStrike.smac</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>dmac=(\S+)</regex>
+	<order>crowdStrike.dmac</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>spt=(\S+)</regex>
+	<order>srcport</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>dpt=(\S+)</regex>
+	<order>dstport</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn2Label=Mode cn2=(\S+)</regex>
+	<order>crowdStrike.mode</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>deviceDirection=(\S+)</regex>
+	<order>crowdStrike.deviceDirection</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn3Label=Priority cn3=(\S+)</regex>
+	<order>crowdStrike.priority</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>proto=(\S+)</regex>
+	<order>crowdStrike.proto</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>deviceNtDomain=(\S+)</regex>
+	<order>crowdStrike.deviceNtDomain</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>dntdom=(\S+)</regex>
+	<order>crowdStrike.dntdom</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>duser=(\S+)</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>dvc=(\S+)</regex>
+	<order>crowdStrike.dvc</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>act=(\S+)</regex>
+	<order>action</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn2Label=(\.+) cn2</regex>
+	<order>crowdStrike.cn2Label</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn2=(\S+)</regex>
+	<order>crowdStrike.cn2</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn3Label=(\S+)</regex>
+	<order>crowdStrike.cn3Label</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn3=(\S+)</regex>
+	<order>crowdStrike.cn3</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn4Label=(\S+)</regex>
+	<order>crowdStrike.cn4Label</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cn4=(\S+)</regex>
+	<order>crowdStrike.cn4</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs4Label=(\.+) cs4=(\S+)</regex>
+	<order>crowdStrike.cs4Label,crowdStrike.cs4</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs1Label=(\.+) cs1</regex>
+	<order>crowdStrike.cs1Label</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs1=(\.+) cnt</regex>
+	<order>crowdStrike.cs1</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs5Label=(\.+) cs5</regex>
+	<order>crowdStrike.cs5Label</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs5=(\.+) cs6Label</regex>
+	<order>crowdStrike.cs5</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cs6Label=(\.+) cs6=(\S+)</regex>
+	<order>crowdStrike.cs6Label,crowdStrike.cs6</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>cnt=(\S+)</regex>
+	<order>crowdStrike.cnt</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>dhost=(\S+)</regex>
+	<order>hostname</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>externalId=(\S+)</regex>
+	<order>crowdStrike.externalId</order>
+</decoder>
+<decoder name="crowdStrike_cef_fields">
+	<parent>crowdStrike_cef</parent>
+	<regex>msg=(\.+).</regex>
+	<order>crowdStrike.msg</order>
+</decoder>

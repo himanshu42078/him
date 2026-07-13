@@ -1,0 +1,79 @@
+<!-- DEV-724 -->
+<!--
+Mar  6 15:29:46 F5AWSHK001 notice tmm6[17904]: 01490500:5: /Common/access_swirecocacola_201908:Common:295afdda: New session from client IP 172.24.212.69 (ST=/CC=/C=) at VIP 172.24.152.118 Listener /Common/vs_vpnhk.swirebev.com (Reputation=Unknown)
+Mar  6 15:30:49 F5AWSHK001 notice tmm5[17904]: Rule /Common/forward-session-to-splunk <HTTP_REQUEST>: User_Name=kwoktw1 Session_ID=1ebd7c80 Assigned PPP Dynamic IPv4: 172.28.19.15 NA Resource: /Common/net_sbcs /Common/znet_sb_ess Client IP: 172.24.212.69
+Mar  6 15:29:41 F5AWSHK001 notice apmd[12738]: 01490005:5: /Common/access_swirecocacola_201908:Common:18279bfc: Following rule 'fallback' from item 'Landing URI' to ending 'Deny'
+Apr 28 10:01:16 HKSTP-WAF-01.f5 notice run-parts(/etc/cron.hourly)[18637]: finished zrd_logrotate
+-->
+<decoder name="f5-bigip">
+    <prematch>^notice (\S+)\p\d+\p:</prematch>
+</decoder>
+<decoder name="f5-bigip">
+    <prematch>^info (\S+)\p\d+\p:</prematch>
+</decoder>
+<decoder name="f5-bigip">
+    <prematch>^warning (\S+)\p\d+\p:</prematch>
+</decoder>
+<decoder name="f5-bigip">
+    <prematch>^err (\S+)\p\d+\p:</prematch>
+</decoder>
+<decoder name="f5-bigip">
+    <prematch>^debug (\S+)\p\d+\p:</prematch>
+</decoder>
+
+<decoder name="f5-bigip">
+    <prematch>^notice \S+\p\S+\p\p\d+\p:</prematch>
+</decoder>
+<decoder name="f5-bigip">
+    <prematch>^info \S+\p\S+\p\p\d+\p:</prematch>
+</decoder>
+<decoder name="f5-bigip">
+    <prematch>^warning \S+\p\S+\p\p\d+\p:</prematch>
+</decoder>
+<decoder name="f5-bigip">
+    <prematch>^err \S+\p\S+\p\p\d+\p:</prematch>
+</decoder>
+<decoder name="f5-bigip">
+    <prematch>^debug \S+\p\S+\p\p\d+\p:</prematch>
+</decoder>
+
+<decoder name="f5-bigip-fields">
+    <parent>f5-bigip</parent>
+    <regex>(\S+) (\S+)\p(\d+)\p: \.+Common:\S+: (\.+)|(\S+) (\S+)\p(\d+)\p: (\.+)</regex>
+    <order>level,service,pid,message</order>
+</decoder>
+<decoder name="f5-bigip-fields">
+    <parent>f5-bigip</parent>
+    <regex>\S+\p\d+\p: (\d+):(\d+):</regex>
+    <order>code, sub_code</order>
+</decoder>
+<decoder name="f5-bigip-fields">
+    <parent>f5-bigip</parent>
+    <regex>(\S+) (\S+):(\d+) -> (\S+):(\d+)</regex>
+    <order>protocol, srcip, srcport, dstip, dstport</order>
+</decoder>
+<decoder name="f5-bigip-fields">
+    <parent>f5-bigip</parent>
+    <regex>AUDIT - pid=(\d+) user=(\.*) folder=(\.*) module=(\.*) status=(\.*) cmd_data=(\.*)</regex>
+    <order>pid, dstuser, folder, module, status, cmd_data</order>
+</decoder>
+<decoder name="f5-bigip-fields">
+    <parent>f5-bigip</parent>
+    <regex>client IP (\S+)|Client IP: (\S+)</regex>
+    <order>clientIP</order>
+</decoder>
+<decoder name="f5-bigip-fields">
+    <parent>f5-bigip</parent>
+    <regex>VIP (\S+)</regex>
+    <order>VIP</order>
+</decoder>
+<decoder name="f5-bigip-fields">
+    <parent>f5-bigip</parent>
+    <regex>User_Name=(\S+) Session_ID=(\S+)</regex>
+    <order>dstuser,session_id</order>
+</decoder>
+<decoder name="f5-bigip-fields">
+    <parent>f5-bigip</parent>
+    <regex>Assigned PPP Dynamic IPv4: (\S+)</regex>
+    <order>Dynamic_IPv4</order>
+</decoder>

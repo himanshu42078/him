@@ -1,0 +1,117 @@
+<!--
+	Log format:
+		https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/Operations/Services/Audit/dap-auditlog-structure.htm
+		<PRI>VERSION TIMESTAMP HOSTNAME APP-NAME PROCID MSGID STRUCTURED-DATA MSG
+		
+	STRUCTURED-DATA -> audit events:
+		https://docs.cyberark.com/Product-Doc/OnlineHelp/AAM-DAP/Latest/en/Content/Operations/Services/Audit/dap-audit-events.htm
+		
+	STRUCTURED-DATA -> values:
+		subject@43868
+			role
+			resource
+			privilege
+		
+		auth@43868
+			authenticator
+			service
+			user
+		
+		client@43868
+			ip
+		
+		action@43868
+			result
+			operation
+			
+		meta
+			sequenceId
+	
+	Examples:
+	<86>1 2022-03-17T14:24:28.731+00:00 10.23.86.196 conjur 3d3d3899-f504-4796-a632-daa9458c3df7 authn [subject@43868 role="hkiclu:host:sit-docker-policy2/sit-host2"][auth@43868 authenticator="authn-k8s" service="hkiclu:webservice:conjur/authn-k8s/dev-az2" user="hkiclu:host:sit-docker-policy2/sit-host2"][client@43868 ip="10.42.39.253"][action@43868 result="success" operation="authenticate"][meta sequenceId="114"] hkiclu:host:sit-docker-policy2/sit-host2 successfully authenticated with authenticator authn-k8s service hkiclu:webservice:conjur/authn-k8s/dev-az2
+	<86>1 2022-03-17T14:24:40.359+00:00 10.22.86.198 conjur 7a938746-ca1a-40ac-b830-3dbdc006731a authn [subject@43868 role="hkiclu:host:sit-docker-policy2/sit-host2"][auth@43868 authenticator="authn-k8s" service="hkiclu:webservice:conjur/authn-k8s/dev-az1" user="hkiclu:host:sit-docker-policy2/sit-host2"][client@43868 ip="10.42.129.190"][action@43868 result="success" operation="k8s-inject-client-cert"][meta sequenceId="297"] hkiclu:host:sit-docker-policy2/sit-host2 successfully injected client certificate with authenticator authn-k8s service hkiclu:webservice:conjur/authn-k8s/dev-az1
+	<86>1 2022-03-17T14:24:40.476+00:00 10.22.86.197 conjur 72cdb21f-be24-48a1-b8d0-574f853a0e8a authn [subject@43868 role="hkiclu:host:sit-docker-policy2/sit-host2"][auth@43868 authenticator="authn-k8s" service="hkiclu:webservice:conjur/authn-k8s/dev-az1" user="hkiclu:host:sit-docker-policy2/sit-host2"][client@43868 ip="10.42.129.190"][action@43868 result="success" operation="authenticate"][meta sequenceId="287"] hkiclu:host:sit-docker-policy2/sit-host2 successfully authenticated with authenticator authn-k8s service hkiclu:webservice:conjur/authn-k8s/dev-az1
+	<86>1 2022-03-17T06:30:14.309+00:00 10.22.86.197 conjur c88cbdfc-23c0-4ea0-8347-e5d51724be76 authn [subject@43868 role="hkiclu:host:sit-docker-policy2/sit-host2"][auth@43868 authenticator="authn-k8s" service="hkiclu:webservice:conjur/authn-k8s/dev-az1" user="hkiclu:host:sit-docker-policy2/sit-host2"][client@43868 ip="10.42.129.139"][action@43868 result="success" operation="authenticate"][meta sequenceId="3"] hkiclu:host:sit-docker-policy2/sit-host2 successfully authenticated with authenticator authn-k8s service hkiclu:webservice:conjur/authn-k8s/dev-az1
+
+	<86>1 2022-03-17T11:30:54.870+00:00 f98ff3feb807 conjur 9ac6cd22-e113-4813-b3e3-441898af601e check [auth@43868 user="hkiclu:host:k8s-dev-az2-follower"][subject@43868 resource="hkiclu:webservice:conjur/seed-generation" role="hkiclu:host:k8s-dev-az2-follower" privilege="execute"][client@43868 ip="127.0.0.1"][action@43868 result="success" operation="check"][meta sequenceId="3"] hkiclu:host:k8s-dev-az2-follower successfully checked if they can execute hkiclu:webservice:conjur/seed-generation 
+	<86>1 2022-03-17T15:16:59.391+00:00 f98ff3feb807 conjur 9ab326b1-f217-4c70-9d78-2636e29e755e check [auth@43868 user="hkiclu:user:admin"][subject@43868 resource="hkiclu:variable:sit-app-secrets-variables/db-password" role="hkiclu:user:admin" privilege="read"][client@43868 ip="127.0.0.1"][action@43868 result="success" operation="check"][meta sequenceId="3"] hkiclu:user:admin successfully checked if they can read hkiclu:variable:sit-app-secrets-variables/db-password 
+	
+	<86>1 2022-03-17T11:32:04.939+00:00 10.23.86.196 conjur 636e6a14-9839-4e6a-9951-d8fb2c20a2c9 fetch [auth@43868 user="hkiclu:host:sit-docker-policy2/sit-host2"][subject@43868 resource="hkiclu:variable:sit-app-secrets-variables/db-password"][client@43868 ip="10.42.39.231"][action@43868 result="success" operation="fetch"][meta sequenceId="3"] hkiclu:host:sit-docker-policy2/sit-host2 fetched hkiclu:variable:sit-app-secrets-variables/db-password
+	<86>1 2022-03-17T11:32:04.980+00:00 10.23.86.196 conjur b38efe8e-c200-4358-8e2d-5589f44e8576 fetch [auth@43868 user="hkiclu:host:sit-docker-policy2/sit-host2"][subject@43868 resource="hkiclu:variable:sit-app-secrets-variables/db-username"][client@43868 ip="10.42.39.231"][action@43868 result="success" operation="fetch"][meta sequenceId="1"] hkiclu:host:sit-docker-policy2/sit-host2 fetched hkiclu:variable:sit-app-secrets-variables/db-username
+	<86>1 2022-03-17T14:24:40.512+00:00 10.22.86.197 conjur afed3b16-45cb-4a73-8001-b8278ea8b4f0 fetch [auth@43868 user="hkiclu:host:sit-docker-policy2/sit-host2"][subject@43868 resource="hkiclu:variable:sit-app-secrets-variables/db-password"][client@43868 ip="10.42.129.190"][action@43868 result="success" operation="fetch"][meta sequenceId="288"] hkiclu:host:sit-docker-policy2/sit-host2 fetched hkiclu:variable:sit-app-secrets-variables/db-password
+	<86>1 2022-03-17T14:24:40.517+00:00 10.22.86.197 conjur a0c9d4a6-c27e-49ab-8671-d4b7d2849136 fetch [auth@43868 user="hkiclu:host:sit-docker-policy2/sit-host2"][subject@43868 resource="hkiclu:variable:sit-app-secrets-variables/db-username"][client@43868 ip="10.42.129.190"][action@43868 result="success" operation="fetch"][meta sequenceId="289"] hkiclu:host:sit-docker-policy2/sit-host2 fetched hkiclu:variable:sit-app-secrets-variables/db-username
+-->
+
+<decoder name="conjur">
+        <prematch>\p\d+\p\d+ \d+-\d+-\d+T\d+:\d+:\d+.\d++\d+:\d+ \S+ conjur</prematch>
+</decoder>
+
+<decoder name="conjur-custom">
+        <parent>conjur</parent>
+        <regex>\p(\d+)\p(\d+) (\d+-\d+-\d+T\d+:\d+:\d+.\d++\d+:\d+) (\S+) conjur (\S+) (\S+)</regex>
+        <order>conjur.priorityVal,conjur.version,conjur.timestamp,conjur.hostname,conjur.processId,conjur.messageId</order>
+</decoder>
+
+<!-- begin of conjur-conjur-structure -->
+
+<!-- subject -->
+<decoder name="conjur-custom">
+   <parent>conjur</parent>
+   <regex>[subject@\d+ role="(\.+)"]</regex>
+   <order>conjur.subject.role</order>
+</decoder>
+
+<decoder name="conjur-custom">
+   <parent>conjur</parent>
+   <regex>[subject@\d+ resource="(\.+)"]</regex>
+   <order>conjur.subject.resource</order>
+</decoder>
+
+<decoder name="conjur-custom">
+   <parent>conjur</parent>
+   <regex>[subject@\d+ resource="(\.+)" role="(\.+)" privilege="(\.+)"]</regex>
+   <order>conjur.subject.resource,conjur.subject.role,conjur.subject.privilege</order>
+</decoder>
+
+<!-- auth -->
+<decoder name="conjur-custom">
+   <parent>conjur</parent>
+   <regex>[auth@\d+ user="(\.+)"]</regex>
+   <order>conjur.auth.user</order>
+</decoder>
+
+<decoder name="conjur-custom">
+   <parent>conjur</parent>
+   <regex>[auth@\d+ authenticator="(\.+)" service="(\.+)" user="(\.+)"]</regex>
+   <order>conjur.auth.authenticator,conjur.auth.service,conjur.auth.user</order>
+</decoder>
+
+<!-- client -->
+<decoder name="conjur-custom">
+   <parent>conjur</parent>
+   <regex>[client@\d+ ip="(\.+)"]</regex>
+   <order>srcip</order>
+</decoder>
+
+<!-- action -->
+<decoder name="conjur-custom">
+   <parent>conjur</parent>
+   <regex>[action@\d+ result="(\.+)" operation="(\.+)"]</regex>
+   <order>conjur.action.result,conjur.action.operation</order>
+</decoder>
+
+<!-- meta -->
+<decoder name="conjur-custom">
+   <parent>conjur</parent>
+   <regex>[meta sequenceId="(\.+)"]</regex>
+   <order>conjur.meta.sequenceId</order>
+</decoder>
+
+<!-- end of conjur-conjur-structure -->
+<decoder name="conjur-custom">
+        <parent>conjur</parent>
+        <regex>] (\S+:\S+:\.+)</regex>
+        <order>conjur.message</order>
+</decoder>
+
+

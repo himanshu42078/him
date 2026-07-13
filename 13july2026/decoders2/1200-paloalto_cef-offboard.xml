@@ -1,0 +1,427 @@
+<decoder name="paloalto-firewall">
+	<prematch>0\|Palo Alto Networks\|\S+\|\S+\|\S+\|\S+\|\d+\|</prematch>
+	<program_name>CEF</program_name>
+</decoder>
+
+<decoder name="paloalto-firewall">
+	<prematch>CEF:0\|palo alto networks\|\S+\|\S+\|\S+\|\S+\|\d+\|</prematch>
+</decoder>
+
+<!-- COMMON -->
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>\d+\|(\.+)\|(\.+)\|(\S+)\|(\.+)\|(\.+)\|(\d+)\|</regex>
+	<order>vendor, product, version, type, subtype, severity</order>
+</decoder>
+
+<!-- TRAFFIC/THREAT -->
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>dtz=(\.*) \S+=</regex>
+    <order>dtz</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>rt=(\.*) \S+=</regex>
+    <order>receive_time</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>deviceExternalId=(\.*) \S+=</regex>
+    <order>deviceExternalId</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSConfigVersion=(\.*) \S+=</regex>
+    <order>PanOSConfigVersion</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>start=(\.*) \S+=</regex>
+    <order>start</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>src=(\.*) \S+=</regex>
+    <order>srcip</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>dst=(\.*) \S+=</regex>
+    <order>dstip</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>sourceTranslatedAddress=(\.*) \S+=</regex>
+    <order>sourceTranslatedAddress</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>destinationTranslatedAddress=(\.*) \S+=</regex>
+    <order>destinationTranslatedAddress</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs1=(\.*) \S+=</regex>
+    <order>cs1</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs1Label=(\.*) \S+=</regex>
+    <order>cs1Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>suser=(\.*) \S+=</regex>
+    <order>srcuser</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>duser=(\.*) \S+=</regex>
+    <order>dstuser</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>app=(\.*) \S+=</regex>
+    <order>app</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs3=(\.*) \S+=</regex>
+    <order>cs3</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs3Label=(\.*) \S+=</regex>
+    <order>cs3Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs4=(\.*) \S+=</regex>
+    <order>cs4</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs4Label=(\.*) \S+=</regex>
+    <order>cs4Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs5=(\.*) \S+=</regex>
+    <order>cs5</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs5Label=(\.*) \S+=</regex>
+    <order>cs5Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>deviceInboundInterface=(\.*) \S+=</regex>
+    <order>deviceInboundInterface</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>deviceOutboundInterface=(\.*) \S+=</regex>
+    <order>deviceOutboundInterface</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs6=(\.*) \S+=</regex>
+    <order>cs6</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs6Label=(\.*) \S+=</regex>
+    <order>cs6Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cn1=(\.*) \S+=</regex>
+    <order>cn1</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cn1Label=(\.*) \S+=</regex>
+    <order>cn1Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cnt=(\d*) \S+=</regex>
+    <order>cnt</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>spt=(\d*) \S+=</regex>
+    <order>srcport</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>dpt=(\d*) \S+=</regex>
+    <order>dstport</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>proto=(\.*) \S+=</regex>
+    <order>protocol</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>act=(\.*) \S+=</regex>
+    <order>action</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSBytes=(\d*) \S+=</regex>
+    <order>PanOSBytes</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>in=(\d*) \S+=</regex>
+    <order>bytes_received</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>out=(\d*) \S+=</regex>
+    <order>bytes_sent</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cn2=(\.*) \S+=</regex>
+    <order>cn2</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cn2Label=(\.*) \S+=</regex>
+    <order>cn2Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSSessionStartTime=(\.*) \S+=</regex>
+    <order>PanOSSessionStartTime</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cn3=(\.*) \S+=</regex>
+    <order>cn3</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cn3Label=(\.*) \S+=</regex>
+    <order>cn3Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs2=(\.*) \S+=</regex>
+    <order>cs2</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cs2Label=(\.*) \S+=</regex>
+    <order>cs2Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>\sexternalId=(\.*) \S+=</regex>
+    <order>externalId</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSSourceLocation=(\.*) \S+=</regex>
+    <order>PanOSSourceLocation</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSDestinationLocation=(\.*) \S+=</regex>
+    <order>PanOSDestinationLocation</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSPacketsSent=(\d*) \S+=</regex>
+    <order>PanOSPacketsSent</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSPacketsReceived=(\d*) \S+=</regex>
+    <order>PanOSPacketsReceived</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>reason=(\.*) \S+=</regex>
+    <order>reason</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSDGHierarchyLevel1=(\.*) \S+=</regex>
+    <order>PanOSDGHierarchyLevel1</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSDGHierarchyLevel2=(\.*) \S+=</regex>
+    <order>PanOSDGHierarchyLevel2</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSDGHierarchyLevel3=(\.*) \S+=</regex>
+    <order>PanOSDGHierarchyLevel3</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSDGHierarchyLevel4=(\.*) \S+=</regex>
+    <order>PanOSDGHierarchyLevel4</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSVirtualSystemName=(\.*) \S+=</regex>
+    <order>PanOSVirtualSystemName</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>dvchost=(\.*) \S+=</regex>
+    <order>dvchost</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cat=(\.*) \S+=</regex>
+    <order>category</order>
+</decoder>
+
+<!-- DNS -->
+<decoder name="paloalto-firewall-fields">
+    <parent>paloalto-firewall</parent>
+    <regex>PanOSRecordType=(\.*) \S+=</regex>
+    <order>PanOSRecordType</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSCloudDNSClientIP=(\.*) \S+=</regex>
+    <order>PanOSCloudDNSClientIP</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSDNSResolverIP=(\.*) \S+=</regex>
+    <order>PanOSDNSResolverIP</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSThreatID=(\.*) \S+=</regex>
+    <order>PanOSThreatID</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSDNSCategory=(\.*) \S+=</regex>
+    <order>PanOSDNSCategory</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>DestinationDNSDomain=(\S*)</regex>
+    <order>DestinationDNSDomain</order>
+</decoder>
+
+<!-- SYSTEM -->
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>msg=(\.*) \S+=</regex>
+    <order>msg</order>
+</decoder>
+
+<!-- GLOBALPROTECT -->
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSDescription=(\.*) \S+=</regex>
+    <order>PanOSDescription</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>outcome=(\.*) \S+=</regex>
+    <order>outcome</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSConnectionError=(\.*) \S+=</regex>
+  <order>connectionerror</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSPortal=(\.*) \S+=</regex>
+    <order>PanOSPortal</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSSequenceNo=(\d*) \S+=</regex>
+    <order>PanOSSequenceNo</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSVirtualSystemID=(\d*)</regex>
+    <order>PanOSVirtualSystemID</order>
+</decoder>
+
+<!-- HIPMATCH -->
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSSourceUser=(\.*) \S+=</regex>
+    <order>PanOSSourceUser</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSHipMatchType=(\.*) \S+=</regex>
+    <order>PanOSHipMatchType</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>c6a1=(\.*) \S+=</regex>
+    <order>c6a1</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>c6a1Label=(\.*) \S+=</regex>
+    <order>c6a1Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>PanOSHostID=(\.*) \S+=</regex>
+    <order>PanOSHostID</order>
+</decoder>
+
+<!-- GTP -->
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cfp1=(\.*) \S+=</regex>
+    <order>cfp1</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cfp1Label=(\.*) \S+=</regex>
+    <order>cfp1Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cfp2=(\.*) \S+=</regex>
+    <order>cfp2</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cfp2Label=(\.*) \S+=</regex>
+    <order>cfp2Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cfp3=(\.*) \S+=</regex>
+    <order>cfp3</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cfp3Label=(\.*) \S+=</regex>
+    <order>cfp3Label</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cfp4=(\.*) \S+=</regex>
+    <order>cfp4</order>
+</decoder>
+<decoder name="paloalto-firewall-fields">
+	<parent>paloalto-firewall</parent>
+	<regex>cfp4Label=(\.*) \S+=</regex>
+    <order>cfp4Label</order>
+</decoder>

@@ -1,0 +1,24 @@
+<decoder name="MFA">
+	<type>ossec</type>
+	<program_name>pfsvc</program_name>
+	<prematch>\.*Pfauth</prematch>
+</decoder>
+
+<decoder name="MFAFields">
+	<parent>MFA</parent>
+	<regex>\s(\.*)\sfor user</regex>
+	<order>status</order>
+</decoder>
+
+<decoder name="MFAFields">
+	<parent>MFA</parent>
+	<regex>user\s*'(\.*)'.|user\s*'(\.*)'\s+</regex>
+	<order>userName</order>
+</decoder>
+
+<decoder name="MFAFields">
+	<parent>MFA</parent>
+	<regex>Call status:\s+(\.* - \.*).</regex>
+	<order>action</order>
+</decoder>
+

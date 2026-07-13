@@ -1,0 +1,684 @@
+<decoder name="cisco-ise">
+    <prematch>^CISE_\S+</prematch>
+</decoder>
+<!--
+CISE_Passed_Authentications
+-->
+<!--
+Feb  1 16:41:20 hkmcpacise1 CISE_Passed_Authentications 0000046267 8 1  RadiusFlowType=Wired802_1x, SSID=54-9F-C6-92-8C-AD, AcsSessionID=hkmcpacise1/431529345/4879890, AuthenticationIdentityStore=HKMC-AD, AuthenticationMethod=x509_PKI, SelectedAccessService=EAP_PEAP-TLS_HOST, SelectedAuthorizationProfiles=VLAN16, IsMachineAuthentication=false, IdentityGroup=Endpoint Identity Groups:Profiled, Step=11001, Step=11017, Step=15049, Step=15008, Step=15048, Step=15048, Step=15048, Step=11507, Step=12500, Step=12625, Step=11006, Step=11001, Step=11018, Step=12502, Step=12800, Step=12545, Step=12542, Step=12805, Step=12806, Step=12807, Step=12808, Step=12809, Step=12505, Step=11006, Step=11001, Step=11018, Step=12504, Step=12505, Step=11006, Step=11001, Step=11018, Step=12504, Step=12505, Step=11006, Step=11001, Step=11018, Step=12504, Step=12505, Step=11006, Step=11001, Step=11018, Step=12504, Step=12505, Step=11006, Step=11001, Step=11018, Step=12504, Step=12505, Step=11006, Step=11001, Step=11018, Step=12504,
+Feb  1 16:41:20 hkmcpacise1 CISE_Passed_Authentications 0000046267 8 7  Response={Class=CACS:0EFB0B0A0003AD610C233224:hkmcpacise1/431529345/4879890; Tunnel-Type=(tag=1) VLAN; Tunnel-Medium-Type=(tag=1) 802; Tunnel-Private-Group-ID=(tag=1) 16; EAP-Key-Name=0d:63:da:25:af:ae:97:81:ab:ad:d2:07:c3:5c:93:d3:cc:eb:3b:e0:74:7e:b2:4f:1a:64:a3:f4:e8:5f:ab:9c:20:b7:7d:78:ff:17:2e:be:30:72:50:8e:f6:f0:19:21:fd:84:43:b4:53:df:86:3e:ed:b1:97:a9:64:8d:45:ca:fe; MS-MPPE-Send-Key=****; MS-MPPE-Recv-Key=****; LicenseTypes=1; },
+Feb  2 10:21:48 prod-ise-01 CISE_Passed_Authentications 0003965399 4 0 2023-02-02 10:21:48.825 +08:00 1086795200 5200 NOTICE Passed-Authentication: Authentication succeeded, ConfigVersionId=420, Device IP Address=172.16.200.45, DestinationIPAddress=172.16.11.35, DestinationPort=1812, UserName=70-38-EE-CC-65-04, Protocol=Radius, RequestLatency=11, NetworkDeviceName=TST20S-3750X-SW1, User-Name=7038eecc6504, NAS-IP-Address=172.16.200.45, NAS-Port=50226, Service-Type=Call Check, Framed-MTU=1500, Called-Station-ID=E4-D3-F1-A0-4E-9A, Calling-Station-ID=70-38-EE-CC-65-04, NAS-Port-Type=Ethernet, NAS-Port-Id=GigabitEthernet2/0/26, EAP-Key-Name=, cisco-av-pair=service-type=Call Check, cisco-av-pair=audit-session-id=AC10C82D0000023820BE4B98, OriginalUserName=7038eecc6504, NetworkDeviceProfileName=Cisco, NetworkDeviceProfileId=b0699505-3150-4215-a80e-6753d45bf56c, IsThirdPartyDeviceFlow=false, RadiusFlowType=WiredMAB, SSID=E4-D3-F1-A0-4E-9A, AcsSessionID=prod-ise-01/444404574/24461283,
+-->
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>^(\S+) (\d+) (\d) (\d)\s*</regex>
+    <order>category,msg_id,total_seg,seg_num</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>\d+:\d+:\d+\S+ \S+ (\d+) (\d+) (\S+)  \S+: (\.+),|\d+:\d+:\d+\S+ \S+ (\d+) (\d+) (\S+) \S+: (\.+),</regex>
+    <order>seq_num,massage_code,severity,massage</order>
+</decoder>
+
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>ConfigVersionId=(\d+),</regex>
+    <order>ConfigVersionId</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Device IP Address=(\S+),</regex>
+    <order>srcip</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>DestinationIPAddress=(\S+),</regex>
+    <order>dstip</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>DestinationPort=(\d+),</regex>
+    <order>dstport</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>UserName=(\.+),|User-Name=(\.+),</regex>
+    <order>username</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>UserName=(\.+);</regex>
+    <order>username</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>UserName=(\.+),|User-Name=(\.+),</regex>
+    <order>dstuser</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>UserName=(\.+);</regex>
+    <order>dstuser</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Protocol=(\.+),</regex>
+    <order>protocol</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>RequestLatency=(\.+),</regex>
+    <order>RequestLatency</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NetworkDeviceName=(\.+),</regex>
+    <order>NetworkDeviceName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NAS-IP-Address=(\S+),</regex>
+    <order>NAS_IP_Address</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NAS-Port=(\d+),</regex>
+    <order>NAS_Port</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NAS-Port=(\d+),</regex>
+    <order>srcport</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Service-Type=(\S+),</regex>
+    <order>Service_Type</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Framed-MTU=(\d+),</regex>
+    <order>Framed_MTU</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Calling-Station-ID=(\S+),</regex>
+    <order>CallingStationID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NAS-Identifier=(\S+),</regex>
+    <order>NAS_Identifier</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NAS-Port-Type=(\S+),</regex>
+    <order>NAS_Port_Type</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NAS-Port-Id=(\S+),</regex>
+    <order>NAS_Port_Id</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EAP-Key-Name=(\S*),|EAP-Key-Name=(\S*);</regex>
+    <order>EAP_Key_Name</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>audit-session-id=(\S+),</regex>
+    <order>audit-session-id</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>OriginalUserName=(\S+),</regex>
+    <order>OriginalUserName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NetworkDeviceProfileName=(\S+),</regex>
+    <order>NetworkDeviceProfileName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NetworkDeviceProfileId=(\S+),</regex>
+    <order>NetworkDeviceProfileId</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>IsThirdPartyDeviceFlow=(\S+),</regex>
+    <order>IsThirdPartyDeviceFlow</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>RadiusFlowType=(\S+),</regex>
+    <order>RadiusFlowType</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AcsSessionID=(\S+),</regex>
+    <order>AcsSessionID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AuthenticationIdentityStore=(\.+),</regex>
+    <order>AuthenticationIdentityStore</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AuthenticationMethod=(\S+),</regex>
+    <order>AuthenticationMethod</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>SelectedAccessService=(\.+),</regex>
+    <order>SelectedAccessService</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>SelectedAuthorizationProfiles=(\S+),</regex>
+    <order>SelectedAuthorizationProfiles</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>UseCase=(\.+),</regex>
+    <order>UseCase</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>IdentityGroup=(\.+),</regex>
+    <order>IdentityGroup</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>SelectedAuthenticationIdentityStores=(\.+),</regex>
+    <order>SelectedAuthenticationIdentityStores</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AuthenticationStatus=(\S+),</regex>
+    <order>AuthenticationStatus</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NetworkDeviceGroups=(\.+),</regex>
+    <order>NetworkDeviceGroups</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>IdentityPolicyMatchedRule=(\S+),</regex>
+    <order>IdentityPolicyMatchedRule</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AuthorizationPolicyMatchedRule=(\S+),</regex>
+    <order>AuthorizationPolicyMatchedRule</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>UserType=(\S+),</regex>
+    <order>UserType</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>CPMSessionID=(\S+);|CPMSessionID=(\S+),</regex>
+    <order>CPMSessionID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndPointMACAddress=(\S+),</regex>
+    <order>EndPointMACAddress</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>PostureAssessmentStatus=(\S+),</regex>
+    <order>PostureAssessmentStatus</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndPointMatchedProfile=(\S+),</regex>
+    <order>EndPointMatchedProfile</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>DeviceRegistrationStatus=(\S+),</regex>
+    <order>DeviceRegistrationStatus</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>ISEPolicySetName=(\.+),</regex>
+    <order>ISEPolicySetName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>IdentitySelectionMatchedRule=(\S+),</regex>
+    <order>IdentitySelectionMatchedRule</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>allowEasyWiredSession=(\S+),</regex>
+    <order>allowEasyWiredSession</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>DTLSSupport=(\S+),</regex>
+    <order>DTLSSupport</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>HostIdentityGroup=(\.+),</regex>
+    <order>HostIdentityGroup</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Network Device Profile=(\S+),</regex>
+    <order>NetworkDeviceProfile</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Location=(\.+),</regex>
+    <order>Location</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Device Type=(\.+),</regex>
+    <order>DeviceType</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>IPSEC=(\.+),</regex>
+    <order>IPSEC</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>LogicalProfile=(\S+),</regex>
+    <order>LogicalProfile</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Class=(\S+),|Class=(\S+);</regex>
+    <order>Class</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>LicenseTypes=(\d+),|LicenseTypes=(\d+);</regex>
+    <order>LicenseTypes</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>SSID=(\S+),</regex>
+    <order>SSID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Tunnel-Type=(\.+);</regex>
+    <order>TunnelType</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Tunnel-Medium-Type=(\.+);</regex>
+    <order>TunnelMediumType</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Tunnel-Private-Group-ID=(\.+);</regex>
+    <order>TunnelPrivateGroupID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>IsMachineAuthentication=(\S+),</regex>
+    <order>IsMachineAuthentication</order>
+</decoder>
+<!--
+CISE_RADIUS_Accounting
+-->
+<!--
+Feb  1 16:40:44 hkmcpacise1 CISE_RADIUS_Accounting 0000046234 2 0 2023-02-01 16:40:44.894 +08:00 0136061093 3001 NOTICE Radius-Accounting: RADIUS Accounting stop request, ConfigVersionId=222, Device IP Address=10.11.251.13, UserName=NB1308$@hkmc.com.hk, RequestLatency=2, NetworkDeviceName=thspaswias03, User-Name=NB1308$@hkmc.com.hk, NAS-IP-Address=10.11.251.13, NAS-Port=50222, Class=CACS:0DFB0B0A0007F6130BA27BD0:hkmcpacise1/431529345/4879873, Called-Station-ID=40-B5-C1-E1-26-16, Calling-Station-ID=48-2A-E3-BA-A4-9B, NAS-Identifier=thspaswias03, Acct-Status-Type=Stop, Acct-Delay-Time=0, Acct-Input-Octets=5222353, Acct-Output-Octets=0, Acct-Session-Id=00008c50, Acct-Authentic=Remote, Acct-Session-Time=8, Acct-Input-Packets=22374, Acct-Output-Packets=0, Acct-Terminate-Cause=Lost Carrier, Event-Timestamp=1675240844, NAS-Port-Type=Ethernet, NAS-Port-Id=GigabitEthernet2/0/22, cisco-av-pair=audit-session-id=0DFB0B0A0007F6130BA27BD0, cisco-av-pair=vlan-id=96, cisco-av-pair=method=dot1x,
+Feb  2 11:29:37 hkmcpacise1 CISE_RADIUS_Accounting 0000075843 2 0 2023-02-02 11:29:37.875 +08:00 0136421788 3002 NOTICE Radius-Accounting: RADIUS Accounting watchdog update, ConfigVersionId=222, Device IP Address=10.11.251.15, UserName=vwsng@hkmca.hk, RequestLatency=2, NetworkDeviceName=thspaswias05, User-Name=vwsng@hkmca.hk, NAS-IP-Address=10.11.251.15, NAS-Port=50514, Framed-IP-Address=10.11.17.182, Class=CACS:0FFB0B0A000888BD0F9F0ABB:hkmcpacise1/431529345/4892813, Called-Station-ID=54-9F-C6-A4-5F-0E, Calling-Station-ID=F4-A8-0D-08-96-6F, NAS-Identifier=thspaswias05, Acct-Status-Type=Interim-Update, Acct-Delay-Time=0, Acct-Input-Octets=42119698, Acct-Output-Octets=0, Acct-Session-Id=00007e9b, Acct-Authentic=Remote, Acct-Input-Packets=114586, Acct-Output-Packets=0, Event-Timestamp=1675308577, NAS-Port-Type=Ethernet, NAS-Port-Id=GigabitEthernet5/0/14, cisco-av-pair=audit-session-id=0FFB0B0A000888BD0F9F0ABB, cisco-av-pair=vlan-id=16, cisco-av-pair=method=dot1x, AcsSessionID=hkmcpacise1/431529345/4892815,
+-->
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Acct-Status-Type=(\S+),</regex>
+    <order>AcctStatusType</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Acct-Delay-Time=(\d+),</regex>
+    <order>AcctDelayTime</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Acct-Session-Id=(\S+),</regex>
+    <order>AcctSessionId</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Acct-Authentic=(\S+),</regex>
+    <order>AcctAuthentic</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Acct-Session-Time=(\d+),</regex>
+    <order>AcctSessionTime</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Acct-Input-Packets=(\d+),</regex>
+    <order>AcctInputPackets</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Acct-Output-Packets=(\d+),</regex>
+    <order>AcctOutputPackets</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Acct-Terminate-Cause=(\.+),</regex>
+    <order>AcctTerminateCause</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Event-Timestamp=(\d+),</regex>
+    <order>EventTimestamp</order>
+</decoder>
+<!--
+CISE_Failed_Attempts
+-->
+<!--
+Feb  1 16:40:54 hkmcpacise1 CISE_Failed_Attempts 0000046236 4 1  AcsSessionID=hkmcpacise1/431529345/4879883, AuthenticationIdentityStore=Internal Endpoints, AuthenticationMethod=Lookup, SelectedAccessService=HKMC_MAB, SelectedAuthorizationProfiles=DenyAccess, UseCase=Host Lookup, IdentityGroup=Endpoint Identity Groups:Unknown, FailureReason=15039 Rejected per authorization profile, Step=11001, Step=11017, Step=11027, Step=15049, Step=15008, Step=15048, Step=15048, Step=15048, Step=15048, Step=15048, Step=15041, Step=22072, Step=15013, Step=24209, Step=24211, Step=22037, Step=24715, Step=24714, Step=15036, Step=15048, Step=15016, Step=15039, Step=11003, SelectedAuthenticationIdentityStores=Internal Endpoints, SelectedAuthenticationIdentityStores=Internal Users, NetworkDeviceGroups=Location#All Locations#CSW, NetworkDeviceGroups=IPSEC#Is IPSEC Device#No, NetworkDeviceGroups=Device Mode#Device Mode#Monitor Mode, NetworkDeviceGroups=Device Type#All Device Types, IdentityPolicyMatchedRule=HKMC_MAB,
+Feb  1 16:40:54 hkmcpacise1 CISE_Failed_Attempts 0000046235 4 3  Response={RadiusPacketType=AccessReject; AuthenticationResult=Passed; UserName=18:60:24:8B:38:46; },
+-->
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Response=(\.+),</regex>
+    <order>Response</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>RadiusPacketType=(\S+),</regex>
+    <order>RadiusPacketType</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AuthenticationResult=(\S+),</regex>
+    <order>AuthenticationResult</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>FailureReason=(\.+),</regex>
+    <order>FailureReason</order>
+</decoder>
+<!--
+CISE_Administrative_and_Operational_Audit
+-->
+<!--
+Feb  1 16:40:59 hkmcpacise1 CISE_Administrative_and_Operational_Audit 0000046250 1 0 2023-02-01 16:40:59.046 +08:00 0136061218 60080 NOTICE Administrator-Login: A SSH CLI user has successfully logged in, ConfigVersionId=222, AdminInterface=CLI, OperationMessageText=3034690 Connection requested hkmcpacise1(44296) - hkmcdacise1.hkmc.com.hk(443), AcsInstance=Feb,
+Feb  6 16:44:18 hkmcpacise1 CISE_Administrative_and_Operational_Audit 0000229092 1 0 2023-02-06 16:44:18.594 +08:00 0138355914 61025 NOTICE EAP-TLS: Open secure connection with TLS peer, ConfigVersionId=222, UserName=USERNAME, ISELocalAddress=192.168.1.195:1812, ISEModuleName=EAP_SERVER, ISEServiceName=EAP-TLS Server, PeerAddress=48-2A-E3-A4-42-D3, PeerName=CN=NB1390\,OU=Win10 Desktops (THS)\,OU=Computers\,OU=CENTRAL\,DC=hkmc\,DC=com\,DC=hk, PeerAuthenticated=true, CertificateHash=F3:74:E6:9D:2F:20:B7:96:88:3B:2D:22:66:6F:E5:26:60:32:24:21, ConnectionStatus=Succeeded, UniqueConnectionIdentifier =7bef702a-b482-40ee-b7fa-a8bc649e1b49, Subject - Common Name=NB1390,
+-->
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AdminInterface=(\S+),</regex>
+    <order>AdminInterface</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>OperationMessageText=(\.+),</regex>
+    <order>OperationMessageText</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AcsInstance=(\S+),</regex>
+    <order>AcsInstance</order>
+</decoder>
+<!--
+CISE_AD_Connector
+-->
+<!--
+Feb  2 11:29:37 hkmcpacise1 CISE_AD_Connector 0000075837 1 0 2023-02-02 11:29:37.478 +08:00 0136421729 25038 INFO  AD-Connector: GC record cached,  AD-Domain=hkmca.hk, AD-Domain-Controller=mcapwwadc3.hkmca.hk, AD-IP-Address=192.168.5.21, AD-Log-Id=1642154842/6602682, AD-Site=COSCO,
+-->
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AD-Domain=(\S+),</regex>
+    <order>ADDomain</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AD-Domain-Controller=(\S+),</regex>
+    <order>ADDomainController</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AD-IP-Address=(\S+),</regex>
+    <order>AD_IP_Address</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AD-Log-Id=(\S+),</regex>
+    <order>AD_Log_Id</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AD-Site=(\S+),</regex>
+    <order>AD_Site</order>
+</decoder>
+<!--
+CISE_RADIUS_Diagnostics
+-->
+<!--
+Feb  2 11:29:36 hkmcpacise1 CISE_RADIUS_Diagnostics 0000075834 2 0 2023-02-02 11:29:36.930 +08:00 0136421659 12542 WARN  EAP: The EAP-TLS session ticket received from supplicant while the stateless session resume is disabled. Performing full authentication, ConfigVersionId=222, Device IP Address=10.11.251.15, Device Port=63533, DestinationIPAddress=192.168.1.195, DestinationPort=1812, RadiusPacketType=AccessRequest, RadiusIdentifier=107, User-Name=USERNAME, NAS-IP-Address=10.11.251.15, NAS-Port=50514, Service-Type=Framed, Framed-MTU=1468, State=37CPMSessionID=0FFB0B0A000888BD0F9F0ABB\;39SessionID=hkmcpacise1/431529345/4892813\;, Called-Station-ID=54-9F-C6-A4-5F-0E, Calling-Station-ID=F4-A8-0D-08-96-6F, NAS-Port-Type=Ethernet, cisco-av-pair=service-type=Framed, cisco-av-pair=audit-session-id=0FFB0B0A000888BD0F9F0ABB, cisco-av-pair=method=dot1x, cisco-av-pair=client-iif-id=399739930, cisco-av-pair=vlan-id=16, AcsSessionID=hkmcpacise1/431529345/4892813, SelectedAccessService=EAP_PEAP-TLS_HOST
+-->
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>SelectedAccessService=(\S+)</regex>
+    <order>SelectedAccessService</order>
+</decoder>
+<!--
+CISE_Profiler
+-->
+<!--
+Feb  2 11:27:55 hkmcpacise1 CISE_Profiler 0000075767 3 1 User-Fetch-Organizational-Unit=\,Device Type=Device Type#All Device Types\,User-Fetch-Last-Name=\,User-Fetch-Telephone=\,PortalUser=\,AllowedProtocolMatchedRule=HKMC_MAB\,BYODRegistration=Unknown\,Calling-Station-ID=64-16-7F-CD-7D-AA\,FailureReason=15039 Rejected per authorization profile\,Total Certainty Factor=100\,MDMServerID=\,UserType=Host\,IdentityGroupID=aa10ae00-8bff-11e6-996c-525400b48521\,PostureApplicable=Yes\,User-Fetch-Department=\,NmapSubnetScanID=0\,Device Identifier=\,NAS-Port-Type=Ethernet\,RegistrationTimeStamp=0\,TimeToProfile=6\,PhoneID=\,DeviceRegistrationStatus=NotRegistered\,User-Fetch-Email=\,MatchedPolicyID=31596690-8c00-11e6-996c-525400b48521\,SSID=54-9F-C6-79-A5-0E\,UserName=64-16-7F-CD-7D-AA\,FeedService=false\,CreateTime=1663316292734\,SelectedAuthorizationProfiles=DenyAccess\,StaticGroupAssignment=false\,host-name=\,NAS-Port-Id=GigabitEthernet3/0/14\,User-Fetch-LocalityName=\,DTLSSupport=Unknown\,
+Feb  2 12:47:55 hkmcpacise1 CISE_Profiler 0000079002 3 0 2023-02-02 12:47:55.088 +08:00 0136477101 80002 INFO  Profiler: Profiler EndPoint profiling event occurred, ConfigVersionId=222, EndpointCertainityMetric=100, EndpointMacAddress=64:16:7F:CD:7D:81, EndpointMatchedPolicy=Polycom-Device, EndpointNADAddress=10.11.251.12, EndpointOUI=Polycom, EndpointPolicy=Polycom-Device, EndpointProperty=PolicyVersion=1\,AuthenticationIdentityStore=Internal Endpoints\,EndPointPolicyID=31596690-8c00-11e6-996c-525400b48521\,User-Fetch-CountryName=\,EndPointVersion=29915\,AuthenticationMethod=Lookup\,FirstCollection=1670826691250\,CacheUpdateTime=1675313275079\,StaticAssignment=false\,User-Name=64167fcd7d81\,User-Fetch-First-Name=\,User-Fetch-StreetAddress=\,NmapScanCount=0\,PostureExpiry=\,NetworkDeviceName=thspaswias02\,User-Fetch-Job-Title=\,DestinationIPAddress=192.168.1.195\,AAA-Server=hkmcpacise1\,User-AD-Last-Fetch-Time=1670977749784\,MessageCode=5400\,User-Fetch-User-Name=64167fcd7d81\,
+Feb  2 11:27:55 hkmcpacise1 CISE_Profiler 0000075767 3 2 LastActivity=1675124158597\,User-Fetch-StateOrProvinceName=\,LastNmapScanTime=0\,UpdateTime=1675307875466\,AuthorizationPolicyMatchedRule=Default\,UniqueSubjectID=\,Location=Location#All Locations#THS, EndpointSourceEvent=RADIUS Probe, EndpointIdentityGroup=Profiled, ProfilerServer=hkmcpacise1.hkmc.com.hk,
+-->
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndpointCertainityMetric=(\S+),</regex>
+    <order>EndpointCertainityMetric</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndpointMatchedPolicy=(\S+),</regex>
+    <order>EndpointMatchedPolicy</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndpointNADAddress=(\S+),</regex>
+    <order>EndpointNADAddress</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndpointOUI=(\S+),</regex>
+    <order>EndpointOUI</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndpointPolicy=(\S+),</regex>
+    <order>EndpointPolicy</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndPointPolicyID=(\S+),</regex>
+    <order>EndPointPolicyID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-Fetch-CountryName=(\S+),</regex>
+    <order>UserFetchCountryName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AAA-Server=(\S+),</regex>
+    <order>AAA-Server</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-AD-Last-Fetch-Time=(\S+),</regex>
+    <order>UserADLastFetchTime</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>MessageCode=(\S+),</regex>
+    <order>MessageCode</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-Fetch-User-Name=(\S+),</regex>
+    <order>UserFetchUserName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-Fetch-Organizational-Unit=(\.*),</regex>
+    <order>UserFetchOrganizationalUnit</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-Fetch-Last-Name=(\.*),</regex>
+    <order>UserFetchLastName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-Fetch-Telephone=(\.*),</regex>
+    <order>UserFetchTelephone</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>PortalUser=(\.*),</regex>
+    <order>PortalUser</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>AllowedProtocolMatchedRule=(\S+),</regex>
+    <order>AllowedProtocolMatchedRule</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>BYODRegistration=(\S+),</regex>
+    <order>BYODRegistration</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Total Certainty Factor=(\S+),</regex>
+    <order>TotalCertaintyFactor</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>MDMServerID=(\.*),</regex>
+    <order>MDMServerID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>IdentityGroupID=(\S+),</regex>
+    <order>IdentityGroupID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>PostureApplicable=(\S+),</regex>
+    <order>PostureApplicable</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-Fetch-Department=(\.*),</regex>
+    <order>UserFetchDepartment</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>NmapSubnetScanID=(\S+),</regex>
+    <order>NmapSubnetScanID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>Device Identifier=(\.*),</regex>
+    <order>DeviceIdentifier</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>FeedService=(\S+),</regex>
+    <order>FeedService</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>CreateTime=(\S+),</regex>
+    <order>CreateTime</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>SelectedAuthorizationProfiles=(\S+),</regex>
+    <order>SelectedAuthorizationProfiles</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>StaticGroupAssignment=(\S+),</regex>
+    <order>StaticGroupAssignment</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>host-name=(\.*),</regex>
+    <order>host-name</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-Fetch-LocalityName=(\.*),</regex>
+    <order>UserFetchLocalityName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>LastActivity=(\S+),</regex>
+    <order>LastActivity</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>User-Fetch-StateOrProvinceName=(\.*),</regex>
+    <order>UserFetchStateOrProvinceName</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>LastNmapScanTime=(\S+),</regex>
+    <order>LastNmapScanTime</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>UpdateTime=(\S+),</regex>
+    <order>UpdateTime</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>UniqueSubjectID=(\.*),</regex>
+    <order>UniqueSubjectID</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndpointSourceEvent=(\S+),</regex>
+    <order>EndpointSourceEvent</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>EndpointIdentityGroup=(\S+),</regex>
+    <order>EndpointIdentityGroup</order>
+</decoder>
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>ProfilerServer=(\S+),</regex>
+    <order>ProfilerServer</order>
+</decoder>
+<!--
+CISE_Profiler
+-->
+<!--
+Feb  6 16:43:22 hkmcpacise1 CISE_Identity_Stores_Diagnostics 0000230138 1 0 2023-02-06 16:43:22.274 +08:00 0138355325 24458 WARN  External-Active-Directory: Not all Active Directory attributes are retrieved successfully, ConfigVersionId=222, UserName=NB1390$@hkmc.com.hk, SelectedAccessService=AuthenticateUserAPI, AuthenticationMethod=Lookup, CurrentIDStoreName=HKMC-AD, CPMSessionID=hkmcpacise1:userauth268640, ExternalGroups=S-1-5-21-72300722-611613810-1850952788-515, IdentityAccessRestricted=false, Response={QueryResult=Passed; },
+-->
+<decoder name="cisco-ise-fields">
+    <parent>cisco-ise</parent>
+    <regex>IdentityAccessRestricted=(\S+),</regex>
+    <order>IdentityAccessRestricted</order>
+</decoder>

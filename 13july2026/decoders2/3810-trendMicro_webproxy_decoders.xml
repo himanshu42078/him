@@ -1,0 +1,176 @@
+<decoder name="trendMicro_webproxy">
+    <program_name>iwsva.jetco.com.hk</program_name>
+    <prematch>\S+, \d+ \S+ \d+ \d\d:\d\d:\d\d,\S+</prematch>
+</decoder>
+<!-- Access tracking log -->
+<!--
+Jan 31 11:24:39 172.5.2.110 iwsva.jetco.com.hk: <Tue, 31 Jan 2023 11:24:40,HKT> [EVT_URL_ACCESS_TRACKING|LOG_INFO] Access tracking log tk_username=192.168.185.179,tk_url=https://bidder.criteo.com/,tk_size=4183,tk_date_field=2023-01-31 11:24:40+0800,tk_protocol=https,tk_mime_content=text/html,tk_server=iwsva.jetco.com.hk,tk_client_ip=192.168.185.179,tk_server_ip=182.161.73.145,tk_domain=bidder.criteo.com,tk_path=/,tk_file_name=,tk_operation=CONNECT,tk_uid=0828420650-2cbaa17404789a456fe0,tk_category=88,tk_category_type=0
+-->
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>[(\S+)] (\.+) \S+=</regex>
+	<order>original_id, event_type</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_username=(\S+),\S+=</regex>
+	<order>username</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_username=(\S+),\S+=</regex>
+	<order>dstuser</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_url=(\.+),\S+=</regex>
+	<order>url</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_size=(\d+),\S+=</regex>
+	<order>tk_size</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_date_field=(\.+),\S+=</regex>
+	<order>tk_date_field</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_protocol=(\S+),\S+=</regex>
+	<order>protocol</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_mime_content=(\S+),\S+=</regex>
+	<order>tk_mime_content</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_server=(\S+),\S+=</regex>
+	<order>tk_server</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_client_ip=(\S+),\S+=</regex>
+	<order>tk_client_ip</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_server_ip=(\S+),\S+=</regex>
+	<order>tk_server_ip</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_client_ip=(\S+),\S+=</regex>
+	<order>srcip</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_server_ip=(\S+),\S+=</regex>
+	<order>dstip</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_domain=(\S+),\S+=</regex>
+	<order>tk_domain</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_path=(\S+),\S+=</regex>
+	<order>tk_path</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_file_name=(\S*),\S+=</regex>
+	<order>tk_file_name</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_operation=(\S+),\S+=</regex>
+	<order>tk_operation</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_uid=(\S+),\S+=</regex>
+	<order>tk_uid</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_category=(\.+),\S+=</regex>
+	<order>tk_category</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_category_type=(\d+)</regex>
+	<order>tk_category_type</order>
+</decoder>
+<!-- Performance log -->
+<!--
+Jan 31 11:24:37 172.5.2.110 iwsva.jetco.com.hk: <Tue, 31 Jan 2023 11:24:38,HKT> [EVT_PERFORMANCE|LOG_INFO] Performance log tk_server=iwsva.jetco.com.hk,tk_date_field=2023-01-31 11:24:38+0800,tk_metric_id=Number of FTP Processes,tk_metric_value=8,
+-->
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_metric_id=(\.+),\S+=</regex>
+	<order>tk_metric_id</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_metric_value=(\d+),</regex>
+	<order>tk_metric_value</order>
+</decoder>
+<!-- Blocked URL log -->
+<!--
+Jan 30 12:33:38 172.5.2.110 iwsva.jetco.com.hk: <Mon, 30 Jan 2023 12:33:39,HKT> [EVT_URL_BLOCKING|LOG_CRIT] Blocked URL log tk_username=192.168.185.78,tk_date_field=2023-01-30 12:33:39+0800,tk_protocol=https,tk_url=https://cbpmgtoa01.jetco.com (41002),tk_malicious_entity=,tk_file_name=,tk_entity_name=,tk_action=,tk_scan_type=user defined,tk_blocked_by=rule,tk_rule_name=Destination Port restriction,tk_opp_id=0,tk_group_name=None,tk_category=URL Blocking,tk_uid=0827668546-552467a4ae9b1a35e56f,tk_filter_action=1
+-->
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_malicious_entity=(\.*),\S+=</regex>
+	<order>tk_malicious_entity</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_entity_name=(\.*),\S+=</regex>
+	<order>tk_entity_name</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_action=(\.*),\S+=</regex>
+	<order>tk_action</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_action=(\.*),\S+=</regex>
+	<order>action</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_scan_type=(\.+),\S+=</regex>
+	<order>tk_scan_type</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_blocked_by=(\S+),\S+=</regex>
+	<order>tk_blocked_by</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_rule_name=(\.+),\S+=</regex>
+	<order>tk_rule_name</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_opp_id=(\d+),\S+=</regex>
+	<order>tk_opp_id</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_group_name=(\.+),\S+=</regex>
+	<order>tk_group_name</order>
+</decoder>
+<decoder name="trendMicro_webproxy_fields">
+	<parent>trendMicro_webproxy</parent>
+	<regex>tk_filter_action=(\d+)</regex>
+	<order>tk_filter_action</order>
+</decoder>

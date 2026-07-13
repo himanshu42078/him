@@ -1,0 +1,15 @@
+<!-- Apr 26 15:28:18 spamsniper jiran: 1650954498.959537 delivery 37848: success: 104.47.109.36 accepted message./Remote host said[Response Message]: 250 2.6.0 <012901d85936$cc55c9f0$65015dd0$@sonavpckorea.com> [InternalId=31447750547650, Hostname=PS2P216MB0436.KORP216.PROD.OUTLOOK.COM] 91966 bytes in 0.110, 812.158 KB/sec Queued mail for delivery/STEP: SEND SUCCESS FROM: jinwoo.han@sonavpckorea.com TO: sjlee@mbstar.co.kr MID: I1650954497_324880_5 -->
+<decoder name="spamfilter">
+    <prematch>^\S+ delivery \d+: success:|^\S+ delivery \d+: deferral:|^\S+ delivery \d+: failure:</prematch>
+    <program_name>jiran</program_name>
+</decoder>
+<decoder name="spamfilter_fields">
+    <parent>spamfilter</parent>
+    <regex>(\.+) delivery \d+: (\S+):</regex>
+    <order>syslog_pid,action</order>
+</decoder>
+<decoder name="spamfilter_fields">
+    <parent>spamfilter</parent>
+    <regex>Queued mail for delivery/(\.+) FROM: (\S+) TO: (\S+)</regex>
+    <order>event_msg, from, to</order>
+</decoder>

@@ -1,0 +1,5 @@
+<!-- Modify it at your will. -->
+<decoder name="tencent-waf-json">
+	<prematch>{"attack_ip":|{"domain":</prematch>
+	<plugin_decoder>JSON_Decoder</plugin_decoder>
+</decoder>

@@ -1,0 +1,14 @@
+<!-- 
+Dec 12 14:29:31 SVR02000.sctw.swirecocacola.com View User SCTW\WANGSJ12 requested Pool 3rd_party, allocated machine vWKS026015(S.J. Wang (王新傑)_VMS)
+Dec 12 14:23:09 SVR02000.sctw.swirecocacola.com View User SCTW\Changcc2 requested Pool ko, allocated machine vWKS026041(ChloeChang_KO)
+Aug 25 14:32:44 SVR02000.sctw.swirecocacola.com View User SCTW\Karthi has logged in
+Aug 27 18:12:20 SVR02000.sctw.swirecocacola.com View Unable to launch from Pool 3rd_party for user SCTW\WANGSJ12: Assigned machine vWKS026015(S.J. Wang (王新傑)_VMS) is unavailable
+-->
+<decoder name="horizon">
+    <prematch>^View User SCTW\S+ requested Pool|^View User SCTW\S+ has logged in|^View Unable to launch from Pool \S+ for user SCTW</prematch>
+</decoder>
+<decoder name="horizon-fields">
+    <parent>horizon</parent>
+    <regex>user (SCTW\S+):|User (SCTW\S+)</regex>
+    <order>user</order>
+</decoder>
