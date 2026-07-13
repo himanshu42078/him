@@ -1,0 +1,13 @@
+
+<group name="pwc_caas,cloud,tencent,">
+  <rule id="266000" level="3">
+    <decoded_as>tencent-waf-json</decoded_as>
+    <description>Group of tencent waf events</description>
+  </rule>
+  <rule id="266001" level="12">
+    <if_sid>266000</if_sid>
+    <field name="risk_level">^1$</field>
+    <status>^0$</status>
+    <description>Tencent WAF Alert: $(attack_type) [$(rule_id)]</description>
+  </rule> 
+</group>

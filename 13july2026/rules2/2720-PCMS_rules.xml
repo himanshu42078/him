@@ -1,0 +1,99 @@
+<group name="PCMSUserLog,pwc_caas,">
+    <!-- accessLog  -->
+    <rule id="272000" level="3">
+        <decoded_as>PCMSUserLogTable</decoded_as>
+        <description>PCMS User Logon Alert.</description>
+    </rule>
+
+    <rule id="272001" level="3">
+      <if_sid>272000</if_sid>
+      <field name="errorCode">2</field>
+      <description>PCMS User Logon failure.</description>
+    </rule>
+
+    <!--1min event trigger more then 5 time (same userID)-->
+    <rule id="272002" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>272001</if_matched_sid>
+      <same_field>userID</same_field>
+      <description>PCMS Alert: Multiple login failure attempts in 1 min(same user).</description>
+    </rule>
+
+    <!--1min event trigger more then 5 time (same hostname)-->
+    <rule id="272003" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>272001</if_matched_sid>
+      <same_field>hostname</same_field>
+      <description>PCMS Alert: Multiple login failure attempts in 1 min(same host).</description>
+    </rule>
+
+    <rule id="272004" level="3">
+      <if_sid>272000</if_sid>
+      <field name="errorCode">5</field>
+      <description>PCMS User Logon failure(non existing account).</description>
+    </rule>
+
+    <!--1min event trigger more then 5 time (not existing account)-->
+    <rule id="272005" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>272004</if_matched_sid>
+      <same_field>hostname</same_field>
+      <description>PCMS Alert: Multiple login failure attempts using non-existing user account.</description>
+    </rule>
+
+    <rule id="272006" level="3">
+      <if_sid>272000</if_sid>
+      <field name="errorCode">6</field>
+      <description>PCMS User Logon failure(locked account).</description>
+    </rule>
+
+    <rule id="272007" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>272006</if_matched_sid>
+      <same_field>hostname</same_field>
+      <description>PCMS Alert: Multiple login failure attempts using locked user account.</description>
+    </rule>
+
+</group>
+
+
+<group name="PCMSUserGroupLog,pwc_caas,">
+    <!-- errorLog  -->
+    <rule id="272100" level="0">
+        <decoded_as>PCMSUserGroupTable</decoded_as>
+        <description>PCMS User Group Alert.</description>
+    </rule>
+
+    <rule id="272101" level="12">
+      <if_sid>272100</if_sid>
+      <field name="groupCode">\.*</field>
+      <description>PCMS Alert: Detected User Group Right changes </description>
+    </rule>
+
+</group>
+
+<group name="PCMSGroupAccessLog,pwc_caas,">
+    <!-- errorLog  -->
+    <rule id="272200" level="0">
+        <decoded_as>PCMSGroupAccessTable</decoded_as>
+        <description>PCMS Group Access Alert.</description>
+    </rule>
+
+    <rule id="272201" level="12">
+      <if_sid>272200</if_sid>
+      <field name="groupCode">\.*</field>
+      <description>PCMS Alert: Detected Group Access Right changes </description>
+    </rule>
+
+</group>
+
+<group name="PCMSGroupAccessLog,pwc_caas,">
+    <!-- errorLog  -->
+    <rule id="272300" level="0">
+        <decoded_as>PCMSParmTable</decoded_as>
+        <description>PCMS PARM Change Alert.</description>
+    </rule>
+
+    <rule id="272301" level="12">
+      <if_sid>272300</if_sid>
+      <field name="code">\.*</field>
+      <description>PCMS Alert: Detected PARM changes, Parm: $(segment).</description>
+    </rule>
+
+</group>

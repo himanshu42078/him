@@ -1,0 +1,46 @@
+<!-- Modify it at your will. -->
+
+<group name="kibana,pwc_caas,">
+    <!-- Kibana  -->
+    <rule id="269000" level="0">
+        <decoded_as>kibanaJson</decoded_as>
+        <description>Kibana Web Portal Rules.</description>
+    </rule>
+
+    <rule id="269001" level="3">
+        <if_sid>269000</if_sid>
+        <field name="statusCode">401</field>
+        <field name="req.url">/internal/security/login</field>
+        <description>Kibana Login Failure.</description>
+    </rule>
+    
+    <!--1min logon more then 5 time-->
+    <rule id="269002" level="3" frequency="5" timeframe="60">
+      <if_matched_sid>269001</if_matched_sid>
+      <same_field>req.remoteAddress</same_field>
+      <description>Kibana: Log in to Web console multiple times in a short period of time. address: $(req.remoteAddress) login multiple times within one minute. </description>
+    </rule>  
+</group>
+
+
+<group name="elasticAuth,pwc_caas,">
+    <!-- Kibana  -->
+    <rule id="269100" level="0">
+        <decoded_as>elasticAuth</decoded_as>
+        <description>Elastic Auth Portal Rules.</description>
+    </rule>
+
+    <rule id="269101" level="3">
+        <if_sid>269100</if_sid>
+        <match>failed to authenticate user</match>
+        <description>Elastic Login Failure.</description>
+    </rule>
+    
+    <!--1min logon more then 5 time-->
+    <rule id="269102" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>269101</if_matched_sid>
+      <same_user></same_user>
+      <description>Elastic: Log in to Web console multiple times in a short period of time. User: $(user) login multiple times within one minute. </description>
+    </rule>
+</group>
+

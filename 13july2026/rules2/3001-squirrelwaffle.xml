@@ -1,0 +1,63 @@
+
+<group name="pwc_caas,squirrelwaffle,">
+    <rule id="300100" level="12">
+        <if_sid>60103</if_sid>
+        <field name="win.system.eventID">^4688$</field>
+        <field name="win.eventdata.commandLine">Datop\\\\test1.test|Datop\\\\test2.test|Datop\\\\test.test</field>
+        <field name="win.eventdata.parentProcessName">excel.exe$</field>
+        <field name="win.eventdata.newProcessName">regsvr32.exe$</field>
+        <description>Squirrelwaffle Loader Activity with CobaltStrike: "$(win.eventdata.commandLine)"</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+    </rule>
+
+
+    <rule id="300101" level="12">
+        <if_sid>60103</if_sid>
+        <field name="win.system.eventID">^4688$</field>
+        <field name="win.eventdata.commandLine">schtasks.exe|whoami.exe|cmd.exe|arp.exe|ipconfig.exe|net.exe|route.exe|netstat.exe</field>
+        <field name="win.eventdata.parentProcessName">regsvr32.exe$</field>
+        <field name="win.eventdata.newProcessName">msra.exe$|explorer.exe$</field>
+        <description>Squirrelwaffle Loader with Qakbot and CobaltStrike: "$(win.eventdata.commandLine)"</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+    </rule>
+
+    <rule id="300102" level="12">
+        <if_sid>60103</if_sid>
+        <field name="win.system.eventID">^4688$</field>
+        <field name="win.eventdata.commandLine">ProgramData</field>
+        <field name="win.eventdata.commandLine">/k</field>
+        <field name="win.eventdata.commandLine">cscript</field>
+        <field name="win.eventdata.commandLine">.vbs</field>
+        <description>SquirrelWaffle Behavioral Patterns (via cmdline) 1: "$(win.eventdata.commandLine)"</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+    </rule>
+
+    <rule id="300103" level="12">
+        <if_sid>60103</if_sid>
+        <field name="win.system.eventID">^4688$</field>
+        <field name="win.eventdata.commandLine">ProgramData</field>
+        <field name="win.eventdata.commandLine">/c</field>
+        <field name="win.eventdata.commandLine">rundll32</field>
+        <field name="win.eventdata.commandLine">.dll</field>
+        <description>SquirrelWaffle Behavioral Patterns (via cmdline) 2: "$(win.eventdata.commandLine)"</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+    </rule>
+
+    <rule id="300104" level="12">
+        <if_sid>60103</if_sid>
+        <field name="win.system.eventID">^4688$</field>
+        <field name="win.eventdata.commandLine">ProgramData\\\\www1.dll,ldr|ProgramData\\\\www2.dll,ldr|ProgramData\\\\www3.dll,ldr|ProgramData\\\\www4.dll,ldr|ProgramData\\\\www5.dll,ldr</field>
+        <field name="win.eventdata.newProcessName">rundll32.exe$</field>
+        <field name="win.eventdata.parentProcessName">cmd.exe$</field>
+        <description>Squirrelwaffle Malware Drops Cobalt Strike: "$(win.eventdata.commandLine)"</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+    </rule>
+
+    <rule id="300105" level="12">
+        <if_group>L2R|cisco-asa</if_group>
+        <field name="url_domain">bussiness-z.ml|test.dirigu.ro|systemmentorsec.com</field>
+        <description>New SquirrelWaffle Malware with Cobalt Strike (via proxy)</description>
+        <group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,</group>
+    </rule>
+
+</group>

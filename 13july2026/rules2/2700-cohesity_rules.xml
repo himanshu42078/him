@@ -1,0 +1,24 @@
+<!-- Modify it at your will. -->
+
+<group name="cohesity,pwc_caas,">
+    <!-- Kibana  -->
+    <rule id="270000" level="3">
+        <decoded_as>cohesity-json</decoded_as>
+        <description>Cohesity Rules.</description>
+    </rule>
+
+    <rule id="270001" level="3">
+        <if_sid>270000</if_sid>
+        <action>Login</action>
+        <description>Cohesity Login Events.</description>
+    </rule>
+    
+    <!--1min logon more then 5 time-->
+    <rule id="270002" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>270001</if_matched_sid>
+      <same_user/>
+      <field name="errorMsg">\.*Authentication faile\.*</field>
+      <description>Cohesity: Log in failure to Cohesity multiple times in a short period of time. User: $(User) login failure multiple times within one minute. </description>
+    </rule>  
+
+</group>

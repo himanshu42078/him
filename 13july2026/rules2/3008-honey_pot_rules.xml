@@ -1,0 +1,102 @@
+
+<group name="pwc_caas,honey_pot,">
+	<!-- Honey Pot rules for Clients-->
+	<rule id="300800" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4799$</field>
+		<field name="win.eventdata.targetUserName">^Domain Controller Operater$</field>
+        <description>[Honey Pot Detection] Domain Group Enumeration detected</description>
+        <group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+	</rule>
+	<rule id="300801" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4769$</field>
+		<field name="win.eventdata.serviceName">^Domain Operater$</field>
+		<description>[Honey Pot Detection] Kerberoasting Ticket Request Detected</description>
+        <group>attack_stage_Credential_Access,attack_category_Credentials_Dumping,</group>
+	</rule>
+
+    <rule id="300802" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4625$</field>
+		<field name="win.eventdata.targetUserName">^Domain Operater$</field>
+		<description>[Honey Pot Detection] Failure Login Detected for Honey Pot Account</description>
+        <group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+	</rule>
+
+    <rule id="300803" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4624$</field>
+		<field name="win.eventdata.targetUserName">^Domain Operater$</field>
+		<description>[Honey Pot Detection] Successful Login Detected for Honey Pot Account</description>
+        <group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+	</rule>
+
+    <rule id="300804" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4724$</field>
+		<field name="win.eventdata.targetUserName">^Domain Operater$</field>
+		<description>[Honey Pot Detection] Password Reset Detected for Honey Port Account</description>
+        <group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+		<!-- DEV-2035 -->
+	</rule>	
+
+    <rule id="300805" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4738$</field>
+		<field name="win.eventdata.targetUserName">^Domain Operater$</field>
+		<description>[Honey Pot Detection] Honey Pot Account Change Detected</description>
+        <group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+		<!-- DEV-2863 -->
+	</rule>	
+
+    <rule id="300806" level="12">
+		<if_sid>60104</if_sid>
+		<field name="win.system.eventID">^5145$</field>
+		<field name="win.eventdata.targetUserName">^Domain Operater$</field>
+		<field name="win.eventdata.relativeTargetName">srvsvc|lsarpc|samr</field>
+		<description>[Honey Pot Detection] Sharphound Execution Detected</description>
+        <group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+		<!-- DEV-2440 -->
+	</rule>								
+
+	<rule id="300807" level="12">
+		<if_sid>60103,60104,60111</if_sid>
+		<field name="win.eventdata.targetUserName">^Domain Operater$</field>
+		<description>[Honey Pot Detection] Activities of Domain Operater account</description>
+		<group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+		<!-- DEV-3230 -->
+	</rule>
+	<rule id="300808" level="12">
+		<if_sid>60103,60104,60009</if_sid>
+		<field name="win.system.providerName">^Microsoft-Windows-PowerShell$</field>
+		<field name="win.eventdata.targetUserName">^Domain Operater$</field>
+		<description>[Honey Pot Detection] PowerShell Activities of Domain Operater account</description>
+        <group>attack_stage_Lateral_Movement,attack_category_Suspected_Identity_Theft,</group>
+		<!-- DEV-3231 -->
+	</rule>
+
+	<rule id="300809" level="0">
+		<if_sid>300807</if_sid>
+		<field name="win.system.eventID">^4780$</field>
+		<description>[Whitelist][Honey Pot Detection] Activities of Domain Operater account</description>
+		<!-- DEV-3356 -->
+	</rule>
+
+	<rule id="300810" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4662$</field>
+		<field name="win.eventdata.targetUserName">^Domain Operater$</field>
+        <description>[Honey Pot Detection] Sharphound execution against honey pot</description>
+		<!-- DEV-3481 -->
+	</rule>	
+<!--
+	<rule id="300811" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4661$</field>
+		<field name="win.eventdata.objectServer">^Security Account Manager$</field>
+        <description>[Honey Pot Detection] Sharphound execution against honey pot</description>
+        <group>demo_rules,</group>
+	</rule>	
+-->	
+</group>

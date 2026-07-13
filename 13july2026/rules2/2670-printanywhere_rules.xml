@@ -1,0 +1,24 @@
+
+<!-- Modify it at your will. -->
+
+<group name="printanywhere,pwc_caas,">
+    <!-- PrintAnyWhere  -->
+    <rule id="267000" level="3">
+        <decoded_as>PrintAnyWhereOS</decoded_as>
+        <description>PrintAnyWhere Rules.</description>
+    </rule>
+
+    <rule id="267001" level="3">
+        <if_sid>267000</if_sid>
+        <action>LoginMessage</action>
+        <description>PrintAnyWhere Login Message.</description>
+    </rule>
+    
+    <!--1min logon more then 5 time-->
+    <rule id="267002" level="12" frequency="5" timeframe="60">
+      <if_matched_sid>267001</if_matched_sid>
+      <same_user />
+      <description>PrintAnyWhere: Log in the Web console multiple times in a short period of time. User: $(srcuser) login multiple times within one minute. </description>
+    </rule>  
+
+</group>

@@ -1,0 +1,19 @@
+
+<group name="pwc_caas,windows,">
+    <!-- Windows -->
+    <rule id="300300" level="12">
+        <if_sid>60003</if_sid>
+        <field name="win.system.eventID">^1033$</field>
+        <field name="win.eventdata.data">test pkg</field>
+        <description>Possible InstallerTakeOver POC Detected</description>
+    </rule>
+    <!-- Credits to SOCPrime-->
+    <rule id="300301" level="12">
+        <if_sid>60106</if_sid>
+        <field name="win.system.eventID">^4688$</field>
+        <field name="win.eventdata.parentProcessName">elevation_service.exe</field>
+        <field name="win.eventdata.newProcessName">cmd.exe</field>
+        <field name="win.eventdata.mandatoryLabel">S-1-16-16384</field>
+        <description>Possible InstallerFileTakeOver LPE CVE-2021-41379</description>
+    </rule>
+</group>

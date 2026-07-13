@@ -1,0 +1,17 @@
+
+<group name="pwc_caas,">
+    <!-- CVE-2021-40438 Apache <= 2.4.48 - Mod_Proxy SSRF Critical Vulnerability-->
+    <rule id="300400" level="12">
+        <if_group>R2L|web|accesslog</if_group>
+        <url>/?unix:</url>
+        <match>GET</match>
+        <description>CVE-2021-40438 Apache Mod_Proxy SSRF attempt</description>
+        <group>attack_stage_Discovery,attack_category_Network_Scanning,</group>
+    </rule>
+
+    <rule id="300490" level="0">
+        <if_sid>300400</if_sid>
+        <match>drop|incomplete|aged-out|server-rst|denied|deny|reject|reset</match>
+        <description>Dropped traffic</description>
+    </rule>
+</group>

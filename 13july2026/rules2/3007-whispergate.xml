@@ -1,0 +1,131 @@
+
+<group name="pwc_caas,whispergate,">
+	<!-- New rule Possible WhisperGate / DEV-0586 Behaviour Activity Patterns (via cmdline)-->
+	<rule id="300700" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">PerfLogs|ProgramData|temp</field>
+		<field name="win.eventdata.newProcessName">stage</field>
+        <description>Possible WhisperGate Behaviour Activity Patterns (via cmdline)[1]</description>
+        <group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+	<!-- this should have many alerts -->
+	<rule id="300701" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">\s-enc</field>
+		<field name="win.eventdata.commandLine">powershell</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via cmdline)[2]</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+		<options>no_counter</options>
+	</rule>
+
+
+    <rule id="300702" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.newProcessName">stage1|stage2|stage3|Tbopbh</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via cmdline)[3]</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+
+    <rule id="300703" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">cmd.exe</field>
+		<field name="win.eventdata.commandLine">start</field>
+		<field name="win.eventdata.commandLine">ADMIN$</field>
+		<field name="win.eventdata.commandLine">2>&1</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via cmdline)[4]</description>
+		<group>attack_stage_Execution,attack_category_Malware_Detection,</group>
+	</rule>
+
+	<rule id="300704" level="12">
+		<if_sid>138000</if_sid>
+		<field name="win.eventdata.scriptBlockText">Get-Content</field>
+        <field name="win.eventdata.scriptBlockText">AsByteStream</field>
+        <field name="win.eventdata.scriptBlockText">Byte</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via powershell)[1]</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+
+    <rule id="300705" level="12">
+		<if_sid>138000</if_sid>
+		<field name="win.eventdata.scriptBlockText">Array</field>
+        <field name="win.eventdata.scriptBlockText">Reverse</field>
+        <field name="win.eventdata.scriptBlockText">code</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via powershell)[2]</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+		<options>no_full_log</options>
+	</rule>
+    <rule id="300706" level="12">
+		<if_sid>138000</if_sid>
+		<field name="win.eventdata.scriptBlockText">Set-Content</field>
+        <field name="win.eventdata.scriptBlockText">AsByteStream</field>
+        <field name="win.eventdata.scriptBlockText">code</field>
+        <field name="win.eventdata.scriptBlockText">Path</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via powershell)[3]</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+
+    <rule id="300707" level="12">
+		<if_sid>138001</if_sid>
+		<field name="win.eventdata.payload">Get-Content</field>
+        <field name="win.eventdata.payload">AsByteStream</field>
+        <field name="win.eventdata.payload">Byte</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via powershell)[4]</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+
+    <rule id="300708" level="12">
+		<if_sid>138001</if_sid>
+		<field name="win.eventdata.payload">Array</field>
+        <field name="win.eventdata.payload">Reverse</field>
+        <field name="win.eventdata.payload">code</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via powershell)[5]</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+    <rule id="300709" level="12">
+		<if_sid>138001</if_sid>
+		<field name="win.eventdata.payload">Set-Content</field>
+        <field name="win.eventdata.payload">AsByteStream</field>
+        <field name="win.eventdata.payload">code</field>
+        <field name="win.eventdata.payload">Path</field>
+		<description>Possible WhisperGate Behaviour Activity Patterns (via powershell)[6]</description>
+        <group>attack_stage_Execution,attack_category_Suspicious_Command_Execution,</group>
+	</rule>
+
+	<rule id="300750" level="0">
+		<if_sid>300705</if_sid>
+		<field name="win.eventdata.scriptBlockText">Microsoft.Windows.NdrScanner</field>
+		<description>[Whitelist] Microsoft.Windows.NdrScanner for whispergate </description>
+	</rule>
+	<!-- DEV-1686 -->
+
+	<rule id="300751" level="5">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.commandLine">rundll32 C:\\windows\\system32\\comsvcs.dll MiniDump|appdata\\local\\microsoft\\windows\\winupd.log|CSIDL_SYSTEM_DRIVE\\temp\\sys.tmp1|\\policydefinitions\\postgresql.exe</field>
+		<description>Possible Ukraine-Russia - Disk-wiping Attacks</description>
+		<!-- DEV-1342 -->
+	</rule>	
+        <rule id="300752" level="3">
+                <if_sid>60103</if_sid>
+                <field name="win.system.eventID">^4688$</field>
+                <field name="win.eventdata.commandLine">New-Object System.Net.WebClient\.*.DownloadFile</field>
+                <description>Possible Ukraine-Russia - Disk-wiping Attacks</description>
+                <!-- DEV-1342 -->
+        </rule>
+        <rule id="300753" level="3">
+                <if_sid>300752</if_sid>
+                <field name="win.eventdata.commandLine">CSIDL_SYSTEM_DRIVE\\temp\\\.*</field>
+                <description>Possible Ukraine-Russia - Disk-wiping Attacks</description>
+                <!-- DEV-1342 -->
+        </rule>
+        <rule id="300754" level="5">
+                <if_sid>300753</if_sid>
+                <field name="win.eventdata.commandLine">1> \\\\127.0.0.1\\ADMIN$</field>
+                <description>Possible Ukraine-Russia - Disk-wiping Attacks</description>
+                <!-- DEV-1342 -->
+        </rule>		
+</group>

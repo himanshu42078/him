@@ -1,0 +1,486 @@
+
+<group name="pwc_caas,">
+	<rule id="400000" level="0">
+		<if_sid>5701,5706</if_sid>
+		<location>pwc</location>
+		<srcip>192.168.19.0/29</srcip>
+		<description>Whitelist PWC PRTG</description>
+	</rule>
+	<rule id="400001" level="0">
+		<if_sid>5701,5706</if_sid>
+		<location>pwc</location>
+		<srcip>172.18.8.101</srcip>
+		<description>Whitelist PWC PRTG</description>
+	</rule>
+	<rule id="400002" level="0">
+		<if_sid>5701,5706</if_sid>
+		<location>pwc</location>
+		<srcip>172.18.2.88</srcip>
+		<description>Whitelist PwC PMP</description>
+	</rule>
+
+	<!--
+		DEV-4730, 2023-07-18
+	-->
+	<rule id="400003" level="8">
+		<match>soc internal testing alert</match>
+		<description>Hourly heartbeat ticket from wazuh-manager</description>
+		<group>demo_rules,realert_0.5h,</group>
+	</rule>
+
+	<rule id="400010" level="12">
+		<decoded_as>log-source-down</decoded_as>
+		<description>PwC CaaS - No log from $(down_agentname) $(down_hostname) for at least $(down_duration)</description>
+	</rule>
+<!--
+	<rule id="400011" level="12">
+		<if_group>syslog</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/pwc-watchlist-ip</list>
+		<description>Source ip is under PwC Watchlists</description>
+		<group>auto_escalate_disabled,</group>
+	</rule>
+	<rule id="400012" level="12">
+		<if_group>syslog</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/pwc-watchlist-ip</list>
+		<description>destination ip is under PwC Watchlists</description>
+		<group>auto_escalate_disabled,</group>
+	</rule>
+	DEV-3770
+-->
+	<rule id="400014" level="0">
+		<if_sid>2932,5104</if_sid>
+		<hostname>pwcsoc|plwaz|SAS-SOC</hostname>
+		<description>Whitelist Yum Install and pcap for PWC device</description>
+	</rule>
+	<rule id="400016" level="12">
+		<if_group>L2R</if_group>
+		<list field="dstip" lookup="address_match_key">etc/lists/pwc-ti-ip</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>PwC TI: Connection Attempt TO Malicious IP(s)</description>
+	</rule>
+	<rule id="400017" level="12">
+		<if_group>authentication_success</if_group>
+		<list field="srcip" lookup="address_match_key">etc/lists/pwc-ti-ip</list>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,group_by_data.srcip,</group>
+		<description>PwC TI: Login success FROM Malicious IP(s)</description>
+	</rule>
+	<rule id="400018" level="12">
+		<if_group>sysmon_event1|sysmon_event6|sysmon_event7|sysmon_event_15</if_group>
+		<list field="sysmon.hashes" lookup="match_key">etc/lists/pwc-ti-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>PwC TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="400019" level="12">
+		<if_group>sysmon_event1|sysmon_event6|sysmon_event7|sysmon_event_15</if_group>
+		<list field="sysmon.hash" lookup="match_key">etc/lists/pwc-ti-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>PwC TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="400020" level="12">
+		<if_sid>550, 554</if_sid>
+		<list field="syscheck.sha256_after" lookup="match_key">etc/lists/pwc-ti-hash</list>
+		<group>attack_stage_Exfiltration,attack_category_Suspicious_File_Detection,</group>
+		<description>PwC TI: Detect Suspicious File</description>
+	</rule>
+	<rule id="400021" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url_domain" lookup="match_key">etc/lists/pwc-ti-domain</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>PwC TI: Connection Attempt TO Malicious domain(s)</description>
+	</rule>
+	<rule id="400022" level="12">
+		<if_group>L2R|cisco-asa</if_group>
+		<list field="url" lookup="match_key">etc/lists/pwc-ti-url</list>
+		<group>attack_stage_Command_and_Control,attack_category_Anomalous_Outbound_Traffic,group_by_data.srcip,</group>
+		<description>PwC TI: Connection Attempt TO Malicious URL(s)</description>
+	</rule>
+	<rule id="400023" level="0">
+		<if_sid>101300</if_sid>
+		<regex>http://192.168.\d+.\d+|https://192.168.\d+.\d+</regex>
+		<description>PwC CaaS - Connecting to IP address only - exclude internal ip</description>
+	</rule>
+	<rule id="400024" level="0">
+		<if_sid>101300</if_sid>
+		<list field="dstip" lookup="address_match_key">etc/lists/microsoft-teams-skype-ip</list>
+		<description>PwC CaaS - Connecting to IP address only - exclude teams and skype ip</description>
+	</rule>
+	<rule id="400025" level="8">
+		<if_group>authentication_success</if_group>
+		<list field="srcip" lookup="not_address_match_key">etc/lists/bogon-ip</list>
+		<srcgeoip>!HK</srcgeoip>
+		<srcip>!52.109.120.107</srcip>
+		<user>!cloudinsider</user>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+		<description>PwC Anomaly: Inbound Authentication Success from Foreign Country/Region</description>
+	</rule>
+	<rule id="400028" level="5">
+		<if_sid>106201</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/pwc-ti-ip</list>
+		<description>PwC TI: ThreatMatrix Login success FROM Malicious IP(s)</description>
+		<group>threatmatrix_login_success_from_bad_ip,attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+	<rule id="400029" level="5">
+		<if_sid>106202</if_sid>
+		<list field="srcip" lookup="address_match_key">etc/lists/pwc-ti-ip</list>
+		<description>PwC TI: ThreatMatrix Transaction FROM Malicious IP(s)</description>
+		<group>attack_stage_Initial_Access,attack_category_Credential_Misuse_/_Abuse,</group>
+	</rule>
+  <rule id="400034" level="0">
+    <if_sid>137003</if_sid>
+    <srcip>210.3.176.34</srcip>
+    <description>PwC Nessus IP</description>
+  </rule>
+	<rule id="400015" level="0">
+		<if_sid>5104</if_sid>
+		<location>soc</location>
+		<hostname>elkalert</hostname>
+		<match>veth</match>
+		<description>Ignore for docker restart in elastalert</description>
+	</rule>
+	<!-- PwC IP Watchlists -->
+	<!--
+	<rule id="400035" level="0">
+		<if_sid>400011</if_sid>
+		<regex>deny|denied</regex>
+		<description>Whitelist Denied traffic.</description>
+	</rule>
+	DEV-3770
+	-->
+	<rule id="400036" level="0">
+		<if_sid>100103</if_sid>
+		<location>pwcsoc</location>
+		<field name="agent.name">pwcsoc-plelkda\d*.int.darklab.hk</field>
+		<description>whitelist devices for Partition usage high</description>
+	</rule>
+	<rule id="400050" level="0">
+		<if_sid>1007</if_sid>
+		<location>/var/ossec/logs/integrations.log</location>
+		<description>[WHITELIST]Integrations logs disk full alert</description>
+	</rule>
+	<rule id="400051" level="0">
+        <if_sid>3109</if_sid>
+        <description>[DISABLE] sendmail: Sendmail save mail panic.</description>
+    </rule>  	
+	<rule id="400052" level="0">
+		<if_sid>5108</if_sid>
+		<description>[DISABLE] System running out of memory. </description>
+	</rule>
+	<rule id="400053" level="7">
+        <if_sid>1007</if_sid>
+		<field name="agent.name">pwc</field>
+		<description>[PWCSOC] File system full.</description>
+		<group>auto_escalate_disabled,</group>
+	</rule>
+	<rule id="400054" level="0">
+		<if_sid>1007</if_sid>
+      	<decoded_as>office-365</decoded_as>
+		<description>[Disable] Irrelevant File system full.</description>
+	</rule>
+  	
+   	<rule id="400055" level="0">
+		<if_sid>1007</if_sid>
+      	<program_name>nbsyslog</program_name>
+		<match>smtpserver</match>
+		<description>[Disable] Irrelevant File system full.</description>
+	</rule>
+
+   	<rule id="400056" level="0">
+		<if_group>L2R</if_group>
+		<action>block-url</action>
+		<description>[Disable] The connection is already blocked by firewall.</description>
+		<!-- DEV-1741 -->
+	</rule>	 
+
+   	<rule id="400057" level="0">
+		<if_sid>400053</if_sid>
+        <decoded_as>filebeat</decoded_as>
+        <field name="logsource">elasticsearch</field>
+		<description>[whitelist][pwcsoc] File system full.</description>
+		<!-- DEV-1705 -->
+	</rule>
+	<rule id="400058" level="5">
+		<if_sid>106250</if_sid>
+		<field name="eventid">auth-fail</field>
+		<field name="subtype">auth</field>
+		<location>fhsg|fhau</location>
+		<description>Paloalto authentication failed detected.</description>
+		<!-- PwcSOC -->
+		<!-- DEV-3048 -->
+	</rule>
+
+	<rule id="400059" level="0">
+		<if_sid>3330,3331,3333</if_sid>
+		<description>Suppress Postfix Alerts</description>
+		<!-- DEV-2233 -->
+	</rule>
+
+	<rule id="400060" level="0">
+		<if_sid>109023</if_sid>
+		<field name="win.eventdata.commandLine">AKCDeploy.application</field>
+		<location>pwcsoc</location>
+		<description>Detect Suspicious LoL commands - Use of dfsvc.exe to bypass app whitelisting</description>
+		<!-- DEV-3329 -->
+	</rule>
+
+	<rule id="400061" level="0">
+		<if_sid>106251</if_sid>
+		<field name="rulename">Allow Hackbot to SoC internal scan</field>
+		<location>pwcsoc</location>
+		<description>[Whitelist] PA Critical Threat Event with Alert Action - Apache Log4j Remote Code Execution Vulnerability(92046)</description>
+		<!-- DEV-3511 -->
+	</rule>
+
+	<rule id="400062" level="0">
+		<if_sid>400016</if_sid>
+		<field name="session_end_reason">tcp-rst-from-server</field>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-4104 -->
+	</rule>
+	<rule id="400063" level="0">
+		<if_sid>400016</if_sid>
+		<field name="session_end_reason">tcp-rst-from-client</field>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-4104 -->
+	</rule>	
+	<rule id="400064" level="0">
+		<if_sid>400016</if_sid>
+		<action>server-rst</action>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-4104 -->
+	</rule>
+	<rule id="400065" level="0">
+		<if_sid>400016</if_sid>
+		<action>client-rst</action>
+		<description>[Whitelist] Connection Attempt TO Malware IP(s)</description>
+		<!-- DEV-4104 -->
+	</rule>	
+
+	<rule id="400066" level="1">
+		<decoded_as>hostapd</decoded_as>
+		<location>pwcsoc-plwazag01.int.darklab.hk</location>
+		<description>Group of hostapd rule</description>
+		<!-- DEV-3329 -->
+	</rule>
+	<rule id="400067" level="8">
+		<if_sid>400066</if_sid>
+		<time>12 am - 6 am</time>
+		<field name="massage">associated</field>
+		<description>WiFi association in abnromal hours</description>
+		<!-- DEV-3329 -->
+	</rule>
+
+	<rule id="400068" level="0">
+		<if_sid>107001</if_sid>
+		<location>pwcsoc-PWDNS01|pwcsoc-PWDNS02</location>
+		<field name="win.eventdata.sourceImage">C:\\\\Program Files \(x86\)\\\\ossec-agent\\\\wazuh-agent.exe</field>
+		<description>[whitelist] Detected a Malicious Access to lsass Process</description>
+		<!-- DEV-4162 -->
+	</rule>
+
+	<rule id="400069" level="12">
+		<decoded_as>vmware-vcenter-vpxd</decoded_as>
+		<location>pwcsoc-plwazag01.int.darklab.hk</location>
+		<match>Registered|Creating|Powering on vm|powered on|Reconfigured</match>
+		<description>New VM online or reconfigured detected on vCenter</description>
+		<!-- DEV-4200 -->
+	</rule>	
+
+	<rule id="400070" level="0">
+		<if_sid>400069</if_sid>
+		<match>Creating DB connection|Creating user session|Creating new connection|Creating SSL Contexts</match>
+		<description>[whitelist] New VM online or reconfigured detected on vCenter</description>
+		<!-- DEV-4200 -->
+	</rule>		
+
+	<rule id="400071" level="8">
+		<if_sid>530</if_sid>
+		<match>ossec: output: 'pwcsocnetstatlisteningports</match>
+		<check_diff />
+		<location>.int.darklab.hk</location>
+		<description>Listened ports status (netstat) changed (new port opened or closed).</description>
+		<group>pci_dss_10.2.7,pci_dss_10.6.1,gpg13_10.1,gdpr_IV_35.7.d,</group>
+		<!-- DEV-4205 -->
+	</rule>
+
+	<rule id="400073" level="8">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^5154$</field>
+		<location>.int.darklab.hk</location>
+		<description>Listen on a port for incoming connections.</description>
+		<!-- DEV-4217 -->
+	</rule>	
+	<rule id="400074" level="0">
+		<if_sid>400073</if_sid>
+		<field name="win.eventdata.sourceAddress">^0.0.0.0$|^::$|^::1$|^127.0.0.1$</field>
+		<description>Listen on a port for incoming connections.</description>
+		<!-- DEV-4217 -->
+	</rule>	
+	<rule id="400075" level="3">
+		<if_sid>530</if_sid>
+		<match>checkservicestatus</match>
+		<description>ossec: checkservicestatus</description>
+		<!-- DEV-4355 -->
+	</rule>	
+	<rule id="400076" level="7">
+		<if_sid>400075</if_sid>
+		<location>.int.darklab.hk</location>
+		<match>elasticsearch.service; disabled;</match>
+		<description>Abnormal Elasticsearch Service Status</description>
+		<!-- DEV-4355 -->
+	</rule>	
+	<rule id="400077" level="0">
+		<if_sid>400075</if_sid>
+		<location>.int.darklab.hk</location>
+		<match negate="yes">active \(running\)</match>
+		<description>Abnormal Elasticsearch Service Status</description>
+		<!-- DEV-4355 -->
+	</rule>			
+
+	<rule id="400078" level="1">
+		<location>/var/log/clamscan.log</location>
+		<description>Group of ClamAV</description>
+		<!-- DEV-4576 -->
+	</rule>	
+	<rule id="400079" level="8">
+		<if_sid>400078</if_sid>
+		<location>.int.darklab.hk</location>
+		<match>FOUND</match>
+		<description>Malware file found by ClamAV</description>
+		<!-- DEV-4576 -->
+	</rule>
+
+	<rule id="400080" level="0">
+		<if_sid>107400</if_sid>
+		<location>.int.darklab.hk</location>
+		<field name="win.eventdata.currentDirectory">C:\\\\Program Files \(x86\)\\\\ossec-agent</field>
+		<description>[whitelist][pwcsoc] Detect suspicious Windows commands - Set 2</description>
+		<!-- DEV-4596 -->
+	</rule>
+
+	<rule id="400081" level="0">
+		<if_sid>5901</if_sid>
+		<location>/var/log/soc-</location>
+		<description>[whitelist][pwcsoc] New group added to the system.</description>
+		<!-- DEV-4595 -->
+	</rule>
+
+	<rule id="400082" level="8">
+		<decoded_as>json</decoded_as>
+		<location>.int.darklab.hk</location>
+		<field name="message">wazuh-archives-3.x\.+method=POST|wazuh-archives-3.x\.+method=DELETE</field>
+		<description>FIM for audit log</description>
+		<!-- DEV-4640 -->
+	</rule>
+
+	<rule id="400083" level="3">
+		<location>freshclam.log</location>
+		<match>WARNING: Your ClamAV installation is OUTDATED</match>
+		<description>ClamAV installation is OUTDATED</description>
+		<!-- DEV-4646 -->
+	</rule>
+	<rule id="400084" level="5">
+		<if_sid>400083</if_sid>
+		<location>.int.darklab.hk</location>
+		<match>WARNING: Your ClamAV installation is OUTDATED</match>
+		<description>ClamAV installation is OUTDATED</description>
+		<!-- DEV-4646 -->
+	</rule>
+
+	<rule id="400085" level="0">
+		<if_sid>107073</if_sid>
+		<location>.int.darklab.hk</location>
+		<field name="win.system.computer">JumperServer149|SOCJumperServer01</field>
+		<description>[Whitelist][pwcsoc] Detect suspicious Windows commands</description>
+		<!-- DEV-4659 -->
+	</rule>
+
+	<rule id="400086" level="3">
+		<if_sid>2501</if_sid>
+		<location>/var/log/freeradius/radius.log</location>
+		<regex>Login incorrect \ppam: pam_authenticate failed: Authentication failure\p</regex>
+		<description>Detect Paloalto 2FA Login failure</description>
+		<!-- DEV-4676 -->
+	</rule>
+	<rule id="400087" level="8">
+		<if_sid>400086</if_sid>
+		<location>pwcsoc-socfreeradius.int.darklab.hk</location>
+		<description>Detect Paloalto 2FA Login failure</description>
+		<group>realert_24h,</group>
+		<!-- DEV-4676 -->
+	</rule>
+	<rule id="400088" level="10">
+		<if_sid>400086,400087</if_sid>
+		<match>support|root|admin|soc</match>
+		<location>pwcsoc-socfreeradius.int.darklab.hk</location>
+		<description>Detect abnormal login on Firewall or SSLVPN</description>
+		<group>realert_2h,</group>
+		<!-- DEV-4677 -->
+	</rule>
+
+	<rule id="400089" level="3">
+		<location>/var/log/rsyslog-172.18.0.6-172.18.0.6.log</location>
+		<match>violation</match>
+		<description>Detect cisco switch MAC security violation</description>
+		<!-- DEV-4679 -->
+	</rule>
+	<rule id="400090" level="8">
+		<if_sid>400089</if_sid>
+		<location>pwcsoc-plwazag01.int.darklab.hk</location>
+		<description>Detect cisco switch MAC security violation</description>
+		<group>realert_24h,</group>
+		<!-- DEV-4679 -->
+	</rule>
+	<rule id="400091" level="0">
+		<if_sid>107501</if_sid>
+		<location>pwcsoc</location>
+		<field name="win.eventdata.subjectUserName">JUMPERSERVER149</field>
+		<field name="win.eventdata.commandLine">start dnscache</field>
+		<field name="win.eventdata.parentProcessName">C:\\\\Program Files\\\\Fortinet\\\\FortiClient\\\\FortiSSLVPNdaemon.exe</field>
+		<description>[whitelist][pwcsoc] Detect suspicious Windows commands - Set 3</description>
+		<!-- DEV-4961 -->
+	</rule>	
+
+	<rule id="400092" level="0">
+		<if_sid>101003</if_sid>
+		<location>plwazag01</location>
+		<description>[whitelist][pwcsoc] Non-office hour successful VPN login</description>
+		<!-- DEV-4969 -->
+	</rule>	
+
+	<rule id="400093" level="12" ignore="300">
+		<location>plwaznwo</location>
+		<match>wazuh-remoted: ERROR: TCP peer</match>
+		<description>Wazuh manager wazuh-remoted ERROR - TCP peer</description>
+		<group>demo_rules,DEV-5119,</group>
+		<!-- DEV-5119 -->
+	</rule>
+
+	<rule id="400094" level="0">
+		<if_sid>106251,300501,144066,144067,144005,144069,144068,144300,144053,300502,144004,300503</if_sid>
+		<location>.int.darklab.hk</location>
+		<srcip>172.18.48.12</srcip>
+		<description>[pwcsoc] whitelist scanner traffic</description>
+		<!-- DEV-5587 -->
+	</rule>
+
+	<rule id="400095" level="0">
+		<if_sid>101240</if_sid>
+		<dstip>192.229.221.95</dstip>
+		<description>[TEMP SUPPRESS] MISP TI: Connection Attempt TO Malware IP(s)</description>
+	</rule>
+	<rule id="400096" level="0">
+		<if_sid>101240</if_sid>
+		<dstip>185.229.191.41</dstip>
+		<description>[TEMP SUPPRESS] MISP TI: Connection Attempt TO Malware IP(s)</description>
+	</rule>
+
+	<rule id="400097" level="0">
+		<if_sid>107073</if_sid>
+		<location>pwcsoc</location>
+		<field name="win.eventdata.subjectUserName">vicky</field>
+		<field name="win.eventdata.commandLine">GnuWin32</field>
+		<description>[whitelist] Detect suspicious Windows commands</description>
+		<!-- 20231207, suppress high flooding alerts for legit usage-->
+	</rule>
+
+</group>

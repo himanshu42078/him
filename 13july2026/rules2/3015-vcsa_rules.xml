@@ -1,0 +1,13 @@
+
+<group name="pwc_caas,">
+    <rule id="300000" level="12">
+        <if_group>R2L</if_group>
+        <url>/eam/vib?id=C:\\ProgramData\\VMware\\vCenterServer\\cfg\\vmware-vpx\\vcdb.properties|/eam/vib?id=/etc/passwd/</url>
+        <description>VMware Vcenter Remote Code Execution Attempt</description>
+    </rule>
+    <rule id="300001" level="12">
+        <if_group>L2L</if_group>
+        <url>/eam/vib?id=C:\\ProgramData\\VMware\\vCenterServer\\cfg\\vmware-vpx\\vcdb.properties|/eam/vib?id=/etc/passwd/</url>
+        <description>VMware Vcenter Remote Code Execution Attempt</description>
+    </rule>
+</group>

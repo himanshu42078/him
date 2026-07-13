@@ -1,0 +1,56 @@
+
+<group name="pwc_caas,msdt_follina,">
+	<!-- msdt-follina rules for Clients-->
+	<rule id="301100" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">WINWORD.EXE|EXCEL.EXE|POWERPNT.EXE|MSPUB.EXE|VISIO.EXE|OUTLOOK.EXE|MSACCESS.EXE|MSPROJECT.EXE|ONENOTE.EXE</field>
+        <field name="win.eventdata.commandLine">msdt.exe</field>
+        <description>Possible 'Follina' - a MS Office Code Execution Vulnerability Exploitation (via cmdline)[1]</description>
+        <group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,</group>
+	</rule>
+	<rule id="301101" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">WINWORD.EXE|EXCEL.EXE|POWERPNT.EXE|MSPUB.EXE|VISIO.EXE|OUTLOOK.EXE|MSACCESS.EXE|MSPROJECT.EXE|ONENOTE.EXE</field>
+        <field name="win.eventdata.newProcessName">msdt.exe</field>
+        <description>Possible 'Follina' - a MS Office Code Execution Vulnerability Exploitation (via cmdline)[2]</description>
+        <group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,</group>
+	</rule>
+
+	<rule id="301102" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4688$</field>
+		<field name="win.eventdata.parentProcessName">sdiagnhost.exe</field>
+        <description>Possible 'Follina' - a MS Office Code Execution Vulnerability Exploitation (via cmdline)[3]</description>
+        <group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,</group>
+	</rule>
+
+    <rule id="301103" level="0">
+		<if_sid>301102</if_sid>
+		<field name="win.eventdata.newProcessName">System32\\\\conhost.exe|System32\\\\netsh.exe|System32\\\\wpr.exe|System32\\\\ROUTE.EXE|System32\\\\makecab.exe|System32\\\\ipconfig.exe|SysWOW64\\\\ipconfig.exe|SysWOW64\\\\ROUTE.exe</field>
+        <description>[Whitelist] Possible 'Follina' - a MS Office Code Execution Vulnerability Exploitation (via cmdline)[3]</description>
+        <!-- DEV-5158 -->
+	</rule>
+	<!-- Updated Whitelist based on towngas logs-->
+    <rule id="301104" level="0">
+		<if_sid>301102</if_sid>
+		<field name="win.eventdata.newProcessName">Framework64</field>
+        <field name="win.eventdata.newProcessName">csc.exe</field>
+        <field name="win.eventdata.newProcessName">Microsoft.NET</field>
+        <description>[Whitelist] Possible 'Follina' - a MS Office Code Execution Vulnerability Exploitation (via cmdline)[3]</description>
+	</rule>
+
+    <rule id="301105" level="12">
+		<if_sid>60103</if_sid>
+		<field name="win.system.eventID">^4657$</field>
+		<field name="win.eventdata.objectName">Microsoft</field>
+        <field name="win.eventdata.objectName">Office</field>
+        <field name="win.eventdata.objectName">Common</field>
+        <field name="win.eventdata.objectName">Internet</field>
+        <field name="win.eventdata.objectName">Server</field>
+        <field name="win.eventdata.objectName">Cache</field>
+        <description>Possible 'Follina' - a MS Office Code Execution Vulnerability Exploitation (via registry_event)</description>
+        <group>attack_stage_Execution,attack_category_Exploitation_for_Code_Execution,</group>
+	</rule>
+</group>
